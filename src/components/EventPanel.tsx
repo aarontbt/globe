@@ -333,7 +333,7 @@ export default function EventPanel({
               Event Intelligence
             </div>
             <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>
-              {sorted.length} active events · ASEAN focus
+              {sorted.length} active events
             </div>
           </div>
           <div style={{
