@@ -2,8 +2,6 @@
 
 An interactive 3D globe visualization of ASEAN maritime trade routes, shipping lanes, geopolitical events, and port activity — built for analytical storytelling in a pitch or advisory setting.
 
-![ASEAN Maritime Intelligence](https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson)
-
 ## Features
 
 - **3D Interactive Globe** — Rotatable, zoomable globe centered on Southeast Asia using deck.gl's `_GlobeView`
