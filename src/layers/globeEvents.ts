@@ -48,7 +48,7 @@ export function createEventRingsLayer(
     radiusUnits: "pixels",
     stroked: false,
     pickable: false,
-    parameters: { depthTest: true, depthMask: false },
+    parameters: { depthTest: true, depthMask: false } as object,
     updateTriggers: {
       getRadius: pulse,
       getFillColor: pulse,
@@ -86,7 +86,7 @@ export function createEventDotsLayer(
     filled: true,
     radiusUnits: "pixels",
     pickable: true,
-    parameters: { depthTest: true, depthMask: false },
+    parameters: { depthTest: true, depthMask: false } as object,
     autoHighlight: true,
     highlightColor: [255, 255, 255, 60],
     updateTriggers: {
