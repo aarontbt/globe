@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useRef } from "react";
 import DeckGL from "@deck.gl/react";
 import { GeoJsonLayer } from "@deck.gl/layers";
 import { _GlobeView } from "@deck.gl/core";
@@ -18,6 +18,7 @@ import { usePolymarketEvents } from "../hooks/usePolymarketEvents";
 
 import EventPanel from "./EventPanel";
 import LayerTogglePanel from "./LayerTogglePanel";
+import PerformanceMonitor from "./PerformanceMonitor";
 import type { LayerVisibility } from "./LayerTogglePanel";
 
 import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc } from "../types";
@@ -51,6 +52,10 @@ export default function GlobeView() {
   const ports = portsData as Port[];
   const arcs = tradeArcsData as TradeArc[];
 
+  // Deck.gl render timing — written by onBeforeRender/onAfterRender, read by PerformanceMonitor
+  const deckRenderStartRef = useRef(0);
+  const deckRenderMsRef = useRef(0);
+
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeCategories, setActiveCategories] = useState<Set<EventCategory>>(
     new Set(ALL_CATEGORIES)
@@ -73,7 +78,8 @@ export default function GlobeView() {
     });
   }, []);
 
-  const layers = useMemo(() => {
+  // Static layers — only rebuilt when visibility/data changes, not every animation frame
+  const staticLayers = useMemo(() => {
     const result: any[] = [
       // Base globe — ocean fill
       new GeoJsonLayer({
@@ -99,23 +105,28 @@ export default function GlobeView() {
         parameters: { depthTest: true, depthMask: true },
       }),
     ];
-
-    // Maritime layers
     if (visibility.showLanes) result.push(createGlobalShippingLanesLayer());
     if (visibility.showCorridors) result.push(...createCorridorLayers(corridors));
     if (visibility.showArcs) result.push(createTradeArcsLayer(arcs));
     if (visibility.showPorts) result.push(createPortsLayer(ports));
-    if (visibility.showVessels) result.push(createAnimatedVesselsLayer(vessels));
+    return result;
+  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, corridors, ports, arcs]);
 
-    // Event layers
+  // Animated layers — rebuilt each animation tick
+  const animatedLayers = useMemo(() => {
+    const result: any[] = [];
+    if (visibility.showVessels) result.push(createAnimatedVesselsLayer(vessels));
     if (visibility.showEvents) {
       result.push(createEventRingsLayer(events, pulse, activeCategories));
       result.push(createEventDotsLayer(events, activeCategories, selectedId));
     }
-
     return result;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pulse, activeCategories, selectedId, visibility, vessels, corridors, ports, arcs]);
+  }, [pulse, activeCategories, selectedId, visibility.showVessels, visibility.showEvents, vessels, events]);
+
+  const layers = useMemo(
+    () => [...staticLayers, ...animatedLayers],
+    [staticLayers, animatedLayers]
+  );
 
   const getTooltip = useCallback(({ object, layer }: any) => {
     if (!object) return null;
@@ -173,7 +184,7 @@ export default function GlobeView() {
     }
 
     if (layer?.id === "corridors-core" || layer?.id === "corridors-glow") {
-      const c = object as Corridor;
+      const c = object.properties as Corridor;
       return {
         html: `<div style="font-family:system-ui;padding:4px 0;max-width:280px">
           <div style="font-weight:600;font-size:14px;color:#fff">${c.name}</div>
@@ -237,6 +248,10 @@ export default function GlobeView() {
         getTooltip={getTooltip}
         onClick={handleClick}
         style={{ width: "100%", height: "100%" }}
+        {...{
+          onBeforeRender: () => { deckRenderStartRef.current = performance.now(); },
+          onAfterRender:  () => { deckRenderMsRef.current = performance.now() - deckRenderStartRef.current; },
+        } as any}
       />
 
       {/* Globe title bar */}
@@ -304,11 +319,25 @@ export default function GlobeView() {
         />
       )}
 
-      {/* Layer toggles */}
-      <LayerTogglePanel
-        visibility={visibility}
-        onChange={(key, val) => setVisibility(prev => ({ ...prev, [key]: val }))}
-      />
+      {/* Bottom-left controls: layers + perf side by side */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 24,
+          left: 24,
+          zIndex: 10,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "flex-end",
+          gap: 8,
+        }}
+      >
+        <LayerTogglePanel
+          visibility={visibility}
+          onChange={(key, val) => setVisibility(prev => ({ ...prev, [key]: val }))}
+        />
+        <PerformanceMonitor deckRenderMsRef={deckRenderMsRef} />
+      </div>
     </div>
   );
 }

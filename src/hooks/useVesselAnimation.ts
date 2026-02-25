@@ -14,20 +14,23 @@ const majorPaths = globalLanePaths.major as [number, number][][];
 const middlePaths = globalLanePaths.middle as [number, number][][];
 const allPaths: [number, number][][] = [...majorPaths, ...middlePaths];
 
-// Budget: 3 vessels per major lane, 1 per middle lane (capped at 200 total)
-const VESSEL_BUDGET = 200;
+// Budget: 2 vessels per major lane, 1 per middle lane (capped at 130 total)
+const VESSEL_BUDGET = 130;
+const TARGET_FPS = 30;
+const FRAME_MS = 1000 / TARGET_FPS;
+const NOMINAL_FRAME_MS = 1000 / 60; // speeds were originally tuned for 60fps
 
 function initializeVessels(): VesselState[] {
   const vessels: VesselState[] = [];
   let id = 0;
 
-  // 3 evenly-spaced vessels per major lane
+  // 2 evenly-spaced vessels per major lane — covers all 52 major lanes within budget
   for (let i = 0; i < majorPaths.length && id < VESSEL_BUDGET; i++) {
-    for (let j = 0; j < 3 && id < VESSEL_BUDGET; j++) {
+    for (let j = 0; j < 2 && id < VESSEL_BUDGET; j++) {
       vessels.push({
         id: id++,
         pathIndex: i,
-        offset: j / 3 + (Math.random() - 0.5) * 0.05,
+        offset: j / 2 + (Math.random() - 0.5) * 0.05,
         speed: 0.00025 + Math.random() * 0.00035,
       });
     }
@@ -63,14 +66,24 @@ export function useVesselAnimation(): AnimatedVessel[] {
     computePositions(vesselsRef.current)
   );
 
+  const lastFrameTimeRef = useRef<number>(0);
+
   useEffect(() => {
-    const animate = () => {
-      const vessels = vesselsRef.current;
-      for (let i = 0; i < vessels.length; i++) {
-        vessels[i].offset += vessels[i].speed;
-        if (vessels[i].offset >= 1.0) vessels[i].offset -= 1.0;
+    const animate = (time: number) => {
+      if (lastFrameTimeRef.current > 0) {
+        const elapsed = time - lastFrameTimeRef.current;
+        if (elapsed >= FRAME_MS) {
+          const scale = elapsed / NOMINAL_FRAME_MS;
+          const vessels = vesselsRef.current;
+          for (let i = 0; i < vessels.length; i++) {
+            vessels[i].offset = (vessels[i].offset + vessels[i].speed * scale) % 1.0;
+          }
+          setPositions(computePositions(vessels));
+          lastFrameTimeRef.current = time;
+        }
+      } else {
+        lastFrameTimeRef.current = time;
       }
-      setPositions(computePositions(vessels));
       rafIdRef.current = requestAnimationFrame(animate);
     };
 

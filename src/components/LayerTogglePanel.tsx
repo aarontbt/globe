@@ -62,7 +62,7 @@ function ToggleRow({ label, swatch, checked, onToggle }: ToggleRowProps) {
 
 export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePanelProps) {
   return (
-    <div className="absolute bottom-6 left-6 z-10 p-4 bg-black/40 backdrop-blur-xl border border-white/10 rounded-xl">
+    <div className="p-4 bg-black/40 backdrop-blur-xl border border-white/10 rounded-xl">
       <h2 className="text-[10px] tracking-[0.2em] text-white/40 uppercase mb-2.5">Layers</h2>
       <div className="flex flex-col gap-2">
         <ToggleRow

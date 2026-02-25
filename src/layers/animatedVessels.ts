@@ -11,8 +11,5 @@ export function createAnimatedVesselsLayer(vessels: AnimatedVessel[]) {
     radiusMinPixels: 2,
     radiusMaxPixels: 4,
     pickable: false,
-    updateTriggers: {
-      getPosition: vessels.map((v) => v.offset),
-    },
   });
 }
