@@ -83,6 +83,7 @@ export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePa
             <div className="flex items-center gap-1">
               <div className="w-2 h-2 rounded-full bg-teal-400" />
               <div className="w-2 h-2 rounded-full bg-amber-400" />
+              <div className="w-2 h-2 rounded-full bg-orange-500" />
             </div>
           }
           checked={visibility.showPorts}

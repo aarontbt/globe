@@ -151,17 +151,35 @@ export default function GlobeView() {
 
     if (layer?.id === "ports") {
       const p = object as Port;
+      const typeLabel = p.type === "asean" ? "ASEAN" : p.type === "partner" ? "Partner" : "Global";
+      const typeColor = p.type === "asean" ? "#00ffc8" : p.type === "partner" ? "#ffc800" : "#ff7832";
       return {
-        html: `<div style="font-family:system-ui;padding:4px 0">
-          <div style="font-weight:600;font-size:14px;color:#fff">${p.name}</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.6)">${p.country} · ${p.type === "asean" ? "ASEAN" : "Partner"}</div>
-          <div style="font-size:13px;color:#0ff;margin-top:4px">${(p.teu / 1000).toFixed(1)}M TEU/year</div>
+        html: `<div style="font-family:system-ui;padding:4px 0;min-width:200px">
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">
+            <span style="font-weight:700;font-size:14px;color:#fff">${p.name}</span>
+            <span style="font-size:11px;font-weight:600;color:${typeColor};background:${typeColor}22;padding:1px 6px;border-radius:4px">#${p.rank} WORLD</span>
+          </div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-bottom:6px">${p.country} · ${typeLabel}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px">
+            <div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Throughput</div>
+              <div style="font-size:13px;color:#0ff;font-weight:600">${(p.teu / 1000).toFixed(1)}M TEU/yr</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Depth</div>
+              <div style="font-size:13px;color:#a78bfa;font-weight:600">${p.depth}m</div>
+            </div>
+          </div>
+          <div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.08)">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px">Operator</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.8)">${p.operator}</div>
+          </div>
         </div>`,
         style: {
-          backgroundColor: "rgba(0,0,0,0.85)",
-          borderRadius: "8px",
+          backgroundColor: "rgba(0,0,0,0.9)",
+          borderRadius: "10px",
           padding: "10px 14px",
-          border: "1px solid rgba(255,255,255,0.1)",
+          border: "1px solid rgba(255,255,255,0.12)",
         },
       };
     }

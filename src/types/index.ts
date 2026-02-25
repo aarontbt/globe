@@ -4,7 +4,10 @@ export interface Port {
   country: string;
   coordinates: [number, number];
   teu: number; // TEU throughput in thousands
-  type: "asean" | "partner";
+  type: "asean" | "partner" | "global";
+  rank: number; // world rank by container throughput
+  operator: string; // main terminal operator(s)
+  depth: number; // berth/channel depth in metres
 }
 
 export interface TradeArc {
