@@ -93,7 +93,7 @@ export default function GlobeView() {
       showVessels: true,
       showEvents: true,
       showSatellites: false,
-      showOilSupplyChain: false,
+      showOilSupplyChain: true,
     };
     try {
       const saved = localStorage.getItem("gfw:layerVisibility");

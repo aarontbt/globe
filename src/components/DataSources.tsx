@@ -30,8 +30,16 @@ const DATA_SOURCES: DataSource[] = [
     type: "live",
     description: "News Feeds",
     detail:
-      "RSS headlines from Channel News Asia and BBC filtered by keywords: iran, oil, asean, hormuz, trade, shipping, energy, sanctions, crude, tanker. Cached 15 min.",
+      "RSS headlines from Channel News Asia and BBC filtered by keywords: iran, oil, asean, hormuz, trade, shipping, energy, sanctions, crude, tanker, strait. Cached 10 min.",
     color: "#f59e0b",
+  },
+  {
+    name: "CGTN Live",
+    type: "live",
+    description: "Live Broadcast",
+    detail:
+      "China Global Television Network live stream embedded via Dailymotion. Provides real-time Asia-Pacific news coverage. Autoplays muted.",
+    color: "#c8102e",
   },
   {
     name: "CelesTrak",
@@ -74,12 +82,12 @@ const DATA_SOURCES: DataSource[] = [
     color: "#f472b6",
   },
   {
-    name: "Globe Events",
+    name: "Oil Supply Chain",
     type: "static",
-    description: "Geo-intel Events",
+    description: "Crude Oil Flows",
     detail:
-      "25 curated ASEAN geopolitical events with impact probability, category (security, political, economic, climate, election, diplomatic), and Polymarket linkage.",
-    color: "#fbbf24",
+      "35 nodes (production fields, refineries, storage hubs, consumption markets) and 21 routes covering global crude oil supply chain. Emphasis on ASEAN-bound flows from Middle East, West Africa, and Russia.",
+    color: "#ffa02e",
   },
   {
     name: "Iran Intel",
