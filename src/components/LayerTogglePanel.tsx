@@ -8,6 +8,7 @@ export interface LayerVisibility {
   showVessels: boolean;
   showEvents: boolean;
   showSatellites: boolean;
+  showOilSupplyChain: boolean;
 }
 
 interface LayerTogglePanelProps {
@@ -182,6 +183,18 @@ export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePa
           }
           checked={visibility.showEvents}
           onToggle={() => onChange("showEvents", !visibility.showEvents)}
+        />
+        <ToggleRow
+          label="Oil Supply Chain"
+          swatch={
+            <div className="flex items-center gap-0.5">
+              <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#ffa02e" }} />
+              <div className="w-3 h-[2px]" style={{ background: "linear-gradient(to right, #ffb02e, #468cdc)" }} />
+              <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#468cdc" }} />
+            </div>
+          }
+          checked={visibility.showOilSupplyChain}
+          onToggle={() => onChange("showOilSupplyChain", !visibility.showOilSupplyChain)}
         />
         <ToggleRow
           label="Satellites"

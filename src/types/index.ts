@@ -93,6 +93,33 @@ export interface CountryLabel {
   coordinates: [number, number];
 }
 
+export type OilNodeType = "production" | "refinery" | "storage" | "consumption";
+
+export interface OilNode {
+  id: string;
+  name: string;
+  type: OilNodeType;
+  country: string;
+  coordinates: [number, number];
+  capacityMbpd: number;
+  capacityMb?: number;
+  operator?: string;
+  notes?: string;
+}
+
+export interface OilRoute {
+  id: string;
+  from: string;
+  to: string;
+  fromCoords: [number, number];
+  toCoords: [number, number];
+  type: "crude" | "product";
+  volumeMbpd: number;
+  vesselClass?: string;
+  chokepoints?: string[];
+  commodity: string;
+}
+
 export interface GlobeEvent {
   id: string;
   title: string;

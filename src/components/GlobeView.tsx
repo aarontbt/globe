@@ -7,6 +7,7 @@ import corridorsData from "../data/corridors.json";
 import portsData from "../data/ports.json";
 import tradeArcsData from "../data/trade-arcs.json";
 import iranIntelEvents from "../data/iran-intel-events.json";
+import oilSupplyChainData from "../data/oil-supply-chain.json";
 import { createGlobalShippingLanesLayer } from "../layers/shippingLanes";
 import { createCorridorLayers } from "../layers/corridors";
 import { createPortsLayer } from "../layers/ports";
@@ -14,6 +15,7 @@ import { createTradeArcsLayer } from "../layers/tradeArcs";
 import { createAnimatedVesselsLayer } from "../layers/animatedVessels";
 import { createEventRingsLayer, createEventDotsLayer, createAsteroidImpactLayers } from "../layers/globeEvents";
 import { createSatellitesLayer } from "../layers/satellites";
+import { createOilSupplyChainLayers } from "../layers/oilSupplyChain";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
 import { useEventPulse } from "../hooks/useEventPulse";
@@ -34,7 +36,7 @@ import { useMarkets } from "../hooks/useMarkets";
 import { useNews } from "../hooks/useNews";
 import type { LayerVisibility } from "./LayerTogglePanel";
 
-import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite } from "../types";
+import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite, OilNode, OilRoute } from "../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GLOBE_VIEW = new (_GlobeView as any)({ id: "globe", controller: true });
@@ -71,6 +73,8 @@ export default function GlobeView() {
   const corridors = corridorsData as Corridor[];
   const ports = portsData as Port[];
   const arcs = tradeArcsData as TradeArc[];
+  const oilNodes = oilSupplyChainData.nodes as OilNode[];
+  const oilRoutes = oilSupplyChainData.routes as OilRoute[];
 
   // Deck.gl render timing — written by onBeforeRender/onAfterRender, read by PerformanceMonitor
   const deckRenderStartRef = useRef(0);
@@ -89,6 +93,7 @@ export default function GlobeView() {
       showVessels: true,
       showEvents: true,
       showSatellites: false,
+      showOilSupplyChain: false,
     };
     try {
       const saved = localStorage.getItem("gfw:layerVisibility");
@@ -183,8 +188,9 @@ export default function GlobeView() {
     if (visibility.showCorridors) result.push(...createCorridorLayers(corridors));
     if (visibility.showArcs) result.push(createTradeArcsLayer(arcs));
     if (visibility.showPorts) result.push(createPortsLayer(ports));
+    if (visibility.showOilSupplyChain) result.push(...createOilSupplyChainLayers(oilNodes, oilRoutes));
     return result;
-  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, corridors, ports, arcs]);
+  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, corridors, ports, arcs, oilNodes, oilRoutes]);
 
   // Label layer — separate memo so staticLayers doesn't rebuild on camera move
   const labelLayer = useMemo(
@@ -312,6 +318,53 @@ export default function GlobeView() {
           padding: "8px 12px",
           border: "1px solid rgba(0,255,220,0.2)",
           backdropFilter: "blur(8px)",
+        },
+      };
+    }
+
+    if (layer?.id === "oil-production" || layer?.id === "oil-refineries" || layer?.id === "oil-storage" || layer?.id === "oil-consumption") {
+      const n = object as OilNode;
+      const typeLabel = { production: "Production", refinery: "Refinery", storage: "Storage", consumption: "Consumption" }[n.type];
+      const typeColor = { production: "#ffa01e", refinery: "#dc5028", storage: "#a0a0b4", consumption: "#64c8ff" }[n.type];
+      const capLine = n.type === "storage"
+        ? `<div style="font-size:13px;color:${typeColor};font-weight:600">${n.capacityMb} M bbl capacity</div>`
+        : `<div style="font-size:13px;color:${typeColor};font-weight:600">${n.capacityMbpd} M bpd</div>`;
+      return {
+        html: `<div style="font-family:system-ui;padding:4px 0;min-width:180px">
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">
+            <span style="font-weight:700;font-size:14px;color:#fff">${n.name}</span>
+            <span style="font-size:10px;font-weight:600;color:${typeColor};background:${typeColor}22;padding:1px 6px;border-radius:4px">${typeLabel}</span>
+          </div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-bottom:4px">${n.country}</div>
+          ${capLine}
+          ${n.operator ? `<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px">${n.operator}</div>` : ""}
+          ${n.notes ? `<div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px">${n.notes}</div>` : ""}
+        </div>`,
+        style: {
+          backgroundColor: "rgba(0,0,0,0.9)",
+          borderRadius: "10px",
+          padding: "10px 14px",
+          border: `1px solid ${typeColor}33`,
+        },
+      };
+    }
+
+    if (layer?.id === "oil-crude-routes" || layer?.id === "oil-product-routes") {
+      const r = object as OilRoute;
+      const routeColor = r.type === "crude" ? "#ffb02e" : "#468cdc";
+      const chokeStr = r.chokepoints?.length ? `<div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px">Via ${r.chokepoints.join(" → ")}</div>` : "";
+      return {
+        html: `<div style="font-family:system-ui;padding:4px 0;min-width:180px">
+          <div style="font-weight:600;font-size:14px;color:#fff">${r.from} → ${r.to}</div>
+          <div style="font-size:13px;color:${routeColor};margin-top:2px;font-weight:600">${r.volumeMbpd} M bpd — ${r.commodity}</div>
+          ${r.vesselClass ? `<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px">${r.vesselClass}</div>` : ""}
+          ${chokeStr}
+        </div>`,
+        style: {
+          backgroundColor: "rgba(0,0,0,0.9)",
+          borderRadius: "8px",
+          padding: "10px 14px",
+          border: `1px solid ${routeColor}33`,
         },
       };
     }
