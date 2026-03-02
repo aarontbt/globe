@@ -1,29 +1,29 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-const UPSTREAM_BASE = "https://opensky-network.org";
-
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   try {
-    const pathParts = (req.query.path as string[]) ?? [];
-    const upstreamPath = pathParts.join("/");
+    const symbol = req.query.symbol as string;
 
     const params = new URLSearchParams();
     for (const [k, v] of Object.entries(req.query)) {
-      if (k === "path") continue;
+      if (k === "symbol") continue;
       if (Array.isArray(v)) v.forEach(val => params.append(k, val));
       else if (v != null) params.append(k, v);
     }
 
-    const url = `${UPSTREAM_BASE}/${upstreamPath}?${params}`;
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?${params}`;
     const upstream = await fetch(url, {
-      headers: { "User-Agent": "Mozilla/5.0" },
+      headers: {
+        Accept: "application/json",
+        "User-Agent": "Mozilla/5.0",
+      },
     });
 
     const body = await upstream.text();
     res.status(upstream.status);
-    res.setHeader("Content-Type", upstream.headers.get("content-type") ?? "application/json");
+    res.setHeader("Content-Type", "application/json");
     res.end(body);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
