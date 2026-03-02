@@ -1,0 +1,82 @@
+{
+  "tradeIdeas": [
+    {
+      "id": "t0",
+      "title": "Long Brent Crude / Long ASEAN Energy Producers",
+      "rationale": "Strait of Hormuz effectively closed post-Feb 28 US-Israeli strikes on Iran. Brent surged 13% to $82.37/bbl at peak; now trading $78.22/bbl with sustained geopolitical risk premium. Goldman Sachs models $18/bbl 'Iran shock' add-on; BloombergNEF targets $91/bbl under prolonged disruption. ASEAN energy producers (Petronas-linked, PTT, Medco Energi) benefit directly from price spike. 23% of global LNG trade transits Hormuz — Qatar's 77 mtpa effectively offline. Long near-dated Brent vs short deferred as backwardation steepens. Entry at $78; base target $91, stress target $110.",
+      "instruments": ["Brent Crude Futures (front-month long)", "Petronas Dagangan equity long", "PTT PCL equity long", "Medco Energi long"],
+      "direction": "long",
+      "conviction": "high"
+    },
+    {
+      "id": "t1",
+      "title": "Long ASEAN Banks / Short ASEAN Energy Equities",
+      "rationale": "ASEAN Banks index at 218.6 (-0.8 sigma) — selloff overdone for net-oil-exporting names (Maybank, Bangkok Bank) benefiting from MYR/THB carry. ASEAN Energy Equities at 133.5 turning positive on oil spike; prior thesis of falling-oil short now reversed. Recommend unwinding energy equity short leg and rotating into bank long for rate-cut delay beneficiaries. MUFG flags MYR and SGD bank balance sheets as relatively insulated vs PHP/IDR.",
+      "instruments": ["ASEAN Banks ETF Long", "Bangkok Bank / Maybank Long", "Reduce PTT / Pertamina equity short exposure"],
+      "direction": "long",
+      "conviction": "medium"
+    },
+    {
+      "id": "t2",
+      "title": "PHP Short — Elevated Conviction on Iran Shock",
+      "rationale": "PHP now most vulnerable ASEAN currency per MUFG (Michael Wan, Mar 2). USD/PHP at 58.09 with DOE warning of immediate fuel price increases (~₱2/liter). >50% of Philippines power generation relies on imported fossil fuels; no strategic LNG reserves. Philippines current account deficit widens to -4.5% of GDP at $90/bbl. BSP rate cut cycle now on hold indefinitely — but IDR and THB also pressured, narrowing yield support. MUFG stress target: 54.50 on sustained oil spike implies near-term risk to 59–60 range. Stop-loss at 57.50.",
+      "instruments": ["NDF 3M USD/PHP", "Options: USD Call/PHP Put 59.50 strike", "Short PHP-denominated EM bond ETF"],
+      "direction": "short",
+      "conviction": "high"
+    },
+    {
+      "id": "t3",
+      "title": "IDR Short — Dual Exposure to Iran Shock and Shadow Fleet Risk",
+      "rationale": "IDR at 16,904 (2.2 sigma above 90d avg) and deteriorating. Net oil importer exposed to Hormuz-driven price surge; Bank Indonesia forced into defensive rate hold at 4.75% (Feb 19) despite growth pressure. Indonesia flagged by OFAC and UN for Iranian crude transshipment via Karimun port (18,242 bpd); secondary sanctions enforcement tightening creates financial sector headline risk. Indonesian-branded crude surging into China (~291,000 bpd) potentially covering Iranian origin — OFAC scrutiny risk. Target 17,500–18,000 in stress.",
+      "instruments": ["NDF 3M USD/IDR", "Options: USD Call/IDR Put 17,500 strike", "Short IDR-denominated EM bond ETF"],
+      "direction": "short",
+      "conviction": "high"
+    },
+    {
+      "id": "t4",
+      "title": "iTraxx Asia ex-Japan IG CDS Protection — Urgently Widen Target",
+      "rationale": "iTraxx Asia ex-Japan IG exploded to 128bp (+26bp on the day, +5.5 sigma). Iran shock + simultaneous SCS Heightened risk creates dual-front credit deterioration. CDS entered at 102bp; now deep in-the-money. Consider rolling into new 5Y position at 128bp — 180–220bp is credible stress target in 1–3 month Hormuz disruption scenario. ASEAN EM bond outflows and Pertamina/PTT refinancing windows narrowing rapidly.",
+      "instruments": ["iTraxx Asia ex-Japan IG CDS 5Y", "ASEAN IG Bond Underweight", "Pertamina / PTT bond short via CDS"],
+      "direction": "hedge",
+      "conviction": "high"
+    },
+    {
+      "id": "t5",
+      "title": "Long JKM LNG vs Short TTF — Spread Re-widening on Hormuz Shock",
+      "rationale": "Prior thesis was JKM/TTF convergence (JKM glut vs TTF recovery). Iran shock completely reverses this: JKM has spiked to $14.8/MMBtu (+21.5%) as Asian buyers scramble with Qatar Hormuz supply effectively offline. TTF at €33.5/MWh rising but less acutely. 84% of Hormuz LNG goes to Asia — TTF can source Atlantic Basin LNG. JKM/TTF spread re-widening strongly; in 1-month Hormuz closure scenario both approach $25/MMBtu. Long JKM outright or long JKM vs short TTF spread captures asymmetric Asian supply squeeze.",
+      "instruments": ["JKM LNG Futures Long", "JKM-TTF Spread Long (JKM leg)", "Asia LNG spot cargo purchase via intermediary"],
+      "direction": "long",
+      "conviction": "high"
+    }
+  ],
+  "cfTriggers": [
+    {
+      "id": "cf0",
+      "client": "Pertamina",
+      "trigger": "refi",
+      "description": "URGENT: iTraxx Asia IG now at 128bp (+26bp) — execution window closing rapidly. US$500M 1.4% USD bond matured Feb 9 2026 — Pertamina needs fresh USD issuance immediately. Iran shock adds uncertainty; recommend USD 750M–1bn 5Y benchmark execution within 48–72 hours before spreads widen further or IDR deterioration makes USD debt service untenable. Indonesia also under heightened OFAC scrutiny for Karimun transshipment — reputational window may narrow.",
+      "urgency": "critical"
+    },
+    {
+      "id": "cf1",
+      "client": "PTT Group",
+      "trigger": "refi",
+      "description": "THB 20bn domestic bond maturing Q3 2026 — BOT cutting cycle now on hold amid Iran-driven inflation risk (THB CPI +0.8pp per $10/bbl oil). Thailand Ministry of Energy monitoring 4 LNG cargo deliveries from Qatar/UAE now at risk. Recommend pre-financing THB bond immediately while rates remain at 3.05% and before inflation repricing forces BOT to hold or hike.",
+      "urgency": "high"
+    },
+    {
+      "id": "cf2",
+      "client": "Seatrium Limited",
+      "trigger": "liquidity",
+      "description": "Post-merger RCF renewal due Q2 2026. Iran shock creates LNG vessel demand surge — Seatrium's offshore/marine build book may benefit but financing appetite from banks under Iran sanctions pressure is uncertain. Mandate now before SCS + Iran dual escalation tightens bank credit appetite for regional maritime sector.",
+      "urgency": "high"
+    },
+    {
+      "id": "cf3",
+      "client": "APL / CMA CGM SG",
+      "trigger": "M&A target",
+      "description": "Regional Shipping index fell 3.7% on Mar 2 as Hormuz closure forces Cape of Good Hope re-routing — adds weeks of transit and significant bunker cost. Sale-and-leaseback on Panamax vessels now more complex; vessel utilisation projections need revision for Middle East routes. Monitor for 2–4 week resolution before executing.",
+      "urgency": "medium"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "escalationLevel": 4,
+  "escalationLabel": "High",
+  "deltaVsYesterday": 2,
+  "todaysEvents": [
+    { "id": "e1", "summary": "US-Israeli joint strikes on Iran (Feb 28) killed Supreme Leader Khamenei; Strait of Hormuz declared de facto war zone — LNG and crude transit effectively halted as of Mar 1", "delta": "Critical escalation", "direction": "up" },
+    { "id": "e2", "summary": "Malaysia PM Anwar tables emergency Parliament motion condemning strikes as 'barbaric'; Indonesia's Prabowo offers personal mediation — Iran embassy Jakarta responds 'we're ready to talk' (Mar 1)", "delta": "ASEAN diplomatic response", "direction": "neutral" },
+    { "id": "e3", "summary": "Philippines DOE Secretary Garin: 'The price will really go up. I will not sugarcoat.' 30-day mandatory oil stockpile activated; emergency meetings called with oil companies (Mar 2)", "delta": "Energy security alert", "direction": "up" }
+  ],
+  "scenarios": [
+    {
+      "id": "base",
+      "label": "Base",
+      "probability": 45,
+      "description": "Hormuz disruption lasts 2–4 weeks; Iran successor government enters ceasefire talks. Brent stabilises at $78–85/bbl with sustained risk premium. ASEAN LNG buyers scramble for spot cargoes; JKM peaks near $18/MMBtu. SCS tensions remain elevated but secondary to the Iran shock. Goldman Q4 2026 normalisation forecast at $60/bbl contingent on swift resolution.",
+      "oilImpact": "+$10/bbl",
+      "lngImpact": "+55%"
+    },
+    {
+      "id": "stress",
+      "label": "Stress",
+      "probability": 38,
+      "description": "Hormuz closure extends 1–3 months; Iran proxy forces activate across Gulf. Brent surges toward $100/bbl (BloombergNEF $91 target). JKM LNG spikes to ~$25/MMBtu — worst gas market disruption since Russia-Ukraine 2022. ASEAN current account deficits widen sharply; PHP and THB most vulnerable. Bank Indonesia forced into emergency intervention as IDR breaches historic lows.",
+      "oilImpact": "+$28/bbl",
+      "lngImpact": "+130%"
+    },
+    {
+      "id": "tail",
+      "label": "Tail",
+      "probability": 17,
+      "description": "Full Hormuz closure sustained beyond 3 months simultaneously with SCS kinetic escalation. Oil at $150–200/bbl (J.P. Morgan upper bound). LNG effectively unavailable for spot buyers; Qatar's 77 mtpa offline. Recession probability >70% for Thailand and Philippines. ASEAN EM bonds face mass outflows; 1970s-style energy shock across the region.",
+      "oilImpact": "+$80/bbl",
+      "lngImpact": "+200%"
+    }
+  ]
+}

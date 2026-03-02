@@ -1,0 +1,146 @@
+{
+  "sanctionsEntries": [
+    {
+      "id": "s0",
+      "date": "2026-02-28",
+      "authority": "OFAC",
+      "description": "Post-Iran strikes: OFAC issued new sanctions on 30+ individuals, companies, and vessels connected to Iranian oil in the immediate aftermath of US-Israeli military strikes on Iran. Coordinated with UK OFSI and EU. All ASEAN-nexus entities with Iranian petrochemical or shadow fleet exposure placed on elevated screening watch. General License 8J wind-down windows being reviewed for revocation.",
+      "status": "active",
+      "affectedEntities": ["30+ newly designated persons and vessels (full list pending)", "All ASEAN correspondent banks with Iranian energy exposure", "Shadow fleet vessels transiting Strait of Malacca and Sunda Strait"]
+    },
+    {
+      "id": "s1",
+      "date": "2026-01-14",
+      "authority": "OFAC",
+      "description": "OFAC designated 29 shadow fleet vessels and associated management firms for transporting Iranian petroleum. Designated entities include UAE-based Phoenix Ship Management FZE. Named vessels include Palau-flagged NEBULA DRIFT and AETHER SAIL, and Panama-flagged TIDAL RHYTHM and VOYAGER HAVEN.",
+      "status": "active",
+      "affectedEntities": ["Phoenix Ship Management FZE (UAE)", "NEBULA DRIFT (Palau-flagged)", "AETHER SAIL (Palau-flagged)", "TIDAL RHYTHM (Panama-flagged)", "VOYAGER HAVEN (Panama-flagged)", "25 additional designated vessels"]
+    },
+    {
+      "id": "s2",
+      "date": "2025-11-18",
+      "authority": "US State Dept",
+      "description": "STRASSELINK PTE. LTD. (Singapore) and managing director FADZLON BIN AHMAD designated for providing pilotage services to NIOC tankers on 13 occasions (Jan–Aug 2025) as they transited the Strait of Malacca. Vessels discharged Iranian crude via ship-to-ship transfers in Singapore's Eastern Outer Port Limits (EOPL) — enabling over 20 million barrels of Iranian crude oil transfer.",
+      "status": "active",
+      "affectedEntities": ["STRASSELINK PTE. LTD. (Singapore)", "FADZLON BIN AHMAD (managing director)", "NIOC tankers transiting via EOPL"]
+    },
+    {
+      "id": "s3",
+      "date": "2025-11-05",
+      "authority": "US State Dept",
+      "description": "Indonesia-based company designated for knowingly exporting and selling over $3.4 million worth of Iranian-origin petrochemical products. Separate from Karimun port transshipment activity (18,242 bpd Iranian crude). Accompanied by broader ASEAN-nexus secondary sanctions warning for financial institutions facilitating Iranian petrochemical trade.",
+      "status": "active",
+      "affectedEntities": ["Unnamed Indonesia-based petrochemical exporter (designated)", "ASEAN correspondent banks under secondary sanctions review", "Singapore and Malaysian commodity trading entities under review"]
+    },
+    {
+      "id": "s4",
+      "date": "2025-10-23",
+      "authority": "FinCEN",
+      "description": "FinCEN Financial Trend Analysis identified approximately $9 billion in potential Iranian shadow banking activity through US correspondent accounts in 2024. Singapore explicitly named as a hub node alongside UAE and Hong Kong. Oil-linked companies accounted for ~$4 billion (44%) of total activity. Iran's CIMS cross-border messaging system used to bypass SWIFT; any ASEAN bank touching CIMS-connected rails faces heightened secondary exposure.",
+      "status": "active",
+      "affectedEntities": ["Singapore-domiciled entities (hub node flagged)", "Foreign shell companies ($5B in flows)", "ASEAN banks with CIMS-linked correspondent exposure", "Bank of Kunlun (CIMS-connected, sanctioned)"]
+    },
+    {
+      "id": "s5",
+      "date": "2025-12-20",
+      "authority": "EU",
+      "description": "EU 14th sanctions package extends EU port restrictions to vessels flagged in jurisdictions with inadequate AIS compliance, including extended dark-period thresholds. Applies to Palau-flagged and Comoros-flagged fleets with documented AIS non-compliance records. Over 60% of vessels loading Iranian crude in prior 12 months are now OFAC-sanctioned (Kpler, Oct 2025).",
+      "status": "active",
+      "affectedEntities": ["Palau-flagged vessels (AIS non-compliant)", "Comoros-flagged fleet", "Vessels with >24hr AIS dark periods in prior 12 months"]
+    },
+    {
+      "id": "s6",
+      "date": "2026-01-15",
+      "authority": "UN",
+      "description": "UN Panel of Experts report identifies 12 ASEAN-registered vessels suspected of ship-to-ship (STS) transfers in Sulu Sea and Celebes Sea. Vessels linked to Iranian crude oil transshipment through Philippine and Indonesian territorial waters. Separately, 500+ STS transfers involving sanctioned Iranian oil documented off Eastern Johor, Malaysia (UANI satellite tracking, 2025 YTD).",
+      "status": "pending",
+      "affectedEntities": ["12 ASEAN-registered vessels under investigation", "3 Philippine-flagged tankers", "4 Indonesian-flagged tankers", "5 vessels with flag-of-convenience registrations", "Karimun port (Indonesia) — 18,242 bpd Iranian crude transshipment"]
+    },
+    {
+      "id": "s7",
+      "date": "2025-09-28",
+      "authority": "UN",
+      "description": "UN snapback sanctions formally reimposed on Iran effective September 28, 2025. Prohibits sale or purchase of Iranian public bonds issued after this date. Accompanies broader maximum pressure campaign: OFAC designated 875+ persons, vessels, and aircraft under Iran sanctions in 2025 alone.",
+      "status": "active",
+      "affectedEntities": ["All Iranian public bond purchasers after Sep 28, 2025", "ASEAN sovereign wealth funds with Iranian asset exposure", "875+ OFAC-designated persons/vessels/aircraft (full SDN list)"]
+    },
+    {
+      "id": "s8",
+      "date": "2025-11-05",
+      "authority": "EU",
+      "description": "Asset freeze on 2 Malaysian commodity trading firms linked to Russian oil price cap evasion scheme. EU determined both firms facilitated Urals crude purchases above G7/EU price cap via third-country intermediary chains routing through ASEAN ports.",
+      "status": "active",
+      "affectedEntities": ["Petrocom Asia Sdn Bhd", "EastOil Trading Kuala Lumpur"]
+    }
+  ],
+  "redFlagClients": [
+    {
+      "id": "rf0",
+      "name": "STRASSELINK PTE. LTD. (Singapore)",
+      "reason": "Directly designated by US State Dept (s2) for enabling 20M barrels of Iranian crude transit via Singapore EOPL. All transactions blocked; immediate account review and SAR filing required. Correspondent banks servicing this entity face secondary sanctions exposure under OFAC Nov 2025 action.",
+      "severity": "critical"
+    },
+    {
+      "id": "rf1",
+      "name": "Phoenix Ship Management FZE",
+      "reason": "Directly named in OFAC SDN designation (s1) as manager of Iranian petroleum shadow fleet vessels. UAE-based. All transactions blocked; prior OFAC specific license required. Immediate account review and suspicious activity report filing required.",
+      "severity": "critical"
+    },
+    {
+      "id": "rf2",
+      "name": "EastOil Trading Kuala Lumpur",
+      "reason": "EU asset freeze in effect (s8) for Russian oil price cap evasion. EU-nexus transactions blocked. Non-EU transactions require enhanced due diligence and senior management approval. Monitor for attempted restructuring through related entities.",
+      "severity": "high"
+    },
+    {
+      "id": "rf3",
+      "name": "Unnamed ASEAN Correspondent (Iranian Petrochemical Exposure)",
+      "reason": "Secondary sanctions risk from FinCEN Oct 2025 report ($9B shadow banking), OFAC Nov 2025 actions (s3/s4), and post-strike Feb 2026 designations (s0). Correspondent banking relationships involving Singapore or Malaysian commodity traders with Iranian petrochemical exposure require immediate EDD review. CIMS-linked exposure is a specific red flag.",
+      "severity": "high"
+    }
+  ],
+  "evidenceLinks": [
+    {
+      "id": "ev0",
+      "title": "OFAC Post-Strike Iran Sanctions — 30+ New Designations",
+      "source": "US Treasury / OFAC",
+      "url": "#",
+      "date": "2026-02-28"
+    },
+    {
+      "id": "ev1",
+      "title": "STRASSELINK PTE LTD Designation — 20M Barrels NIOC Pilotage (Singapore)",
+      "source": "US State Department",
+      "url": "#",
+      "date": "2025-11-18"
+    },
+    {
+      "id": "ev2",
+      "title": "FinCEN: $9 Billion Iranian Shadow Banking Activity via US Correspondents",
+      "source": "FinCEN Financial Trend Analysis",
+      "url": "#",
+      "date": "2025-10-23"
+    },
+    {
+      "id": "ev3",
+      "title": "OFAC Shadow Fleet Designation — 29 Vessels + Phoenix Ship Management FZE",
+      "source": "US Treasury / OFAC",
+      "url": "#",
+      "date": "2026-01-14"
+    },
+    {
+      "id": "ev4",
+      "title": "EU 14th Sanctions Package — AIS Compliance Port Restrictions",
+      "source": "European Union Official Journal",
+      "url": "#",
+      "date": "2025-12-20"
+    },
+    {
+      "id": "ev5",
+      "title": "UN Panel of Experts Report — ASEAN STS Transfer Vessel Activity",
+      "source": "United Nations Security Council",
+      "url": "#",
+      "date": "2026-01-15"
+    }
+  ]
+}
