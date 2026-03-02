@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { SocialStatus } from "../hooks/useSocialSignals";
 
 interface DataSource {
   name: string;
@@ -7,6 +8,39 @@ interface DataSource {
   detail: string;
   color: string;
 }
+
+// Social signal source metadata for the DataSources panel
+interface SocialSourceMeta {
+  key: keyof SocialStatus;
+  name: string;
+  description: string;
+  detail: string;
+  color: string;
+}
+
+const SOCIAL_SOURCES: SocialSourceMeta[] = [
+  {
+    key: "gdelt",
+    name: "GDELT Project",
+    description: "Media Intelligence",
+    detail: "Global Database of Events, Language, and Tone — monitors 300+ news sources in 100+ languages every 15 minutes. Maps geopolitical event signals from global media volume. No auth required.",
+    color: "#7c3aed",
+  },
+  {
+    key: "reddit",
+    name: "Reddit Signals",
+    description: "Social Discourse",
+    detail: "Hot posts from r/worldnews, r/geopolitics, r/wallstreetbets, r/investing, r/stocks filtered by ASEAN and Middle East keywords. Upvote velocity → signal strength. Polls every 5 min.",
+    color: "#f97316",
+  },
+  {
+    key: "bsky",
+    name: "Bluesky Firehose",
+    description: "Real-time Social",
+    detail: "Bluesky JetStream WebSocket — full public post stream filtered by geopolitical keywords in real-time. Rate-limited to 20 events/hour to reduce noise. Auto-reconnects on disconnect.",
+    color: "#3b82f6",
+  },
+];
 
 const DATA_SOURCES: DataSource[] = [
   {
@@ -109,6 +143,110 @@ const DATA_SOURCES: DataSource[] = [
 
 const LIVE_SOURCES = DATA_SOURCES.filter((s) => s.type === "live");
 const STATIC_SOURCES = DATA_SOURCES.filter((s) => s.type === "static");
+
+function SocialSourceRow({ meta, status }: { meta: SocialSourceMeta; status?: { loading: boolean; error: string | null } }) {
+  const [hovered, setHovered] = useState(false);
+
+  const dotColor = status?.error
+    ? "#f87171"
+    : status?.loading
+    ? "#facc15"
+    : meta.color;
+
+  return (
+    <div
+      style={{ position: "relative" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "5px 7px",
+        borderRadius: 6,
+        background: hovered ? "rgba(255,255,255,0.04)" : "transparent",
+        cursor: "default",
+        transition: "background 0.15s",
+      }}>
+        <div style={{ position: "relative", flexShrink: 0, width: 7, height: 7 }}>
+          <div style={{ width: 7, height: 7, borderRadius: "50%", background: dotColor, opacity: 0.9 }} />
+          {!status?.error && (
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: "50%",
+              background: dotColor,
+              animation: "datasources-pulse 2s ease-out infinite",
+              opacity: 0.5,
+            }} />
+          )}
+        </div>
+        <span style={{
+          fontSize: 11,
+          color: hovered ? "rgba(255,255,255,0.75)" : "rgba(255,255,255,0.5)",
+          flex: 1,
+          transition: "color 0.15s",
+          letterSpacing: "0.02em",
+        }}>
+          {meta.name}
+        </span>
+        <span style={{
+          fontSize: 9,
+          color: hovered ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.2)",
+          letterSpacing: "0.04em",
+          transition: "color 0.15s",
+          flexShrink: 0,
+        }}>
+          {meta.description}
+        </span>
+      </div>
+
+      {hovered && (
+        <div style={{
+          position: "absolute",
+          left: "calc(100% + 8px)",
+          top: 0,
+          zIndex: 100,
+          width: 220,
+          background: "rgba(4,7,16,0.97)",
+          border: `1px solid ${meta.color}33`,
+          borderRadius: 8,
+          padding: "9px 11px",
+          pointerEvents: "none",
+          boxShadow: `0 4px 24px rgba(0,0,0,0.6), 0 0 0 1px ${meta.color}22`,
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+            <div style={{ width: 6, height: 6, borderRadius: "50%", background: dotColor, flexShrink: 0 }} />
+            <span style={{ fontSize: 10, color: meta.color, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              {meta.name}
+            </span>
+            <span style={{
+              marginLeft: "auto",
+              fontSize: 8,
+              letterSpacing: "0.12em",
+              color: status?.error ? "#f87171" : status?.loading ? "#facc15" : "#22d3ee",
+              textTransform: "uppercase",
+              border: `1px solid ${status?.error ? "#f8717133" : status?.loading ? "#facc1533" : "#22d3ee33"}`,
+              borderRadius: 3,
+              padding: "1px 4px",
+            }}>
+              {status?.error ? "error" : status?.loading ? "init" : "live"}
+            </span>
+          </div>
+          <p style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", lineHeight: 1.55, margin: 0 }}>
+            {meta.detail}
+          </p>
+          {status?.error && (
+            <p style={{ fontSize: 9, color: "#f87171", marginTop: 4, lineHeight: 1.4 }}>
+              {status.error}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function SourceRow({ source }: { source: DataSource }) {
   const [hovered, setHovered] = useState(false);
@@ -284,7 +422,7 @@ function SectionLabel({ label }: { label: string }) {
   );
 }
 
-export default function DataSources() {
+export default function DataSources({ socialStatus }: { socialStatus?: SocialStatus }) {
   const [expanded, setExpanded] = useState(false);
 
   const panelBase: React.CSSProperties = {
@@ -372,7 +510,7 @@ export default function DataSources() {
                 letterSpacing: "0.04em",
               }}
             >
-              {DATA_SOURCES.length} feeds
+              {DATA_SOURCES.length + SOCIAL_SOURCES.length} feeds
             </span>
           </div>
           <button
@@ -397,6 +535,20 @@ export default function DataSources() {
           {LIVE_SOURCES.map((s) => (
             <SourceRow key={s.name} source={s} />
           ))}
+        </div>
+
+        {/* Social signal sources */}
+        <div style={{ marginTop: 8 }}>
+          <SectionLabel label="Social Signals" />
+          <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+            {SOCIAL_SOURCES.map(meta => (
+              <SocialSourceRow
+                key={meta.key}
+                meta={meta}
+                status={socialStatus?.[meta.key]}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Static sources */}

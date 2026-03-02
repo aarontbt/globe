@@ -47,7 +47,17 @@ export type EventCategory =
   | "economic"
   | "climate"
   | "election"
-  | "diplomatic";
+  | "diplomatic"
+  | "social";
+
+export type SocialPlatform = "gdelt" | "acled" | "reddit" | "bluesky";
+
+export interface SocialSignal {
+  platform: SocialPlatform;
+  url: string;
+  engagement: number;       // upvotes, article count, incident count, or reposts
+  engagementLabel: string;  // "upvotes", "articles", "incidents", "reposts"
+}
 
 export type EventImpact = "high" | "medium" | "low";
 
@@ -133,4 +143,5 @@ export interface GlobeEvent {
   date: string;
   tags: string[];
   polymarket?: PolymarketData;
+  social?: SocialSignal;
 }

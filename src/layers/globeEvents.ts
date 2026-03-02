@@ -9,6 +9,7 @@ export const CATEGORY_COLORS: Record<EventCategory, [number, number, number]> = 
   climate:    [ 74, 222, 128],
   election:   [251, 146,  60],
   diplomatic: [250, 204,  21],
+  social:     [236,  72, 153],
 };
 
 interface RingDatum {

@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useRef } from "react";
-import type { GlobeEvent, EventCategory, PolymarketData } from "../types";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { GlobeEvent, EventCategory, PolymarketData, SocialPlatform } from "../types";
 import { CATEGORY_COLORS } from "../layers/globeEvents";
 
 const ALL_CATEGORIES: EventCategory[] = [
-  "security", "political", "economic", "climate", "election", "diplomatic",
+  "security", "political", "economic", "climate", "election", "diplomatic", "social",
 ];
 
 const CATEGORY_LABELS: Record<EventCategory, string> = {
@@ -13,6 +13,7 @@ const CATEGORY_LABELS: Record<EventCategory, string> = {
   climate:    "Climate",
   election:   "Election",
   diplomatic: "Diplomatic",
+  social:     "Social",
 };
 
 const IMPACT_BADGE: Record<string, { label: string; color: string }> = {
@@ -87,6 +88,66 @@ function PolymarketStrip({ data, slug }: { data: PolymarketData; slug: string })
             <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>{label}</div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+const PLATFORM_META: Record<SocialPlatform, { label: string; color: string; icon: string }> = {
+  gdelt:   { label: "GDELT",    color: "#7c3aed", icon: "📡" },
+  acled:   { label: "ACLED",    color: "#dc2626", icon: "⚔️" },
+  reddit:  { label: "REDDIT",   color: "#f97316", icon: "💬" },
+  bluesky: { label: "BLUESKY",  color: "#3b82f6", icon: "🦋" },
+};
+
+function SocialStrip({ event }: { event: GlobeEvent }) {
+  const s = event.social;
+  if (!s) return null;
+  const meta = PLATFORM_META[s.platform];
+  return (
+    <div style={{
+      marginTop: 10,
+      padding: "8px 10px",
+      borderRadius: 8,
+      background: `${meta.color}11`,
+      border: `1px solid ${meta.color}33`,
+    }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 7 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+          <span style={{ fontSize: 11 }}>{meta.icon}</span>
+          <span style={{ fontSize: 10, fontWeight: 700, color: meta.color, letterSpacing: "0.08em" }}>
+            {meta.label}
+          </span>
+        </div>
+        <a
+          href={s.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={e => e.stopPropagation()}
+          style={{
+            fontSize: 10,
+            color: `${meta.color}bb`,
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
+            gap: 3,
+          }}
+        >
+          View source
+          <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+            <path d="M2 10L10 2M10 2H5M10 2V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+        </a>
+      </div>
+      <div style={{ display: "flex", gap: 0 }}>
+        <div style={{ flex: 1, textAlign: "center" }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>{s.engagement.toLocaleString()}</div>
+          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>{s.engagementLabel}</div>
+        </div>
+        <div style={{ flex: 1, textAlign: "center", borderLeft: "1px solid rgba(255,255,255,0.07)", padding: "0 6px" }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>{event.probability}%</div>
+          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>signal</div>
+        </div>
       </div>
     </div>
   );
@@ -193,6 +254,8 @@ function EventCard({ event, isSelected, onClick }: EventCardProps) {
             <PolymarketStrip data={event.polymarket} slug={event.polymarket.slug} />
           )}
 
+          {event.social && <SocialStrip event={event} />}
+
           <div style={{ display: "flex", gap: 5, marginTop: 8, flexWrap: "wrap" }}>
             {event.tags.map(tag => (
               <span key={tag} style={{
@@ -280,6 +343,12 @@ export default function EventPanel({
   onToggleCategory,
 }: EventPanelProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [sortMode, setSortMode] = useState<"probability" | "date">(() => {
+    try {
+      const saved = localStorage.getItem("gfw:eventSort");
+      return saved === "date" ? "date" : "probability";
+    } catch { return "probability"; }
+  });
 
   useEffect(() => {
     if (!selectedId) return;
@@ -299,8 +368,12 @@ export default function EventPanel({
     () =>
       events
         .filter(e => activeCategories.has(e.category))
-        .sort((a, b) => b.probability - a.probability),
-    [events, activeCategories]
+        .sort((a, b) =>
+          sortMode === "date"
+            ? b.date.localeCompare(a.date)
+            : b.probability - a.probability
+        ),
+    [events, activeCategories, sortMode]
   );
 
   return (
@@ -369,6 +442,45 @@ export default function EventPanel({
             />
           ))}
         </div>
+
+        {/* Sort toggle */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8 }}>
+          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            Sort
+          </span>
+          <div style={{
+            display: "flex",
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 20,
+            padding: 2,
+            gap: 2,
+          }}>
+            {(["probability", "date"] as const).map(mode => (
+              <button
+                key={mode}
+                onClick={() => {
+                  setSortMode(mode);
+                  try { localStorage.setItem("gfw:eventSort", mode); } catch {}
+                }}
+                style={{
+                  padding: "2px 9px",
+                  borderRadius: 16,
+                  border: "none",
+                  background: sortMode === mode ? "rgba(255,255,255,0.12)" : "transparent",
+                  color: sortMode === mode ? "rgba(255,255,255,0.75)" : "rgba(255,255,255,0.3)",
+                  fontSize: 10,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  letterSpacing: "0.04em",
+                  transition: "all 0.15s",
+                }}
+              >
+                {mode === "probability" ? "Prob ↓" : "Date ↓"}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Scrollable event list */}
@@ -424,7 +536,7 @@ export default function EventPanel({
           Click event on globe or card to expand
         </span>
         <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)" }}>
-          % = Polymarket YES price
+          % = Polymarket / signal strength
         </span>
       </div>
     </div>

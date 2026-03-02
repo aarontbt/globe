@@ -23,6 +23,7 @@ import { usePolymarketEvents } from "../hooks/usePolymarketEvents";
 import { useAsteroidImpacts } from "../hooks/useAsteroidImpacts";
 import { useSatellites } from "../hooks/useSatellites";
 import { useCountryLabels } from "../hooks/useCountryLabels";
+import { useSocialSignals } from "../hooks/useSocialSignals";
 
 import EventPanel from "./EventPanel";
 import LayerTogglePanel from "./LayerTogglePanel";
@@ -55,7 +56,7 @@ const OCEAN_URL =
   "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_ocean.geojson";
 
 const ALL_CATEGORIES: EventCategory[] = [
-  "security", "political", "economic", "climate", "election", "diplomatic",
+  "security", "political", "economic", "climate", "election", "diplomatic", "social",
 ];
 
 export default function GlobeView() {
@@ -65,9 +66,10 @@ export default function GlobeView() {
   const { articles, loading: newsLoading, cacheAge, refresh: refreshNews } = useNews();
 
   const { events: polymarketEvents, newEvents, loading: eventsLoading, error: eventsError } = usePolymarketEvents();
+  const { events: socialEvents, status: socialStatus } = useSocialSignals();
   const events = useMemo(
-    () => [...polymarketEvents, ...(iranIntelEvents as GlobeEvent[])],
-    [polymarketEvents]
+    () => [...polymarketEvents, ...(iranIntelEvents as GlobeEvent[]), ...socialEvents],
+    [polymarketEvents, socialEvents]
   );
   const asteroidImpacts = useAsteroidImpacts(newEvents);
   const corridors = corridorsData as Corridor[];
@@ -81,9 +83,17 @@ export default function GlobeView() {
   const deckRenderMsRef = useRef(0);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [activeCategories, setActiveCategories] = useState<Set<EventCategory>>(
-    new Set(ALL_CATEGORIES)
-  );
+  const [activeCategories, setActiveCategories] = useState<Set<EventCategory>>(() => {
+    try {
+      const saved = localStorage.getItem("gfw:activeCategories");
+      if (saved) {
+        const arr = JSON.parse(saved) as string[];
+        const valid = arr.filter(c => (ALL_CATEGORIES as string[]).includes(c)) as EventCategory[];
+        if (valid.length > 0) return new Set(valid);
+      }
+    } catch {}
+    return new Set(ALL_CATEGORIES);
+  });
   const [visibility, setVisibility] = useState<LayerVisibility>(() => {
     const defaults: LayerVisibility = {
       showLanes: true,
@@ -115,6 +125,7 @@ export default function GlobeView() {
       const next = new Set(prev);
       if (next.has(cat)) next.delete(cat);
       else next.add(cat);
+      try { localStorage.setItem("gfw:activeCategories", JSON.stringify([...next])); } catch {}
       return next;
     });
   }, []);
@@ -499,7 +510,7 @@ export default function GlobeView() {
           visibility={visibility}
           onChange={handleVisibilityChange}
         />
-        <DataSources />
+        <DataSources socialStatus={socialStatus} />
         <PerformanceMonitor deckRenderMsRef={deckRenderMsRef} />
       </div>
 
