@@ -11,10 +11,16 @@ let tokenExpiresAt = 0;
 async function getAccessToken(): Promise<string> {
   if (cachedToken && Date.now() < tokenExpiresAt) return cachedToken;
 
+  const clientId = process.env.OPENSKY_CLIENT_ID;
+  const clientSecret = process.env.OPENSKY_CLIENT_SECRET;
+  if (!clientId || !clientSecret) {
+    throw new Error("Missing OPENSKY_CLIENT_ID or OPENSKY_CLIENT_SECRET");
+  }
+
   const body = new URLSearchParams({
     grant_type: "client_credentials",
-    client_id: process.env.OPENSKY_CLIENT_ID ?? "",
-    client_secret: process.env.OPENSKY_CLIENT_SECRET ?? "",
+    client_id: clientId,
+    client_secret: clientSecret,
   });
 
   const res = await fetch(AUTH_URL, {

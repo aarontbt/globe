@@ -214,18 +214,23 @@ export default function GlobeView() {
     return result;
   }, [pulse, activeCategories, selectedId, visibility.showVessels, visibility.showEvents, vessels, events, asteroidImpacts]);
 
-  // Low-frequency layers — only rebuilds when aircraft/satellite data changes (60s / 20s)
+  // Low-frequency layers — only rebuilds when aircraft/satellite data changes (1s dead-reckoning / 10min poll)
   const liveTrackingLayers = useMemo(() => {
     const result: any[] = [];
     if (visibility.showAircraft) result.push(createAircraftLayer(aircraft));
     if (visibility.showSatellites) result.push(createSatellitesLayer(satellites));
-    if (track) result.push(createFlightTrackLayer(track));
     return result;
-  }, [visibility.showAircraft, visibility.showSatellites, aircraft, satellites, track]);
+  }, [visibility.showAircraft, visibility.showSatellites, aircraft, satellites]);
+
+  // Track layer separated so it doesn't rebuild with the 1s dead-reckoning tick
+  const trackLayer = useMemo(
+    () => (track ? [createFlightTrackLayer(track)] : []),
+    [track]
+  );
 
   const layers = useMemo(
-    () => [...staticLayers, labelLayer, ...pulseLayers, ...liveTrackingLayers],
-    [staticLayers, labelLayer, pulseLayers, liveTrackingLayers]
+    () => [...staticLayers, labelLayer, ...pulseLayers, ...liveTrackingLayers, ...trackLayer],
+    [staticLayers, labelLayer, pulseLayers, liveTrackingLayers, trackLayer]
   );
 
   const getTooltip = useCallback(({ object, layer }: any) => {
