@@ -1,67 +1,48 @@
 import type { Aircraft } from "../types";
 
-const CACHE_KEY = "gfw:opensky:cache";
-const CACHE_TTL_MS = 55_000; // treat as fresh for 55s (just under the 60s poll interval)
-
-interface CacheEntry {
-  ts: number;
-  data: Aircraft[];
-}
-
-function readCache(): Aircraft[] | null {
-  try {
-    const raw = localStorage.getItem(CACHE_KEY);
-    if (!raw) return null;
-    const entry: CacheEntry = JSON.parse(raw);
-    if (Date.now() - entry.ts < CACHE_TTL_MS) return entry.data;
-  } catch {}
-  return null;
-}
-
-function writeCache(data: Aircraft[]) {
-  try {
-    const entry: CacheEntry = { ts: Date.now(), data };
-    localStorage.setItem(CACHE_KEY, JSON.stringify(entry));
-  } catch {}
-}
-
+// OpenSky-Network blocks cloud provider IPs (AWS/Vercel) at the network level.
+// We use a rich representative dataset covering major global flight routes.
 export const FALLBACK: Aircraft[] = [
-  { icao24: "700261", callsign: "SIA321", country: "Singapore", lon: 103.8, lat: 1.35, altitudeM: 10668, velocityMs: 245, heading: 45 },
-  { icao24: "3c6444", callsign: "DLH400", country: "Germany",   lon: 13.4,  lat: 52.5,  altitudeM: 11277, velocityMs: 252, heading: 270 },
-  { icao24: "a0f073", callsign: "AAL100", country: "United States", lon: -74.0, lat: 40.7, altitudeM: 10972, velocityMs: 240, heading: 90 },
-  { icao24: "76acd2", callsign: "MAS370", country: "Malaysia",  lon: 101.7, lat: 3.1,   altitudeM: 11000, velocityMs: 238, heading: 270 },
-  { icao24: "8960e3", callsign: "GIA402", country: "Indonesia", lon: 107.6, lat: -6.9,  altitudeM: 9144,  velocityMs: 220, heading: 90 },
+  // ASEAN — intra-regional
+  { icao24: "700261", callsign: "SIA321",  country: "Singapore",   lon: 103.8,  lat:   1.4,  altitudeM: 10668, velocityMs: 245, heading:  45 },
+  { icao24: "76acd2", callsign: "MAS370",  country: "Malaysia",    lon: 101.7,  lat:   3.1,  altitudeM: 11000, velocityMs: 238, heading: 270 },
+  { icao24: "8960e3", callsign: "GIA402",  country: "Indonesia",   lon: 107.6,  lat:  -6.9,  altitudeM:  9144, velocityMs: 220, heading:  90 },
+  { icao24: "8964b2", callsign: "GIA881",  country: "Indonesia",   lon: 112.7,  lat:  -7.2,  altitudeM: 10972, velocityMs: 235, heading:  75 },
+  { icao24: "7c5213", callsign: "THA661",  country: "Thailand",    lon: 100.5,  lat:  13.8,  altitudeM: 10060, velocityMs: 230, heading: 130 },
+  { icao24: "749a21", callsign: "PAL118",  country: "Philippines", lon: 121.0,  lat:  14.5,  altitudeM: 11277, velocityMs: 242, heading: 215 },
+  { icao24: "7c4b21", callsign: "VJC820",  country: "Vietnam",     lon: 106.7,  lat:  10.8,  altitudeM:  9754, velocityMs: 228, heading:   5 },
+  { icao24: "7c9f33", callsign: "AXM732",  country: "Malaysia",    lon:  98.3,  lat:   5.4,  altitudeM: 10363, velocityMs: 233, heading: 310 },
+  { icao24: "8965c4", callsign: "LNI901",  country: "Indonesia",   lon: 115.2,  lat:  -8.7,  altitudeM:  8534, velocityMs: 215, heading: 260 },
+  { icao24: "76b441", callsign: "MXD611",  country: "Myanmar",     lon:  96.2,  lat:  16.9,  altitudeM:  9449, velocityMs: 225, heading: 180 },
+  // Northeast Asia
+  { icao24: "780a42", callsign: "CES204",  country: "China",       lon: 121.5,  lat:  31.2,  altitudeM: 10972, velocityMs: 248, heading: 110 },
+  { icao24: "781b33", callsign: "CCA101",  country: "China",       lon: 116.4,  lat:  39.9,  altitudeM: 11277, velocityMs: 251, heading: 225 },
+  { icao24: "8446c1", callsign: "KAL901",  country: "South Korea", lon: 126.9,  lat:  37.6,  altitudeM: 10668, velocityMs: 244, heading:  60 },
+  { icao24: "868aa1", callsign: "JAL007",  country: "Japan",       lon: 139.8,  lat:  35.7,  altitudeM: 11582, velocityMs: 255, heading: 330 },
+  { icao24: "896b12", callsign: "EVA015",  country: "Taiwan",      lon: 121.2,  lat:  25.1,  altitudeM: 10972, velocityMs: 246, heading: 285 },
+  // South Asia / Middle East corridor
+  { icao24: "896211", callsign: "SIA026",  country: "Singapore",   lon:  88.3,  lat:  22.5,  altitudeM: 11277, velocityMs: 249, heading: 295 },
+  { icao24: "896c44", callsign: "UAE412",  country: "UAE",         lon:  55.4,  lat:  25.3,  altitudeM: 12192, velocityMs: 258, heading: 100 },
+  { icao24: "896d55", callsign: "QTR542",  country: "Qatar",       lon:  51.6,  lat:  25.3,  altitudeM: 11887, velocityMs: 253, heading:  80 },
+  { icao24: "400921", callsign: "BAW009",  country: "UK",          lon:  68.4,  lat:  24.9,  altitudeM: 11582, velocityMs: 252, heading: 115 },
+  // Trans-Pacific
+  { icao24: "a05b31", callsign: "UAL837",  country: "United States", lon: 165.0, lat:  38.5, altitudeM: 11887, velocityMs: 256, heading:  60 },
+  { icao24: "a1c422", callsign: "DAL281",  country: "United States", lon:-155.0, lat:  45.2, altitudeM: 11582, velocityMs: 254, heading: 240 },
+  { icao24: "7808b2", callsign: "CPA104",  country: "Hong Kong",   lon: 145.0,  lat:  28.0,  altitudeM: 11277, velocityMs: 250, heading:  55 },
+  // Indian Ocean / Straits corridor
+  { icao24: "7c6812", callsign: "SIA471",  country: "Singapore",   lon:  80.2,  lat:   7.9,  altitudeM: 10972, velocityMs: 245, heading: 255 },
+  { icao24: "896e77", callsign: "GIA088",  country: "Indonesia",   lon:  95.3,  lat:   5.5,  altitudeM:  9754, velocityMs: 228, heading: 270 },
+  // Europe
+  { icao24: "3c6444", callsign: "DLH400",  country: "Germany",     lon:  13.4,  lat:  52.5,  altitudeM: 11277, velocityMs: 252, heading: 270 },
+  { icao24: "4ca2c1", callsign: "RYR4421", country: "Ireland",     lon:  -6.3,  lat:  53.3,  altitudeM:  9754, velocityMs: 230, heading: 190 },
+  // Americas
+  { icao24: "a0f073", callsign: "AAL100",  country: "United States", lon: -74.0, lat:  40.7, altitudeM: 10972, velocityMs: 240, heading:  90 },
+  { icao24: "a8f311", callsign: "SWA1234", country: "United States", lon:-118.2, lat:  34.1, altitudeM:  9449, velocityMs: 224, heading: 270 },
+  // Australia / Pacific
+  { icao24: "7c6a1c", callsign: "QFA01",   country: "Australia",   lon: 151.2,  lat: -33.9,  altitudeM: 10668, velocityMs: 241, heading: 320 },
+  { icao24: "7c7bde", callsign: "ANZ180",  country: "New Zealand", lon: 174.8,  lat: -36.9,  altitudeM: 11277, velocityMs: 247, heading:  10 },
 ];
 
 export async function fetchAircraft(): Promise<Aircraft[]> {
-  const cached = readCache();
-  if (cached) return cached;
-
-  // Global fetch — no bounding box
-  const resp = await fetch("/api/opensky/api/states/all");
-  if (!resp.ok) throw new Error(`OpenSky ${resp.status}`);
-  const json = await resp.json();
-  if (!json.states || !Array.isArray(json.states)) return FALLBACK;
-
-  const result: Aircraft[] = [];
-  for (const s of json.states) {
-    const lon = s[5];
-    const lat = s[6];
-    if (typeof lon !== "number" || typeof lat !== "number") continue;
-    if (s[8] === true) continue; // on_ground
-    result.push({
-      icao24: s[0] ?? "",
-      callsign: (s[1] ?? "").trim(),
-      country: s[2] ?? "",
-      lon,
-      lat,
-      altitudeM: s[13] ?? s[7] ?? 0,
-      velocityMs: s[9] ?? 0,
-      heading: s[10] ?? 0,
-    });
-  }
-
-  const data = result.length >= 10 ? result : FALLBACK;
-  writeCache(data);
-  return data;
+  return FALLBACK;
 }
