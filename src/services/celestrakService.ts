@@ -12,11 +12,51 @@ interface TLECacheEntry {
 }
 
 export const FALLBACK_SATELLITES: Satellite[] = [
-  { name: "ISS (ZARYA)",  lat: 15,  lon: 110, altitudeKm: 420,  periodMin: 92.6  },
-  { name: "TERRA",        lat: -5,  lon: 105, altitudeKm: 705,  periodMin: 98.9  },
-  { name: "AQUA",         lat: 20,  lon: 120, altitudeKm: 705,  periodMin: 98.9  },
-  { name: "SENTINEL-2A",  lat: 10,  lon: 98,  altitudeKm: 786,  periodMin: 100.6 },
-  { name: "NOAA 19",      lat: -10, lon: 130, altitudeKm: 870,  periodMin: 102.1 },
+  // LEO — International Space Station & crewed
+  { name: "ISS (ZARYA)",      lat:  15,  lon:  110, altitudeKm:  420, periodMin:  92.6 },
+  { name: "CSS (TIANHE)",     lat: -10,  lon:   85, altitudeKm:  390, periodMin:  92.3 },
+  // LEO — Earth observation
+  { name: "TERRA",            lat:  -5,  lon:  105, altitudeKm:  705, periodMin:  98.9 },
+  { name: "AQUA",             lat:  20,  lon:  120, altitudeKm:  705, periodMin:  98.9 },
+  { name: "SENTINEL-2A",      lat:  10,  lon:   98, altitudeKm:  786, periodMin: 100.6 },
+  { name: "SENTINEL-2B",      lat: -20,  lon:  145, altitudeKm:  786, periodMin: 100.6 },
+  { name: "SENTINEL-1A",      lat:  35,  lon:   60, altitudeKm:  693, periodMin:  98.6 },
+  { name: "LANDSAT-9",        lat: -35,  lon:  170, altitudeKm:  705, periodMin:  98.9 },
+  { name: "NOAA 19",          lat: -10,  lon:  130, altitudeKm:  870, periodMin: 102.1 },
+  { name: "NOAA 20",          lat:  55,  lon:  -30, altitudeKm:  824, periodMin: 101.4 },
+  { name: "SUOMI NPP",        lat:  40,  lon:  -80, altitudeKm:  824, periodMin: 101.4 },
+  { name: "METOP-B",          lat: -50,  lon:   20, altitudeKm:  817, periodMin: 101.3 },
+  { name: "METOP-C",          lat:  25,  lon:  -60, altitudeKm:  817, periodMin: 101.3 },
+  { name: "SPOT-7",           lat:   5,  lon:   35, altitudeKm:  694, periodMin:  98.7 },
+  { name: "WORLDVIEW-3",      lat:  30,  lon:  -45, altitudeKm:  617, periodMin:  97.0 },
+  // LEO — Starlink / commercial
+  { name: "STARLINK-1",       lat:  48,  lon:   15, altitudeKm:  550, periodMin:  95.6 },
+  { name: "STARLINK-2",       lat:  48,  lon:   60, altitudeKm:  550, periodMin:  95.6 },
+  { name: "STARLINK-3",       lat:  48,  lon:  105, altitudeKm:  550, periodMin:  95.6 },
+  { name: "STARLINK-4",       lat:  48,  lon:  150, altitudeKm:  550, periodMin:  95.6 },
+  { name: "STARLINK-5",       lat:  48,  lon: -165, altitudeKm:  550, periodMin:  95.6 },
+  { name: "STARLINK-6",       lat:  48,  lon: -120, altitudeKm:  550, periodMin:  95.6 },
+  { name: "STARLINK-7",       lat:  48,  lon:  -75, altitudeKm:  550, periodMin:  95.6 },
+  { name: "ONEWEB-1",         lat: -53,  lon:   30, altitudeKm: 1200, periodMin: 109.4 },
+  { name: "ONEWEB-2",         lat: -53,  lon:  120, altitudeKm: 1200, periodMin: 109.4 },
+  // MEO — Navigation
+  { name: "GPS BIIA-14",      lat:  55,  lon:   45, altitudeKm: 20200, periodMin: 717.9 },
+  { name: "GPS BIIA-21",      lat: -55,  lon:  135, altitudeKm: 20200, periodMin: 717.9 },
+  { name: "GALILEO-12",       lat:  56,  lon:  -30, altitudeKm: 23222, periodMin: 844.9 },
+  { name: "GALILEO-13",       lat: -56,  lon:   90, altitudeKm: 23222, periodMin: 844.9 },
+  { name: "GLONASS-M 747",    lat:  64,  lon:   10, altitudeKm: 19100, periodMin: 675.8 },
+  { name: "BEIDOU-3 M1",      lat: -45,  lon:  -60, altitudeKm: 21528, periodMin: 760.0 },
+  // GEO — Communications & weather (fixed over equator ~35 786 km)
+  { name: "INTELSAT 901",     lat:   0,  lon:   18, altitudeKm: 35786, periodMin: 1436.1 },
+  { name: "INTELSAT 907",     lat:   0,  lon:  332, altitudeKm: 35786, periodMin: 1436.1 },
+  { name: "GOES-16",          lat:   0,  lon:  -75, altitudeKm: 35786, periodMin: 1436.1 },
+  { name: "GOES-18",          lat:   0,  lon: -137, altitudeKm: 35786, periodMin: 1436.1 },
+  { name: "METEOSAT-10",      lat:   0,  lon:    0, altitudeKm: 35786, periodMin: 1436.1 },
+  { name: "HIMAWARI-9",       lat:   0,  lon:  141, altitudeKm: 35786, periodMin: 1436.1 },
+  { name: "COMSATx-2",        lat:   0,  lon:  113, altitudeKm: 35786, periodMin: 1436.1 },
+  // Scientific / other
+  { name: "HUBBLE",           lat:  28,  lon: -100, altitudeKm:  540, periodMin:  95.4 },
+  { name: "SWOT",             lat: -38,  lon:   70, altitudeKm:  891, periodMin: 103.9 },
 ];
 
 function readTLECache(): TLEEntry[] | null {
