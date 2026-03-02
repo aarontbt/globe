@@ -41,8 +41,13 @@ const REGIONS = [
   { lat: 28,  lon:  77, dist: 250 }, // India North / Delhi
   { lat: 19,  lon:  73, dist: 250 }, // India West / Mumbai
   // East / Southeast Asia
+  { lat: 20,  lon:  96, dist: 250 }, // Myanmar / N Thailand / Yunnan
   { lat: 13,  lon: 101, dist: 250 }, // Thailand / Indochina
-  { lat: 10,  lon: 108, dist: 250 }, // ASEAN / South China Sea
+  { lat:  2,  lon: 103, dist: 250 }, // Singapore / Malacca Strait / Peninsula Malaysia
+  { lat: 10,  lon: 108, dist: 250 }, // Vietnam / South China Sea
+  { lat: 12,  lon: 122, dist: 250 }, // Philippines / N Borneo
+  { lat: -7,  lon: 111, dist: 250 }, // Java / Bali / Java Sea
+  { lat: -3,  lon: 130, dist: 250 }, // Sulawesi / Maluku / W Papua
   { lat: 32,  lon: 119, dist: 250 }, // Shanghai / E China
   { lat: 36,  lon: 128, dist: 250 }, // Korea / Japan Sea
   // Pacific
