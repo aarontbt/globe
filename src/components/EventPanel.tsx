@@ -329,8 +329,8 @@ export default function EventPanel({
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", letterSpacing: "0.02em" }}>
-              Event Intelligence
+            <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.7)", letterSpacing: "0.08em" }}>
+              EVENT INTELLIGENCE
             </div>
             <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>
               {sorted.length} active events
