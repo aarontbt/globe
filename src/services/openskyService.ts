@@ -61,7 +61,7 @@ export async function fetchAircraft(): Promise<Aircraft[]> {
     });
   }
 
-  const data = result.length > 0 ? result : FALLBACK;
+  const data = result.length >= 10 ? result : FALLBACK;
   writeCache(data);
   return data;
 }
