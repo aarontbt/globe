@@ -1,6 +1,6 @@
 import type { MarketQuote } from "../types";
 
-const MARKET_CACHE_KEY = "gfw:markets:cache";
+const MARKET_CACHE_KEY = "gfw:markets:cache:v2";
 const MARKET_CACHE_TTL_MS = 5 * 60_000; // 5 minutes
 
 interface MarketCacheEntry {
@@ -26,14 +26,14 @@ function writeMarketCache(data: MarketQuote[]) {
 
 const SYMBOLS: Array<Pick<MarketQuote, "symbol" | "name" | "unit">> = [
   { symbol: "BZ=F", name: "Brent Crude", unit: "/barrel" },
-  { symbol: "CL=F", name: "WTI Crude",   unit: "/barrel" },
-  { symbol: "GC=F", name: "Gold",         unit: "/oz" },
+  { symbol: "NG=F", name: "LNG",         unit: "/MMBtu" },
+  { symbol: "GC=F", name: "Gold",        unit: "/oz" },
 ];
 
 // Stooq symbol mapping (free, no API key, CSV endpoint)
 const STOOQ_SYMBOLS: Record<string, string> = {
   "BZ=F": "bz.f",
-  "CL=F": "cl.f",
+  "NG=F": "ng.f",
   "GC=F": "gc.f",
 };
 
@@ -88,8 +88,18 @@ async function fetchQuoteYahoo(
   if (!meta) throw new Error(`No meta for ${symbol}`);
 
   const price: number = meta.regularMarketPrice ?? 0;
-  const change: number = meta.regularMarketChange ?? 0;
-  const changePct: number = meta.regularMarketChangePercent ?? 0;
+  let change: number = meta.regularMarketChange ?? 0;
+  let changePct: number = meta.regularMarketChangePercent ?? 0;
+
+  // Yahoo returns 0 for these during off-hours / overnight sessions on futures.
+  // Fall back to computing from the previous session's close.
+  if (change === 0 && price > 0) {
+    const prevClose: number = meta.chartPreviousClose ?? meta.previousClose ?? 0;
+    if (prevClose > 0) {
+      change = price - prevClose;
+      changePct = (change / prevClose) * 100;
+    }
+  }
 
   const rawClose: (number | null)[] =
     result?.indicators?.quote?.[0]?.close ?? [];

@@ -259,7 +259,7 @@ export default function MarketsWidget({ quotes, loading, lastUpdated }: Props) {
   }, []);
 
   const brent = useMemo(() => quotes.find(q => q.symbol === "BZ=F"), [quotes]);
-  const wti   = useMemo(() => quotes.find(q => q.symbol === "CL=F"), [quotes]);
+  const lng   = useMemo(() => quotes.find(q => q.symbol === "NG=F"), [quotes]);
   const gold  = useMemo(() => quotes.find(q => q.symbol === "GC=F"), [quotes]);
 
   // Tick counter
@@ -339,7 +339,7 @@ export default function MarketsWidget({ quotes, loading, lastUpdated }: Props) {
         ) : (
           <>
             {brent && <QuoteRow quote={brent} size="large" priceDecimals={2} />}
-            {wti   && <QuoteRow quote={wti}   size="small" priceDecimals={2} />}
+            {lng   && <QuoteRow quote={lng}   size="small" priceDecimals={3} />}
             {gold  && <QuoteRow quote={gold}  size="small" priceDecimals={0} />}
           </>
         )}
