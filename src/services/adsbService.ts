@@ -1,7 +1,6 @@
 import type { Aircraft } from "../types";
 
-// OpenSky-Network blocks cloud provider IPs (AWS/Vercel) at the network level.
-// We use a rich representative dataset covering major global flight routes.
+// ADSB.fi (ADS-B Exchange) — free, no key required.
 export const FALLBACK: Aircraft[] = [
   // ASEAN — intra-regional
   { icao24: "700261", callsign: "SIA321",  country: "Singapore",   lon: 103.8,  lat:   1.4,  altitudeM: 10668, velocityMs: 245, heading:  45 },
@@ -43,6 +42,44 @@ export const FALLBACK: Aircraft[] = [
   { icao24: "7c7bde", callsign: "ANZ180",  country: "New Zealand", lon: 174.8,  lat: -36.9,  altitudeM: 11277, velocityMs: 247, heading:  10 },
 ];
 
+const CACHE_KEY = "gfw:aircraft";
+const CACHE_TTL_MS = 9.5 * 60 * 1000; // 9.5 minutes
+
+interface AircraftCache {
+  ts: number;
+  data: Aircraft[];
+}
+
+function readAircraftCache(): Aircraft[] | null {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const cached: AircraftCache = JSON.parse(raw);
+    if (Date.now() - cached.ts > CACHE_TTL_MS) return null;
+    return cached.data;
+  } catch {
+    return null;
+  }
+}
+
+function writeAircraftCache(data: Aircraft[]): void {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+  } catch { /* quota exceeded — skip caching */ }
+}
+
 export async function fetchAircraft(): Promise<Aircraft[]> {
-  return FALLBACK;
+  const cached = readAircraftCache();
+  if (cached) return cached;
+
+  try {
+    const res = await fetch("/api/adsb");
+    if (!res.ok) return FALLBACK;
+    const data: Aircraft[] = await res.json();
+    if (!Array.isArray(data) || data.length === 0) return FALLBACK;
+    writeAircraftCache(data);
+    return data;
+  } catch {
+    return FALLBACK;
+  }
 }

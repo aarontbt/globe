@@ -19,7 +19,7 @@ import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
 import { useEventPulse } from "../hooks/useEventPulse";
 import { usePolymarketEvents } from "../hooks/usePolymarketEvents";
-import { useOpenSky } from "../hooks/useOpenSky";
+import { useAdsb } from "../hooks/useAdsb";
 import { useSatellites } from "../hooks/useSatellites";
 import { useCountryLabels } from "../hooks/useCountryLabels";
 
@@ -113,7 +113,7 @@ export default function GlobeView() {
     });
   }, []);
 
-  const { aircraft } = useOpenSky(visibility.showAircraft);
+  const { aircraft } = useAdsb(visibility.showAircraft);
   const { satellites } = useSatellites(visibility.showSatellites);
   const countryLabels = useCountryLabels();
 

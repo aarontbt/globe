@@ -34,11 +34,11 @@ const DATA_SOURCES: DataSource[] = [
     color: "#f59e0b",
   },
   {
-    name: "OpenSky Network",
+    name: "ADSB.fi",
     type: "live",
     description: "Aircraft Tracking",
     detail:
-      "Real-time global ADS-B flight states (ICAO24, callsign, altitude, velocity, heading) covering all transponder-equipped aircraft. Updates every 60s.",
+      "Real-time global ADS-B flight states (ICAO24, callsign, altitude, velocity, heading) via ADS-B Exchange open data. Fetches every 10 min with 1-second dead-reckoning interpolation.",
     color: "#a78bfa",
   },
   {

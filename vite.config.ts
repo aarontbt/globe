@@ -32,17 +32,17 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: () => "/news/business/rss.xml",
       },
-      "/api/opensky": {
-        target: "https://opensky-network.org",
+      "/api/adsb": {
+        target: "https://opendata.adsb.fi",
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api\/opensky/, ""),
+        rewrite: () => "/api/v2/all",
       },
       "/api/celestrak": {
         target: "https://celestrak.org",
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api\/celestrak/, ""),
         headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; GFW-Sample/1.0; educational use)",
+          "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0",
           "Accept": "text/plain",
         },
       },
