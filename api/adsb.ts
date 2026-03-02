@@ -1,94 +1,87 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-// 32 overlapping regions for dense global coverage of major flight corridors.
-// adsb.lol public API: max 250 NM radius, no auth required.
-// Centers spaced ~400 NM apart so adjacent circles overlap by ~100 NM.
-const REGIONS = [
-  // Europe — 5 overlapping circles
-  { lat: 51,  lon:  -2, dist: 250 }, // UK / Ireland / N France
-  { lat: 48,  lon:  10, dist: 250 }, // Germany / Austria / N Italy
-  { lat: 55,  lon:  23, dist: 250 }, // Baltic / Poland / Scandinavia
-  { lat: 41,  lon:  24, dist: 250 }, // Balkans / Turkey / Aegean
-  { lat: 37,  lon:   2, dist: 250 }, // Iberia / W Mediterranean
-  // North Atlantic great-circle corridor
-  { lat: 55,  lon: -20, dist: 250 }, // Ireland / Iceland approach
-  { lat: 53,  lon: -40, dist: 250 }, // Mid-Atlantic
-  // North America — 5 circles
-  { lat: 44,  lon: -74, dist: 250 }, // US Northeast / Canada SE
-  { lat: 33,  lon: -84, dist: 250 }, // US Southeast
-  { lat: 40,  lon: -95, dist: 250 }, // US Midwest
-  { lat: 35,  lon:-118, dist: 250 }, // US West Coast
-  { lat: 48,  lon:-118, dist: 250 }, // Pacific Northwest / Canada
-  // Central America / Caribbean
-  { lat: 19,  lon: -99, dist: 250 }, // Mexico City corridor
-  // South America
-  { lat: -10, lon: -52, dist: 250 }, // Brazil / Amazon basin
-  { lat: -34, lon: -60, dist: 250 }, // Buenos Aires / S. America South
-  // Africa / Mediterranean
-  { lat: 33,  lon:  13, dist: 250 }, // N Africa / Libya / Tunisia
-  { lat:  5,  lon:  22, dist: 250 }, // Central Africa / equatorial
-  { lat: -26, lon:  28, dist: 250 }, // South Africa / Johannesburg
-  // Middle East
-  { lat: 31,  lon:  34, dist: 250 }, // Levant / Egypt / Red Sea
-  { lat: 25,  lon:  50, dist: 250 }, // Gulf / UAE / Qatar / Saudi
-  { lat: 35,  lon:  60, dist: 250 }, // Iran / E. Afghanistan
-  // Russia / Siberian corridors (heavily used Europe–Asia routes)
-  { lat: 55,  lon:  55, dist: 250 }, // Russia / Urals
-  { lat: 55,  lon:  90, dist: 250 }, // W Siberia / Novosibirsk
-  { lat: 55,  lon: 125, dist: 250 }, // E Siberia / Yakutsk corridor
-  // Central & South Asia
-  { lat: 43,  lon:  72, dist: 250 }, // Kazakhstan / Kyrgyzstan
-  { lat: 28,  lon:  77, dist: 250 }, // India North / Delhi
-  { lat: 19,  lon:  73, dist: 250 }, // India West / Mumbai
-  // East / Southeast Asia
-  { lat: 20,  lon:  96, dist: 250 }, // Myanmar / N Thailand / Yunnan
-  { lat: 13,  lon: 101, dist: 250 }, // Thailand / Indochina
-  { lat:  2,  lon: 103, dist: 250 }, // Singapore / Malacca Strait / Peninsula Malaysia
-  { lat: 10,  lon: 108, dist: 250 }, // Vietnam / South China Sea
-  { lat: 12,  lon: 122, dist: 250 }, // Philippines / N Borneo
-  { lat: -7,  lon: 111, dist: 250 }, // Java / Bali / Java Sea
-  { lat: -3,  lon: 130, dist: 250 }, // Sulawesi / Maluku / W Papua
-  { lat: 32,  lon: 119, dist: 250 }, // Shanghai / E China
-  { lat: 36,  lon: 128, dist: 250 }, // Korea / Japan Sea
-  // Pacific
-  { lat: 50,  lon: 170, dist: 250 }, // North Pacific trans-oceanic
-  // Australia
-  { lat: -28, lon: 135, dist: 250 }, // Australia
-];
+// OpenSky Network — single global states/all call instead of tiled radius queries.
+// Returns every currently tracked aircraft on Earth (~8,000–15,000 at any time).
+const AUTH_URL =
+  "https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token";
+const STATES_URL = "https://opensky-network.org/api/states/all";
 
-interface RawAc {
-  hex?: string;
-  [key: string]: unknown;
+// Module-level token cache — reused across warm Vercel invocations
+let cachedToken: string | null = null;
+let tokenExpiresAt = 0;
+
+async function getAccessToken(): Promise<string> {
+  if (cachedToken && Date.now() < tokenExpiresAt) return cachedToken;
+
+  const clientId = process.env.OPENSKY_CLIENT_ID;
+  const clientSecret = process.env.OPENSKY_CLIENT_SECRET;
+  if (!clientId || !clientSecret) {
+    throw new Error("Missing OPENSKY_CLIENT_ID or OPENSKY_CLIENT_SECRET");
+  }
+
+  const res = await fetch(AUTH_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "client_credentials",
+      client_id: clientId,
+      client_secret: clientSecret,
+    }).toString(),
+    signal: AbortSignal.timeout(8_000),
+  });
+
+  if (!res.ok) throw new Error(`Auth failed: ${res.status}`);
+  const data = await res.json();
+  cachedToken = data.access_token as string;
+  tokenExpiresAt = Date.now() + (data.expires_in as number) * 1000 - 30_000;
+  return cachedToken;
 }
 
 export default async function handler(_req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   try {
-    const results = await Promise.allSettled(
-      REGIONS.map(({ lat, lon, dist }) =>
-        fetch(`https://api.adsb.lol/v2/lat/${lat}/lon/${lon}/dist/${dist}`, {
-          headers: { "User-Agent": "gfw-sample/1.0" },
-          signal: AbortSignal.timeout(10_000),
-        }).then(r => (r.ok ? r.json() : { ac: [] }))
-      )
-    );
+    const token = await getAccessToken();
 
-    // Merge and deduplicate by hex across regions
-    const seen = new Set<string>();
-    const ac: RawAc[] = [];
-    for (const result of results) {
-      if (result.status !== "fulfilled") continue;
-      for (const item of result.value?.ac ?? []) {
-        const hex = item.hex as string | undefined;
-        if (hex && seen.has(hex)) continue;
-        if (hex) seen.add(hex);
-        ac.push(item as RawAc);
-      }
+    const statesRes = await fetch(STATES_URL, {
+      headers: { Authorization: `Bearer ${token}` },
+      signal: AbortSignal.timeout(15_000),
+    });
+
+    if (!statesRes.ok) {
+      return res.status(200).json({ ac: [] });
     }
 
-    res.status(200).json({ ac });
+    const data = await statesRes.json();
+
+    // OpenSky state vector indices:
+    // [0] icao24  [1] callsign  [2] origin_country  [3] time_position  [4] last_contact
+    // [5] lon  [6] lat  [7] baro_altitude_m  [8] on_ground  [9] velocity_ms
+    // [10] true_track  [11] vertical_rate  ...
+    //
+    // adsbService.normalizeAc expects alt_baro in feet and gs in knots,
+    // so we convert from OpenSky's SI units here.
+    const ac = (data.states as unknown[] ?? [])
+      .filter((s: unknown) => {
+        const v = s as unknown[];
+        return !v[8] && v[5] != null && v[6] != null && v[7] != null;
+      })
+      .map((s: unknown) => {
+        const v = s as unknown[];
+        return {
+          hex:      v[0] as string,
+          flight:   ((v[1] as string | null) ?? "").trim(),
+          r:        v[2] as string,
+          lon:      v[5] as number,
+          lat:      v[6] as number,
+          alt_baro: (v[7] as number) / 0.3048,          // m → ft
+          gs:       ((v[9] as number | null) ?? 0) / 0.5144, // m/s → knots
+          track:    (v[10] as number | null) ?? 0,
+        };
+      });
+
+    return res.status(200).json({ ac });
   } catch {
-    res.status(200).json({ ac: [] });
+    return res.status(200).json({ ac: [] });
   }
 }
