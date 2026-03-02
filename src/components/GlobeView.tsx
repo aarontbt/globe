@@ -29,6 +29,7 @@ import PerformanceMonitor from "./PerformanceMonitor";
 import DataSources from "./DataSources";
 import MarketsWidget from "./MarketsWidget";
 import NewsWidget from "./NewsWidget";
+import LiveFeedWidget from "./LiveFeedWidget";
 import { useMarkets } from "../hooks/useMarkets";
 import { useNews } from "../hooks/useNews";
 import type { LayerVisibility } from "./LayerTogglePanel";
@@ -430,58 +431,8 @@ export default function GlobeView() {
           gap: 8,
         }}
       >
-        {/* Title card */}
-        <div
-          style={{
-            fontFamily: "system-ui, -apple-system, sans-serif",
-            pointerEvents: "none",
-            flexShrink: 0,
-          }}
-        >
-          <div style={{
-            background: "rgba(10,14,23,0.88)",
-            backdropFilter: "blur(12px)",
-            borderRadius: 12,
-            padding: "12px 16px",
-            border: "1px solid rgba(255,255,255,0.08)",
-          }}>
-            <div style={{ fontSize: 16, fontWeight: 800, color: "#fff", letterSpacing: "-0.01em" }}>
-              ASEAN Intelligence
-            </div>
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)", marginTop: 3 }}>
-              Shipping · Trade · Geopolitical Events
-            </div>
-
-            {/* Event legend — 2-column grid */}
-            <div style={{
-              marginTop: 10,
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "5px 4px",
-            }}>
-              {[
-                { color: "#ef4444", label: "Security" },
-                { color: "#a855f7", label: "Political" },
-                { color: "#22d3ee", label: "Economic" },
-                { color: "#4ade80", label: "Climate" },
-                { color: "#fb923c", label: "Election" },
-                { color: "#fbbf24", label: "Diplomatic" },
-              ].map(({ color, label }) => (
-                <div key={label} style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <span style={{
-                    width: 7,
-                    height: 7,
-                    borderRadius: "50%",
-                    background: color,
-                    boxShadow: `0 0 5px ${color}`,
-                    flexShrink: 0,
-                  }} />
-                  <span style={{ fontSize: 11, color: "rgba(255,255,255,0.55)" }}>{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* Live feed */}
+        <LiveFeedWidget />
 
         {/* Markets widget */}
         <div style={{ flexShrink: 0 }}>
