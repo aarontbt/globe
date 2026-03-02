@@ -1,5 +1,5 @@
 import type { GlobeEvent } from "../types";
-import { inferGeo, inferCategory, inferImpact, jitterCoords } from "../utils/geoInfer";
+import { inferGeo, inferCategory, jitterCoords } from "../utils/geoInfer";
 
 const GDELT_BASE = "/api/gdelt";
 
@@ -19,7 +19,6 @@ const FALLBACK: GlobeEvent[] = [
     country: "Iran",
     region: "Middle East",
     coordinates: [51.8, 35.2],
-    probability: 72,
     impact: "high",
     date: new Date().toISOString().slice(0, 10),
     tags: ["gdelt", "iran", "sanctions", "oil"],
@@ -33,7 +32,6 @@ const FALLBACK: GlobeEvent[] = [
     country: "Taiwan",
     region: "East Asia",
     coordinates: [120.4, 23.9],
-    probability: 61,
     impact: "high",
     date: new Date().toISOString().slice(0, 10),
     tags: ["gdelt", "taiwan", "military", "china"],
@@ -47,7 +45,6 @@ const FALLBACK: GlobeEvent[] = [
     country: "Singapore",
     region: "Southeast Asia",
     coordinates: [103.5, 1.8],
-    probability: 44,
     impact: "medium",
     date: new Date().toISOString().slice(0, 10),
     tags: ["gdelt", "asean", "trade", "shipping"],
@@ -61,7 +58,6 @@ const FALLBACK: GlobeEvent[] = [
     country: "Yemen",
     region: "Middle East",
     coordinates: [48.9, 15.1],
-    probability: 83,
     impact: "high",
     date: new Date().toISOString().slice(0, 10),
     tags: ["gdelt", "yemen", "houthi", "red sea"],
@@ -75,7 +71,6 @@ const FALLBACK: GlobeEvent[] = [
     country: "Philippines",
     region: "South China Sea",
     coordinates: [114.5, 12.8],
-    probability: 55,
     impact: "medium",
     date: new Date().toISOString().slice(0, 10),
     tags: ["gdelt", "philippines", "china", "diplomatic"],
@@ -162,7 +157,7 @@ export async function fetchGdeltEvents(): Promise<GlobeEvent[]> {
   let idx = 0;
   for (const [, cluster] of clusters) {
     const category = inferCategory(cluster.title);
-    const probability = Math.min(95, 25 + cluster.count * 5);
+    const impact = cluster.count >= 10 ? "high" : cluster.count >= 4 ? "medium" : "low";
     events.push({
       id: `gdelt-${cluster.country.toLowerCase().replace(/\s+/g, "-")}-${Date.now() + idx}`,
       title: cluster.title,
@@ -171,8 +166,7 @@ export async function fetchGdeltEvents(): Promise<GlobeEvent[]> {
       country: cluster.country,
       region: cluster.region,
       coordinates: jitterCoords(cluster.coordinates, idx),
-      probability,
-      impact: inferImpact(probability),
+      impact,
       date: new Date().toISOString().slice(0, 10),
       tags: ["gdelt", "media", cluster.country.toLowerCase().replace(/\s+/g, "")],
       social: {

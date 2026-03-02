@@ -75,8 +75,6 @@ export async function fetchRedditSignals(): Promise<GlobeEvent[]> {
         const geo = inferGeo(post.title);
         if (!geo) continue;
 
-        const probability = Math.round(post.upvote_ratio * 100);
-
         results.push({
           id: `reddit-${sub}-${encodeURIComponent(post.permalink).slice(-16)}-${idx}`,
           title: `r/${sub}: ${post.title}`,
@@ -85,7 +83,6 @@ export async function fetchRedditSignals(): Promise<GlobeEvent[]> {
           country: geo.country,
           region: geo.region,
           coordinates: jitterCoords(geo.coordinates, idx++),
-          probability,
           impact: impactFromUps(post.ups),
           date: new Date().toISOString().slice(0, 10),
           tags: ["reddit", sub, geo.country.toLowerCase().replace(/\s+/g, "")],

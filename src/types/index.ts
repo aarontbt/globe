@@ -138,7 +138,7 @@ export interface GlobeEvent {
   country: string;
   region: string;
   coordinates: [number, number];
-  probability: number; // 0-100
+  probability?: number; // 0-100, undefined for non-probability sources (social media)
   impact: EventImpact;
   date: string;
   tags: string[];

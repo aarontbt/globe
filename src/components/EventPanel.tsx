@@ -144,10 +144,6 @@ function SocialStrip({ event }: { event: GlobeEvent }) {
           <div style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>{s.engagement.toLocaleString()}</div>
           <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>{s.engagementLabel}</div>
         </div>
-        <div style={{ flex: 1, textAlign: "center", borderLeft: "1px solid rgba(255,255,255,0.07)", padding: "0 6px" }}>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>{event.probability}%</div>
-          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>signal</div>
-        </div>
       </div>
     </div>
   );
@@ -237,7 +233,7 @@ function EventCard({ event, isSelected, onClick }: EventCardProps) {
         </span>
       </div>
 
-      <ProbabilityBar value={event.probability} color={color} />
+      {event.probability !== undefined && <ProbabilityBar value={event.probability} color={color} />}
 
       {isSelected && (
         <div style={{
@@ -371,7 +367,7 @@ export default function EventPanel({
         .sort((a, b) =>
           sortMode === "date"
             ? b.date.localeCompare(a.date)
-            : b.probability - a.probability
+            : (b.probability ?? -1) - (a.probability ?? -1)
         ),
     [events, activeCategories, sortMode]
   );

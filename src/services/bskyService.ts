@@ -90,7 +90,6 @@ export function parseJetstreamMessage(raw: string): GlobeEvent | null {
       country: geo.country,
       region: geo.region,
       coordinates: jitterCoords(geo.coordinates, idx),
-      probability: 50,
       impact: "medium",
       date: new Date(record.createdAt).toISOString().slice(0, 10),
       tags: ["bluesky", "social", geo.country.toLowerCase().replace(/\s+/g, "")],

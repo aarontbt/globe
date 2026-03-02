@@ -63,7 +63,7 @@ export function useSocialSignals(): Result {
     }
 
     return deduped
-      .sort((a, b) => b.probability - a.probability)
+      .sort((a, b) => (b.probability ?? -1) - (a.probability ?? -1))
       .slice(0, TOP_N);
   }, [gdelt.events, reddit.events, bsky.events]);
 
