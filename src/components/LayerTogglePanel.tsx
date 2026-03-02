@@ -7,7 +7,6 @@ export interface LayerVisibility {
   showArcs: boolean;
   showVessels: boolean;
   showEvents: boolean;
-  showAircraft: boolean;
   showSatellites: boolean;
 }
 
@@ -183,16 +182,6 @@ export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePa
           }
           checked={visibility.showEvents}
           onToggle={() => onChange("showEvents", !visibility.showEvents)}
-        />
-        <ToggleRow
-          label="Civil Aircraft"
-          swatch={
-            <div className="flex w-5 justify-center">
-              <div className="w-2 h-2 rounded-full bg-white" style={{ boxShadow: "0 0 4px rgba(255,255,255,0.8)" }} />
-            </div>
-          }
-          checked={visibility.showAircraft}
-          onToggle={() => onChange("showAircraft", !visibility.showAircraft)}
         />
         <ToggleRow
           label="Satellites"

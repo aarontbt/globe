@@ -13,18 +13,14 @@ import { createPortsLayer } from "../layers/ports";
 import { createTradeArcsLayer } from "../layers/tradeArcs";
 import { createAnimatedVesselsLayer } from "../layers/animatedVessels";
 import { createEventRingsLayer, createEventDotsLayer, createAsteroidImpactLayers } from "../layers/globeEvents";
-import { createAircraftLayer } from "../layers/aircraft";
 import { createSatellitesLayer } from "../layers/satellites";
-import { createFlightTrackLayer } from "../layers/flightTrack";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
 import { useEventPulse } from "../hooks/useEventPulse";
 import { usePolymarketEvents } from "../hooks/usePolymarketEvents";
 import { useAsteroidImpacts } from "../hooks/useAsteroidImpacts";
-import { useAdsb } from "../hooks/useAdsb";
 import { useSatellites } from "../hooks/useSatellites";
 import { useCountryLabels } from "../hooks/useCountryLabels";
-import { useFlightTrack } from "../hooks/useFlightTrack";
 
 import EventPanel from "./EventPanel";
 import LayerTogglePanel from "./LayerTogglePanel";
@@ -38,7 +34,7 @@ import { useMarkets } from "../hooks/useMarkets";
 import { useNews } from "../hooks/useNews";
 import type { LayerVisibility } from "./LayerTogglePanel";
 
-import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Aircraft, Satellite } from "../types";
+import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite } from "../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GLOBE_VIEW = new (_GlobeView as any)({ id: "globe", controller: true });
@@ -92,7 +88,6 @@ export default function GlobeView() {
       showArcs: true,
       showVessels: true,
       showEvents: true,
-      showAircraft: false,
       showSatellites: false,
     };
     try {
@@ -119,10 +114,6 @@ export default function GlobeView() {
     });
   }, []);
 
-  const [selectedIcao24, setSelectedIcao24] = useState<string | null>(null);
-  const { track } = useFlightTrack(selectedIcao24);
-
-  const { aircraft } = useAdsb(visibility.showAircraft);
   const { satellites } = useSatellites(visibility.showSatellites);
   const countryLabels = useCountryLabels();
 
@@ -214,23 +205,16 @@ export default function GlobeView() {
     return result;
   }, [pulse, activeCategories, selectedId, visibility.showVessels, visibility.showEvents, vessels, events, asteroidImpacts]);
 
-  // Low-frequency layers — only rebuilds when aircraft/satellite data changes (1s dead-reckoning / 10min poll)
+  // Low-frequency layers — only rebuilds when satellite data changes
   const liveTrackingLayers = useMemo(() => {
     const result: any[] = [];
-    if (visibility.showAircraft) result.push(createAircraftLayer(aircraft));
     if (visibility.showSatellites) result.push(createSatellitesLayer(satellites));
     return result;
-  }, [visibility.showAircraft, visibility.showSatellites, aircraft, satellites]);
-
-  // Track layer separated so it doesn't rebuild with the 1s dead-reckoning tick
-  const trackLayer = useMemo(
-    () => (track ? [createFlightTrackLayer(track)] : []),
-    [track]
-  );
+  }, [visibility.showSatellites, satellites]);
 
   const layers = useMemo(
-    () => [...staticLayers, labelLayer, ...pulseLayers, ...liveTrackingLayers, ...trackLayer],
-    [staticLayers, labelLayer, pulseLayers, liveTrackingLayers, trackLayer]
+    () => [...staticLayers, labelLayer, ...pulseLayers, ...liveTrackingLayers],
+    [staticLayers, labelLayer, pulseLayers, liveTrackingLayers]
   );
 
   const getTooltip = useCallback(({ object, layer }: any) => {
@@ -306,35 +290,6 @@ export default function GlobeView() {
       };
     }
 
-    if (layer?.id === "aircraft-dots") {
-      const a = object as Aircraft;
-      const altFt = Math.round(a.altitudeM * 3.281);
-      const speedKt = Math.round(a.velocityMs * 1.944);
-      return {
-        html: `<div style="font-family:system-ui;padding:2px 0;min-width:160px">
-          <div style="font-weight:700;font-size:13px;color:#fff;margin-bottom:3px">${a.callsign || a.icao24}</div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:6px">${a.country}</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 10px">
-            <div>
-              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Altitude</div>
-              <div style="font-size:12px;color:#fff;font-weight:600">${altFt.toLocaleString()} ft</div>
-            </div>
-            <div>
-              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Speed</div>
-              <div style="font-size:12px;color:#fff;font-weight:600">${speedKt} kt</div>
-            </div>
-          </div>
-        </div>`,
-        style: {
-          backgroundColor: "rgba(8,12,22,0.92)",
-          borderRadius: "8px",
-          padding: "8px 12px",
-          border: "1px solid rgba(255,255,255,0.1)",
-          backdropFilter: "blur(8px)",
-        },
-      };
-    }
-
     if (layer?.id === "satellites") {
       const s = object as Satellite;
       return {
@@ -386,12 +341,8 @@ export default function GlobeView() {
       setSelectedId((prev: string | null) =>
         prev === (object as GlobeEvent).id ? null : (object as GlobeEvent).id
       );
-    } else if (layer?.id === "aircraft-dots" && object) {
-      const icao = (object as Aircraft).icao24;
-      setSelectedIcao24(prev => (prev === icao ? null : icao));
     } else if (!object) {
       setSelectedId(null);
-      setSelectedIcao24(null);
     }
   }, []);
 

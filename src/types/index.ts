@@ -79,22 +79,6 @@ export interface NewsArticle {
   category?: string;
 }
 
-export interface Aircraft {
-  icao24: string;
-  callsign: string;
-  country: string;
-  lon: number;
-  lat: number;
-  altitudeM: number; // geometric altitude in metres
-  velocityMs: number; // speed in m/s
-  heading: number; // true track in degrees
-}
-
-export interface FlightTrack {
-  icao24: string;
-  callsign: string;
-  path: Array<[number, number, number]>; // [lon, lat, altMeters]
-}
 
 export interface Satellite {
   name: string;
