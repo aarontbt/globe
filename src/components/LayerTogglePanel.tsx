@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export interface LayerVisibility {
   showLanes: boolean;
   showCorridors: boolean;
@@ -5,6 +7,8 @@ export interface LayerVisibility {
   showArcs: boolean;
   showVessels: boolean;
   showEvents: boolean;
+  showAircraft: boolean;
+  showSatellites: boolean;
 }
 
 interface LayerTogglePanelProps {
@@ -61,9 +65,74 @@ function ToggleRow({ label, swatch, checked, onToggle }: ToggleRowProps) {
 }
 
 export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePanelProps) {
+  const [expanded, setExpanded] = useState(false);
+
+  if (!expanded) {
+    return (
+      <button
+        onClick={() => setExpanded(true)}
+        style={{
+          background: "rgba(8,12,22,0.88)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: 8,
+          padding: "5px 11px",
+          color: "rgba(255,255,255,0.45)",
+          fontSize: 10,
+          letterSpacing: "0.16em",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+          backdropFilter: "blur(12px)",
+          fontFamily: "system-ui, -apple-system, sans-serif",
+        }}
+      >
+        <span style={{ color: "#06b6d4", fontSize: 8, lineHeight: 1 }}>◧</span>
+        LAYERS
+      </button>
+    );
+  }
+
   return (
-    <div className="p-4 bg-black/40 backdrop-blur-xl border border-white/10 rounded-xl">
-      <h2 className="text-[10px] tracking-[0.2em] text-white/40 uppercase mb-2.5">Layers</h2>
+    <div
+      style={{
+        fontFamily: "system-ui, -apple-system, sans-serif",
+        background: "rgba(6,9,18,0.93)",
+        border: "1px solid rgba(255,255,255,0.09)",
+        borderRadius: 12,
+        padding: "12px 14px",
+        backdropFilter: "blur(18px)",
+      }}
+    >
+      {/* Header */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+          <span style={{ color: "#06b6d4", fontSize: 9 }}>◧</span>
+          <span style={{
+            fontSize: 10,
+            letterSpacing: "0.18em",
+            color: "rgba(255,255,255,0.35)",
+            textTransform: "uppercase",
+          }}>
+            Layers
+          </span>
+        </div>
+        <button
+          onClick={() => setExpanded(false)}
+          style={{
+            background: "none",
+            border: "none",
+            color: "rgba(255,255,255,0.25)",
+            cursor: "pointer",
+            fontSize: 12,
+            padding: 0,
+            lineHeight: 1,
+          }}
+        >
+          ✕
+        </button>
+      </div>
+
       <div className="flex flex-col gap-2">
         <ToggleRow
           label="Shipping Lanes"
@@ -114,6 +183,26 @@ export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePa
           }
           checked={visibility.showEvents}
           onToggle={() => onChange("showEvents", !visibility.showEvents)}
+        />
+        <ToggleRow
+          label="Civil Aircraft"
+          swatch={
+            <div className="flex w-5 justify-center">
+              <div className="w-2 h-2 rounded-full bg-white" style={{ boxShadow: "0 0 4px rgba(255,255,255,0.8)" }} />
+            </div>
+          }
+          checked={visibility.showAircraft}
+          onToggle={() => onChange("showAircraft", !visibility.showAircraft)}
+        />
+        <ToggleRow
+          label="Satellites"
+          swatch={
+            <div className="flex w-5 justify-center">
+              <div className="w-2 h-2 rounded-full" style={{ background: "#00ffdc", boxShadow: "0 0 4px #00ffdc" }} />
+            </div>
+          }
+          checked={visibility.showSatellites}
+          onToggle={() => onChange("showSatellites", !visibility.showSatellites)}
         />
       </div>
     </div>

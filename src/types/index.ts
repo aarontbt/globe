@@ -58,6 +58,51 @@ export interface PolymarketData {
   slug: string;         // polymarket.com/event/{slug}
 }
 
+export interface MarketQuote {
+  symbol: string;
+  name: string;
+  price: number;
+  change: number;
+  changePct: number;
+  currency: string;
+  unit: string;
+  lastUpdated: string;
+  history?: number[];
+}
+
+export interface NewsArticle {
+  title: string;
+  description: string;
+  link: string;
+  pubDate: string;
+  source: "CNA" | "BBC" | "Reuters" | "CNBC" | "Al Jazeera";
+  category?: string;
+}
+
+export interface Aircraft {
+  icao24: string;
+  callsign: string;
+  country: string;
+  lon: number;
+  lat: number;
+  altitudeM: number; // geometric altitude in metres
+  velocityMs: number; // speed in m/s
+  heading: number; // true track in degrees
+}
+
+export interface Satellite {
+  name: string;
+  lat: number;
+  lon: number;
+  altitudeKm: number;
+  periodMin: number;
+}
+
+export interface CountryLabel {
+  name: string;
+  coordinates: [number, number];
+}
+
 export interface GlobeEvent {
   id: string;
   title: string;

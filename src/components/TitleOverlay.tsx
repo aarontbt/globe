@@ -5,7 +5,7 @@ export default function TitleOverlay() {
       <div className="flex items-center gap-3">
         <div>
           <h1 className="text-white text-lg font-semibold leading-tight">
-            ASEAN Maritime Intelligence
+            ASEAN Intelligence
           </h1>
           <p className="text-xs text-white/60 mt-0.5">
             Trade Corridor Analytics &bull; Maybank Advisory
