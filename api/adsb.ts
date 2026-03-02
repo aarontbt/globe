@@ -1,14 +1,33 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-// Six regions covering the major global flight corridors shown in the app.
+// 16 regions covering major global flight corridors.
 // adsb.lol public API: max 250 NM radius, no auth required.
 const REGIONS = [
-  { lat: 10,  lon: 112, dist: 250 }, // ASEAN + South China Sea
-  { lat: -2,  lon: 107, dist: 250 }, // Indonesia + Malacca Strait
-  { lat: 35,  lon: 127, dist: 250 }, // Northeast Asia (Japan, Korea, E. China)
-  { lat: 22,  lon:  60, dist: 250 }, // Indian Ocean / Gulf corridor
-  { lat: 51,  lon:  10, dist: 250 }, // Europe
-  { lat: 40,  lon: -95, dist: 250 }, // North America
+  // Europe
+  { lat: 51,  lon:   2, dist: 250 }, // Western Europe (UK/France/Benelux)
+  { lat: 50,  lon:  23, dist: 250 }, // Central/Eastern Europe
+  // North Atlantic corridor
+  { lat: 52,  lon: -30, dist: 250 }, // Mid-Atlantic
+  // North America
+  { lat: 40,  lon: -74, dist: 250 }, // US Northeast (NYC)
+  { lat: 30,  lon: -90, dist: 250 }, // US Southeast / Gulf
+  { lat: 35,  lon:-118, dist: 250 }, // US West Coast (LA)
+  { lat: 48,  lon:-122, dist: 250 }, // US/Canada Pacific Northwest
+  // Pacific
+  { lat: 50,  lon: 175, dist: 250 }, // North Pacific trans-oceanic corridor
+  // Northeast Asia
+  { lat: 35,  lon: 127, dist: 250 }, // Japan / Korea / Yellow Sea
+  { lat: 30,  lon: 120, dist: 250 }, // East China coast / Shanghai
+  // Southeast Asia
+  { lat: 10,  lon: 108, dist: 250 }, // ASEAN + South China Sea
+  // South Asia / Middle East
+  { lat: 20,  lon:  75, dist: 250 }, // India subcontinent
+  { lat: 25,  lon:  50, dist: 250 }, // Gulf / Arabian Peninsula
+  // Africa / Mediterranean
+  { lat:  5,  lon:  20, dist: 250 }, // Central Africa / equatorial routes
+  // Southern Hemisphere
+  { lat:-28,  lon: 135, dist: 250 }, // Australia
+  { lat:-10,  lon: -52, dist: 250 }, // South America (Brazil)
 ];
 
 interface RawAc {

@@ -34,11 +34,19 @@ const DATA_SOURCES: DataSource[] = [
     color: "#f59e0b",
   },
   {
-    name: "ADSB.fi",
+    name: "ADSB.lol",
     type: "live",
     description: "Aircraft Tracking",
     detail:
-      "Real-time global ADS-B flight states (ICAO24, callsign, altitude, velocity, heading) via ADS-B Exchange open data. Fetches every 10 min with 1-second dead-reckoning interpolation.",
+      "Real-time global ADS-B flight states (ICAO24, callsign, altitude, velocity, heading) via ADSB.lol — free, no-auth, ODbL-licensed crowdsourced ADS-B network. Fetches every 10 min with 1-second dead-reckoning interpolation.",
+    color: "#a78bfa",
+  },
+  {
+    name: "OpenSky Network",
+    type: "live",
+    description: "Flight Track History",
+    detail:
+      "Historical flight waypoints (ICAO24 tracks) fetched on demand via OpenSky Network OAuth2 API. Click any aircraft to load its recent ~2h track.",
     color: "#a78bfa",
   },
   {

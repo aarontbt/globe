@@ -15,6 +15,7 @@ import { createAnimatedVesselsLayer } from "../layers/animatedVessels";
 import { createEventRingsLayer, createEventDotsLayer, createAsteroidImpactLayers } from "../layers/globeEvents";
 import { createAircraftLayer } from "../layers/aircraft";
 import { createSatellitesLayer } from "../layers/satellites";
+import { createFlightTrackLayer } from "../layers/flightTrack";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
 import { useEventPulse } from "../hooks/useEventPulse";
@@ -23,6 +24,7 @@ import { useAsteroidImpacts } from "../hooks/useAsteroidImpacts";
 import { useAdsb } from "../hooks/useAdsb";
 import { useSatellites } from "../hooks/useSatellites";
 import { useCountryLabels } from "../hooks/useCountryLabels";
+import { useFlightTrack } from "../hooks/useFlightTrack";
 
 import EventPanel from "./EventPanel";
 import LayerTogglePanel from "./LayerTogglePanel";
@@ -31,6 +33,7 @@ import DataSources from "./DataSources";
 import MarketsWidget from "./MarketsWidget";
 import NewsWidget from "./NewsWidget";
 import LiveFeedWidget from "./LiveFeedWidget";
+import MarketBriefOverlay from "./market-brief/MarketBriefOverlay";
 import { useMarkets } from "../hooks/useMarkets";
 import { useNews } from "../hooks/useNews";
 import type { LayerVisibility } from "./LayerTogglePanel";
@@ -115,6 +118,9 @@ export default function GlobeView() {
       return next;
     });
   }, []);
+
+  const [selectedIcao24, setSelectedIcao24] = useState<string | null>(null);
+  const { track } = useFlightTrack(selectedIcao24);
 
   const { aircraft } = useAdsb(visibility.showAircraft);
   const { satellites } = useSatellites(visibility.showSatellites);
@@ -213,8 +219,9 @@ export default function GlobeView() {
     const result: any[] = [];
     if (visibility.showAircraft) result.push(createAircraftLayer(aircraft));
     if (visibility.showSatellites) result.push(createSatellitesLayer(satellites));
+    if (track) result.push(createFlightTrackLayer(track));
     return result;
-  }, [visibility.showAircraft, visibility.showSatellites, aircraft, satellites]);
+  }, [visibility.showAircraft, visibility.showSatellites, aircraft, satellites, track]);
 
   const layers = useMemo(
     () => [...staticLayers, labelLayer, ...pulseLayers, ...liveTrackingLayers],
@@ -374,8 +381,12 @@ export default function GlobeView() {
       setSelectedId((prev: string | null) =>
         prev === (object as GlobeEvent).id ? null : (object as GlobeEvent).id
       );
+    } else if (layer?.id === "aircraft-dots" && object) {
+      const icao = (object as Aircraft).icao24;
+      setSelectedIcao24(prev => (prev === icao ? null : icao));
     } else if (!object) {
       setSelectedId(null);
+      setSelectedIcao24(null);
     }
   }, []);
 
@@ -482,6 +493,8 @@ export default function GlobeView() {
         <DataSources />
         <PerformanceMonitor deckRenderMsRef={deckRenderMsRef} />
       </div>
+
+      <MarketBriefOverlay />
     </div>
   );
 }

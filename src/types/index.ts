@@ -90,6 +90,12 @@ export interface Aircraft {
   heading: number; // true track in degrees
 }
 
+export interface FlightTrack {
+  icao24: string;
+  callsign: string;
+  path: Array<[number, number, number]>; // [lon, lat, altMeters]
+}
+
 export interface Satellite {
   name: string;
   lat: number;
