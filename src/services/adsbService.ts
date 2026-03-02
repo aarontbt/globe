@@ -50,6 +50,37 @@ interface AircraftCache {
   data: Aircraft[];
 }
 
+// Raw field shape returned by adsb.lol / adsb.fi geographic endpoints
+interface RawAc {
+  hex?: string;
+  flight?: string;
+  r?: string;
+  lon?: number;
+  lat?: number;
+  alt_baro?: number | "ground";
+  gs?: number;
+  track?: number;
+}
+
+function normalizeAc(acs: RawAc[]): Aircraft[] {
+  const result: Aircraft[] = [];
+  for (const ac of acs) {
+    if (ac.alt_baro === "ground" || ac.alt_baro == null) continue;
+    if (ac.lat == null || ac.lon == null) continue;
+    result.push({
+      icao24: ac.hex ?? "",
+      callsign: (ac.flight ?? "").trim(),
+      country: ac.r ?? "",
+      lon: ac.lon,
+      lat: ac.lat,
+      altitudeM: ac.alt_baro * 0.3048,   // ft → m
+      velocityMs: (ac.gs ?? 0) * 0.5144, // knots → m/s
+      heading: ac.track ?? 0,
+    });
+  }
+  return result;
+}
+
 function readAircraftCache(): Aircraft[] | null {
   try {
     const raw = localStorage.getItem(CACHE_KEY);
@@ -75,8 +106,11 @@ export async function fetchAircraft(): Promise<Aircraft[]> {
   try {
     const res = await fetch("/api/adsb");
     if (!res.ok) return FALLBACK;
-    const data: Aircraft[] = await res.json();
-    if (!Array.isArray(data) || data.length === 0) return FALLBACK;
+    const raw: { ac?: RawAc[] } | RawAc[] = await res.json();
+    // Accept both raw {ac:[...]} (Vite proxy / Vercel fn) and pre-normalized Aircraft[]
+    const acs: RawAc[] = Array.isArray(raw) ? raw : (raw.ac ?? []);
+    const data = normalizeAc(acs);
+    if (data.length === 0) return FALLBACK;
     writeAircraftCache(data);
     return data;
   } catch {

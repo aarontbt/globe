@@ -33,9 +33,10 @@ export default defineConfig({
         rewrite: () => "/news/business/rss.xml",
       },
       "/api/adsb": {
-        target: "https://opendata.adsb.fi",
+        target: "https://api.adsb.lol",
         changeOrigin: true,
-        rewrite: () => "/api/v2/all",
+        // Local dev: single ASEAN region query (Vercel fn does multi-region in prod)
+        rewrite: () => "/v2/lat/10/lon/112/dist/250",
       },
       "/api/celestrak": {
         target: "https://celestrak.org",
