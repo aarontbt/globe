@@ -1,33 +1,54 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-// 16 regions covering major global flight corridors.
+// 32 overlapping regions for dense global coverage of major flight corridors.
 // adsb.lol public API: max 250 NM radius, no auth required.
+// Centers spaced ~400 NM apart so adjacent circles overlap by ~100 NM.
 const REGIONS = [
-  // Europe
-  { lat: 51,  lon:   2, dist: 250 }, // Western Europe (UK/France/Benelux)
-  { lat: 50,  lon:  23, dist: 250 }, // Central/Eastern Europe
-  // North Atlantic corridor
-  { lat: 52,  lon: -30, dist: 250 }, // Mid-Atlantic
-  // North America
-  { lat: 40,  lon: -74, dist: 250 }, // US Northeast (NYC)
-  { lat: 30,  lon: -90, dist: 250 }, // US Southeast / Gulf
-  { lat: 35,  lon:-118, dist: 250 }, // US West Coast (LA)
-  { lat: 48,  lon:-122, dist: 250 }, // US/Canada Pacific Northwest
-  // Pacific
-  { lat: 50,  lon: 175, dist: 250 }, // North Pacific trans-oceanic corridor
-  // Northeast Asia
-  { lat: 35,  lon: 127, dist: 250 }, // Japan / Korea / Yellow Sea
-  { lat: 30,  lon: 120, dist: 250 }, // East China coast / Shanghai
-  // Southeast Asia
-  { lat: 10,  lon: 108, dist: 250 }, // ASEAN + South China Sea
-  // South Asia / Middle East
-  { lat: 20,  lon:  75, dist: 250 }, // India subcontinent
-  { lat: 25,  lon:  50, dist: 250 }, // Gulf / Arabian Peninsula
+  // Europe — 5 overlapping circles
+  { lat: 51,  lon:  -2, dist: 250 }, // UK / Ireland / N France
+  { lat: 48,  lon:  10, dist: 250 }, // Germany / Austria / N Italy
+  { lat: 55,  lon:  23, dist: 250 }, // Baltic / Poland / Scandinavia
+  { lat: 41,  lon:  24, dist: 250 }, // Balkans / Turkey / Aegean
+  { lat: 37,  lon:   2, dist: 250 }, // Iberia / W Mediterranean
+  // North Atlantic great-circle corridor
+  { lat: 55,  lon: -20, dist: 250 }, // Ireland / Iceland approach
+  { lat: 53,  lon: -40, dist: 250 }, // Mid-Atlantic
+  // North America — 5 circles
+  { lat: 44,  lon: -74, dist: 250 }, // US Northeast / Canada SE
+  { lat: 33,  lon: -84, dist: 250 }, // US Southeast
+  { lat: 40,  lon: -95, dist: 250 }, // US Midwest
+  { lat: 35,  lon:-118, dist: 250 }, // US West Coast
+  { lat: 48,  lon:-118, dist: 250 }, // Pacific Northwest / Canada
+  // Central America / Caribbean
+  { lat: 19,  lon: -99, dist: 250 }, // Mexico City corridor
+  // South America
+  { lat: -10, lon: -52, dist: 250 }, // Brazil / Amazon basin
+  { lat: -34, lon: -60, dist: 250 }, // Buenos Aires / S. America South
   // Africa / Mediterranean
-  { lat:  5,  lon:  20, dist: 250 }, // Central Africa / equatorial routes
-  // Southern Hemisphere
-  { lat:-28,  lon: 135, dist: 250 }, // Australia
-  { lat:-10,  lon: -52, dist: 250 }, // South America (Brazil)
+  { lat: 33,  lon:  13, dist: 250 }, // N Africa / Libya / Tunisia
+  { lat:  5,  lon:  22, dist: 250 }, // Central Africa / equatorial
+  { lat: -26, lon:  28, dist: 250 }, // South Africa / Johannesburg
+  // Middle East
+  { lat: 31,  lon:  34, dist: 250 }, // Levant / Egypt / Red Sea
+  { lat: 25,  lon:  50, dist: 250 }, // Gulf / UAE / Qatar / Saudi
+  { lat: 35,  lon:  60, dist: 250 }, // Iran / E. Afghanistan
+  // Russia / Siberian corridors (heavily used Europe–Asia routes)
+  { lat: 55,  lon:  55, dist: 250 }, // Russia / Urals
+  { lat: 55,  lon:  90, dist: 250 }, // W Siberia / Novosibirsk
+  { lat: 55,  lon: 125, dist: 250 }, // E Siberia / Yakutsk corridor
+  // Central & South Asia
+  { lat: 43,  lon:  72, dist: 250 }, // Kazakhstan / Kyrgyzstan
+  { lat: 28,  lon:  77, dist: 250 }, // India North / Delhi
+  { lat: 19,  lon:  73, dist: 250 }, // India West / Mumbai
+  // East / Southeast Asia
+  { lat: 13,  lon: 101, dist: 250 }, // Thailand / Indochina
+  { lat: 10,  lon: 108, dist: 250 }, // ASEAN / South China Sea
+  { lat: 32,  lon: 119, dist: 250 }, // Shanghai / E China
+  { lat: 36,  lon: 128, dist: 250 }, // Korea / Japan Sea
+  // Pacific
+  { lat: 50,  lon: 170, dist: 250 }, // North Pacific trans-oceanic
+  // Australia
+  { lat: -28, lon: 135, dist: 250 }, // Australia
 ];
 
 interface RawAc {
