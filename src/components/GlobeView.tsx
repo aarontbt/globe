@@ -12,13 +12,14 @@ import { createCorridorLayers } from "../layers/corridors";
 import { createPortsLayer } from "../layers/ports";
 import { createTradeArcsLayer } from "../layers/tradeArcs";
 import { createAnimatedVesselsLayer } from "../layers/animatedVessels";
-import { createEventRingsLayer, createEventDotsLayer } from "../layers/globeEvents";
+import { createEventRingsLayer, createEventDotsLayer, createAsteroidImpactLayers } from "../layers/globeEvents";
 import { createAircraftLayer } from "../layers/aircraft";
 import { createSatellitesLayer } from "../layers/satellites";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
 import { useEventPulse } from "../hooks/useEventPulse";
 import { usePolymarketEvents } from "../hooks/usePolymarketEvents";
+import { useAsteroidImpacts } from "../hooks/useAsteroidImpacts";
 import { useAdsb } from "../hooks/useAdsb";
 import { useSatellites } from "../hooks/useSatellites";
 import { useCountryLabels } from "../hooks/useCountryLabels";
@@ -62,11 +63,12 @@ export default function GlobeView() {
   const { quotes, loading: marketsLoading, lastUpdated: marketsUpdated } = useMarkets();
   const { articles, loading: newsLoading, cacheAge, refresh: refreshNews } = useNews();
 
-  const { events: polymarketEvents, loading: eventsLoading, error: eventsError } = usePolymarketEvents();
+  const { events: polymarketEvents, newEvents, loading: eventsLoading, error: eventsError } = usePolymarketEvents();
   const events = useMemo(
     () => [...polymarketEvents, ...(iranIntelEvents as GlobeEvent[])],
     [polymarketEvents]
   );
+  const asteroidImpacts = useAsteroidImpacts(newEvents);
   const corridors = corridorsData as Corridor[];
   const ports = portsData as Port[];
   const arcs = tradeArcsData as TradeArc[];
@@ -200,9 +202,11 @@ export default function GlobeView() {
     if (visibility.showEvents) {
       result.push(createEventRingsLayer(events, pulse, activeCategories));
       result.push(createEventDotsLayer(events, activeCategories, selectedId));
+      // Asteroid impact layers — only present while impacts are active (empty array = no layers)
+      result.push(...createAsteroidImpactLayers(asteroidImpacts));
     }
     return result;
-  }, [pulse, activeCategories, selectedId, visibility.showVessels, visibility.showEvents, vessels, events]);
+  }, [pulse, activeCategories, selectedId, visibility.showVessels, visibility.showEvents, vessels, events, asteroidImpacts]);
 
   // Low-frequency layers — only rebuilds when aircraft/satellite data changes (60s / 20s)
   const liveTrackingLayers = useMemo(() => {

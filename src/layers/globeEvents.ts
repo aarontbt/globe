@@ -1,5 +1,6 @@
 import { ScatterplotLayer } from "@deck.gl/layers";
 import type { GlobeEvent, EventCategory } from "../types";
+import type { ImpactState } from "../hooks/useAsteroidImpacts";
 
 export const CATEGORY_COLORS: Record<EventCategory, [number, number, number]> = {
   security:   [239,  68,  68],
@@ -54,6 +55,62 @@ export function createEventRingsLayer(
       getFillColor: pulse,
     },
   });
+}
+
+/**
+ * Asteroid impact animation layers for newly-arrived events.
+ *
+ * Each impact runs a 2.2s sequence:
+ *   - Bright yellow-white flash: expands to ~50px then vanishes by progress 0.4
+ *   - 3 shockwave rings: fast-expanding, each offset by 0.2 in phase, fade by progress 0.8
+ */
+export function createAsteroidImpactLayers(impacts: ImpactState[]) {
+  if (impacts.length === 0) return [];
+
+  // Build ring data: 3 rings per impact at staggered phases
+  const ringData = impacts.flatMap(imp =>
+    [0, 1, 2].map(r => ({ ...imp, ringIdx: r }))
+  );
+
+  const shockwaveLayer = new ScatterplotLayer<typeof ringData[0]>({
+    id: "asteroid-shockwave",
+    data: ringData,
+    getPosition: d => d.coordinates,
+    getRadius: d => {
+      const phase = (d.progress * 1.6 + d.ringIdx * 0.22) % 1;
+      return 5 + phase * 42;
+    },
+    getFillColor: d => {
+      const phase = (d.progress * 1.6 + d.ringIdx * 0.22) % 1;
+      const alpha = Math.round(Math.max(0, 1 - phase) * 140);
+      return [...d.color, alpha] as [number, number, number, number];
+    },
+    radiusUnits: "pixels",
+    stroked: false,
+    pickable: false,
+    parameters: { depthTest: true, depthMask: false } as object,
+  });
+
+  // Flash burst: peaks fast, gone by progress 0.45
+  const flashLayer = new ScatterplotLayer<ImpactState>({
+    id: "asteroid-flash",
+    data: impacts,
+    getPosition: d => d.coordinates,
+    getRadius: d => {
+      const t = Math.max(0, 1 - d.progress / 0.35);
+      return t * t * 52;
+    },
+    getFillColor: d => {
+      const alpha = Math.round(Math.max(0, 1 - d.progress / 0.45) * 255);
+      return [255, 220, 90, alpha];
+    },
+    radiusUnits: "pixels",
+    stroked: false,
+    pickable: false,
+    parameters: { depthTest: true, depthMask: false } as object,
+  });
+
+  return [shockwaveLayer, flashLayer];
 }
 
 /**
