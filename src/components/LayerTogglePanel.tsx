@@ -9,6 +9,7 @@ export interface LayerVisibility {
   showEvents: boolean;
   showSatellites: boolean;
   showOilSupplyChain: boolean;
+  showAISShips: boolean;
 }
 
 interface LayerTogglePanelProps {
@@ -205,6 +206,16 @@ export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePa
           }
           checked={visibility.showSatellites}
           onToggle={() => onChange("showSatellites", !visibility.showSatellites)}
+        />
+        <ToggleRow
+          label="AIS Ships"
+          swatch={
+            <div className="flex w-5 justify-center">
+              <div className="w-2 h-2 rounded-full" style={{ background: "#ffa032", boxShadow: "0 0 4px #ffa032" }} />
+            </div>
+          }
+          checked={visibility.showAISShips}
+          onToggle={() => onChange("showAISShips", !visibility.showAISShips)}
         />
       </div>
     </div>

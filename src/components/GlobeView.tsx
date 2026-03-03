@@ -15,6 +15,7 @@ import { createTradeArcsLayer } from "../layers/tradeArcs";
 import { createAnimatedVesselsLayer } from "../layers/animatedVessels";
 import { createEventRingsLayer, createEventDotsLayer, createAsteroidImpactLayers } from "../layers/globeEvents";
 import { createSatellitesLayer } from "../layers/satellites";
+import { createAISShipsLayer } from "../layers/aisShips";
 import { createOilSupplyChainLayers } from "../layers/oilSupplyChain";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
@@ -22,6 +23,7 @@ import { useEventPulse } from "../hooks/useEventPulse";
 import { usePolymarketEvents } from "../hooks/usePolymarketEvents";
 import { useAsteroidImpacts } from "../hooks/useAsteroidImpacts";
 import { useSatellites } from "../hooks/useSatellites";
+import { useAISShips } from "../hooks/useAISShips";
 import { useCountryLabels } from "../hooks/useCountryLabels";
 import { useSocialSignals } from "../hooks/useSocialSignals";
 
@@ -37,7 +39,7 @@ import { useMarkets } from "../hooks/useMarkets";
 import { useNews } from "../hooks/useNews";
 import type { LayerVisibility } from "./LayerTogglePanel";
 
-import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite, OilNode, OilRoute } from "../types";
+import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite, OilNode, OilRoute, AISShip } from "../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GLOBE_VIEW = new (_GlobeView as any)({ id: "globe", controller: true });
@@ -104,6 +106,7 @@ export default function GlobeView() {
       showEvents: true,
       showSatellites: false,
       showOilSupplyChain: true,
+      showAISShips: false,
     };
     try {
       const saved = localStorage.getItem("gb:layerVisibility");
@@ -131,6 +134,7 @@ export default function GlobeView() {
   }, []);
 
   const { satellites } = useSatellites(visibility.showSatellites);
+  const { ships } = useAISShips(visibility.showAISShips);
   const countryLabels = useCountryLabels();
 
   // Coarse camera position — only updates when lon/lat change by ≥3°, so labels
@@ -222,12 +226,13 @@ export default function GlobeView() {
     return result;
   }, [pulse, activeCategories, selectedId, visibility.showVessels, visibility.showEvents, vessels, events, asteroidImpacts]);
 
-  // Low-frequency layers — only rebuilds when satellite data changes
+  // Low-frequency layers — only rebuilds when satellite/AIS data changes
   const liveTrackingLayers = useMemo(() => {
     const result: any[] = [];
     if (visibility.showSatellites) result.push(createSatellitesLayer(satellites));
+    if (visibility.showAISShips) result.push(createAISShipsLayer(ships));
     return result;
-  }, [visibility.showSatellites, satellites]);
+  }, [visibility.showSatellites, satellites, visibility.showAISShips, ships]);
 
   const layers = useMemo(
     () => [...staticLayers, labelLayer, ...pulseLayers, ...liveTrackingLayers],
@@ -328,6 +333,33 @@ export default function GlobeView() {
           borderRadius: "8px",
           padding: "8px 12px",
           border: "1px solid rgba(0,255,220,0.2)",
+          backdropFilter: "blur(8px)",
+        },
+      };
+    }
+
+    if (layer?.id === "ais-ships") {
+      const s = object as AISShip;
+      return {
+        html: `<div style="font-family:system-ui;padding:2px 0;min-width:160px">
+          <div style="font-weight:700;font-size:13px;color:#ffa032;margin-bottom:3px">${s.name}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:4px">MMSI: ${s.mmsi}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;margin-top:4px">
+            <div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Speed</div>
+              <div style="font-size:12px;color:#fff;font-weight:600">${s.speed.toFixed(1)} kn</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Heading</div>
+              <div style="font-size:12px;color:#fff;font-weight:600">${Math.round(s.heading)}°</div>
+            </div>
+          </div>
+        </div>`,
+        style: {
+          backgroundColor: "rgba(20,10,0,0.92)",
+          borderRadius: "8px",
+          padding: "8px 12px",
+          border: "1px solid rgba(255,160,50,0.25)",
           backdropFilter: "blur(8px)",
         },
       };
