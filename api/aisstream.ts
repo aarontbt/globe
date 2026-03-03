@@ -1,4 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
+import WebSocket from "ws";
 
 interface AISShipRaw {
   mmsi: string;
@@ -10,8 +11,10 @@ interface AISShipRaw {
   updatedAt: number;
 }
 
-const COLLECT_MS = 25_000; // collect for 25 seconds
-const API_KEY = process.env.AISSTREAM_API_KEY; // server-side only, no VITE_ prefix
+const COLLECT_MS = 25_000;
+const API_KEY = process.env.AISSTREAM_API_KEY;
+
+export const config = { maxDuration: 30 };
 
 export default async function handler(_req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -33,22 +36,15 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 function collectShips(): Promise<AISShipRaw[]> {
   return new Promise((resolve, reject) => {
     const collected = new Map<string, AISShipRaw>();
-    let ws: WebSocket;
+
+    const ws = new WebSocket("wss://stream.aisstream.io/v0/stream");
 
     const timeout = setTimeout(() => {
       try { ws.close(); } catch {}
       resolve([...collected.values()]);
     }, COLLECT_MS);
 
-    try {
-      ws = new WebSocket("wss://stream.aisstream.io/v0/stream");
-    } catch (e) {
-      clearTimeout(timeout);
-      reject(e);
-      return;
-    }
-
-    ws.addEventListener("open", () => {
+    ws.on("open", () => {
       ws.send(JSON.stringify({
         APIkey: API_KEY,
         BoundingBoxes: [[[21, 55], [27, 60]]],
@@ -56,9 +52,9 @@ function collectShips(): Promise<AISShipRaw[]> {
       }));
     });
 
-    ws.addEventListener("message", (evt) => {
+    ws.on("message", (data) => {
       try {
-        const msg = JSON.parse(String(evt.data));
+        const msg = JSON.parse(String(data));
         const meta = msg.MetaData;
         const pos = msg.Message?.PositionReport;
         if (!meta || !pos) return;
@@ -76,12 +72,13 @@ function collectShips(): Promise<AISShipRaw[]> {
       } catch {}
     });
 
-    ws.addEventListener("error", () => {
+    ws.on("error", (e) => {
       clearTimeout(timeout);
-      resolve([...collected.values()]);
+      if (collected.size > 0) resolve([...collected.values()]);
+      else reject(e);
     });
 
-    ws.addEventListener("close", () => {
+    ws.on("close", () => {
       clearTimeout(timeout);
       resolve([...collected.values()]);
     });
