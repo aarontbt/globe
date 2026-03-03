@@ -103,16 +103,6 @@ export interface CountryLabel {
   coordinates: [number, number];
 }
 
-export interface AISShip {
-  mmsi: string;
-  name: string;
-  coordinates: [number, number]; // [lon, lat]
-  heading: number;               // degrees 0–359
-  speed: number;                 // knots
-  shipType: number;              // AIS numeric type
-  updatedAt: number;             // ms timestamp
-}
-
 export type OilNodeType = "production" | "refinery" | "storage" | "consumption";
 
 export interface OilNode {

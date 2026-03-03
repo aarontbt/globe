@@ -1,91 +1,9 @@
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import type { IncomingMessage, ServerResponse } from "http";
-
-/**
- * Dev-only middleware: connects to aisstream.io server-side (browser WS blocked by CORS),
- * collects AIS position reports for COLLECT_MS, returns JSON.
- */
-function aisStreamDevPlugin(): Plugin {
-  const COLLECT_MS = 25_000;
-
-  function collectShips(apiKey: string): Promise<unknown[]> {
-    return new Promise((resolve) => {
-      const collected = new Map<string, unknown>();
-      let ws: WebSocket;
-
-      const timeout = setTimeout(() => {
-        try { ws.close(); } catch {}
-        resolve([...collected.values()]);
-      }, COLLECT_MS);
-
-      try {
-        ws = new WebSocket("wss://stream.aisstream.io/v0/stream");
-      } catch {
-        clearTimeout(timeout);
-        resolve([]);
-        return;
-      }
-
-      ws.addEventListener("open", () => {
-        ws.send(JSON.stringify({
-          APIkey: apiKey,
-          BoundingBoxes: [[[21, 55], [27, 60]]],
-          FilterMessageTypes: ["PositionReport"],
-        }));
-      });
-
-      ws.addEventListener("message", (evt: MessageEvent) => {
-        try {
-          const msg = JSON.parse(String(evt.data));
-          const meta = msg.MetaData;
-          const pos = msg.Message?.PositionReport;
-          if (!meta || !pos) return;
-          const mmsi = String(meta.MMSI ?? "");
-          if (!mmsi) return;
-          collected.set(mmsi, {
-            mmsi,
-            name: String(meta.ShipName ?? "").trim() || mmsi,
-            coordinates: [pos.Longitude ?? 0, pos.Latitude ?? 0],
-            heading: pos.TrueHeading ?? pos.Cog ?? 0,
-            speed: pos.Sog ?? 0,
-            shipType: pos.Type ?? 0,
-            updatedAt: Date.now(),
-          });
-        } catch {}
-      });
-
-      ws.addEventListener("error", () => { clearTimeout(timeout); resolve([...collected.values()]); });
-      ws.addEventListener("close", () => { clearTimeout(timeout); resolve([...collected.values()]); });
-    });
-  }
-
-  return {
-    name: "ais-stream-dev",
-    configureServer(server) {
-      server.middlewares.use("/api/aisstream", async (_req: IncomingMessage, res: ServerResponse) => {
-        const apiKey = process.env.VITE_AISSTREAM_API_KEY;
-        if (!apiKey) {
-          res.writeHead(500, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ error: "VITE_AISSTREAM_API_KEY not set" }));
-          return;
-        }
-        try {
-          const ships = await collectShips(apiKey);
-          res.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "no-cache" });
-          res.end(JSON.stringify(ships));
-        } catch (e) {
-          res.writeHead(502, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ error: String(e) }));
-        }
-      });
-    },
-  };
-}
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), aisStreamDevPlugin()],
+  plugins: [react(), tailwindcss()],
   server: {
     proxy: {
       "/api/polymarket": {
