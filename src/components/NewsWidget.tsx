@@ -128,17 +128,35 @@ export default function NewsWidget({ articles, loading, cacheAge, onRefresh }: P
             <span
               onClick={handleRefresh}
               title="Click to force refresh"
+              className="news-live-btn"
               style={{
-                fontSize: 10, fontWeight: 600,
-                color: refreshing ? "rgba(34,211,238,0.5)" : "#22d3ee",
-                background: "rgba(34,211,238,0.12)",
-                padding: "1px 7px",
-                borderRadius: 10,
+                display: "flex",
+                alignItems: "center",
+                gap: 5,
+                fontSize: 10, fontWeight: 700,
+                letterSpacing: "0.1em",
+                color: refreshing ? "rgba(74,222,128,0.4)" : "#4ade80",
+                background: "transparent",
+                border: "1px solid transparent",
+                padding: "3px 8px 3px 6px",
+                borderRadius: 20,
                 cursor: refreshing ? "default" : "pointer",
                 userSelect: "none",
-                transition: "opacity 0.2s",
+                transition: "background 0.2s, border-color 0.2s",
               }}
             >
+              {!refreshing && (
+                <span style={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: "50%",
+                  background: "#4ade80",
+                  boxShadow: "0 0 6px #4ade80",
+                  display: "inline-block",
+                  animation: "news-live-ping 1.4s ease-in-out infinite",
+                  flexShrink: 0,
+                }} />
+              )}
               {refreshing ? "···" : "LIVE"}
             </span>
           )
@@ -201,6 +219,17 @@ export default function NewsWidget({ articles, loading, cacheAge, onRefresh }: P
           })
         )}
       </div>
+
+      <style>{`
+        @keyframes news-live-ping {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.3; }
+        }
+        .news-live-btn:hover {
+          background: rgba(10,14,20,0.85) !important;
+          border-color: rgba(74,222,128,0.18) !important;
+        }
+      `}</style>
     </div>
   );
 }

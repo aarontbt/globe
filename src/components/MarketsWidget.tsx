@@ -7,9 +7,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "85–100";
-const SUSTAINED_PRICE = "120";
-const TOP_ALERT = "Strait of Hormuz de facto closed — oil supply at critical risk";
+const NEAR_TERM_RANGE = "90–105";
+const SUSTAINED_PRICE = "125";
+const TOP_ALERT = "QatarEnergy halts Ras Laffan LNG (Mar 2) — P&I insurance exits Mar 5, dual energy crisis";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
@@ -372,11 +372,11 @@ export default function MarketsWidget({ quotes, loading, lastUpdated }: Props) {
           <div style={{ marginTop: 3 }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
               <span style={{ fontSize: 9, color: "rgba(255,255,255,0.35)" }}>Disruption probability</span>
-              <span style={{ fontSize: 9, color: "#a78bfa", fontWeight: 700 }}>85%</span>
+              <span style={{ fontSize: 9, color: "#a78bfa", fontWeight: 700 }}>92%</span>
             </div>
             <div style={{ height: 3, background: "rgba(255,255,255,0.07)", borderRadius: 2 }}>
               <div style={{
-                height: "100%", width: "85%",
+                height: "100%", width: "92%",
                 background: "linear-gradient(90deg, #7c3aed, #a78bfa)",
                 borderRadius: 2,
               }} />
