@@ -126,6 +126,33 @@ public/
 - **Social signals** — GDELT, Reddit, and Bluesky APIs aggregated into a unified signal feed
 - **News** — Live headline feed via news service
 
+## Iframe Embedding (engine.rainmarket.com)
+
+This app is designed to be embedded inside `engine.rainmarket.com`. The host app must allow framing by adding these headers to its `next.config.ts` (or equivalent):
+
+```ts
+async headers() {
+  return [
+    {
+      source: "/:path*",
+      headers: [
+        {
+          key: "Content-Security-Policy",
+          value: "frame-ancestors 'self' https://engine.rainmarket.com",
+        },
+        {
+          key: "X-Frame-Options",
+          value: "ALLOW-FROM https://engine.rainmarket.com",
+        },
+      ],
+    },
+  ];
+},
+```
+
+- `Content-Security-Policy: frame-ancestors` — what modern browsers enforce
+- `X-Frame-Options: ALLOW-FROM` — legacy fallback for older browsers
+
 ## Architecture Notes
 
 - `_GlobeView` from `@deck.gl/core` is an experimental API; it is cast as `any` to work around TypeScript constructor limitations
