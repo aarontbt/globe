@@ -128,26 +128,24 @@ public/
 
 ## Iframe Embedding (engine.rainmarket.com)
 
-This app is designed to be embedded inside `engine.rainmarket.com`. The host app must allow framing by adding these headers to its `next.config.ts` (or equivalent):
+This app is designed to be embedded inside `engine.rainmarket.com`. The headers are configured in `vercel.json`:
 
-```ts
-async headers() {
-  return [
-    {
-      source: "/:path*",
-      headers: [
-        {
-          key: "Content-Security-Policy",
-          value: "frame-ancestors 'self' https://engine.rainmarket.com",
-        },
-        {
-          key: "X-Frame-Options",
-          value: "ALLOW-FROM https://engine.rainmarket.com",
-        },
-      ],
-    },
-  ];
-},
+```json
+"headers": [
+  {
+    "source": "/(.*)",
+    "headers": [
+      {
+        "key": "Content-Security-Policy",
+        "value": "frame-ancestors 'self' https://engine.rainmarket.com"
+      },
+      {
+        "key": "X-Frame-Options",
+        "value": "ALLOW-FROM https://engine.rainmarket.com"
+      }
+    ]
+  }
+]
 ```
 
 - `Content-Security-Policy: frame-ancestors` — what modern browsers enforce
