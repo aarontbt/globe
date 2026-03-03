@@ -81,11 +81,13 @@ function SettingsModal({
     startMuted: true,
   });
   const [formError, setFormError] = useState("");
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   const setActive = (id: string) =>
     setDraft(d => ({ ...d, activeId: id }));
 
   const deleteStream = (id: string) => {
+    if (editingId === id) cancelEdit();
     setDraft(d => {
       const streams = d.streams.filter(s => s.id !== id);
       const activeId = d.activeId === id ? (streams[0]?.id ?? "") : d.activeId;
@@ -93,21 +95,56 @@ function SettingsModal({
     });
   };
 
-  const addStream = () => {
+  const startEdit = (s: StreamConfig) => {
+    setEditingId(s.id);
+    setFormError("");
+    setForm({
+      brand: s.brand,
+      title: s.title,
+      platform: s.platform,
+      streamId: s.streamId,
+      badgeColor: s.badgeColor ?? "#1d4ed8",
+      startMuted: s.startMuted ?? true,
+    });
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setFormError("");
+    setForm({ brand: "", title: "", platform: "youtube", streamId: "", badgeColor: "#1d4ed8", startMuted: true });
+  };
+
+  const submitForm = () => {
     if (!form.brand.trim()) { setFormError("Brand name is required."); return; }
     if (!form.streamId.trim()) { setFormError("Stream ID is required."); return; }
     setFormError("");
-    const newStream: StreamConfig = {
-      id: `stream-${Date.now()}`,
-      brand: form.brand.trim(),
-      title: form.title.trim(),
-      platform: form.platform,
-      streamId: form.streamId.trim(),
-      badgeColor: form.badgeColor,
-      startMuted: form.startMuted,
-    };
-    setDraft(d => ({ ...d, streams: [...d.streams, newStream] }));
-    setForm({ brand: "", title: "", platform: "youtube", streamId: "", badgeColor: "#1d4ed8", startMuted: true });
+    if (editingId) {
+      setDraft(d => ({
+        ...d,
+        streams: d.streams.map(s => s.id === editingId ? {
+          ...s,
+          brand: form.brand.trim(),
+          title: form.title.trim(),
+          platform: form.platform,
+          streamId: form.streamId.trim(),
+          badgeColor: form.badgeColor,
+          startMuted: form.startMuted,
+        } : s),
+      }));
+      cancelEdit();
+    } else {
+      const newStream: StreamConfig = {
+        id: `stream-${Date.now()}`,
+        brand: form.brand.trim(),
+        title: form.title.trim(),
+        platform: form.platform,
+        streamId: form.streamId.trim(),
+        badgeColor: form.badgeColor,
+        startMuted: form.startMuted,
+      };
+      setDraft(d => ({ ...d, streams: [...d.streams, newStream] }));
+      setForm({ brand: "", title: "", platform: "youtube", streamId: "", badgeColor: "#1d4ed8", startMuted: true });
+    }
   };
 
   const handleSave = () => {
@@ -207,8 +244,8 @@ function SettingsModal({
                 gap: 8,
                 padding: "7px 10px",
                 borderRadius: 8,
-                border: `1px solid ${s.id === draft.activeId ? "rgba(99,102,241,0.45)" : "rgba(255,255,255,0.06)"}`,
-                background: s.id === draft.activeId ? "rgba(99,102,241,0.1)" : "rgba(255,255,255,0.02)",
+                border: `1px solid ${editingId === s.id ? "rgba(234,179,8,0.45)" : s.id === draft.activeId ? "rgba(99,102,241,0.45)" : "rgba(255,255,255,0.06)"}`,
+                background: editingId === s.id ? "rgba(234,179,8,0.07)" : s.id === draft.activeId ? "rgba(99,102,241,0.1)" : "rgba(255,255,255,0.02)",
                 cursor: "pointer",
               }}
             >
@@ -232,11 +269,34 @@ function SettingsModal({
                   {s.platform === "youtube" ? "YouTube" : "Dailymotion"} · {s.streamId}
                 </div>
               </div>
-              {s.id === draft.activeId && (
+              {s.id === draft.activeId && editingId !== s.id && (
                 <span style={{ fontSize: 8, fontWeight: 700, color: "#818cf8", letterSpacing: "0.06em", flexShrink: 0 }}>
                   ACTIVE
                 </span>
               )}
+              {editingId === s.id && (
+                <span style={{ fontSize: 8, fontWeight: 700, color: "#fbbf24", letterSpacing: "0.06em", flexShrink: 0 }}>
+                  EDITING
+                </span>
+              )}
+              {/* Edit button — not shown for the locked default stream */}
+              {s.id !== "cgtn-default" && <button
+                onClick={e => { e.stopPropagation(); editingId === s.id ? cancelEdit() : startEdit(s); }}
+                title={editingId === s.id ? "Cancel edit" : "Edit stream"}
+                style={{
+                  background: editingId === s.id ? "rgba(234,179,8,0.15)" : "rgba(255,255,255,0.06)",
+                  border: `1px solid ${editingId === s.id ? "rgba(234,179,8,0.3)" : "rgba(255,255,255,0.08)"}`,
+                  borderRadius: 4,
+                  color: editingId === s.id ? "#fbbf24" : "rgba(255,255,255,0.35)",
+                  fontSize: 10,
+                  cursor: "pointer",
+                  padding: "2px 5px",
+                  lineHeight: 1.2,
+                  flexShrink: 0,
+                }}
+              >
+                {editingId === s.id ? "✕" : "✎"}
+              </button>}
               {s.id !== "cgtn-default" && (
                 <button
                   onClick={e => { e.stopPropagation(); deleteStream(s.id); }}
@@ -260,9 +320,9 @@ function SettingsModal({
 
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginBottom: 16 }} />
 
-        {/* Add stream form */}
-        <div style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.35)", letterSpacing: "0.09em", marginBottom: 12 }}>
-          ADD STREAM
+        {/* Add / Edit stream form */}
+        <div style={{ fontSize: 9, fontWeight: 700, color: editingId ? "rgba(234,179,8,0.7)" : "rgba(255,255,255,0.35)", letterSpacing: "0.09em", marginBottom: 12 }}>
+          {editingId ? "EDIT STREAM" : "ADD STREAM"}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {/* Platform selector */}
@@ -411,23 +471,43 @@ function SettingsModal({
             <div style={{ fontSize: 10, color: "#f87171", marginTop: -4 }}>{formError}</div>
           )}
 
-          <button
-            onClick={addStream}
-            style={{
-              background: "rgba(99,102,241,0.15)",
-              border: "1px solid rgba(99,102,241,0.35)",
-              borderRadius: 6,
-              color: "#a5b4fc",
-              fontSize: 11,
-              fontWeight: 700,
-              padding: "6px 0",
-              cursor: "pointer",
-              letterSpacing: "0.03em",
-              width: "100%",
-            }}
-          >
-            + Add Stream
-          </button>
+          <div style={{ display: "flex", gap: 6 }}>
+            {editingId && (
+              <button
+                onClick={cancelEdit}
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.09)",
+                  borderRadius: 6,
+                  color: "rgba(255,255,255,0.4)",
+                  fontSize: 11,
+                  fontWeight: 600,
+                  padding: "6px 14px",
+                  cursor: "pointer",
+                  flexShrink: 0,
+                }}
+              >
+                Cancel
+              </button>
+            )}
+            <button
+              onClick={submitForm}
+              style={{
+                background: editingId ? "rgba(234,179,8,0.15)" : "rgba(99,102,241,0.15)",
+                border: `1px solid ${editingId ? "rgba(234,179,8,0.35)" : "rgba(99,102,241,0.35)"}`,
+                borderRadius: 6,
+                color: editingId ? "#fbbf24" : "#a5b4fc",
+                fontSize: 11,
+                fontWeight: 700,
+                padding: "6px 0",
+                cursor: "pointer",
+                letterSpacing: "0.03em",
+                flex: 1,
+              }}
+            >
+              {editingId ? "Save Changes" : "+ Add Stream"}
+            </button>
+          </div>
         </div>
 
         {/* Footer actions */}
