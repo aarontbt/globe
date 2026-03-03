@@ -1,6 +1,6 @@
 import type { MarketQuote } from "../types";
 
-const MARKET_CACHE_KEY = "gfw:markets:cache:v2";
+const MARKET_CACHE_KEY = "gb:markets:cache";
 const MARKET_CACHE_TTL_MS = 5 * 60_000; // 5 minutes
 
 interface MarketCacheEntry {

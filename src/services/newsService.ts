@@ -1,6 +1,6 @@
 import type { NewsArticle } from "../types";
 
-const NEWS_CACHE_KEY = "gfw:news:cache";
+const NEWS_CACHE_KEY = "gb:news:cache";
 const NEWS_CACHE_TTL_MS = 10 * 60_000; // 10 minutes
 
 interface NewsCacheEntry {

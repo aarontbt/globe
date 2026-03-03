@@ -3,8 +3,7 @@ import { inferGeo, inferCategory, jitterCoords } from "../utils/geoInfer";
 
 const GDELT_BASE = "/api/gdelt";
 
-// Bump version to bust any stale cache from old broken URL
-const CACHE_KEY = "gfw:gdelt:v3";
+const CACHE_KEY = "gb:gdelt";
 const CACHE_TTL = 15 * 60 * 1000; // 15 min
 
 // Simple space-separated terms — GDELT ranks by relevance; OR syntax caused 500s

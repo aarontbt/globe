@@ -1,7 +1,7 @@
 import * as satellite from "satellite.js";
 import type { Satellite } from "../types";
 
-const TLE_CACHE_KEY = "gfw:celestrak:tles";
+const TLE_CACHE_KEY = "gb:celestrak:tles";
 const TLE_CACHE_TTL_MS = 2 * 60 * 60_000; // TLEs valid for hours; 2h avoids hammering Celestrak
 
 export type TLEEntry = { name: string; line1: string; line2: string };

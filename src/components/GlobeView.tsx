@@ -85,7 +85,7 @@ export default function GlobeView() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeCategories, setActiveCategories] = useState<Set<EventCategory>>(() => {
     try {
-      const saved = localStorage.getItem("gfw:activeCategories");
+      const saved = localStorage.getItem("gb:activeCategories");
       if (saved) {
         const arr = JSON.parse(saved) as string[];
         const valid = arr.filter(c => (ALL_CATEGORIES as string[]).includes(c)) as EventCategory[];
@@ -106,7 +106,7 @@ export default function GlobeView() {
       showOilSupplyChain: true,
     };
     try {
-      const saved = localStorage.getItem("gfw:layerVisibility");
+      const saved = localStorage.getItem("gb:layerVisibility");
       if (saved) return { ...defaults, ...JSON.parse(saved) };
     } catch {}
     return defaults;
@@ -115,7 +115,7 @@ export default function GlobeView() {
   const handleVisibilityChange = useCallback((key: keyof LayerVisibility, val: boolean) => {
     setVisibility(prev => {
       const next = { ...prev, [key]: val };
-      try { localStorage.setItem("gfw:layerVisibility", JSON.stringify(next)); } catch {}
+      try { localStorage.setItem("gb:layerVisibility", JSON.stringify(next)); } catch {}
       return next;
     });
   }, []);
@@ -125,7 +125,7 @@ export default function GlobeView() {
       const next = new Set(prev);
       if (next.has(cat)) next.delete(cat);
       else next.add(cat);
-      try { localStorage.setItem("gfw:activeCategories", JSON.stringify([...next])); } catch {}
+      try { localStorage.setItem("gb:activeCategories", JSON.stringify([...next])); } catch {}
       return next;
     });
   }, []);

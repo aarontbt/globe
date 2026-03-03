@@ -341,7 +341,7 @@ export default function EventPanel({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [sortMode, setSortMode] = useState<"probability" | "date">(() => {
     try {
-      const saved = localStorage.getItem("gfw:eventSort");
+      const saved = localStorage.getItem("gb:eventSort");
       return saved === "date" ? "date" : "probability";
     } catch { return "probability"; }
   });
@@ -457,7 +457,7 @@ export default function EventPanel({
                 key={mode}
                 onClick={() => {
                   setSortMode(mode);
-                  try { localStorage.setItem("gfw:eventSort", mode); } catch {}
+                  try { localStorage.setItem("gb:eventSort", mode); } catch {}
                 }}
                 style={{
                   padding: "2px 9px",
