@@ -1,34 +1,34 @@
 {
   "escalationLevel": 4,
   "escalationLabel": "High",
-  "deltaVsYesterday": 1,
+  "deltaVsYesterday": 0,
   "todaysEvents": [
-    { "id": "e1", "summary": "Iran successor government makes back-channel contact via Oman; US rejects direct talks pending verifiable Hormuz mine-clearance. Crude tanker operators confirm transit halt — est. 17Mbpd offline. VLCC war risk insurance premiums at 3.5% of hull value/voyage (Mar 3)", "delta": "Diplomatic impasse", "direction": "up" },
-    { "id": "e2", "summary": "Singapore MAS issues emergency circular to all financial institutions on expanded Iran sanctions compliance; SGX suspends trading in 2 ASEAN energy-sector names pending regulatory review of Iran-linked counterparty exposure (Mar 3)", "delta": "Regulatory action", "direction": "up" },
-    { "id": "e3", "summary": "Saudi Arabia and UAE announce maximum spare capacity activation — additional 1.5Mbpd pledged to offset Hormuz disruption; 3-week ramp timeline expected before volumes reach market (Mar 3)", "delta": "Supply response", "direction": "neutral" }
+    { "id": "e1", "summary": "All 12 P&I clubs (full International Group, ~90% of ocean-going tonnage) confirmed exit from Gulf war risk cover effective midnight London March 5 — creating a complete commercial insurance blackout. VLCC spot war risk premiums at 3.5–4.5% hull value/voyage. Trump administration announces USN vessel escort program for neutral-flagged tankers and sovereign war risk guarantee; operational scope being finalised with CENTCOM — physical transits remain halted for most commercial operators pending escort parameters (Mar 4)", "delta": "P&I blackout confirmed / escort offer", "direction": "up" },
+    { "id": "e2", "summary": "OPEC+ emergency response disappoints: 8-member subset added only +206,000 bpd for April (Saudi +62k, Russia +62k, Iraq +26k, UAE +18k) vs ~3.5M bpd declared spare capacity — signaling strategic restraint. Key paradox: GCC spare capacity cannot reach market while Hormuz blocked. Brent consolidating at $83–85/bbl; BloombergNEF maintains $91 target under sustained disruption; J.P. Morgan upper-end at $130 (Mar 4)", "delta": "OPEC+ under-responds to crisis", "direction": "up" },
+    { "id": "e3", "summary": "Iran's Assembly of Experts convened in Qom to vote for successor Supreme Leader; no frontrunner after Day 1 of deliberations under Israeli airstrike threat. IRGC retaining effective command in interim. UAE stock exchanges (DFM, ADX, Nasdaq Dubai) reopened March 4 after 2-day suspension. Indonesia energy minister announces shift of Middle East crude import orders to US suppliers amid Hormuz closure; 1,400+ Philippine OFWs formally requesting repatriation (Mar 4)", "delta": "Iran succession / UAE reopens / OFW crisis", "direction": "neutral" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 42,
-      "description": "Hormuz disruption lasts 2–4 weeks; Iran successor government enters ceasefire via Oman back-channel. Brent stabilises at $78–85/bbl with sustained risk premium. Saudi/UAE spare capacity partially offsets supply deficit within 3 weeks. ASEAN LNG buyers scramble for spot cargoes; JKM peaks near $18/MMBtu. SCS tensions remain elevated but secondary to Iran shock. Goldman Q4 2026 normalisation forecast at $60/bbl contingent on swift resolution.",
-      "oilImpact": "+$10/bbl",
-      "lngImpact": "+55%"
+      "probability": 38,
+      "description": "Hormuz disruption lasts 2–4 weeks; Iran successor government enters ceasefire via diplomatic back-channel. Trump's naval escort program partially restores tanker flow within 10–14 days. Brent stabilises at $82–90/bbl with sustained risk premium. Saudi/UAE spare capacity (3-week ramp) partially offsets supply deficit. ASEAN LNG buyers scramble for spot cargoes; JKM peaks near $20/MMBtu. SCS tensions remain elevated but secondary to Iran shock. P&I clubs restore cover upon ceasefire confirmation. Goldman Q4 2026 normalisation forecast at $60/bbl contingent on swift resolution.",
+      "oilImpact": "+$12/bbl",
+      "lngImpact": "+65%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 40,
-      "description": "Hormuz closure extends 1–3 months; Iran proxy forces activate across Gulf. Brent surges toward $100/bbl (BloombergNEF $91 target). Saudi/UAE ramp delayed by infrastructure constraints. JKM LNG spikes to ~$25/MMBtu — worst gas market disruption since Russia-Ukraine 2022. ASEAN current account deficits widen sharply; PHP and THB most vulnerable. Bank Indonesia forced into emergency intervention as IDR breaches historic lows.",
-      "oilImpact": "+$28/bbl",
-      "lngImpact": "+130%"
+      "probability": 44,
+      "description": "Hormuz closure extends 1–3 months; Iran successor IRGC-led government escalates proxy network. P&I blackout (effective Mar 5) proves durable. Trump escort provides minimal relief — capacity to escort 2–3 tankers/day vs pre-crisis 20M bpd flow. Brent surges toward $100–110/bbl (BloombergNEF $91 base case; J.P. Morgan upper-end $130). JKM LNG spikes to $25+/MMBtu — worst gas market shock since Russia-Ukraine 2022. ASEAN current account deficits widen sharply; Bank Indonesia and BSP forced into emergency interventions. Indonesia subsidy blowout accelerates.",
+      "oilImpact": "+$30/bbl",
+      "lngImpact": "+155%"
     },
     {
       "id": "tail",
       "label": "Tail",
       "probability": 18,
-      "description": "Full Hormuz closure sustained beyond 3 months simultaneously with SCS kinetic escalation. Oil at $150–200/bbl (J.P. Morgan upper bound). LNG effectively unavailable for spot buyers; Qatar's 77 mtpa offline. Saudi/UAE spare capacity absorbed and unable to compensate. Recession probability >70% for Thailand and Philippines. ASEAN EM bonds face mass outflows; 1970s-style energy shock across the region.",
+      "description": "Full Hormuz closure sustained beyond 3 months simultaneously with SCS kinetic escalation. Oil at $150–200/bbl (J.P. Morgan upper bound). LNG effectively unavailable for spot buyers; Qatar's 77 mtpa offline. Saudi/UAE spare capacity cannot compensate — Hormuz transit required to reach market. Recession probability >70% for Thailand and Philippines. ASEAN EM bonds face mass outflows; 1970s-style energy shock across the region. P&I cover does not return for 6+ months; global trade finance seizes.",
       "oilImpact": "+$80/bbl",
       "lngImpact": "+200%"
     }
