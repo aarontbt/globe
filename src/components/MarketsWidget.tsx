@@ -1,5 +1,6 @@
 import { useMemo, useEffect, useRef, useState } from "react";
 import type { MarketQuote } from "../types";
+import { FONT_SANS } from "../styles/fonts";
 
 interface Props {
   quotes: MarketQuote[];
@@ -7,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "90–105";
+const NEAR_TERM_RANGE = "91–106";
 const SUSTAINED_PRICE = "125";
-const TOP_ALERT = "QatarEnergy halts Ras Laffan LNG (Mar 2) — P&I insurance exits Mar 5, dual energy crisis";
+const TOP_ALERT = "ALL 12 P&I clubs exit Gulf war risk midnight Mar 5 — Trump offers naval escort for Hormuz tankers";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
@@ -242,8 +243,8 @@ function AlertStrip({ text }: { text: string }) {
           cursor: "default",
           transition: "background 150ms",
         }}>
-        <span style={{ fontSize: 8, color: "#f87171", fontWeight: 800, letterSpacing: "0.06em", flexShrink: 0 }}>▲ RED ALERT</span>
-        <span style={{ fontSize: 8, color: "rgba(255,255,255,0.45)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{text}</span>
+        <span style={{ fontSize: 10, color: "#f87171", fontWeight: 800, letterSpacing: "0.06em", flexShrink: 0 }}>▲ RED ALERT</span>
+        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.45)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{text}</span>
       </div>
     </div>
   );
@@ -285,7 +286,7 @@ export default function MarketsWidget({ quotes, loading, lastUpdated }: Props) {
 
   const panelStyle: React.CSSProperties = {
     width: "100%",
-    fontFamily: "'SF Mono', 'Roboto Mono', 'Consolas', monospace",
+    fontFamily: FONT_SANS,
     background: "rgba(8,12,20,0.92)",
     backdropFilter: "blur(14px)",
     borderRadius: 12,
@@ -350,37 +351,17 @@ export default function MarketsWidget({ quotes, loading, lastUpdated }: Props) {
 
       {/* Swarm Forecast */}
       <div style={sectionStyle}>
-        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.1em", color: "#a78bfa", marginBottom: 6 }}>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", color: "#a78bfa", marginBottom: 6 }}>
           SWARM FORECAST
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.45)" }}>Near-term target</span>
-            <span style={{ fontSize: 10, fontWeight: 700, color: "#fbbf24", fontVariantNumeric: "tabular-nums" }}>${NEAR_TERM_RANGE}/bbl</span>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Near-term target</span>
+            <span style={{ fontSize: 11, fontWeight: 700, color: "#fbbf24", fontVariantNumeric: "tabular-nums" }}>${NEAR_TERM_RANGE}/bbl</span>
           </div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.45)" }}>Sustained disruption</span>
-            <span style={{ fontSize: 10, fontWeight: 700, color: "#f87171", fontVariantNumeric: "tabular-nums" }}>${SUSTAINED_PRICE}/bbl</span>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.45)" }}>Confidence</span>
-            <span style={{ fontSize: 9, fontWeight: 700, color: "#4ade80",
-              background: "rgba(74,222,128,0.12)", padding: "1px 7px", borderRadius: 3 }}>
-              HIGH
-            </span>
-          </div>
-          <div style={{ marginTop: 3 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
-              <span style={{ fontSize: 9, color: "rgba(255,255,255,0.35)" }}>Disruption probability</span>
-              <span style={{ fontSize: 9, color: "#a78bfa", fontWeight: 700 }}>92%</span>
-            </div>
-            <div style={{ height: 3, background: "rgba(255,255,255,0.07)", borderRadius: 2 }}>
-              <div style={{
-                height: "100%", width: "92%",
-                background: "linear-gradient(90deg, #7c3aed, #a78bfa)",
-                borderRadius: 2,
-              }} />
-            </div>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Sustained disruption</span>
+            <span style={{ fontSize: 11, fontWeight: 700, color: "#f87171", fontVariantNumeric: "tabular-nums" }}>${SUSTAINED_PRICE}/bbl</span>
           </div>
         </div>
       </div>

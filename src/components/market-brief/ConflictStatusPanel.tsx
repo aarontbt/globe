@@ -3,8 +3,9 @@ import conflictData from "../../data/banker-conflict.json";
 const ESCALATION_COLORS = ["#4ade80", "#a3e635", "#fbbf24", "#fb923c", "#ef4444"];
 const ESCALATION_LABELS = ["Low", "Guarded", "Heightened", "High", "Severe"];
 
-const MONO = "'IBM Plex Mono', 'Courier New', monospace";
-const CONDENSED = "'Barlow Condensed', system-ui, sans-serif";
+import { FONT_SANS } from "../../styles/fonts";
+const MONO = FONT_SANS;
+const CONDENSED = FONT_SANS;
 
 const sectionHeader: React.CSSProperties = {
   fontSize: 9,
@@ -32,7 +33,7 @@ export default function ConflictStatusPanel() {
   return (
     <div
       style={{
-        fontFamily: "system-ui, -apple-system, sans-serif",
+        fontFamily: FONT_SANS,
         background: "rgba(10,14,23,0.88)",
         backdropFilter: "blur(12px)",
         borderRadius: 12,
@@ -186,7 +187,7 @@ export default function ConflictStatusPanel() {
                     <span
                       style={{
                         color: arrowColor,
-                        fontSize: 8,
+                        fontSize: 10,
                         flexShrink: 0,
                         fontFamily: MONO,
                       }}
@@ -195,7 +196,7 @@ export default function ConflictStatusPanel() {
                     </span>
                     <span
                       style={{
-                        fontSize: 9,
+                        fontSize: 11,
                         fontWeight: 700,
                         color: "rgba(255,255,255,0.4)",
                         fontFamily: CONDENSED,
@@ -207,7 +208,7 @@ export default function ConflictStatusPanel() {
                     </span>
                   </div>
                   <div
-                    style={{ fontSize: 11, color: textPrimary, lineHeight: 1.45 }}
+                    style={{ fontSize: 13, color: textPrimary, lineHeight: 1.5 }}
                   >
                     {evt.summary}
                   </div>
@@ -275,9 +276,9 @@ export default function ConflictStatusPanel() {
                   {/* Description */}
                   <div
                     style={{
-                      fontSize: 10,
+                      fontSize: 12,
                       color: textSecondary,
-                      lineHeight: 1.5,
+                      lineHeight: 1.55,
                       flex: 1,
                     }}
                   >

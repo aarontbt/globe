@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo, useRef } from "react";
+import { FONT_SANS } from "../styles/fonts";
 import DeckGL from "@deck.gl/react";
 import { GeoJsonLayer } from "@deck.gl/layers";
 import { _GlobeView } from "@deck.gl/core";
@@ -240,7 +241,7 @@ export default function GlobeView() {
     if (layer?.id === "event-dots") {
       const evt = object as GlobeEvent;
       return {
-        html: `<div style="font-family:system-ui;padding:2px 0;max-width:240px">
+        html: `<div style="font-family:${FONT_SANS};padding:2px 0;max-width:240px">
           <div style="font-weight:700;font-size:13px;color:#fff;margin-bottom:4px">${evt.title}</div>
           <div style="font-size:11px;color:rgba(255,255,255,0.5)">${evt.country} · ${evt.region}</div>
           <div style="font-size:12px;color:rgba(255,255,255,0.8);margin-top:4px">${evt.probability}% probability</div>
@@ -260,7 +261,7 @@ export default function GlobeView() {
       const typeLabel = p.type === "asean" ? "ASEAN" : p.type === "partner" ? "Partner" : "Global";
       const typeColor = p.type === "asean" ? "#00ffc8" : p.type === "partner" ? "#ffc800" : "#ff7832";
       return {
-        html: `<div style="font-family:system-ui;padding:4px 0;min-width:200px">
+        html: `<div style="font-family:${FONT_SANS};padding:4px 0;min-width:200px">
           <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">
             <span style="font-weight:700;font-size:14px;color:#fff">${p.name}</span>
             <span style="font-size:11px;font-weight:600;color:${typeColor};background:${typeColor}22;padding:1px 6px;border-radius:4px">#${p.rank} WORLD</span>
@@ -293,7 +294,7 @@ export default function GlobeView() {
     if (layer?.id === "trade-arcs") {
       const a = object as TradeArc;
       return {
-        html: `<div style="font-family:system-ui;padding:4px 0">
+        html: `<div style="font-family:${FONT_SANS};padding:4px 0">
           <div style="font-weight:600;font-size:14px;color:#fff">${a.from} → ${a.to}</div>
           <div style="font-size:13px;color:rgb(${a.color.join(",")});margin-top:2px">$${a.valueBn}B bilateral trade</div>
           <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">${a.commodity}</div>
@@ -310,7 +311,7 @@ export default function GlobeView() {
     if (layer?.id === "satellites") {
       const s = object as Satellite;
       return {
-        html: `<div style="font-family:system-ui;padding:2px 0;min-width:160px">
+        html: `<div style="font-family:${FONT_SANS};padding:2px 0;min-width:160px">
           <div style="font-weight:700;font-size:13px;color:#00ffdc;margin-bottom:3px">${s.name}</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;margin-top:4px">
             <div>
@@ -341,7 +342,7 @@ export default function GlobeView() {
         ? `<div style="font-size:13px;color:${typeColor};font-weight:600">${n.capacityMb} M bbl capacity</div>`
         : `<div style="font-size:13px;color:${typeColor};font-weight:600">${n.capacityMbpd} M bpd</div>`;
       return {
-        html: `<div style="font-family:system-ui;padding:4px 0;min-width:180px">
+        html: `<div style="font-family:${FONT_SANS};padding:4px 0;min-width:180px">
           <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">
             <span style="font-weight:700;font-size:14px;color:#fff">${n.name}</span>
             <span style="font-size:10px;font-weight:600;color:${typeColor};background:${typeColor}22;padding:1px 6px;border-radius:4px">${typeLabel}</span>
@@ -365,7 +366,7 @@ export default function GlobeView() {
       const routeColor = r.type === "crude" ? "#ffb02e" : "#468cdc";
       const chokeStr = r.chokepoints?.length ? `<div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px">Via ${r.chokepoints.join(" → ")}</div>` : "";
       return {
-        html: `<div style="font-family:system-ui;padding:4px 0;min-width:180px">
+        html: `<div style="font-family:${FONT_SANS};padding:4px 0;min-width:180px">
           <div style="font-weight:600;font-size:14px;color:#fff">${r.from} → ${r.to}</div>
           <div style="font-size:13px;color:${routeColor};margin-top:2px;font-weight:600">${r.volumeMbpd} M bpd — ${r.commodity}</div>
           ${r.vesselClass ? `<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px">${r.vesselClass}</div>` : ""}
@@ -383,7 +384,7 @@ export default function GlobeView() {
     if (layer?.id === "corridors-core" || layer?.id === "corridors-glow") {
       const c = object.properties as Corridor;
       return {
-        html: `<div style="font-family:system-ui;padding:4px 0;max-width:280px">
+        html: `<div style="font-family:${FONT_SANS};padding:4px 0;max-width:280px">
           <div style="font-weight:600;font-size:14px;color:#fff">${c.name}</div>
           <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">${c.commodity} · Vol ${c.volume}/10</div>
           <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;line-height:1.4">${c.narrative}</div>

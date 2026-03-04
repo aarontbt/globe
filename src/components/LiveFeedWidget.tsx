@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from "react";
+import { FONT_SANS } from "../styles/fonts";
 
 const STORAGE_KEY = "gb:livefeed:settings";
 
@@ -197,7 +198,7 @@ function SettingsModal({
           width: 340,
           maxHeight: "80vh",
           overflowY: "auto",
-          fontFamily: "system-ui, -apple-system, sans-serif",
+          fontFamily: FONT_SANS,
           color: "#fff",
           boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
         }}
@@ -592,7 +593,7 @@ export default function LiveFeedWidget() {
           border: "1px solid rgba(255,255,255,0.08)",
           overflow: "hidden",
           flexShrink: 0,
-          fontFamily: "system-ui, -apple-system, sans-serif",
+          fontFamily: FONT_SANS,
         }}
       >
         {/* Header bar */}

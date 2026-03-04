@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FONT_SANS } from "../styles/fonts";
 
 export interface LayerVisibility {
   showLanes: boolean;
@@ -84,7 +85,7 @@ export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePa
           alignItems: "center",
           gap: 6,
           backdropFilter: "blur(12px)",
-          fontFamily: "system-ui, -apple-system, sans-serif",
+          fontFamily: FONT_SANS,
         }}
       >
         <span style={{ color: "#06b6d4", fontSize: 8, lineHeight: 1 }}>◧</span>
@@ -96,7 +97,7 @@ export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePa
   return (
     <div
       style={{
-        fontFamily: "system-ui, -apple-system, sans-serif",
+        fontFamily: FONT_SANS,
         background: "rgba(6,9,18,0.93)",
         border: "1px solid rgba(255,255,255,0.09)",
         borderRadius: 12,

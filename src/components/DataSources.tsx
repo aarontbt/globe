@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { SocialStatus } from "../hooks/useSocialSignals";
+import { FONT_SANS } from "../styles/fonts";
 
 interface DataSource {
   name: string;
@@ -426,7 +427,7 @@ export default function DataSources({ socialStatus }: { socialStatus?: SocialSta
   const [expanded, setExpanded] = useState(false);
 
   const panelBase: React.CSSProperties = {
-    fontFamily: "system-ui, -apple-system, sans-serif",
+    fontFamily: FONT_SANS,
   };
 
   if (!expanded) {

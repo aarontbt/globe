@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { GlobeEvent, EventCategory, PolymarketData, SocialPlatform } from "../types";
 import { CATEGORY_COLORS } from "../layers/globeEvents";
+import { FONT_SANS } from "../styles/fonts";
 
 const ALL_CATEGORIES: EventCategory[] = [
   "security", "political", "economic", "climate", "election", "diplomatic", "social",
@@ -382,7 +383,7 @@ export default function EventPanel({
         width: 320,
         display: "flex",
         flexDirection: "column",
-        fontFamily: "system-ui, -apple-system, sans-serif",
+        fontFamily: FONT_SANS,
         pointerEvents: "all",
         zIndex: 10,
       }}

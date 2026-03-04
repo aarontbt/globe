@@ -5,6 +5,12 @@ export type { CountryLabel };
 const COUNTRIES_URL =
   "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson";
 
+// Manual overrides for countries where the largest polygon gives a misleading centroid
+// (e.g. Malaysia's biggest polygon is East Borneo, but the label should sit over Peninsular Malaysia)
+const LABEL_OVERRIDES: Record<string, [number, number]> = {
+  "Malaysia": [102.5, 4.0],
+};
+
 // Module-level cache so the 180KB GeoJSON is fetched at most once per page load
 let cachedLabels: CountryLabel[] | null = null;
 let fetchPromise: Promise<CountryLabel[]> | null = null;
@@ -57,7 +63,7 @@ function parseLabels(geojson: any): CountryLabel[] {
       feature.properties?.NAME ||
       feature.properties?.name;
     if (!name) continue;
-    const centroid = computeCentroid(feature.geometry);
+    const centroid = LABEL_OVERRIDES[name] ?? computeCentroid(feature.geometry);
     if (centroid) result.push({ name, coordinates: centroid });
   }
   return result;

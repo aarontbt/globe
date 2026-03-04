@@ -1,8 +1,9 @@
 import { useState } from "react";
 import clientData from "../../data/banker-clients.json";
 
-const MONO = "'IBM Plex Mono', 'Courier New', monospace";
-const CONDENSED = "'Barlow Condensed', system-ui, sans-serif";
+import { FONT_SANS } from "../../styles/fonts";
+const MONO = FONT_SANS;
+const CONDENSED = FONT_SANS;
 
 const textPrimary = "rgba(255,255,255,0.9)";
 const textSecondary = "rgba(255,255,255,0.5)";
@@ -44,7 +45,7 @@ export default function ClientExposurePanel() {
   return (
     <div
       style={{
-        fontFamily: "system-ui, -apple-system, sans-serif",
+        fontFamily: FONT_SANS,
         background: "rgba(10,14,23,0.88)",
         backdropFilter: "blur(12px)",
         borderRadius: 12,

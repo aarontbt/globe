@@ -5,15 +5,7 @@ import ClientExposurePanel from "./ClientExposurePanel";
 import TradeIdeasPanel from "./TradeIdeasPanel";
 import SanctionsTrackerPanel from "./SanctionsTrackerPanel";
 import ClientBriefPanel from "./ClientBriefPanel";
-
-// Inject Google Fonts once at module load
-const _fontLink = document.createElement("link");
-_fontLink.rel = "stylesheet";
-_fontLink.href =
-  "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap";
-document.head.appendChild(_fontLink);
-
-const CONDENSED = "'Barlow Condensed', system-ui, sans-serif";
+import { FONT_SANS } from "../../styles/fonts";
 
 const TABS = [
   { id: 0, label: "Conflict Status" },
@@ -49,7 +41,7 @@ export default function MarketBriefOverlay() {
           fontWeight: 700,
           letterSpacing: "0.12em",
           cursor: "pointer",
-          fontFamily: CONDENSED,
+          fontFamily: FONT_SANS,
           backdropFilter: "blur(8px)",
           whiteSpace: "nowrap",
         }}
@@ -67,7 +59,7 @@ export default function MarketBriefOverlay() {
             background: "rgba(6,9,18,0.82)",
             display: "flex",
             flexDirection: "column",
-            fontFamily: "system-ui, -apple-system, sans-serif",
+            fontFamily: FONT_SANS,
           }}
         >
           {/* Header: tab bar + close */}
@@ -88,7 +80,7 @@ export default function MarketBriefOverlay() {
                 fontWeight: 700,
                 letterSpacing: "0.16em",
                 color: "rgba(255,255,255,0.22)",
-                fontFamily: CONDENSED,
+                fontFamily: FONT_SANS,
                 marginRight: 24,
                 whiteSpace: "nowrap",
                 textTransform: "uppercase",
@@ -123,7 +115,7 @@ export default function MarketBriefOverlay() {
                       fontWeight: active ? 700 : 400,
                       letterSpacing: "0.08em",
                       cursor: "pointer",
-                      fontFamily: CONDENSED,
+                      fontFamily: FONT_SANS,
                       textTransform: "uppercase",
                       transition: "color 0.15s, border-color 0.15s",
                     }}
@@ -147,7 +139,7 @@ export default function MarketBriefOverlay() {
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 cursor: "pointer",
-                fontFamily: CONDENSED,
+                fontFamily: FONT_SANS,
                 textTransform: "uppercase",
                 marginLeft: 16,
                 transition: "color 0.15s, border-color 0.15s",

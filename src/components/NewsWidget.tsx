@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { NewsArticle } from "../types";
+import { FONT_SANS } from "../styles/fonts";
 
 interface Props {
   articles: NewsArticle[];
@@ -58,7 +59,7 @@ export default function NewsWidget({ articles, loading, cacheAge, onRefresh }: P
     <div style={{
       width: "100%",
       height: "100%",
-      fontFamily: "system-ui, -apple-system, sans-serif",
+      fontFamily: FONT_SANS,
       background: "rgba(10,14,23,0.88)",
       backdropFilter: "blur(12px)",
       borderRadius: 12,

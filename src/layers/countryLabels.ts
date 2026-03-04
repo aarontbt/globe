@@ -1,5 +1,6 @@
 import { TextLayer } from "deck.gl";
 import type { CountryLabel } from "../types";
+import { FONT_SANS } from "../styles/fonts";
 
 export function createCountryLabelsLayer(labels: CountryLabel[]) {
   return new TextLayer<CountryLabel>({
@@ -15,7 +16,7 @@ export function createCountryLabelsLayer(labels: CountryLabel[]) {
     getAngle: 180,
     getTextAnchor: "middle",
     getAlignmentBaseline: "center",
-    fontFamily: "system-ui, -apple-system, sans-serif",
+    fontFamily: FONT_SANS,
     fontWeight: "600",
     fontSettings: { sdf: true, fontSize: 32, buffer: 4 },
     outlineWidth: 1.5,
