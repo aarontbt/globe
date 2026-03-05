@@ -301,8 +301,10 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 - [ ] **Cross-asset**: Update `asOf` date, refresh all `current` prices and `change1d` values
 - [ ] **useMarkets.ts**: Update `FALLBACK_QUOTES` prices, changes, and `lastUpdated` dates
+- [ ] **MarketsWidget.tsx**: Update `TOP_ALERT` banner text; adjust `NEAR_TERM_RANGE` and `SUSTAINED_PRICE` if scenario has shifted materially
 - [ ] **Conflict**: Replace `todaysEvents` with 3 new events; update `deltaVsYesterday`; verify scenario probabilities sum to 100
 - [ ] **Trade ideas**: Update date references (e.g., "Mar N"); refresh price citations in rationale
+- [ ] **Intel events** (`iran-intel-events.json`): Update `ship-001`, `sec-005`, and any event whose description references a now-past deadline or pending event
 - [ ] **Sanctions**: Check for overnight OFAC/EU announcements; update `s0` description if MAS/SGX actions occurred
 - [ ] **Validate JSON**: Run `node -e "JSON.parse(require('fs').readFileSync('./src/data/<file>.json','utf8'))"` for each file
 - [ ] **Build check**: Run `bun run build` — verify TypeScript compiles with no errors
@@ -340,16 +342,34 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 ## Narrative Conventions (Iran Escalation Scenario)
 
-- **Day 0**: Feb 28, 2026 — US-Israeli strikes on Iran; Khamenei killed
-- **Day 1**: Mar 1 — Hormuz declared de facto war zone; transit halted
-- **Day 2**: Mar 2 — ASEAN diplomatic responses; Philippines DOE warning
-- **Day 3**: Mar 3 — Oman back-channel rejected; MAS emergency guidance; Saudi/UAE spare capacity activation
-- **Brent narrative**: Surged from ~$65 pre-shock to $82+ peak; stabilising at $79–80 Day 3–4
-- **JKM narrative**: From $9.5 baseline to $15.6+ as Asian buyers scramble; Qatar supply offline
-- **Credit narrative**: iTraxx Asia IG from ~100bp pre-shock; hit 128bp Day 2; stabilising 132bp Day 3
+### Crisis Timeline
+
+- **Day 0**: Feb 28, 2026 — US-Israeli strikes on Iran (Operation Epic Fury / Roaring Lion); Khamenei killed; IRGC assumes command
+- **Day 1**: Mar 1 — Hormuz declared de facto war zone; IRGC broadcasts "no ship allowed to pass" on VHF; tanker Skylight struck near Khasab; transit collapsed ~70%
+- **Day 2**: Mar 2 — Second tanker hit by drone boat; QatarEnergy halts LNG at Ras Laffan after drone attacks; ASEAN diplomatic responses; Philippines DOE warning; Malaysia tables parliamentary condemnation
+- **Day 3**: Mar 3 — Oman back-channel rejected; MAS emergency guidance issued; Saudi/UAE spare capacity activation signalled; ASEAN FM statement ("serious concern" — no condemnation)
+- **Day 4**: Mar 4 — Trump announces naval escort program and sovereign war risk guarantee; OPEC+ emergency response disappoints (only +206k bpd); Iran Assembly of Experts convenes in Qom for successor vote; Brent peaks $83.50; all 12 IG P&I clubs confirm midnight March 5 exit
+- **Day 5**: Mar 5 — Full P&I insurance blackout IN EFFECT; AIS shows transits at ~28/day (80% drop from 138/day historical avg); 3rd tanker struck off Oman (set ablaze); US Navy escort confirmed NOT operational (navy lacks capacity per SSY/Argus); Mojtaba Khamenei succession vote expected; Philippines formally rejects EDCA-base link to Middle East operations
+
+### Price Narratives (update daily)
+
+- **Brent**: Surged from ~$65 pre-shock → $83.50 peak (Day 4) → consolidating $81–83 Day 5–6; P&I blackout in effect creates floor; escort non-delivery caps upside
+- **JKM LNG**: From $9.5 baseline → $15.1 (Day 2) → $16.80 (Day 4) climbing; Qatar Ras Laffan offline; no near-term alternative supply at scale
+- **TTF Gas**: From ~$34/MWh pre-shock → €52.80/MWh Day 4 (+54% from Qatar halt); European storage drawdown risk rising
+- **Credit**: iTraxx Asia IG from ~100bp pre-shock → 128bp Day 2 → 138bp Day 4 (continued widening); ASEAN HY 444bp
+
+### MarketsWidget.tsx Constants (update when scenario shifts)
+
+| Constant | Purpose | Update trigger |
+|----------|---------|----------------|
+| `TOP_ALERT` | Alert strip headline | Any major new development (attacks, policy, succession) |
+| `NEAR_TERM_RANGE` | Swarm forecast near-term ($/bbl) | Shift >3 days in disruption duration expectation |
+| `SUSTAINED_PRICE` | Swarm forecast tail scenario ($/bbl) | Stress/tail scenario probability shifts materially |
 
 When the scenario evolves (de-escalation, ceasefire, new actor), update:
 1. `escalationLevel` and `todaysEvents` in `banker-conflict.json`
 2. Scenario probabilities (Base/Stress/Tail)
 3. Trade idea rationale references
-4. Client talking points (especially oil-price-sensitive ones: PTTEP, Sapura, Wilmar, Hyflux)
+4. `TOP_ALERT`, `NEAR_TERM_RANGE`, `SUSTAINED_PRICE` in `src/components/MarketsWidget.tsx`
+5. Client talking points (especially oil-price-sensitive ones: PTTEP, Sapura, Wilmar, Hyflux)
+6. Intel events in `iran-intel-events.json` — especially `ship-001`, `sec-005`, `supply-001`

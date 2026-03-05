@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "91–106";
-const SUSTAINED_PRICE = "125";
-const TOP_ALERT = "ALL 12 P&I clubs exit Gulf war risk midnight Mar 5 — Trump offers naval escort for Hormuz tankers";
+const NEAR_TERM_RANGE = "93–108";
+const SUSTAINED_PRICE = "130";
+const TOP_ALERT = "ALL 12 P&I clubs Gulf war risk blackout NOW IN EFFECT — Mojtaba Khamenei succession vote imminent";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
