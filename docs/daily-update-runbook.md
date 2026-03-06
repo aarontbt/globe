@@ -17,6 +17,53 @@
 
 ---
 
+## Source Validation Policy (MANDATORY)
+
+**All data entered into this system must be traceable to a verified source. Fabricated or extrapolated data must never be presented as fact.**
+
+### Verification Tiers
+
+| Tier | Standard | Examples |
+|------|----------|---------|
+| **Confirmed** | Specific price/figure cited by a named publication with a date | Reuters, QNA, Trading Economics, Bloomberg, Platts assessments |
+| **Estimated** | Directionally consistent with confirmed data but exact level not sourced | EM FX, credit spreads, equity indices when real-time data is unavailable |
+| **Inferred** | Analytical judgment based on confirmed context | Scenario probabilities, z-score adjustments |
+
+### Rules
+
+1. **Prices (energy, FX, rates, credit)**: Must come from a named source (Reuters, Bloomberg, Trading Economics, Platts, QNA, ICE, EIA, FRED). Do not estimate a price and state it as confirmed. If a price cannot be verified, use the last confirmed price with the confirmation date noted.
+
+2. **Geopolitical events**: Must cite a specific news source (Reuters, AP, Al Jazeera, FT, WSJ, Long War Journal, etc.). Distinguish clearly between:
+   - Confirmed actions (e.g., "US sub sank Iranian frigate — confirmed by Al Jazeera, Asia Times")
+   - Planned/preparing (e.g., "Kurdish factions preparing offensive per Axios — not yet launched")
+   - Analyst forecasts (e.g., "Kuwait/UAE may follow per Reuters analysis")
+
+3. **No extrapolation as fact**: Never state a logical extension of a confirmed event as if it were also confirmed. Example: a confirmed naval escalation does not confirm a separate threat to a different waterway.
+
+4. **EM FX, rates, credit spreads, equity indices**: These are frequently estimated due to limited real-time access. When estimated:
+   - Directional moves should be consistent with the macro environment (risk-off = USD up vs EM, spreads wider, rates higher)
+   - Do not claim precision beyond the last confirmed close
+   - Flag with `(est.)` in internal notes if no source is available
+
+5. **Before committing**: Run a mental checklist — for each number entered, ask: *"What is my source for this exact figure?"* If the answer is "I estimated it," that is acceptable for EM data only, and only if directionally validated.
+
+### Confirmed Source Map (daily update)
+
+| Asset | Primary Source | Backup |
+|-------|---------------|--------|
+| Brent crude | Qatar News Agency, Reuters, EIA | Trading Economics |
+| WTI crude | Qatar News Agency, Reuters, EIA | FRED St Louis Fed |
+| TTF Gas | Trading Economics, ICE, Investing.com historical | Reuters |
+| JKM LNG | Reuters (Platts assessment), globallnghub.com | CME JKM futures |
+| Gold | Trading Economics, MarketWatch | Investing.com |
+| EM FX (SGD, IDR, MYR, THB, PHP) | Reuters, Bloomberg FX | xe.com (directional only) |
+| EM Rates | Bloomberg sovereign pages, Investing.com | Reuters |
+| iTraxx Asia IG | Markit, Bloomberg `ITRXAXIG5Y` | Reuters |
+| Geopolitical events | Reuters, AP, Al Jazeera, Long War Journal, Axios, FT | PBS NewsHour, Washington Post |
+| AIS/shipping data | VT Markets, MarineLink, SSY/Argus | Bloomberg shipping |
+
+---
+
 ## Codebase Conventions
 
 - **Client IDs**: lowercase slugs, no spaces (e.g., `"pttep"`, `"sapura"`, `"wilmar"`)
@@ -299,6 +346,7 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 ### Morning Update (Pre-Market Open, ~08:00 SGT)
 
+- [ ] **Source check first**: For each price you plan to enter, confirm a named source exists (see Source Validation Policy above). Do not enter a number if the only answer to "where did this come from?" is "I estimated it" — use last confirmed level instead and note the date.
 - [ ] **Cross-asset**: Update `asOf` date, refresh all `current` prices and `change1d` values
 - [ ] **useMarkets.ts**: Update `FALLBACK_QUOTES` prices, changes, and `lastUpdated` dates
 - [ ] **MarketsWidget.tsx**: Update `TOP_ALERT` banner text; adjust `NEAR_TERM_RANGE` and `SUSTAINED_PRICE` if scenario has shifted materially
