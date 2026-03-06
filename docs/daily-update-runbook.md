@@ -74,6 +74,16 @@
 - **Scenario narrative tone**: institutional/banker — factual, instrument-specific, no marketing language
 - **Talking points**: 3 per client; each starts with a data point then a recommendation
 
+### Description / Rationale Length Limits
+
+| Field | Hard limit | Guidance |
+|-------|-----------|----------|
+| Intel event `description` | **150 words** | Lead with current status; move historical detail to a single sentence of context. Remove prior-day inline prefixes (e.g., "Day 5 update:") once superseded — rewrite the whole description. |
+| Trade idea `rationale` | **120 words** | Lead with current price/trigger; backstory in ≤1 sentence. |
+| `cfTrigger` `description` | **80 words** | Lead with the required action; keep market data to 2–3 figures. |
+| `todaysEvents` `summary` | **25 words** | One sentence per event, no sub-bullets. |
+| `sec-005` title | **5–8 words** | Replace entirely each day with the single most market-significant event of that session. Do not accumulate. |
+
 ---
 
 ## 1. Cross-Asset Data (`banker-cross-asset.json`)
@@ -342,6 +352,49 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 ---
 
+## 7. Data Hygiene & Pruning
+
+### Intel Events (`iran-intel-events.json`)
+
+**What to refresh daily (not just `ship-001` / `sec-005`):**
+
+| Event ID | Stale field | Action |
+|----------|------------|--------|
+| `ship-001` | Entire description | Rewrite — do not prepend "Day N update:". Lead with current AIS transit count, trapped tanker count, and most recent attack. ~100 words max. |
+| `sec-005` | Title + description | Replace title with today's top security event. Rewrite description as a concise current summary, not an accumulating log. |
+| `supply-001` | Description | Refresh price figures (Brent, JKM, TTF) and AIS transit count. Rewrite, do not prepend. |
+| `energy-003` | Description (Brent price) | Update Brent figure to current level; update analyst forecasts if materially changed. |
+| `trade-001` | Description (Brent price, range) | Update "currently trading ~$X/bbl" to today's Brent. |
+| `trade-003` | Description (Brent price) | Update Brent figure; update analyst forecast threshold if needed. |
+| `diplo-003` | Description | Add one sentence for any new ASEAN diplomatic development; trim oldest detail to maintain ≤150 words. |
+
+**When to retire an intel event entirely:**
+- Event's underlying condition is fully resolved (e.g., a chokepoint re-opens)
+- Probability has dropped below 15% and the narrative is no longer forward-looking
+- The event has been superseded by a more specific/updated event (e.g., `ship-001` replaces the generic `energy-001` Hormuz description once the crisis is established)
+
+**Do not** delete `energy-001` through `supply-004` purely because they are old — they represent structural risks still on the board. Only retire if explicitly resolved.
+
+### Trade Ideas (`banker-trade-ideas.json`)
+
+**When to retire a trade idea:**
+- The position has been closed or stop-loss hit
+- The underlying thesis has fundamentally reversed (e.g., Hormuz fully reopens)
+- Conviction drops to `low` AND the scenario driving it falls below 20% probability
+
+**When to update (not retire):**
+- Conviction changes from `high` → `medium` or vice versa: update field only; keep rationale
+- Price targets shift materially: update rationale price references; do not add a new entry
+
+**Do not create a new trade idea** for an update to an existing theme — edit the existing entry's `rationale` instead.
+
+### Runbook Self-Maintenance
+
+- **Crisis Timeline section** (bottom of this file): Add each new day's headline event on the day it occurs. Remove day entries only if they contain factually incorrect information (see Source Validation Policy).
+- **Price Narratives section**: Update Brent, JKM, TTF, and credit baseline narrative **daily** when updating cross-asset data. Keep it synchronized with `banker-cross-asset.json`.
+
+---
+
 ## Daily Update Checklist
 
 ### Morning Update (Pre-Market Open, ~08:00 SGT)
@@ -352,7 +405,13 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - [ ] **MarketsWidget.tsx**: Update `TOP_ALERT` banner text; adjust `NEAR_TERM_RANGE` and `SUSTAINED_PRICE` if scenario has shifted materially
 - [ ] **Conflict**: Replace `todaysEvents` with 3 new events; update `deltaVsYesterday`; verify scenario probabilities sum to 100
 - [ ] **Trade ideas**: Update date references (e.g., "Mar N"); refresh price citations in rationale
-- [ ] **Intel events** (`iran-intel-events.json`): Update `ship-001`, `sec-005`, and any event whose description references a now-past deadline or pending event
+- [ ] **Intel events — refresh prices**: In `iran-intel-events.json`, update stale Brent/JKM/TTF price references in `energy-003`, `trade-001`, `trade-003`, and any event citing a specific price level
+- [ ] **Intel events — rewrite daily entries**: Rewrite (do not prepend) `ship-001`, `sec-005`, `supply-001` descriptions with today's data. Max 150 words each. Remove any "Day N update:" prefix.
+- [ ] **Intel events — title hygiene**: Replace `sec-005` title with today's single top security event (≤8 words); do not accumulate prior event names in the title
+- [ ] **Intel events — retirement check**: Flag any event with probability <15% or a resolved thesis; confirm before deleting
+- [ ] **Trade ideas — retirement check**: Remove any idea whose stop-loss was hit or thesis has reversed; do not archive, just delete
+- [ ] **Runbook Price Narratives**: Update Brent, JKM, TTF, credit baseline lines to match today's cross-asset data
+- [ ] **Runbook Crisis Timeline**: Append today's headline in one line; keep entries to ≤25 words each
 - [ ] **Sanctions**: Check for overnight OFAC/EU announcements; update `s0` description if MAS/SGX actions occurred
 - [ ] **Validate JSON**: Run `node -e "JSON.parse(require('fs').readFileSync('./src/data/<file>.json','utf8'))"` for each file
 - [ ] **Build check**: Run `bun run build` — verify TypeScript compiles with no errors
@@ -398,13 +457,18 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - **Day 3**: Mar 3 — Oman back-channel rejected; MAS emergency guidance issued; Saudi/UAE spare capacity activation signalled; ASEAN FM statement ("serious concern" — no condemnation)
 - **Day 4**: Mar 4 — Trump announces naval escort program and sovereign war risk guarantee; OPEC+ emergency response disappoints (only +206k bpd); Iran Assembly of Experts convenes in Qom for successor vote; Brent peaks $83.50; all 12 IG P&I clubs confirm midnight March 5 exit
 - **Day 5**: Mar 5 — Full P&I insurance blackout IN EFFECT; AIS shows transits at ~28/day (80% drop from 138/day historical avg); 3rd tanker struck off Oman (set ablaze); US Navy escort confirmed NOT operational (navy lacks capacity per SSY/Argus); Mojtaba Khamenei succession vote expected; Philippines formally rejects EDCA-base link to Middle East operations
+- **Day 6**: Mar 6 — US submarine sank Iranian frigate Iris Dena off Sri Lanka (Indian Ocean expansion); IRGC threatens Strait of Malacca closure; Iraq cuts output ~1.5M bbl/day (Kuwait/UAE may follow, 3M+ bpd at risk); Congress rejects war powers resolution; Hegseth: "accelerating"; Qatar FM first direct contact with Iranian FM (sole de-escalation signal); Brent $85.60 (+3.0%); 329 tankers trapped in Gulf; escalation level raised to 5
 
-### Price Narratives (update daily)
+> **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
-- **Brent**: Surged from ~$65 pre-shock → $83.50 peak (Day 4) → consolidating $81–83 Day 5–6; P&I blackout in effect creates floor; escort non-delivery caps upside
-- **JKM LNG**: From $9.5 baseline → $15.1 (Day 2) → $16.80 (Day 4) climbing; Qatar Ras Laffan offline; no near-term alternative supply at scale
-- **TTF Gas**: From ~$34/MWh pre-shock → €52.80/MWh Day 4 (+54% from Qatar halt); European storage drawdown risk rising
-- **Credit**: iTraxx Asia IG from ~100bp pre-shock → 128bp Day 2 → 138bp Day 4 (continued widening); ASEAN HY 444bp
+### Price Narratives (update daily — keep synchronized with `banker-cross-asset.json`)
+
+> **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
+
+- **Brent**: Pre-shock ~$65 → $83.50 peak (Day 4) → $85.60 (Day 7, +3.0%); Iraq output cut ~1.5M bbl/day driving latest leg; P&I blackout in effect creates floor
+- **JKM LNG**: Baseline $9.5 → $15.1 (Day 2) → $17.80 (Day 7, +6.0%); Qatar Ras Laffan force majeure continues (min. 1-month recovery); no near-term alternative supply at scale
+- **TTF Gas**: Pre-shock ~$34/MWh → €55.40/MWh (Day 7, +4.9%); Atlantic Basin LNG re-routing has structural limits; European storage drawdown risk rising
+- **Credit**: iTraxx Asia IG pre-shock ~100bp → 145bp (Day 7, +7bp); ASEAN HY 460bp (+16bp); widening continues on Indian Ocean naval expansion
 
 ### MarketsWidget.tsx Constants (update when scenario shifts)
 
