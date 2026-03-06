@@ -67,7 +67,7 @@
 ## Codebase Conventions
 
 - **Client IDs**: lowercase slugs, no spaces (e.g., `"pttep"`, `"sapura"`, `"wilmar"`)
-- **Exposure scores**: integers **1–10** (not 0-10)
+- **Exposure scores**: integers **1-10** (not 0-10)
 - **`change1d` format**: always include sign prefix — `"+7bp"`, `"-3.7%"`, `"+0.4%"`
 - **`signal` values**: `"green"` | `"amber"` | `"red"`
 - **All dates**: ISO 8601 — `"2026-03-03T08:00:00Z"`
@@ -80,9 +80,9 @@
 |-------|-----------|----------|
 | Intel event `description` | **150 words** | Lead with current status; move historical detail to a single sentence of context. Remove prior-day inline prefixes (e.g., "Day 5 update:") once superseded — rewrite the whole description. |
 | Trade idea `rationale` | **120 words** | Lead with current price/trigger; backstory in ≤1 sentence. |
-| `cfTrigger` `description` | **80 words** | Lead with the required action; keep market data to 2–3 figures. |
+| `cfTrigger` `description` | **80 words** | Lead with the required action; keep market data to 2-3 figures. |
 | `todaysEvents` `summary` | **25 words** | One sentence per event, no sub-bullets. |
-| `sec-005` title | **5–8 words** | Replace entirely each day with the single most market-significant event of that session. Do not accumulate. |
+| `sec-005` title | **5-8 words** | Replace entirely each day with the single most market-significant event of that session. Do not accumulate. |
 
 ---
 
@@ -124,7 +124,7 @@
 | `change1d` | Vs prior close — include sign and unit suffix: `"+7bp"` for rates, `"+1.5%"` for prices |
 | `baseline30d` | 30-day rolling average — update monthly |
 | `baseline90d` | 90-day rolling average — update quarterly |
-| `zscore` | `(current - baseline90d) / stddev`; rough guide: >2.0 = red, 1.0–2.0 = amber, <1.0 = green |
+| `zscore` | `(current - baseline90d) / stddev`; rough guide: >2.0 = red, 1.0-2.0 = amber, <1.0 = green |
 | `signal` | `"red"` if zscore >2.0 or strong move; `"amber"` for moderate; `"green"` for normal |
 
 ### Categories to Update Daily
@@ -200,14 +200,14 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 }
 ```
 
-### Exposure Score Guide (1–10)
+### Exposure Score Guide (1-10)
 
-| Dimension | 1–3 (Low) | 4–6 (Moderate) | 7–10 (High) |
+| Dimension | 1-3 (Low) | 4-6 (Moderate) | 7-10 (High) |
 |-----------|-----------|----------------|-------------|
 | `energyCosts` | Producer/exporter benefits from oil spike | Mixed/indirect exposure | Major importer; energy is >20% of cost base |
 | `shipping` | No vessel fleet; landlocked ops | Some chartered tonnage; modest route exposure | Large owned/chartered fleet; route-dependent |
 | `sanctions` | No Iran/Russia exposure | Moderate shadow fleet or counterparty risk | Direct designation risk or correspondent exposure |
-| `refinancing` | Strong balance sheet; no near-term maturity | Moderate debt; 12–24mo maturity | High leverage; near-term maturity; limited access |
+| `refinancing` | Strong balance sheet; no near-term maturity | Moderate debt; 12-24mo maturity | High leverage; near-term maturity; limited access |
 
 ### Client Roster Conventions
 
@@ -219,7 +219,7 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 ### Adding a New Client
 
 1. Choose a unique lowercase slug (`id`)
-2. Set exposure scores honestly (1–10)
+2. Set exposure scores honestly (1-10)
 3. Write 3 scenario impacts (base/stress/tail) that reference current oil/LNG/FX levels
 4. Write 3 talking points — each starting with a specific market data reference
 5. If this client is a `cfTrigger` target, update `banker-trade-ideas.json` accordingly
@@ -239,7 +239,7 @@ const FALLBACK_QUOTES: MarketQuote[] = [
     {
       "id": "e1",
       "summary": "Description with date reference (Mar 3)",
-      "delta": "Short label (3–5 words)",
+      "delta": "Short label (3-5 words)",
       "direction": "up | neutral | down"
     }
   ],
@@ -321,7 +321,7 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 | Urgency | Meaning |
 |---------|---------|
-| `critical` | Execute within 48–72 hours; market window closing |
+| `critical` | Execute within 48-72 hours; market window closing |
 | `high` | Recommended within 2 weeks; conditions favourable |
 | `medium` | Worth preparing; no immediate time pressure |
 | `low` | Monitor only; conditions not yet ripe |
