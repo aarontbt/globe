@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { FONT_SANS } from "../styles/fonts";
 
 const STORAGE_KEY = "gb:livefeed:settings";
@@ -10,7 +10,6 @@ interface StreamConfig {
   platform: "youtube" | "dailymotion";
   streamId: string;
   badgeColor?: string;
-  startMuted?: boolean;
 }
 
 interface LiveFeedSettings {
@@ -25,7 +24,6 @@ const DEFAULT_STREAM: StreamConfig = {
   platform: "dailymotion",
   streamId: "x8p5u0u",
   badgeColor: "#c8102e",
-  startMuted: true,
 };
 
 const DEFAULT_SETTINGS: LiveFeedSettings = {
@@ -54,11 +52,10 @@ function persistSettings(s: LiveFeedSettings) {
 }
 
 function buildSrc(stream: StreamConfig): string {
-  const muted = stream.startMuted ?? true;
   if (stream.platform === "youtube") {
-    return `https://www.youtube.com/embed/${stream.streamId}?autoplay=1${muted ? "&mute=1" : ""}`;
+    return `https://www.youtube.com/embed/${stream.streamId}?autoplay=1&mute=1&enablejsapi=1`;
   }
-  return `https://www.dailymotion.com/embed/video/${stream.streamId}?autoplay=1${muted ? "&mute=1" : ""}&ui-logo=0&ui-start-screen-info=0`;
+  return `https://www.dailymotion.com/embed/video/${stream.streamId}?autoplay=1&mute=1&ui-logo=0&ui-start-screen-info=0`;
 }
 
 // ── Settings Modal ─────────────────────────────────────────────────────────────
@@ -79,7 +76,6 @@ function SettingsModal({
     platform: "youtube" as "youtube" | "dailymotion",
     streamId: "",
     badgeColor: "#1d4ed8",
-    startMuted: true,
   });
   const [formError, setFormError] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -105,14 +101,13 @@ function SettingsModal({
       platform: s.platform,
       streamId: s.streamId,
       badgeColor: s.badgeColor ?? "#1d4ed8",
-      startMuted: s.startMuted ?? true,
     });
   };
 
   const cancelEdit = () => {
     setEditingId(null);
     setFormError("");
-    setForm({ brand: "", title: "", platform: "youtube", streamId: "", badgeColor: "#1d4ed8", startMuted: true });
+    setForm({ brand: "", title: "", platform: "youtube", streamId: "", badgeColor: "#1d4ed8" });
   };
 
   const submitForm = () => {
@@ -129,7 +124,6 @@ function SettingsModal({
           platform: form.platform,
           streamId: form.streamId.trim(),
           badgeColor: form.badgeColor,
-          startMuted: form.startMuted,
         } : s),
       }));
       cancelEdit();
@@ -141,10 +135,9 @@ function SettingsModal({
         platform: form.platform,
         streamId: form.streamId.trim(),
         badgeColor: form.badgeColor,
-        startMuted: form.startMuted,
       };
       setDraft(d => ({ ...d, streams: [...d.streams, newStream] }));
-      setForm({ brand: "", title: "", platform: "youtube", streamId: "", badgeColor: "#1d4ed8", startMuted: true });
+      setForm({ brand: "", title: "", platform: "youtube", streamId: "", badgeColor: "#1d4ed8" });
     }
   };
 
@@ -427,47 +420,6 @@ function SettingsModal({
             />
           </div>
 
-          {/* Start muted toggle */}
-          <div
-            onClick={() => setForm(f => ({ ...f, startMuted: !f.startMuted }))}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "7px 10px",
-              borderRadius: 7,
-              border: "1px solid rgba(255,255,255,0.07)",
-              background: "rgba(255,255,255,0.02)",
-              cursor: "pointer",
-              userSelect: "none",
-            }}
-          >
-            <div>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", fontWeight: 500 }}>Start muted</div>
-              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.28)", marginTop: 1 }}>Autoplay without audio</div>
-            </div>
-            <div style={{
-              width: 32,
-              height: 18,
-              borderRadius: 9,
-              background: form.startMuted ? "rgba(99,102,241,0.7)" : "rgba(255,255,255,0.12)",
-              position: "relative",
-              transition: "background 0.2s",
-              flexShrink: 0,
-            }}>
-              <div style={{
-                position: "absolute",
-                top: 2,
-                left: form.startMuted ? 16 : 2,
-                width: 14,
-                height: 14,
-                borderRadius: "50%",
-                background: "#fff",
-                transition: "left 0.2s",
-              }} />
-            </div>
-          </div>
-
           {formError && (
             <div style={{ fontSize: 10, color: "#f87171", marginTop: -4 }}>{formError}</div>
           )}
@@ -554,6 +506,9 @@ function SettingsModal({
 export default function LiveFeedWidget() {
   const [settings, setSettings] = useState<LiveFeedSettings>(loadSettings);
   const [modalOpen, setModalOpen] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const isFirstRender = useRef(true);
 
   const clickCountRef = useRef(0);
   const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -582,6 +537,25 @@ export default function LiveFeedWidget() {
     DEFAULT_STREAM;
 
   const src = buildSrc(activeStream);
+
+  // Reset to muted when stream changes
+  useEffect(() => {
+    setMuted(true);
+    isFirstRender.current = true;
+  }, [settings.activeId]);
+
+  // Send postMessage to YouTube to control mute without reloading
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    const iframe = iframeRef.current;
+    if (!iframe?.contentWindow) return;
+    if (activeStream.platform === "youtube") {
+      iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: muted ? "mute" : "unMute", args: [] }), "https://www.youtube.com");
+    }
+  }, [muted, activeStream.platform]);
 
   return (
     <>
@@ -625,31 +599,61 @@ export default function LiveFeedWidget() {
             </span>
           </div>
 
-          <div
-            onClick={handleLiveClick}
-            style={{ display: "flex", alignItems: "center", gap: 4, cursor: "default", userSelect: "none" }}
-          >
-            <span
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            {activeStream.platform === "youtube" && <button
+              onClick={() => setMuted(m => !m)}
+              title={muted ? "Unmute" : "Mute"}
               style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "#ef4444",
-                boxShadow: "0 0 6px #ef4444",
-                animation: "livefeed-ping 1.4s ease-in-out infinite",
-                display: "inline-block",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "0 6px 0 0",
+                lineHeight: 1,
+                display: "flex",
+                alignItems: "center",
               }}
-            />
-            <span style={{ fontSize: 9, fontWeight: 700, color: "#ef4444", letterSpacing: "0.1em" }}>
-              LIVE
-            </span>
+            >
+              {muted ? (
+                <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="1,5 5,5 9,2 9,14 5,11 1,11" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeLinejoin="round"/>
+                  <line x1="13" y1="4.5" x2="19" y2="11.5" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="19" y1="4.5" x2="13" y2="11.5" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              ) : (
+                <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="1,5 5,5 9,2 9,14 5,11 1,11" fill="none" stroke="#4ade80" strokeWidth="1.2" strokeLinejoin="round"/>
+                  <path d="M11 5.5 C12.5 6.5 12.5 9.5 11 10.5" stroke="#4ade80" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+                  <path d="M12.5 4 C15 5.5 15 10.5 12.5 12" stroke="#4ade80" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+                </svg>
+              )}
+            </button>}
+            <div
+              onClick={handleLiveClick}
+              style={{ display: "flex", alignItems: "center", gap: 4, cursor: "default", userSelect: "none" }}
+            >
+              <span
+                style={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: "50%",
+                  background: "#ef4444",
+                  boxShadow: "0 0 6px #ef4444",
+                  animation: "livefeed-ping 1.4s ease-in-out infinite",
+                  display: "inline-block",
+                }}
+              />
+              <span style={{ fontSize: 9, fontWeight: 700, color: "#ef4444", letterSpacing: "0.1em" }}>
+                LIVE
+              </span>
+            </div>
           </div>
         </div>
 
         {/* 16:9 embed */}
         <div style={{ position: "relative", paddingBottom: "56.25%" }}>
           <iframe
-            key={src}
+            ref={iframeRef}
+            key={activeStream.id}
             src={src}
             title="Live Feed"
             allow="autoplay"
