@@ -1,36 +1,36 @@
 {
-  "escalationLevel": 4,
-  "escalationLabel": "High",
-  "deltaVsYesterday": 0,
+  "escalationLevel": 5,
+  "escalationLabel": "Severe",
+  "deltaVsYesterday": 1,
   "todaysEvents": [
-    { "id": "e1", "summary": "All 12 P&I clubs (full International Group, ~90% of ocean-going tonnage) confirmed exit from Gulf war risk cover effective midnight London March 5 — creating a complete commercial insurance blackout. VLCC spot war risk premiums at 3.5–4.5% hull value/voyage. Trump administration announces USN vessel escort program for neutral-flagged tankers and sovereign war risk guarantee; operational scope being finalised with CENTCOM — physical transits remain halted for most commercial operators pending escort parameters (Mar 4)", "delta": "P&I blackout confirmed / escort offer", "direction": "up" },
-    { "id": "e2", "summary": "OPEC+ emergency response disappoints: 8-member subset added only +206,000 bpd for April (Saudi +62k, Russia +62k, Iraq +26k, UAE +18k) vs ~3.5M bpd declared spare capacity — signaling strategic restraint. Key paradox: GCC spare capacity cannot reach market while Hormuz blocked. Brent consolidating at $83–85/bbl; BloombergNEF maintains $91 target under sustained disruption; J.P. Morgan upper-end at $130 (Mar 4)", "delta": "OPEC+ under-responds to crisis", "direction": "up" },
-    { "id": "e3", "summary": "Iran's Assembly of Experts convened in Qom to vote for successor Supreme Leader; no frontrunner after Day 1 of deliberations under Israeli airstrike threat. IRGC retaining effective command in interim. UAE stock exchanges (DFM, ADX, Nasdaq Dubai) reopened March 4 after 2-day suspension. Indonesia energy minister announces shift of Middle East crude import orders to US suppliers amid Hormuz closure; 1,400+ Philippine OFWs formally requesting repatriation (Mar 4)", "delta": "Iran succession / UAE reopens / OFW crisis", "direction": "neutral" }
+    { "id": "e1", "summary": "US submarine sank Iranian frigate Iris Dena off Sri Lanka — 87 bodies recovered, 32 rescued. Naval combat has now expanded far beyond the Persian Gulf into the Indian Ocean, marking a qualitative escalation in the war's geographic scope. IRGC threatened to close the Strait of Malacca in retaliation. Kurdish armed groups simultaneously launched ground offensives in northwest Iran, opening a second land front (Mar 6)", "delta": "US sub sinks Iranian frigate / Indian Ocean war", "direction": "up" },
+    { "id": "e2", "summary": "Iraq cut oil output by ~1.5M bbl/day due to storage and export constraints with Hormuz blocked; Reuters reports Kuwait and UAE may next reduce output — combined GCC cuts could exceed 3M+ bpd within days, adding unintended supply shock on top of Hormuz disruption. Brent surged +3% to $85.60/bbl; WTI +6% to $81.20/bbl. House and Senate both rejected war powers resolution — US military authority to continue Iran campaign confirmed. Hegseth: US is 'accelerating, not decelerating' war (Mar 6)", "delta": "Iraq -1.5M bpd; Brent $85.60 (+3%)", "direction": "up" },
+    { "id": "e3", "summary": "Qatar FM made first direct diplomatic contact with Iranian FM since fighting began — only de-escalation signal of Day 7. Trump said he 'should be involved' in selecting Iran's next Supreme Leader, complicating negotiations. 329 tankers remain stuck in the Gulf. Iran death toll at 1,045 with 6,000+ wounded per Iranian state media. Iran retaliatory strikes reached as far as US Embassy compound in Kuwait. P&I blackout remains total — no commercial insurance market for Gulf transits exists (Mar 6)", "delta": "Qatar FM opens channel / Iran 1,045 dead", "direction": "neutral" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 38,
-      "description": "Hormuz disruption lasts 2–4 weeks; Iran successor government enters ceasefire via diplomatic back-channel. Trump's naval escort program partially restores tanker flow within 10–14 days. Brent stabilises at $82–90/bbl with sustained risk premium. Saudi/UAE spare capacity (3-week ramp) partially offsets supply deficit. ASEAN LNG buyers scramble for spot cargoes; JKM peaks near $20/MMBtu. SCS tensions remain elevated but secondary to Iran shock. P&I clubs restore cover upon ceasefire confirmation. Goldman Q4 2026 normalisation forecast at $60/bbl contingent on swift resolution.",
+      "probability": 30,
+      "description": "Hormuz disruption lasts 2–4 weeks; Qatar FM back-channel leads to ceasefire framework within 10–14 days. Trump's naval escort program partially restores tanker flow. Brent stabilises at $82–92/bbl with sustained risk premium. Saudi/UAE spare capacity (3-week ramp) partially offsets supply deficit after Hormuz reopens. ASEAN LNG buyers source spot cargoes from Australian and US suppliers. Iraq gradually restores output once tanker transit resumes. P&I clubs restore cover upon ceasefire confirmation. Goldman Q4 2026 normalisation forecast at $60/bbl contingent on swift resolution.",
       "oilImpact": "+$12/bbl",
       "lngImpact": "+65%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 44,
-      "description": "Hormuz closure extends 1–3 months; Iran successor IRGC-led government escalates proxy network. P&I blackout (effective Mar 5) proves durable. Trump escort provides minimal relief — capacity to escort 2–3 tankers/day vs pre-crisis 20M bpd flow. Brent surges toward $100–110/bbl (BloombergNEF $91 base case; J.P. Morgan upper-end $130). JKM LNG spikes to $25+/MMBtu — worst gas market shock since Russia-Ukraine 2022. ASEAN current account deficits widen sharply; Bank Indonesia and BSP forced into emergency interventions. Indonesia subsidy blowout accelerates.",
-      "oilImpact": "+$30/bbl",
-      "lngImpact": "+155%"
+      "probability": 47,
+      "description": "Hormuz closure extends 1–3 months; Indian Ocean front expands with further IRGC naval actions. P&I blackout proves durable; 329 trapped tankers cleared only partially. Iraq output loss widens to 3M+ bpd; Kuwait/UAE also cut. Brent surges toward $100–115/bbl. JKM LNG spikes to $25+/MMBtu — worst gas market shock since Russia-Ukraine 2022. ASEAN current account deficits widen sharply; Bank Indonesia and BSP forced into emergency interventions. Indonesian subsidy blowout accelerates. Kurdish front in northwest Iran prolongs conflict.",
+      "oilImpact": "+$35/bbl",
+      "lngImpact": "+170%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 18,
-      "description": "Full Hormuz closure sustained beyond 3 months simultaneously with SCS kinetic escalation. Oil at $150–200/bbl (J.P. Morgan upper bound). LNG effectively unavailable for spot buyers; Qatar's 77 mtpa offline. Saudi/UAE spare capacity cannot compensate — Hormuz transit required to reach market. Recession probability >70% for Thailand and Philippines. ASEAN EM bonds face mass outflows; 1970s-style energy shock across the region. P&I cover does not return for 6+ months; global trade finance seizes.",
-      "oilImpact": "+$80/bbl",
-      "lngImpact": "+200%"
+      "probability": 23,
+      "description": "Full Hormuz closure sustained beyond 3 months; IRGC acts on Malacca threat; Indian Ocean naval escalation draws in additional parties. Oil at $150–200/bbl (J.P. Morgan upper bound). LNG effectively unavailable for spot buyers; Qatar's 77 mtpa offline. Iraq, Kuwait, UAE combined output loss exceeds 6M bpd — global supply deficit unprecedented since 1973. Recession probability >70% for Thailand and Philippines. ASEAN EM bonds face mass outflows; P&I cover does not return for 6+ months; global trade finance seizes.",
+      "oilImpact": "+$90/bbl",
+      "lngImpact": "+220%"
     }
   ]
 }

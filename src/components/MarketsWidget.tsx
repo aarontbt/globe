@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "93–108";
-const SUSTAINED_PRICE = "130";
-const TOP_ALERT = "ALL 12 P&I clubs Gulf war risk blackout NOW IN EFFECT — Mojtaba Khamenei succession vote imminent";
+const NEAR_TERM_RANGE = "98–118";
+const SUSTAINED_PRICE = "140";
+const TOP_ALERT = "US SUBMARINE SINKS IRANIAN WARSHIP OFF SRI LANKA — War expands to Indian Ocean; Iraq -1.5M bpd; Brent $85.60 (+3%)";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
