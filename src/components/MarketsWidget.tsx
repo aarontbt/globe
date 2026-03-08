@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "98–118";
-const SUSTAINED_PRICE = "140";
-const TOP_ALERT = "US SUBMARINE SINKS IRANIAN WARSHIP OFF SRI LANKA — War expands to Indian Ocean; Iraq -1.5M bpd; Brent $85.60 (+3%)";
+const NEAR_TERM_RANGE = "108–128";
+const SUSTAINED_PRICE = "155";
+const TOP_ALERT = "IRAQ OUTPUT −60%; MOJTABA KHAMENEI ELECTED SUPREME LEADER — Ceasefire rejected; Brent $106 (+24%); GCC shut-in 4.7M bpd";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

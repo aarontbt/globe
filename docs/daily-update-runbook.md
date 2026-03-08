@@ -458,6 +458,9 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - **Day 4**: Mar 4 — Trump announces naval escort program and sovereign war risk guarantee; OPEC+ emergency response disappoints (only +206k bpd); Iran Assembly of Experts convenes in Qom for successor vote; Brent peaks $83.50; all 12 IG P&I clubs confirm midnight March 5 exit
 - **Day 5**: Mar 5 — Full P&I insurance blackout IN EFFECT; AIS shows transits at ~28/day (80% drop from 138/day historical avg); 3rd tanker struck off Oman (set ablaze); US Navy escort confirmed NOT operational (navy lacks capacity per SSY/Argus); Mojtaba Khamenei succession vote expected; Philippines formally rejects EDCA-base link to Middle East operations
 - **Day 6**: Mar 6 — US submarine sank Iranian frigate Iris Dena off Sri Lanka (Indian Ocean expansion); IRGC threatens Strait of Malacca closure; Iraq cuts output ~1.5M bbl/day (Kuwait/UAE may follow, 3M+ bpd at risk); Congress rejects war powers resolution; Hegseth: "accelerating"; Qatar FM first direct contact with Iranian FM (sole de-escalation signal); Brent $85.60 (+3.0%); 329 tankers trapped in Gulf; escalation level raised to 5
+- **Day 7**: Mar 7 — IAF strikes 400+ targets including Mehrabad Airport and Tehran fuel depots; oil posts biggest weekly gain in futures trading history (CNBC); Brent approaches $90+
+- **Day 8**: Mar 8 — Mojtaba Khamenei elected Supreme Leader; Iranian FM rejects ceasefire; Iraq output -60% (Bloomberg); Kuwait cuts begin; Saudi Arabia struck; JP Morgan: 4.7M bpd GCC shut-in within 2 weeks; Brent ~$104
+- **Day 9**: Mar 9 — Brent $106.40 (+63% from pre-shock); Qatar loads first LNG cargo since force majeure but full restart contingent on war end; no ceasefire signal; GCC supply collapse accelerating
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -465,10 +468,10 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $83.50 peak (Day 4) → $85.60 (Day 7, +3.0%); Iraq output cut ~1.5M bbl/day driving latest leg; P&I blackout in effect creates floor
-- **JKM LNG**: Baseline $9.5 → $15.1 (Day 2) → $17.80 (Day 7, +6.0%); Qatar Ras Laffan force majeure continues (min. 1-month recovery); no near-term alternative supply at scale
-- **TTF Gas**: Pre-shock ~$34/MWh → €55.40/MWh (Day 7, +4.9%); Atlantic Basin LNG re-routing has structural limits; European storage drawdown risk rising
-- **Credit**: iTraxx Asia IG pre-shock ~100bp → 145bp (Day 7, +7bp); ASEAN HY 460bp (+16bp); widening continues on Indian Ocean naval expansion
+- **Brent**: Pre-shock ~$65 → $83.50 peak (Day 4) → $85.60 (Day 6) → $106.40 (Day 9, +24.4%); Iraq output -60% + Kuwait cuts driving latest surge; CNBC: "biggest weekly gain in futures history dating back to 1983"
+- **JKM LNG**: Baseline $9.5 → $15.1 (Day 2) → $17.80 (Day 6) → $15.50 (Day 9, -1.5%); Qatar first cargo loaded since force majeure (partial restart); full restart contingent on conflict end; spot price moderated on partial supply signal
+- **TTF Gas**: Pre-shock ~$34/MWh → €55.40 (Day 6) → €52.80/MWh (Day 9, -4.7%); partial Qatar restart and Atlantic Basin rerouting moderating European benchmark; storage drawdown risk persists
+- **Credit**: iTraxx Asia IG pre-shock ~100bp → 145bp (Day 6) → 158bp est. (Day 9, +13bp est.); ASEAN HY → 485bp est. (+25bp est.); ceasefire rejection and Iraq collapse driving widening
 
 ### MarketsWidget.tsx Constants (update when scenario shifts)
 
