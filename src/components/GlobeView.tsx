@@ -9,6 +9,7 @@ import portsData from "../data/ports.json";
 import tradeArcsData from "../data/trade-arcs.json";
 import iranIntelEvents from "../data/iran-intel-events.json";
 import oilSupplyChainData from "../data/oil-supply-chain.json";
+import crisisVesselsData from "../data/crisis-vessels.json";
 import { createGlobalShippingLanesLayer } from "../layers/shippingLanes";
 import { createCorridorLayers } from "../layers/corridors";
 import { createPortsLayer } from "../layers/ports";
@@ -17,6 +18,7 @@ import { createAnimatedVesselsLayer } from "../layers/animatedVessels";
 import { createEventRingsLayer, createEventDotsLayer, createAsteroidImpactLayers } from "../layers/globeEvents";
 import { createSatellitesLayer } from "../layers/satellites";
 import { createOilSupplyChainLayers } from "../layers/oilSupplyChain";
+import { createCrisisVesselsLayer } from "../layers/crisisVessels";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
 import { useEventPulse } from "../hooks/useEventPulse";
@@ -38,7 +40,7 @@ import { useMarkets } from "../hooks/useMarkets";
 import { useNews } from "../hooks/useNews";
 import type { LayerVisibility } from "./LayerTogglePanel";
 
-import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite, OilNode, OilRoute } from "../types";
+import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite, OilNode, OilRoute, CrisisVessel } from "../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GLOBE_VIEW = new (_GlobeView as any)({ id: "globe", controller: true });
@@ -78,6 +80,7 @@ export default function GlobeView() {
   const arcs = tradeArcsData as TradeArc[];
   const oilNodes = oilSupplyChainData.nodes as OilNode[];
   const oilRoutes = oilSupplyChainData.routes as OilRoute[];
+  const crisisVessels = crisisVesselsData as CrisisVessel[];
 
   // Deck.gl render timing — written by onBeforeRender/onAfterRender, read by PerformanceMonitor
   const deckRenderStartRef = useRef(0);
@@ -105,6 +108,7 @@ export default function GlobeView() {
       showEvents: true,
       showSatellites: false,
       showOilSupplyChain: true,
+      showCrisisVessels: false,
     };
     try {
       const saved = localStorage.getItem("gb:layerVisibility");
@@ -201,8 +205,9 @@ export default function GlobeView() {
     if (visibility.showArcs) result.push(createTradeArcsLayer(arcs));
     if (visibility.showPorts) result.push(createPortsLayer(ports));
     if (visibility.showOilSupplyChain) result.push(...createOilSupplyChainLayers(oilNodes, oilRoutes));
+    if (visibility.showCrisisVessels) result.push(...createCrisisVesselsLayer(crisisVessels));
     return result;
-  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, corridors, ports, arcs, oilNodes, oilRoutes]);
+  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showCrisisVessels, corridors, ports, arcs, oilNodes, oilRoutes, crisisVessels]);
 
   // Label layer — separate memo so staticLayers doesn't rebuild on camera move
   const labelLayer = useMemo(
@@ -394,6 +399,58 @@ export default function GlobeView() {
           borderRadius: "8px",
           padding: "10px 14px",
           border: "1px solid rgba(255,255,255,0.1)",
+        },
+      };
+    }
+
+    if (layer?.id === "crisis-vessels" || layer?.id === "crisis-vessels-dark") {
+      const v = object as CrisisVessel;
+      const TYPE_LABELS: Record<string, string> = {
+        tanker: "Tanker", lng: "LNG Carrier", navy: "US Navy",
+        "dark-fleet": "Dark Fleet (AIS-off)", irgcn: "IRGCN / Iran Navy", cargo: "Cargo",
+      };
+      const TYPE_COLORS: Record<string, string> = {
+        tanker: "#fb923c", lng: "#22d3ee", navy: "#60a5fa",
+        "dark-fleet": "#a0a0b4", irgcn: "#ef4444", cargo: "#a7f3d0",
+      };
+      const typeColor = TYPE_COLORS[v.type] ?? "#fff";
+      const typeLabel = TYPE_LABELS[v.type] ?? v.type;
+      const statusColor = v.status === "ais-off" ? "#ef4444" : v.status === "anchored" ? "#fbbf24" : "#86efac";
+      const speedStr = v.status === "ais-off" ? "AIS OFF" : `${v.speed.toFixed(1)} kts`;
+      return {
+        html: `<div style="font-family:${FONT_SANS};padding:4px 0;min-width:220px;max-width:280px">
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:3px">
+            <span style="font-weight:700;font-size:13px;color:#fff">${v.name}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:10px;font-weight:600;color:${typeColor};background:${typeColor}22;padding:1px 6px;border-radius:4px">${typeLabel}</span>
+            <span style="font-size:10px;color:rgba(255,255,255,0.45)">${v.flag}</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;margin-bottom:6px">
+            <div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Speed</div>
+              <div style="font-size:12px;color:${statusColor};font-weight:600">${speedStr}</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Status</div>
+              <div style="font-size:12px;color:${statusColor};font-weight:600;text-transform:capitalize">${v.status.replace("-", " ")}</div>
+            </div>
+          </div>
+          <div style="margin-bottom:6px">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px">Destination</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.7)">${v.destination}</div>
+          </div>
+          <div style="padding-top:6px;border-top:1px solid rgba(255,255,255,0.08)">
+            <div style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.45">${v.narrative}</div>
+          </div>
+        </div>`,
+        style: {
+          backgroundColor: "rgba(6,9,20,0.94)",
+          borderRadius: "10px",
+          padding: "10px 14px",
+          border: `1px solid ${typeColor}33`,
+          backdropFilter: "blur(12px)",
+          maxWidth: "300px",
         },
       };
     }
