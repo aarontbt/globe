@@ -17,6 +17,16 @@ const CATEGORY_LABELS: Record<EventCategory, string> = {
   social:     "Social",
 };
 
+const CATEGORY_ABBREV: Record<EventCategory, string> = {
+  security:   "SEC",
+  political:  "POL",
+  economic:   "ECO",
+  climate:    "CLM",
+  election:   "ELX",
+  diplomatic: "DIP",
+  social:     "SOC",
+};
+
 const IMPACT_BADGE: Record<string, { label: string; color: string }> = {
   high:   { label: "HIGH IMPACT",   color: "#ef4444" },
   medium: { label: "MED IMPACT",    color: "#f59e0b" },
@@ -284,35 +294,37 @@ function FilterButton({ category, active, count, onToggle }: FilterButtonProps) 
   return (
     <button
       onClick={onToggle}
+      title={CATEGORY_LABELS[category]}
       style={{
-        padding: "4px 10px",
+        padding: "3px 7px",
         borderRadius: 20,
-        border: `1px solid ${active ? toRgba(color, 0.6) : "rgba(255,255,255,0.12)"}`,
+        border: `1px solid ${active ? toRgba(color, 0.6) : "rgba(255,255,255,0.10)"}`,
         background: active ? toRgba(color, 0.15) : "transparent",
-        color: active ? toRgba(color) : "rgba(255,255,255,0.4)",
-        fontSize: 11,
-        fontWeight: 600,
+        color: active ? toRgba(color) : "rgba(255,255,255,0.35)",
+        fontSize: 10,
+        fontWeight: 700,
         cursor: "pointer",
         display: "flex",
         alignItems: "center",
-        gap: 4,
+        gap: 3,
         transition: "all 0.15s",
-        letterSpacing: "0.03em",
+        letterSpacing: "0.06em",
       }}
     >
       <span style={{
-        width: 6,
-        height: 6,
+        width: 5,
+        height: 5,
         borderRadius: "50%",
-        background: active ? toRgba(color) : "rgba(255,255,255,0.2)",
+        background: active ? toRgba(color) : "rgba(255,255,255,0.18)",
         flexShrink: 0,
       }} />
-      {CATEGORY_LABELS[category]}
+      {CATEGORY_ABBREV[category]}
       <span style={{
-        background: active ? toRgba(color, 0.25) : "rgba(255,255,255,0.08)",
-        padding: "0 4px",
-        borderRadius: 10,
-        fontSize: 10,
+        background: active ? toRgba(color, 0.22) : "rgba(255,255,255,0.07)",
+        padding: "0 3px",
+        borderRadius: 8,
+        fontSize: 9,
+        fontWeight: 600,
       }}>
         {count}
       </span>
@@ -347,6 +359,12 @@ export default function EventPanel({
     } catch { return "probability"; }
   });
 
+  const [hidePriced, setHidePriced] = useState<boolean>(() => {
+    try { return localStorage.getItem("gb:hidePriced") === "1"; } catch { return false; }
+  });
+
+  const PRICED_IN_THRESHOLD = 85;
+
   useEffect(() => {
     if (!selectedId) return;
     const card = document.getElementById(`event-card-${selectedId}`);
@@ -365,12 +383,13 @@ export default function EventPanel({
     () =>
       events
         .filter(e => activeCategories.has(e.category))
+        .filter(e => !hidePriced || (e.probability ?? 0) < PRICED_IN_THRESHOLD)
         .sort((a, b) =>
           sortMode === "date"
             ? b.date.localeCompare(a.date)
             : (b.probability ?? -1) - (a.probability ?? -1)
         ),
-    [events, activeCategories, sortMode]
+    [events, activeCategories, sortMode, hidePriced]
   );
 
   return (
@@ -428,7 +447,7 @@ export default function EventPanel({
         </div>
 
         {/* Category filters */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 10 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 8 }}>
           {ALL_CATEGORIES.map(cat => (
             <FilterButton
               key={cat}
@@ -440,8 +459,8 @@ export default function EventPanel({
           ))}
         </div>
 
-        {/* Sort toggle */}
-        <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8 }}>
+        {/* Sort toggle + priced-in filter */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
           <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             Sort
           </span>
@@ -476,6 +495,37 @@ export default function EventPanel({
                 {mode === "probability" ? "Prob ↓" : "Date ↓"}
               </button>
             ))}
+          </div>
+          <div style={{
+            display: "flex",
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 20,
+            padding: 2,
+          }}>
+            <button
+              onClick={() => {
+                const next = !hidePriced;
+                setHidePriced(next);
+                try { localStorage.setItem("gb:hidePriced", next ? "1" : "0"); } catch {}
+              }}
+              title={`${hidePriced ? "Show" : "Hide"} events ≥${PRICED_IN_THRESHOLD}% (priced in)`}
+              style={{
+                padding: "2px 9px",
+                borderRadius: 16,
+                border: "none",
+                background: hidePriced ? "rgba(255,255,255,0.12)" : "transparent",
+                color: hidePriced ? "rgba(255,255,255,0.75)" : "rgba(255,255,255,0.3)",
+                fontSize: 10,
+                fontWeight: 600,
+                cursor: "pointer",
+                letterSpacing: "0.04em",
+                transition: "all 0.15s",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {`≥${PRICED_IN_THRESHOLD}% ${hidePriced ? "hidden" : "shown"}`}
+            </button>
           </div>
         </div>
       </div>
