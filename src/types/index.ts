@@ -130,6 +130,23 @@ export interface OilRoute {
   commodity: string;
 }
 
+export type VesselType = "tanker" | "lng" | "navy" | "dark-fleet" | "irgcn" | "cargo";
+export type VesselStatus = "underway" | "anchored" | "moored" | "ais-off" | "unknown";
+
+export interface CrisisVessel {
+  mmsi: string;
+  name: string;
+  flag: string;
+  type: VesselType;
+  coordinates: [number, number];
+  heading: number;
+  speed: number;
+  status: VesselStatus;
+  destination: string;
+  narrative: string;
+  trail: [number, number][]; // last 5 positions, oldest first; empty for AIS-off vessels
+}
+
 export interface GlobeEvent {
   id: string;
   title: string;
