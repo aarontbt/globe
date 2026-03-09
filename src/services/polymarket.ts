@@ -178,6 +178,9 @@ export async function fetchAseanEvents(): Promise<GlobeEvent[]> {
       } catch { /* keep default */ }
     }
 
+    // Skip near-resolved markets (event already happened, trading at $1.00)
+    if (probability >= 99) continue;
+
     const geo = inferGeo(e.title);
     if (!geo) continue; // no keyword match — hide from globe
 
