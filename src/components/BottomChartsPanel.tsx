@@ -5,8 +5,9 @@ const entries = volatilityData.days;
 const DAYS     = entries.map(d => d.day);
 const BASE_OVX = entries.map(d => d.ovx);
 const SCENARIOS = entries.map(d => d.scenarios as [number, number, number]);
-const ITRAXX   = entries.map(d => d.itraxx);
+const BASE_VXEEM = entries.map(d => d.vxeem);
 const BASE_OVX_CONFIRMED = entries.map(d => d.ovxConfirmed);
+const BASE_VXEEM_CONFIRMED = entries.map(d => d.vxeemConfirmed);
 
 interface OVXLiveData {
   price: number | null;
@@ -16,19 +17,23 @@ interface OVXLiveData {
   error: boolean;
 }
 
-function useOVXLive(): OVXLiveData {
+function useOVXLive(url: string = "/api/cboe/api/global/us_indices/daily_prices/OVX_History.csv"): OVXLiveData {
   const [data, setData] = useState<OVXLiveData>({ price: null, change: null, changePct: null, loading: true, error: false });
 
   useEffect(() => {
     let cancelled = false;
     const fetch_ = async () => {
       try {
-        const res = await fetch("/api/cboe/api/global/us_indices/daily_prices/OVX_History.csv");
+        const res = await fetch(url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
         const lines = text.trim().split("\n").filter(l => l && !l.startsWith("DATE"));
         if (lines.length < 2) throw new Error("insufficient data");
-        const parseClose = (line: string) => parseFloat(line.split(",")[1]);
+        const parseClose = (line: string) => {
+          const parts = line.split(",");
+          // VXEEM has OPEN,HIGH,LOW,CLOSE (4 cols after DATE); OVX has just CLOSE (1 col)
+          return parseFloat(parts[parts.length - 1]);
+        };
         const price = parseClose(lines[lines.length - 1]);
         const prev = parseClose(lines[lines.length - 2]);
         const change = +(price - prev).toFixed(2);
@@ -40,7 +45,7 @@ function useOVXLive(): OVXLiveData {
     };
     fetch_();
     return () => { cancelled = true; };
-  }, []);
+  }, [url]);
 
   return data;
 }
@@ -158,7 +163,7 @@ function OVXChart() {
     <div style={cardStyle}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={labelStyle}>OVX Implied Vol</span>
+          <span style={labelStyle}>^OVX Vol</span>
           <InfoTooltip text="30-day implied volatility on crude oil options. Higher readings mean markets expect larger Brent price swings." />
         </span>
         <span style={valueStyle(currentColor)}>
@@ -266,25 +271,45 @@ function ScenarioChart() {
   );
 }
 
-function ITraxxChart() {
-  const minVal = 50;
-  const maxVal = 200;
-  const currentVal = ITRAXX[ITRAXX.length - 1];
-  const peakVal = Math.max(...ITRAXX);
-  const peakIdx = ITRAXX.indexOf(peakVal);
-  const peakX = (peakIdx / (ITRAXX.length - 1)) * W;
+function VXEEMChart() {
+  const live = useOVXLive(
+    "/api/cboe/api/global/us_indices/daily_prices/VXEEM_History.csv"
+  );
+  const minVal = 15;
+  const maxVal = 50;
+
+  const VXEEM = live.price !== null
+    ? [...BASE_VXEEM.slice(0, -1), live.price]
+    : BASE_VXEEM;
+  const VXEEM_CONFIRMED = live.price !== null
+    ? [...BASE_VXEEM_CONFIRMED.slice(0, -1), true]
+    : BASE_VXEEM_CONFIRMED;
+
+  const currentVal = VXEEM[VXEEM.length - 1];
+  const currentConfirmed = VXEEM_CONFIRMED[VXEEM_CONFIRMED.length - 1];
+  const peakVal = Math.max(...VXEEM);
+  const peakIdx = VXEEM.indexOf(peakVal);
+  const peakX = (peakIdx / (VXEEM.length - 1)) * W;
   const peakY = H - ((peakVal - minVal) / (maxVal - minVal)) * H;
-  const gradId = 'itraxx-grad';
-  const dropFromPeak = peakVal - currentVal;
+  const gradId = 'vxeem-grad';
+  const dropFromPeak = (peakVal - currentVal).toFixed(1);
 
   return (
     <div style={cardStyle}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={labelStyle}>iTraxx Asia IG</span>
-          <InfoTooltip text="CDS spread index across 40 Asian investment-grade names. Wider spreads signal higher perceived default risk." />
+          <span style={labelStyle}>VXEEM EM Vol</span>
+          <InfoTooltip text="CBOE Emerging Markets ETF Volatility Index. Spikes signal heightened fear across EM/ASEAN assets." />
         </span>
-        <span style={valueStyle('#a78bfa')}>{currentVal} bps</span>
+        <span style={valueStyle('#a78bfa')}>
+          {currentVal.toFixed(1)}
+          {live.price !== null && live.changePct !== null && (
+            <span style={{ fontSize: 9, color: live.changePct >= 0 ? '#f87171' : '#4ade80', marginLeft: 3 }}>
+              {live.changePct >= 0 ? '+' : ''}{live.changePct.toFixed(1)}%
+            </span>
+          )}
+          {!currentConfirmed && live.price === null && <span style={{ fontSize: 9, opacity: 0.5 }}> est</span>}
+        </span>
       </div>
       <svg width={W} height={H} overflow="visible">
         <defs>
@@ -293,26 +318,31 @@ function ITraxxChart() {
             <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.02" />
           </linearGradient>
         </defs>
-        <path d={makeAreaPath(ITRAXX, minVal, maxVal)} fill={`url(#${gradId})`} />
+        <path d={makeAreaPath(VXEEM, minVal, maxVal)} fill={`url(#${gradId})`} />
+        {!currentConfirmed && live.price === null && (() => {
+          const n = VXEEM.length;
+          const x1 = ((n - 2) / (n - 1)) * W;
+          const y1 = H - ((VXEEM[n - 2] - minVal) / (maxVal - minVal)) * H;
+          const x2 = W;
+          const y2 = H - ((VXEEM[n - 1] - minVal) / (maxVal - minVal)) * H;
+          return <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="3 2" />;
+        })()}
         <polyline
-          points={makePolyline(ITRAXX, minVal, maxVal)}
+          points={makePolyline(VXEEM.slice(0, VXEEM_CONFIRMED.lastIndexOf(true) + 1), minVal, maxVal)}
           fill="none"
           stroke="#a78bfa"
           strokeWidth="1.5"
           strokeLinejoin="round"
           strokeLinecap="round"
         />
-        {/* Peak annotation top-left */}
         <text x={0} y={9} fontSize={8} fill="#4ade80" fontFamily="monospace">▼ -{dropFromPeak} from peak</text>
-        {/* Peak dot */}
         <circle cx={peakX} cy={peakY} r={3} fill="#a78bfa" />
-        <text x={peakX + 2} y={peakY - 4} fontSize={8} fill="rgba(255,255,255,0.5)" textAnchor="middle">
-          {peakVal}
+        <text x={peakX} y={peakY - 5} fontSize={8} fill="rgba(255,255,255,0.5)" textAnchor="middle">
+          {peakVal.toFixed(1)}
         </text>
-        {/* Final dot */}
         {(() => {
           const finalY = H - ((currentVal - minVal) / (maxVal - minVal)) * H;
-          return <circle cx={W} cy={finalY} r={3} fill="#a78bfa" />;
+          return <circle cx={W} cy={finalY} r={3} fill="#a78bfa" opacity={currentConfirmed ? 1 : 0.6} />;
         })()}
       </svg>
       <DayAxis />
@@ -336,7 +366,7 @@ export default function BottomChartsPanel() {
     >
       <OVXChart />
       <ScenarioChart />
-      <ITraxxChart />
+      <VXEEMChart />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 {
   "_sources": {
-    "ovx": "Yahoo Finance / FRED OVXCLS — D0 uses Feb 27 close (Feb 28 = Saturday); D7/D8 carry D6 (weekend, market closed); D10 estimated from Brent -17.7% de-escalation crash",
-    "itraxx": "D10 confirmed from banker-cross-asset.json (152bp, change1d -16bp implies D9 ~168bp); D6 anchor from runbook Price Narratives (~145bp); D0-D5 and D7-D8 estimated",
+    "ovx": "CBOE CDN OVX_History.csv — D0 uses Feb 27 close (Feb 28 = Saturday); D7/D8 carry D6 (weekend, market closed); D10 live via /api/cboe",
+    "vxeem": "CBOE CDN VXEEM_History.csv — all D0-D9 confirmed from live data; D7/D8 carry D6 (weekend); D10 live via /api/cboe",
     "scenarios": "D10 confirmed from banker-conflict.json; all prior days estimated from narrative context"
   },
   "days": [
@@ -11,8 +11,8 @@
       "note": "Sat — market closed; using Feb 27 close",
       "ovx": 64.68,
       "ovxConfirmed": true,
-      "itraxx": 88,
-      "itraxxConfirmed": false,
+      "vxeem": 25.37,
+      "vxeemConfirmed": true,
       "scenarios": [65, 25, 10],
       "scenariosConfirmed": false
     },
@@ -22,8 +22,8 @@
       "note": "Sun — market closed; carry D0",
       "ovx": 64.68,
       "ovxConfirmed": false,
-      "itraxx": 88,
-      "itraxxConfirmed": false,
+      "vxeem": 25.37,
+      "vxeemConfirmed": false,
       "scenarios": [55, 30, 15],
       "scenariosConfirmed": false
     },
@@ -32,8 +32,8 @@
       "date": "2026-03-02",
       "ovx": 68.90,
       "ovxConfirmed": true,
-      "itraxx": 105,
-      "itraxxConfirmed": false,
+      "vxeem": 27.35,
+      "vxeemConfirmed": true,
       "scenarios": [45, 35, 20],
       "scenariosConfirmed": false
     },
@@ -42,8 +42,8 @@
       "date": "2026-03-03",
       "ovx": 73.99,
       "ovxConfirmed": true,
-      "itraxx": 118,
-      "itraxxConfirmed": false,
+      "vxeem": 36.08,
+      "vxeemConfirmed": true,
       "scenarios": [40, 38, 22],
       "scenariosConfirmed": false
     },
@@ -52,8 +52,8 @@
       "date": "2026-03-04",
       "ovx": 75.20,
       "ovxConfirmed": true,
-      "itraxx": 128,
-      "itraxxConfirmed": false,
+      "vxeem": 31.89,
+      "vxeemConfirmed": true,
       "scenarios": [38, 40, 22],
       "scenariosConfirmed": false
     },
@@ -62,8 +62,8 @@
       "date": "2026-03-05",
       "ovx": 83.83,
       "ovxConfirmed": true,
-      "itraxx": 138,
-      "itraxxConfirmed": false,
+      "vxeem": 33.71,
+      "vxeemConfirmed": true,
       "scenarios": [35, 42, 23],
       "scenariosConfirmed": false
     },
@@ -72,8 +72,8 @@
       "date": "2026-03-06",
       "ovx": 103.60,
       "ovxConfirmed": true,
-      "itraxx": 145,
-      "itraxxConfirmed": false,
+      "vxeem": 37.09,
+      "vxeemConfirmed": true,
       "scenarios": [33, 44, 23],
       "scenariosConfirmed": false
     },
@@ -83,41 +83,40 @@
       "note": "Sat — market closed; carry D6",
       "ovx": 103.60,
       "ovxConfirmed": false,
-      "itraxx": 152,
-      "itraxxConfirmed": false,
+      "vxeem": 37.09,
+      "vxeemConfirmed": false,
       "scenarios": [30, 47, 23],
       "scenariosConfirmed": false
     },
     {
       "day": "D8",
       "date": "2026-03-08",
-      "note": "Sun — market closed; carry D6. D9 open spiked to 118.38 high, showing weekend escalation was priced in at open",
+      "note": "Sun — market closed; carry D6",
       "ovx": 103.60,
       "ovxConfirmed": false,
-      "itraxx": 158,
-      "itraxxConfirmed": false,
+      "vxeem": 37.09,
+      "vxeemConfirmed": false,
       "scenarios": [25, 52, 23],
       "scenariosConfirmed": false
     },
     {
       "day": "D9",
       "date": "2026-03-09",
-      "note": "Opened 111.73, hit 118.38 intraday high before closing lower — weekend escalation priced in then partially unwound",
       "ovx": 100.53,
       "ovxConfirmed": true,
-      "itraxx": 168,
-      "itraxxConfirmed": false,
+      "vxeem": 33.37,
+      "vxeemConfirmed": true,
       "scenarios": [22, 54, 24],
       "scenariosConfirmed": false
     },
     {
       "day": "D10",
       "date": "2026-03-10",
-      "note": "OVX estimated from Brent -17.7% crash on Trump de-escalation signal; iTraxx confirmed from banker-cross-asset.json (change1d -16bp corroborates D9=168bp)",
+      "note": "OVX and VXEEM live via CBOE CDN; estimated until market close",
       "ovx": 72.0,
       "ovxConfirmed": false,
-      "itraxx": 152,
-      "itraxxConfirmed": true,
+      "vxeem": 27.0,
+      "vxeemConfirmed": false,
       "scenarios": [28, 50, 22],
       "scenariosConfirmed": true
     }
