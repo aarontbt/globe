@@ -1,6 +1,8 @@
 {
   "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/api/cboe/:path*",   "destination": "https://cdn.cboe.com/:path*" },
+    { "source": "/api/reddit/:path*", "destination": "https://www.reddit.com/:path*" },
+    { "source": "/((?!api/).*)",      "destination": "/index.html" }
   ],
   "headers": [
     {
