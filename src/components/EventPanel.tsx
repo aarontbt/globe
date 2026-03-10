@@ -538,7 +538,7 @@ export default function EventPanel({
         backdropFilter: "blur(12px)",
         border: "1px solid rgba(255,255,255,0.08)",
         borderTop: "none",
-        borderBottom: "none",
+        borderRadius: "0 0 12px 12px",
         padding: "10px 12px",
         scrollbarWidth: "thin",
         scrollbarColor: "rgba(255,255,255,0.12) transparent",
@@ -567,25 +567,6 @@ export default function EventPanel({
         )}
       </div>
 
-      {/* Footer */}
-      <div style={{
-        background: "rgba(10,14,23,0.92)",
-        backdropFilter: "blur(12px)",
-        borderRadius: "0 0 12px 12px",
-        padding: "10px 16px",
-        border: "1px solid rgba(255,255,255,0.08)",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}>
-        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)" }}>
-          Click event on globe or card to expand
-        </span>
-        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)" }}>
-          % = Polymarket / signal strength
-        </span>
-      </div>
     </div>
   );
 }

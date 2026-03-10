@@ -36,6 +36,7 @@ import MarketsWidget from "./MarketsWidget";
 import NewsWidget from "./NewsWidget";
 import LiveFeedWidget from "./LiveFeedWidget";
 import MarketBriefOverlay from "./market-brief/MarketBriefOverlay";
+import BottomChartsPanel from "./BottomChartsPanel";
 import { useMarkets } from "../hooks/useMarkets";
 import { useNews } from "../hooks/useNews";
 import type { LayerVisibility } from "./LayerTogglePanel";
@@ -572,6 +573,7 @@ export default function GlobeView() {
         <PerformanceMonitor deckRenderMsRef={deckRenderMsRef} />
       </div>
 
+      <BottomChartsPanel />
       <MarketBriefOverlay />
     </div>
   );

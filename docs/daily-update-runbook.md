@@ -14,6 +14,7 @@
 | `src/data/banker-trade-ideas.json` | Trade Ideas | Daily or on major event |
 | `src/data/banker-sanctions.json` | Sanctions Tracker | On new designation events |
 | `src/hooks/useMarkets.ts` | Ticker bar (fallback quotes) | Daily |
+| `src/components/BottomChartsPanel.tsx` | Bottom volatility charts (OVX, Scenarios, iTraxx) | Daily (closing update) |
 
 ---
 
@@ -410,6 +411,7 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - [ ] **Intel events — title hygiene**: Replace `sec-005` title with today's single top security event (≤8 words); do not accumulate prior event names in the title
 - [ ] **Intel events — retirement check**: Flag any event with probability <15% or a resolved thesis; confirm before deleting
 - [ ] **Trade ideas — retirement check**: Remove any idea whose stop-loss was hit or thesis has reversed; do not archive, just delete
+- [ ] **BottomChartsPanel**: Append one value to each of `DAYS`, `OVX`, `SCENARIOS`, `ITRAXX` in `src/components/BottomChartsPanel.tsx`; verify `SCENARIOS` entry sums to 100 and matches `banker-conflict.json`
 - [ ] **Runbook Price Narratives**: Update Brent, JKM, TTF, credit baseline lines to match today's cross-asset data
 - [ ] **Runbook Crisis Timeline**: Append today's headline in one line; keep entries to ≤25 words each
 - [ ] **Sanctions**: Check for overnight OFAC/EU announcements; update `s0` description if MAS/SGX actions occurred
@@ -461,6 +463,7 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - **Day 7**: Mar 7 — IAF strikes 400+ targets including Mehrabad Airport and Tehran fuel depots; oil posts biggest weekly gain in futures trading history (CNBC); Brent approaches $90+
 - **Day 8**: Mar 8 — Mojtaba Khamenei elected Supreme Leader; Iranian FM rejects ceasefire; Iraq output -60% (Bloomberg); Kuwait cuts begin; Saudi Arabia struck; JP Morgan: 4.7M bpd GCC shut-in within 2 weeks; Brent ~$104
 - **Day 9**: Mar 9 — Brent $106.40 (+63% from pre-shock); Qatar loads first LNG cargo since force majeure but full restart contingent on war end; no ceasefire signal; GCC supply collapse accelerating
+- **Day 10**: Mar 10 — Kuwait confirms full output suspension; GCC deficit 5.2M bpd; IRGC seizes VLCC Pacific Gallant (28 crew held); UN ceasefire veto (Russia/China); Brent $109.80
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -468,10 +471,29 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $83.50 peak (Day 4) → $85.60 (Day 6) → $106.40 (Day 9, +24.4%); Iraq output -60% + Kuwait cuts driving latest surge; CNBC: "biggest weekly gain in futures history dating back to 1983"
-- **JKM LNG**: Baseline $9.5 → $15.1 (Day 2) → $17.80 (Day 6) → $15.50 (Day 9, -1.5%); Qatar first cargo loaded since force majeure (partial restart); full restart contingent on conflict end; spot price moderated on partial supply signal
-- **TTF Gas**: Pre-shock ~$34/MWh → €55.40 (Day 6) → €52.80/MWh (Day 9, -4.7%); partial Qatar restart and Atlantic Basin rerouting moderating European benchmark; storage drawdown risk persists
-- **Credit**: iTraxx Asia IG pre-shock ~100bp → 145bp (Day 6) → 158bp est. (Day 9, +13bp est.); ASEAN HY → 485bp est. (+25bp est.); ceasefire rejection and Iraq collapse driving widening
+- **Brent**: Pre-shock ~$65 → $83.50 peak (Day 4) → $106.40 (Day 9) → $109.80 (Day 10, +3.2%); Kuwait full output suspension confirmed; GCC supply deficit 5.2M bpd; CNBC: "biggest weekly gain in futures history dating back to 1983"
+- **JKM LNG**: Baseline $9.5 → $17.80 (Day 6) → $15.50 (Day 9) → $16.20 (Day 10, +4.5%); re-spiking as Kuwait halt and UN veto extend supply shock horizon; Qatar single cargo only — full restart contingent on conflict end
+- **TTF Gas**: Pre-shock ~$34/MWh → €55.40 (Day 6) → €52.80 (Day 9) → €54.20/MWh (Day 10, +2.7%); Kuwait halt triggers fresh European supply anxiety; storage drawdown risk persists
+- **Credit**: iTraxx Asia IG pre-shock ~100bp → 145bp (Day 6) → 158bp est. (Day 9) → 168bp est. (Day 10, +10bp est.); ASEAN HY → 508bp est. (+23bp est.); UN veto and VLCC seizure compounding widening
+
+### BottomChartsPanel.tsx Constants (update daily at close)
+
+Three hardcoded arrays in `src/components/BottomChartsPanel.tsx` track the 10-day crisis timeline. Append one value each day (array length grows from 11 → 12 → …):
+
+| Array | Unit | Source |
+|-------|------|--------|
+| `OVX` | Implied vol % proxy | Derive from Brent 1M implied vol or VIX analogue; estimate directionally if not confirmed |
+| `SCENARIOS` | `[Base%, Stress%, Tail%]` — must sum to 100 | Match `banker-conflict.json` scenario probabilities exactly |
+| `ITRAXX` | iTraxx Asia IG (bps) | Match `banker-cross-asset.json` credit spreads entry |
+| `DAYS` | Label string (`'D11'`, `'D12'`, …) | Append matching day label |
+
+**Rules:**
+- `SCENARIOS[i]` must always match the `banker-conflict.json` scenario probabilities for that day — keep them in sync.
+- `ITRAXX` final value must match the `current` field in the iTraxx Asia IG cross-asset entry.
+- Update `DAYS` in lockstep — all four arrays must have the same length.
+- The peak annotation (`▼ -N from peak`) auto-calculates from the array max; no manual edit needed.
+
+---
 
 ### MarketsWidget.tsx Constants (update when scenario shifts)
 
