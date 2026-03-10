@@ -1,12 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import volatilityData from "../data/charts-volatility.json";
 
 const entries = volatilityData.days;
 const DAYS     = entries.map(d => d.day);
-const OVX      = entries.map(d => d.ovx);
+const BASE_OVX = entries.map(d => d.ovx);
 const SCENARIOS = entries.map(d => d.scenarios as [number, number, number]);
 const ITRAXX   = entries.map(d => d.itraxx);
-const OVX_CONFIRMED = entries.map(d => d.ovxConfirmed);
+const BASE_OVX_CONFIRMED = entries.map(d => d.ovxConfirmed);
+
+interface OVXLiveData {
+  price: number | null;
+  change: number | null;
+  changePct: number | null;
+  loading: boolean;
+  error: boolean;
+}
+
+function useOVXLive(): OVXLiveData {
+  const [data, setData] = useState<OVXLiveData>({ price: null, change: null, changePct: null, loading: true, error: false });
+
+  useEffect(() => {
+    let cancelled = false;
+    const fetch_ = async () => {
+      try {
+        const res = await fetch(
+          "/api/yahoo/v8/finance/chart/%5EOVX?interval=1d&range=5d&includePrePost=false",
+          { headers: { Accept: "application/json" } }
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        const result = json?.chart?.result?.[0];
+        const meta = result?.meta;
+        if (!meta) throw new Error("no meta");
+        const price = meta.regularMarketPrice ?? meta.chartPreviousClose ?? null;
+        const prev = meta.chartPreviousClose ?? meta.previousClose ?? null;
+        const change = price !== null && prev !== null ? +(price - prev).toFixed(2) : null;
+        const changePct = price !== null && prev !== null ? +((price - prev) / prev * 100).toFixed(2) : null;
+        if (!cancelled) setData({ price, change, changePct, loading: false, error: false });
+      } catch {
+        if (!cancelled) setData(d => ({ ...d, loading: false, error: true }));
+      }
+    };
+    fetch_();
+    return () => { cancelled = true; };
+  }, []);
+
+  return data;
+}
 
 function InfoTooltip({ text }: { text: string }) {
   const [visible, setVisible] = useState(false);
@@ -96,10 +136,21 @@ function DayAxis() {
 }
 
 function OVXChart() {
+  const live = useOVXLive();
   const minVal = 0;
   const maxVal = 130;
+
+  // Merge live price into last slot if available
+  const OVX = live.price !== null
+    ? [...BASE_OVX.slice(0, -1), live.price]
+    : BASE_OVX;
+  const OVX_CONFIRMED = live.price !== null
+    ? [...BASE_OVX_CONFIRMED.slice(0, -1), true]
+    : BASE_OVX_CONFIRMED;
+
   const currentVal = OVX[OVX.length - 1];
   const currentConfirmed = OVX_CONFIRMED[OVX_CONFIRMED.length - 1];
+  const isLive = live.price !== null && !live.error;
   const peakIdx = OVX.indexOf(Math.max(...OVX));
   const peakX = (peakIdx / (OVX.length - 1)) * W;
   const peakY = H - ((OVX[peakIdx] - minVal) / (maxVal - minVal)) * H;
@@ -114,7 +165,13 @@ function OVXChart() {
           <InfoTooltip text="30-day implied volatility on crude oil options. Higher readings mean markets expect larger Brent price swings." />
         </span>
         <span style={valueStyle(currentColor)}>
-          {currentVal.toFixed(1)}{!currentConfirmed && <span style={{ fontSize: 9, opacity: 0.5 }}> est</span>}
+          {currentVal.toFixed(1)}
+          {isLive && live.changePct !== null && (
+            <span style={{ fontSize: 9, color: live.changePct >= 0 ? '#f87171' : '#4ade80', marginLeft: 3 }}>
+              {live.changePct >= 0 ? '+' : ''}{live.changePct.toFixed(1)}%
+            </span>
+          )}
+          {!currentConfirmed && !isLive && <span style={{ fontSize: 9, opacity: 0.5 }}> est</span>}
         </span>
       </div>
       <svg width={W} height={H} overflow="visible">
