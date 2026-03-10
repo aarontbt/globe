@@ -9,45 +9,67 @@ const BASE_VXEEM = entries.map(d => d.vxeem);
 const BASE_OVX_CONFIRMED = entries.map(d => d.ovxConfirmed);
 const BASE_VXEEM_CONFIRMED = entries.map(d => d.vxeemConfirmed);
 
-interface OVXLiveData {
+const CBOE_BASE = "/api/cboe/api/global/us_indices/daily_prices";
+const CBOE_OVX_URL = `${CBOE_BASE}/OVX_History.csv`;
+const CBOE_VXEEM_URL = `${CBOE_BASE}/VXEEM_History.csv`;
+
+interface CBOELiveData {
   price: number | null;
-  change: number | null;
   changePct: number | null;
   loading: boolean;
   error: boolean;
 }
 
-function useOVXLive(url: string = "/api/cboe/api/global/us_indices/daily_prices/OVX_History.csv"): OVXLiveData {
-  const [data, setData] = useState<OVXLiveData>({ price: null, change: null, changePct: null, loading: true, error: false });
+function useCBOELive(url: string): CBOELiveData {
+  const [data, setData] = useState<CBOELiveData>({ price: null, changePct: null, loading: true, error: false });
 
   useEffect(() => {
     let cancelled = false;
-    const fetch_ = async () => {
+    const load = async () => {
       try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        // Fetch only the last ~1500 bytes — enough for 2 recent rows
+        const res = await fetch(url, { headers: { Range: "bytes=-1500" } });
+        if (!res.ok && res.status !== 206) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
         const lines = text.trim().split("\n").filter(l => l && !l.startsWith("DATE"));
         if (lines.length < 2) throw new Error("insufficient data");
         const parseClose = (line: string) => {
           const parts = line.split(",");
-          // VXEEM has OPEN,HIGH,LOW,CLOSE (4 cols after DATE); OVX has just CLOSE (1 col)
-          return parseFloat(parts[parts.length - 1]);
+          const val = parseFloat(parts[parts.length - 1]);
+          if (isNaN(val)) throw new Error(`invalid value: ${line}`);
+          return val;
         };
         const price = parseClose(lines[lines.length - 1]);
         const prev = parseClose(lines[lines.length - 2]);
-        const change = +(price - prev).toFixed(2);
         const changePct = +((price - prev) / prev * 100).toFixed(2);
-        if (!cancelled) setData({ price, change, changePct, loading: false, error: false });
-      } catch {
+        if (!cancelled) setData({ price, changePct, loading: false, error: false });
+      } catch (err) {
+        console.error(`[useCBOELive] fetch failed for ${url}:`, err);
         if (!cancelled) setData(d => ({ ...d, loading: false, error: true }));
       }
     };
-    fetch_();
+    load();
     return () => { cancelled = true; };
   }, [url]);
 
   return data;
+}
+
+function mergeLatestPrice(base: number[], confirmed: boolean[], livePrice: number | null) {
+  if (livePrice === null) return { data: base, confirmed };
+  return {
+    data: [...base.slice(0, -1), livePrice],
+    confirmed: [...confirmed.slice(0, -1), true],
+  };
+}
+
+function ChangePercent({ changePct, show }: { changePct: number | null; show: boolean }) {
+  if (!show || changePct === null) return null;
+  return (
+    <span style={{ fontSize: 9, color: changePct >= 0 ? '#f87171' : '#4ade80', marginLeft: 3 }}>
+      {changePct >= 0 ? '+' : ''}{changePct.toFixed(1)}%
+    </span>
+  );
 }
 
 function InfoTooltip({ text }: { text: string }) {
@@ -138,18 +160,11 @@ function DayAxis() {
 }
 
 function OVXChart() {
-  const live = useOVXLive();
+  const live = useCBOELive(CBOE_OVX_URL);
   const minVal = 0;
   const maxVal = 130;
 
-  // Merge live price into last slot if available
-  const OVX = live.price !== null
-    ? [...BASE_OVX.slice(0, -1), live.price]
-    : BASE_OVX;
-  const OVX_CONFIRMED = live.price !== null
-    ? [...BASE_OVX_CONFIRMED.slice(0, -1), true]
-    : BASE_OVX_CONFIRMED;
-
+  const { data: OVX, confirmed: OVX_CONFIRMED } = mergeLatestPrice(BASE_OVX, BASE_OVX_CONFIRMED, live.price);
   const currentVal = OVX[OVX.length - 1];
   const currentConfirmed = OVX_CONFIRMED[OVX_CONFIRMED.length - 1];
   const isLive = live.price !== null && !live.error;
@@ -157,7 +172,6 @@ function OVXChart() {
   const peakX = (peakIdx / (OVX.length - 1)) * W;
   const peakY = H - ((OVX[peakIdx] - minVal) / (maxVal - minVal)) * H;
   const currentColor = currentVal < 80 ? '#4ade80' : '#f59e0b';
-  const gradId = 'ovx-grad';
 
   return (
     <div style={cardStyle}>
@@ -168,23 +182,18 @@ function OVXChart() {
         </span>
         <span style={valueStyle(currentColor)}>
           {currentVal.toFixed(1)}
-          {isLive && live.changePct !== null && (
-            <span style={{ fontSize: 9, color: live.changePct >= 0 ? '#f87171' : '#4ade80', marginLeft: 3 }}>
-              {live.changePct >= 0 ? '+' : ''}{live.changePct.toFixed(1)}%
-            </span>
-          )}
+          <ChangePercent changePct={live.changePct} show={isLive} />
           {!currentConfirmed && !isLive && <span style={{ fontSize: 9, opacity: 0.5 }}> est</span>}
         </span>
       </div>
       <svg width={W} height={H} overflow="visible">
         <defs>
-          <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id="ovx-grad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.35" />
             <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.02" />
           </linearGradient>
         </defs>
-        <path d={makeAreaPath(OVX, minVal, maxVal)} fill={`url(#${gradId})`} />
-        {/* Dashed segment for estimated final point */}
+        <path d={makeAreaPath(OVX, minVal, maxVal)} fill="url(#ovx-grad)" />
         {!currentConfirmed && (() => {
           const n = OVX.length;
           const x1 = ((n - 2) / (n - 1)) * W;
@@ -195,18 +204,12 @@ function OVXChart() {
         })()}
         <polyline
           points={makePolyline(OVX.slice(0, OVX_CONFIRMED.lastIndexOf(true) + 1), minVal, maxVal)}
-          fill="none"
-          stroke="#f59e0b"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-          strokeLinecap="round"
+          fill="none" stroke="#f59e0b" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round"
         />
-        {/* Peak dot */}
         <circle cx={peakX} cy={peakY} r={3} fill="#f59e0b" />
         <text x={peakX} y={peakY - 5} fontSize={8} fill="rgba(255,255,255,0.5)" textAnchor="middle">
           {OVX[peakIdx].toFixed(0)}
         </text>
-        {/* Final dot */}
         {(() => {
           const finalY = H - ((currentVal - minVal) / (maxVal - minVal)) * H;
           return <circle cx={W} cy={finalY} r={3} fill={currentColor} opacity={currentConfirmed ? 1 : 0.6} />;
@@ -243,13 +246,8 @@ function ScenarioChart() {
                 const w = (pct / 100) * W;
                 const rect = (
                   <rect
-                    key={j}
-                    x={x}
-                    y={i * barH + 0.5}
-                    width={w}
-                    height={barH - 1}
-                    fill={colors[j]}
-                    opacity={i === SCENARIOS.length - 1 ? 0.85 : 0.45}
+                    key={j} x={x} y={i * barH + 0.5} width={w} height={barH - 1}
+                    fill={colors[j]} opacity={i === SCENARIOS.length - 1 ? 0.85 : 0.45}
                   />
                 );
                 x += w;
@@ -272,26 +270,18 @@ function ScenarioChart() {
 }
 
 function VXEEMChart() {
-  const live = useOVXLive(
-    "/api/cboe/api/global/us_indices/daily_prices/VXEEM_History.csv"
-  );
+  const live = useCBOELive(CBOE_VXEEM_URL);
   const minVal = 15;
   const maxVal = 50;
 
-  const VXEEM = live.price !== null
-    ? [...BASE_VXEEM.slice(0, -1), live.price]
-    : BASE_VXEEM;
-  const VXEEM_CONFIRMED = live.price !== null
-    ? [...BASE_VXEEM_CONFIRMED.slice(0, -1), true]
-    : BASE_VXEEM_CONFIRMED;
-
+  const { data: VXEEM, confirmed: VXEEM_CONFIRMED } = mergeLatestPrice(BASE_VXEEM, BASE_VXEEM_CONFIRMED, live.price);
   const currentVal = VXEEM[VXEEM.length - 1];
   const currentConfirmed = VXEEM_CONFIRMED[VXEEM_CONFIRMED.length - 1];
+  const isLive = live.price !== null && !live.error;
   const peakVal = Math.max(...VXEEM);
   const peakIdx = VXEEM.indexOf(peakVal);
   const peakX = (peakIdx / (VXEEM.length - 1)) * W;
   const peakY = H - ((peakVal - minVal) / (maxVal - minVal)) * H;
-  const gradId = 'vxeem-grad';
   const dropFromPeak = (peakVal - currentVal).toFixed(1);
 
   return (
@@ -303,23 +293,19 @@ function VXEEMChart() {
         </span>
         <span style={valueStyle('#a78bfa')}>
           {currentVal.toFixed(1)}
-          {live.price !== null && live.changePct !== null && (
-            <span style={{ fontSize: 9, color: live.changePct >= 0 ? '#f87171' : '#4ade80', marginLeft: 3 }}>
-              {live.changePct >= 0 ? '+' : ''}{live.changePct.toFixed(1)}%
-            </span>
-          )}
-          {!currentConfirmed && live.price === null && <span style={{ fontSize: 9, opacity: 0.5 }}> est</span>}
+          <ChangePercent changePct={live.changePct} show={isLive} />
+          {!currentConfirmed && !isLive && <span style={{ fontSize: 9, opacity: 0.5 }}> est</span>}
         </span>
       </div>
       <svg width={W} height={H} overflow="visible">
         <defs>
-          <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id="vxeem-grad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.35" />
             <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.02" />
           </linearGradient>
         </defs>
-        <path d={makeAreaPath(VXEEM, minVal, maxVal)} fill={`url(#${gradId})`} />
-        {!currentConfirmed && live.price === null && (() => {
+        <path d={makeAreaPath(VXEEM, minVal, maxVal)} fill="url(#vxeem-grad)" />
+        {!currentConfirmed && (() => {
           const n = VXEEM.length;
           const x1 = ((n - 2) / (n - 1)) * W;
           const y1 = H - ((VXEEM[n - 2] - minVal) / (maxVal - minVal)) * H;
@@ -329,11 +315,7 @@ function VXEEMChart() {
         })()}
         <polyline
           points={makePolyline(VXEEM.slice(0, VXEEM_CONFIRMED.lastIndexOf(true) + 1), minVal, maxVal)}
-          fill="none"
-          stroke="#a78bfa"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-          strokeLinecap="round"
+          fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round"
         />
         <text x={0} y={9} fontSize={8} fill="#4ade80" fontFamily="monospace">▼ -{dropFromPeak} from peak</text>
         <circle cx={peakX} cy={peakY} r={3} fill="#a78bfa" />
