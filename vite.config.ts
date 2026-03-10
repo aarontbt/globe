@@ -47,6 +47,15 @@ export default defineConfig({
           "Accept": "text/plain",
         },
       },
+      "/api/cboe": {
+        target: "https://cdn.cboe.com",
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api\/cboe/, ""),
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+          "Referer": "https://www.cboe.com/",
+        },
+      },
       "/api/stooq": {
         target: "https://stooq.com",
         changeOrigin: true,

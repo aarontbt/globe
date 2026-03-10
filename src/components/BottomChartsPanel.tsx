@@ -23,19 +23,16 @@ function useOVXLive(): OVXLiveData {
     let cancelled = false;
     const fetch_ = async () => {
       try {
-        const res = await fetch(
-          "/api/yahoo/v8/finance/chart/%5EOVX?interval=1d&range=5d&includePrePost=false",
-          { headers: { Accept: "application/json" } }
-        );
+        const res = await fetch("/api/cboe/api/global/us_indices/daily_prices/OVX_History.csv");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-        const result = json?.chart?.result?.[0];
-        const meta = result?.meta;
-        if (!meta) throw new Error("no meta");
-        const price = meta.regularMarketPrice ?? meta.chartPreviousClose ?? null;
-        const prev = meta.chartPreviousClose ?? meta.previousClose ?? null;
-        const change = price !== null && prev !== null ? +(price - prev).toFixed(2) : null;
-        const changePct = price !== null && prev !== null ? +((price - prev) / prev * 100).toFixed(2) : null;
+        const text = await res.text();
+        const lines = text.trim().split("\n").filter(l => l && !l.startsWith("DATE"));
+        if (lines.length < 2) throw new Error("insufficient data");
+        const parseClose = (line: string) => parseFloat(line.split(",")[1]);
+        const price = parseClose(lines[lines.length - 1]);
+        const prev = parseClose(lines[lines.length - 2]);
+        const change = +(price - prev).toFixed(2);
+        const changePct = +((price - prev) / prev * 100).toFixed(2);
         if (!cancelled) setData({ price, change, changePct, loading: false, error: false });
       } catch {
         if (!cancelled) setData(d => ({ ...d, loading: false, error: true }));
