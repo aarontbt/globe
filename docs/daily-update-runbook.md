@@ -14,7 +14,7 @@
 | `src/data/banker-trade-ideas.json` | Trade Ideas | Daily or on major event |
 | `src/data/banker-sanctions.json` | Sanctions Tracker | On new designation events |
 | `src/hooks/useMarkets.ts` | Ticker bar (fallback quotes) | Daily |
-| `src/components/BottomChartsPanel.tsx` | Bottom volatility charts (OVX, Scenarios, iTraxx) | Daily (closing update) |
+| `src/data/charts-volatility.json` | Bottom volatility charts (OVX, VXEEM, Scenarios) | OVX + VXEEM fetch live from CBOE on load; only Scenarios need manual daily update |
 
 ---
 
@@ -59,7 +59,8 @@
 | Gold | Trading Economics, MarketWatch | Investing.com |
 | EM FX (SGD, IDR, MYR, THB, PHP) | Reuters, Bloomberg FX | xe.com (directional only) |
 | EM Rates | Bloomberg sovereign pages, Investing.com | Reuters |
-| iTraxx Asia IG | Markit, Bloomberg `ITRXAXIG5Y` | Reuters |
+| OVX | CBOE CDN (`OVX_History.csv`) — fetched live on page load | charts-volatility.json fallback |
+| VXEEM | CBOE CDN (`VXEEM_History.csv`) — fetched live on page load | charts-volatility.json fallback |
 | Geopolitical events | Reuters, AP, Al Jazeera, Long War Journal, Axios, FT | PBS NewsHour, Washington Post |
 | AIS/shipping data | VT Markets, MarineLink, SSY/Argus | Bloomberg shipping |
 
@@ -132,7 +133,7 @@
 
 1. **Energy** — Brent, TTF Gas, JKM LNG
 2. **EM Rates** — Indonesia 10Y, Philippines 10Y, Thailand 10Y
-3. **Credit Spreads** — iTraxx Asia ex-Japan IG (bp), ASEAN HY Composite (bp)
+3. **Credit Spreads** — iTraxx Asia ex-Japan IG (bp), ASEAN HY Composite (bp) *(cross-asset panel only; bottom chart uses live VXEEM)*
 4. **EM FX** — USD/SGD, USD/IDR, USD/MYR, USD/THB, USD/PHP
 5. **Equity Sectors** — ASEAN Energy Equities (idx), Regional Shipping (idx), ASEAN Banks (idx)
 
@@ -411,7 +412,7 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - [ ] **Intel events — title hygiene**: Replace `sec-005` title with today's single top security event (≤8 words); do not accumulate prior event names in the title
 - [ ] **Intel events — retirement check**: Flag any event with probability <15% or a resolved thesis; confirm before deleting
 - [ ] **Trade ideas — retirement check**: Remove any idea whose stop-loss was hit or thesis has reversed; do not archive, just delete
-- [ ] **BottomChartsPanel**: Append one value to each of `DAYS`, `OVX`, `SCENARIOS`, `ITRAXX` in `src/components/BottomChartsPanel.tsx`; verify `SCENARIOS` entry sums to 100 and matches `banker-conflict.json`
+- [ ] **BottomChartsPanel — Scenarios only**: In `src/data/charts-volatility.json`, append one entry to `days` with the new `scenarios` array (must sum to 100 and match `banker-conflict.json`). **OVX and VXEEM are fetched live from CBOE on page load — no manual update needed.**
 - [ ] **Runbook Price Narratives**: Update Brent, JKM, TTF, credit baseline lines to match today's cross-asset data
 - [ ] **Runbook Crisis Timeline**: Append today's headline in one line; keep entries to ≤25 words each
 - [ ] **Sanctions**: Check for overnight OFAC/EU announcements; update `s0` description if MAS/SGX actions occurred
@@ -476,22 +477,30 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - **TTF Gas**: Pre-shock ~$34/MWh → €55.40 (Day 6) → €52.80 (Day 9) → €54.20/MWh (Day 10, +2.7%); Kuwait halt triggers fresh European supply anxiety; storage drawdown risk persists
 - **Credit**: iTraxx Asia IG pre-shock ~100bp → 145bp (Day 6) → 158bp est. (Day 9) → 168bp est. (Day 10, +10bp est.); ASEAN HY → 508bp est. (+23bp est.); UN veto and VLCC seizure compounding widening
 
-### BottomChartsPanel.tsx Constants (update daily at close)
+### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
-Three hardcoded arrays in `src/components/BottomChartsPanel.tsx` track the 10-day crisis timeline. Append one value each day (array length grows from 11 → 12 → …):
+**OVX and VXEEM are fetched live from CBOE CDN on page load** — no manual update needed for these.
 
-| Array | Unit | Source |
-|-------|------|--------|
-| `OVX` | Implied vol % proxy | Derive from Brent 1M implied vol or VIX analogue; estimate directionally if not confirmed |
-| `SCENARIOS` | `[Base%, Stress%, Tail%]` — must sum to 100 | Match `banker-conflict.json` scenario probabilities exactly |
-| `ITRAXX` | iTraxx Asia IG (bps) | Match `banker-cross-asset.json` credit spreads entry |
-| `DAYS` | Label string (`'D11'`, `'D12'`, …) | Append matching day label |
+Only the `scenarios` array requires a manual daily entry. Append one object to the `days` array:
+
+```json
+{
+  "day": "D11",
+  "date": "2026-03-11",
+  "ovx": 0,
+  "ovxConfirmed": false,
+  "vxeem": 0,
+  "vxeemConfirmed": false,
+  "scenarios": [30, 48, 22],
+  "scenariosConfirmed": true
+}
+```
 
 **Rules:**
-- `SCENARIOS[i]` must always match the `banker-conflict.json` scenario probabilities for that day — keep them in sync.
-- `ITRAXX` final value must match the `current` field in the iTraxx Asia IG cross-asset entry.
-- Update `DAYS` in lockstep — all four arrays must have the same length.
-- The peak annotation (`▼ -N from peak`) auto-calculates from the array max; no manual edit needed.
+- `scenarios` must sum to **100** and match `banker-conflict.json` scenario probabilities exactly.
+- Set `ovx` / `vxeem` to the previous day's close as a fallback (used if CBOE fetch fails); set `Confirmed: false` so the dashed line renders correctly until live data loads.
+- Update `DAYS` label (`D11`, `D12`, …) in lockstep.
+- The peak annotation (`▼ -N from peak`) auto-calculates — no manual edit needed.
 
 ---
 
