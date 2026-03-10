@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "108–128";
-const SUSTAINED_PRICE = "155";
-const TOP_ALERT = "IRAQ OUTPUT −60%; MOJTABA KHAMENEI ELECTED SUPREME LEADER — Ceasefire rejected; Brent $106 (+24%); GCC shut-in 4.7M bpd";
+const NEAR_TERM_RANGE = "95–110";
+const SUSTAINED_PRICE = "145";
+const TOP_ALERT = "TRUMP SIGNALS WAR MAY END — Brent -17.7% to $90.35; PHP/IDR/THB rally; Kuwait halt continues; Hormuz ~5 transits/day";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
