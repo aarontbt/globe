@@ -144,6 +144,8 @@ export interface CrisisVessel {
   status: VesselStatus;
   destination: string;
   narrative: string;
+  photoUrl?: string;
+  photoCredit?: string;
   trail: [number, number][]; // last 5 positions, oldest first; empty for AIS-off vessels
 }
 

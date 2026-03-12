@@ -418,8 +418,19 @@ export default function GlobeView() {
       const typeLabel = TYPE_LABELS[v.type] ?? v.type;
       const statusColor = v.status === "ais-off" ? "#ef4444" : v.status === "anchored" ? "#fbbf24" : "#86efac";
       const speedStr = v.status === "ais-off" ? "AIS OFF" : `${v.speed.toFixed(1)} kts`;
+      const photoBlock = v.photoUrl
+        ? `<div style="margin-bottom:10px">
+            <img
+              src="${v.photoUrl}"
+              alt="${v.name}"
+              style="display:block;width:100%;height:132px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"
+            />
+            ${v.photoCredit ? `<div style="font-size:10px;color:rgba(255,255,255,0.38);margin-top:4px">Photo: ${v.photoCredit}</div>` : ""}
+          </div>`
+        : "";
       return {
         html: `<div style="font-family:${FONT_SANS};padding:4px 0;min-width:220px;max-width:280px">
+          ${photoBlock}
           <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:3px">
             <span style="font-weight:700;font-size:13px;color:#fff">${v.name}</span>
           </div>

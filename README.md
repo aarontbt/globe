@@ -83,6 +83,8 @@ Files under [`src/data`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/dat
 
 The operational runbook for those updates lives in [`docs/daily-update-runbook.md`](/Users/xenohawk/Downloads/rainmarket-demo/globe/docs/daily-update-runbook.md).
 
+`src/data/crisis-vessels.json` also supports optional `photoUrl` and `photoCredit` fields on each vessel. Use a public asset path such as `/vessels/pacific-grace.jpg` or a fully qualified image URL to show a vessel photo in the crisis-vessel hover card.
+
 ### 2. Live overlay data
 
 Hooks and services under [`src/hooks`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/hooks) and [`src/services`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/services) fetch live data and normalize it into the UI.
