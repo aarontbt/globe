@@ -465,6 +465,8 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - **Day 8**: Mar 8 — Mojtaba Khamenei elected Supreme Leader; Iranian FM rejects ceasefire; Iraq output -60% (Bloomberg); Kuwait cuts begin; Saudi Arabia struck; JP Morgan: 4.7M bpd GCC shut-in within 2 weeks; Brent ~$104
 - **Day 9**: Mar 9 — Brent $106.40 (+63% from pre-shock); Qatar loads first LNG cargo since force majeure but full restart contingent on war end; no ceasefire signal; GCC supply collapse accelerating
 - **Day 10**: Mar 10 — Kuwait confirms full output suspension; GCC deficit 5.2M bpd; IRGC seizes VLCC Pacific Gallant (28 crew held); UN ceasefire veto (Russia/China); Brent $109.80
+- **Day 11**: Mar 11 — Explosive boats hit two Iraqi fuel-oil tankers near al-Faw; IEA approves 400M-barrel release; US pledges 172M SPR barrels; Brent settles near $92
+- **Day 12**: Mar 12 — Basra disruption renews supply shock; Brent rebounds to ~$100 despite reserve release; ASEAN oil-importer FX weakens again
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -472,10 +474,10 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $83.50 peak (Day 4) → $106.40 (Day 9) → $109.80 (Day 10, +3.2%); Kuwait full output suspension confirmed; GCC supply deficit 5.2M bpd; CNBC: "biggest weekly gain in futures history dating back to 1983"
-- **JKM LNG**: Baseline $9.5 → $17.80 (Day 6) → $15.50 (Day 9) → $16.20 (Day 10, +4.5%); re-spiking as Kuwait halt and UN veto extend supply shock horizon; Qatar single cargo only — full restart contingent on conflict end
-- **TTF Gas**: Pre-shock ~$34/MWh → €55.40 (Day 6) → €52.80 (Day 9) → €54.20/MWh (Day 10, +2.7%); Kuwait halt triggers fresh European supply anxiety; storage drawdown risk persists
-- **Credit**: iTraxx Asia IG pre-shock ~100bp → 145bp (Day 6) → 158bp est. (Day 9) → 168bp est. (Day 10, +10bp est.); ASEAN HY → 508bp est. (+23bp est.); UN veto and VLCC seizure compounding widening
+- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 close after reserve-release relief) → $99.99 (Day 12 Asia morning, +8.7%); tanker strikes and Basra disruption keep shipping risk unresolved
+- **JKM LNG**: Baseline $9.5 → $15.98/MMBtu (Day 11 confirmed close, +0.4% d/d); Qatar restart remains partial and Asia spot tightness is unresolved despite emergency reserve releases aimed at crude
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.22/MWh (Day 11 close, +3.9%); European gas risk persists while Gulf shipping and LNG transit insurance remain impaired
+- **Credit**: iTraxx Asia IG ~156bp proxy on Day 12 (+4bp vs prior session); ASEAN HY ~498bp proxy (+18bp); reserve-release relief faded after renewed tanker strikes
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
@@ -487,11 +489,11 @@ Only the `scenarios` array requires a manual daily entry. Append one object to t
 {
   "day": "D11",
   "date": "2026-03-11",
-  "ovx": 0,
-  "ovxConfirmed": false,
-  "vxeem": 0,
+  "ovx": 107.44,
+  "ovxConfirmed": true,
+  "vxeem": 27.0,
   "vxeemConfirmed": false,
-  "scenarios": [30, 48, 22],
+  "scenarios": [22, 54, 24],
   "scenariosConfirmed": true
 }
 ```

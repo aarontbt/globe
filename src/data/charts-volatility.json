@@ -2,7 +2,7 @@
   "_sources": {
     "ovx": "CBOE CDN OVX_History.csv — D0 uses Feb 27 close (Feb 28 = Saturday); D7/D8 carry D6 (weekend, market closed); D10 live via /api/cboe",
     "vxeem": "CBOE CDN VXEEM_History.csv — all D0-D9 confirmed from live data; D7/D8 carry D6 (weekend); D10 live via /api/cboe",
-    "scenarios": "D10 confirmed from banker-conflict.json; all prior days estimated from narrative context"
+    "scenarios": "D10-D12 confirmed from banker-conflict.json; all prior days estimated from narrative context"
   },
   "days": [
     {
@@ -118,6 +118,28 @@
       "vxeem": 27.0,
       "vxeemConfirmed": false,
       "scenarios": [28, 50, 22],
+      "scenariosConfirmed": true
+    },
+    {
+      "day": "D11",
+      "date": "2026-03-11",
+      "note": "OVX fallback from Investing historical close; VXEEM carried pending CBOE confirmation",
+      "ovx": 107.44,
+      "ovxConfirmed": true,
+      "vxeem": 27.0,
+      "vxeemConfirmed": false,
+      "scenarios": [22, 54, 24],
+      "scenariosConfirmed": true
+    },
+    {
+      "day": "D12",
+      "date": "2026-03-12",
+      "note": "Asia morning snapshot; live CBOE fetch should replace fallback on load",
+      "ovx": 107.44,
+      "ovxConfirmed": false,
+      "vxeem": 27.0,
+      "vxeemConfirmed": false,
+      "scenarios": [20, 56, 24],
       "scenariosConfirmed": true
     }
   ]

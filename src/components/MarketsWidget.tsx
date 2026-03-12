@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "95–110";
-const SUSTAINED_PRICE = "145";
-const TOP_ALERT = "TRUMP SIGNALS WAR MAY END — Brent -17.7% to $90.35; PHP/IDR/THB rally; Kuwait halt continues; Hormuz ~5 transits/day";
+const NEAR_TERM_RANGE = "98–118";
+const SUSTAINED_PRICE = "150";
+const TOP_ALERT = "TANKER STRIKES RE-ESCALATE THE SHOCK — Brent +8.7% to $99.99 despite IEA/SPR release; Basra disruption deepens; ASEAN importer FX weakens again";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

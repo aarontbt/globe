@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects intel report baseline (2026-03-10 close)
+// Static fallback — reflects sourced market snapshot (2026-03-12 Asia morning)
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 90.35,  change: -19.45, changePct: -17.71, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-10T16:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 85.08,  change: -8.42,  changePct: -9.01,  currency: "USD", unit: "/barrel", lastUpdated: "2026-03-10T16:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 5141.00, change: -39.00, changePct: -0.75,  currency: "USD", unit: "/oz",    lastUpdated: "2026-03-10T16:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 99.99,  change: 8.01,   changePct: 8.71,  currency: "USD", unit: "/barrel", lastUpdated: "2026-03-12T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 94.18,  change: 6.93,   changePct: 7.95,  currency: "USD", unit: "/barrel", lastUpdated: "2026-03-12T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 5152.56, change: -26.94, changePct: -0.52, currency: "USD", unit: "/oz",    lastUpdated: "2026-03-12T00:00:00Z" },
 ];
 
 interface UseMarketsResult {

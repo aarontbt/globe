@@ -1,36 +1,36 @@
 {
   "escalationLevel": 5,
   "escalationLabel": "Severe",
-  "deltaVsYesterday": 0,
+  "deltaVsYesterday": 1,
   "todaysEvents": [
-    { "id": "e1", "summary": "Kuwait confirmed full output suspension (Mar 10 AM) as onshore storage reaches capacity — GCC supply deficit confirmed at 5.2M bpd. IRGC Coast Guard seized Liberian-flagged VLCC Pacific Gallant in Gulf of Oman; 28 crew held. Hormuz AIS transits at ~5/day (96% below 138/day historical average). UN Security Council veto deadlock: Russia/China vetoed ceasefire draft; US vetoed Iranian counter-resolution; ASEAN abstained. (Mar 10 AM)", "delta": "Kuwait halted; VLCC seized; UN deadlock", "direction": "up" },
-    { "id": "e2", "summary": "Trump de-escalation signal (Mar 10 PM): President Trump said the US is 'considering taking over the Strait of Hormuz' and indicated the war 'may end soon.' Brent crude crashed -17.7% intraday from $109.80 to $90.35/bbl — largest single-day oil price drop since the COVID demand collapse in 2020. Markets interpreted signal as opening a bilateral back-channel; no ceasefire confirmed. Kuwait halt and Hormuz closure structurally intact. (Mar 10 PM)", "delta": "Trump de-escalation signal; Brent -18%", "direction": "down" },
-    { "id": "e3", "summary": "ASEAN markets reversed sharply on Trump signal: PHP strengthened to 59.17 (-0.6%), IDR to 16,745 (-2.2%), THB to 31.18 (-3.2%); MYR weakened to 4.0440 (+2.0%) on reduced oil windfall. iTraxx Asia IG tightened -16bp to 152bp; ASEAN HY -28bp to 480bp. Regional Shipping index +6.0%; ASEAN Energy Equities -8.6%. Signal volatility remains high — military posture unchanged. (Mar 10 close)", "delta": "PHP/IDR/THB rally; credit spreads tighten", "direction": "down" }
+    { "id": "e1", "summary": "Explosive boats struck two fuel-oil tankers in Iraqi waters near al-Faw, killing one sailor and widening maritime risk beyond Hormuz. (Mar 11)", "delta": "Iraqi tanker strikes", "direction": "up" },
+    { "id": "e2", "summary": "The IEA approved a 400 million-barrel emergency release and Washington said it would provide 172 million barrels, but shipping risk did not clear. (Mar 11)", "delta": "Reserve release announced", "direction": "neutral" },
+    { "id": "e3", "summary": "Fresh disruption around Basra pushed Brent back to $99.99 on Mar 12; USD/PHP and USD/THB rose again as ASEAN inflation risk re-priced. (Mar 12)", "delta": "Brent back near $100", "direction": "up" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 28,
-      "description": "Trump de-escalation signal (Mar 10 PM) opens bilateral back-channel pathway — probability upgraded from 18% as markets price in negotiated off-ramp within 2–4 weeks. Hormuz disruption lasts 2–4 weeks total; Kuwait reinstates output as storage clears. Brent stabilises at $85–100/bbl. Saudi/UAE spare capacity (3-week ramp) partially offsets Iraq/Kuwait supply deficit after Hormuz reopens. ASEAN LNG buyers source Australian and US spot cargoes. P&I clubs restore cover upon ceasefire confirmation. Goldman Q4 2026 normalisation forecast at $60/bbl contingent on swift resolution. Risk: Trump signals volatile and military posture unchanged.",
-      "oilImpact": "+$12/bbl",
-      "lngImpact": "+65%"
+      "probability": 20,
+      "description": "The March 11 reserve-release package caps the left tail of immediate shortages, and a bilateral back-channel still exists, but maritime security remains broken. Hormuz disruption lasts another 2-4 weeks before escorted traffic normalises. Brent trades mostly $85-100/bbl. Basra exports recover and Saudi/UAE spare capacity offsets part of the Iraq/Kuwait shortfall. ASEAN LNG buyers rely on Australian and US spot cargoes; P&I cover returns only after an enforceable transit regime is in place.",
+      "oilImpact": "+$10/bbl",
+      "lngImpact": "+45%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 50,
-      "description": "Hormuz closure extends 1–3 months; Indian Ocean front expands with further IRGC naval actions. VLCC Pacific Gallant seizure signals deliberate escalation beyond Gulf. P&I blackout durable; 329 trapped tankers cleared only partially. GCC supply deficit confirmed at 5.2M bpd; Kuwait output fully halted; Iraq output -60%. Brent sustains $110–130/bbl. JKM LNG re-spikes to $22–25/MMBtu as Qatar restart timeline extends. ASEAN current account deficits widen sharply; Bank Indonesia and BSP forced into emergency interventions. Indonesian subsidy blowout accelerates.",
+      "probability": 56,
+      "description": "Maritime disruption persists through April. Repeated attacks on merchant shipping and the spread of incidents into Iraqi waters keep insurers sidelined and escorted traffic thin. Brent oscillates in a $98-120/bbl band even with IEA/SPR releases. Basra and Gulf loadings remain intermittent, Qatar restart stays partial, and JKM/TTF remain elevated. ASEAN current-account pressure rebuilds; Bank Indonesia, BSP, and regional fuel-subsidy authorities stay on intervention watch.",
       "oilImpact": "+$35/bbl",
-      "lngImpact": "+170%"
+      "lngImpact": "+120%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 22,
-      "description": "Full Hormuz closure sustained beyond 3 months; IRGC acts on Malacca threat following VLCC seizure precedent; Indian Ocean naval escalation draws in additional parties. Oil at $150–200/bbl (J.P. Morgan upper bound). LNG effectively unavailable for spot buyers; Qatar's 77 mtpa full restart blocked. Iraq, Kuwait, UAE combined output loss exceeds 6M bpd — global supply deficit unprecedented since 1973. Recession probability >70% for Thailand and Philippines. ASEAN EM bonds face mass outflows; P&I cover does not return for 6+ months; global trade finance seizes.",
+      "probability": 24,
+      "description": "A wider Gulf war shuts both Hormuz and Basra export flows for months and spreads attacks into the western Indian Ocean. Oil reaches $150-180/bbl despite reserve releases. LNG becomes scarce for Asian spot buyers, Qatar full restart fails, and ASEAN recession risk surges for Thailand and the Philippines. P&I cover does not return for multiple quarters and trade-finance risk becomes systemic.",
       "oilImpact": "+$90/bbl",
-      "lngImpact": "+220%"
+      "lngImpact": "+200%"
     }
   ]
 }
