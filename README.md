@@ -1,162 +1,192 @@
-# ASEAN Maritime Intelligence Dashboard
+# ASEAN Maritime Intelligence Globe
 
-An interactive 3D globe visualization of ASEAN maritime trade routes, shipping lanes, geopolitical events, live market data, and social media signals — built for analytical storytelling in a pitch or advisory setting.
+Interactive deck.gl globe for ASEAN trade, maritime risk, and banker-style market briefing workflows. The app combines curated static scenario data with a small set of live market, news, social, satellite, and prediction-market feeds exposed through browser-safe proxies.
 
-## Features
+## What It Does
 
-- **3D Interactive Globe** — Rotatable, zoomable globe centered on Southeast Asia using deck.gl's `_GlobeView`
-- **Shipping Lanes** — Global and ASEAN-specific lanes with glow + core path rendering
-- **Trade Corridors** — 10 curated ASEAN trade corridors with commodity narratives (Malacca Strait, South China Sea, Sunda/Lombok Straits, Nickel Belt, etc.)
-- **Port Nodes** — 20 ports (12 ASEAN + 8 partner), sized by TEU throughput, color-coded by type
-- **Trade Arcs** — 14 bilateral trade flows rendered as great-circle arcs with USD values
-- **Animated Vessels** — ~80 vessels animating along shipping lanes in real time
-- **Geopolitical Event Rings** — Pulsing animated rings for ASEAN-focused intelligence events across 6 categories: Security, Political, Economic, Climate, Election, Diplomatic
-- **Iran Intel Layer** — Dedicated Iran conflict scenario events covering energy, shipping, diplomatic, and supply-chain impacts across ASEAN
-- **Oil Supply Chain Layer** — Production, refinery, storage, and consumption nodes with crude/product arc flows
-- **Satellite Layer** — Live orbital positions sourced from Celestrak TLE data, animated on the globe
-- **Country Labels** — Muted globe-projected country name overlays
-- **Event Panel** — Filterable side panel showing event cards with probability indicators
-- **Layer Toggle Panel** — Per-layer show/hide controls
-- **Rich Tooltips** — Context-sensitive hover info for ports, corridors, trade arcs, and events
-- **Live Markets Widget** — Real-time Brent Crude, LNG, and Gold quotes with sparklines, bid/ask spreads, session highs/lows, and a swarm forecast panel (via Stooq, 5-min cache)
-- **News Widget** — Live news headlines with source attribution and cache-age indicator
-- **Social Media Signal Monitor** — Aggregated signal feed from GDELT, Reddit, and Bluesky
-- **CGTN Live Feed** — Embedded live broadcast widget
-- **Performance Monitor** — FPS and frame-time overlay
+- Renders a 3D globe centered on Southeast Asia using deck.gl `_GlobeView`
+- Visualizes shipping lanes, trade corridors, ports, trade arcs, oil supply-chain routes, and optional crisis-vessel overlays
+- Merges three event streams into a single event layer:
+  - curated ASEAN and Iran scenario events from static JSON
+  - live Polymarket event signals
+  - live social signal events from GDELT, Reddit, and Bluesky
+- Shows live market and news widgets alongside the globe
+- Includes a full-screen `MARKET BRIEF` overlay with six banker-facing tabs:
+  - Conflict Status
+  - Cross-Asset
+  - Client Exposure
+  - Trade Ideas
+  - Sanctions
+  - Client Brief
+- Adds a bottom scenario/volatility panel with live CBOE overlays for `OVX` and `VXEEM`
 
-## Tech Stack
+## Stack
 
-| Component | Technology |
+| Area | Technology |
 |---|---|
-| Framework | Vite 6 + React 18 + TypeScript |
-| Globe Engine | deck.gl 9.1 (`_GlobeView`) |
-| Map Layer | MapLibre GL 4.7 + react-map-gl 7 |
-| Styling | Tailwind CSS 4 |
-| Satellite Orbits | satellite.js 6 |
-| Basemap Data | Natural Earth via deck.gl CDN (no API key required) |
+| App | React 18 + TypeScript + Vite 6 |
+| Styling | Tailwind CSS 4 + inline component styling |
+| Globe / rendering | deck.gl 9.1 |
+| Mapping primitives | GeoJsonLayer, ArcLayer, PathLayer, ScatterplotLayer, TextLayer |
+| Satellite propagation | `satellite.js` |
+| Deployment target | Vercel static app + API rewrites |
 
-## Getting Started
+## Local Development
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173
-npm run build    # Static output to dist/
-npm run preview  # Preview the production build
+npm run dev
 ```
+
+Default local URL: `http://localhost:5173`
+
+Production build:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Live Data Model
+
+The app is mostly static-data driven, but several panels fetch live or near-live data through `/api/*` proxies.
+
+### Live feeds
+
+- `Polymarket` via `/api/polymarket`
+- `Yahoo Finance` with `Stooq` fallback for market quotes
+- `CBOE CDN` for `OVX` and `VXEEM` history
+- `CNA` and `BBC` RSS feeds for news headlines
+- `CelesTrak` for satellite TLEs
+- `GDELT`, `Reddit`, and `Bluesky` for social signal ingestion
+
+### Browser caching
+
+- Market quotes: 5 minutes
+- News: 10 minutes
+- Widget-level fallback values exist for markets, news, and volatility panels so the UI stays populated if a live fetch fails
+
+## Data Workflow
+
+Two data models coexist in the repo:
+
+### 1. Static scenario / briefing data
+
+Files under [`src/data`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data) drive the banker overlay and scenario storytelling. The most important daily-maintained files are:
+
+- [`src/data/banker-cross-asset.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/banker-cross-asset.json)
+- [`src/data/banker-conflict.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/banker-conflict.json)
+- [`src/data/banker-trade-ideas.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/banker-trade-ideas.json)
+- [`src/data/banker-sanctions.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/banker-sanctions.json)
+- [`src/data/charts-volatility.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/charts-volatility.json)
+- [`src/data/iran-intel-events.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/iran-intel-events.json)
+
+The operational runbook for those updates lives in [`docs/daily-update-runbook.md`](/Users/xenohawk/Downloads/rainmarket-demo/globe/docs/daily-update-runbook.md).
+
+### 2. Live overlay data
+
+Hooks and services under [`src/hooks`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/hooks) and [`src/services`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/services) fetch live data and normalize it into the UI.
+
+## Main UI Surfaces
+
+### Globe layers
+
+- Global shipping lanes
+- Trade corridors
+- Ports
+- Trade arcs
+- Animated vessels
+- Event rings and dots
+- Oil supply chain
+- Optional crisis vessels
+- Optional satellites
+- Country labels
+
+### Overlays
+
+- [`TitleOverlay`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/components/TitleOverlay.tsx)
+- [`LayerTogglePanel`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/components/LayerTogglePanel.tsx)
+- [`EventPanel`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/components/EventPanel.tsx)
+- [`MarketsWidget`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/components/MarketsWidget.tsx)
+- [`NewsWidget`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/components/NewsWidget.tsx)
+- [`BottomChartsPanel`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/components/BottomChartsPanel.tsx)
+- [`DataSources`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/components/DataSources.tsx)
+- [`PerformanceMonitor`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/components/PerformanceMonitor.tsx)
+- [`MarketBriefOverlay`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/components/market-brief/MarketBriefOverlay.tsx)
 
 ## Project Structure
 
-```
+```text
 src/
-├── App.tsx                      # Root component
-├── components/
-│   ├── GlobeView.tsx            # Main globe + layer orchestration
-│   ├── EventPanel.tsx           # Sliding side panel for events
-│   ├── LayerTogglePanel.tsx     # Layer visibility controls
-│   ├── LegendPanel.tsx          # Map legend
-│   ├── TitleOverlay.tsx         # Top-left title card
-│   ├── MarketsWidget.tsx        # Live market quotes + swarm forecast
-│   ├── NewsWidget.tsx           # Live news headlines
-│   ├── LiveFeedWidget.tsx       # Embedded CGTN live broadcast
-│   ├── DataSources.tsx          # Data source attribution panel
-│   ├── PerformanceMonitor.tsx   # FPS / frame-time overlay
-│   └── market-brief/            # Market brief document components
-├── layers/
-│   ├── shippingLanes.ts         # Global lane PathLayer
-│   ├── corridors.ts             # ASEAN corridor glow + core layers
-│   ├── ports.ts                 # Port ScatterplotLayer
-│   ├── tradeArcs.ts             # Bilateral trade ArcLayer
-│   ├── animatedVessels.ts       # rAF-animated vessel dots
-│   ├── globeEvents.ts           # Pulsing event rings + dots
-│   ├── oilSupplyChain.ts        # Oil node + crude/product arc layers
-│   ├── satellites.ts            # Live satellite IconLayer
-│   └── countryLabels.ts         # Globe-projected country TextLayer
-├── hooks/
-│   ├── useVesselAnimation.ts    # Vessel position interpolation
-│   ├── useEventPulse.ts         # 0→1 pulse cycle for ring animation
-│   ├── usePolymarketEvents.ts   # Prediction market event hook
-│   ├── useMarkets.ts            # Live market quote polling
-│   ├── useNews.ts               # News feed hook
-│   ├── useSatellites.ts         # Celestrak TLE fetch + SGP4 propagation
-│   ├── useCountryLabels.ts      # Country label data hook
-│   ├── useGdeltEvents.ts        # GDELT event signal hook
-│   ├── useRedditSignals.ts      # Reddit signal hook
-│   ├── useBlueskySignals.ts     # Bluesky signal hook
-│   ├── useSocialSignals.ts      # Aggregated social signal hook
-│   └── useAsteroidImpacts.ts    # Asteroid impact data hook
-├── services/
-│   ├── marketsService.ts        # Stooq market quote fetcher (5-min cache)
-│   ├── newsService.ts           # News API service
-│   ├── gdeltService.ts          # GDELT API service
-│   ├── redditService.ts         # Reddit API service
-│   ├── bskyService.ts           # Bluesky API service
-│   ├── celestrakService.ts      # Celestrak TLE fetcher
-│   └── polymarket.ts            # Polymarket prediction market service
-├── data/
-│   ├── globe-events.json        # ASEAN geopolitical events
-│   ├── iran-intel-events.json   # Iran conflict intelligence events
-│   ├── corridors.json           # 10 trade corridors with narratives
-│   ├── ports.json               # Port nodes with TEU data
-│   ├── trade-arcs.json          # Bilateral trade flow data
-│   ├── oil-supply-chain.json    # Oil node + route data
-│   ├── narrative-zones.json     # Narrative zone polygons
-│   ├── shipping-lanes.json      # ASEAN shipping lane paths
-│   ├── global-lane-paths.json   # Full global lane path data
-│   ├── banker-clients.json      # Banker client profile data
-│   ├── banker-conflict.json     # Conflict scenario data for bankers
-│   ├── banker-cross-asset.json  # Cross-asset intelligence
-│   ├── banker-sanctions.json    # Sanctions exposure data
-│   └── banker-trade-ideas.json  # Trade idea data
-└── types/
-    └── index.ts                 # Shared TypeScript interfaces
-public/
-├── shipping_lanes.json          # Full global shipping lane GeoJSON
-└── shipping_lanes_stitched.json
+  App.tsx
+  components/
+    GlobeView.tsx
+    EventPanel.tsx
+    LayerTogglePanel.tsx
+    MarketsWidget.tsx
+    NewsWidget.tsx
+    BottomChartsPanel.tsx
+    DataSources.tsx
+    LiveFeedWidget.tsx
+    PerformanceMonitor.tsx
+    market-brief/
+  hooks/
+    useMarkets.ts
+    useNews.ts
+    usePolymarketEvents.ts
+    useSocialSignals.ts
+    useSatellites.ts
+    useVesselAnimation.ts
+  services/
+    marketsService.ts
+    newsService.ts
+    polymarket.ts
+    gdeltService.ts
+    redditService.ts
+    bskyService.ts
+    celestrakService.ts
+  layers/
+  data/
+api/
+docs/
 ```
 
-## Data Sources
+## API Proxy Notes
 
-- **Shipping lanes** — Derived from Global Fishing Watch AIS density data patterns
-- **Ports** — 2023 TEU throughput approximations for major ASEAN and partner ports
-- **Trade corridors** — Curated ASEAN trade routes with commodity intelligence narratives
-- **Geopolitical events** — ASEAN-focused scenarios with probability estimates; Iran intel events cross-verified against live sources
-- **Oil supply chain** — Production, refinery, storage, and consumption node data with crude/product flows
-- **Live markets** — Brent Crude (BZ=F), LNG (NG=F), Gold (GC=F) via Stooq free CSV endpoint; 5-minute client-side cache
-- **Satellite orbits** — Live TLE data from Celestrak, propagated client-side using satellite.js (SGP4)
-- **Social signals** — GDELT, Reddit, and Bluesky APIs aggregated into a unified signal feed
-- **News** — Live headline feed via news service
+Local development uses the Vite dev proxy configured in [`vite.config.ts`](/Users/xenohawk/Downloads/rainmarket-demo/globe/vite.config.ts). Production uses lightweight Vercel rewrites/functions defined in [`vercel.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/vercel.json) and the `api/` directory.
 
-## Iframe Embedding (engine.rainmarket.com)
+Notable proxied paths:
 
-This app is designed to be embedded inside `engine.rainmarket.com`. The headers are configured in `vercel.json`:
+- `/api/polymarket`
+- `/api/yahoo`
+- `/api/stooq`
+- `/api/cboe`
+- `/api/rss/cna`
+- `/api/rss/bbc`
+- `/api/celestrak`
+- `/api/gdelt`
+- `/api/reddit`
 
-```json
-"headers": [
-  {
-    "source": "/(.*)",
-    "headers": [
-      {
-        "key": "Content-Security-Policy",
-        "value": "frame-ancestors 'self' https://engine.rainmarket.com"
-      },
-      {
-        "key": "X-Frame-Options",
-        "value": "ALLOW-FROM https://engine.rainmarket.com"
-      }
-    ]
-  }
-]
+## Key Implementation Notes
+
+- `_GlobeView` is used directly from `@deck.gl/core` and instantiated once for the scene
+- The globe basemap is rendered from Natural Earth GeoJSON over deck.gl, not MapLibre tiles
+- Country labels are filtered by camera angle to avoid stencil clipping at the horizon
+- The event layer is a merged stream of static events, Polymarket events, and social signals
+- `OVX` and `VXEEM` fall back to static history in `charts-volatility.json` and are replaced live when CBOE fetches succeed
+- The banker overlay is fully static-data driven, so content changes are immediate once the JSON files are updated
+
+## Validation
+
+For data-only updates, the minimum safe check is:
+
+```bash
+node -e "JSON.parse(require('fs').readFileSync('src/data/banker-cross-asset.json','utf8'))"
+npm run build
 ```
 
-- `Content-Security-Policy: frame-ancestors` — what modern browsers enforce
-- `X-Frame-Options: ALLOW-FROM` — legacy fallback for older browsers
+For full daily refreshes, follow [`docs/daily-update-runbook.md`](/Users/xenohawk/Downloads/rainmarket-demo/globe/docs/daily-update-runbook.md).
 
-## Architecture Notes
+## Embedding
 
-- `_GlobeView` from `@deck.gl/core` is an experimental API; it is cast as `any` to work around TypeScript constructor limitations
-- No MapLibre basemap is used on the globe — country fills and borders are rendered via `GeoJsonLayer` using Natural Earth GeoJSON from the deck.gl CDN
-- Event rings use 3 rings per event at 120° phase offsets, scaling from 80k to 480k meters radius
-- Vessel animation runs on `requestAnimationFrame` via a custom hook, returning interpolated coordinates along lane paths
-- Country labels use `getAngle: 180` to counteract `_GlobeView`'s billboard geometry axis inversion
-- Market quotes are fetched from Stooq's free CSV endpoint with a 5-minute `localStorage` cache to avoid rate limiting
-- Satellite positions are computed client-side from live TLE sets using SGP4 propagation (satellite.js)
+The app is intended to be embeddable in `engine.rainmarket.com`. Frame ancestry headers are configured in [`vercel.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/vercel.json).
