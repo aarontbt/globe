@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "98–118";
 const SUSTAINED_PRICE = "150";
-const TOP_ALERT = "TANKER STRIKES RE-ESCALATE THE SHOCK — Brent +8.7% to $99.99 despite IEA/SPR release; Basra disruption deepens; ASEAN importer FX weakens again";
+const TOP_ALERT = "KHAMENEI VOWS HORMUZ REMAINS BLOCKED — Brent steady $100.84; new Supreme Leader rules out normalisation; Iran president floats ceasefire terms; 6 vessels struck Mar 12";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

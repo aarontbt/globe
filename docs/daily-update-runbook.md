@@ -467,6 +467,7 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - **Day 10**: Mar 10 — Kuwait confirms full output suspension; GCC deficit 5.2M bpd; IRGC seizes VLCC Pacific Gallant (28 crew held); UN ceasefire veto (Russia/China); Brent $109.80
 - **Day 11**: Mar 11 — Explosive boats hit two Iraqi fuel-oil tankers near al-Faw; IEA approves 400M-barrel release; US pledges 172M SPR barrels; Brent settles near $92
 - **Day 12**: Mar 12 — Basra disruption renews supply shock; Brent rebounds to ~$100 despite reserve release; ASEAN oil-importer FX weakens again
+- **Day 13**: Mar 13 — Khamenei vows Hormuz closure permanent; 6 vessels struck (Mar 12) incl. Thai tanker; Pezeshkian sets ceasefire terms (US recognition + reparations); Brent $100.84
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -474,10 +475,10 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 close after reserve-release relief) → $99.99 (Day 12 Asia morning, +8.7%); tanker strikes and Basra disruption keep shipping risk unresolved
-- **JKM LNG**: Baseline $9.5 → $15.98/MMBtu (Day 11 confirmed close, +0.4% d/d); Qatar restart remains partial and Asia spot tightness is unresolved despite emergency reserve releases aimed at crude
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.22/MWh (Day 11 close, +3.9%); European gas risk persists while Gulf shipping and LNG transit insurance remain impaired
-- **Credit**: iTraxx Asia IG ~156bp proxy on Day 12 (+4bp vs prior session); ASEAN HY ~498bp proxy (+18bp); reserve-release relief faded after renewed tanker strikes
+- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 close after reserve-release relief) → $100.84 (Day 13, +0.4% d/d); Khamenei's Hormuz closure vow removes any near-term normalisation case
+- **JKM LNG**: Baseline $9.5 → $16.09/MMBtu (Day 13 confirmed, +0.7% d/d); Qatar restart remains partial and Asia spot tightness is unresolved; freight risk sustained by continued vessel strikes
+- **TTF Gas**: Pre-shock ~$34/MWh → €50.27/MWh (Day 13, +2.1%); European gas risk persists while Gulf shipping and LNG transit insurance remain impaired through at least Q2
+- **Credit**: iTraxx Asia IG ~160bp proxy on Day 13 (+4bp); ASEAN HY ~505bp proxy (+7bp); Khamenei statement extends war-risk premium horizon with no near-term normalisation path
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
