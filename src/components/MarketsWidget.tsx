@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "98–118";
+const NEAR_TERM_RANGE = "100–120";
 const SUSTAINED_PRICE = "150";
-const TOP_ALERT = "KHAMENEI VOWS HORMUZ REMAINS BLOCKED — Brent steady $100.84; new Supreme Leader rules out normalisation; Iran president floats ceasefire terms; 6 vessels struck Mar 12";
+const TOP_ALERT = "DUBAI AIRPORT DRONE STRIKE — Emirates suspended; UAE missiles + drones Day 17; Brent $104.73; Iran FM: Hormuz closed to enemies only; coalition collapses; no ceasefire";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

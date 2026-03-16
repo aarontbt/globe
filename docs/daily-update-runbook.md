@@ -468,6 +468,9 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - **Day 11**: Mar 11 — Explosive boats hit two Iraqi fuel-oil tankers near al-Faw; IEA approves 400M-barrel release; US pledges 172M SPR barrels; Brent settles near $92
 - **Day 12**: Mar 12 — Basra disruption renews supply shock; Brent rebounds to ~$100 despite reserve release; ASEAN oil-importer FX weakens again
 - **Day 13**: Mar 13 — Khamenei vows Hormuz closure permanent; 6 vessels struck (Mar 12) incl. Thai tanker; Pezeshkian sets ceasefire terms (US recognition + reparations); Brent $100.84
+- **Day 14**: Mar 14 — First zero-AIS traffic day on Hormuz; Trump announces warship coalition (China, France, Japan, S. Korea, UK); India secures bilateral tanker passage; Fujairah loading briefly halted by drone debris fire; US Treasury GL 134 authorises ~215M barrels Russian crude on ~377 loaded tankers
+- **Day 15**: Mar 15 — Iran FM Araghchi: "We never asked for a ceasefire"; Hormuz "open to international shipping, only US/Israeli vessels barred"; IRGC 50th operational wave strikes US bases in UAE, Bahrain, Kuwait; allied response to coalition muted; Japan: involvement "impractical"
+- **Day 16**: Mar 16 — Dubai Airport drone strike suspends Emirates flights; UAE hit by 6 ballistic missiles + 21 drones; Fujairah oil facility fire; single Aframax tanker transits Hormuz (bilateral deal); Iran cyberattack on US Stryker medical; no coalition materialises; Brent $104.73
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -475,10 +478,10 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 close after reserve-release relief) → $100.84 (Day 13, +0.4% d/d); Khamenei's Hormuz closure vow removes any near-term normalisation case
-- **JKM LNG**: Baseline $9.5 → $16.09/MMBtu (Day 13 confirmed, +0.7% d/d); Qatar restart remains partial and Asia spot tightness is unresolved; freight risk sustained by continued vessel strikes
-- **TTF Gas**: Pre-shock ~$34/MWh → €50.27/MWh (Day 13, +2.1%); European gas risk persists while Gulf shipping and LNG transit insurance remain impaired through at least Q2
-- **Credit**: iTraxx Asia IG ~160bp proxy on Day 13 (+4bp); ASEAN HY ~505bp proxy (+7bp); Khamenei statement extends war-risk premium horizon with no near-term normalisation path
+- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 close after reserve-release relief) → $104.73 (Day 16, +3.9% from Day 13); Dubai Airport strike and coalition collapse extend disruption premium; working range $100-120
+- **JKM LNG**: Baseline $9.5 → $16.18/MMBtu (Day 16, carried — last confirmed Mar 13); Qatar restart remains partial; US LNG at capacity; no clear supply relief path; Asia spot tightness unresolved
+- **TTF Gas**: Pre-shock ~$34/MWh → €51.11/MWh (Day 16 confirmed, oilpriceapi.com); Dubai Airport/Fujairah attacks widen Gulf hub disruption scope; European gas risk persists through at least Q2
+- **Credit**: iTraxx Asia IG ~163bp proxy on Day 16 (+3bp est.); ASEAN HY ~510bp (+5bp est.); coalition failure and Gulf infrastructure attacks extend war-risk premium; no normalisation path in sight
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

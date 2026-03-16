@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects sourced market snapshot (2026-03-13 Asia morning)
-// Brent/WTI: Investing.com confirmed Mar 13. Gold: carried from Mar 12 close (no Mar 13 confirmation).
+// Static fallback — reflects sourced market snapshot (2026-03-16 Asia morning)
+// Brent: Euronews/Al Jazeera confirmed Mar 16 intraday. WTI: fxdailyreport.com Mar 16 (est.). Gold: IndiaTV News confirmed Mar 16.
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 100.84, change: 0.38,   changePct: 0.38,  currency: "USD", unit: "/barrel", lastUpdated: "2026-03-13T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 94.54,  change: 0.36,   changePct: 0.38,  currency: "USD", unit: "/barrel", lastUpdated: "2026-03-13T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 5152.56, change: -26.94, changePct: -0.52, currency: "USD", unit: "/oz",    lastUpdated: "2026-03-12T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 104.73, change: 3.89,   changePct: 3.86,  currency: "USD", unit: "/barrel", lastUpdated: "2026-03-16T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 98.82,  change: 4.28,   changePct: 4.53,  currency: "USD", unit: "/barrel", lastUpdated: "2026-03-16T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 5005.54, change: -147.02, changePct: -2.85, currency: "USD", unit: "/oz",   lastUpdated: "2026-03-16T00:00:00Z" },
 ];
 
 interface UseMarketsResult {
