@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "100–120";
 const SUSTAINED_PRICE = "150";
-const TOP_ALERT = "DUBAI AIRPORT DRONE STRIKE — Emirates suspended; UAE missiles + drones Day 17; Brent $104.73; Iran FM: Hormuz closed to enemies only; coalition collapses; no ceasefire";
+const TOP_ALERT = "LARIJANI KILLED — Israel strikes IRGC security chief + Basij cmdr; Khamenei status disputed; coalition dead; Brent $102.92; JKM $19.27; no ceasefire";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
