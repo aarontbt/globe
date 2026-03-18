@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects sourced market snapshot (2026-03-17 Asia morning)
-// Brent: Investing.com intraday Mar 17. WTI: fxdailyreport.com confirmed Mar 17. Gold: Sunday Guardian Live confirmed Mar 17.
+// Static fallback — reflects sourced market snapshot (2026-03-18 Asia morning)
+// Brent: oilprice.com delayed quote Mar 18. WTI: oilprice.com delayed quote Mar 18. Gold: carried from Mar 17 — no confirmed Mar 18 source.
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 102.92, change: -1.81,  changePct: -1.73, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-17T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 96.07,  change: -2.75,  changePct: -2.78, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-17T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 102.52, change: -0.90,  changePct: -0.87, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-18T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 94.87,  change: -1.34,  changePct: -1.39, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-18T00:00:00Z" },
   { symbol: "GC=F", name: "Gold",        price: 5012.70, change: 7.16,  changePct: 0.14,  currency: "USD", unit: "/oz",     lastUpdated: "2026-03-17T00:00:00Z" },
 ];
 

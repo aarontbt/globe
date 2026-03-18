@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "100–120";
 const SUSTAINED_PRICE = "150";
-const TOP_ALERT = "LARIJANI KILLED — Israel strikes IRGC security chief + Basij cmdr; Khamenei status disputed; coalition dead; Brent $102.92; JKM $19.27; no ceasefire";
+const TOP_ALERT = "IRAN RETALIATES — Strike kills 2 in Israel; Trump defiant on Hormuz; Joe Kent resigns; Khamenei status disputed; Brent $102.52; JKM $19.27; no coalition";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
