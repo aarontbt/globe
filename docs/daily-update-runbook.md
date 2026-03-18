@@ -472,6 +472,7 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - **Day 15**: Mar 15 — Iran FM Araghchi: "We never asked for a ceasefire"; Hormuz "open to international shipping, only US/Israeli vessels barred"; IRGC 50th operational wave strikes US bases in UAE, Bahrain, Kuwait; allied response to coalition muted; Japan: involvement "impractical"
 - **Day 16**: Mar 16 — Dubai Airport drone strike suspends Emirates flights; UAE hit by 6 ballistic missiles + 21 drones; Fujairah oil facility fire; single Aframax tanker transits Hormuz (bilateral deal); Iran cyberattack on US Stryker medical; no coalition materialises; Brent $104.73
 - **Day 17**: Mar 17 — Israel kills IRGC security chief Larijani and Basij commander Soleimani; Mojtaba Khamenei status disputed (Trump: "may not be alive"); EU, Germany, Australia refuse coalition; Brent $102.92 (-1.7%); JKM confirmed $19.27/MMBtu (+19% from prior)
+- **Day 18**: Mar 18 — Iran retaliates for Larijani killing; 2 killed in Israel; Trump defiant on Hormuz coalition ("don't need it"); Joe Kent (counterterrorism chief) resigns over Iran war; Brent $102.52 (-0.9%)
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -479,10 +480,10 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 close after reserve-release relief) → $102.92 (Day 17, -1.7% from Day 16); Larijani killing keeps leadership-uncertainty premium intact; working range $100-120; $125+ if Iranian leadership collapse triggers full blockade reinstatement
-- **JKM LNG**: Baseline $9.5 → $19.27/MMBtu (Day 17, confirmed Mar 16 EOD oilpriceapi.com — up 19% from $16.18 carried level); Qatar restart partial; US LNG at capacity; bilateral transit deals only path; Asia spot tightness structural through Q2
-- **TTF Gas**: Pre-shock ~$34/MWh → €52.00/MWh (Day 17 confirmed, oilpriceapi.com 09:48 UTC Mar 17); Larijani killing and coalition absence extend disruption scope; European gas risk persists through at least Q2
-- **Credit**: iTraxx Asia IG ~165bp proxy on Day 17 (+2bp est.); ASEAN HY ~515bp (+5bp est.); leadership uncertainty and coalition failure add new war-risk premium layer; no normalisation path in sight
+- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 close after reserve-release relief) → $102.52 (Day 18, -0.9%); Iran retaliation on Israel priced as defined exchange not open-ended; working range $100-120; $125+ if Iranian leadership collapse triggers full blockade reinstatement
+- **JKM LNG**: Baseline $9.5 → $19.27/MMBtu (Day 17 confirmed Mar 16 EOD oilpriceapi.com — Mar 18 not yet on public sources; carried); Qatar restart partial; US LNG at capacity; bilateral transit deals only path; Asia spot tightness structural through Q2
+- **TTF Gas**: Pre-shock ~$34/MWh → ~€53.01/MWh (Day 18 est. from $17.18/MMBtu oilprice.com, +1.9%); Iran–Israel retaliation cycle and coalition absence extend disruption scope; European gas risk persists through at least Q2
+- **Credit**: iTraxx Asia IG ~165bp proxy on Day 18 (0bp est.); ASEAN HY ~515bp (0bp est.); Iran retaliation and coalition failure maintain war-risk premium; no normalisation path in sight
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
