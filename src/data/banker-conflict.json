@@ -1,36 +1,36 @@
 {
   "escalationLevel": 5,
   "escalationLabel": "Severe",
-  "deltaVsYesterday": 0,
+  "deltaVsYesterday": 1,
   "todaysEvents": [
-    { "id": "e1", "summary": "Iran launched retaliatory strikes following Israel's killing of Larijani and Basij commander Soleimani on Mar 17; at least 2 killed in Israel — escalation cycle deepens as Iran signals continued willingness to strike. Iran publicly mourned both commanders. (Mar 18)", "delta": "Iran retaliates; 2 killed in Israel", "direction": "up" },
-    { "id": "e2", "summary": "Trump declared the US does not 'need' Strait of Hormuz coalition assistance, striking a defiant tone as EU, Germany, Australia, Japan maintained their refusals; no allied naval forces committed globally; Hormuz bilateral-deal-only framework persists with no formal reopening. (Mar 18)", "delta": "Trump defiant; coalition absent", "direction": "neutral" },
-    { "id": "e3", "summary": "Joe Kent, Trump's counterterrorism chief, resigned over the US decision to wage war on Iran — described as the highest-level White House official to depart over the conflict; signals growing domestic political fracture within the Trump administration over the Iran campaign. (Mar 18)", "delta": "Senior Trump official resigns over Iran war", "direction": "neutral" }
+    { "id": "e1", "summary": "Israel struck Iran's South Pars gasfield on Mar 19 — direct attack on Iran's largest gas complex, marking a new phase of energy infrastructure warfare and threatening Iran's domestic gas supply. (Mar 19)", "delta": "Israel hits South Pars gasfield", "direction": "up" },
+    { "id": "e2", "summary": "Iran retaliated by attacking Qatar's LNG hub at Ras Laffan and a Saudi Red Sea refinery on Mar 19; European gas soared 35%; Saudi Arabia warned of 'military actions, if necessary,' raising the risk of Saudi entry into the conflict. (Mar 19)", "delta": "Iran strikes Qatar LNG hub; Saudi warns", "direction": "up" },
+    { "id": "e3", "summary": "Trump suspended the Jones Act for 60 days and the administration is weighing large additional troop deployments to the region; Arab and Muslim foreign ministers convened in Riyadh in a diplomatic bind over response. (Mar 19)", "delta": "Jones Act suspended; troops weighing; Riyadh FM meeting", "direction": "neutral" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 18,
-      "description": "Iran's selective-access bilateral transit framework persists despite leadership uncertainty following Larijani's killing. IRGC operations continue; Mojtaba Khamenei's disputed status has not triggered command breakdown. Brent oscillates $100-110/bbl; JKM stabilises near $19/MMBtu as Qatar restart continues and Australian LNG fills gaps. Trump coalition absent — US acting alone. P&I cover does not return broadly without a formal ceasefire framework.",
-      "oilImpact": "+$10/bbl",
-      "lngImpact": "+45%"
+      "probability": 15,
+      "description": "Israel–Iran exchange remains confined to defined military and energy infrastructure targets; Saudi Arabia does not enter the conflict. Bilateral Hormuz transit deals persist in degraded form; Qatar LNG hub attack is repaired within weeks. Brent settles $110-125/bbl; JKM spikes but retreats as Australian and US supply fills gaps. Saudi warning is deterrence posturing. No allied coalition forms; US acts alone. P&I cover restoration unlikely without formal ceasefire.",
+      "oilImpact": "+$20/bbl",
+      "lngImpact": "+80%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 52,
-      "description": "Leadership disruption from Larijani's killing accelerates IRGC hardliner consolidation, collapsing bilateral transit deals. Brent retests $110-125/bbl; JKM grinds toward $22+/MMBtu with no Qatar full restart. Dubai Airport and Fujairah damage extend Gulf hub disruption beyond Hormuz. ASEAN oil-importer FX (THB, PHP, IDR) under sustained pressure; iTraxx Asia IG widens toward 175-190bp. Bank Indonesia, BSP, and BOT remain on intervention watch rather than easing.",
-      "oilImpact": "+$35/bbl",
-      "lngImpact": "+120%"
+      "probability": 51,
+      "description": "Qatar LNG hub damage is severe; Ras Laffan restart delayed 4-8 weeks. Saudi Arabia initiates limited retaliatory strikes on Iran, pulling GCC states deeper into the conflict. Brent tests $130-145/bbl; JKM grinds to $26+/MMBtu with no Qatar restart path. ASEAN oil-importer FX (IDR, PHP, THB) under acute pressure; iTraxx Asia IG widens toward 185-200bp. Jones Act suspension and SPR draws provide only marginal relief. IEA second release approved but insufficient to close the supply gap.",
+      "oilImpact": "+$55/bbl",
+      "lngImpact": "+175%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 30,
-      "description": "Confirmed Khamenei death or IRGC leadership coup triggers uncontrolled escalation — full commercial Hormuz blockade reinstated. Additional GCC state infrastructure broadly targeted; US allies still absent. Oil hits $150-180/bbl; LNG spot markets seize for Asian buyers. ASEAN recession risk surges; Thailand and Philippines face double-digit fuel inflation and credit-rating action. P&I cover unavailable across the region for multiple quarters.",
-      "oilImpact": "+$90/bbl",
-      "lngImpact": "+200%"
+      "probability": 34,
+      "description": "Saudi Arabia enters the conflict following further Iranian strikes on GCC infrastructure; IRGC activates Strait of Malacca threat. Full commercial Hormuz and Red Sea blockade; Ras Laffan permanently offline for the quarter. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges — Thailand and Philippines face double-digit fuel inflation and sovereign credit-rating action. US troop surge triggers counter-escalation; allied nations remain absent. P&I cover unavailable across the region through H2 2026.",
+      "oilImpact": "+$110/bbl",
+      "lngImpact": "+250%"
     }
   ]
 }

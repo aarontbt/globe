@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "100–120";
-const SUSTAINED_PRICE = "150";
-const TOP_ALERT = "IRAN RETALIATES — Strike kills 2 in Israel; Trump defiant on Hormuz; Joe Kent resigns; Khamenei status disputed; Brent $102.52; JKM $19.27; no coalition";
+const NEAR_TERM_RANGE = "110–130";
+const SUSTAINED_PRICE = "160";
+const TOP_ALERT = "ISRAEL HITS SOUTH PARS — Iran strikes Qatar LNG hub + Saudi refinery; Brent $112.80 +10%; European gas +35%; Saudi warns military action; Jones Act suspended; US adding troops";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
