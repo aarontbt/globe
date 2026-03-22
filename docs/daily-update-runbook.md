@@ -474,6 +474,9 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - **Day 17**: Mar 17 — Israel kills IRGC security chief Larijani and Basij commander Soleimani; Mojtaba Khamenei status disputed (Trump: "may not be alive"); EU, Germany, Australia refuse coalition; Brent $102.92 (-1.7%); JKM confirmed $19.27/MMBtu (+19% from prior)
 - **Day 18**: Mar 18 — Iran retaliates for Larijani killing; 2 killed in Israel; Trump defiant on Hormuz coalition ("don't need it"); Joe Kent (counterterrorism chief) resigns over Iran war; Brent $102.52 (-0.9%)
 - **Day 19**: Mar 19 — Israel strikes South Pars gasfield; Iran attacks Qatar LNG hub + Saudi Red Sea refinery; Saudi warns "military actions if necessary"; European gas +35%; Brent $112.80 (+10%)
+- **Day 20**: Mar 20 — Saudi Arabia launches airstrikes on IRGC naval facilities at Bandar Abbas — first direct Saudi military action against Iran; JKM new Platts $23.40; Brent $121.40 (+7.6%)
+- **Day 21**: Mar 21 — Weekend; Arab League emergency summit called for Cairo; Iran vows response against Saudi oil fields; China urges maximum restraint; Brent carries Day 20 close
+- **Day 22**: Mar 22 — Iran launches 15 missiles toward Abqaiq; Saudi Patriot intercepts 12; 3 strike perimeter (no production impact per Aramco); Arab League emergency summit in Cairo; tail risk 40%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -481,10 +484,10 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 reserve-release relief) → $112.80 (Day 19, +10%); Israel struck South Pars; Iran attacked Qatar LNG hub + Saudi refinery; 'defined exchange' framing broken; working range $110-130; $160+ if Saudi Arabia enters
-- **JKM LNG**: Baseline $9.5 → $19.27/MMBtu (Day 17 confirmed Mar 16 — Qatar LNG hub attacked Mar 19, new assessment pending, materially higher); Qatar restart suspended by direct attack; US LNG at capacity; Australian LNG sole alternative; Asia spot tightness acute through H2
-- **TTF Gas**: Pre-shock ~$34/MWh → est. ~€71.56/MWh (Day 19, +35% from news headline, oilprice.com Mar 19); Iran attack on Qatar LNG hub + Israel South Pars strike driving European gas to multi-month highs; disruption scope through H2 2026
-- **Credit**: iTraxx Asia IG est. ~172bp on Day 19 (+7bp); ASEAN HY est. ~530bp (+15bp); Saudi Arabia entry risk and Qatar LNG hub attack widen the credit premium further; no normalisation path until GCC military risk is priced out
+- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 reserve-release relief) → $121.40 (Day 20 close, +7.6%); Saudi airstrikes on Bandar Abbas; Iran Abqaiq missile strike (intercepted, no impact); Saudi-Iran direct exchange active; working range $120-140; $160-190 tail if Abqaiq takes damage
+- **JKM LNG**: Baseline $9.5 → $19.27/MMBtu (Day 17 confirmed) → $23.40/MMBtu (new Platts assessment Day 20, Reuters/Platts, +21%); Qatar Ras Laffan restart suspended indefinitely after Mar 19 hub attack; US LNG at capacity; Australian LNG sole alternative; Asia spot tightness acute through H2 2026
+- **TTF Gas**: Pre-shock ~$34/MWh → est. ~€74.20/MWh (Day 20, est.); Saudi-Iran direct exchange and Qatar LNG hub indefinite suspension sustaining European gas at elevated levels; disruption scope through H2 2026
+- **Credit**: iTraxx Asia IG est. ~185bp on Day 22 (+13bp from Day 19); ASEAN HY est. ~555bp (+25bp); Saudi-Iran direct exchange eliminates any normalisation pathway; 200bp iTraxx IG and 600bp ASEAN HY are the next stress targets
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
