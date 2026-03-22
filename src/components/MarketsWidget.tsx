@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "110–130";
-const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "ISRAEL HITS SOUTH PARS — Iran strikes Qatar LNG hub + Saudi refinery; Brent $112.80 +10%; European gas +35%; Saudi warns military action; Jones Act suspended; US adding troops";
+const NEAR_TERM_RANGE = "120–140";
+const SUSTAINED_PRICE = "180";
+const TOP_ALERT = "SAUDI AIRSTRIKES ON BANDAR ABBAS — Iran hits Abqaiq perimeter (intercepted, no impact); JKM $23.40 new Platts; Brent $121.40 +7.6%; Arab League emergency summit; tail risk 40%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

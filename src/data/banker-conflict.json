@@ -1,34 +1,34 @@
 {
   "escalationLevel": 5,
   "escalationLabel": "Severe",
-  "deltaVsYesterday": 1,
+  "deltaVsYesterday": 0,
   "todaysEvents": [
-    { "id": "e1", "summary": "Israel struck Iran's South Pars gasfield on Mar 19 — direct attack on Iran's largest gas complex, marking a new phase of energy infrastructure warfare and threatening Iran's domestic gas supply. (Mar 19)", "delta": "Israel hits South Pars gasfield", "direction": "up" },
-    { "id": "e2", "summary": "Iran retaliated by attacking Qatar's LNG hub at Ras Laffan and a Saudi Red Sea refinery on Mar 19; European gas soared 35%; Saudi Arabia warned of 'military actions, if necessary,' raising the risk of Saudi entry into the conflict. (Mar 19)", "delta": "Iran strikes Qatar LNG hub; Saudi warns", "direction": "up" },
-    { "id": "e3", "summary": "Trump suspended the Jones Act for 60 days and the administration is weighing large additional troop deployments to the region; Arab and Muslim foreign ministers convened in Riyadh in a diplomatic bind over response. (Mar 19)", "delta": "Jones Act suspended; troops weighing; Riyadh FM meeting", "direction": "neutral" }
+    { "id": "e1", "summary": "Iran launched 15 ballistic missiles toward Saudi Aramco's Dhahran and Abqaiq facilities on Mar 22; Saudi Patriot batteries intercepted 12; 3 struck perimeter with no production impact confirmed by Aramco (Al Jazeera, Reuters). (Mar 22)", "delta": "Iran missiles hit Abqaiq perimeter", "direction": "up" },
+    { "id": "e2", "summary": "Arab League emergency summit convened in Cairo on Mar 22; Egypt and Jordan calling for ceasefire; Iran FM rejected negotiations 'under military threat'; Saudi Arabia maintaining 'right to defend' but holding from further strikes pending a diplomatic track (Reuters). (Mar 22)", "delta": "Arab League emergency summit in Cairo", "direction": "neutral" },
+    { "id": "e3", "summary": "China issued rare public statement urging 'maximum restraint from all parties' and offered to mediate; US rejected China mediation; EU called for unconditional ceasefire; Japan announced emergency release from national oil stockpile (Reuters, Kyodo News). (Mar 22)", "delta": "China mediation offer; US rejects; Japan SPR", "direction": "neutral" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 15,
-      "description": "Israel–Iran exchange remains confined to defined military and energy infrastructure targets; Saudi Arabia does not enter the conflict. Bilateral Hormuz transit deals persist in degraded form; Qatar LNG hub attack is repaired within weeks. Brent settles $110-125/bbl; JKM spikes but retreats as Australian and US supply fills gaps. Saudi warning is deterrence posturing. No allied coalition forms; US acts alone. P&I cover restoration unlikely without formal ceasefire.",
+      "probability": 8,
+      "description": "Saudi Arabia and Iran both pull back following the Abqaiq missile intercept; Arab League ceasefire initiative finds traction. Bilateral Hormuz transit deals revive in degraded form; Qatar LNG hub damage contained. Brent retreats toward $105-115/bbl on ceasefire signal. JKM retreats from $23.40 as Australian LNG ramps. P&I cover restoration begins within 30 days. ASEAN oil-importer FX stabilises. US and Saudi diplomatic channel produces temporary standstill agreement.",
       "oilImpact": "+$20/bbl",
       "lngImpact": "+80%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 51,
-      "description": "Qatar LNG hub damage is severe; Ras Laffan restart delayed 4-8 weeks. Saudi Arabia initiates limited retaliatory strikes on Iran, pulling GCC states deeper into the conflict. Brent tests $130-145/bbl; JKM grinds to $26+/MMBtu with no Qatar restart path. ASEAN oil-importer FX (IDR, PHP, THB) under acute pressure; iTraxx Asia IG widens toward 185-200bp. Jones Act suspension and SPR draws provide only marginal relief. IEA second release approved but insufficient to close the supply gap.",
+      "probability": 52,
+      "description": "Saudi limited strikes on IRGC facilities continue; Iran sustains low-intensity missile harassment of Saudi oil infrastructure. Ras Laffan restart delayed 6-10 weeks. Brent holds $125-145/bbl; JKM at $23-27/MMBtu with no Qatar restart path. ASEAN oil-importer FX (IDR, PHP, THB) under sustained pressure; iTraxx Asia IG tests 200bp. Arab League ceasefire resolution produced but not implemented. IEA second emergency release provides only marginal price relief.",
       "oilImpact": "+$55/bbl",
       "lngImpact": "+175%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 34,
-      "description": "Saudi Arabia enters the conflict following further Iranian strikes on GCC infrastructure; IRGC activates Strait of Malacca threat. Full commercial Hormuz and Red Sea blockade; Ras Laffan permanently offline for the quarter. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges — Thailand and Philippines face double-digit fuel inflation and sovereign credit-rating action. US troop surge triggers counter-escalation; allied nations remain absent. P&I cover unavailable across the region through H2 2026.",
+      "probability": 40,
+      "description": "Iran lands a damaging strike on Abqaiq or Ras Tanura, triggering Saudi full military entry; IRGC activates Strait of Malacca closure threat. Full commercial Hormuz and Red Sea blockade; Ras Laffan permanently offline for the quarter. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges — Thailand and Philippines face double-digit fuel inflation and sovereign credit-rating action. China forced to choose sides; US-Iran direct naval engagement in Gulf of Oman. P&I cover unavailable through H2 2026.",
       "oilImpact": "+$110/bbl",
       "lngImpact": "+250%"
     }
