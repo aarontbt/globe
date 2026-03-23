@@ -149,26 +149,6 @@ export interface CrisisVessel {
   trail: [number, number][]; // last 5 positions, oldest first; empty for AIS-off vessels
 }
 
-export type FleetUnitType =
-  | "carrier-strike-group"
-  | "amphibious-ready-group"
-  | "destroyer"
-  | "submarine"
-  | "cruiser"
-  | "supply";
-
-export interface FleetUnit {
-  id: string;
-  name: string;            // e.g. "CSG-3 (USS Nimitz)"
-  type: FleetUnitType;
-  coordinates: [number, number];
-  missionArea: string;
-  status: string;
-  ships: string[];
-  lastUpdated: string;
-  notes?: string;
-}
-
 export interface GlobeEvent {
   id: string;
   title: string;
