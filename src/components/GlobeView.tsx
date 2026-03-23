@@ -10,6 +10,7 @@ import tradeArcsData from "../data/trade-arcs.json";
 import iranIntelEvents from "../data/iran-intel-events.json";
 import oilSupplyChainData from "../data/oil-supply-chain.json";
 import crisisVesselsData from "../data/crisis-vessels.json";
+import navalFleetData from "../data/usni-fleet.json";
 import { createGlobalShippingLanesLayer } from "../layers/shippingLanes";
 import { createCorridorLayers } from "../layers/corridors";
 import { createPortsLayer } from "../layers/ports";
@@ -19,12 +20,15 @@ import { createEventRingsLayer, createEventDotsLayer, createAsteroidImpactLayers
 import { createSatellitesLayer } from "../layers/satellites";
 import { createOilSupplyChainLayers } from "../layers/oilSupplyChain";
 import { createCrisisVesselsLayer } from "../layers/crisisVessels";
+import { createNavalFleetLayer } from "../layers/navalFleet";
+import { createFireHotspotsLayer } from "../layers/fireHotspots";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
 import { useEventPulse } from "../hooks/useEventPulse";
 import { usePolymarketEvents } from "../hooks/usePolymarketEvents";
 import { useAsteroidImpacts } from "../hooks/useAsteroidImpacts";
 import { useSatellites } from "../hooks/useSatellites";
+import { useFirms } from "../hooks/useFirms";
 import { useCountryLabels } from "../hooks/useCountryLabels";
 import { useSocialSignals } from "../hooks/useSocialSignals";
 
@@ -41,7 +45,7 @@ import { useMarkets } from "../hooks/useMarkets";
 import { useNews } from "../hooks/useNews";
 import type { LayerVisibility } from "./LayerTogglePanel";
 
-import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite, OilNode, OilRoute, CrisisVessel } from "../types";
+import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite, OilNode, OilRoute, CrisisVessel, FleetUnit, FireHotspot } from "../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GLOBE_VIEW = new (_GlobeView as any)({ id: "globe", controller: true });
@@ -82,6 +86,7 @@ export default function GlobeView() {
   const oilNodes = oilSupplyChainData.nodes as OilNode[];
   const oilRoutes = oilSupplyChainData.routes as OilRoute[];
   const crisisVessels = crisisVesselsData as CrisisVessel[];
+  const navalFleet = navalFleetData as FleetUnit[];
 
   // Deck.gl render timing — written by onBeforeRender/onAfterRender, read by PerformanceMonitor
   const deckRenderStartRef = useRef(0);
@@ -110,6 +115,8 @@ export default function GlobeView() {
       showSatellites: false,
       showOilSupplyChain: true,
       showCrisisVessels: false,
+      showNavalFleet: false,
+      showFireHotspots: false,
     };
     try {
       const saved = localStorage.getItem("gb:layerVisibility");
@@ -137,6 +144,7 @@ export default function GlobeView() {
   }, []);
 
   const { satellites } = useSatellites(visibility.showSatellites);
+  const { hotspots: fireHotspots } = useFirms(visibility.showFireHotspots);
   const countryLabels = useCountryLabels();
 
   // Coarse camera position — only updates when lon/lat change by ≥3°, so labels
@@ -207,8 +215,9 @@ export default function GlobeView() {
     if (visibility.showPorts) result.push(createPortsLayer(ports));
     if (visibility.showOilSupplyChain) result.push(...createOilSupplyChainLayers(oilNodes, oilRoutes));
     if (visibility.showCrisisVessels) result.push(...createCrisisVesselsLayer(crisisVessels));
+    if (visibility.showNavalFleet) result.push(...createNavalFleetLayer(navalFleet));
     return result;
-  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showCrisisVessels, corridors, ports, arcs, oilNodes, oilRoutes, crisisVessels]);
+  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showCrisisVessels, visibility.showNavalFleet, corridors, ports, arcs, oilNodes, oilRoutes, crisisVessels, navalFleet]);
 
   // Label layer — separate memo so staticLayers doesn't rebuild on camera move
   const labelLayer = useMemo(
@@ -229,12 +238,13 @@ export default function GlobeView() {
     return result;
   }, [pulse, activeCategories, selectedId, visibility.showVessels, visibility.showEvents, vessels, events, asteroidImpacts]);
 
-  // Low-frequency layers — only rebuilds when satellite data changes
+  // Low-frequency layers — only rebuilds when satellite/fire data changes
   const liveTrackingLayers = useMemo(() => {
     const result: any[] = [];
     if (visibility.showSatellites) result.push(createSatellitesLayer(satellites));
+    if (visibility.showFireHotspots) result.push(createFireHotspotsLayer(fireHotspots));
     return result;
-  }, [visibility.showSatellites, satellites]);
+  }, [visibility.showSatellites, visibility.showFireHotspots, satellites, fireHotspots]);
 
   const layers = useMemo(
     () => [...staticLayers, labelLayer, ...pulseLayers, ...liveTrackingLayers],
@@ -463,6 +473,92 @@ export default function GlobeView() {
           border: `1px solid ${typeColor}33`,
           backdropFilter: "blur(12px)",
           maxWidth: "300px",
+        },
+      };
+    }
+
+    if (layer?.id === "naval-fleet") {
+      const u = object as FleetUnit;
+      const TYPE_LABELS: Record<string, string> = {
+        "carrier-strike-group":   "Carrier Strike Group",
+        "amphibious-ready-group": "Amphibious Ready Group",
+        cruiser: "Cruiser",
+        destroyer: "Destroyer / DESRON",
+        submarine: "Submarine",
+        supply: "Combat Logistics",
+      };
+      const typeLabel = TYPE_LABELS[u.type] ?? u.type;
+      const shipsHtml = u.ships.map(s => `<div style="font-size:11px;color:rgba(255,255,255,0.6)">${s}</div>`).join("");
+      return {
+        html: `<div style="font-family:${FONT_SANS};padding:4px 0;min-width:220px;max-width:300px">
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:3px">
+            <span style="font-weight:700;font-size:13px;color:#fff">${u.name}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:10px;font-weight:600;color:#5090e8;background:rgba(30,80,200,0.2);padding:1px 6px;border-radius:4px">${typeLabel}</span>
+            <span style="font-size:10px;color:${u.status === "Deployed" ? "#86efac" : "#fbbf24"};font-weight:600">${u.status}</span>
+          </div>
+          <div style="margin-bottom:6px">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px">Mission Area</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.8)">${u.missionArea}</div>
+          </div>
+          <div style="margin-bottom:6px">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px">Ships</div>
+            ${shipsHtml}
+          </div>
+          ${u.notes ? `<div style="padding-top:6px;border-top:1px solid rgba(255,255,255,0.08)"><div style="font-size:11px;color:rgba(255,255,255,0.5);line-height:1.4">${u.notes}</div></div>` : ""}
+          <div style="margin-top:6px;font-size:10px;color:rgba(255,255,255,0.3)">Updated ${u.lastUpdated} · USNI News</div>
+        </div>`,
+        style: {
+          backgroundColor: "rgba(4,8,24,0.94)",
+          borderRadius: "10px",
+          padding: "10px 14px",
+          border: "1px solid rgba(30,80,200,0.3)",
+          backdropFilter: "blur(12px)",
+          maxWidth: "320px",
+        },
+      };
+    }
+
+    if (layer?.id === "fire-hotspots") {
+      const f = object as FireHotspot;
+      const timeStr = f.acqTime.length === 4 ? `${f.acqTime.slice(0, 2)}:${f.acqTime.slice(2)} UTC` : f.acqTime;
+      const dnLabel = f.daynight === "D" ? "Daytime" : "Nighttime";
+      const frpColor = f.frp > 100 ? "#ff4020" : f.frp > 40 ? "#ff8030" : "#ffc840";
+      return {
+        html: `<div style="font-family:${FONT_SANS};padding:4px 0;min-width:180px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:12px">🔥</span>
+            <span style="font-weight:700;font-size:13px;color:#fff">Satellite Fire Detection</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;margin-bottom:6px">
+            <div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Fire Power</div>
+              <div style="font-size:13px;color:${frpColor};font-weight:700">${f.frp.toFixed(0)} MW</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Confidence</div>
+              <div style="font-size:13px;color:#fff;font-weight:600">${f.confidence}%</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Satellite</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.8)">${f.satellite}</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Pass</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.8)">${dnLabel}</div>
+            </div>
+          </div>
+          <div style="padding-top:5px;border-top:1px solid rgba(255,255,255,0.08)">
+            <div style="font-size:10px;color:rgba(255,255,255,0.35)">${f.acqDate} ${timeStr} · ${f.latitude.toFixed(3)}°, ${f.longitude.toFixed(3)}°</div>
+          </div>
+        </div>`,
+        style: {
+          backgroundColor: "rgba(20,6,0,0.94)",
+          borderRadius: "10px",
+          padding: "10px 14px",
+          border: "1px solid rgba(255,100,30,0.3)",
+          backdropFilter: "blur(12px)",
         },
       };
     }
