@@ -169,18 +169,6 @@ export interface FleetUnit {
   notes?: string;
 }
 
-export interface FireHotspot {
-  latitude: number;
-  longitude: number;
-  brightness: number;      // Kelvin (MODIS)
-  frp: number;             // Fire Radiative Power in MW
-  confidence: number;      // 0-100
-  satellite: string;       // "Terra", "Aqua", etc.
-  acqDate: string;         // "YYYY-MM-DD"
-  acqTime: string;         // "HHMM" UTC
-  daynight: "D" | "N";
-}
-
 export interface GlobeEvent {
   id: string;
   title: string;

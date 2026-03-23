@@ -12,7 +12,6 @@ export interface LayerVisibility {
   showOilSupplyChain: boolean;
   showCrisisVessels: boolean;
   showNavalFleet: boolean;
-  showFireHotspots: boolean;
 }
 
 interface LayerTogglePanelProps {
@@ -234,19 +233,6 @@ export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePa
           }
           checked={visibility.showNavalFleet}
           onToggle={() => onChange("showNavalFleet", !visibility.showNavalFleet)}
-        />
-        <ToggleRow
-          label="Fire Detection"
-          swatch={
-            <div className="flex w-5 justify-center">
-              <div
-                className="w-2 h-2 rounded-full"
-                style={{ background: "#ff6420", boxShadow: "0 0 4px #ff6420" }}
-              />
-            </div>
-          }
-          checked={visibility.showFireHotspots}
-          onToggle={() => onChange("showFireHotspots", !visibility.showFireHotspots)}
         />
       </div>
     </div>

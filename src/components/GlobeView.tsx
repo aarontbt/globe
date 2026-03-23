@@ -21,14 +21,12 @@ import { createSatellitesLayer } from "../layers/satellites";
 import { createOilSupplyChainLayers } from "../layers/oilSupplyChain";
 import { createCrisisVesselsLayer } from "../layers/crisisVessels";
 import { createNavalFleetLayer } from "../layers/navalFleet";
-import { createFireHotspotsLayer } from "../layers/fireHotspots";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
 import { useEventPulse } from "../hooks/useEventPulse";
 import { usePolymarketEvents } from "../hooks/usePolymarketEvents";
 import { useAsteroidImpacts } from "../hooks/useAsteroidImpacts";
 import { useSatellites } from "../hooks/useSatellites";
-import { useFirms } from "../hooks/useFirms";
 import { useCountryLabels } from "../hooks/useCountryLabels";
 import { useSocialSignals } from "../hooks/useSocialSignals";
 
@@ -45,7 +43,7 @@ import { useMarkets } from "../hooks/useMarkets";
 import { useNews } from "../hooks/useNews";
 import type { LayerVisibility } from "./LayerTogglePanel";
 
-import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite, OilNode, OilRoute, CrisisVessel, FleetUnit, FireHotspot } from "../types";
+import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite, OilNode, OilRoute, CrisisVessel, FleetUnit } from "../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GLOBE_VIEW = new (_GlobeView as any)({ id: "globe", controller: true });
@@ -116,7 +114,6 @@ export default function GlobeView() {
       showOilSupplyChain: true,
       showCrisisVessels: false,
       showNavalFleet: false,
-      showFireHotspots: false,
     };
     try {
       const saved = localStorage.getItem("gb:layerVisibility");
@@ -144,7 +141,6 @@ export default function GlobeView() {
   }, []);
 
   const { satellites } = useSatellites(visibility.showSatellites);
-  const { hotspots: fireHotspots } = useFirms(visibility.showFireHotspots);
   const countryLabels = useCountryLabels();
 
   // Coarse camera position — only updates when lon/lat change by ≥3°, so labels
@@ -238,13 +234,12 @@ export default function GlobeView() {
     return result;
   }, [pulse, activeCategories, selectedId, visibility.showVessels, visibility.showEvents, vessels, events, asteroidImpacts]);
 
-  // Low-frequency layers — only rebuilds when satellite/fire data changes
+  // Low-frequency layers — only rebuilds when satellite data changes
   const liveTrackingLayers = useMemo(() => {
     const result: any[] = [];
     if (visibility.showSatellites) result.push(createSatellitesLayer(satellites));
-    if (visibility.showFireHotspots) result.push(createFireHotspotsLayer(fireHotspots));
     return result;
-  }, [visibility.showSatellites, visibility.showFireHotspots, satellites, fireHotspots]);
+  }, [visibility.showSatellites, satellites]);
 
   const layers = useMemo(
     () => [...staticLayers, labelLayer, ...pulseLayers, ...liveTrackingLayers],
@@ -516,49 +511,6 @@ export default function GlobeView() {
           border: "1px solid rgba(30,80,200,0.3)",
           backdropFilter: "blur(12px)",
           maxWidth: "320px",
-        },
-      };
-    }
-
-    if (layer?.id === "fire-hotspots") {
-      const f = object as FireHotspot;
-      const timeStr = f.acqTime.length === 4 ? `${f.acqTime.slice(0, 2)}:${f.acqTime.slice(2)} UTC` : f.acqTime;
-      const dnLabel = f.daynight === "D" ? "Daytime" : "Nighttime";
-      const frpColor = f.frp > 100 ? "#ff4020" : f.frp > 40 ? "#ff8030" : "#ffc840";
-      return {
-        html: `<div style="font-family:${FONT_SANS};padding:4px 0;min-width:180px">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
-            <span style="font-size:12px">🔥</span>
-            <span style="font-weight:700;font-size:13px;color:#fff">Satellite Fire Detection</span>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;margin-bottom:6px">
-            <div>
-              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Fire Power</div>
-              <div style="font-size:13px;color:${frpColor};font-weight:700">${f.frp.toFixed(0)} MW</div>
-            </div>
-            <div>
-              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Confidence</div>
-              <div style="font-size:13px;color:#fff;font-weight:600">${f.confidence}%</div>
-            </div>
-            <div>
-              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Satellite</div>
-              <div style="font-size:12px;color:rgba(255,255,255,0.8)">${f.satellite}</div>
-            </div>
-            <div>
-              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.05em">Pass</div>
-              <div style="font-size:12px;color:rgba(255,255,255,0.8)">${dnLabel}</div>
-            </div>
-          </div>
-          <div style="padding-top:5px;border-top:1px solid rgba(255,255,255,0.08)">
-            <div style="font-size:10px;color:rgba(255,255,255,0.35)">${f.acqDate} ${timeStr} · ${f.latitude.toFixed(3)}°, ${f.longitude.toFixed(3)}°</div>
-          </div>
-        </div>`,
-        style: {
-          backgroundColor: "rgba(20,6,0,0.94)",
-          borderRadius: "10px",
-          padding: "10px 14px",
-          border: "1px solid rgba(255,100,30,0.3)",
-          backdropFilter: "blur(12px)",
         },
       };
     }

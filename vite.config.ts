@@ -64,15 +64,6 @@ export default defineConfig({
           "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
         },
       },
-      "/api/firms": {
-        target: "https://firms.modaps.eosdis.nasa.gov",
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api\/firms/, ""),
-        headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; ASEANIntelDashboard/1.0)",
-          "Accept": "text/csv,text/plain,*/*",
-        },
-      },
       // Social signal proxies
       "/api/gdelt": {
         target: "https://api.gdeltproject.org",
