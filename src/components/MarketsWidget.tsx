@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "95–115";
 const SUSTAINED_PRICE = "175";
-const TOP_ALERT = "TRUMP 5-DAY PAUSE ON IRAN STRIKES — Brent -17% to $100.84; Iran denies talks; IRGC hits US 5th Fleet Bahrain + Prince Sultan; unprecedented Israel-US strikes on Iran; deadline Mar 28; tail risk 35%";
+const TOP_ALERT = "IRAN FM PRIVATELY CONFIRMS US MEDIATOR MESSAGE — Brent $96.50/$103 volatile; ~2,000 vessels trapped; Mar 28 in 4 days; tail 32%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
