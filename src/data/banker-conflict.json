@@ -3,34 +3,34 @@
   "escalationLabel": "Severe",
   "deltaVsYesterday": 0,
   "todaysEvents": [
-    { "id": "e1", "summary": "Iran launched 15 ballistic missiles toward Saudi Aramco's Dhahran and Abqaiq facilities on Mar 22; Saudi Patriot batteries intercepted 12; 3 struck perimeter with no production impact confirmed by Aramco (Al Jazeera, Reuters). (Mar 22)", "delta": "Iran missiles hit Abqaiq perimeter", "direction": "up" },
-    { "id": "e2", "summary": "Arab League emergency summit convened in Cairo on Mar 22; Egypt and Jordan calling for ceasefire; Iran FM rejected negotiations 'under military threat'; Saudi Arabia maintaining 'right to defend' but holding from further strikes pending a diplomatic track (Reuters). (Mar 22)", "delta": "Arab League emergency summit in Cairo", "direction": "neutral" },
-    { "id": "e3", "summary": "China issued rare public statement urging 'maximum restraint from all parties' and offered to mediate; US rejected China mediation; EU called for unconditional ceasefire; Japan announced emergency release from national oil stockpile (Reuters, Kyodo News). (Mar 22)", "delta": "China mediation offer; US rejects; Japan SPR", "direction": "neutral" }
+    { "id": "e1", "summary": "Trump announced 5-day postponement of US strikes on Iranian power plants on Mar 23, citing 'very productive conversations'; Iran FM immediately denied any direct talks; Brent collapsed -17% to ~$100.84 (Bloomberg, CNBC). Trump's suspension expires Mar 28. (Mar 23)", "delta": "Trump 5-day pause; Brent -17%", "direction": "down" },
+    { "id": "e2", "summary": "IRGC struck US Fifth Fleet HQ in Bahrain and Prince Sultan airbase in Saudi Arabia in two waves on Mar 23; Saudi Patriot intercepted ballistic missile targeting Riyadh; second missile struck uninhabited area; no production impact confirmed (Al Jazeera, Wikipedia). (Mar 23)", "delta": "IRGC hits Bahrain, Saudi Arabia", "direction": "up" },
+    { "id": "e3", "summary": "Israel and US launched 'unprecedented' infrastructure strikes across Iran on Mar 23; Iranian Red Crescent: 80,000+ residential structures hit across Tehran, Tabriz, Isfahan, Ahvaz; Iran struck northern Israel; IDF struck Hezbollah in Beirut (Al Jazeera, Times of Israel). (Mar 23)", "delta": "Unprecedented Israel-US Iran strikes", "direction": "up" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 8,
-      "description": "Saudi Arabia and Iran both pull back following the Abqaiq missile intercept; Arab League ceasefire initiative finds traction. Bilateral Hormuz transit deals revive in degraded form; Qatar LNG hub damage contained. Brent retreats toward $105-115/bbl on ceasefire signal. JKM retreats from $23.40 as Australian LNG ramps. P&I cover restoration begins within 30 days. ASEAN oil-importer FX stabilises. US and Saudi diplomatic channel produces temporary standstill agreement.",
-      "oilImpact": "+$20/bbl",
-      "lngImpact": "+80%"
+      "probability": 15,
+      "description": "Trump's 5-day pause (expires Mar 28) catalyses back-channel dialogue despite Iran's public denial of talks. Partial Hormuz reopening negotiated for non-hostile states within 2 weeks. Brent retreats toward $90-100/bbl on ceasefire signal; JKM pullback to $18-20 as Qatar Ras Laffan damage is assessed. Saudi Arabia and Iran agree a bilateral standstill. P&I cover restoration begins within 30 days. ASEAN oil-importer FX stabilises. Key risk: Iran's denial of talks suggests public posturing, not genuine engagement.",
+      "oilImpact": "+$15/bbl",
+      "lngImpact": "+65%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 52,
-      "description": "Saudi limited strikes on IRGC facilities continue; Iran sustains low-intensity missile harassment of Saudi oil infrastructure. Ras Laffan restart delayed 6-10 weeks. Brent holds $125-145/bbl; JKM at $23-27/MMBtu with no Qatar restart path. ASEAN oil-importer FX (IDR, PHP, THB) under sustained pressure; iTraxx Asia IG tests 200bp. Arab League ceasefire resolution produced but not implemented. IEA second emergency release provides only marginal price relief.",
-      "oilImpact": "+$55/bbl",
-      "lngImpact": "+175%"
+      "probability": 50,
+      "description": "Trump's pause expires Mar 28 with only cosmetic Iranian concessions; US refrains from power plant strikes but maintains current military posture. IRGC continues low-intensity attacks on Saudi and US targets. Hormuz selective-passage framework persists; Ras Laffan restart delayed 8-12 weeks. Brent settles $95-115/bbl; JKM at $20-24/MMBtu with no Qatar restart path. ASEAN oil-importer FX (IDR, PHP) under sustained pressure; iTraxx Asia IG at 170-185bp. Arab League ceasefire framework remains rhetorical.",
+      "oilImpact": "+$40/bbl",
+      "lngImpact": "+150%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 40,
-      "description": "Iran lands a damaging strike on Abqaiq or Ras Tanura, triggering Saudi full military entry; IRGC activates Strait of Malacca closure threat. Full commercial Hormuz and Red Sea blockade; Ras Laffan permanently offline for the quarter. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges — Thailand and Philippines face double-digit fuel inflation and sovereign credit-rating action. China forced to choose sides; US-Iran direct naval engagement in Gulf of Oman. P&I cover unavailable through H2 2026.",
-      "oilImpact": "+$110/bbl",
-      "lngImpact": "+250%"
+      "probability": 35,
+      "description": "Trump's pause expires with no progress; US strikes Iranian power plants, cutting Iran's domestic electricity supply and triggering IRGC full escalation. Iran activates Strait of Malacca closure threat; full commercial Hormuz and Red Sea blockade; Ras Laffan permanently offline for the quarter. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges — Thailand and Philippines face double-digit fuel inflation and sovereign credit-rating action. IRGC attacks on Bahrain and Saudi Arabia Mar 23 confirm Iran is not standing down despite Trump's pause.",
+      "oilImpact": "+$90/bbl",
+      "lngImpact": "+220%"
     }
   ]
 }

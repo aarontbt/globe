@@ -477,6 +477,8 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - **Day 20**: Mar 20 — Saudi Arabia launches airstrikes on IRGC naval facilities at Bandar Abbas — first direct Saudi military action against Iran; JKM new Platts $23.40; Brent $121.40 (+7.6%)
 - **Day 21**: Mar 21 — Weekend; Arab League emergency summit called for Cairo; Iran vows response against Saudi oil fields; China urges maximum restraint; Brent carries Day 20 close
 - **Day 22**: Mar 22 — Iran launches 15 missiles toward Abqaiq; Saudi Patriot intercepts 12; 3 strike perimeter (no production impact per Aramco); Arab League emergency summit in Cairo; tail risk 40%
+- **Day 23**: Mar 23 — Trump 5-day pause on Iran power plant strikes; Brent -17% to ~$100.84; Iran denies talks; IRGC hits US 5th Fleet Bahrain + Prince Sultan airbase; unprecedented Israel-US strikes on Iran
+- **Day 24**: Mar 24 — Hormuz selective closure continues; Brent Asia session ~$96; Trump deadline expires Mar 28; Iran military posture unchanged; tail risk 35%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -484,10 +486,10 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 reserve-release relief) → $121.40 (Day 20 close, +7.6%); Saudi airstrikes on Bandar Abbas; Iran Abqaiq missile strike (intercepted, no impact); Saudi-Iran direct exchange active; working range $120-140; $160-190 tail if Abqaiq takes damage
-- **JKM LNG**: Baseline $9.5 → $19.27/MMBtu (Day 17 confirmed) → $23.40/MMBtu (new Platts assessment Day 20, Reuters/Platts, +21%); Qatar Ras Laffan restart suspended indefinitely after Mar 19 hub attack; US LNG at capacity; Australian LNG sole alternative; Asia spot tightness acute through H2 2026
-- **TTF Gas**: Pre-shock ~$34/MWh → est. ~€74.20/MWh (Day 20, est.); Saudi-Iran direct exchange and Qatar LNG hub indefinite suspension sustaining European gas at elevated levels; disruption scope through H2 2026
-- **Credit**: iTraxx Asia IG est. ~185bp on Day 22 (+13bp from Day 19); ASEAN HY est. ~555bp (+25bp); Saudi-Iran direct exchange eliminates any normalisation pathway; 200bp iTraxx IG and 600bp ASEAN HY are the next stress targets
+- **Brent**: Pre-shock ~$65 → $109.80 (Day 10 high) → $91.98 (Day 11 reserve-release relief) → $121.40 (Day 20 close, +7.6%) → $100.84 (Day 23 close, -17%, Bloomberg/CNBC confirmed; Trump 5-day pause); Asia session Day 24 ~$96; working range $95-115 in stress; $160-190 tail if Mar 28 deadline expires with no deal
+- **JKM LNG**: Baseline $9.5 → $19.27/MMBtu (Day 17 confirmed) → $23.40/MMBtu (new Platts assessment Day 20, Reuters/Platts) → est. ~$21.71/MMBtu (Day 24 futures, Investing.com; pullback on Trump pause); Qatar Ras Laffan restart suspended indefinitely; Australian LNG sole alternative; Asia spot tightness acute through H2 2026
+- **TTF Gas**: Pre-shock ~$34/MWh → est. ~€74.20/MWh (Day 20, est.) → est. ~€61.50/MWh (Day 24, Barchart partial; Trump pause reduced near-term escalation premium); Qatar LNG hub suspension and Hormuz closure sustaining elevated European gas; disruption scope through H2 2026
+- **Credit**: iTraxx Asia IG est. ~172bp on Day 24 (-13bp on Trump pause); ASEAN HY est. ~525bp (-30bp); Iran denial of talks and IRGC attacks on Bahrain/Saudi maintain structural pressure; 185-200bp iTraxx IG remains the next stress target if Mar 28 deadline expires
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

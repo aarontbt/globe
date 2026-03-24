@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "120–140";
-const SUSTAINED_PRICE = "180";
-const TOP_ALERT = "SAUDI AIRSTRIKES ON BANDAR ABBAS — Iran hits Abqaiq perimeter (intercepted, no impact); JKM $23.40 new Platts; Brent $121.40 +7.6%; Arab League emergency summit; tail risk 40%";
+const NEAR_TERM_RANGE = "95–115";
+const SUSTAINED_PRICE = "175";
+const TOP_ALERT = "TRUMP 5-DAY PAUSE ON IRAN STRIKES — Brent -17% to $100.84; Iran denies talks; IRGC hits US 5th Fleet Bahrain + Prince Sultan; unprecedented Israel-US strikes on Iran; deadline Mar 28; tail risk 35%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
