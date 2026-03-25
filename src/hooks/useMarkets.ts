@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects sourced market snapshot (2026-03-24 Asia session)
-// Brent: Goodreturns.in Mar 24 (day range $96.18–$100.43; Asia session ~$96.50). WTI: estimated proportional to Brent (-4.7%). Gold: Sunday Guardian Live Mar 24 ($4,418 stabilised after sharp decline).
+// Static fallback — reflects sourced market snapshot (2026-03-25 Asia open)
+// Brent: AFP/BSS wire Mar 25 (~$98.30 Asia session after US peace plan + Iran partial Hormuz opening drove -5.5%). WTI: AFP/BSS wire Mar 25 ($87.72). Gold: Trading Economics Mar 24 close ($4,484, +1.72% confirmed).
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 96.50,  change: -4.34, changePct: -4.30, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-24T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 84.70,  change: -4.20, changePct: -4.72, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-24T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 4418.00, change: -9.09, changePct: -0.21, currency: "USD", unit: "/oz",     lastUpdated: "2026-03-24T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 98.30,  change: -5.70,  changePct: -5.48, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-25T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 87.72,  change: -3.55,  changePct: -3.89, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-25T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4484.00, change: 57.00, changePct: 1.29,  currency: "USD", unit: "/oz",    lastUpdated: "2026-03-24T00:00:00Z" },
 ];
 
 interface UseMarketsResult {

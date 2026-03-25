@@ -3,16 +3,16 @@
   "escalationLabel": "Severe",
   "deltaVsYesterday": 0,
   "todaysEvents": [
-    { "id": "e1", "summary": "Brent falls to $96.50 Asia session before recovering to $103 US session as de-escalation optimism fades; Trump pause Day 2 holds with no new strikes; Mar 28 deadline 4 days away (Goodreturns.in, CNBC). (Mar 24)", "delta": "Brent $96.50→$103 volatile", "direction": "neutral" },
-    { "id": "e2", "summary": "Iran FM privately confirms to CBS News that Tehran received US message through mediators and is reviewing 15 points; Iran still publicly denies direct talks (Al Jazeera, CBS News). First confirmed back-channel. (Mar 24)", "delta": "Iran FM confirms mediator message", "direction": "down" },
-    { "id": "e3", "summary": "IMO reports ~2,000 vessels trapped in Persian Gulf; US CENTCOM states 9,000+ Iranian targets struck and 140+ Iranian naval vessels destroyed since conflict began Feb 28 (CNN, NBC News). (Mar 24)", "delta": "2,000 Gulf vessels trapped; CENTCOM 9k+ strikes", "direction": "up" }
+    { "id": "e1", "summary": "US sent 15-point peace plan to Iran via Pakistan on Mar 25, demanding nuclear rollback, enrichment halt, and dismantling of Natanz/Isfahan/Fordo; Iran to receive end of all sanctions and civil nuclear assistance at Bushehr in return; Iran has not yet formally responded (NYT report cited by CNBC, France24, Xinhua). (Mar 25)", "delta": "US 15-point peace plan to Iran", "direction": "down" },
+    { "id": "e2", "summary": "Iran FM announced non-hostile vessels may transit Hormuz 'in coordination with competent Iranian authorities' on Mar 25 — first meaningful Hormuz de-escalation signal; selective passage framework remains; non-hostile states only (France24, Canberra Times). Brent +4% to ~$104.49 on Mar 24 close (CNBC/Fortune). (Mar 25)", "delta": "Iran opens Hormuz to non-hostile ships", "direction": "down" },
+    { "id": "e3", "summary": "Israel launched new wave of strikes on Tehran infrastructure on Mar 25, with IDF citing 'terror regime targets in the heart of Tehran'; first-ever IDF strikes in northern Iran near Caspian Sea also confirmed; Iran not yet formally responded to US peace plan (IDF statement, CNBC). (Mar 25)", "delta": "Israel new Tehran strikes; Caspian first", "direction": "up" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 18,
-      "description": "Iran's FM confirmed on Mar 24 (CBS News) that Tehran received US mediator message and is reviewing 15 points — first confirmed back-channel. If Trump's pause (expires Mar 28) catalyses formal engagement, partial Hormuz reopening within 2 weeks is possible. Brent retreats toward $85-95/bbl on ceasefire signal; JKM pullback to $18-20 as Qatar Ras Laffan damage is assessed. P&I cover restoration begins within 30 days. ASEAN oil-importer FX stabilises. Key risk: Iran publicly denies talks and IRGC attacked Bahrain and Saudi Arabia Mar 23.",
+      "probability": 20,
+      "description": "US 15-point peace plan (sent Mar 25 via Pakistan) receives a constructive Iranian response; Hormuz non-hostile passage framework expands into a commercially viable transit corridor within 2 weeks. Brent retreats to $90-100/bbl on confirmed de-escalation; JKM pullback to $18-20 as Qatar Ras Laffan damage is assessed. P&I cover restoration begins within 30 days; Saudi Arabia and Iran agree bilateral standstill. ASEAN oil-importer FX stabilises. Key risk: Israel continued strikes on Tehran suggest military track may not track diplomatic track.",
       "oilImpact": "+$15/bbl",
       "lngImpact": "+65%"
     },
@@ -20,15 +20,15 @@
       "id": "stress",
       "label": "Stress",
       "probability": 50,
-      "description": "Trump's pause expires Mar 28 with only cosmetic Iranian concessions; US refrains from power plant strikes but maintains current military posture. IRGC continues low-intensity attacks on Saudi and US targets. Hormuz selective-passage framework persists; Ras Laffan restart delayed 8-12 weeks. Brent settles $95-115/bbl; JKM at $20-24/MMBtu with no Qatar restart path. ASEAN oil-importer FX (IDR, PHP) under sustained pressure; iTraxx Asia IG at 170-185bp. Arab League ceasefire framework remains rhetorical.",
+      "description": "Iran delays or rejects US 15-point plan; Trump's Mar 28 deadline passes without substantive progress. US refrains from power plant strikes but Hormuz non-hostile framework remains narrow — commercial shipping still functionally blocked. Israel continues strikes on Tehran; IRGC maintains low-intensity attacks on US/Saudi targets. Brent settles $100-120/bbl; JKM at $20-24/MMBtu with no Qatar Ras Laffan restart path. ASEAN oil-importer FX (IDR, PHP) under sustained pressure; iTraxx Asia IG at 170-185bp.",
       "oilImpact": "+$40/bbl",
       "lngImpact": "+150%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 32,
-      "description": "Trump's pause expires with no progress; US strikes Iranian power plants, triggering IRGC full escalation. Iran activates Strait of Malacca closure threat; full commercial Hormuz and Red Sea blockade; Ras Laffan permanently offline for the quarter. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges — Thailand and Philippines face double-digit fuel inflation and sovereign credit-rating action. Iran's public denial of talks and IRGC attacks on Bahrain and Saudi Arabia Mar 23 confirm Iran is not fully standing down despite back-channel activity.",
+      "probability": 30,
+      "description": "Iran formally rejects US 15-point plan; Trump resumes power plant strikes after Mar 28 deadline, triggering IRGC full escalation. Iran revokes non-hostile Hormuz framework; full commercial blockade reinstated. Ras Laffan permanently offline for the quarter; Strait of Malacca closure threat activated. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges — Thailand and Philippines face double-digit fuel inflation and sovereign credit-rating action. Israel's Caspian Sea strikes (Mar 25) signal potential northern front expansion.",
       "oilImpact": "+$90/bbl",
       "lngImpact": "+220%"
     }

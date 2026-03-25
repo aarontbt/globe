@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "95–115";
 const SUSTAINED_PRICE = "175";
-const TOP_ALERT = "IRAN FM PRIVATELY CONFIRMS US MEDIATOR MESSAGE — Brent $96.50/$103 volatile; ~2,000 vessels trapped; Mar 28 in 4 days; tail 32%";
+const TOP_ALERT = "US 15-POINT PEACE PLAN TO IRAN; HORMUZ OPEN TO NON-HOSTILE SHIPS — Brent -6% to ~$98; Israel new Tehran + Caspian strikes; Trump 'in negotiations'; Iran response due Mar 28; tail risk 30%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
