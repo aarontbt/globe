@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { GlobeEvent, EventCategory, PolymarketData, SocialPlatform } from "../types";
+import type { GlobeEvent, EventCategory, SocialPlatform } from "../types";
 import { CATEGORY_COLORS } from "../layers/globeEvents";
 import { FONT_SANS } from "../styles/fonts";
 
@@ -37,72 +37,6 @@ function toRgba(rgb: [number, number, number], a = 1) {
   return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${a})`;
 }
 
-function PolymarketStrip({ data, slug }: { data: PolymarketData; slug: string }) {
-  const url = `https://polymarket.com/event/${slug}`;
-  return (
-    <div style={{
-      marginTop: 10,
-      padding: "8px 10px",
-      borderRadius: 8,
-      background: "rgba(100,220,120,0.06)",
-      border: "1px solid rgba(100,220,120,0.18)",
-    }}>
-      {/* Polymarket logo row */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 7 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" fill="#00C853" fillOpacity="0.2" stroke="#00C853" strokeWidth="1.5"/>
-            <path d="M7 12.5l3.5 3.5L17 8" stroke="#00C853" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <span style={{ fontSize: 10, fontWeight: 700, color: "#4ade80", letterSpacing: "0.08em" }}>
-            POLYMARKET
-          </span>
-        </div>
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={e => e.stopPropagation()}
-          style={{
-            fontSize: 10,
-            color: "rgba(74,222,128,0.7)",
-            textDecoration: "none",
-            display: "flex",
-            alignItems: "center",
-            gap: 3,
-          }}
-        >
-          View market
-          <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
-            <path d="M2 10L10 2M10 2H5M10 2V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-        </a>
-      </div>
-
-      {/* Stats row */}
-      <div style={{ display: "flex", gap: 0 }}>
-        {[
-          { label: "Volume", value: data.volume },
-          { label: "Liquidity", value: data.liquidity },
-          { label: "Comments", value: data.comments.toLocaleString() },
-        ].map(({ label, value }, i) => (
-          <div
-            key={label}
-            style={{
-              flex: 1,
-              textAlign: "center",
-              borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.07)" : "none",
-              padding: "0 6px",
-            }}
-          >
-            <div style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>{value}</div>
-            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>{label}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 const PLATFORM_META: Record<SocialPlatform, { label: string; color: string; icon: string }> = {
   gdelt:   { label: "GDELT",    color: "#7c3aed", icon: "📡" },
@@ -257,10 +191,6 @@ function EventCard({ event, isSelected, onClick }: EventCardProps) {
         }}>
           {event.description}
 
-          {event.polymarket && (
-            <PolymarketStrip data={event.polymarket} slug={event.polymarket.slug} />
-          )}
-
           {event.social && <SocialStrip event={event} />}
 
           <div style={{ display: "flex", gap: 5, marginTop: 8, flexWrap: "wrap" }}>
@@ -375,13 +305,16 @@ export default function EventPanel({
 
   const categoryCounts = useMemo(() => {
     const counts: Partial<Record<EventCategory, number>> = {};
-    for (const e of events) counts[e.category] = (counts[e.category] ?? 0) + 1;
+    for (const e of events) {
+      if (!e.id.startsWith("pm-")) counts[e.category] = (counts[e.category] ?? 0) + 1;
+    }
     return counts;
   }, [events]);
 
   const sorted = useMemo(
     () =>
       events
+        .filter(e => !e.id.startsWith("pm-"))
         .filter(e => activeCategories.has(e.category))
         .filter(e => !hidePriced || (e.probability ?? 0) < PRICED_IN_THRESHOLD)
         .sort((a, b) =>
@@ -395,26 +328,18 @@ export default function EventPanel({
   return (
     <div
       style={{
-        position: "absolute",
-        top: 16,
-        right: 16,
-        bottom: 16,
-        width: 320,
+        flex: 1,
         display: "flex",
         flexDirection: "column",
+        minHeight: 0,
         fontFamily: FONT_SANS,
-        pointerEvents: "all",
-        zIndex: 10,
       }}
     >
       {/* Header */}
       <div style={{
-        background: "rgba(10,14,23,0.92)",
-        backdropFilter: "blur(12px)",
-        borderRadius: "12px 12px 0 0",
-        padding: "14px 16px 12px",
-        border: "1px solid rgba(255,255,255,0.08)",
-        borderBottom: "none",
+        flexShrink: 0,
+        padding: "10px 14px 10px",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div>
@@ -534,11 +459,6 @@ export default function EventPanel({
       <div ref={scrollRef} style={{
         flex: 1,
         overflowY: "auto",
-        background: "rgba(10,14,23,0.88)",
-        backdropFilter: "blur(12px)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        borderTop: "none",
-        borderRadius: "0 0 12px 12px",
         padding: "10px 12px",
         scrollbarWidth: "thin",
         scrollbarColor: "rgba(255,255,255,0.12) transparent",

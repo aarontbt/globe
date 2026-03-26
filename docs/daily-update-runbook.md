@@ -13,6 +13,7 @@
 | `src/data/banker-conflict.json` | Conflict Status | Daily |
 | `src/data/banker-trade-ideas.json` | Trade Ideas | Daily or on major event |
 | `src/data/banker-sanctions.json` | Sanctions Tracker | On new designation events |
+| `src/data/commodities-impact.json` | Right panel — Supply Chain tab | Daily (key prices); narratives on material supply chain shift |
 | `src/hooks/useMarkets.ts` | Ticker bar (fallback quotes) | Daily |
 | `src/data/charts-volatility.json` | Bottom volatility charts (OVX, VXEEM, Scenarios) | OVX + VXEEM fetch live from CBOE on load; only Scenarios need manual daily update |
 
@@ -70,7 +71,8 @@
 
 - **Client IDs**: lowercase slugs, no spaces (e.g., `"pttep"`, `"sapura"`, `"wilmar"`)
 - **Exposure scores**: integers **1-10** (not 0-10)
-- **`change1d` format**: always include sign prefix — `"+7bp"`, `"-3.7%"`, `"+0.4%"`
+- **`change1d` format**: always include sign prefix - `"+7bp"`, `"-3.7%"`, `"+0.4%"`
+- **No em dashes**: use ` - ` (space-hyphen-space) in all JSON data fields; em dashes cause rendering inconsistencies
 - **`signal` values**: `"green"` | `"amber"` | `"red"`
 - **All dates**: ISO 8601 — `"2026-03-03T08:00:00Z"`
 - **Scenario narrative tone**: institutional/banker — factual, instrument-specific, no marketing language
@@ -354,7 +356,93 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 ---
 
-## 7. Data Hygiene & Pruning
+## 7. Supply Chain Impact (`commodities-impact.json`)
+
+### Purpose
+
+Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the Hormuz crisis propagates beyond energy into food, petrochemicals, fertilizers, and shipping. Unlike `banker-cross-asset.json` (which covers EM financial instruments), this file covers **physical commodity and freight markets** with crisis-specific narrative context.
+
+### Schema
+
+```json
+{
+  "asOf": "2026-03-26T00:00:00Z",
+  "scenario": "One-line description of current disruption mechanism",
+  "categories": [
+    {
+      "id": "food",
+      "label": "Food & Agriculture",
+      "supplyChainImpact": "Paragraph explaining how Hormuz closure affects this category (2-4 sentences).",
+      "assets": [
+        {
+          "id": "wheat",
+          "name": "Wheat",
+          "current": 692,
+          "unit": "¢/bu",
+          "change1d": "+3.2%",
+          "baseline30d": 620,
+          "baseline90d": 578,
+          "zscore": 2.6,
+          "signal": "red",
+          "narrative": "Crisis-specific context for this asset (2-3 sentences). Why is it moving? What is the supply chain mechanism?"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Field Guidance
+
+| Field | Description |
+|-------|-------------|
+| `asOf` | Morning snapshot time — match `banker-cross-asset.json` |
+| `scenario` | One-line description of current disruption mechanism; update if macro situation changes materially |
+| `supplyChainImpact` | Category-level narrative: why Hormuz closure (or crisis development) affects this category. Update when the underlying mechanism changes — not every day if static. |
+| `current` | Today's price/level in the specified unit |
+| `change1d` | vs prior close — always include sign: `"+3.2%"` or `"-1.1%"` |
+| `baseline30d` | 30-day rolling average — update monthly |
+| `baseline90d` | 90-day rolling average — update quarterly |
+| `zscore` | `(current - baseline90d) / stddev`; same guide as cross-asset: >2.0 = red, 1.0–2.0 = amber, <1.0 = green |
+| `signal` | `"red"` / `"amber"` / `"green"` — drives the signal dot on each asset row |
+| `narrative` | Asset-level crisis context: the specific supply chain mechanism linking this asset to the crisis. Update when the mechanism changes; does **not** need a daily price refresh if the narrative remains accurate. |
+
+### Categories and Benchmark Sources
+
+| Category | Assets | Primary Source |
+|----------|--------|---------------|
+| **Food & Agriculture** | Wheat (¢/bu), Corn (¢/bu), Soybeans (¢/bu), Palm Oil CPO (MYR/mt), Rice Thai 25% FOB ($/mt) | CME futures (ZW=F, ZC=F, ZS=F); Bursa Malaysia CPO; Bangkok rice export quotes |
+| **Petrochemicals & Plastics** | Naphtha CFR Japan ($/mt), Ethylene CFR NE Asia ($/mt), Methanol CFR China ($/mt) | ICIS, Platts, Argus petrochemical assessments |
+| **Fertilizers** | Urea FOB Middle East ($/mt), DAP FOB US Gulf ($/mt), Potash MOP CFR SE Asia ($/mt) | Argus Fertilizers, CRU Group, Fertecon |
+| **Shipping & Freight** | Baltic Dry Index (pts), VLCC AG-Asia Rate (WS pts), Container Freight SCFI (pts) | Baltic Exchange daily; Clarkson/Platts VLCC WS; Shanghai Shipping Exchange |
+
+### Update Frequency
+
+- **`asOf` + `current` + `change1d`**: Daily — same cadence as `banker-cross-asset.json`
+- **`zscore` + `signal`**: Recalculate daily if prices are updated
+- **`narrative` (asset-level)**: Update when the supply chain mechanism shifts (new force majeure, route change, facility damage) — not required daily if unchanged
+- **`supplyChainImpact` (category-level)**: Update when a new development materially changes the category's exposure mechanism
+- **`scenario` (top-level)**: Update when the primary disruption vector changes (e.g., Hormuz partially reopens, Cape re-routing reverses)
+
+### Source Validation Notes
+
+- **Naphtha, ethylene, methanol**: Exact levels require ICIS/Platts subscription. If unavailable, estimate directionally from crude oil move (naphtha tracks crude closely; ~70% correlation). Flag as `(est.)`.
+- **Urea FOB ME / DAP**: Argus and CRU assessments are weekly — use last confirmed weekly level on non-assessment days; apply directional adjustment if major news.
+- **VLCC WS rates**: Clarkson or Platts Dirty Tanker index is the primary source. Spot rate can move 20–30 WS points intraday on single fixture — use last confirmed Baltic/Clarkson close.
+- **Baltic Dry Index**: Published daily by Baltic Exchange; available via Trading Economics or Bloomberg `BDIY Index`.
+- **SCFI**: Published weekly by Shanghai Shipping Exchange (Friday). Use last confirmed weekly value on non-publication days.
+
+### Adding or Retiring an Asset
+
+**Adding**: Insert new object in the relevant category's `assets` array. Must include all fields. Choose a unit consistent with market convention for that commodity. Set baselines from 30d and 90d historical price data.
+
+**Retiring**: Remove the asset object if the market is no longer relevant (e.g., a shipping lane fully normalises and the freight rate returns to pre-crisis levels). Do **not** set `signal: "green"` as a proxy for retirement — either the asset is monitored or it is removed.
+
+**Adding a category**: Add a new object to `categories` with `id`, `label`, `supplyChainImpact`, and at least 2 `assets`. The `CommoditiesImpactPanel` component iterates all categories generically — no code change required.
+
+---
+
+## 8. Data Hygiene & Pruning
 
 ### Intel Events (`iran-intel-events.json`)
 
@@ -412,11 +500,12 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - [ ] **Intel events — title hygiene**: Replace `sec-005` title with today's single top security event (≤8 words); do not accumulate prior event names in the title
 - [ ] **Intel events — retirement check**: Flag any event with probability <15% or a resolved thesis; confirm before deleting
 - [ ] **Trade ideas — retirement check**: Remove any idea whose stop-loss was hit or thesis has reversed; do not archive, just delete
+- [ ] **Supply chain commodities**: In `src/data/commodities-impact.json`, update `asOf`, `current`, `change1d`, and recalculate `zscore`/`signal` for all 14 assets. Update `narrative` only if the supply chain mechanism has materially changed. Update `scenario` field if the primary disruption vector has shifted.
 - [ ] **BottomChartsPanel — Scenarios only**: In `src/data/charts-volatility.json`, append one entry to `days` with the new `scenarios` array (must sum to 100 and match `banker-conflict.json`). **OVX and VXEEM are fetched live from CBOE on page load — no manual update needed.**
 - [ ] **Runbook Price Narratives**: Update Brent, JKM, TTF, credit baseline lines to match today's cross-asset data
 - [ ] **Runbook Crisis Timeline**: Append today's headline in one line; keep entries to ≤25 words each
 - [ ] **Sanctions**: Check for overnight OFAC/EU announcements; update `s0` description if MAS/SGX actions occurred
-- [ ] **Validate JSON**: Run `node -e "JSON.parse(require('fs').readFileSync('./src/data/<file>.json','utf8'))"` for each file
+- [ ] **Validate JSON**: Run `node -e "JSON.parse(require('fs').readFileSync('./src/data/<file>.json','utf8'))"` for each modified file — including `commodities-impact.json`
 - [ ] **Build check**: Run `bun run build` — verify TypeScript compiles with no errors
 
 ### Weekly Review
@@ -445,7 +534,11 @@ const FALLBACK_QUOTES: MarketQuote[] = [
    - **Conflict**: Events show today's date; scenario probabilities sum to 100%
    - **Trade Ideas**: `cfTriggers` reference the correct client names
    - **Sanctions**: Most recent entry reflects latest developments
-5. Open browser console — no errors on any panel
+5. Close Market Brief overlay; check right panel tabs:
+   - **EVENTS**: Intel events visible; no Polymarket (`pm-`) events shown; category filters work
+   - **PREDICTIONS**: Polymarket markets load with volume/liquidity stats; "Open" links resolve
+   - **SUPPLY CHAIN**: All 4 categories present (Food, Petrochemicals, Fertilizers, Shipping); `asOf` matches today; click any asset row to confirm narrative expands
+6. Open browser console — no errors on any panel
 6. Check ticker bar (top of globe) — fallback prices match `useMarkets.ts` values
 
 ---

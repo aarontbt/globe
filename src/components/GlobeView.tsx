@@ -28,7 +28,7 @@ import { useSatellites } from "../hooks/useSatellites";
 import { useCountryLabels } from "../hooks/useCountryLabels";
 import { useSocialSignals } from "../hooks/useSocialSignals";
 
-import EventPanel from "./EventPanel";
+import RightPanel, { type RightPanelTab } from "./RightPanel";
 import LayerTogglePanel from "./LayerTogglePanel";
 import PerformanceMonitor from "./PerformanceMonitor";
 import DataSources from "./DataSources";
@@ -87,6 +87,7 @@ export default function GlobeView() {
   const deckRenderStartRef = useRef(0);
   const deckRenderMsRef = useRef(0);
 
+  const [rightPanelTab, setRightPanelTab] = useState<RightPanelTab>("events");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeCategories, setActiveCategories] = useState<Set<EventCategory>>(() => {
     try {
@@ -550,12 +551,15 @@ export default function GlobeView() {
         </div>
       </div>
 
-      {/* Event panel */}
+      {/* Right panel — tabbed: Events / Predictions / Supply Chain */}
       {visibility.showEvents && (
-        <EventPanel
-          events={events}
-          loading={eventsLoading}
-          error={eventsError}
+        <RightPanel
+          activeTab={rightPanelTab}
+          onTabChange={setRightPanelTab}
+          intelEvents={events}
+          polymarketEvents={polymarketEvents}
+          eventsLoading={eventsLoading}
+          eventsError={eventsError}
           selectedId={selectedId}
           activeCategories={activeCategories}
           onSelect={setSelectedId}

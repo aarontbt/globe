@@ -149,6 +149,26 @@ export interface CrisisVessel {
   trail: [number, number][]; // last 5 positions, oldest first; empty for AIS-off vessels
 }
 
+export interface CommodityAsset {
+  id: string;
+  name: string;
+  current: number;
+  unit: string;
+  change1d: string;
+  baseline30d: number;
+  baseline90d: number;
+  zscore: number;
+  signal: "green" | "amber" | "red";
+  narrative: string;
+}
+
+export interface CommodityCategory {
+  id: string;
+  label: string;
+  supplyChainImpact: string;
+  assets: CommodityAsset[];
+}
+
 export interface GlobeEvent {
   id: string;
   title: string;
