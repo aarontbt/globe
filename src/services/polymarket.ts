@@ -129,7 +129,6 @@ interface RawMarket {
   outcomePrices: string;
   outcomes: string;
   groupItemTitle?: string;
-  volume?: number;
 }
 
 interface RawEvent {
@@ -164,11 +163,19 @@ export async function fetchAseanEvents(): Promise<GlobeEvent[]> {
     if (e.endDate && new Date(e.endDate).getTime() < now) continue;
 
     // For multi-outcome events (title contains "..."), pick the market with
-    // the highest volume so we can resolve the "..." to a specific option.
+    // the highest Yes probability so we can resolve the "..." to a specific option.
     const markets = e.markets ?? [];
+    const marketYesProb = (m: RawMarket): number => {
+      try {
+        const prices = JSON.parse(m.outcomePrices) as string[];
+        const outcomes = JSON.parse(m.outcomes ?? "[]") as string[];
+        const yesIdx = outcomes.findIndex((o: string) => o.toLowerCase() === "yes");
+        return yesIdx >= 0 ? parseFloat(prices[yesIdx]) || 0 : 0;
+      } catch { return 0; }
+    };
     const market = e.title.includes("...")
       ? (markets.reduce<RawMarket | null>((best, m) =>
-          (m.volume ?? 0) > (best?.volume ?? -1) ? m : best
+          marketYesProb(m) > marketYesProb(best ?? m) ? m : best
         , null) ?? markets[0])
       : markets[0];
 
