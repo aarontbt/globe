@@ -249,7 +249,7 @@ export default function GlobeView() {
         html: `<div style="font-family:${FONT_SANS};padding:2px 0;max-width:240px">
           <div style="font-weight:700;font-size:13px;color:#fff;margin-bottom:4px">${evt.title}</div>
           <div style="font-size:11px;color:rgba(255,255,255,0.5)">${evt.country} · ${evt.region}</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.8);margin-top:4px">${evt.probability}% probability</div>
+          ${evt.probability !== undefined ? `<div style="font-size:12px;color:rgba(255,255,255,0.8);margin-top:4px">${evt.probability}% probability</div>` : ""}
         </div>`,
         style: {
           backgroundColor: "rgba(8,12,22,0.92)",
