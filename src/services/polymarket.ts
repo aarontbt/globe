@@ -175,7 +175,7 @@ export async function fetchAseanEvents(): Promise<GlobeEvent[]> {
     };
     const market = e.title.includes("...")
       ? (markets.reduce<RawMarket | null>((best, m) =>
-          marketYesProb(m) > marketYesProb(best ?? m) ? m : best
+          best === null || marketYesProb(m) > marketYesProb(best) ? m : best
         , null) ?? markets[0])
       : markets[0];
 
