@@ -143,6 +143,15 @@ interface RawEvent {
   markets: RawMarket[];
 }
 
+function yesProb(m: RawMarket): number {
+  try {
+    const prices = JSON.parse(m.outcomePrices) as string[];
+    const outcomes = JSON.parse(m.outcomes ?? "[]") as string[];
+    const yesIdx = outcomes.findIndex((o: string) => o.toLowerCase() === "yes");
+    return yesIdx >= 0 ? parseFloat(prices[yesIdx]) || 0 : 0;
+  } catch { return 0; }
+}
+
 // ── single export function ─────────────────────────────────────────────────────
 export async function fetchAseanEvents(): Promise<GlobeEvent[]> {
   const url =
@@ -162,25 +171,12 @@ export async function fetchAseanEvents(): Promise<GlobeEvent[]> {
     // skip expired
     if (e.endDate && new Date(e.endDate).getTime() < now) continue;
 
-    // For multi-outcome events (title contains "..."), pick the market with
-    // the highest Yes probability so we can resolve the "..." to a specific option.
     const markets = e.markets ?? [];
-    const marketYesProb = (m: RawMarket): number => {
-      try {
-        const prices = JSON.parse(m.outcomePrices) as string[];
-        const outcomes = JSON.parse(m.outcomes ?? "[]") as string[];
-        const yesIdx = outcomes.findIndex((o: string) => o.toLowerCase() === "yes");
-        return yesIdx >= 0 ? parseFloat(prices[yesIdx]) || 0 : 0;
-      } catch { return 0; }
-    };
-    const market = e.title.includes("...")
-      ? (markets.reduce<RawMarket | null>((best, m) =>
-          best === null || marketYesProb(m) > marketYesProb(best) ? m : best
-        , null) ?? markets[0])
+    const market = e.title.includes("...") && markets.length > 0
+      ? markets.map(m => ({ m, p: yesProb(m) })).reduce((a, b) => b.p > a.p ? b : a).m
       : markets[0];
 
-    // If the event has a resolved groupItemTitle, substitute it for "..."
-    // Add a space before the replacement since "..." is typically preceded by "by"
+    // space before groupItemTitle since "..." is preceded by "by" in Polymarket titles
     const resolvedTitle = market?.groupItemTitle
       ? e.title.replace("...", ` ${market.groupItemTitle}`)
       : e.title;
