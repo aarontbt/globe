@@ -195,9 +195,7 @@ export default function CommoditiesImpactPanel() {
         {categories.map(cat => (
           <CategorySection key={cat.id} category={cat} />
         ))}
-        <div style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", textAlign: "center", marginTop: 8, paddingBottom: 4 }}>
-          Click any asset row to expand crisis narrative · {commoditiesData.scenario}
-        </div>
+
       </div>
     </div>
   );
