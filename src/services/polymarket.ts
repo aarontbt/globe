@@ -129,6 +129,7 @@ interface RawMarket {
   outcomePrices: string;
   outcomes: string;
   groupItemTitle?: string;
+  volume?: number;
 }
 
 interface RawEvent {
@@ -162,7 +163,21 @@ export async function fetchAseanEvents(): Promise<GlobeEvent[]> {
     // skip expired
     if (e.endDate && new Date(e.endDate).getTime() < now) continue;
 
-    const market = e.markets?.[0];
+    // For multi-outcome events (title contains "..."), pick the market with
+    // the highest volume so we can resolve the "..." to a specific option.
+    const markets = e.markets ?? [];
+    const market = e.title.includes("...")
+      ? (markets.reduce<RawMarket | null>((best, m) =>
+          (m.volume ?? 0) > (best?.volume ?? -1) ? m : best
+        , null) ?? markets[0])
+      : markets[0];
+
+    // If the event has a resolved groupItemTitle, substitute it for "..."
+    // Add a space before the replacement since "..." is typically preceded by "by"
+    const resolvedTitle = market?.groupItemTitle
+      ? e.title.replace("...", ` ${market.groupItemTitle}`)
+      : e.title;
+
     let probability = 50;
     if (market?.outcomePrices) {
       try {
@@ -195,7 +210,7 @@ export async function fetchAseanEvents(): Promise<GlobeEvent[]> {
 
     results.push({
       id:          `pm-${e.id}`,
-      title:       e.title,
+      title:       resolvedTitle,
       description: market?.question ?? e.description ?? e.title,
       category,
       country:     geo.country,
