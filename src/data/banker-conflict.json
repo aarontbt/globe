@@ -1,34 +1,34 @@
 {
   "escalationLevel": 5,
   "escalationLabel": "Severe",
-  "deltaVsYesterday": 1,
+  "deltaVsYesterday": 0,
   "todaysEvents": [
-    { "id": "e1", "summary": "Iran formally rejected the US 15-point peace plan on Mar 26, calling it 'maximalist and unreasonable'; issued 5 counter-conditions including a complete halt to all US/Israeli aggression, war reparations, and explicit Iranian sovereignty over the Strait of Hormuz (Al Jazeera, Bloomberg, NPR). (Mar 26)", "delta": "Iran rejects US peace plan; demands Hormuz sovereignty", "direction": "up" },
-    { "id": "e2", "summary": "Israel's UN Ambassador Danny Danon stated Israel is 'not part of US-Iran talks' and that military operations will continue until Iran's nuclear and missile capabilities are fully eliminated; Hezbollah cluster missile struck a residential neighbourhood in Kiryat Shmona (Al Jazeera Day 26, Mar 26). (Mar 26)", "delta": "Israel ops continue; Lebanon front re-activated", "direction": "up" },
-    { "id": "e3", "summary": "Pakistan PM Shehbaz Sharif offered to host US-Iran negotiations in Islamabad on Mar 26 - the only active diplomatic track remaining after Iran rejected the US plan; Iran's 5 counter-conditions leave door open for indirect talks but formally ruled out direct US-Iran negotiations (Reuters, Al Jazeera). (Mar 26)", "delta": "Pakistan offers to host talks", "direction": "neutral" }
+    { "id": "e1", "summary": "Iran activated the 'Tehran Toll Booth' on Mar 27 - IRGC-controlled corridor between Qeshm and Larak islands charging ~$2M per vessel transit payable in Chinese yuan; at least 2 vessels confirmed paid; Iranian parliament drafting bill to legislate the toll (Al Jazeera, Bloomberg, NBC News, Fortune). (Mar 27)", "delta": "Iran activates Hormuz toll - $2M/vessel in yuan", "direction": "up" },
+    { "id": "e2", "summary": "Trump extended the pause on Iranian power plant strikes to April 6 via Truth Social post on Mar 26-27; Iran FM Araghchi denied direct negotiations: 'no negotiations have happened, and we do not plan on any'; Pakistan continues relaying messages as intermediary (Euronews, NPR, Al Jazeera). (Mar 27)", "delta": "Trump extends deadline to Apr 6; Iran denies talks", "direction": "down" },
+    { "id": "e3", "summary": "Brent crude closed at $112.57/bbl on Mar 27 - highest level since July 2022 per CNBC; WTI briefly crossed $100/bbl intraday (session high $100.04, FX Leaders); iTraxx Asia IG est. ~178bp (+6bp); toll booth activation added a de-dollarization signal as Iran collects yuan-only fees. (Mar 27)", "delta": "Brent $112.57 highest since 2022; WTI crosses $100", "direction": "up" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 15,
-      "description": "Iran's 5 counter-conditions (Mar 26) - including Hormuz sovereignty and war reparations - form the basis of indirect negotiations via Pakistan. A partial framework emerges: Iran maintains non-hostile Hormuz passage, US refrains from power plant strikes beyond Mar 28, and both sides enter Pakistan-hosted talks. Brent retreats to $90-100/bbl within 3-4 weeks on confirmed diplomatic process; JKM pullback to $18-20 as Qatar damage is assessed. P&I insurance restoration begins only on confirmed ceasefire - not on diplomatic framework alone. Key risk: Israel has explicitly stated it is not bound by US-Iran talks.",
+      "probability": 13,
+      "description": "Pakistan-hosted talks yield an interim framework: toll booth suspended, Iran accepts partial sovereignty language, Trump refrains from power plant strikes through April 6. A 14-day ceasefire window opens. Brent retreats to $90-100/bbl; JKM pulls back to $17-19 on resumed Qatar damage assessment. P&I cover only partially restored - toll booth precedent means full commercial Hormuz passage requires a separate legal framework. Israel's stated independence from US-Iran talks remains the key wildcard.",
       "oilImpact": "+$15/bbl",
       "lngImpact": "+65%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 52,
-      "description": "Iran's rejection of the 15-point plan effectively invalidates the Mar 28 deadline framework. Trump refrains from resuming power plant strikes but Iran's counter-conditions (Hormuz sovereignty, reparations) are unacceptable to Washington. Pakistan-hosted talks begin but make no substantive progress within 2 weeks. Hormuz non-hostile framework remains narrow - commercial P&I cover not restored. Israel continues strikes on Tehran and Iran; Hezbollah sustains Lebanon front. Brent settles $100-120/bbl; JKM at $20-24/MMBtu with no Qatar Ras Laffan restart. iTraxx Asia IG holds 170-185bp.",
+      "probability": 51,
+      "description": "Tehran Toll Booth (activated Mar 27 at $2M/vessel in yuan) becomes the new normal: some tankers pay to transit, others reroute via Cape. Iran's sovereignty precedent hardens. Pakistan-hosted talks begin but move slowly; Trump extends April 6 deadline again. Hormuz functions at reduced, tolled capacity - commercial P&I cover not restored. Brent settles $110-130/bbl; JKM at $19-23/MMBtu. Iran parliament legislates the toll, entrenching yuan-denominated petrotrade. Israel-Hezbollah Lebanon front sustains. iTraxx Asia IG pushes through 185bp.",
       "oilImpact": "+$40/bbl",
       "lngImpact": "+150%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 33,
-      "description": "Trump interprets Iran's rejection as a negotiating failure and resumes power plant strikes after Mar 28. Iran revokes non-hostile Hormuz framework; full commercial blockade reinstated. IRGC resumes full offensive operations against US/Saudi targets. Lebanon front expands. Ras Laffan offline for the quarter; Strait of Malacca closure threat reactivated. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges - Thailand and Philippines face double-digit fuel inflation and sovereign credit-rating action.",
+      "probability": 36,
+      "description": "Trump resumes power plant strikes after April 6 upon Iran's toll booth legislation passing parliament. Iran revokes non-hostile framework, closes toll corridor; full commercial blockade reinstated. IRGC resumes full offensive operations against US/Saudi targets; Strait of Malacca closure threat reactivated. Ras Laffan offline for the quarter. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges - Thailand and Philippines face double-digit fuel inflation and sovereign credit-rating action. De-dollarization cascade accelerates as yuan-settled energy trade expands beyond Hormuz.",
       "oilImpact": "+$90/bbl",
       "lngImpact": "+220%"
     }

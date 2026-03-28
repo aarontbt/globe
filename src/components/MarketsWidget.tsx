@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "100–120";
+const NEAR_TERM_RANGE = "110–130";
 const SUSTAINED_PRICE = "175";
-const TOP_ALERT = "IRAN REJECTS US 15-POINT PEACE PLAN — Demands Hormuz sovereignty; Israel ops continue; Lebanon front re-activated; Brent rebounds ~$101; Pakistan offers to host talks; tail risk 33%";
+const TOP_ALERT = "HORMUZ TOLL BOOTH ACTIVE - Iran charges $2M/vessel in yuan; Trump extends to Apr 6; Brent $112.57 confirmed (CNBC); tail risk 36%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
