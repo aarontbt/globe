@@ -24,34 +24,6 @@ function SignalDot({ signal, size = 7 }: { signal: string; size?: number }) {
   );
 }
 
-function Sparkline({ values, signal }: { values: number[]; signal: string }) {
-  const W = 48, H = 18;
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const range = max - min || 1;
-  const pts = values.map((v, i) => {
-    const x = (i / (values.length - 1)) * W;
-    const y = H - ((v - min) / range) * (H - 3) - 1;
-    return `${x},${y}`;
-  });
-  const color = signal === "red" ? "#f87171" : signal === "amber" ? "#f59e0b" : "#4ade80";
-  const polyline = pts.join(" ");
-  const lastPt = pts[pts.length - 1].split(",");
-  return (
-    <svg width={W} height={H} style={{ flexShrink: 0, display: "block" }}>
-      <polyline
-        points={polyline}
-        fill="none"
-        stroke={color}
-        strokeWidth={1.2}
-        strokeOpacity={0.55}
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-      <circle cx={parseFloat(lastPt[0])} cy={parseFloat(lastPt[1])} r={2} fill={color} opacity={0.85} />
-    </svg>
-  );
-}
 
 function AssetRow({ asset }: { asset: CommodityAsset }) {
   const [expanded, setExpanded] = useState(false);
@@ -82,7 +54,6 @@ function AssetRow({ asset }: { asset: CommodityAsset }) {
           </div>
           <div style={{ fontSize: 10, color: changeColor, fontWeight: 600 }}>{asset.change1d}</div>
         </div>
-        <Sparkline values={[asset.baseline90d, asset.baseline30d, asset.current]} signal={asset.signal} />
       </div>
 
       {expanded && (
