@@ -76,21 +76,13 @@ function AssetRow({ asset }: { asset: CommodityAsset }) {
         <div style={{ flex: 1, fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>
           {asset.name}
         </div>
-        <Sparkline values={[asset.baseline90d, asset.baseline30d, asset.current]} signal={asset.signal} />
         <div style={{ textAlign: "right" }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>
             {asset.current.toLocaleString()} <span style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", fontWeight: 400 }}>{asset.unit}</span>
           </div>
           <div style={{ fontSize: 10, color: changeColor, fontWeight: 600 }}>{asset.change1d}</div>
         </div>
-        <div style={{
-          minWidth: 36,
-          textAlign: "right",
-          fontSize: 10,
-          color: "rgba(255,255,255,0.35)",
-        }}>
-          z={asset.zscore > 0 ? "+" : ""}{asset.zscore.toFixed(1)}
-        </div>
+        <Sparkline values={[asset.baseline90d, asset.baseline30d, asset.current]} signal={asset.signal} />
       </div>
 
       {expanded && (
