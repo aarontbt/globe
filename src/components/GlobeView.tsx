@@ -103,13 +103,13 @@ export default function GlobeView() {
   const [visibility, setVisibility] = useState<LayerVisibility>(() => {
     const defaults: LayerVisibility = {
       showLanes: true,
-      showCorridors: true,
-      showPorts: true,
-      showArcs: true,
-      showVessels: true,
-      showEvents: true,
+      showCorridors: false,
+      showPorts: false,
+      showArcs: false,
+      showVessels: false,
+      showEvents: false,
       showSatellites: false,
-      showOilSupplyChain: true,
+      showOilSupplyChain: false,
       showCrisisVessels: false,
     };
     try {
