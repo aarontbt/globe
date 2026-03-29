@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "110–130";
 const SUSTAINED_PRICE = "175";
-const TOP_ALERT = "HORMUZ TOLL BOOTH ACTIVE - Iran charges $2M/vessel in yuan; Trump extends to Apr 6; Brent $112.57 confirmed (CNBC); tail risk 36%";
+const TOP_ALERT = "HOUTHIS ENTER WAR - Yemen fires first missile at Israel (Mar 28); ground invasion feared; Iran waiting on US troops; Islamabad 4-nation talks (Mar 29); Brent $112.57; tail risk 41%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
