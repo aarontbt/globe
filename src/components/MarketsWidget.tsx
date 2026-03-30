@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "110–130";
 const SUSTAINED_PRICE = "175";
-const TOP_ALERT = "HOUTHIS ENTER WAR - Yemen fires first missile at Israel (Mar 28); ground invasion feared; Iran waiting on US troops; Islamabad 4-nation talks (Mar 29); Brent $112.57; tail risk 41%";
+const TOP_ALERT = "IRAN STRIKES KUWAIT POWER PLANT - worker killed (Mar 30); Trump mulls Kharg Island seizure; Tehran power grid hit; Brent $115.93 record monthly surge; tail risk 43%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

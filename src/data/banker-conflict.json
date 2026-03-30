@@ -1,34 +1,34 @@
 {
   "escalationLevel": 5,
   "escalationLabel": "Severe",
-  "deltaVsYesterday": 1,
+  "deltaVsYesterday": 0,
   "todaysEvents": [
-    { "id": "e1", "summary": "Houthis fired first ballistic missile at Israel from Yemen on Mar 28 - intercepted by Israeli air defenses; first Houthi strike on Israel since the Iran war began Feb 28; marks Iran-backed multi-front expansion into a second theatre (CNBC, Al Jazeera, NBC News, Washington Post). (Mar 28)", "delta": "Houthis fire first missile at Israel - new front", "direction": "up" },
-    { "id": "e2", "summary": "Iran 'waiting' for ground invasion as US moves additional troops to Middle East; Iran parliament speaker Ghalibaf: 'enemy openly sends messages of dialogue and secretly plans a ground attack'; House Majority Leader Scalise confirmed conversations about ground options but 'no boots on ground today' (CNN, Al Jazeera). (Mar 29)", "delta": "Ground invasion fears; US reinforces Middle East", "direction": "up" },
-    { "id": "e3", "summary": "Pakistan, Turkey, Egypt and Saudi Arabia foreign ministers met in Islamabad on Mar 29 to seek de-escalation of the US-Israel war on Iran; Pakistan continues relaying US-Iran messages as sole active intermediary channel; Trump April 6 power plant deadline unchanged (Al Jazeera, CNN). (Mar 29)", "delta": "Islamabad FM summit: 4-nation de-escalation bid", "direction": "down" }
+    { "id": "e1", "summary": "Iranian drone strike damages Kuwait power and desalination plant on Mar 30; one Indian worker killed; Kuwait Ministry of Electricity confirms major structural damage but normal operations continue; first confirmed attack on GCC civilian critical infrastructure in the conflict (Al Jazeera, CNBC, The National). (Mar 30)", "delta": "Kuwait power plant hit; civilian infra targeted", "direction": "up" },
+    { "id": "e2", "summary": "Trump says US wants to 'take the oil in Iran' and seize Kharg Island export hub; posts 'big day in Iran' as Pentagon weighs full-scale ground invasion; Trump told FT preference would be to take the oil, comparing to Venezuela operation; administration has weighed occupying or blockading Kharg (CNBC, Al Jazeera, NBC News, Axios). (Mar 30)", "delta": "Trump mulls Kharg Island seizure; ground invasion", "direction": "up" },
+    { "id": "e3", "summary": "US-Israel overnight strikes on Tehran power grid cause temporary blackout, since restored per Iranian authorities; Trump claims Iran agreed to 'most of the 15 points' in peace plan and let 20 vessels through Hormuz 'out of respect'; Iran officially contradicts diplomacy claim; Brent $115.93 - Brent up over 62% since Feb 27 pre-war close, record monthly surge (Al Jazeera, NBC, oilpriceapi). (Mar 30)", "delta": "Tehran power blackout; Trump peace claim disputed", "direction": "up" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 11,
-      "description": "Islamabad FMs summit (Mar 29: Pakistan, Turkey, Egypt, Saudi Arabia) catalyses an interim framework: toll booth suspended, Iran accepts partial sovereignty language, Trump refrains from power plant strikes, Houthis halt Yemen-Israel operations. A 14-day ceasefire window opens. Brent retreats to $90-100/bbl; JKM pulls back to $17-19/MMBtu on resumed Qatar damage assessment. P&I cover only partially restored - toll booth precedent means full commercial Hormuz passage requires a separate legal framework.",
+      "probability": 10,
+      "description": "Trump's Kharg Island rhetoric and diplomacy claims catalyse a back-channel breakthrough via Pakistan: toll booth suspended, Iran accepts partial sovereignty language, Trump refrains from power plant and Kharg strikes, Houthis pause Yemen-Israel operations. A 14-day ceasefire window opens. Brent retreats to $90-100/bbl; JKM pulls back to $17-19/MMBtu on resumed Qatar damage assessment. P&I cover only partially restored - toll booth precedent means full commercial Hormuz passage requires a separate legal framework.",
       "oilImpact": "+$15/bbl",
       "lngImpact": "+65%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 48,
-      "description": "Tehran Toll Booth ($2M/vessel in yuan) becomes the new normal: some tankers pay to transit, others reroute via Cape. Houthis sustain Yemen-Israel missile strikes as a coordinated second front. Pakistan-hosted Islamabad talks begin but move slowly; Trump extends April 6 deadline again. Hormuz functions at reduced, tolled capacity - commercial P&I cover not restored. Brent settles $110-130/bbl; JKM at $19-23/MMBtu. Iran parliament legislates the toll, entrenching yuan-denominated petrotrade. iTraxx Asia IG pushes through 185bp.",
+      "probability": 47,
+      "description": "Tehran Toll Booth ($2M/vessel in yuan) becomes the new normal: some tankers pay to transit, others reroute via Cape. Kharg Island invasion talk pressures Iran but no seizure executed. Houthis sustain Yemen-Israel strikes as a coordinated second front. Iran attacks continue on GCC civilian infrastructure (Kuwait precedent). Trump extends April 6 deadline again. Brent settles $110-130/bbl; JKM at $19-23/MMBtu. Iran parliament legislates the toll. iTraxx Asia IG pushes through 185bp.",
       "oilImpact": "+$40/bbl",
       "lngImpact": "+150%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 41,
-      "description": "Trump resumes power plant strikes after April 6 upon Iran's toll booth legislation passing parliament; Houthis escalate to daily Israel strikes with precision weapons; ground invasion preparations confirmed. Iran revokes non-hostile framework, closes toll corridor; full commercial blockade reinstated. IRGC resumes full offensive operations against US/Saudi targets. Ras Laffan offline for the quarter. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges; de-dollarization cascade accelerates as yuan-settled energy trade expands beyond Hormuz.",
+      "probability": 43,
+      "description": "US executes Kharg Island seizure or Trump resumes power plant strikes after April 6; Iran revokes non-hostile framework and closes toll corridor; full commercial blockade reinstated. Houthis escalate to daily Israel strikes; ground invasion preparations confirmed. IRGC resumes full offensive operations against US/GCC targets; Kuwait and Saudi civilian infrastructure under sustained attack. Ras Laffan offline for the quarter. Oil hits $160-190/bbl; LNG spot markets seize. ASEAN recession risk surges.",
       "oilImpact": "+$90/bbl",
       "lngImpact": "+220%"
     }
