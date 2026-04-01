@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "110–130";
-const SUSTAINED_PRICE = "175";
-const TOP_ALERT = "IRAN STRIKES KUWAIT POWER PLANT - worker killed (Mar 30); Trump mulls Kharg Island seizure; Tehran power grid hit; Brent $115.93 record monthly surge; tail risk 43%";
+const NEAR_TERM_RANGE = "100–120";
+const SUSTAINED_PRICE = "165";
+const TOP_ALERT = "TRUMP: US LEAVING IRAN WAR IN 2-3 WEEKS - Brent -13% to $100.64 (Reuters Apr 1); Iran fires 7 missiles at Israel; IRGC threatens 18 US tech firms; Kuwait airport hit; tail risk 37%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
