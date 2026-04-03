@@ -579,6 +579,8 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 29**: Mar 29 — Iran waiting for ground invasion; US reinforces Middle East; Islamabad FM summit (Pakistan, Turkey, Egypt, Saudi) seeks de-escalation; Brent $112.57 carried
 - **Day 30**: Mar 30 — Iran drone strikes Kuwait power & desalination plant; Indian worker killed; Trump mulls Kharg Island seizure; Tehran power grid hit; Brent $115.93 (+3.0%)
 - **Day 31**: Apr 1 — Trump 'leaving in 2-3 weeks'; Brent -13% to $100.64 (Reuters); Iran fires 7 missiles at Israel; IRGC threatens 18 US tech firms
+- **Day 32**: Apr 2 — Trump 'Stone Ages' escalation reverses Day 31; Iran hits UAE with 457 missiles + 2,038 drones (11 dead); Brent +8.3% to $109; Philippines bilateral Hormuz deal
+- **Day 33**: Apr 3 — Brent $109.03 confirmed (Gulf News/CNBC); WTI ~$111; April 6 deadline 3 days; Iran FM 'trust level zero'; tail risk 50%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -586,10 +588,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20 close, +7.6%) → $115.93 (Day 30, confirmed Al Jazeera/oilpriceapi, record monthly surge >62%) → $100.64 (Day 31, confirmed Reuters Apr 1, -13.2% on Trump 'leaving in 2-3 weeks'; Iran fires 7 missiles at Israel same day - tactical dip, not structural); working range $95-120 in stress; $150-180 tail on Kharg seizure or resumed power plant strikes
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts confirmed) → est. ~$19.00/MMBtu (Day 31, -5.0% on Trump signal; toll booth constrains flows); Qatar Ras Laffan restart structurally blocked until political settlement; Houthis sustain Bab el-Mandeb secondary risk (third operation Apr 1); Australian LNG sole alternative; Asia spot tightness acute through H2 2026
-- **TTF Gas**: Pre-shock ~$34/MWh → est. ~€74.20/MWh (Day 20) → €55.80/MWh (Day 30, oilpriceapi confirmed) → est. €52.00/MWh (Day 31, -6.8% on Trump signal; within confirmed Apr 1 intraday range €49.70-54.40); Qatar LNG hub suspension sustaining elevated European gas; April 6 deadline next re-escalation trigger
-- **Credit**: iTraxx Asia IG est. ~178bp (Day 31, -4bp; Trump signal tightening); ASEAN HY est. ~535bp (-7bp); 185-200bp iTraxx IG remains the April 6 + Kharg event-risk target; IRGC tech firm threat adds new cybersecurity systemic risk vector
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20 close, +7.6%) → $115.93 (Day 30, confirmed Al Jazeera/oilpriceapi) → $100.64 (Day 31, Reuters Apr 1, -13.2% tactical dip) → $109.03 (Day 33, confirmed Gulf News/CNBC Apr 3, +8.3% on Trump 'Stone Ages' escalation); working range $105-135 in stress; $160-185 tail on Kharg seizure + Saudi output cuts
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts confirmed) → ~$20.13/MMBtu (Day 33, Investing.com Apr 2-3, +6.0% on Trump escalation; toll booth constrains flows); Qatar Ras Laffan restart structurally blocked until political settlement; April 6 deadline acute; Asia spot tightness acute through H2 2026
+- **TTF Gas**: Pre-shock ~$34/MWh → est. ~€74.20/MWh (Day 20) → €55.80/MWh (Day 30, oilpriceapi confirmed) → €49.97/MWh (Day 33, oilpriceapi Apr 2 16:03 UTC confirmed, -3.9% from Day 31; European gas decoupling from crude oil divergence); Qatar LNG hub suspension sustaining elevated European gas; April 6 next re-escalation trigger
+- **Credit**: iTraxx Asia IG est. ~188bp (Day 33, +10bp; Trump 'Stone Ages' + UAE attack widening); ASEAN HY est. ~555bp (+20bp); 200-215bp iTraxx IG becomes April 6 event-risk target; Saudi output-cut risk from UAE attack adds systemic upside; tail risk 50%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
