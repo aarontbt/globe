@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "100–120";
-const SUSTAINED_PRICE = "165";
-const TOP_ALERT = "TRUMP: US LEAVING IRAN WAR IN 2-3 WEEKS - Brent -13% to $100.64 (Reuters Apr 1); Iran fires 7 missiles at Israel; IRGC threatens 18 US tech firms; Kuwait airport hit; tail risk 37%";
+const NEAR_TERM_RANGE = "105–135";
+const SUSTAINED_PRICE = "175";
+const TOP_ALERT = "TRUMP: 'STONE AGES' ESCALATION - Brent +8% to $109 (Apr 3); Iran hits UAE with 457 missiles + 2,038 drones; 11 dead; April 6 deadline in 3 days; tail risk 50%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

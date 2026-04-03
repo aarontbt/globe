@@ -1,34 +1,34 @@
 {
   "escalationLevel": 5,
   "escalationLabel": "Severe",
-  "deltaVsYesterday": 0,
+  "deltaVsYesterday": 1,
   "todaysEvents": [
-    { "id": "e1", "summary": "Trump tells reporters US will be 'leaving Iran in 2-3 weeks'; White House announces prime-time address 9pm ET; Rubio says US can see the 'finish line' - Brent fell -13.2% to $100.64 confirmed (Reuters, NPR, DW Apr 1).", "delta": "Trump 'leaving in 2-3 weeks'; Brent -13%", "direction": "down" },
-    { "id": "e2", "summary": "Iran fires 7 missiles at Israel with cluster munitions; 16 injured including children; one strike near US Embassy branch Tel Aviv; Houthis claim 'third operation' against Israel in coordination with Iran and Hezbollah; first Houthi cluster munition use confirmed (Jerusalem Post, Magen David Adom Apr 1).", "delta": "Iran 7 missiles + Houthi 3rd strike", "direction": "up" },
-    { "id": "e3", "summary": "IRGC issues ultimatum threatening 18 US tech firms - Apple, Nvidia, Microsoft, Google, Intel, Cisco, HP, Oracle, IBM, Dell, Palantir, JP Morgan, Tesla, GE, Boeing, Spire Solutions, G42 - deadline 8pm Tehran time; Iran drones Kuwait Airport fuel tanks igniting large fire; Kuwait Aviation Fueling facility damaged (CNBC, KUNA, Jerusalem Post Apr 1).", "delta": "IRGC tech ultimatum; Kuwait airport hit", "direction": "up" }
+    { "id": "e1", "summary": "Trump (Apr 2) vows 'extremely hard' strikes for 2-3 weeks - 'bring them back to the Stone Ages' (Axios, NBC/CNBC Apr 2); full reversal of Apr 1 'leaving' signal; Brent surges +8.3% to $109.03 (Gulf News/CNBC Apr 3).", "delta": "Trump 'Stone Ages'; Brent +8%", "direction": "up" },
+    { "id": "e2", "summary": "Iran launches massive multi-vector attack on UAE (Apr 2): 457 ballistic missiles + 2,038 drones intercepted; 11 dead, 191 injured; also strikes Israel (4 separate barrages in 6 hrs), Saudi Arabia, Qatar, and Kuwait simultaneously; largest single-day attack of the conflict.", "delta": "UAE 457 missiles + 2,038 drones; 11 dead", "direction": "up" },
+    { "id": "e3", "summary": "Philippines strikes bilateral deal with Iran: toll-free Hormuz passage for Philippine vessels and safe return of Filipino seafarers (Bloomberg, The National Apr 2); first ASEAN nation to secure bilateral deal. April 6 deadline 3 days away; Iran denies negotiations; 'trust level is at zero' (Iranian FM).", "delta": "Philippines-Iran bilateral Hormuz deal", "direction": "neutral" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 15,
-      "description": "Trump's 'leaving in 2-3 weeks' declaration catalyses a back-channel breakthrough: toll booth suspended, Iran accepts partial sovereignty language, Trump refrains from Kharg strikes and resumed power plant operations, Houthis stand down Yemen-Israel campaign. Prime-time address April 1 announces ceasefire framework. Brent retreats to $85-95/bbl; JKM pulls back to $15-18/MMBtu on resumed Qatar damage assessment. P&I cover only partially restored - toll booth precedent means full commercial Hormuz passage requires a separate legal framework.",
+      "probability": 8,
+      "description": "Trump's escalation rhetoric proves negotiating posture: a back-channel deal materialises before April 6 - Iran accepts partial nuclear rollback, toll booth suspended, US refrains from Kharg seizure. Bilateral deals (India, Philippines) provide the template for a broader framework. Brent retreats to $90-100/bbl; JKM pulls back to $16-18/MMBtu on Qatar damage assessment resuming. P&I cover only partially restored - toll booth precedent means full commercial Hormuz passage requires a separate legal framework.",
       "oilImpact": "+$10/bbl",
       "lngImpact": "+55%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 48,
-      "description": "Trump's peace rhetoric fails to translate into ceasefire: Iran continues missile strikes and Kuwait infrastructure attacks while demanding Hormuz sovereignty. IRGC tech company threat causes selective cyberattacks on Western firms. Tehran Toll Booth ($2M/vessel in yuan) new normal; Kharg invasion talk pressures Iran but no seizure executed. Houthis sustain third-front operations. April 6 deadline extended again. Brent settles $95-120/bbl; JKM at $17-22/MMBtu. iTraxx Asia IG holds 175-185bp.",
+      "probability": 42,
+      "description": "April 6 deadline passes with limited US action: Iran endures strikes on power grid and missile infrastructure but maintains toll booth and bilateral deal framework. US-Israel avoid Kharg seizure; ceasefire talks drag into May. UAE, Saudi Arabia absorb continuing strikes but do not cut oil output materially. IRGC cyberattacks on Western tech firms cause selective disruptions. Brent settles $105-130/bbl; JKM at $19-24/MMBtu. iTraxx Asia IG holds 185-200bp.",
       "oilImpact": "+$35/bbl",
       "lngImpact": "+130%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 37,
-      "description": "Prime-time address announces Kharg Island seizure or resumed power plant strikes; Iran revokes non-hostile framework and closes toll corridor; full commercial blockade reinstated. IRGC executes cyberattacks on US tech firms - Apple, Nvidia supply chains disrupted. Houthis escalate to daily Israel strikes; ground invasion preparations confirmed. Ras Laffan offline for the quarter. Oil hits $150-180/bbl; LNG spot markets seize. ASEAN recession risk surges.",
+      "probability": 50,
+      "description": "April 6 triggers Kharg Island seizure or resumed power plant strikes; Iran responds by closing the toll corridor entirely and launching ground-war-scale attacks on Saudi Aramco infrastructure. UAE attacks escalate beyond interception capacity. IRGC executes cyberattacks on US tech firms disrupting Apple and Nvidia supply chains. Houthis escalate to daily strikes on Israel; ground invasion preparations confirmed. Ras Laffan offline for the quarter; Saudi output cuts 3-5M bpd. Oil hits $160-185/bbl; LNG spot markets seize. ASEAN recession risk critical.",
       "oilImpact": "+$80/bbl",
       "lngImpact": "+200%"
     }

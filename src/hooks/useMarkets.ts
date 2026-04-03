@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects sourced market snapshot (2026-04-01 morning)
-// Brent: $100.64 confirmed (Reuters Apr 1 0641 GMT, -13.2% on Trump 'leaving in 2-3 weeks'). WTI: $98.04 confirmed (Reuters Apr 1). Gold: $4,654.50 confirmed (Sunday Guardian Apr 1, +2.8%).
+// Static fallback — reflects sourced market snapshot (2026-04-03 morning)
+// Brent: $109.03 confirmed (Gulf News/CNBC Apr 3 07:17 JST, +8.3% on Trump 'Stone Ages' escalation reversal). WTI: ~$111 confirmed (OilPriceAPI NYMEX live 03:04 UTC Apr 3). Gold: $4,675 confirmed (Fortune Apr 2 10:25am ET).
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 100.64, change: -15.29, changePct: -13.19, currency: "USD", unit: "/barrel", lastUpdated: "2026-04-01T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 98.04,  change: -4.56,  changePct: -4.44,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-01T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 4654.50, change: 161.50, changePct: 2.80,  currency: "USD", unit: "/oz",    lastUpdated: "2026-04-01T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 109.03, change: 8.39,   changePct: 8.34,   currency: "USD", unit: "/barrel", lastUpdated: "2026-04-03T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 111.00, change: 12.96,  changePct: 13.22,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-03T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4675.00, change: 20.50, changePct: 0.44,   currency: "USD", unit: "/oz",    lastUpdated: "2026-04-03T00:00:00Z" },
 ];
 
 interface UseMarketsResult {
