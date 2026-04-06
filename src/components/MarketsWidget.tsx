@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "105–135";
 const SUSTAINED_PRICE = "175";
-const TOP_ALERT = "TRUMP: 'STONE AGES' ESCALATION - Brent +8% to $109 (Apr 3); Iran hits UAE with 457 missiles + 2,038 drones; 11 dead; April 6 deadline in 3 days; tail risk 50%";
+const TOP_ALERT = "APR 6 DEADLINE ACTIVE (8pm ET): Trump threatens power plants + bridges; Brent ~$110.50; US F-15E downed over Iran, both crew rescued; Kuwait desalination offline; tail risk 54%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

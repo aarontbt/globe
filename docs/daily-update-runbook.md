@@ -581,6 +581,9 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 31**: Apr 1 — Trump 'leaving in 2-3 weeks'; Brent -13% to $100.64 (Reuters); Iran fires 7 missiles at Israel; IRGC threatens 18 US tech firms
 - **Day 32**: Apr 2 — Trump 'Stone Ages' escalation reverses Day 31; Iran hits UAE with 457 missiles + 2,038 drones (11 dead); Brent +8.3% to $109; Philippines bilateral Hormuz deal
 - **Day 33**: Apr 3 — Brent $109.03 confirmed (Gulf News/CNBC); WTI ~$111; April 6 deadline 3 days; Iran FM 'trust level zero'; tail risk 50%
+- **Day 34**: Apr 4 — US F-15E shot down over Iran (first US aircraft lost); 1st crew rescued same day; A-10 Warthog also hit near Hormuz; Trump issues 48-hr ultimatum
+- **Day 35**: Apr 5 — 2nd F-15E crew rescued ('Easter miracle' - Trump); Kuwait desalination offline; 90% water at risk; Trump threatens power plants + bridges by Apr 6
+- **Day 36**: Apr 6 — April 6 8pm ET deadline active; Brent ~$110.50 est. (+1.4%); WTI $111.81 (OilPriceAPI); AIS transits -95%; Iran refuses; iTraxx ~195bp est.; tail risk 54%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -588,10 +591,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20 close, +7.6%) → $115.93 (Day 30, confirmed Al Jazeera/oilpriceapi) → $100.64 (Day 31, Reuters Apr 1, -13.2% tactical dip) → $109.03 (Day 33, confirmed Gulf News/CNBC Apr 3, +8.3% on Trump 'Stone Ages' escalation); working range $105-135 in stress; $160-185 tail on Kharg seizure + Saudi output cuts
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts confirmed) → ~$20.13/MMBtu (Day 33, Investing.com Apr 2-3, +6.0% on Trump escalation; toll booth constrains flows); Qatar Ras Laffan restart structurally blocked until political settlement; April 6 deadline acute; Asia spot tightness acute through H2 2026
-- **TTF Gas**: Pre-shock ~$34/MWh → est. ~€74.20/MWh (Day 20) → €55.80/MWh (Day 30, oilpriceapi confirmed) → €49.97/MWh (Day 33, oilpriceapi Apr 2 16:03 UTC confirmed, -3.9% from Day 31; European gas decoupling from crude oil divergence); Qatar LNG hub suspension sustaining elevated European gas; April 6 next re-escalation trigger
-- **Credit**: iTraxx Asia IG est. ~188bp (Day 33, +10bp; Trump 'Stone Ages' + UAE attack widening); ASEAN HY est. ~555bp (+20bp); 200-215bp iTraxx IG becomes April 6 event-risk target; Saudi output-cut risk from UAE attack adds systemic upside; tail risk 50%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20 close, +7.6%) → $109.03 (Day 33, confirmed Gulf News/CNBC Apr 3, +8.3%) → ~$110.50 est. (Day 36, Apr 6, +1.4% deadline anxiety; CNBC Apr 5-6; WTI $111.81 confirmed OilPriceAPI Apr 6); working range $105-135 in stress; $160-185 tail on Kharg seizure + Saudi output cuts
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts confirmed) → ~$21.00/MMBtu est. (Day 36, Apr 6, +4.3% est.; Kuwait desalination offline drives LNG demand; toll booth constrains flows); Qatar Ras Laffan restart structurally blocked until political settlement; April 6 8pm ET binary; Asia spot tightness acute through H2 2026
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, oilpriceapi Apr 2 confirmed) → ~€52.40/MWh est. (Day 36, Apr 6, +4.9% est.; Kuwait desalination offline raises EU gas demand fears); Qatar LNG hub suspension sustaining elevated European gas; April 6 8pm ET post-deadline escalation is the next catalyst
+- **Credit**: iTraxx Asia IG est. ~195bp (Day 36, +7bp; F-15E downing + Kuwait desalination offline + deadline anxiety); ASEAN HY est. ~570bp (+15bp); 215-230bp iTraxx IG becomes post-Apr 6 event-risk target if Kharg strikes proceed; tail risk 54%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
