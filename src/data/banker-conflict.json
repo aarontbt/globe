@@ -1,34 +1,34 @@
 {
   "escalationLevel": 5,
   "escalationLabel": "Severe",
-  "deltaVsYesterday": 0,
+  "deltaVsYesterday": 1,
   "todaysEvents": [
-    { "id": "e1", "summary": "US F-15E shot down over Iran (Apr 3) - first US aircraft lost in the conflict; 1st crew member rescued same day; 2nd crew member rescued Apr 5 ('Easter miracle' - Trump, CBS/NBC); A-10 Warthog also hit near Hormuz, pilot ejected and rescued (CBS, NBC, WaPo).", "delta": "F-15E downed, both crew rescued", "direction": "up" },
-    { "id": "e2", "summary": "Iran attacks put Kuwait power and water desalination plant offline (Fortune Apr 5, Al Jazeera); 90% of Kuwait drinking water at risk; government buildings hit; ongoing Iranian multi-vector strikes on Gulf infrastructure continue (Kuwait, Saudi, UAE).", "delta": "Kuwait desalination offline; 90% water at risk", "direction": "up" },
-    { "id": "e3", "summary": "April 6 8pm ET deadline active: Trump threatens to strike Iran power plants and bridges; Iran refuses ('not until fully compensated for war damages'); AIS transits down 95% from historical avg per S&P Global; Trump: 'Time is running out' (Al Jazeera, NBC Apr 4-5).", "delta": "Apr 6 deadline; Iran refuses; AIS -95%", "direction": "up" }
+    { "id": "e1", "summary": "Iranian strike injures 15 US soldiers in Kuwait (Apr 6, J.Post) - first confirmed US military casualties in Kuwait; marks direct Iran-US kinetic contact on Gulf soil; escalation beyond aircraft losses.", "delta": "15 US soldiers injured in Kuwait", "direction": "up" },
+    { "id": "e2", "summary": "Iran pushes peace proposal to end war; Trump rejects it: 'not good enough, Tuesday deadline final' (J.Post, Al Jazeera Apr 6); ISW Apr 5 confirms deadline extended to Apr 7 8pm ET; Brent holding near $111 est. ahead of binary trigger.", "delta": "Iran proposal rejected; Apr 7 deadline final", "direction": "up" },
+    { "id": "e3", "summary": "IDF strikes Asaluyeh petrochemical complex (South Pars-linked) + kills IRGC intel chief Majid Khademi (J.Post Apr 6); IRGC blocks 2 Qatari LNG tankers at Hormuz despite Iran-US transit agreement (Reuters Apr 6); AIS transits -95%; Apr 7 8pm ET deadline active.", "delta": "IDF hits Asaluyeh; Qatari LNG tankers blocked", "direction": "up" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 7,
-      "description": "April 6 deadline triggers a brief extension rather than strikes: F-15E rescue ('Easter miracle') and Kuwait desalination crisis create mutual pressure for de-escalation. Trump grants 72-96hr extension while Pakistan/Qatar back-channel mediation resumes. Toll booth suspended as gesture; Iran accepts partial nuclear inspection. Brent retreats to $98-105/bbl; JKM pulls back to $17-19/MMBtu on Qatar damage assessment resuming. P&I cover only partially restored - toll booth precedent means full commercial Hormuz passage requires a separate legal framework.",
+      "probability": 6,
+      "description": "April 7 8pm ET deadline passes with Trump accepting Iran's proposal framework (rejected Apr 6 but renegotiated): partial Hormuz reopening, toll booth suspended as gesture, nuclear inspection access granted. Kuwait water crisis creates mutual civilian-harm pressure. Pakistan/Qatar back-channel produces bridging agreement. Brent retreats to $98-105/bbl; JKM pulls back to $17-19/MMBtu on Qatar damage assessment resuming. P&I cover only partially restored - toll booth precedent means full commercial Hormuz passage requires a separate legal framework.",
       "oilImpact": "+$10/bbl",
       "lngImpact": "+55%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 39,
-      "description": "April 6 deadline passes with limited strikes on Iranian power grid and bridges; Iran absorbs hits but maintains toll booth and bilateral deal framework. Kuwait desalination offline for weeks; GCC civilian infrastructure attacks continue. US-Israel avoid Kharg seizure; Pakistan-brokered ceasefire talks drag into May. IRGC cyberattacks on Western tech firms cause selective disruptions. Brent settles $105-130/bbl; JKM at $19-24/MMBtu; iTraxx Asia IG holds 195-215bp.",
+      "probability": 38,
+      "description": "April 7 8pm ET deadline passes with limited strikes on Iranian power grid and bridges; Iran absorbs hits but maintains toll booth and bilateral deal framework. Kuwait desalination offline for weeks; GCC civilian infrastructure attacks continue; 15 US soldiers injured in Kuwait Apr 6 raises Congressional pressure. US-Israel avoid Kharg seizure; Pakistan-brokered ceasefire talks drag into May. IRGC cyberattacks on Western tech firms cause selective disruptions. Brent settles $105-130/bbl; JKM at $19-24/MMBtu; iTraxx Asia IG holds 195-215bp.",
       "oilImpact": "+$35/bbl",
       "lngImpact": "+130%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 54,
-      "description": "April 6 strikes on Kharg Island or power plants trigger full Hormuz corridor closure and ground-war-scale Iranian response. Kuwait water crisis deepens; Saudi Aramco infrastructure targeted; UAE attacks overwhelm interception systems. IRGC executes cyberattacks on US tech firms (Apple, Nvidia supply chains). Houthis escalate to daily strikes; ground invasion preparations confirmed. A-10 and F-15E losses signal Iran's improved air-defence capability. Ras Laffan offline for the quarter; Saudi output cuts 3-5M bpd. Oil hits $160-185/bbl; LNG spot markets seize. ASEAN recession risk critical.",
+      "probability": 56,
+      "description": "April 7 8pm ET strikes on Kharg Island or power plants trigger full Hormuz corridor closure and ground-war-scale Iranian response. 15 US soldiers already injured in Kuwait Apr 6 - escalation accelerating. Kuwait water crisis deepens; Saudi Aramco infrastructure targeted; UAE attacks overwhelm interception systems. IRGC executes cyberattacks on US tech firms (Apple, Nvidia supply chains). Houthis escalate to daily strikes; ground invasion preparations confirmed. A-10 and F-15E losses signal Iran's improved air-defence capability. Ras Laffan offline for the quarter; Saudi output cuts 3-5M bpd. Oil hits $160-185/bbl; LNG spot markets seize. ASEAN recession risk critical.",
       "oilImpact": "+$80/bbl",
       "lngImpact": "+200%"
     }

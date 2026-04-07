@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "105–135";
 const SUSTAINED_PRICE = "175";
-const TOP_ALERT = "APR 6 DEADLINE ACTIVE (8pm ET): Trump threatens power plants + bridges; Brent ~$110.50; US F-15E downed over Iran, both crew rescued; Kuwait desalination offline; tail risk 54%";
+const TOP_ALERT = "APR 7 DEADLINE TONIGHT (8pm ET): 15 US soldiers injured Kuwait; IDF hits Asaluyeh + kills IRGC intel chief; IRGC blocks Qatari LNG tankers; WTI $113 confirmed; tail risk 56%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

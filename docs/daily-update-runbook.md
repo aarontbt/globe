@@ -51,19 +51,21 @@
 
 ### Confirmed Source Map (daily update)
 
-| Asset | Primary Source | Backup |
-|-------|---------------|--------|
-| Brent crude | Qatar News Agency, Reuters, EIA | Trading Economics |
-| WTI crude | Qatar News Agency, Reuters, EIA | FRED St Louis Fed |
-| TTF Gas | Trading Economics, ICE, Investing.com historical | Reuters |
-| JKM LNG | Reuters (Platts assessment), globallnghub.com | CME JKM futures |
+| Asset | Primary Source | Tickers / Access |
+|-------|---------------|-----------------|
+| Brent crude | Qatar News Agency, Reuters, EIA | Bloomberg `CO1 Comdty`; TradingView `UKOIL` |
+| WTI crude | Qatar News Agency, Reuters, EIA | Bloomberg `CL1 Comdty`; TradingView `USOIL`; FRED |
+| TTF Gas | Trading Economics, ICE, Investing.com historical | Bloomberg `TTFMBASE Index`; ICE TTF front-month |
+| JKM LNG | Reuters (Platts assessment), globallnghub.com | Bloomberg `JKMNEDAN Index`; CME JKM futures |
 | Gold | Trading Economics, MarketWatch | Investing.com |
 | EM FX (SGD, IDR, MYR, THB, PHP) | Reuters, Bloomberg FX | xe.com (directional only) |
-| EM Rates | Bloomberg sovereign pages, Investing.com | Reuters |
+| EM Rates | Bloomberg sovereign pages, Investing.com | Tickers: `GIDN10YR`, `GPHL10YR`, `GTHA10YR` |
+| iTraxx Asia ex-Japan IG | Bloomberg, Markit | Bloomberg `ITRXAXIG5Y Index` |
+| ASEAN HY | BAML ASEAN HY indices, JPMorgan CEMBI | Bloomberg CEMBI |
+| Equity Sectors | MSCI ASEAN, SGX | MSCI ASEAN Energy, SGX shipping sub-index, MSCI ASEAN Banks |
 | OVX | CBOE CDN (`OVX_History.csv`) — fetched live on page load | charts-volatility.json fallback |
 | VXEEM | CBOE CDN (`VXEEM_History.csv`) — fetched live on page load | charts-volatility.json fallback |
 | Geopolitical events | Reuters, AP, Al Jazeera, Long War Journal, Axios, FT | PBS NewsHour, Washington Post |
-| AIS/shipping data | VT Markets, MarineLink, SSY/Argus | Bloomberg shipping |
 
 ---
 
@@ -92,33 +94,6 @@
 
 ## 1. Cross-Asset Data (`banker-cross-asset.json`)
 
-### Schema
-
-```json
-{
-  "asOf": "YYYY-MM-DDT08:00:00Z",
-  "categories": [
-    {
-      "id": "energy",
-      "label": "Energy",
-      "assets": [
-        {
-          "id": "brent",
-          "name": "Brent Crude",
-          "current": 79.40,
-          "unit": "$/bbl",
-          "change1d": "+1.5%",
-          "baseline30d": 75.2,
-          "baseline90d": 78.4,
-          "zscore": 2.2,
-          "signal": "red"
-        }
-      ]
-    }
-  ]
-}
-```
-
 ### Field Guidance
 
 | Field | Description |
@@ -138,17 +113,6 @@
 3. **Credit Spreads** — iTraxx Asia ex-Japan IG (bp), ASEAN HY Composite (bp) *(cross-asset panel only; bottom chart uses live VXEEM)*
 4. **EM FX** — USD/SGD, USD/IDR, USD/MYR, USD/THB, USD/PHP
 5. **Equity Sectors** — ASEAN Energy Equities (idx), Regional Shipping (idx), ASEAN Banks (idx)
-
-### Where to Find Data
-
-- **Brent/WTI**: Bloomberg `CO1 Comdty` / `CL1 Comdty`; TradingView: `UKOIL`, `USOIL`
-- **TTF Gas**: Bloomberg `TTFMBASE Index`; ICE TTF front-month
-- **JKM LNG**: Platts JKM assessment; Bloomberg `JKMNEDAN Index`
-- **EM Rates**: Bloomberg sovereign bond pages (e.g., `GIDN10YR`, `GPHL10YR`, `GTHA10YR`)
-- **iTraxx Asia ex-Japan IG**: Bloomberg `ITRXAXIG5Y Index`; Markit
-- **ASEAN HY**: BAML ASEAN HY indices; JPMorgan CEMBI
-- **EM FX**: Bloomberg FX (SGD, IDR, MYR, THB, PHP vs USD); Reuters ASEAN page
-- **Equity indices**: MSCI ASEAN Energy, SGX shipping sub-index, MSCI ASEAN Banks
 
 ---
 
@@ -173,102 +137,17 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 ## 3. Client Roster (`banker-clients.json`)
 
-### Schema
+Fields: `id` (permanent lowercase slug), `name`, `sector` (specific, e.g. `"Upstream Oil & Gas"`), `country` (HQ), `exposure` (4 scores), `scenarioImpacts` (base/stress/tail), `talkingPoints` (3, each starting with a data point).
 
-```json
-{
-  "clients": [
-    {
-      "id": "pttep",
-      "name": "PTTEP",
-      "sector": "Upstream Oil & Gas",
-      "country": "Thailand",
-      "exposure": {
-        "energyCosts": 2,
-        "shipping": 5,
-        "sanctions": 4,
-        "refinancing": 5
-      },
-      "scenarioImpacts": {
-        "base": "...",
-        "stress": "...",
-        "tail": "..."
-      },
-      "talkingPoints": [
-        "Data point → recommendation...",
-        "Data point → recommendation...",
-        "Data point → recommendation..."
-      ]
-    }
-  ]
-}
-```
+**Exposure scores 1-10**: `energyCosts` (1-3 = producer benefits from spike; 7-10 = major importer, energy >20% cost base) | `shipping` (1-3 = no fleet; 7-10 = large owned/chartered fleet, route-dependent) | `sanctions` (1-3 = no Iran/Russia exposure; 7-10 = direct designation risk) | `refinancing` (1-3 = strong balance sheet; 7-10 = high leverage, near-term maturity)
 
-### Exposure Score Guide (1-10)
-
-| Dimension | 1-3 (Low) | 4-6 (Moderate) | 7-10 (High) |
-|-----------|-----------|----------------|-------------|
-| `energyCosts` | Producer/exporter benefits from oil spike | Mixed/indirect exposure | Major importer; energy is >20% of cost base |
-| `shipping` | No vessel fleet; landlocked ops | Some chartered tonnage; modest route exposure | Large owned/chartered fleet; route-dependent |
-| `sanctions` | No Iran/Russia exposure | Moderate shadow fleet or counterparty risk | Direct designation risk or correspondent exposure |
-| `refinancing` | Strong balance sheet; no near-term maturity | Moderate debt; 12-24mo maturity | High leverage; near-term maturity; limited access |
-
-### Client Roster Conventions
-
-- IDs are **permanent slugs** — do not change once set (they may be referenced in `cfTriggers`)
-- Sector should be specific: `"Upstream Oil & Gas"` not just `"Energy"`
-- Country is the **primary listing/HQ country**
-- Keep 3 `talkingPoints` per client — quality over quantity; each must contain a current data point (price, rate, index level)
-
-### Adding a New Client
-
-1. Choose a unique lowercase slug (`id`)
-2. Set exposure scores honestly (1-10)
-3. Write 3 scenario impacts (base/stress/tail) that reference current oil/LNG/FX levels
-4. Write 3 talking points — each starting with a specific market data reference
-5. If this client is a `cfTrigger` target, update `banker-trade-ideas.json` accordingly
+*Rare ops (adding/removing clients): follow schema in the actual file; keep `cfTriggers` in sync.*
 
 ---
 
 ## 4. Conflict Status (`banker-conflict.json`)
 
-### Schema
-
-```json
-{
-  "escalationLevel": 4,
-  "escalationLabel": "High",
-  "deltaVsYesterday": 1,
-  "todaysEvents": [
-    {
-      "id": "e1",
-      "summary": "Description with date reference (Mar 3)",
-      "delta": "Short label (3-5 words)",
-      "direction": "up | neutral | down"
-    }
-  ],
-  "scenarios": [
-    {
-      "id": "base",
-      "label": "Base",
-      "probability": 42,
-      "description": "...",
-      "oilImpact": "+$10/bbl",
-      "lngImpact": "+55%"
-    }
-  ]
-}
-```
-
-### Escalation Levels
-
-| Level | Label | Description |
-|-------|-------|-------------|
-| 1 | Normal | No active escalation |
-| 2 | Elevated | Diplomatic tension, no kinetic activity |
-| 3 | Heightened | Military positioning, sanctions enforcement active |
-| 4 | High | Active strikes or closures; market impact material |
-| 5 | Severe | Full theatre conflict; systemic market disruption |
+**Escalation levels 1-5**: Normal (no escalation) → Elevated (diplomatic tension) → Heightened (military positioning + sanctions) → High (active strikes/closures, material market impact) → Severe (full theatre conflict, systemic disruption)
 
 ### `todaysEvents` Convention
 
@@ -287,32 +166,6 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 ## 5. Trade Ideas (`banker-trade-ideas.json`)
 
-### Schema
-
-```json
-{
-  "tradeIdeas": [
-    {
-      "id": "t0",
-      "title": "Trade title (instrument-specific)",
-      "rationale": "Narrative with current prices cited...",
-      "instruments": ["Specific instrument 1", "Specific instrument 2"],
-      "direction": "long | short | hedge",
-      "conviction": "high | medium | low"
-    }
-  ],
-  "cfTriggers": [
-    {
-      "id": "cf0",
-      "client": "Client Name (matches clients.json name field)",
-      "trigger": "refi | liquidity | M&A target | hedge | other",
-      "description": "Client-specific action trigger with urgency rationale...",
-      "urgency": "critical | high | medium | low"
-    }
-  ]
-}
-```
-
 ### Daily Update Process
 
 1. Update price references in `rationale` to match current cross-asset data
@@ -321,14 +174,7 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 4. Adjust `conviction` level if scenario probability shifts materially
 5. Do **not** change `id` fields — these are stable identifiers
 
-### cfTrigger Urgency Guide
-
-| Urgency | Meaning |
-|---------|---------|
-| `critical` | Execute within 48-72 hours; market window closing |
-| `high` | Recommended within 2 weeks; conditions favourable |
-| `medium` | Worth preparing; no immediate time pressure |
-| `low` | Monitor only; conditions not yet ripe |
+**cfTrigger urgency**: `critical` ≤72h window | `high` ≤2 weeks | `medium` no immediate pressure | `low` monitor only
 
 ---
 
@@ -362,36 +208,6 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 
 Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the Hormuz crisis propagates beyond energy into food, petrochemicals, fertilizers, and shipping. Unlike `banker-cross-asset.json` (which covers EM financial instruments), this file covers **physical commodity and freight markets** with crisis-specific narrative context.
 
-### Schema
-
-```json
-{
-  "asOf": "2026-03-26T00:00:00Z",
-  "scenario": "One-line description of current disruption mechanism",
-  "categories": [
-    {
-      "id": "food",
-      "label": "Food & Agriculture",
-      "supplyChainImpact": "Paragraph explaining how Hormuz closure affects this category (2-4 sentences).",
-      "assets": [
-        {
-          "id": "wheat",
-          "name": "Wheat",
-          "current": 692,
-          "unit": "¢/bu",
-          "change1d": "+3.2%",
-          "baseline30d": 620,
-          "baseline90d": 578,
-          "zscore": 2.6,
-          "signal": "red",
-          "narrative": "Crisis-specific context for this asset (2-3 sentences). Why is it moving? What is the supply chain mechanism?"
-        }
-      ]
-    }
-  ]
-}
-```
-
 ### Field Guidance
 
 | Field | Description |
@@ -403,8 +219,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 | `change1d` | vs prior close — always include sign: `"+3.2%"` or `"-1.1%"` |
 | `baseline30d` | 30-day rolling average — update monthly |
 | `baseline90d` | 90-day rolling average — update quarterly |
-| `zscore` | `(current - baseline90d) / stddev`; same guide as cross-asset: >2.0 = red, 1.0–2.0 = amber, <1.0 = green |
-| `signal` | `"red"` / `"amber"` / `"green"` — drives the signal dot on each asset row |
+| `zscore` / `signal` | Same formula and thresholds as cross-asset (§1 Field Guidance) |
 | `narrative` | Asset-level crisis context: the specific supply chain mechanism linking this asset to the crisis. Update when the mechanism changes; does **not** need a daily price refresh if the narrative remains accurate. |
 
 ### Categories and Benchmark Sources
@@ -432,13 +247,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Baltic Dry Index**: Published daily by Baltic Exchange; available via Trading Economics or Bloomberg `BDIY Index`.
 - **SCFI**: Published weekly by Shanghai Shipping Exchange (Friday). Use last confirmed weekly value on non-publication days.
 
-### Adding or Retiring an Asset
-
-**Adding**: Insert new object in the relevant category's `assets` array. Must include all fields. Choose a unit consistent with market convention for that commodity. Set baselines from 30d and 90d historical price data.
-
-**Retiring**: Remove the asset object if the market is no longer relevant (e.g., a shipping lane fully normalises and the freight rate returns to pre-crisis levels). Do **not** set `signal: "green"` as a proxy for retirement — either the asset is monitored or it is removed.
-
-**Adding a category**: Add a new object to `categories` with `id`, `label`, `supplyChainImpact`, and at least 2 `assets`. The `CommoditiesImpactPanel` component iterates all categories generically — no code change required.
+*Rare ops (adding/retiring assets or categories): follow structure in the actual file. Do not use `signal: "green"` as a proxy for retirement — remove the asset object entirely.*
 
 ---
 
@@ -525,21 +334,12 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 ## E2E Verification Recipe
 
-1. `bun run dev` (or `npm run dev`) in `/globe`
-2. Open `http://localhost:5173`
-3. Click **MARKET BRIEF** (top center)
-4. Verify each tab:
-   - **Client Brief**: Correct 6 clients appear with current sector/country
-   - **Cross-Asset**: `asOf` shows today's date; Brent price matches update
-   - **Conflict**: Events show today's date; scenario probabilities sum to 100%
-   - **Trade Ideas**: `cfTriggers` reference the correct client names
-   - **Sanctions**: Most recent entry reflects latest developments
-5. Close Market Brief overlay; check right panel tabs:
-   - **EVENTS**: Intel events visible; no Polymarket (`pm-`) events shown; category filters work
-   - **PREDICTIONS**: Polymarket markets load with volume/liquidity stats; "Open" links resolve
-   - **SUPPLY CHAIN**: All 4 categories present (Food, Petrochemicals, Fertilizers, Shipping); `asOf` matches today; click any asset row to confirm narrative expands
-6. Open browser console — no errors on any panel
-6. Check ticker bar (top of globe) — fallback prices match `useMarkets.ts` values
+1. `bun run dev` → open `http://localhost:5173`
+2. **MARKET BRIEF** overlay: verify `asOf` shows today; Brent price matches; scenario % sums to 100; `cfTriggers` reference correct client names; sanctions entry current
+3. Right panel — **EVENTS**: intel events visible, no `pm-` events, filters work
+4. Right panel — **SUPPLY CHAIN**: all 4 categories present; `asOf` matches today; asset rows expand
+5. Browser console — no errors
+6. Ticker bar — fallback prices match `useMarkets.ts`
 
 ---
 
@@ -584,6 +384,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 34**: Apr 4 — US F-15E shot down over Iran (first US aircraft lost); 1st crew rescued same day; A-10 Warthog also hit near Hormuz; Trump issues 48-hr ultimatum
 - **Day 35**: Apr 5 — 2nd F-15E crew rescued ('Easter miracle' - Trump); Kuwait desalination offline; 90% water at risk; Trump threatens power plants + bridges by Apr 6
 - **Day 36**: Apr 6 — April 6 8pm ET deadline active; Brent ~$110.50 est. (+1.4%); WTI $111.81 (OilPriceAPI); AIS transits -95%; Iran refuses; iTraxx ~195bp est.; tail risk 54%
+- **Day 37**: Apr 7 — 15 US soldiers injured Kuwait; IDF hits Asaluyeh petrochemical complex + kills IRGC intel chief Khademi; IRGC blocks 2 Qatari LNG tankers; WTI $113 confirmed; tail risk 56%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -591,10 +392,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20 close, +7.6%) → $109.03 (Day 33, confirmed Gulf News/CNBC Apr 3, +8.3%) → ~$110.50 est. (Day 36, Apr 6, +1.4% deadline anxiety; CNBC Apr 5-6; WTI $111.81 confirmed OilPriceAPI Apr 6); working range $105-135 in stress; $160-185 tail on Kharg seizure + Saudi output cuts
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts confirmed) → ~$21.00/MMBtu est. (Day 36, Apr 6, +4.3% est.; Kuwait desalination offline drives LNG demand; toll booth constrains flows); Qatar Ras Laffan restart structurally blocked until political settlement; April 6 8pm ET binary; Asia spot tightness acute through H2 2026
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, oilpriceapi Apr 2 confirmed) → ~€52.40/MWh est. (Day 36, Apr 6, +4.9% est.; Kuwait desalination offline raises EU gas demand fears); Qatar LNG hub suspension sustaining elevated European gas; April 6 8pm ET post-deadline escalation is the next catalyst
-- **Credit**: iTraxx Asia IG est. ~195bp (Day 36, +7bp; F-15E downing + Kuwait desalination offline + deadline anxiety); ASEAN HY est. ~570bp (+15bp); 215-230bp iTraxx IG becomes post-Apr 6 event-risk target if Kharg strikes proceed; tail risk 54%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20 close, +7.6%) → $109.03 (Day 33, confirmed Gulf News/CNBC Apr 3, +8.3%) → ~$110 est. (Day 37, Apr 7, -0.5%; CNBC TV18 Apr 7 early "near four-year highs"; WTI surpassing at ~$113 confirmed CNBC TV18, tested $115 Apr 6); working range $105-135 in stress; $160-185 tail on Kharg seizure + Saudi output cuts
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts confirmed) → ~$21.80/MMBtu est. (Day 37, Apr 7, +3.8% est.; Kuwait desalination offline drives LNG demand; toll booth constrains flows); Qatar Ras Laffan restart structurally blocked until political settlement; Apr 7 8pm ET deadline binary; Asia spot tightness acute through H2 2026
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, oilpriceapi Apr 2 confirmed) → ~€53.50/MWh est. (Day 37, Apr 7, +2.1% est.; Kuwait desalination still offline raises EU gas demand fears); Qatar LNG hub suspension sustaining elevated European gas; Apr 7 8pm ET deadline is the next binary catalyst
+- **Credit**: iTraxx Asia IG est. ~198bp (Day 37, +3bp; 15 US soldiers injured Kuwait + IDF hits Asaluyeh + IRGC blocks Qatari LNG tankers + deadline tonight); ASEAN HY est. ~578bp (+8bp); 215-230bp iTraxx IG becomes post-Apr 7 event-risk target if Kharg strikes proceed; tail risk 56%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
@@ -621,20 +422,3 @@ Only the `scenarios` array requires a manual daily entry. Append one object to t
 - Update `DAYS` label (`D11`, `D12`, …) in lockstep.
 - The peak annotation (`▼ -N from peak`) auto-calculates — no manual edit needed.
 
----
-
-### MarketsWidget.tsx Constants (update when scenario shifts)
-
-| Constant | Purpose | Update trigger |
-|----------|---------|----------------|
-| `TOP_ALERT` | Alert strip headline | Any major new development (attacks, policy, succession) |
-| `NEAR_TERM_RANGE` | Swarm forecast near-term ($/bbl) | Shift >3 days in disruption duration expectation |
-| `SUSTAINED_PRICE` | Swarm forecast tail scenario ($/bbl) | Stress/tail scenario probability shifts materially |
-
-When the scenario evolves (de-escalation, ceasefire, new actor), update:
-1. `escalationLevel` and `todaysEvents` in `banker-conflict.json`
-2. Scenario probabilities (Base/Stress/Tail)
-3. Trade idea rationale references
-4. `TOP_ALERT`, `NEAR_TERM_RANGE`, `SUSTAINED_PRICE` in `src/components/MarketsWidget.tsx`
-5. Client talking points (especially oil-price-sensitive ones: PTTEP, Sapura, Wilmar, Hyflux)
-6. Intel events in `iran-intel-events.json` — especially `ship-001`, `sec-005`, `supply-001`
