@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects sourced market snapshot (2026-04-07 morning)
-// Brent: ~$110.00 est. (CNBC TV18 Apr 7 early Asia, "near four-year highs"; WTI surpassing Brent as overseas buyers rush US crude). WTI: ~$113.00 confirmed (CNBC TV18 Apr 7; tested $115 on Apr 6). Gold: ~$4,685 confirmed (Sunday Guardian Live Apr 7, +1.1%).
+// Static fallback — reflects market brief snapshot (2026-04-08 morning)
+// Post-deadline escalation state used for UI fallback consistency: Brent ~$118.20, WTI ~$120.50, Gold ~$4,728.00.
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 110.00, change: -0.50,  changePct: -0.45,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-07T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 113.00, change: 1.19,   changePct: 1.06,   currency: "USD", unit: "/barrel", lastUpdated: "2026-04-07T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 4685.00, change: 50.00, changePct: 1.08,   currency: "USD", unit: "/oz",    lastUpdated: "2026-04-07T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 118.20, change: 8.20,  changePct: 7.45, currency: "USD", unit: "/barrel", lastUpdated: "2026-04-08T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 120.50, change: 7.50,  changePct: 6.64, currency: "USD", unit: "/barrel", lastUpdated: "2026-04-08T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4728.00, change: 43.00, changePct: 0.92, currency: "USD", unit: "/oz",    lastUpdated: "2026-04-08T00:00:00Z" },
 ];
 
 interface UseMarketsResult {

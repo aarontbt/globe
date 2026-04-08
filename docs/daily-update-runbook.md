@@ -385,6 +385,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 35**: Apr 5 — 2nd F-15E crew rescued ('Easter miracle' - Trump); Kuwait desalination offline; 90% water at risk; Trump threatens power plants + bridges by Apr 6
 - **Day 36**: Apr 6 — April 6 8pm ET deadline active; Brent ~$110.50 est. (+1.4%); WTI $111.81 (OilPriceAPI); AIS transits -95%; Iran refuses; iTraxx ~195bp est.; tail risk 54%
 - **Day 37**: Apr 7 — 15 US soldiers injured Kuwait; IDF hits Asaluyeh petrochemical complex + kills IRGC intel chief Khademi; IRGC blocks 2 Qatari LNG tankers; WTI $113 confirmed; tail risk 56%
+- **Day 38**: Apr 8 — Apr 7 deadline passes into limited US-Israel grid/bridge strikes; Tehran Toll Booth stays active; AIS transits -95%; Brent ~$118.20; tail risk 60%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -392,10 +393,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20 close, +7.6%) → $109.03 (Day 33, confirmed Gulf News/CNBC Apr 3, +8.3%) → ~$110 est. (Day 37, Apr 7, -0.5%; CNBC TV18 Apr 7 early "near four-year highs"; WTI surpassing at ~$113 confirmed CNBC TV18, tested $115 Apr 6); working range $105-135 in stress; $160-185 tail on Kharg seizure + Saudi output cuts
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts confirmed) → ~$21.80/MMBtu est. (Day 37, Apr 7, +3.8% est.; Kuwait desalination offline drives LNG demand; toll booth constrains flows); Qatar Ras Laffan restart structurally blocked until political settlement; Apr 7 8pm ET deadline binary; Asia spot tightness acute through H2 2026
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, oilpriceapi Apr 2 confirmed) → ~€53.50/MWh est. (Day 37, Apr 7, +2.1% est.; Kuwait desalination still offline raises EU gas demand fears); Qatar LNG hub suspension sustaining elevated European gas; Apr 7 8pm ET deadline is the next binary catalyst
-- **Credit**: iTraxx Asia IG est. ~198bp (Day 37, +3bp; 15 US soldiers injured Kuwait + IDF hits Asaluyeh + IRGC blocks Qatari LNG tankers + deadline tonight); ASEAN HY est. ~578bp (+8bp); 215-230bp iTraxx IG becomes post-Apr 7 event-risk target if Kharg strikes proceed; tail risk 56%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20 close, +7.6%) → $109.03 (Day 33, confirmed Gulf News/CNBC Apr 3, +8.3%) → ~$118.20 (Day 38, Apr 8 brief snapshot, +7.5% vs prior day) after the missed Apr 7 deadline shifts the market into active post-deadline strikes; working range $110-145 in stress; $160-185 tail on Kharg seizure + Saudi output cuts
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts confirmed) → ~$23.60/MMBtu (Day 38, Apr 8 brief snapshot, +8.3% vs prior day) as Qatari LNG restrictions persist and bilateral routing does not restore commercial confidence; Asia spot tightness acute through H2 2026
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, oilpriceapi Apr 2 confirmed) → ~€56.80/MWh (Day 38, Apr 8 brief snapshot, +6.2% vs prior day) as Qatar LNG disruption and post-deadline strike risk keep Europe paying for optionality
+- **Credit**: iTraxx Asia IG est. ~206bp (Day 38, +8bp); ASEAN HY est. ~592bp (+14bp); the 215-230bp iTraxx IG band remains the next target if phase-two strikes hit export infrastructure; tail risk 60%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
@@ -421,4 +422,3 @@ Only the `scenarios` array requires a manual daily entry. Append one object to t
 - Set `ovx` / `vxeem` to the previous day's close as a fallback (used if CBOE fetch fails); set `Confirmed: false` so the dashed line renders correctly until live data loads.
 - Update `DAYS` label (`D11`, `D12`, …) in lockstep.
 - The peak annotation (`▼ -N from peak`) auto-calculates — no manual edit needed.
-

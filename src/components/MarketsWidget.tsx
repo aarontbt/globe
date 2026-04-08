@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "105–135";
-const SUSTAINED_PRICE = "175";
-const TOP_ALERT = "APR 7 DEADLINE TONIGHT (8pm ET): 15 US soldiers injured Kuwait; IDF hits Asaluyeh + kills IRGC intel chief; IRGC blocks Qatari LNG tankers; WTI $113 confirmed; tail risk 56%";
+const NEAR_TERM_RANGE = "110-145";
+const SUSTAINED_PRICE = "185";
+const TOP_ALERT = "APR 8 POST-DEADLINE ESCALATION: limited US-Israel strikes begin on Iranian grid/bridges; Tehran Toll Booth remains active; AIS transits stay -95%; Brent ~$118; tail risk 60%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
