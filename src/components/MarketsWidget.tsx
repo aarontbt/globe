@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "110-145";
-const SUSTAINED_PRICE = "185";
-const TOP_ALERT = "APR 8 POST-DEADLINE ESCALATION: limited US-Israel strikes begin on Iranian grid/bridges; Tehran Toll Booth remains active; AIS transits stay -95%; Brent ~$118; tail risk 60%";
+const NEAR_TERM_RANGE = "90-115";
+const SUSTAINED_PRICE = "160";
+const TOP_ALERT = "APR 8 CEASEFIRE: conditional 2-week US-Iran ceasefire; Brent crashes to ~$97 (-18%); Iran claims Hormuz still closed (Israeli Lebanon strikes); Vance-Iran talks Pakistan Apr 12; tail risk 30%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

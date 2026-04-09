@@ -1,36 +1,36 @@
 {
-  "escalationLevel": 5,
-  "escalationLabel": "Severe",
-  "deltaVsYesterday": 1,
+  "escalationLevel": 4,
+  "escalationLabel": "High",
+  "deltaVsYesterday": -1,
   "todaysEvents": [
-    { "id": "e1", "summary": "US-Israel move from ultimatum to limited power-grid and bridge strikes after the Apr 7 8pm ET deadline passes; no Kharg seizure yet, but kinetic pressure broadens materially (Apr 8).", "delta": "Deadline passed; limited strikes begin", "direction": "up" },
-    { "id": "e2", "summary": "Iran keeps the Tehran Toll Booth and bilateral safe-passage regime in place; Qatari LNG restrictions persist and AIS traffic remains roughly 95% below normal through Hormuz (Apr 8).", "delta": "Hormuz remains commercially shut", "direction": "up" },
-    { "id": "e3", "summary": "Brent jumps toward $118/bbl, JKM toward $23.6/MMBtu, and iTraxx Asia IG widens near 206bp as markets price a higher probability of follow-on strikes and prolonged Gulf disruption (Apr 8).", "delta": "Cross-asset stress reprices higher", "direction": "up" }
+    { "id": "e1", "summary": "Trump announces conditional 2-week US-Iran ceasefire (Apr 8); Brent crashes -18% to ~$97, WTI ~$97; TTF plunges ~15% to ~€45; iTraxx Asia IG narrows to ~178bp (Apr 9).", "delta": "Ceasefire triggers massive oil/gas selloff", "direction": "down" },
+    { "id": "e2", "summary": "Iran claims Hormuz remains closed, citing Israeli strikes on Lebanon (254 killed, 1,165 wounded); VP Vance to lead US-Iran talks in Pakistan on Sat Apr 12; Iran attacks Saudi East-West Pipeline (Apr 9).", "delta": "Ceasefire fragile; Hormuz claim disputed", "direction": "neutral" },
+    { "id": "e3", "summary": "India prepares first Iranian oil shipment in 7 years on sanctions relief signal; some vessels begin transiting Hormuz; Gold holds near $4,730 as markets price residual risk (Apr 9).", "delta": "Partial normalization signals emerge", "direction": "down" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 5,
-      "description": "Post-deadline strikes remain limited to power-grid and bridge targets, creating room for Qatar/Pakistan mediation before Kharg or core export infrastructure is hit. Iran keeps symbolic toll authority but expands exemptions for commercial shipping. Brent retraces to $102-108/bbl; JKM eases to $18-20/MMBtu. Insurance remains impaired, but a narrow de-escalation channel re-opens if transit volumes recover measurably within days.",
+      "probability": 20,
+      "description": "Two-week ceasefire holds; Vance Pakistan talks produce a broader framework; Iran formally reopens Hormuz to commercial traffic and lifts Qatari LNG restrictions. P&I insurance gradually restored over 4-6 weeks. Brent consolidates $90-100/bbl; JKM eases to $15-18/MMBtu; iTraxx Asia IG retraces toward 130-150bp. Kuwait desalination and Saudi East-West Pipeline damage is contained and repaired within weeks.",
       "oilImpact": "+$10/bbl",
-      "lngImpact": "+55%"
+      "lngImpact": "+30%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 35,
-      "description": "Limited strikes continue for several days, focused on grid, logistics, and command infrastructure rather than Kharg. Iran preserves the toll booth, bilateral routing, and selective tanker interference. Kuwait desalination and Qatari LNG disruption keep civilian and energy stress elevated while ceasefire talks drag. Brent stabilizes $110-135/bbl; JKM $21-25/MMBtu; iTraxx Asia IG 200-220bp.",
-      "oilImpact": "+$35/bbl",
-      "lngImpact": "+130%"
+      "probability": 50,
+      "description": "Ceasefire holds nominally between US and Iran but Israel's Lebanon operations keep Hormuz in dispute. Iran maintains selective Toll Booth access; commercial volumes recover partially but P&I restoration stalls. Vance Pakistan talks produce an interim framework without full normalization. Brent oscillates $90-115/bbl; JKM $17-22/MMBtu; iTraxx Asia IG 160-200bp. Saudi East-West Pipeline disruption limits bypass-route optionality.",
+      "oilImpact": "+$20/bbl",
+      "lngImpact": "+80%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 60,
-      "description": "Initial post-deadline strikes fail to restore transit and instead set up a second phase on Kharg, export terminals, and broader Gulf energy infrastructure. Iran responds with more missile and drone attacks on GCC civilian and military targets while keeping Hormuz commercially closed for non-exempt traffic. Ras Laffan remains structurally impaired; Saudi and UAE export reliability comes into question. Brent reaches $160-185/bbl, LNG spot markets seize, and ASEAN recession risk becomes acute.",
-      "oilImpact": "+$80/bbl",
-      "lngImpact": "+200%"
+      "probability": 30,
+      "description": "Ceasefire collapses within the two-week window as Israel-Lebanon strikes or a new Iranian retaliatory action triggers full resumption of hostilities. Kharg Island strike or Saudi export infrastructure attack brings GCC production back under active threat. Brent re-spikes to $140-185/bbl; LNG spot markets seize; ASEAN recession risk becomes acute. Gold surges past $5,000/oz as dollar safe-haven demand spikes.",
+      "oilImpact": "+$65/bbl",
+      "lngImpact": "+180%"
     }
   ]
 }

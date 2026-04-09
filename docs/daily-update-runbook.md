@@ -386,6 +386,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 36**: Apr 6 — April 6 8pm ET deadline active; Brent ~$110.50 est. (+1.4%); WTI $111.81 (OilPriceAPI); AIS transits -95%; Iran refuses; iTraxx ~195bp est.; tail risk 54%
 - **Day 37**: Apr 7 — 15 US soldiers injured Kuwait; IDF hits Asaluyeh petrochemical complex + kills IRGC intel chief Khademi; IRGC blocks 2 Qatari LNG tankers; WTI $113 confirmed; tail risk 56%
 - **Day 38**: Apr 8 — Apr 7 deadline passes into limited US-Israel grid/bridge strikes; Tehran Toll Booth stays active; AIS transits -95%; Brent ~$118.20; tail risk 60%
+- **Day 39**: Apr 9 — Trump announces conditional 2-week US-Iran ceasefire; Brent crashes -18% to ~$97; Iran claims Hormuz still closed (Israeli Lebanon strikes: 254 dead); tail risk 30%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -393,10 +394,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20 close, +7.6%) → $109.03 (Day 33, confirmed Gulf News/CNBC Apr 3, +8.3%) → ~$118.20 (Day 38, Apr 8 brief snapshot, +7.5% vs prior day) after the missed Apr 7 deadline shifts the market into active post-deadline strikes; working range $110-145 in stress; $160-185 tail on Kharg seizure + Saudi output cuts
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts confirmed) → ~$23.60/MMBtu (Day 38, Apr 8 brief snapshot, +8.3% vs prior day) as Qatari LNG restrictions persist and bilateral routing does not restore commercial confidence; Asia spot tightness acute through H2 2026
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, oilpriceapi Apr 2 confirmed) → ~€56.80/MWh (Day 38, Apr 8 brief snapshot, +6.2% vs prior day) as Qatar LNG disruption and post-deadline strike risk keep Europe paying for optionality
-- **Credit**: iTraxx Asia IG est. ~206bp (Day 38, +8bp); ASEAN HY est. ~592bp (+14bp); the 215-230bp iTraxx IG band remains the next target if phase-two strikes hit export infrastructure; tail risk 60%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $118.20 (Day 38, Apr 8 pre-ceasefire snapshot) → ~$96.84 (Day 39, Apr 9, -18.1% ceasefire crash, confirmed Investing.com/OilPrice.com) after Trump announces conditional 2-week US-Iran ceasefire; working range $90-115 in stress; $140-160 tail on ceasefire collapse and Kharg seizure
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → ~$19.50/MMBtu (Day 39, Apr 9 est.) as ceasefire relief partially unwinds Asia scarcity; Iran claims Hormuz still closed (Lebanon) keeping full normalization blocked; Ras Laffan restart not yet confirmed
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, confirmed oilpriceapi) → ~€45.50/MWh (Day 39, Apr 9 est.; TradingEconomics confirmed Apr 8 close €45.10, -15% ceasefire crash) as Qatar LNG risk partially unwinds; European gas markets still pricing Ras Laffan force majeure risk
+- **Credit**: iTraxx Asia IG est. ~178bp (Day 39, -28bp ceasefire relief); ASEAN HY est. ~545bp (-47bp); 160-170bp is the next target if Vance-Pakistan talks succeed; tail risk 30%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
