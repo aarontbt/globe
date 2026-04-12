@@ -1,6 +1,18 @@
 # Market Brief Update Guide
 
-**Purpose**: Step-by-step instructions for an AI agent or human analyst to update the Market Brief overlay data in the ASEAN maritime intelligence globe demo. All data is in static JSON files in `src/data/`. No API layer exists — changes take effect immediately on `bun run dev`.
+**Purpose**: Reference manual for the ASEAN maritime intelligence globe demo. All data is in static JSON files in `src/data/`. No API layer — changes take effect immediately on `bun run dev`.
+
+> **Daily execution**: Load `docs/daily-agent-prompt.md` instead — it is the lean, token-efficient daily prompt. This file is the reference manual for schemas, conventions, and rare operations.
+
+## Current State
+
+| Field | Value |
+|-------|-------|
+| **Last updated** | 2026-04-12 (Day 42) |
+| **Crisis level** | 4 — High (ceasefire active Apr 8; fragile — Vance-Iran talks no deal) |
+| **Brent** | $95.20 (D40, Apr 10, TradingEconomics) |
+| **JKM** | $19.42/MMBtu (D40, Apr 10, TradingEconomics) |
+| **TTF** | €44.46/MWh (D40, Apr 10, OilPriceAPI) |
 
 ---
 
@@ -15,6 +27,7 @@
 | `src/data/banker-sanctions.json` | Sanctions Tracker | On new designation events |
 | `src/data/commodities-impact.json` | Right panel — Supply Chain tab | Daily (key prices); narratives on material supply chain shift |
 | `src/hooks/useMarkets.ts` | Ticker bar (fallback quotes) | Daily |
+| `src/components/MarketsWidget.tsx` | Ticker alert banner + oil forecast ranges | Daily |
 | `src/data/charts-volatility.json` | Bottom volatility charts (OVX, VXEEM, Scenarios) | OVX + VXEEM fetch live from CBOE on load; only Scenarios need manual daily update |
 
 ---
@@ -132,6 +145,24 @@ const FALLBACK_QUOTES: MarketQuote[] = [
 - `change` = absolute dollar/oz move from prior close
 - `changePct` = percentage move (positive = up)
 - `lastUpdated` = today's date at `T00:00:00Z`
+
+---
+
+## 2.5 MarketsWidget Hardcoded Constants (`src/components/MarketsWidget.tsx`)
+
+Three constants at lines 11–13 must be updated daily alongside cross-asset data:
+
+```typescript
+const NEAR_TERM_RANGE = "90-115";   // line 11 — near-term Brent range ($/bbl); update when scenario shifts
+const SUSTAINED_PRICE = "160";      // line 12 — tail/sustained disruption level; update when tail scenario changes
+const TOP_ALERT = "...";            // line 13 — rolling news banner; rewrite with today's top event ≤25 words
+```
+
+| Constant | When to change | Example |
+|----------|---------------|---------|
+| `TOP_ALERT` | Every day — replace with single most market-significant event | `"APR 12 NO DEAL: Vance-Iran Pakistan talks fail after 21hrs; Hormuz remains conditional; tail risk 38%"` |
+| `NEAR_TERM_RANGE` | When stress scenario Brent range shifts materially | `"90-115"` → `"85-105"` on sustained de-escalation |
+| `SUSTAINED_PRICE` | When tail scenario changes (Kharg seizure, full GCC collapse) | Raise on tail escalation, lower on ceasefire hold |
 
 ---
 
@@ -387,6 +418,9 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 37**: Apr 7 — 15 US soldiers injured Kuwait; IDF hits Asaluyeh petrochemical complex + kills IRGC intel chief Khademi; IRGC blocks 2 Qatari LNG tankers; WTI $113 confirmed; tail risk 56%
 - **Day 38**: Apr 8 — Apr 7 deadline passes into limited US-Israel grid/bridge strikes; Tehran Toll Booth stays active; AIS transits -95%; Brent ~$118.20; tail risk 60%
 - **Day 39**: Apr 9 — Trump announces conditional 2-week US-Iran ceasefire; Brent crashes -18% to ~$97; Iran claims Hormuz still closed (Israeli Lebanon strikes: 254 dead); tail risk 30%
+- **Day 40**: Apr 10 — Brent $95.20 (-0.75%, TradingEconomics); Hormuz ~4 transits (S&P Global); ADNOC CEO: strait not open despite ceasefire; Trump: Iran "dishonorable"; delegations fly to Islamabad; tail risk 32%
+- **Day 41**: Apr 11 — USS Frank E Peterson + USS Michael Murphy transit Hormuz (first US warships since Feb 28, CBS News/Al Jazeera); Iran: "last warning"; 3 supertankers follow (Fortune); Vance-Iran Pakistan talks begin; tail risk 35%
+- **Day 42**: Apr 12 — Vance-Iran Pakistan talks: NO DEAL after 21 hours (NBC News, CNBC); sticking points: nuclear commitment + Hormuz sovereignty; Iran: "excessive US demands"; talks to continue; tail risk 38%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -394,10 +428,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $118.20 (Day 38, Apr 8 pre-ceasefire snapshot) → ~$96.84 (Day 39, Apr 9, -18.1% ceasefire crash, confirmed Investing.com/OilPrice.com) after Trump announces conditional 2-week US-Iran ceasefire; working range $90-115 in stress; $140-160 tail on ceasefire collapse and Kharg seizure
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → ~$19.50/MMBtu (Day 39, Apr 9 est.) as ceasefire relief partially unwinds Asia scarcity; Iran claims Hormuz still closed (Lebanon) keeping full normalization blocked; Ras Laffan restart not yet confirmed
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, confirmed oilpriceapi) → ~€45.50/MWh (Day 39, Apr 9 est.; TradingEconomics confirmed Apr 8 close €45.10, -15% ceasefire crash) as Qatar LNG risk partially unwinds; European gas markets still pricing Ras Laffan force majeure risk
-- **Credit**: iTraxx Asia IG est. ~178bp (Day 39, -28bp ceasefire relief); ASEAN HY est. ~545bp (-47bp); 160-170bp is the next target if Vance-Pakistan talks succeed; tail risk 30%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $118.20 (Day 38, Apr 8 pre-ceasefire) → $95.20 (Day 40, Apr 10, -0.75%, confirmed TradingEconomics); ceasefire fragile — Hormuz ~4 transits/day vs 138/day historical; working range $90-115 stress; $140-160 tail on ceasefire collapse and Kharg seizure
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $19.42/MMBtu (Day 40, Apr 10, -0.38%, confirmed TradingEconomics); Hormuz not reopening despite ceasefire; Ras Laffan restart not yet confirmed; Iran nuclear sticking point in Vance talks
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, confirmed OilPriceAPI) → €44.46/MWh (Day 40, Apr 10, confirmed OilPriceAPI); Qatar LNG force majeure risk persists; European gas still pricing Ras Laffan restart uncertainty
+- **Credit**: iTraxx Asia IG est. ~178bp (Day 39, -28bp ceasefire relief); ASEAN HY est. ~545bp (-47bp); 160-170bp next target if Vance-Pakistan talks produce a framework; tail risk 38% (raised from 30% on no-deal outcome)
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
