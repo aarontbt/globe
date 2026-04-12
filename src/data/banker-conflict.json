@@ -1,36 +1,36 @@
 {
-  "escalationLevel": 4,
-  "escalationLabel": "High",
-  "deltaVsYesterday": -1,
+  "escalationLevel": 5,
+  "escalationLabel": "Severe",
+  "deltaVsYesterday": 1,
   "todaysEvents": [
-    { "id": "e1", "summary": "Trump announces conditional 2-week US-Iran ceasefire (Apr 8); Brent crashes -18% to ~$97, WTI ~$97; TTF plunges ~15% to ~€45; iTraxx Asia IG narrows to ~178bp (Apr 9).", "delta": "Ceasefire triggers massive oil/gas selloff", "direction": "down" },
-    { "id": "e2", "summary": "Iran claims Hormuz remains closed, citing Israeli strikes on Lebanon (254 killed, 1,165 wounded); VP Vance to lead US-Iran talks in Pakistan on Sat Apr 12; Iran attacks Saudi East-West Pipeline (Apr 9).", "delta": "Ceasefire fragile; Hormuz claim disputed", "direction": "neutral" },
-    { "id": "e3", "summary": "India prepares first Iranian oil shipment in 7 years on sanctions relief signal; some vessels begin transiting Hormuz; Gold holds near $4,730 as markets price residual risk (Apr 9).", "delta": "Partial normalization signals emerge", "direction": "down" }
+    { "id": "e1", "summary": "Trump orders US naval blockade of Hormuz after Vance-Iran talks collapse without deal after 21 hours; Brent spikes +7% to ~$102 (est.); tail risk surges to 48% (Apr 13).", "delta": "Blockade order re-escalates to Severe", "direction": "up" },
+    { "id": "e2", "summary": "Iran: 'The Strait of Hormuz will not be opened'; IRGC warns of 'regretful response' to US warships; FM blames 'excessive US demands' on nuclear commitment and Hormuz sovereignty (Apr 13).", "delta": "Iran defiant; direct US-Iran naval standoff imminent", "direction": "up" },
+    { "id": "e3", "summary": "Netanyahu signals Israel-Lebanon negotiations begin Tuesday Apr 14, mediated by US; Pakistan FM urges both sides to maintain ceasefire; talks could resume (Apr 13).", "delta": "Lebanon de-escalation signal offsets blockade risk", "direction": "neutral" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 20,
-      "description": "Two-week ceasefire holds; Vance Pakistan talks produce a broader framework; Iran formally reopens Hormuz to commercial traffic and lifts Qatari LNG restrictions. P&I insurance gradually restored over 4-6 weeks. Brent consolidates $90-100/bbl; JKM eases to $15-18/MMBtu; iTraxx Asia IG retraces toward 130-150bp. Kuwait desalination and Saudi East-West Pipeline damage is contained and repaired within weeks.",
+      "probability": 8,
+      "description": "US blockade serves as coercive leverage; Iran agrees to nuclear talks framework within 72 hours to avoid direct naval confrontation. Ceasefire preserved; Hormuz formally reopened under US escort arrangement. P&I restoration follows within 2-3 weeks. Brent retraces toward $90-95/bbl as risk premium unwinds; iTraxx Asia IG tightens below 170bp. Netanyahu-Lebanon deal on April 14 removes the core Iranian Hormuz pretext.",
       "oilImpact": "+$10/bbl",
       "lngImpact": "+30%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 50,
-      "description": "Ceasefire holds nominally between US and Iran but Israel's Lebanon operations keep Hormuz in dispute. Iran maintains selective Toll Booth access; commercial volumes recover partially but P&I restoration stalls. Vance Pakistan talks produce an interim framework without full normalization. Brent oscillates $90-115/bbl; JKM $17-22/MMBtu; iTraxx Asia IG 160-200bp. Saudi East-West Pipeline disruption limits bypass-route optionality.",
-      "oilImpact": "+$20/bbl",
-      "lngImpact": "+80%"
+      "probability": 44,
+      "description": "US blockade and Iran standoff persist for 1-2 weeks without direct kinetic engagement. Ceasefire nominally intact but effectively void - commercial traffic remains blocked. Further talks are attempted but no framework emerges on nuclear or Hormuz sovereignty. Brent stabilises $100-120/bbl; JKM $20-25/MMBtu; iTraxx Asia IG 190-220bp. IRGC conducts asymmetric harassment of US vessels without triggering full escalation.",
+      "oilImpact": "+$30/bbl",
+      "lngImpact": "+100%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 30,
-      "description": "Ceasefire collapses within the two-week window as Israel-Lebanon strikes or a new Iranian retaliatory action triggers full resumption of hostilities. Kharg Island strike or Saudi export infrastructure attack brings GCC production back under active threat. Brent re-spikes to $140-185/bbl; LNG spot markets seize; ASEAN recession risk becomes acute. Gold surges past $5,000/oz as dollar safe-haven demand spikes.",
-      "oilImpact": "+$65/bbl",
-      "lngImpact": "+180%"
+      "probability": 48,
+      "description": "US Navy enforces blockade; IRGC executes 'regretful response' - attacks US warships or commercial vessels transiting under US escort. Full ceasefire collapse; resumed US-Israel air campaign against Iranian infrastructure. Kharg Island seizure or Saudi Aramco attack brings GCC production under acute threat. Brent spikes $140-185/bbl; LNG markets seize; ASEAN recession risk becomes acute. Gold surges past $5,200/oz.",
+      "oilImpact": "+$70/bbl",
+      "lngImpact": "+200%"
     }
   ]
 }

@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "90-115";
+const NEAR_TERM_RANGE = "95-125";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "APR 8 CEASEFIRE: conditional 2-week US-Iran ceasefire; Brent crashes to ~$97 (-18%); Iran claims Hormuz still closed (Israeli Lebanon strikes); Vance-Iran talks Pakistan Apr 12; tail risk 30%";
+const TOP_ALERT = "APR 13: Trump orders US naval blockade of Hormuz; Vance talks NO DEAL (21hrs); Iran: 'strait won't open'; Brent +7% to ~$102; tail risk 48%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

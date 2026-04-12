@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-04-12 (Day 42) |
-| **Crisis level** | 4 — High (ceasefire active Apr 8; fragile — Vance-Iran talks no deal) |
-| **Brent** | $95.20 (D40, Apr 10, TradingEconomics) |
-| **JKM** | $19.42/MMBtu (D40, Apr 10, TradingEconomics) |
-| **TTF** | €44.46/MWh (D40, Apr 10, OilPriceAPI) |
+| **Last updated** | 2026-04-13 (Day 43) |
+| **Crisis level** | 5 — Severe (Trump orders US naval blockade of Hormuz; Vance-Iran talks NO DEAL; Iran defiant) |
+| **Brent** | ~$102 (D43, Apr 13, est. +7% on blockade; last confirmed $95.20 TradingEconomics Apr 10) |
+| **JKM** | ~$20.50/MMBtu (D43, Apr 13, est.; last confirmed $19.42 TradingEconomics Apr 10) |
+| **TTF** | ~€47.50/MWh (D43, Apr 13, est.; last confirmed €44.46 OilPriceAPI Apr 10) |
 
 ---
 
@@ -421,6 +421,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 40**: Apr 10 — Brent $95.20 (-0.75%, TradingEconomics); Hormuz ~4 transits (S&P Global); ADNOC CEO: strait not open despite ceasefire; Trump: Iran "dishonorable"; delegations fly to Islamabad; tail risk 32%
 - **Day 41**: Apr 11 — USS Frank E Peterson + USS Michael Murphy transit Hormuz (first US warships since Feb 28, CBS News/Al Jazeera); Iran: "last warning"; 3 supertankers follow (Fortune); Vance-Iran Pakistan talks begin; tail risk 35%
 - **Day 42**: Apr 12 — Vance-Iran Pakistan talks: NO DEAL after 21 hours (NBC News, CNBC); sticking points: nuclear commitment + Hormuz sovereignty; Iran: "excessive US demands"; talks to continue; tail risk 38%
+- **Day 43**: Apr 13 — Trump orders US naval blockade of Hormuz (NBC, CNN, CNBC); Iran: "strait will not open"; IRGC warns 'regretful response'; Brent +7% to ~$102; tail risk 48%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -428,10 +429,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $118.20 (Day 38, Apr 8 pre-ceasefire) → $95.20 (Day 40, Apr 10, -0.75%, confirmed TradingEconomics); ceasefire fragile — Hormuz ~4 transits/day vs 138/day historical; working range $90-115 stress; $140-160 tail on ceasefire collapse and Kharg seizure
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $19.42/MMBtu (Day 40, Apr 10, -0.38%, confirmed TradingEconomics); Hormuz not reopening despite ceasefire; Ras Laffan restart not yet confirmed; Iran nuclear sticking point in Vance talks
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, confirmed OilPriceAPI) → €44.46/MWh (Day 40, Apr 10, confirmed OilPriceAPI); Qatar LNG force majeure risk persists; European gas still pricing Ras Laffan restart uncertainty
-- **Credit**: iTraxx Asia IG est. ~178bp (Day 39, -28bp ceasefire relief); ASEAN HY est. ~545bp (-47bp); 160-170bp next target if Vance-Pakistan talks produce a framework; tail risk 38% (raised from 30% on no-deal outcome)
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $95.20 (Day 40, Apr 10, confirmed TradingEconomics) → ~$102 (Day 43, Apr 13, est. +7% on US naval blockade); blockade escalation re-escalates to Severe; working range $100-125 stress; $140-185 tail on US-Iran naval engagement
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $19.42/MMBtu (Day 40, Apr 10, confirmed TradingEconomics) → ~$20.50/MMBtu (Day 43, est. +5.5%); Ras Laffan force majeure intact; blockade re-escalation reverses ceasefire price relief
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, confirmed OilPriceAPI) → €44.46/MWh (Day 40, Apr 10, confirmed OilPriceAPI) → ~€47.50/MWh (Day 43, est. +6.8%); Qatar LNG force majeure persists; blockade re-escalation rebuilds European supply risk premium
+- **Credit**: iTraxx Asia IG est. ~195bp (Day 43, +17bp on blockade escalation); ASEAN HY est. ~590bp (+45bp); 170bp next target only if Netanyahu-Lebanon deal (Apr 14) + confirmed Hormuz reopening; tail risk 48%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
