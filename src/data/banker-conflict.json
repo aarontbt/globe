@@ -1,36 +1,36 @@
 {
-  "escalationLevel": 5,
-  "escalationLabel": "Severe",
-  "deltaVsYesterday": 1,
+  "escalationLevel": 4,
+  "escalationLabel": "High",
+  "deltaVsYesterday": -1,
   "todaysEvents": [
-    { "id": "e1", "summary": "Trump orders US naval blockade of Hormuz after Vance-Iran talks collapse without deal after 21 hours; Brent spikes +7% to ~$102 (est.); tail risk surges to 48% (Apr 13).", "delta": "Blockade order re-escalates to Severe", "direction": "up" },
-    { "id": "e2", "summary": "Iran: 'The Strait of Hormuz will not be opened'; IRGC warns of 'regretful response' to US warships; FM blames 'excessive US demands' on nuclear commitment and Hormuz sovereignty (Apr 13).", "delta": "Iran defiant; direct US-Iran naval standoff imminent", "direction": "up" },
-    { "id": "e3", "summary": "Netanyahu signals Israel-Lebanon negotiations begin Tuesday Apr 14, mediated by US; Pakistan FM urges both sides to maintain ceasefire; talks could resume (Apr 13).", "delta": "Lebanon de-escalation signal offsets blockade risk", "direction": "neutral" }
+    { "id": "e1", "summary": "US blockade in effect second day; Pentagon: 'no ships made it past' blockade (6 Iran-bound tankers turned around), but 3 non-Iranian-bound tankers (Rich Starry, Elpis, Peace Gulf) transit Hormuz unimpeded (Al Jazeera, LSEG/Kpler data, Apr 14-15).", "delta": "Blockade scope narrower than feared; commercial Hormuz transit partially preserved", "direction": "down" },
+    { "id": "e2", "summary": "Trump hints US-Iran talks could resume 'over next two days' in Islamabad; White House confirms second round under discussion; Iran delegation keeping Fri-Sun open (NBC, CNN, TIME Apr 14); 2-week ceasefire expires Apr 21 (Apr 15).", "delta": "Diplomatic off-ramp re-emerges; tail risk reprices lower", "direction": "down" },
+    { "id": "e3", "summary": "Brent continues lower: $94.79 Apr 14 (CNBC) → ~$93 Apr 15; WTI $90.92 confirmed (TradingEconomics); US to let Iran oil sanctions waiver expire (Bloomberg); Europe plans postwar Hormuz coalition excluding US/Israel/Iran (Macron/WSJ, Apr 15).", "delta": "Risk premium unwinds on talks optimism despite active blockade", "direction": "down" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 8,
-      "description": "US blockade serves as coercive leverage; Iran agrees to nuclear talks framework within 72 hours to avoid direct naval confrontation. Ceasefire preserved; Hormuz formally reopened under US escort arrangement. P&I restoration follows within 2-3 weeks. Brent retraces toward $90-95/bbl as risk premium unwinds; iTraxx Asia IG tightens below 170bp. Netanyahu-Lebanon deal on April 14 removes the core Iranian Hormuz pretext.",
-      "oilImpact": "+$10/bbl",
-      "lngImpact": "+30%"
+      "probability": 22,
+      "description": "Second round of US-Iran Islamabad talks resumes within days; blockade serves as negotiating leverage rather than trigger for direct confrontation. Framework agreement on nuclear commitment + partial Hormuz sovereignty emerges before Apr 21 ceasefire expiry. P&I restoration phased over 2-3 weeks; Brent retraces toward $85-90/bbl as risk premium unwinds; iTraxx Asia IG tightens below 165bp. Netanyahu-Lebanon track provides parallel de-escalation channel.",
+      "oilImpact": "+$5/bbl",
+      "lngImpact": "+15%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 44,
-      "description": "US blockade and Iran standoff persist for 1-2 weeks without direct kinetic engagement. Ceasefire nominally intact but effectively void - commercial traffic remains blocked. Further talks are attempted but no framework emerges on nuclear or Hormuz sovereignty. Brent stabilises $100-120/bbl; JKM $20-25/MMBtu; iTraxx Asia IG 190-220bp. IRGC conducts asymmetric harassment of US vessels without triggering full escalation.",
-      "oilImpact": "+$30/bbl",
-      "lngImpact": "+100%"
+      "probability": 46,
+      "description": "US blockade and Iran-bound port closure persist for 2-4 weeks; commercial Hormuz transit for non-Iranian flows continues but with elevated insurance costs. Second round of talks produces incremental progress but no framework before Apr 21 ceasefire expiry. Iran oil waiver expiration tightens sanctions enforcement. Brent stabilises $90-105/bbl; JKM $19-22/MMBtu; iTraxx Asia IG 170-195bp. IRGC conducts asymmetric harassment without triggering full kinetic engagement.",
+      "oilImpact": "+$20/bbl",
+      "lngImpact": "+80%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 48,
-      "description": "US Navy enforces blockade; IRGC executes 'regretful response' - attacks US warships or commercial vessels transiting under US escort. Full ceasefire collapse; resumed US-Israel air campaign against Iranian infrastructure. Kharg Island seizure or Saudi Aramco attack brings GCC production under acute threat. Brent spikes $140-185/bbl; LNG markets seize; ASEAN recession risk becomes acute. Gold surges past $5,200/oz.",
-      "oilImpact": "+$70/bbl",
-      "lngImpact": "+200%"
+      "probability": 32,
+      "description": "Second round of talks collapses; ceasefire lapses Apr 21 without extension. IRGC executes 'regretful response' - attacks US warships or commercial vessels transiting under US escort. Full ceasefire collapse; resumed US-Israel air campaign. Kharg Island seizure or Saudi Aramco attack brings GCC production under acute threat. Brent spikes $130-175/bbl; LNG markets seize; ASEAN recession risk becomes acute. Gold surges past $5,000/oz.",
+      "oilImpact": "+$60/bbl",
+      "lngImpact": "+180%"
     }
   ]
 }

@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-04-13 (Day 43) |
-| **Crisis level** | 5 — Severe (Trump orders US naval blockade of Hormuz; Vance-Iran talks NO DEAL; Iran defiant) |
-| **Brent** | ~$102 (D43, Apr 13, est. +7% on blockade; last confirmed $95.20 TradingEconomics Apr 10) |
-| **JKM** | ~$20.50/MMBtu (D43, Apr 13, est.; last confirmed $19.42 TradingEconomics Apr 10) |
-| **TTF** | ~€47.50/MWh (D43, Apr 13, est.; last confirmed €44.46 OilPriceAPI Apr 10) |
+| **Last updated** | 2026-04-15 (Day 45) |
+| **Crisis level** | 4 — High (US blockade enforced but vessel-scoped; Trump signals fresh Islamabad talks within 'two days') |
+| **Brent** | ~$93 (D45, Apr 15, est.; last confirmed $94.79 CNBC Apr 14) |
+| **JKM** | ~$19.40/MMBtu (D45, Apr 15, est.; last confirmed $19.49 Investing.com Apr 14) |
+| **TTF** | ~€43.00/MWh (D45, Apr 15, est.; last confirmed €42.95 OilPriceAPI Apr 14) |
 
 ---
 
@@ -422,6 +422,8 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 41**: Apr 11 — USS Frank E Peterson + USS Michael Murphy transit Hormuz (first US warships since Feb 28, CBS News/Al Jazeera); Iran: "last warning"; 3 supertankers follow (Fortune); Vance-Iran Pakistan talks begin; tail risk 35%
 - **Day 42**: Apr 12 — Vance-Iran Pakistan talks: NO DEAL after 21 hours (NBC News, CNBC); sticking points: nuclear commitment + Hormuz sovereignty; Iran: "excessive US demands"; talks to continue; tail risk 38%
 - **Day 43**: Apr 13 — Trump orders US naval blockade of Hormuz (NBC, CNN, CNBC); Iran: "strait will not open"; IRGC warns 'regretful response'; Brent +7% to ~$102; tail risk 48%
+- **Day 44**: Apr 14 — Blockade takes effect 14:00 GMT; Pentagon: no ships 'made it past' (6 Iran-bound turned around, Al Jazeera); 3 non-Iranian tankers transit Hormuz (LSEG/Kpler); Brent -4.8% to $94.79 confirmed (CNBC); Trump hints fresh Islamabad talks; tail risk 38%
+- **Day 45**: Apr 15 — Brent continues lower to ~$93; WTI $90.92 confirmed (TradingEconomics); White House confirms second US-Iran round under discussion; US to let Iran oil waiver expire (Bloomberg); Europe plans postwar Hormuz coalition (Macron/WSJ); tail risk 32%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -429,10 +431,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $95.20 (Day 40, Apr 10, confirmed TradingEconomics) → ~$102 (Day 43, Apr 13, est. +7% on US naval blockade); blockade escalation re-escalates to Severe; working range $100-125 stress; $140-185 tail on US-Iran naval engagement
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $19.42/MMBtu (Day 40, Apr 10, confirmed TradingEconomics) → ~$20.50/MMBtu (Day 43, est. +5.5%); Ras Laffan force majeure intact; blockade re-escalation reverses ceasefire price relief
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33, confirmed OilPriceAPI) → €44.46/MWh (Day 40, Apr 10, confirmed OilPriceAPI) → ~€47.50/MWh (Day 43, est. +6.8%); Qatar LNG force majeure persists; blockade re-escalation rebuilds European supply risk premium
-- **Credit**: iTraxx Asia IG est. ~195bp (Day 43, +17bp on blockade escalation); ASEAN HY est. ~590bp (+45bp); 170bp next target only if Netanyahu-Lebanon deal (Apr 14) + confirmed Hormuz reopening; tail risk 48%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $102 (Day 43, Apr 13, blockade spike) → $94.79 (Day 44, Apr 14, confirmed CNBC) → ~$93 (Day 45, Apr 15, est.); WTI $90.92 confirmed TradingEconomics Apr 15; working range $90-105 stress; $130-175 tail on Apr 21 ceasefire lapse + US-Iran naval engagement
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $19.42/MMBtu (Day 40, Apr 10) → $20.50/MMBtu (Day 43, blockade spike) → $19.49/MMBtu (Day 44, Apr 14, confirmed Investing.com) → ~$19.40/MMBtu (Day 45, Apr 15, est.); Ras Laffan full restart unlikely before late Aug 2026 (The National)
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €47.50/MWh (Day 43, blockade) → €42.95/MWh (Day 44, Apr 14, confirmed OilPriceAPI, -7.46%) → ~€43.00/MWh (Day 45, Apr 15, est.); Qatar force majeure persists; fresh-talks signal unwinds European supply risk premium
+- **Credit**: iTraxx Asia IG est. ~180bp (Day 45, -9bp on fresh-talks signal); ASEAN HY est. ~555bp (-20bp); sub-170bp target only if second Islamabad round produces framework before Apr 21 ceasefire expiry; tail risk 32%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

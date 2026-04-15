@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects market brief snapshot (2026-04-13 morning)
-// Blockade escalation state: Brent ~$102 (+7% on Trump naval blockade of Hormuz), WTI ~$104, Gold ~$4,835 (safe-haven surge).
+// Static fallback — reflects market brief snapshot (2026-04-15 morning)
+// Blockade-enforced, fresh-talks signal: Brent ~$93 (Apr 14 $94.79 CNBC, Apr 15 WTI $90.92 TradingEconomics), Gold ~$4,720 (safe-haven easing).
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 102.00, change: 6.80,   changePct: 7.14,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-13T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 104.00, change: 8.19,   changePct: 8.55,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-13T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 4835.00, change: 83.32, changePct: 1.75,  currency: "USD", unit: "/oz",     lastUpdated: "2026-04-13T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 93.00,  change: -1.79, changePct: -1.89, currency: "USD", unit: "/barrel", lastUpdated: "2026-04-15T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 90.92,  change: -0.37, changePct: -0.40, currency: "USD", unit: "/barrel", lastUpdated: "2026-04-15T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4720.00, change: -25.00, changePct: -0.53, currency: "USD", unit: "/oz",    lastUpdated: "2026-04-15T00:00:00Z" },
 ];
 
 interface UseMarketsResult {

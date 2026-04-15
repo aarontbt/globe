@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "95-125";
-const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "APR 13: Trump orders US naval blockade of Hormuz; Vance talks NO DEAL (21hrs); Iran: 'strait won't open'; Brent +7% to ~$102; tail risk 48%";
+const NEAR_TERM_RANGE = "85-105";
+const SUSTAINED_PRICE = "150";
+const TOP_ALERT = "APR 15: US blockade enforced (Iran-bound only) but 3 non-Iran tankers transit Hormuz; Trump signals fresh Islamabad talks in 2 days; Brent ~$93; tail risk 32%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
