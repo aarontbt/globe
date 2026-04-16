@@ -1,17 +1,17 @@
 {
   "escalationLevel": 4,
   "escalationLabel": "High",
-  "deltaVsYesterday": -1,
+  "deltaVsYesterday": 0,
   "todaysEvents": [
-    { "id": "e1", "summary": "US blockade in effect second day; Pentagon: 'no ships made it past' blockade (6 Iran-bound tankers turned around), but 3 non-Iranian-bound tankers (Rich Starry, Elpis, Peace Gulf) transit Hormuz unimpeded (Al Jazeera, LSEG/Kpler data, Apr 14-15).", "delta": "Blockade scope narrower than feared; commercial Hormuz transit partially preserved", "direction": "down" },
-    { "id": "e2", "summary": "Trump hints US-Iran talks could resume 'over next two days' in Islamabad; White House confirms second round under discussion; Iran delegation keeping Fri-Sun open (NBC, CNN, TIME Apr 14); 2-week ceasefire expires Apr 21 (Apr 15).", "delta": "Diplomatic off-ramp re-emerges; tail risk reprices lower", "direction": "down" },
-    { "id": "e3", "summary": "Brent continues lower: $94.79 Apr 14 (CNBC) → ~$93 Apr 15; WTI $90.92 confirmed (TradingEconomics); US to let Iran oil sanctions waiver expire (Bloomberg); Europe plans postwar Hormuz coalition excluding US/Israel/Iran (Macron/WSJ, Apr 15).", "delta": "Risk premium unwinds on talks optimism despite active blockade", "direction": "down" }
+    { "id": "e1", "summary": "Iran IRGC commander Ali Abdollahi threatens to block Gulf, Red Sea, and Gulf of Oman shipping if US naval blockade persists; signals potential Houthi reactivation (NBC, Fortune, Newsweek, Apr 16).", "delta": "Escalation: Iran widens threat from Hormuz to full regional shipping disruption", "direction": "up" },
+    { "id": "e2", "summary": "Pakistan Field Marshal Asim Munir arrives in Tehran with US message; Iranian FM Araghchi meets Pakistani army chief - most direct diplomatic contact since blockade imposed; WH: 'we feel good about prospects of a deal'; Trump: war 'very close to over' (CNN, NPR, Apr 16).", "delta": "De-escalation: Pakistan mediates actively; WH optimism strongest signal yet", "direction": "down" },
+    { "id": "e3", "summary": "Brent $94.60 confirmed (TradingEconomics Apr 16, -0.3%); WTI $90.79 confirmed (-0.5%); US Treasury Bessent threatens secondary sanctions on Iran oil buyers targeting Chinese banks; Israel-Lebanon ceasefire talks begin (Netanyahu security cabinet, Apr 16).", "delta": "Markets flat on offsetting signals; secondary sanctions tighten enforcement", "direction": "neutral" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 22,
+      "probability": 20,
       "description": "Second round of US-Iran Islamabad talks resumes within days; blockade serves as negotiating leverage rather than trigger for direct confrontation. Framework agreement on nuclear commitment + partial Hormuz sovereignty emerges before Apr 21 ceasefire expiry. P&I restoration phased over 2-3 weeks; Brent retraces toward $85-90/bbl as risk premium unwinds; iTraxx Asia IG tightens below 165bp. Netanyahu-Lebanon track provides parallel de-escalation channel.",
       "oilImpact": "+$5/bbl",
       "lngImpact": "+15%"
@@ -27,8 +27,8 @@
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 32,
-      "description": "Second round of talks collapses; ceasefire lapses Apr 21 without extension. IRGC executes 'regretful response' - attacks US warships or commercial vessels transiting under US escort. Full ceasefire collapse; resumed US-Israel air campaign. Kharg Island seizure or Saudi Aramco attack brings GCC production under acute threat. Brent spikes $130-175/bbl; LNG markets seize; ASEAN recession risk becomes acute. Gold surges past $5,000/oz.",
+      "probability": 34,
+      "description": "Second round of talks collapses; ceasefire lapses Apr 21 without extension. IRGC executes Gulf-wide shipping disruption - blocks Red Sea via Houthi reactivation, Gulf of Oman, and Persian Gulf. Full ceasefire collapse; resumed US-Israel air campaign. Kharg Island seizure or Saudi Aramco attack brings GCC production under acute threat. Brent spikes $130-175/bbl; LNG markets seize; ASEAN recession risk becomes acute. Gold surges past $5,000/oz.",
       "oilImpact": "+$60/bbl",
       "lngImpact": "+180%"
     }
