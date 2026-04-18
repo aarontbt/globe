@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "85-105";
-const SUSTAINED_PRICE = "150";
-const TOP_ALERT = "APR 16: Iran IRGC threatens Gulf+Red Sea blockade unless US lifts Hormuz blockade; Pakistan army chief in Tehran; WH 'very close to deal'; Brent $94.60; tail risk 34%";
+const NEAR_TERM_RANGE = "80-100";
+const SUSTAINED_PRICE = "140";
+const TOP_ALERT = "APR 17: Iran FM Araghchi declares Hormuz 'completely open'; US blockade persists vessel-scoped; $20B frozen-assets deal under negotiation; Islamabad talks Sunday Apr 19; ceasefire expires Apr 22; Brent $91.87 -2.9%; tail risk 25%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
