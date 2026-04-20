@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "80-100";
-const SUSTAINED_PRICE = "140";
-const TOP_ALERT = "APR 17: Iran FM Araghchi declares Hormuz 'completely open'; US blockade persists vessel-scoped; $20B frozen-assets deal under negotiation; Islamabad talks Sunday Apr 19; ceasefire expires Apr 22; Brent $91.87 -2.9%; tail risk 25%";
+const NEAR_TERM_RANGE = "90-115";
+const SUSTAINED_PRICE = "160";
+const TOP_ALERT = "APR 20: Iran re-closes Hormuz, strikes vessels; Apr 19 talks rejected (IRNA); ceasefire expires Apr 22 — no deal; Brent ~$96 est. +4.5%; tail risk 42%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects market brief snapshot (2026-04-17 morning)
-// Iran FM Araghchi declares Hormuz "completely open"; US blockade persists vessel-scoped; $20B frozen-assets deal under negotiation. Brent $91.87 (TradingEconomics Apr 17 confirmed), WTI ~$88.16 est., Gold ~$4,790 est. (de-escalation unwind).
+// Static fallback — reflects market brief snapshot (2026-04-20 morning)
+// Iran re-closes Hormuz (Apr 18-19) after US refuses to lift blockade; IRGC strikes vessels; Iran rejects Islamabad talks (Apr 19); ceasefire expires Apr 22. Brent ~$96 est. (CNN ~$95.71 Apr 19-20, re-escalation), WTI ~$91.50 est., Gold ~$4,900 est. (risk-off).
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 91.87,  change: -2.73, changePct: -2.89, currency: "USD", unit: "/barrel", lastUpdated: "2026-04-17T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 88.16,  change: -2.63, changePct: -2.90, currency: "USD", unit: "/barrel", lastUpdated: "2026-04-17T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 4790.00, change: -32.00, changePct: -0.66, currency: "USD", unit: "/oz",    lastUpdated: "2026-04-17T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 96.00,  change: 4.13,  changePct: 4.49,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-20T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 91.50,  change: 3.34,  changePct: 3.79,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-20T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4900.00, change: 110.00, changePct: 2.30, currency: "USD", unit: "/oz",    lastUpdated: "2026-04-20T00:00:00Z" },
 ];
 
 interface UseMarketsResult {

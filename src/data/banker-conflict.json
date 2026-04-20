@@ -1,34 +1,34 @@
 {
-  "escalationLevel": 3,
-  "escalationLabel": "Heightened",
-  "deltaVsYesterday": -1,
+  "escalationLevel": 4,
+  "escalationLabel": "High",
+  "deltaVsYesterday": 1,
   "todaysEvents": [
-    { "id": "e1", "summary": "Iran FM Araghchi declares Strait of Hormuz 'completely open' in direct contradiction of US blockade narrative; claims Iran has 'never closed' the strait; US Navy continues boarding Iran-bound vessels (Reuters, Al Jazeera, Apr 17).", "delta": "De-escalation signal: Iran frames Hormuz as open — creates diplomatic space for deal", "direction": "down" },
-    { "id": "e2", "summary": "$20B frozen-assets deal under active negotiation: US proposes releasing Iranian assets held in South Korea and Japan in exchange for formal Hormuz sovereignty acknowledgment + nuclear commitment; second Islamabad talks confirmed for Sunday Apr 19 (NBC, CNN, Apr 17).", "delta": "De-escalation: financial deal framework emerging; second talks round imminent", "direction": "down" },
-    { "id": "e3", "summary": "Brent $91.87 confirmed (TradingEconomics Apr 17, -2.9%); WTI ~$88.16 est. (-2.9%); de-escalation unwind drives energy and credit spreads lower; iTraxx Asia IG ~175bp (-7bp); Apr 22 ceasefire expiry remains binary catalyst.", "delta": "Markets price meaningful probability of deal before Apr 22 ceasefire expiry", "direction": "down" }
+    { "id": "e1", "summary": "Iran re-closes Strait of Hormuz (Apr 18-19) after US refuses to lift naval blockade; IRGC strikes vessels attempting to transit; video footage shows ships turning away from strait (CNN, Fortune, CBS, Apr 19-20).", "delta": "Escalation: Hormuz reopening reversed — active vessel strikes resume", "direction": "up" },
+    { "id": "e2", "summary": "Iran formally rejects second Islamabad talks (Apr 19), citing US 'excessive demands' and naval blockade; parliament speaker Qalibaf: 'no retreat in diplomacy'; Trump sends negotiators to Pakistan anyway; ceasefire expires Apr 22 with no deal in sight (IRNA, Time, KPBS, Apr 19).", "delta": "Escalation: talks rejected; Apr 22 ceasefire expiry is now 2 days away with no framework", "direction": "up" },
+    { "id": "e3", "summary": "Brent ~$96 est. (+4.5% on Hormuz re-closure; CNN ~$95.71 Apr 19-20); WTI ~$91.50 est.; iTraxx Asia IG ~190bp est. (+15bp); tail risk rises to 42% as ceasefire expiry clock runs with no agreement (Apr 20).", "delta": "Markets reprice sharply higher as Hormuz re-closure reverses April 17 de-escalation rally", "direction": "up" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 28,
-      "description": "Second round of US-Iran Islamabad talks (Apr 19) produces framework: $20B frozen-assets release + nuclear commitment + Hormuz sovereignty acknowledgment. Formal agreement signed before Apr 22 ceasefire expiry. P&I restoration phased over 2-3 weeks; Brent retraces toward $82-88/bbl as risk premium unwinds; iTraxx Asia IG tightens below 155bp. Netanyahu-Lebanon track provides parallel de-escalation channel.",
+      "probability": 10,
+      "description": "Emergency diplomatic breakthrough before Apr 22: Pakistan back-channel produces last-minute ceasefire extension + partial Hormuz reopening framework. Requires Iran to suspend active vessel interdictions and US to pause blockade enforcement. Brent retraces toward $88-94/bbl; iTraxx Asia IG tightens below 175bp. Very low probability given Iran's formal rejection of Apr 19 talks and active vessel strikes.",
       "oilImpact": "+$5/bbl",
       "lngImpact": "+15%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 47,
-      "description": "US blockade and Iran-bound port closure persist; commercial Hormuz transit for non-Iranian flows continues with elevated insurance costs. Apr 19 Islamabad talks produce incremental progress but no framework before Apr 22 ceasefire expiry. Ceasefire extended short-term while negotiations continue. Brent stabilises $88-105/bbl; JKM $19-22/MMBtu; iTraxx Asia IG 165-190bp. IRGC conducts asymmetric harassment without triggering full kinetic engagement.",
+      "probability": 48,
+      "description": "Apr 22 ceasefire lapses but IRGC limits escalation to harassment and toll-booth enforcement rather than full closure. Intermittent Hormuz transits continue under elevated war-risk premiums; US and Iran maintain back-channel via Pakistan. Brent stabilises $92-110/bbl; JKM $20-24/MMBtu; iTraxx Asia IG 185-210bp. No formal deal but tacit de-escalation prevents full kinetic resumption.",
       "oilImpact": "+$20/bbl",
       "lngImpact": "+80%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 25,
-      "description": "Apr 19 Islamabad talks collapse; ceasefire lapses Apr 22 without extension. IRGC executes Gulf-wide shipping disruption — blocks Red Sea via Houthi reactivation, Gulf of Oman, and Persian Gulf. Full ceasefire collapse; resumed US-Israel air campaign. Kharg Island seizure or Saudi Aramco attack brings GCC production under acute threat. Brent spikes $130-170/bbl; LNG markets seize; ASEAN recession risk becomes acute. Gold surges past $5,000/oz.",
+      "probability": 42,
+      "description": "Apr 22 ceasefire expires without extension; IRGC executes Gulf-wide closure — Hormuz fully blocked, Houthis reactivated in Red Sea, Gulf of Oman interdiction resumed. US-Israel air campaign resumes. Kharg Island seizure or Saudi Aramco strike brings GCC production under acute threat. Brent spikes $130-170/bbl; LNG markets seize; ASEAN recession risk acute. Gold surges past $5,000/oz.",
       "oilImpact": "+$60/bbl",
       "lngImpact": "+180%"
     }

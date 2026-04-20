@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-04-18 (Day 48) |
-| **Crisis level** | 3 — Heightened (Iran FM declares Hormuz 'open'; $20B frozen-assets deal under negotiation; Islamabad talks Apr 19; ceasefire expires Apr 22) |
-| **Brent** | $91.87 (D47, Apr 17, confirmed TradingEconomics, -2.9%) |
-| **JKM** | ~$19.15/MMBtu (D48, Apr 18, est.; last confirmed $19.49 Investing.com Apr 14) |
-| **TTF** | ~€41.59/MWh (D48, Apr 18, est.; last confirmed €42.95 OilPriceAPI Apr 14) |
+| **Last updated** | 2026-04-20 (Day 49) |
+| **Crisis level** | 4 — High (Iran re-closes Hormuz Apr 18-19, strikes vessels; rejects Islamabad talks Apr 19; ceasefire expires Apr 22 — no deal; tail risk 42%) |
+| **Brent** | ~$96 (D49, Apr 20, est.; CNN ~$95.71, +4.5%; last confirmed $91.87 TradingEconomics Apr 17) |
+| **JKM** | ~$19.70/MMBtu (D49, Apr 20, est.; last confirmed $19.49 Investing.com Apr 14) |
+| **TTF** | ~€43.80/MWh (D49, Apr 20, est.; last confirmed €42.95 OilPriceAPI Apr 14) |
 
 ---
 
@@ -427,6 +427,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 46**: Apr 16 — Iran IRGC threatens Gulf/Red Sea/Gulf of Oman blockade (NBC, Fortune); Pakistan army chief visits Tehran; WH 'very close to deal'; Brent $94.60 confirmed; tail risk 34%
 - **Day 47**: Apr 17 — Iran FM Araghchi declares Hormuz 'completely open'; $20B frozen-assets deal under negotiation; Islamabad talks Apr 19 confirmed; Brent $91.87 confirmed TradingEconomics (-2.9%); tail risk 25%
 - **Day 48**: Apr 18 — Market closed (Sat); deal negotiations continue; ceasefire expires Apr 22; scenarios carried from D47
+- **Day 49**: Apr 20 — Iran re-closes Hormuz, strikes vessels; rejects Islamabad talks (IRNA Apr 19); ceasefire expires Apr 22; Brent ~$96 est. +4.5%; tail risk 42%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -434,10 +435,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $94.79 (Day 44, Apr 14, confirmed CNBC) → $91.87 (Day 47, Apr 17, confirmed TradingEconomics, -2.9%); WTI ~$88.16 est. (-2.9%); working range $88-105 stress; $130-170 tail on Apr 22 ceasefire lapse
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $19.49/MMBtu (Day 44, Apr 14, confirmed Investing.com) → ~$19.15/MMBtu (Day 48, Apr 18, est.); Ras Laffan full restart unlikely before late Aug 2026 (The National)
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €42.95/MWh (Day 44, Apr 14, confirmed OilPriceAPI, -7.46%) → ~€41.59/MWh (Day 48, Apr 18, est.); Qatar force majeure persists; Iran FM Hormuz open declaration easing gas risk premium
-- **Credit**: iTraxx Asia IG est. ~175bp (Day 47, -7bp on Hormuz open declaration + deal signal); ASEAN HY est. ~545bp (-15bp); sub-165bp target if Islamabad Apr 19 talks produce framework; tail risk 25%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $91.87 (Day 47, Apr 17, confirmed TradingEconomics, -2.9%) → ~$96 (Day 49, Apr 20, est.; CNN ~$95.71, +4.5% on Hormuz re-closure); WTI ~$91.50 est.; working range $92-110 stress; $130-170 tail on Apr 22 ceasefire lapse
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $19.49/MMBtu (Day 44, Apr 14, confirmed Investing.com) → ~$19.70/MMBtu (Day 49, Apr 20, est.; +2.9% re-escalation); Ras Laffan full restart unlikely before late Aug 2026 (The National)
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €42.95/MWh (Day 44, Apr 14, confirmed OilPriceAPI, -7.46%) → ~€43.80/MWh (Day 49, Apr 20, est.; +5.3% on Hormuz re-closure); Qatar force majeure persists; talks rejection collapses gas risk-premium unwind
+- **Credit**: iTraxx Asia IG est. ~190bp (Day 49, +15bp on Hormuz re-closure + talks rejection); ASEAN HY est. ~565bp (+20bp); above 200bp risk if Apr 22 ceasefire lapses without extension; tail risk 42%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
