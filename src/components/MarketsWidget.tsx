@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "90-115";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "APR 20: Iran re-closes Hormuz, strikes vessels; Apr 19 talks rejected (IRNA); ceasefire expires Apr 22 — no deal; Brent ~$96 est. +4.5%; tail risk 42%";
+const TOP_ALERT = "APR 21: US seizes Iranian Touska; Iran vows retaliation; ceasefire Apr 22 — extension 'highly unlikely'; Brent ~$99 est.; tail 50%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
