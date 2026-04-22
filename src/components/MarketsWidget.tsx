@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "90-115";
+const NEAR_TERM_RANGE = "90-108";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "APR 21: US seizes Iranian Touska; Iran vows retaliation; ceasefire Apr 22 — extension 'highly unlikely'; Brent ~$99 est.; tail 50%";
+const TOP_ALERT = "APR 22 CEASEFIRE EXTENDED: Trump extends truce at Pakistan request; blockade remains; Iran: 'extension has no meaning'; tail risk 33%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

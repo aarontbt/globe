@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-04-21 (Day 50) |
-| **Crisis level** | 4 — High (USS Spruance seizes Iranian Touska Apr 19; Iran vows retaliation, suspends talks; ceasefire expires Apr 22 — Trump: extension 'highly unlikely'; tail risk 50%) |
-| **Brent** | ~$99.50 (D50, Apr 21, est.; last confirmed $95.42 TradingEconomics Apr 20) |
-| **JKM** | ~$20.30/MMBtu (D50, Apr 21, est.; last confirmed $19.49 Investing.com Apr 14) |
-| **TTF** | ~€46.50/MWh (D50, Apr 21, est.; last confirmed €42.95 OilPriceAPI Apr 14) |
+| **Last updated** | 2026-04-22 (Day 51) |
+| **Crisis level** | 4 — High (Trump extends ceasefire indefinitely Apr 21 at Pakistan request; Iranian govt 'seriously fractured'; blockade remains; Iran: 'extension has no meaning'; Touska retaliation vow unresolved; tail risk 33%) |
+| **Brent** | ~$94.00 (D51, Apr 22, est.; last confirmed $95.42 TradingEconomics Apr 20) |
+| **JKM** | ~$19.50/MMBtu (D51, Apr 22, est.; last confirmed $19.49 Investing.com Apr 14) |
+| **TTF** | ~€44.00/MWh (D51, Apr 22, est.; last confirmed €42.95 OilPriceAPI Apr 14) |
 
 ---
 
@@ -429,6 +429,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 48**: Apr 18 — Market closed (Sat); deal negotiations continue; ceasefire expires Apr 22; scenarios carried from D47
 - **Day 49**: Apr 20 — Iran re-closes Hormuz, strikes vessels; rejects Islamabad talks (IRNA Apr 19); ceasefire expires Apr 22; Brent ~$96 est. +4.5%; tail risk 42%
 - **Day 50**: Apr 21 — USS Spruance seizes Iranian Touska (Gulf of Oman); Iran vows retaliation, suspends talks; ceasefire Apr 22 — extension 'highly unlikely'; Brent ~$99.50 est.; tail risk 50%
+- **Day 51**: Apr 22 — Trump extends ceasefire indefinitely at Pakistan request; Iranian govt 'seriously fractured'; blockade remains; Iran: 'extension has no meaning'; Brent ~$94 est.; tail risk 33%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -436,10 +437,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $95.42 (Day 49, Apr 20, confirmed TradingEconomics) → ~$99.50 (Day 50, Apr 21, est.; +3.7% on Touska seizure + ceasefire expiry risk); WTI ~$94.70 est.; working range $95-115 stress; $130-170 tail on Apr 22 ceasefire lapse
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $19.49/MMBtu (Day 44, Apr 14, confirmed Investing.com) → ~$20.30/MMBtu (Day 50, Apr 21, est.; +3.0% on Touska + ceasefire expiry); Ras Laffan full restart unlikely before late Aug 2026 (The National)
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €42.95/MWh (Day 44, Apr 14, confirmed OilPriceAPI, -7.46%) → ~€46.50/MWh (Day 50, Apr 21, est.; +6.2% on ceasefire expiry + Touska escalation); Qatar force majeure persists; Hormuz re-closure reinstates full supply disruption narrative
-- **Credit**: iTraxx Asia IG est. ~205bp (Day 50, +15bp on Touska seizure + ceasefire expiry binary); ASEAN HY est. ~585bp (+20bp); tail scenario targets 230-260bp if Apr 22 ceasefire lapses; tail risk 50%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $95.42 (Day 49, Apr 20, confirmed TradingEconomics) → ~$94.00 (Day 51, Apr 22, est.; -5.5% on ceasefire extension relief; blockade intact); WTI ~$89.50 est.; working range $90-108 stress; $130-170 tail on ceasefire collapse
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $19.49/MMBtu (Day 44, Apr 14, confirmed Investing.com) → ~$19.50/MMBtu (Day 51, Apr 22, est.; -3.9% on extension; blockade and Ras Laffan force majeure intact); Ras Laffan full restart unlikely before late Aug 2026 (The National)
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €42.95/MWh (Day 44, Apr 14, confirmed OilPriceAPI, -7.46%) → ~€44.00/MWh (Day 51, Apr 22, est.; -5.4% on extension; Qatar force majeure persists; Hormuz not reopened)
+- **Credit**: iTraxx Asia IG est. ~190bp (Day 51, -15bp on ceasefire extension); ASEAN HY est. ~560bp (-25bp); tail scenario targets 230-260bp on ceasefire collapse; tail risk 33%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

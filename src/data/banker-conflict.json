@@ -1,34 +1,34 @@
 {
   "escalationLevel": 4,
   "escalationLabel": "High",
-  "deltaVsYesterday": 0,
+  "deltaVsYesterday": -1,
   "todaysEvents": [
-    { "id": "e1", "summary": "USS Spruance fires on, boards Iranian Touska in Gulf of Oman after 6-hour standoff — first US seizure of Iranian vessel; Iran vows 'swift retaliation'; Iranian FM: no decision on Islamabad talks (CNBC, Bloomberg, Al Jazeera, Apr 19).", "delta": "Escalation: first US kinetic boarding of Iranian vessel — new threshold crossed; Iran formally suspends diplomacy in response", "direction": "up" },
-    { "id": "e2", "summary": "Ceasefire expires Apr 22; Trump: extension 'highly unlikely'; Iran not returning to Islamabad — no framework in place (CNN, NBC, Apr 20). Level 4 maintained; Level 5 threshold not yet crossed pending Iranian retaliation action.", "delta": "Escalation: ceasefire expires at zero-deal; diplomacy suspended on both sides; 24-hour binary now active", "direction": "up" },
-    { "id": "e3", "summary": "Brent ~$99.50 est. (+3.7%; last confirmed $95.42 TradingEconomics Apr 20); WTI ~$94.70 est.; iTraxx Asia IG ~205bp est. (+15bp); ASEAN HY ~585bp est. (+20bp); tail risk 50% (Apr 21).", "delta": "Markets price ceasefire expiry and Touska seizure: Brent approaches $100, credit spreads widen, tail risk peaks to 50%", "direction": "up" }
+    { "id": "e1", "summary": "Trump extends ceasefire indefinitely at Pakistan's request (Field Marshal Munir + PM Sharif); Iranian government described as 'seriously fractured'; US naval blockade remains; VP Vance Islamabad trip cancelled; 2nd round talks called off (CNBC, Axios, CBS, NPR, Apr 21).", "delta": "De-escalation: ceasefire extended averts Apr 22 expiry tail scenario; indefinite extension buys diplomatic time", "direction": "down" },
+    { "id": "e2", "summary": "Iran: ceasefire extension 'has no meaning' (national security adviser); FM Araghchi: US blockade is 'act of war' and violates ceasefire terms; no unified Iranian proposal forthcoming; Touska retaliation vow stands (CBS, CNN, Apr 21-22).", "delta": "Residual escalation: Iran rejects extension logic; blockade-as-ceasefire-violation creates new legal flashpoint; Touska retaliation threat unresolved", "direction": "up" },
+    { "id": "e3", "summary": "Brent ~$94 est. (-5.5%; last confirmed $95.42 TradingEconomics Apr 20); iTraxx Asia IG ~190bp est. (-15bp); ASEAN HY ~560bp est. (-25bp); tail risk drops to 33% on ceasefire extension; stress dominant at 52% (Apr 22).", "delta": "Markets reprice on extension relief: energy and credit spreads ease; stress scenario becomes dominant; tail remains elevated at 33% on unresolved Iran retaliation threat", "direction": "down" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 8,
-      "description": "Extraordinary last-minute concession before Apr 22 Wednesday evening deadline: Iran accepts partial deal framework via Pakistan back-channel despite Touska seizure standoff. Requires Iran to stand down retaliation threat + US to release Touska crew. Brent retraces toward $88-94/bbl; iTraxx Asia IG tightens below 185bp. Near-zero probability given Trump's 'highly unlikely' extension signal, Iran's suspension of talks, and active retaliation vow.",
-      "oilImpact": "+$5/bbl",
-      "lngImpact": "+15%"
+      "probability": 15,
+      "description": "Extension creates narrow deal window — Iran's 'seriously fractured' government (per Trump) may allow Pakistani mediators to assemble a unified proposal. Requires Iran to stand down Touska retaliation + resume formal talks + accept nuclear commitment framework. Brent retreats to $85-92/bbl; iTraxx Asia IG tightens below 175bp. Conditional on Iranian government consolidating around a deal position — FM Araghchi calling blockade an 'act of war' signals continued resistance, but Pakistani channel still open.",
+      "oilImpact": "-$5/bbl",
+      "lngImpact": "-15%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 42,
-      "description": "Ceasefire lapses Apr 22 but both sides limit kinetic response. Iranian retaliation for Touska seizure is symbolic - targeting unoccupied infrastructure or US naval drills rather than crewed assets. IRGC reverts to toll-booth enforcement and harassment rather than full closure. US maintains blockade. Brent stabilises $95-115/bbl; JKM $21-26/MMBtu; iTraxx Asia IG 195-220bp. No deal but tacit off-ramp via backchannel keeps negotiation alive.",
-      "oilImpact": "+$20/bbl",
-      "lngImpact": "+80%"
+      "probability": 52,
+      "description": "Dominant scenario — ceasefire extends indefinitely; blockade remains; Iran calls extension 'meaningless' but does not execute Touska retaliation. IRGC maintains Hormuz harassment posture without full closure. US-Pakistan-Iran back-channel produces no formal deal framework. Brent stabilises $90-108/bbl; JKM $18-22/MMBtu; iTraxx Asia IG 180-210bp. Stalemate extended, not resolved — both sides preserve optionality while avoiding kinetic escalation.",
+      "oilImpact": "+$15/bbl",
+      "lngImpact": "+60%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 50,
-      "description": "Ceasefire expires Apr 22; Iran executes retaliatory strike on US naval asset in response to Touska seizure; IRGC activates Gulf-wide closure — Hormuz fully blocked, Houthis reactivated in Red Sea. US-Israel air campaign resumes in force. Kharg Island seizure or Saudi Aramco strike brings GCC production under acute threat. Brent spikes $130-170/bbl; LNG markets seize; ASEAN recession risk acute. Gold surges past $5,500/oz.",
+      "probability": 33,
+      "description": "Iran executes Touska retaliation strike despite ceasefire extension — national security adviser's 'extension has no meaning' signals potential for unilateral action. FM Araghchi's 'act of war' framing creates legal pretext. IRGC targets US naval asset; ceasefire collapses; air campaign resumes. Kharg Island seizure or Aramco strike brings GCC production under acute threat. Brent spikes $130-170/bbl; LNG markets seize; ASEAN recession risk acute. Probability reduced from 50% (D50) on ceasefire extension but residual tail risk from unresolved Touska retaliation remains high.",
       "oilImpact": "+$60/bbl",
       "lngImpact": "+180%"
     }

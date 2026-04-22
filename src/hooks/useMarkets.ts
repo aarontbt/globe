@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects market brief snapshot (2026-04-21 morning)
-// USS Spruance seizes Iranian Touska in Gulf of Oman (Apr 19); Iran vows retaliation, suspends Islamabad talks; ceasefire expires Apr 22 — extension 'highly unlikely' (Trump). Brent ~$99.50 est. (last confirmed $95.42 TradingEconomics Apr 20), WTI ~$94.70 est., Gold ~$5,000 est. (safe-haven surge on ceasefire expiry).
+// Static fallback — reflects market brief snapshot (2026-04-22 morning)
+// Trump extends ceasefire indefinitely (Apr 21, Pakistan request); Iranian govt 'seriously fractured'; US blockade remains; Iran: extension 'has no meaning'. Brent ~$94 est. (-5.5%; last confirmed $95.42 TradingEconomics Apr 20), WTI ~$89.50 est., Gold ~$4,900 est. (partial safe-haven unwind on extension).
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 99.50,  change: 3.50,  changePct: 3.65,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-21T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 94.70,  change: 3.20,  changePct: 3.50,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-21T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 5000.00, change: 100.00, changePct: 2.04, currency: "USD", unit: "/oz",    lastUpdated: "2026-04-21T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 94.00,  change: -5.50,  changePct: -5.52,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-22T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 89.50,  change: -5.20,  changePct: -5.49,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-22T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4900.00, change: -100.00, changePct: -2.00, currency: "USD", unit: "/oz",    lastUpdated: "2026-04-22T00:00:00Z" },
 ];
 
 interface UseMarketsResult {
