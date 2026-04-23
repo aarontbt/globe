@@ -1,34 +1,34 @@
 {
   "escalationLevel": 4,
   "escalationLabel": "High",
-  "deltaVsYesterday": -1,
+  "deltaVsYesterday": 1,
   "todaysEvents": [
-    { "id": "e1", "summary": "Trump extends ceasefire indefinitely at Pakistan's request (Field Marshal Munir + PM Sharif); Iranian government described as 'seriously fractured'; US naval blockade remains; VP Vance Islamabad trip cancelled; 2nd round talks called off (CNBC, Axios, CBS, NPR, Apr 21).", "delta": "De-escalation: ceasefire extended averts Apr 22 expiry tail scenario; indefinite extension buys diplomatic time", "direction": "down" },
-    { "id": "e2", "summary": "Iran: ceasefire extension 'has no meaning' (national security adviser); FM Araghchi: US blockade is 'act of war' and violates ceasefire terms; no unified Iranian proposal forthcoming; Touska retaliation vow stands (CBS, CNN, Apr 21-22).", "delta": "Residual escalation: Iran rejects extension logic; blockade-as-ceasefire-violation creates new legal flashpoint; Touska retaliation threat unresolved", "direction": "up" },
-    { "id": "e3", "summary": "Brent ~$94 est. (-5.5%; last confirmed $95.42 TradingEconomics Apr 20); iTraxx Asia IG ~190bp est. (-15bp); ASEAN HY ~560bp est. (-25bp); tail risk drops to 33% on ceasefire extension; stress dominant at 52% (Apr 22).", "delta": "Markets reprice on extension relief: energy and credit spreads ease; stress scenario becomes dominant; tail remains elevated at 33% on unresolved Iran retaliation threat", "direction": "down" }
+    { "id": "e1", "summary": "Iran's IRGC seizes MSC Francesca and Epaminondas in Strait of Hormuz (Apr 22), citing unauthorized transit and navigation tampering; Greek-owned Euphoria also stranded on Iranian shores. Seizures executed hours after Trump extends ceasefire indefinitely — national security adviser: extension 'has no meaning'; 3 Western commercial vessels now in Iranian custody as Touska counter-leverage (CNBC, NBC, Al Jazeera, Washington Post, Euronews, Apr 22).", "delta": "Escalation: Iran executes kinetic counter-measure post-ceasefire extension; MSC ship seizures signal Iran treating extension as operationally 'meaningless' — new escalation vector; tail risk rises to 40%", "direction": "up" },
+    { "id": "e2", "summary": "Malaysia energy emergency: PM Anwar confirms Petronas now a net fuel importer — exporting premium crude (~350k bpd), importing heavy Gulf crude for domestic refining (~700k bpd need). RON95 quota cut 300L→200L; civil service WFH from Apr 15; unsubsidised petrol RM3.27/L (+68 sen). April/May supply secured; June uncertain per Economy Minister (The Star, paultan.org, Bernama, Apr 4-6).", "delta": "Escalation: Malaysia's 'windfall exporter' narrative inverted — Petronas structural import dependency exposes Malaysia to sustained Hormuz disruption; June supply gap is new ASEAN demand-side risk", "direction": "up" },
+    { "id": "e3", "summary": "Brent $101.73 confirmed (+3.3% Apr 22 close, TradingEconomics/Fortune) on IRGC ship seizures; TTF €42.39 confirmed (Apr 22 OilPriceAPI); JKM $15.81 confirmed (+3.77% Apr 21, TradingEconomics); D52 Brent ~$102.50 est. (+0.8%); iTraxx Asia IG ~198bp est. (+8bp); ASEAN HY ~575bp (+15bp); tail risk 40% (Apr 23).", "delta": "Market re-escalation: Brent reverses D51 ceasefire-relief pullback; IRGC ship seizures reprice disruption risk upward; iTraxx widening resumes on 40% tail probability", "direction": "up" }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 15,
-      "description": "Extension creates narrow deal window — Iran's 'seriously fractured' government (per Trump) may allow Pakistani mediators to assemble a unified proposal. Requires Iran to stand down Touska retaliation + resume formal talks + accept nuclear commitment framework. Brent retreats to $85-92/bbl; iTraxx Asia IG tightens below 175bp. Conditional on Iranian government consolidating around a deal position — FM Araghchi calling blockade an 'act of war' signals continued resistance, but Pakistani channel still open.",
-      "oilImpact": "-$5/bbl",
-      "lngImpact": "-15%"
+      "probability": 10,
+      "description": "Pakistan-mediated framework survives IRGC ship seizures — Iran uses MSC Francesca + Epaminondas as negotiating leverage, not ceasefire termination. Unified Iranian proposal emerges; vessels returned in exchange for partial blockade modification; nuclear framework accepted with face-saving language. Brent retreats toward $88-95/bbl; iTraxx Asia IG tightens below 175bp. Requires Iran to stand down kinetic posture — narrow (10%) given seizures executed hours after the ceasefire extension, but Pakistani back-channel still technically open.",
+      "oilImpact": "-$10/bbl",
+      "lngImpact": "-20%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 52,
-      "description": "Dominant scenario — ceasefire extends indefinitely; blockade remains; Iran calls extension 'meaningless' but does not execute Touska retaliation. IRGC maintains Hormuz harassment posture without full closure. US-Pakistan-Iran back-channel produces no formal deal framework. Brent stabilises $90-108/bbl; JKM $18-22/MMBtu; iTraxx Asia IG 180-210bp. Stalemate extended, not resolved — both sides preserve optionality while avoiding kinetic escalation.",
-      "oilImpact": "+$15/bbl",
-      "lngImpact": "+60%"
+      "probability": 50,
+      "description": "Dominant scenario — IRGC ship seizures (MSC Francesca, Epaminondas, Euphoria) become part of a kinetic stalemate, not ceasefire collapse. Iran holds vessels as Touska counter-leverage; US maintains blockade; Pakistan-brokered back-channel continues inconclusively. Hormuz remains contested: selective bilateral transit; IRGC periodic seizures and harassment sustained. Brent stabilises $95-115/bbl; JKM $16-22/MMBtu; iTraxx Asia IG 190-215bp. Malaysia June supply gap remains live risk; Ras Laffan restart not before late Aug 2026.",
+      "oilImpact": "+$13/bbl",
+      "lngImpact": "+30%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 33,
-      "description": "Iran executes Touska retaliation strike despite ceasefire extension — national security adviser's 'extension has no meaning' signals potential for unilateral action. FM Araghchi's 'act of war' framing creates legal pretext. IRGC targets US naval asset; ceasefire collapses; air campaign resumes. Kharg Island seizure or Aramco strike brings GCC production under acute threat. Brent spikes $130-170/bbl; LNG markets seize; ASEAN recession risk acute. Probability reduced from 50% (D50) on ceasefire extension but residual tail risk from unresolved Touska retaliation remains high.",
+      "probability": 40,
+      "description": "IRGC ship seizures escalate into ceasefire collapse — US responds to MSC Francesca + Epaminondas seizure with force; Iran retaliates against US naval asset; formal ceasefire terminated. IRGC activates Gulf-wide blockade; Kharg Island seizure or Aramco targeting brings GCC production under acute threat. Brent spikes $130-170/bbl; LNG markets seize; Malaysia June supply gap becomes July-August crisis. Tail at 40% (up from 33% D51) reflecting Iran's kinetic escalation despite ceasefire extension — seizures hours after extension signal IRGC treats extension as operationally void.",
       "oilImpact": "+$60/bbl",
       "lngImpact": "+180%"
     }
