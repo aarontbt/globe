@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "90-115";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "APR 23 IRGC SEIZES MSC FRANCESCA + EPAMINONDAS: Iran captures 2 ships in Hormuz; Brent $101.73 Apr 22 close; tail risk 40%";
+const TOP_ALERT = "APR 25 TALKS COLLAPSE: Iran FM Araghchi departs Pakistan; Trump pulls US envoys; Brent $105.33 Apr 24 close; tail risk 50%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
