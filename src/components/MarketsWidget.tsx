@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "90-115";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "APR 25 TALKS COLLAPSE: Iran FM Araghchi departs Pakistan; Trump pulls US envoys; Brent $105.33 Apr 24 close; tail risk 50%";
+const TOP_ALERT = "APR 26 OMAN: Araghchi visits Sultan Haitham (back-channel); returns Islamabad; Trump unharmed WHCD shooting; tail risk 47%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

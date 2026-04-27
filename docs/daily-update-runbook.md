@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-04-26 (Day 55) |
-| **Crisis level** | 4 — High (Islamabad talks collapse Apr 25: Araghchi departs Pakistan; Trump pulls US envoys; Trump 'shoot and kill' ROE for IRGC minelaying boats Apr 23; 3 Western vessels held; tail risk 50%) |
-| **Brent** | $105.33 confirmed (D53, Apr 24, TradingEconomics/CNBC); D55 Apr 26 Sunday carry |
-| **JKM** | ~$17.50/MMBtu (D55, Apr 26, est.; last confirmed $15.81 TradingEconomics Apr 21) |
-| **TTF** | €44.72/MWh confirmed (D53, Apr 24, TradingEconomics); D55 Sunday carry |
+| **Last updated** | 2026-04-27 (Day 56) |
+| **Crisis level** | 4 — High (Araghchi Oman back-channel Apr 26: Sultan Haitham meeting reopens narrow window; round 2 Islamabad paused; Trump unharmed WHCD shooting Apr 25; 3 Western vessels held; tail risk 47%) |
+| **Brent** | ~$106 est. (D56, Apr 27, Monday open; last confirmed $105.33 Apr 24, TradingEconomics/CNBC) |
+| **JKM** | ~$17.60/MMBtu (D56, Apr 27, est.; last confirmed $15.81 TradingEconomics Apr 21) |
+| **TTF** | ~€44.86/MWh est. (D56, Apr 27; last confirmed Apr 24 TradingEconomics, updated settlement) |
 
 ---
 
@@ -434,6 +434,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 53**: Apr 24 — Trump orders Navy 'shoot and kill' any Iranian boat mining Hormuz; Brent $105.33 confirmed; WTI $94.40 confirmed; TTF €44.72 confirmed; tail risk 45%
 - **Day 54**: Apr 25 — Islamabad talks collapse: Araghchi departs Pakistan; Trump tells Witkoff/Kushner not to travel; no active back-channel; tail risk 50%
 - **Day 55**: Apr 26 — Sunday, market closed; Trump 'no time frame' on Iran war; Israel-Lebanon ceasefire extended 3 weeks; ceasefire nominally active but diplomatically contested; tail risk 50%
+- **Day 56**: Apr 27 — Araghchi visits Oman Sultan Haitham (back-channel) after Islamabad; returns Islamabad; next Moscow; Trump unharmed WHCD shooting (Apr 25); tail risk 47%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -441,10 +442,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $105.33 (Day 53, Apr 24, confirmed TradingEconomics/CNBC, +1.6% on Trump 'shoot and kill' ROE) → ~$105.33 (Day 55, Apr 26, Sunday carry; WTI $94.40 confirmed Apr 24 CNBC); working range $95-115 stress; $130-170 tail on ceasefire collapse
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $15.81/MMBtu (Day 50, Apr 21, confirmed TradingEconomics, +3.77%) → ~$17.50/MMBtu (Day 55, Apr 26, est.; +2.9%; talks collapse removes diplomatic off-ramp; blockade and Ras Laffan force majeure intact); Ras Laffan full restart unlikely before late Aug 2026 (The National)
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.72/MWh (Day 53, Apr 24, confirmed TradingEconomics, +0.5%; talks collapse; Qatar force majeure persists; Hormuz not reopened) → ~€44.72 (Day 55, Apr 26, Sunday carry)
-- **Credit**: iTraxx Asia IG est. ~210bp (Day 55, +12bp; Islamabad talks collapse Apr 25 removes diplomatic off-ramp); ASEAN HY est. ~600bp (+25bp); tail scenario targets 230-260bp on ceasefire collapse; tail risk 50%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $105.33 (Day 53, Apr 24, confirmed TradingEconomics/CNBC) → ~$106 (Day 56, Apr 27, est. +0.6%; Oman back-channel mildly positive; Trump WHCD shooting adds political uncertainty; WTI ~$95 est.); working range $95-115 stress; $130-170 tail on ceasefire collapse
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $15.81/MMBtu (Day 50, Apr 21, confirmed TradingEconomics) → ~$17.60/MMBtu (Day 56, Apr 27, est. +0.6%; Oman back-channel opens narrow window; Ras Laffan restart not before late Aug 2026)
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.86/MWh (Day 53, Apr 24, confirmed TradingEconomics updated settlement) → ~€44.86 (Day 56, Apr 27, est.; Oman back-channel; Qatar force majeure persists; Hormuz not reopened)
+- **Credit**: iTraxx Asia IG est. ~208bp (Day 56, -2bp; Oman back-channel reopens narrow window after Islamabad); ASEAN HY est. ~598bp (-2bp); tail scenario targets 230-260bp on ceasefire collapse; tail risk 47%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
