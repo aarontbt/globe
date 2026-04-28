@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-04-27 (Day 56) |
-| **Crisis level** | 4 — High (Araghchi Oman back-channel Apr 26: Sultan Haitham meeting reopens narrow window; round 2 Islamabad paused; Trump unharmed WHCD shooting Apr 25; 3 Western vessels held; tail risk 47%) |
-| **Brent** | ~$106 est. (D56, Apr 27, Monday open; last confirmed $105.33 Apr 24, TradingEconomics/CNBC) |
-| **JKM** | ~$17.60/MMBtu (D56, Apr 27, est.; last confirmed $15.81 TradingEconomics Apr 21) |
-| **TTF** | ~€44.86/MWh est. (D56, Apr 27; last confirmed Apr 24 TradingEconomics, updated settlement) |
+| **Last updated** | 2026-04-28 (Day 57) |
+| **Crisis level** | 4 — High (Iran submits Hormuz proposal Apr 27: reopen if US lifts blockade + ends war; Rubio rejects - nuclear must be in deal; Araghchi-Putin meeting; 3 Western vessels held; tail risk 45%) |
+| **Brent** | ~$102 est. (D57, Apr 28, -3.8%; last confirmed $108.11 Apr 27, TradingEconomics, +2.64%) |
+| **JKM** | ~$17.40/MMBtu (D57, Apr 28, est. -1.1%; last confirmed $15.81 TradingEconomics Apr 22) |
+| **TTF** | ~€44.50/MWh est. (D57, Apr 28, -0.8%; last confirmed €44.72 Apr 24 TradingEconomics) |
 
 ---
 
@@ -434,7 +434,8 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 53**: Apr 24 — Trump orders Navy 'shoot and kill' any Iranian boat mining Hormuz; Brent $105.33 confirmed; WTI $94.40 confirmed; TTF €44.72 confirmed; tail risk 45%
 - **Day 54**: Apr 25 — Islamabad talks collapse: Araghchi departs Pakistan; Trump tells Witkoff/Kushner not to travel; no active back-channel; tail risk 50%
 - **Day 55**: Apr 26 — Sunday, market closed; Trump 'no time frame' on Iran war; Israel-Lebanon ceasefire extended 3 weeks; ceasefire nominally active but diplomatically contested; tail risk 50%
-- **Day 56**: Apr 27 — Araghchi visits Oman Sultan Haitham (back-channel) after Islamabad; returns Islamabad; next Moscow; Trump unharmed WHCD shooting (Apr 25); tail risk 47%
+- **Day 56**: Apr 27 — Araghchi-Putin meeting (St. Petersburg); Iran proposes Hormuz reopening if US lifts blockade + ends war; nuclear deferred; Brent $108.11 confirmed; tail risk 47%
+- **Day 57**: Apr 28 — Rubio rejects Iran Hormuz deal (nuclear must be included); Brent ~$102 est. (-4% on rejection); Araghchi-Putin pledge unchanged; tail risk 45%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -442,10 +443,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $105.33 (Day 53, Apr 24, confirmed TradingEconomics/CNBC) → ~$106 (Day 56, Apr 27, est. +0.6%; Oman back-channel mildly positive; Trump WHCD shooting adds political uncertainty; WTI ~$95 est.); working range $95-115 stress; $130-170 tail on ceasefire collapse
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $15.81/MMBtu (Day 50, Apr 21, confirmed TradingEconomics) → ~$17.60/MMBtu (Day 56, Apr 27, est. +0.6%; Oman back-channel opens narrow window; Ras Laffan restart not before late Aug 2026)
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.86/MWh (Day 53, Apr 24, confirmed TradingEconomics updated settlement) → ~€44.86 (Day 56, Apr 27, est.; Oman back-channel; Qatar force majeure persists; Hormuz not reopened)
-- **Credit**: iTraxx Asia IG est. ~208bp (Day 56, -2bp; Oman back-channel reopens narrow window after Islamabad); ASEAN HY est. ~598bp (-2bp); tail scenario targets 230-260bp on ceasefire collapse; tail risk 47%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $108.11 (Day 56, Apr 27, confirmed TradingEconomics, +2.64%) → ~$102 (Day 57, Apr 28, est. -3.8%; Rubio rejects Iran Hormuz deal - nuclear must be included; WTI ~$91.50 est.); working range $95-110 stress; $130-170 tail on ceasefire collapse
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $15.81/MMBtu (Day 51, Apr 22, confirmed TradingEconomics) → ~$17.40/MMBtu (Day 57, Apr 28, est. -1.1%; Iran Hormuz proposal rejected by US; Ras Laffan restart not before late Aug 2026)
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.72/MWh (Day 53, Apr 24, confirmed TradingEconomics) → ~€44.50 (Day 57, Apr 28, est. -0.8%; Iran Hormuz proposal rejected; Qatar force majeure persists; Hormuz not reopened)
+- **Credit**: iTraxx Asia IG est. ~202bp (Day 57, -6bp; Iran's concrete Hormuz offer provides fractional relief despite Rubio rejection); ASEAN HY est. ~590bp (-8bp); tail scenario targets 230-260bp on ceasefire collapse; tail risk 45%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

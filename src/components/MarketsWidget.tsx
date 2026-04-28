@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "90-115";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "APR 26 OMAN: Araghchi visits Sultan Haitham (back-channel); returns Islamabad; Trump unharmed WHCD shooting; tail risk 47%";
+const TOP_ALERT = "APR 27 RUBIO REJECTS: Iran Hormuz deal (nuclear must be included) unacceptable; Brent ~$102 est. (-4%); tail risk 45%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
