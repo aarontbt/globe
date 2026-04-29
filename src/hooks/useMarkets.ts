@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects market brief snapshot (2026-04-28 morning; last confirmed Apr 27)
-// Brent confirmed $108.11 Apr 27 (TradingEconomics, +2.64%); Iran Hormuz proposal (Apr 27): reopen if US lifts blockade + ends war; nuclear deferred; Rubio rejects - nuclear must be in deal (CNBC); Araghchi-Putin St. Petersburg; Brent ~$102 est. Apr 28 (-3.8%); WTI ~$91.50 est.; tail risk 45%.
+// Static fallback — reflects market brief snapshot (2026-04-29 morning; last confirmed Apr 28)
+// Brent confirmed $111.16 Apr 28 (TradingEconomics, +2.71%); TTF confirmed €44.31 Apr 28 (-0.84%); WTI ~$99.50 est. Apr 28; May 1 War Powers deadline; GCC summit Jeddah (Apr 28); tail risk 45%.
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 102.00, change: -4.11,  changePct: -3.87, currency: "USD", unit: "/barrel", lastUpdated: "2026-04-28T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 91.50,  change: -3.50,  changePct: -3.68, currency: "USD", unit: "/barrel", lastUpdated: "2026-04-28T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 5150.00, change: 50.00,  changePct: 0.98,  currency: "USD", unit: "/oz",     lastUpdated: "2026-04-28T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 111.16, change: 2.95,   changePct: 2.73,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-29T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 99.50,  change: 3.00,   changePct: 3.11,  currency: "USD", unit: "/barrel", lastUpdated: "2026-04-29T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 5190.00, change: 40.00,  changePct: 0.78,  currency: "USD", unit: "/oz",     lastUpdated: "2026-04-29T00:00:00Z" },
 ];
 
 interface UseMarketsResult {
