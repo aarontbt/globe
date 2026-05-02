@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "90-115";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "APR 29 WAR POWERS: May 1 congress AUMF deadline for Iran war; GCC Jeddah summit; Brent $111.16 confirmed (+2.7%); tail 45%";
+const TOP_ALERT = "MAY 1 WAR POWERS: Trump declares Iran hostilities 'terminated' to Congress; 'not satisfied' with Iran proposal; Brent $108.10 (-2.1%); tail 45%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

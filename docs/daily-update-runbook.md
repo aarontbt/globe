@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-04-29 (Day 58) |
-| **Crisis level** | 4 — High (May 1 War Powers deadline looms; GCC summit Jeddah Apr 28 - first Gulf meeting since war; Trump reviewing Iran Hormuz proposal; Iran 'still in war situation'; tail risk 45%) |
-| **Brent** | $111.16 confirmed (D57, Apr 28, +2.71%, TradingEconomics; D57 est. ~$102 was wrong - market raised risk premium despite Rubio rejection) |
-| **JKM** | $16.56/MMBtu confirmed (Apr 27, TradingEconomics, +0.03%; D57 est. ~$17.40 was wrong) |
-| **TTF** | €44.31/MWh confirmed (Apr 28, TradingEconomics, -0.84%) |
+| **Last updated** | 2026-05-02 (Day 61) |
+| **Crisis level** | 4 — High (Trump declared hostilities 'terminated' May 1 - legal bypass of War Powers 60-day deadline; blockade intact; Iran phased Hormuz proposal rejected on nuclear; 'blast them away' threat; tail risk 45%) |
+| **Brent** | $108.10 confirmed (D60, May 1, -2.1%, TradingEconomics; hit wartime high $126 Apr 30 CNBC; D58 retroactively confirmed $118.03 Apr 29 CNBC +6.2% on Trump blockade-until-nuclear) |
+| **JKM** | $16.48/MMBtu confirmed (Apr 28, TradingEconomics, -0.45%; no May 1 print) |
+| **TTF** | €46.15/MWh confirmed (May 1, TradingEconomics, +0.35%) |
 
 ---
 
@@ -436,7 +436,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 55**: Apr 26 — Sunday, market closed; Trump 'no time frame' on Iran war; Israel-Lebanon ceasefire extended 3 weeks; ceasefire nominally active but diplomatically contested; tail risk 50%
 - **Day 56**: Apr 27 — Araghchi-Putin meeting (St. Petersburg); Iran proposes Hormuz reopening if US lifts blockade + ends war; nuclear deferred; Brent $108.11 confirmed; tail risk 47%
 - **Day 57**: Apr 28 — Rubio rejects Iran Hormuz deal (nuclear must be included); Brent confirmed $111.16 (+2.71%, TradingEconomics; market raised risk premium despite rejection); tail risk 45%
-- **Day 58**: Apr 29 — May 1 War Powers deadline (60-day AUMF required; Democrats may sue; Senate blocked curbs 52-47); GCC summit Jeddah (Apr 28) first Gulf meeting since war; Trump reviews Iran proposal; tail risk 45%
+- **Day 58**: Apr 29 — Trump declares blockade continues until Iran agrees to nuclear deal; Brent confirmed $118.03 (+6.2%, CNBC; corrected from carried $111.16); tail risk 50%
+- **Day 59**: Apr 30 — Brent hits $126 wartime high (CNBC/CNN), closes $114.01; WTI $105.07 confirmed; Trump briefed on expanded military options; tail risk 55%
+- **Day 60**: May 1 — Trump declares Iran hostilities 'terminated' to bypass War Powers; Iran proposal rejected ('not satisfied'); Brent $108.10 (-2.1%); tail risk 45%
+- **Day 61**: May 2 — Saturday, markets closed; blockade intact; 3 vessels held; standoff continues; tail 45%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -444,10 +447,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $111.16 (Day 57, Apr 28, confirmed TradingEconomics, +2.71%; market raised risk premium despite Rubio rejection of Iran Hormuz deal; D57 est. ~$102 was wrong) → carried $111.16 (Day 58, Apr 29; no confirmed Apr 29 print at time of update); working range $100-115 stress; $130-170 tail on ceasefire collapse
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $16.56/MMBtu (Day 57, Apr 27 confirmed TradingEconomics, +0.03%; D57 est. ~$17.40 was wrong; Apr 28 not confirmed); Ras Laffan restart not before late Aug 2026
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.31/MWh (Day 57, Apr 28, confirmed TradingEconomics, -0.84%); Qatar force majeure persists; Hormuz not reopened; carried €44.31 Day 58
-- **Credit**: iTraxx Asia IG est. ~200bp (Day 58, -2bp est.; GCC summit Jeddah mild relief); ASEAN HY est. ~588bp (-2bp est.); tail scenario targets 230-260bp on ceasefire collapse; tail risk 45%
+- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN; 4-year high) → $108.10 (Day 60, May 1, confirmed TradingEconomics, -2.1%; Trump 'not satisfied' with Iran phased proposal; D58 retrospectively confirmed $118.03 Apr 29 on Trump blockade-until-nuclear statement); working range $100-115 stress; $130-170 tail on nuclear collapse
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $16.48/MMBtu (D60, Apr 28 confirmed TradingEconomics, -0.45%; no May 1 print); Ras Laffan restart not before late Aug 2026
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €46.15/MWh (Day 60, May 1, confirmed TradingEconomics, +0.35%); Qatar force majeure persists; Hormuz not reopened; carried €46.15 Day 61
+- **Credit**: iTraxx Asia IG est. ~195bp (Day 61, -5bp est.; Trump 'terminated' declaration mild relief); ASEAN HY est. ~582bp (-6bp est.); tail scenario targets 230-260bp on nuclear collapse; tail risk 45%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
