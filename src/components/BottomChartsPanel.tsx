@@ -3,6 +3,7 @@ import volatilityData from "../data/charts-volatility.json";
 
 const entries = volatilityData.days;
 const DAYS     = entries.map(d => d.day);
+const DATES    = entries.map(d => d.date);
 const BASE_OVX = entries.map(d => d.ovx);
 const SCENARIOS = entries.map(d => d.scenarios as [number, number, number]);
 const BASE_VXEEM = entries.map(d => d.vxeem);
@@ -14,35 +15,44 @@ const CBOE_OVX_URL = `${CBOE_BASE}/OVX_History.csv`;
 const CBOE_VXEEM_URL = `${CBOE_BASE}/VXEEM_History.csv`;
 
 interface CBOELiveData {
+  history: Map<string, number>;
   price: number | null;
   changePct: number | null;
   loading: boolean;
   error: boolean;
 }
 
+const EMPTY_HISTORY: Map<string, number> = new Map();
+
 function useCBOELive(url: string): CBOELiveData {
-  const [data, setData] = useState<CBOELiveData>({ price: null, changePct: null, loading: true, error: false });
+  const [data, setData] = useState<CBOELiveData>({
+    history: EMPTY_HISTORY, price: null, changePct: null, loading: true, error: false,
+  });
 
   useEffect(() => {
     let cancelled = false;
     const load = async () => {
       try {
-        // Fetch only the last ~1500 bytes — enough for 2 recent rows
-        const res = await fetch(url, { headers: { Range: "bytes=-1500" } });
-        if (!res.ok && res.status !== 206) throw new Error(`HTTP ${res.status}`);
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
         const lines = text.trim().split("\n").filter(l => l && !l.startsWith("DATE"));
         if (lines.length < 2) throw new Error("insufficient data");
-        const parseClose = (line: string) => {
+        const history = new Map<string, number>();
+        for (const line of lines) {
           const parts = line.split(",");
-          const val = parseFloat(parts[parts.length - 1]);
-          if (isNaN(val)) throw new Error(`invalid value: ${line}`);
-          return val;
-        };
-        const price = parseClose(lines[lines.length - 1]);
-        const prev = parseClose(lines[lines.length - 2]);
+          const dm = parts[0].match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+          if (!dm) continue;
+          const iso = `${dm[3]}-${dm[1].padStart(2, "0")}-${dm[2].padStart(2, "0")}`;
+          const close = parseFloat(parts[parts.length - 1]);
+          if (!isNaN(close)) history.set(iso, close);
+        }
+        const lastLine = lines[lines.length - 1].split(",");
+        const prevLine = lines[lines.length - 2].split(",");
+        const price = parseFloat(lastLine[lastLine.length - 1]);
+        const prev = parseFloat(prevLine[prevLine.length - 1]);
         const changePct = +((price - prev) / prev * 100).toFixed(2);
-        if (!cancelled) setData({ price, changePct, loading: false, error: false });
+        if (!cancelled) setData({ history, price, changePct, loading: false, error: false });
       } catch (err) {
         console.error(`[useCBOELive] fetch failed for ${url}:`, err);
         if (!cancelled) setData(d => ({ ...d, loading: false, error: true }));
@@ -55,12 +65,32 @@ function useCBOELive(url: string): CBOELiveData {
   return data;
 }
 
-function mergeLatestPrice(base: number[], confirmed: boolean[], livePrice: number | null) {
-  if (livePrice === null) return { data: base, confirmed };
-  return {
-    data: [...base.slice(0, -1), livePrice],
-    confirmed: [...confirmed.slice(0, -1), true],
-  };
+function mergeHistory(
+  dates: string[],
+  base: number[],
+  baseConfirmed: boolean[],
+  history: Map<string, number>,
+): { data: number[]; confirmed: boolean[] } {
+  if (history.size === 0) return { data: base, confirmed: baseConfirmed };
+  const data: number[] = [];
+  const confirmed: boolean[] = [];
+  let lastClose: number | null = null;
+  for (let i = 0; i < dates.length; i++) {
+    const v = history.get(dates[i]);
+    if (v !== undefined) {
+      data.push(v);
+      confirmed.push(true);
+      lastClose = v;
+    } else if (lastClose !== null) {
+      // Weekend/holiday or future date: carry forward last confirmed close
+      data.push(lastClose);
+      confirmed.push(false);
+    } else {
+      data.push(base[i]);
+      confirmed.push(baseConfirmed[i]);
+    }
+  }
+  return { data, confirmed };
 }
 
 function ChangePercent({ changePct, show }: { changePct: number | null; show: boolean }) {
@@ -164,7 +194,7 @@ function OVXChart() {
   const minVal = 0;
   const maxVal = 130;
 
-  const { data: OVX, confirmed: OVX_CONFIRMED } = mergeLatestPrice(BASE_OVX, BASE_OVX_CONFIRMED, live.price);
+  const { data: OVX, confirmed: OVX_CONFIRMED } = mergeHistory(DATES, BASE_OVX, BASE_OVX_CONFIRMED, live.history);
   const currentVal = OVX[OVX.length - 1];
   const currentConfirmed = OVX_CONFIRMED[OVX_CONFIRMED.length - 1];
   const isLive = live.price !== null && !live.error;
@@ -274,7 +304,7 @@ function VXEEMChart() {
   const minVal = 15;
   const maxVal = 50;
 
-  const { data: VXEEM, confirmed: VXEEM_CONFIRMED } = mergeLatestPrice(BASE_VXEEM, BASE_VXEEM_CONFIRMED, live.price);
+  const { data: VXEEM, confirmed: VXEEM_CONFIRMED } = mergeHistory(DATES, BASE_VXEEM, BASE_VXEEM_CONFIRMED, live.history);
   const currentVal = VXEEM[VXEEM.length - 1];
   const currentConfirmed = VXEEM_CONFIRMED[VXEEM_CONFIRMED.length - 1];
   const isLive = live.price !== null && !live.error;
