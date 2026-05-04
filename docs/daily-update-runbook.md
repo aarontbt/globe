@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-05-02 (Day 61) |
-| **Crisis level** | 4 — High (Trump declared hostilities 'terminated' May 1 - legal bypass of War Powers 60-day deadline; blockade intact; Iran phased Hormuz proposal rejected on nuclear; 'blast them away' threat; tail risk 45%) |
-| **Brent** | $108.10 confirmed (D60, May 1, -2.1%, TradingEconomics; hit wartime high $126 Apr 30 CNBC; D58 retroactively confirmed $118.03 Apr 29 CNBC +6.2% on Trump blockade-until-nuclear) |
-| **JKM** | $16.48/MMBtu confirmed (Apr 28, TradingEconomics, -0.45%; no May 1 print) |
-| **TTF** | €46.15/MWh confirmed (May 1, TradingEconomics, +0.35%) |
+| **Last updated** | 2026-05-04 (Day 63) |
+| **Crisis level** | 4 — High (Project Freedom launched May 4: US CENTCOM 15K troops + destroyers + 100+ aircraft in Hormuz to guide ships; Iran warns ceasefire violation; 14-point proposal under review; nuclear stalemate; tail risk 45%) |
+| **Brent** | $108.12 confirmed (D63, May 4, 0.0%, TradingEconomics; flat vs May 1 $108.10; TTF €45.08 confirmed May 4 (-2.3%, TradingEconomics); D58 retroactively confirmed $118.03 Apr 29 CNBC; D59 $126 wartime high Apr 30) |
+| **JKM** | $16.48/MMBtu carried (Apr 28, TradingEconomics, -0.45%; no May 4 print) |
+| **TTF** | €45.08/MWh confirmed (May 4, TradingEconomics, -2.3% vs May 1 €46.15; Project Freedom de-escalation signal) |
 
 ---
 
@@ -440,6 +440,8 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 59**: Apr 30 — Brent hits $126 wartime high (CNBC/CNN), closes $114.01; WTI $105.07 confirmed; Trump briefed on expanded military options; tail risk 55%
 - **Day 60**: May 1 — Trump declares Iran hostilities 'terminated' to bypass War Powers; Iran proposal rejected ('not satisfied'); Brent $108.10 (-2.1%); tail risk 45%
 - **Day 61**: May 2 — Saturday, markets closed; blockade intact; 3 vessels held; standoff continues; tail 45%
+- **Day 62**: May 3 — Trump announces 'Project Freedom'; US Navy to guide ships through Hormuz from May 4; Iran warns ceasefire violation; Brent ~$108 carried
+- **Day 63**: May 4 — Project Freedom operational; 15,000 US troops, destroyers, 100+ aircraft in Hormuz; Iran reviewing 14-point proposal; Brent $108.12 flat; TTF €45.08 (-2.3%); tail 45%
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -447,10 +449,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $121.40 (Day 20, +7.6%) → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN; 4-year high) → $108.10 (Day 60, May 1, confirmed TradingEconomics, -2.1%; Trump 'not satisfied' with Iran phased proposal; D58 retrospectively confirmed $118.03 Apr 29 on Trump blockade-until-nuclear statement); working range $100-115 stress; $130-170 tail on nuclear collapse
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $16.48/MMBtu (D60, Apr 28 confirmed TradingEconomics, -0.45%; no May 1 print); Ras Laffan restart not before late Aug 2026
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €46.15/MWh (Day 60, May 1, confirmed TradingEconomics, +0.35%); Qatar force majeure persists; Hormuz not reopened; carried €46.15 Day 61
-- **Credit**: iTraxx Asia IG est. ~195bp (Day 61, -5bp est.; Trump 'terminated' declaration mild relief); ASEAN HY est. ~582bp (-6bp est.); tail scenario targets 230-260bp on nuclear collapse; tail risk 45%
+- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $108.12 (Day 63, May 4, confirmed TradingEconomics, 0.0% vs May 1 $108.10; Project Freedom launched - 15K troops + destroyers in Hormuz; Iran warns ceasefire violation); working range $100-115 stress; $130-170 tail on US-Iran Hormuz confrontation or nuclear collapse
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $16.48/MMBtu (D60, Apr 28 confirmed TradingEconomics, carried D63); Ras Laffan restart not before late Aug 2026
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €45.08/MWh (Day 63, May 4, confirmed TradingEconomics, -2.3% vs May 1 €46.15; Project Freedom de-escalation signal pulls European gas lower)
+- **Credit**: iTraxx Asia IG est. ~192bp (Day 63, -3bp est.; Project Freedom marginal risk-on); ASEAN HY est. ~577bp (-5bp est.); tail scenario targets 230-260bp on US-Iran Hormuz confrontation; tail risk 45%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
