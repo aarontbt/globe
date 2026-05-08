@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "90-115";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "MAY 4 PROJECT FREEDOM: US Navy deploys destroyers + 15K troops to Hormuz to guide ships; Iran warns ceasefire violation; Brent $108 flat; tail 45%";
+const TOP_ALERT = "MAY 7 US-IRAN FIRE: US sinks 7 Iranian boats; Iran attacks USS Truxtun in Hormuz; Trump 'love tap' ceasefire holds; 14-point MOU talks; Brent $101";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

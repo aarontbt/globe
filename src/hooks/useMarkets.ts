@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects market brief snapshot (2026-05-04 morning; last confirmed May 4)
-// Brent $108.12 May 4 (0.0%, TradingEconomics; flat vs May 1 $108.10); TTF €45.08 May 4 (-2.3%, TradingEconomics); WTI ~$101.88 est. May 4; Gold $4,621.69 est. (CORRECTED from prior over-estimate ~$5,210; confirmed search data May 1 $4,612.50); Project Freedom launched (US Navy guides ships through Hormuz); tail 45%.
+// Static fallback — reflects market brief snapshot (2026-05-08 morning; Brent/WTI confirmed May 8 CNBC; Gold confirmed May 7 Fortune; TTF/JKM confirmed May 7 TradingEconomics carried)
+// Brent $101.26 May 8 (+1.2%, CNBC; oil rallied on US-Iran fire exchange D66); WTI $95.64 (+0.9%); Gold $4,685.37 May 7 (-0.13%, Fortune; carried); US-Iran fire exchange May 7; MOU talks; tail 35%
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 108.12, change: +0.02,  changePct: +0.02, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-04T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 101.88, change: -1.02,  changePct: -0.99, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-04T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 4621.69, change: +9.19,  changePct: +0.20, currency: "USD", unit: "/oz",     lastUpdated: "2026-05-04T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 101.26, change: +1.21,  changePct: +1.21, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-08T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 95.64,  change: +0.84,  changePct: +0.89, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-08T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4685.37, change: -6.11, changePct: -0.13, currency: "USD", unit: "/oz",     lastUpdated: "2026-05-07T00:00:00Z" },
 ];
 
 interface UseMarketsResult {
