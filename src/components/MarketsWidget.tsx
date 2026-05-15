@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "90-115";
+const NEAR_TERM_RANGE = "95-115";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "MAY 7 US-IRAN FIRE: US sinks 7 Iranian boats; Iran attacks USS Truxtun in Hormuz; Trump 'love tap' ceasefire holds; 14-point MOU talks; Brent $101";
+const TOP_ALERT = "MAY 10 TALKS STALL: Iran MOU counter-proposal 'unacceptable'; blockade 70+ tankers; Brent $110→$106 on Trump-Xi signal; tail 40%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
