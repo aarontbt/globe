@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "95-115";
-const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "MAY 10 TALKS STALL: Iran MOU counter-proposal 'unacceptable'; blockade 70+ tankers; Brent $110→$106 on Trump-Xi signal; tail 40%";
+const NEAR_TERM_RANGE = "80-105";
+const SUSTAINED_PRICE = "150";
+const TOP_ALERT = "MAY 23 DEAL NEAR: Trump says Iran MOU 'largely negotiated'; 60-day Hormuz open + Phase 2 nuclear; Brent $98.21 -6% week; tail 23%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

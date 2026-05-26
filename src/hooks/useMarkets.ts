@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects market brief snapshot (2026-05-15 morning; Brent est. TradingEconomics May 15; WTI est. May 15; Gold confirmed May 14 Fortune)
-// Brent ~$106.10 May 15 est. (May 14 close $105.87 CNBC confirmed); WTI ~$101.20 est.; Gold $4,651.93 May 14 (-0.74%, Fortune confirmed); Iran MOU stalled; blockade 70+ tankers; tail 40%
+// Static fallback — reflects market brief snapshot (2026-05-26 morning; Brent confirmed TradingEconomics May 26; WTI confirmed TradingEconomics May 26; Gold confirmed TradingEconomics May 26)
+// Brent $98.21 May 26 confirmed (+0.99%, TradingEconomics); WTI $92.58 confirmed (+1.74%, TradingEconomics); Gold $4,530.61 May 26 confirmed (-0.85%, TradingEconomics); Trump "largely negotiated" deal (May 23); tail 23%
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 106.10, change: +0.23,  changePct: +0.22, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-15T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 101.20, change: +0.20,  changePct: +0.20, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-15T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 4651.93, change: -34.70, changePct: -0.74, currency: "USD", unit: "/oz",     lastUpdated: "2026-05-14T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 98.21,   change: +0.97,  changePct: +0.99, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-26T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 92.58,   change: +1.59,  changePct: +1.74, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-26T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4530.61, change: -38.63, changePct: -0.85, currency: "USD", unit: "/oz",     lastUpdated: "2026-05-26T00:00:00Z" },
 ];
 
 interface UseMarketsResult {

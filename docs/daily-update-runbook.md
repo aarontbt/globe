@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-05-15 (Day 74) |
-| **Crisis level** | 4 — High (Iran MOU counter-proposal via Pakistan May 10: Lebanon-first demand; Trump 'unacceptable'/'playing games'; blockade 70+ tankers; Trump-Xi Hormuz talks May 14 pulled Brent from $110.87 peak to $106; IEA: 14M bpd Gulf cut at record pace; tail 40%) |
-| **Brent** | ~$106.10 est. (D74, May 15, TradingEconomics morning est.; May 14 close $105.87 confirmed CNBC/Invezz; D72 peak $110.87 May 13 Fortune confirmed; D67 May 8 confirmed $101.26 CNBC) |
-| **JKM** | $16.99/MMBtu confirmed (D71, May 12, Canada LNG Group; carried D74) |
-| **TTF** | €47.61/MWh confirmed (D73, May 14, TradingEconomics, +1.47%; up from €44.84 D67 on MOU stalemate/supply fears) |
+| **Last updated** | 2026-05-26 (Day 85) |
+| **Crisis level** | 4 — High (Trump declares Iran MOU 'largely negotiated' May 23 CNBC/CNN/NPR; 60-day Phase 1: Hormuz open + Iran oil sales; Phase 2 nuclear talks 30-60 days; disputed: Khamenei uranium directive blocks nuclear concession; Iran's Fars claims Strait 'under Iran management'; deal not signed; tail 23%) |
+| **Brent** | $98.21 confirmed (D85, May 26, TradingEconomics +0.99%; -6% week on deal optimism; peaked $110.87 D72 May 13 Fortune confirmed) |
+| **JKM** | $18.81/MMBtu est. (D85, May 26; Platts May 22 carried; Canada LNG Group May 25 weekly not yet published) |
+| **TTF** | €46.71/MWh confirmed (D85, May 26, TradingEconomics +2.47%; rebounding from D84 €46.63 low; Norwegian exports surge persists) |
 
 ---
 
@@ -453,6 +453,14 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 72**: May 13 — Brent $110.87 confirmed (Fortune); IEA: 14M bpd Gulf cut depleting inventories at record pace; WTI ~$102.
 - **Day 73**: May 14 — Trump-Xi discuss Hormuz; Brent $105.87 (CNBC confirmed); TTF €47.61 (TE confirmed); Brent -4.5% on diplomacy; tail 38%.
 - **Day 74**: May 15 — Brent ~$106 est. (TradingEconomics); MOU stalemate continues; blockade 70+ tankers; IEA record depletion; tail 40%.
+- **Day 77**: May 18 — Trump calls off planned Iran strike at Saudi/UAE/Qatar request (CBS News, WashPost); Brent ~$110.69 (-1%, CNBC); tail 37%.
+- **Day 79**: May 20 — Trump: Iran talks 'in final stages' (CNBC); WTI breaks below $100; IRGC claims 26 vessels coordinated through Hormuz; PGSA new maritime zone published; tail 34%.
+- **Day 80**: May 21 — Iran reviews US proposal; Rubio 'encouraging signs' (CNBC); Brent volatile $104→$107→$103; JKM $18.92 confirmed (Canada LNG Group); tail 34%.
+- **Day 81**: May 22 — Khamenei orders uranium to stay in Iran; deal hopes fade; Brent $104.52 (+1.9%, TE confirmed); TTF €47.69 (-3.5% Norwegian surge); tail 38%.
+- **Day 82**: May 23 — Trump declares Iran MOU 'largely negotiated' (CNBC, CNN, NPR); 60-day Phase 1 framework: Hormuz opens, Iran oil sales, Phase 2 nuclear 30-60 days; tail 25%.
+- **Day 83**: May 24 — Deal details emerge (Axios, CNN); Iran's Fars disputes Strait control; nuclear sequencing unresolved; Brent -7% to ~$96; tail 23%.
+- **Day 84**: May 25 — Mixed signals (Al Jazeera); Brent ~$97; WTI briefly below $91; TTF €46.63 (-4.2%, TE); tail 23% held.
+- **Day 85**: May 26 — Brent $98.21 (+1.0%, TE confirmed); WTI $92.58 (+1.7%, TE confirmed); Gold $4,530.61 (-0.9%); TTF €46.71 (+2.5%); deal not signed; tail 23%.
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -460,10 +468,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $106.10 est. (Day 74, May 15, TradingEconomics est.; pulled from $110 by Trump-Xi Hormuz talks May 14, CNBC confirmed $105.87); working range $95-115 stress; $125-170 tail on MOU collapse
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $16.99/MMBtu (D71, May 12, confirmed Canada LNG Group; carried D74); Ras Laffan restart not before late Aug 2026
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €47.61/MWh (D73, May 14, confirmed TradingEconomics +1.47%; back up from €44.84 D67 on MOU stalemate and supply fears)
-- **Credit**: iTraxx Asia IG est. ~188bp (Day 74, +2bp est.; MOU counter-proposal rejection widened from D67 182bp; Trump-Xi May 14 limited widening); ASEAN HY est. ~568bp (+2bp est.); tail scenario targets 230-260bp on MOU collapse; tail risk 40%
+- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $98.21 confirmed (Day 85, May 26, TradingEconomics +0.99%; deal 'largely negotiated' May 23 drives -6% week; working range $80-105 stress; $125-165 tail on deal collapse)
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.81/MMBtu est. (D85, May 26; Platts May 22 carried; Canada LNG Group May 25 weekly pending); Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing ~6 months delays Qatar LNG normalisation
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €46.71/MWh (D85, May 26, confirmed TradingEconomics +2.47%; rebounding from D84 low of €46.63; Norwegian surge persists)
+- **Credit**: iTraxx Asia IG est. ~178bp (Day 85, -6bp est.; deal 'largely negotiated' tightening; from D81 184bp); ASEAN HY est. ~550bp (-13bp est.); tail scenario targets 230-260bp on deal collapse; remove hedge at 165bp + confirmed deal; tail risk 23%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
