@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-05-26 (Day 85) |
-| **Crisis level** | 4 — High (Trump declares Iran MOU 'largely negotiated' May 23 CNBC/CNN/NPR; 60-day Phase 1: Hormuz open + Iran oil sales; Phase 2 nuclear talks 30-60 days; disputed: Khamenei uranium directive blocks nuclear concession; Iran's Fars claims Strait 'under Iran management'; deal not signed; tail 23%) |
-| **Brent** | $98.21 confirmed (D85, May 26, TradingEconomics +0.99%; -6% week on deal optimism; peaked $110.87 D72 May 13 Fortune confirmed) |
-| **JKM** | $18.81/MMBtu est. (D85, May 26; Platts May 22 carried; Canada LNG Group May 25 weekly not yet published) |
-| **TTF** | €46.71/MWh confirmed (D85, May 26, TradingEconomics +2.47%; rebounding from D84 €46.63 low; Norwegian exports surge persists) |
+| **Last updated** | 2026-05-28 (Day 87) |
+| **Crisis level** | 4 — High (Rubio 'every chance' May 27 but White House calls MOU claim 'fabrication'; fresh US strikes in Iran + IRGC targets US air base May 28; ceasefire extension reportedly close; tail 28%) |
+| **Brent** | $94.29 confirmed (D86, May 27, CNBC close -5%; Rubio talks optimism; White House MOU denial; -$4 week; peaked $110.87 D72 May 13 Fortune confirmed) |
+| **JKM** | $18.81/MMBtu est. (D87, May 28; Platts May 22 carried; Canada LNG Group weekly pending) |
+| **TTF** | €44.00/MWh est. (D86, May 27; -5.8% on deal optimism; Norwegian exports surge continues) |
 
 ---
 
@@ -460,7 +460,9 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 82**: May 23 — Trump declares Iran MOU 'largely negotiated' (CNBC, CNN, NPR); 60-day Phase 1 framework: Hormuz opens, Iran oil sales, Phase 2 nuclear 30-60 days; tail 25%.
 - **Day 83**: May 24 — Deal details emerge (Axios, CNN); Iran's Fars disputes Strait control; nuclear sequencing unresolved; Brent -7% to ~$96; tail 23%.
 - **Day 84**: May 25 — Mixed signals (Al Jazeera); Brent ~$97; WTI briefly below $91; TTF €46.63 (-4.2%, TE); tail 23% held.
-- **Day 85**: May 26 — Brent $98.21 (+1.0%, TE confirmed); WTI $92.58 (+1.7%, TE confirmed); Gold $4,530.61 (-0.9%); TTF €46.71 (+2.5%); deal not signed; tail 23%.
+- **Day 85**: May 26 — Brent $98.21 (+1.0% TE confirmed); WTI $92.58 (+1.7%); deal 'largely negotiated' narrative holds; tail 23%.
+- **Day 86**: May 27 — Rubio 'every chance to succeed'; White House: MOU claim 'fabrication'; fresh US strikes; Brent -5% to $94.29; tail 28%.
+- **Day 87**: May 28 — Fresh US strikes; IRGC targets US air base; oil +2% intraday; ceasefire extension reportedly close; tail 28%.
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -468,10 +470,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $98.21 confirmed (Day 85, May 26, TradingEconomics +0.99%; deal 'largely negotiated' May 23 drives -6% week; working range $80-105 stress; $125-165 tail on deal collapse)
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.81/MMBtu est. (D85, May 26; Platts May 22 carried; Canada LNG Group May 25 weekly pending); Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing ~6 months delays Qatar LNG normalisation
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €46.71/MWh (D85, May 26, confirmed TradingEconomics +2.47%; rebounding from D84 low of €46.63; Norwegian surge persists)
-- **Credit**: iTraxx Asia IG est. ~178bp (Day 85, -6bp est.; deal 'largely negotiated' tightening; from D81 184bp); ASEAN HY est. ~550bp (-13bp est.); tail scenario targets 230-260bp on deal collapse; remove hedge at 165bp + confirmed deal; tail risk 23%
+- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $94.29 confirmed (D86, May 27, CNBC close -5%; Rubio 'every chance'; White House: MOU 'fabrication'; -$4 week; working range $80-105 stress; $125-165 tail on deal collapse)
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.81/MMBtu est. (D87, May 28; Platts May 22 carried; Canada LNG Group weekly pending); Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing ~6 months delays Qatar LNG normalisation
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.00/MWh est. (D86, May 27; -5.8% on Rubio deal optimism; Norwegian exports surge persists)
+- **Credit**: iTraxx Asia IG est. ~172bp (D86, May 27, -6bp est.; Rubio optimism tightening reversed by White House denial); ASEAN HY est. ~540bp (-10bp est.); tail scenario targets 230-260bp on deal collapse; remove hedge at 165bp + confirmed deal; tail risk 28%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

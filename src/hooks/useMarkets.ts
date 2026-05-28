@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects market brief snapshot (2026-05-26 morning; Brent confirmed TradingEconomics May 26; WTI confirmed TradingEconomics May 26; Gold confirmed TradingEconomics May 26)
-// Brent $98.21 May 26 confirmed (+0.99%, TradingEconomics); WTI $92.58 confirmed (+1.74%, TradingEconomics); Gold $4,530.61 May 26 confirmed (-0.85%, TradingEconomics); Trump "largely negotiated" deal (May 23); tail 23%
+// Static fallback — reflects market brief snapshot (2026-05-28 morning; Brent confirmed CNBC May 27 close; WTI confirmed CNBC May 27 close; Gold confirmed CNBC May 27 close)
+// Brent $94.29 May 27 close (CNBC -5%; Rubio 'every chance to succeed'; White House: MOU claim 'fabrication'); WTI $88.68 (-5%); tail 28%
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 98.21,   change: +0.97,  changePct: +0.99, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-26T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 92.58,   change: +1.59,  changePct: +1.74, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-26T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 4530.61, change: -38.63, changePct: -0.85, currency: "USD", unit: "/oz",     lastUpdated: "2026-05-26T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 94.29,   change: -3.92,  changePct: -4.00, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-28T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 88.68,   change: -3.90,  changePct: -4.21, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-28T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4481.50, change: -49.11, changePct: -1.08, currency: "USD", unit: "/oz",     lastUpdated: "2026-05-28T00:00:00Z" },
 ];
 
 interface UseMarketsResult {

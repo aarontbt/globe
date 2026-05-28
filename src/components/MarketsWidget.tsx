@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "80-105";
 const SUSTAINED_PRICE = "150";
-const TOP_ALERT = "MAY 23 DEAL NEAR: Trump says Iran MOU 'largely negotiated'; 60-day Hormuz open + Phase 2 nuclear; Brent $98.21 -6% week; tail 23%";
+const TOP_ALERT = "MAY 28 US STRIKES: Fresh US strikes in Iran; IRGC targets air base; White House: MOU claim 'fabrication'; Brent $94.29 -5%; tail 28%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
