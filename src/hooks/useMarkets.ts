@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects market brief snapshot (2026-05-28 morning; Brent confirmed CNBC May 27 close; WTI confirmed CNBC May 27 close; Gold confirmed CNBC May 27 close)
-// Brent $94.29 May 27 close (CNBC -5%; Rubio 'every chance to succeed'; White House: MOU claim 'fabrication'); WTI $88.68 (-5%); tail 28%
+// Static fallback — reflects market brief snapshot (2026-05-29 morning; Brent confirmed CNBC May 29 close; WTI confirmed CNBC May 29 close; Gold confirmed Forbes/CNBC May 29)
+// Brent $92.05 (-1.77%) May 29 close — worst month since 2020 (-19%); WTI $87.36 (-1.73%); Trump ends Situation Room meeting without 'final determination' on Iran deal
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 94.29,   change: -3.92,  changePct: -4.00, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-28T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 88.68,   change: -3.90,  changePct: -4.21, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-28T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 4481.50, change: -49.11, changePct: -1.08, currency: "USD", unit: "/oz",     lastUpdated: "2026-05-28T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 92.05,   change: -1.66,  changePct: -1.77, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-29T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 87.36,   change: -1.54,  changePct: -1.73, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-29T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4523.00, change: +43.10, changePct: +0.96, currency: "USD", unit: "/oz",     lastUpdated: "2026-05-29T00:00:00Z" },
 ];
 
 interface UseMarketsResult {

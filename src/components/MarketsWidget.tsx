@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "80-105";
 const SUSTAINED_PRICE = "150";
-const TOP_ALERT = "MAY 28 US STRIKES: Fresh US strikes in Iran; IRGC targets air base; White House: MOU claim 'fabrication'; Brent $94.29 -5%; tail 28%";
+const TOP_ALERT = "MAY 29 BRENT -19%: Worst month since 2020; Trump no 'final determination' on Iran; Fars disputes deal text; Brent $92.05; tail 25%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

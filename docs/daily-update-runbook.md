@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-05-28 (Day 87) |
-| **Crisis level** | 4 — High (Rubio 'every chance' May 27 but White House calls MOU claim 'fabrication'; fresh US strikes in Iran + IRGC targets US air base May 28; ceasefire extension reportedly close; tail 28%) |
-| **Brent** | $94.29 confirmed (D86, May 27, CNBC close -5%; Rubio talks optimism; White House MOU denial; -$4 week; peaked $110.87 D72 May 13 Fortune confirmed) |
+| **Last updated** | 2026-05-29 (Day 88) |
+| **Crisis level** | 4 — High (Brent -19% May worst since 2020; Trump ends Situation Room without 'final determination'; Fars disputes MOU text, demands $12B frozen assets; tail 25%) |
+| **Brent** | $92.05 confirmed (D88, May 29, CNBC close -1.77%; worst month since 2020 -19%; Trump no final determination; Fars disputes MOU text; peaked $110.87 D72 May 13 Fortune confirmed) |
 | **JKM** | $18.81/MMBtu est. (D87, May 28; Platts May 22 carried; Canada LNG Group weekly pending) |
-| **TTF** | €44.00/MWh est. (D86, May 27; -5.8% on deal optimism; Norwegian exports surge continues) |
+| **TTF** | €44.50/MWh est. (D88, May 29; +1.1% on deal limbo; Norwegian exports surge continues) |
 
 ---
 
@@ -463,6 +463,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 85**: May 26 — Brent $98.21 (+1.0% TE confirmed); WTI $92.58 (+1.7%); deal 'largely negotiated' narrative holds; tail 23%.
 - **Day 86**: May 27 — Rubio 'every chance to succeed'; White House: MOU claim 'fabrication'; fresh US strikes; Brent -5% to $94.29; tail 28%.
 - **Day 87**: May 28 — Fresh US strikes; IRGC targets US air base; oil +2% intraday; ceasefire extension reportedly close; tail 28%.
+- **Day 88**: May 29 — Brent -19% in May worst since 2020; Trump ends Situation Room no final determination; Fars disputes MOU text; tail 25%.
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -470,10 +471,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $94.29 confirmed (D86, May 27, CNBC close -5%; Rubio 'every chance'; White House: MOU 'fabrication'; -$4 week; working range $80-105 stress; $125-165 tail on deal collapse)
+- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $92.05 confirmed (D88, May 29, CNBC close -1.77%; -19% in May worst since 2020; Trump no final determination; working range $80-105 stress; $125-165 tail on deal collapse)
 - **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.81/MMBtu est. (D87, May 28; Platts May 22 carried; Canada LNG Group weekly pending); Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing ~6 months delays Qatar LNG normalisation
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.00/MWh est. (D86, May 27; -5.8% on Rubio deal optimism; Norwegian exports surge persists)
-- **Credit**: iTraxx Asia IG est. ~172bp (D86, May 27, -6bp est.; Rubio optimism tightening reversed by White House denial); ASEAN HY est. ~540bp (-10bp est.); tail scenario targets 230-260bp on deal collapse; remove hedge at 165bp + confirmed deal; tail risk 28%
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.50/MWh est. (D88, May 29; +1.1% on deal limbo; Norwegian exports surge persists)
+- **Credit**: iTraxx Asia IG est. ~166bp (D88, May 29, -6bp est.; deal optimism tightening but Trump no final determination); ASEAN HY est. ~528bp (-12bp est.); tail scenario targets 230-260bp on deal collapse; remove hedge at 160bp + confirmed deal; tail risk 25%
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
