@@ -1,30 +1,51 @@
 {
   "escalationLevel": 4,
   "escalationLabel": "High",
-  "deltaVsYesterday": -1,
+  "deltaVsYesterday": 0,
   "todaysEvents": [
-    { "id": "e1", "summary": "Brent posts worst month since 2020: -19% in May on deal hopes; Trump ends Situation Room meeting without announcing final determination (May 29)", "delta": "Down: Brent closed -1.77% to $92.05 (CNBC confirmed); WTI -1.73% to $87.36. Brent posted -19% in May - worst monthly loss since March 2020. Trump ended WH Situation Room meeting without announcing 'final determination' on Iran deal. World Bank: Brent avg $86 in 2026, $70 in 2027. Oil market pricing in aggressive deal probability despite lingering uncertainty.", "direction": "down" },
-    { "id": "e2", "summary": "Trump lays out tough Iran demands on Truth Social; Fars disputes deal text; $12B frozen assets demand (May 29)", "delta": "Neutral: Trump demanded on Truth Social: Iran must reject nukes, open Hormuz immediately with no tolls, clear mines in 30 days, allow US to destroy enriched uranium. Fars pushed back: no toll-free clause in text, no nuclear dismantlement clause. Fars insists $12B frozen assets release is 'most important part' of agreement. White House did not respond. Deal text disputes underscore fragility of MOU.", "direction": "neutral" },
-    { "id": "e3", "summary": "Iran fires ballistic missiles at Kuwait, attack drones at Strait; UBS sees 'little evidence' of flow improvement (May 28-29)", "delta": "Neutral: Despite deal optimism, Iran continued military operations: ballistic missiles at Kuwait, attack drones toward Strait (May 28-29 per CNBC/UBS). UBS: Iran crude loadings May <0.3M bpd (down from 1.5M April). Little evidence of any short-term improvement in vessel traffic. Bob Parker (ICMA): oil $90-100 for 'at least next couple months'; Hormuz opening 'only partial' due to infrastructure damage.", "direction": "up" }
+    {
+      "id": "e1",
+      "summary": "Iran reasserts full control over Hormuz Strait; all vessels must get IRGC permission (May 30, Al Jazeera)",
+      "delta": "Up: Khatam al-Anbiya HQ declares all vessels require IRGC permission and must use designated routes through Hormuz. Warning to foreign military forces: any interference will trigger response. Iran's Foreign Ministry says 'no final agreement has been reached' on US deal. Trump met advisers Friday but no decision announced. This formal reassertion of control hardens Iran's negotiating position.",
+      "direction": "up"
+    },
+    {
+      "id": "e2",
+      "summary": "Hegseth at Shangri-La Dialogue: US 'more than capable' of restarting war if no Iran deal (May 30, Al Jazeera)",
+      "delta": "Neutral: Pentagon chief Pete Hegseth, speaking at defence summit in Singapore (Shangri-La Dialogue), says US 'more than capable' of restarting war if satisfactory Iran deal not reached. CENTCOM: forces 'remain present and vigilant across the region'. US warns Iran of strikes if no deal reached (May 31, Al Jazeera). US Congress advances American-Israeli military integration plan in 2027 draft defence bill.",
+      "direction": "neutral"
+    },
+    {
+      "id": "e3",
+      "summary": "US disables ship with Hellfire missile in Gulf of Oman; Iran warns of broader conflict (May 30)",
+      "delta": "Neutral: US forces disabled a ship with a Hellfire missile in the Gulf of Oman (May 30, Al Jazeera). Iran threatens to extend conflict 'beyond the region' if US resumes attacks. Lebanon PM describes Israel's Lebanon strikes as 'scorched earth policy' — collective punishment (May 31). Israeli soldiers reach Nabatieh in southern Lebanon. Deal limbo persists with no clear timeline for Trump decision.",
+      "direction": "neutral"
+    }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 30,
-      "description": "Trump ended Situation Room meeting without announcing final determination (CNBC May 29). 60-day MOU framework exists (Axios, CNBC) but Trump demands tough conditions: nuclear prohibition, no-toll Hormuz, mine removal, enriched uranium destruction. Fars disputes text: no toll-free or nuclear clause, insists on $12B frozen assets. If Trump signs MOU: Brent retreats toward $80-85/bbl; P&I restoration enables commercial traffic; Ras Laffan restart ~late Aug 2026. Increased from D87 25% — MOU framework + oil market pricing aggressive deal probability suggests higher base case.", "oilImpact": "-$15/bbl", "lngImpact": "-35%"
+      "probability": 28,
+      "description": "Weekend: Iran reasserts full Hormuz control (Al Jazeera May 30) — all vessels need IRGC permission. Hegseth at Shangri-La (Singapore): US 'more than capable' of restarting war. Iran FM: 'no final agreement reached'. Trump no decision after Friday Situation Room meeting. 60-day MOU framework exists (Axios, CNBC) but Iran hardening position + Hegseth rhetoric widen gap. Base probability reduced from D88 30% — Iran formal reassertion and stalled deal timeline reduce immediate deal probability. If Trump signs MOU: Brent retreats toward $80-85/bbl; P&I restoration enables commercial traffic; Ras Laffan restart ~late Aug 2026.",
+      "oilImpact": "-$15/bbl",
+      "lngImpact": "-35%"
     },
     {
       "id": "stress",
       "label": "Stress",
       "probability": 45,
-      "description": "Deal signed but implementation crawls: Trump demands vs Fars rebuttals show wide gap on nuclear dismantlement, frozen assets ($12B), and Hormuz tolls. Phase 1 Hormuz partial reopening while nuclear sequencing dispute delays Phase 2; mine-clearing ~6 months delays full commercial recovery; P&I clubs restore conditionally; oil stabilises $85-105/bbl. TTF €42-50/MWh; JKM $15-20/MMBtu; iTraxx Asia IG 165-200bp. Ras Laffan restart not before late Aug 2026 even on deal. Dominant scenario (45%) — partial normalisation, not resolution.", "oilImpact": "-$5/bbl", "lngImpact": "+10%"
+      "description": "Deal signed but implementation crawls: Iran formal reassertion of Hormuz control (May 30) signals they will drive hard bargain on reopening terms. Trump demands vs Iran's $12B frozen assets + nuclear sovereignty gap remains wide. Phase 1 Hormuz partial reopening while nuclear sequencing dispute delays Phase 2; mine-clearing ~6 months delays full commercial recovery; P&I clubs restore conditionally; oil stabilises $85-105/bbl. TTF €42-50/MWh; JKM $15-20/MMBtu; iTraxx Asia IG 165-200bp. Ras Laffan restart not before late Aug 2026 even on deal. Dominant scenario (45%) — partial normalisation, not resolution.",
+      "oilImpact": "-$5/bbl",
+      "lngImpact": "+10%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 25,
-      "description": "Deal collapses: Trump demands incompatible with Iran's $12B frozen assets demand + Fars text dispute. MOU framework fragile — any collapse before signature triggers military escalation and re-pricing. Brent spikes $125-165/bbl; Kharg Island seizure or GCC production targeting; Malaysia July-August supply crisis; iTraxx spikes to 230-260bp. Tail (25%) — reduced from D87 28% on MOU framework progress and oil market pricing indicating higher deal probability; but $12B frozen assets impasse + nuclear dismantlement dispute are collapse triggers.", "oilImpact": "+$50/bbl", "lngImpact": "+150%"
+      "probability": 27,
+      "description": "Deal collapses: Iran formal reassertion of Hormuz control (May 30) + Hegseth Shangri-La 'more than capable' rhetoric signal both sides preparing for no-deal. US Hellfire missile disables ship in Gulf of Oman. US warns Iran of strikes. Trump demands incompatible with Iran's $12B frozen assets demand + nuclear sovereignty. MOU framework fragile — any collapse before signature triggers military escalation and re-pricing. Brent spikes $125-165/bbl; Kharg Island seizure or GCC production targeting; Malaysia July-August supply crisis; iTraxx spikes to 230-260bp. Tail (27%) — up from D88 25% on formal Iran reassertion + both sides hardening posture over weekend.",
+      "oilImpact": "+$50/bbl",
+      "lngImpact": "+150%"
     }
   ]
 }

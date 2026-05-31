@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects market brief snapshot (2026-05-29 morning; Brent confirmed CNBC May 29 close; WTI confirmed CNBC May 29 close; Gold confirmed Forbes/CNBC May 29)
+// Static fallback — reflects market brief snapshot (2026-05-31; Friday May 29 close carried over weekend; Brent confirmed CNBC May 29 close $92.05; WTI $87.36; Gold $4,523)
 // Brent $92.05 (-1.77%) May 29 close — worst month since 2020 (-19%); WTI $87.36 (-1.73%); Trump ends Situation Room meeting without 'final determination' on Iran deal
 const FALLBACK_QUOTES: MarketQuote[] = [
   { symbol: "BZ=F", name: "Brent Crude", price: 92.05,   change: -1.66,  changePct: -1.77, currency: "USD", unit: "/barrel", lastUpdated: "2026-05-29T00:00:00Z" },
