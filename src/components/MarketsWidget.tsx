@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "80-105";
-const SUSTAINED_PRICE = "150";
-const TOP_ALERT = "MAY 30-31 Iran reasserts Hormuz control, vessels need IRGC permission; Hegseth: US ready to restart war; deal in limbo";
+const NEAR_TERM_RANGE = "90-115";
+const SUSTAINED_PRICE = "170";
+const TOP_ALERT = "JUN 1-2 Iran suspends peace talks; US-Iran exchange fire; oil +4% Monday; tail risk 35%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

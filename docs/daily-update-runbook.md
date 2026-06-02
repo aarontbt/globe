@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-05-31 (Day 90) |
-| **Crisis level** | 4 — High (Weekend: Iran reasserts full Hormuz control - IRGC permission required; Hegseth at Shangri-La: US ready to restart war; US Hellfire disables ship in Gulf of Oman; deal in limbo; tail 27%) |
-| **Brent** | $92.05 confirmed (D88, May 29, CNBC close -1.77%; worst month since 2020 -19%; carried over weekend; weekend Iran reasserts Hormuz + Hegseth tough talk reopen tail; peaked $110.87 D72 May 13 Fortune confirmed) |
+| **Last updated** | 2026-06-02 (Day 92) |
+| **Crisis level** | 4 — High (Jun 1-2: Iran suspended peace talks; US-Iran exchange fire (US hit radar/drone, Iran hit Kuwait base); oil +4% Monday; Israel-Hezbollah halt agreed; tail 35%) |
+| **Brent** | $94.53 (Jun 2, OilPrice.com; +2.7% from May 29; up 4%+ Monday Jun 1 on talks suspension; May -19% worst since 2020 reversed) |
 | **JKM** | $18.81/MMBtu est. (carried; Platts May 22; Canada LNG Group weekly pending) |
-| **TTF** | €44.50/MWh est. (D88, May 29; carried; +1.1% on deal limbo) |
+| **TTF** | €44.50/MWh est. (carried; talks suspension + US-Iran exchange may tighten European gas) |
 
 ---
 
@@ -466,6 +466,8 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 88**: May 29 — Brent -19% in May worst since 2020; Trump ends Situation Room no final determination; Fars disputes MOU text; tail 25%.
 - **Day 89**: May 30 — Iran reasserts full Hormuz control; vessels need IRGC permission (Al Jazeera); Hegseth US ready to restart war (Shangri-La); Hellfire missile disables ship; tail 27%.
 - **Day 90**: May 31 — US warns Iran of strikes if no deal; Lebanon slams Israel scorched earth; deal in limbo; Brent carries $92.05; tail 27%.
+- **Day 91**: Jun 1 — Iran suspends peace talks; US hits Iranian radar/drone; Iran targets Kuwait base; oil +4%; Israel-Hezbollah halt agreed; tail 35%.
+- **Day 92**: Jun 2 — Talks suspension holds; US-Iran trade blows continue; Trump insists talks continuing; Brent $94.53; tail 35%.
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -473,10 +475,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $92.05 confirmed (carried May 29 close over weekend; -19% in May worst since 2020; Iran reasserts Hormuz + Hegseth Shangri-La tough talk reopen tail; working range $80-105 stress; $125-165 tail on deal collapse)
+- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $94.53 (Jun 2, OilPrice.com; +2.7% from May 29; up 4%+ Monday Jun 1 on talks suspension + US-Iran exchange fire; May -19% worst since 2020 fully reversed). Iran suspended peace talks Jun 1 — major reversal, tail risk 35%. Working range $90-115 stress; $125-170 tail on deal collapse.
 - **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.81/MMBtu est. (carried; Platts May 22; Canada LNG Group weekly pending); Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing ~6 months delays Qatar LNG normalisation
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.50/MWh est. (carried May 29; +1.1% on deal limbo; weekend Hegseth tough talk may tighten)
-- **Credit**: iTraxx Asia IG est. ~166bp (carried May 29; -6bp est.; weekend Iran reasserts Hormuz + Hegseth tightens tail risk); ASEAN HY est. ~528bp (-12bp est.); tail scenario targets 230-260bp on deal collapse; remove hedge at 160bp + confirmed deal; tail risk 27% (up from 25%)
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.50/MWh est. (carried; talks suspension + US-Iran exchange may support tighter European gas)
+- **Credit**: iTraxx Asia IG est. ~182bp (Jun 1-2, +16bp on talks suspension); ASEAN HY est. ~555bp (+27bp est.); tail scenario targets 230-260bp on deal collapse; remove hedge at 160bp + confirmed talks resumption; tail risk 35% (up from 27%)
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
