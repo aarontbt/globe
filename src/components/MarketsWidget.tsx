@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "90-115";
+const NEAR_TERM_RANGE = "95-120";
 const SUSTAINED_PRICE = "170";
-const TOP_ALERT = "JUN 1-2 Iran suspends peace talks; US-Iran exchange fire; oil +4% Monday; tail risk 35%";
+const TOP_ALERT = "JUN 3 US strikes Qeshm Island; Iran drone hits Kuwait airport (1 killed); Rubio rejects Hormuz deal; Brent $98.57";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

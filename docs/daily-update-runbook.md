@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-06-02 (Day 92) |
-| **Crisis level** | 4 — High (Jun 1-2: Iran suspended peace talks; US-Iran exchange fire (US hit radar/drone, Iran hit Kuwait base); oil +4% Monday; Israel-Hezbollah halt agreed; tail 35%) |
-| **Brent** | $94.53 (Jun 2, OilPrice.com; +2.7% from May 29; up 4%+ Monday Jun 1 on talks suspension; May -19% worst since 2020 reversed) |
-| **JKM** | $18.81/MMBtu est. (carried; Platts May 22; Canada LNG Group weekly pending) |
-| **TTF** | €44.50/MWh est. (carried; talks suspension + US-Iran exchange may tighten European gas) |
+| **Last updated** | 2026-06-03 (Day 93) |
+| **Crisis level** | 5 — Severe (Jun 3: US struck Qeshm Island; Iran drone hit Kuwait airport — triple escalation; tail 42%) |
+| **Brent** | $98.57 (Jun 3, TradingView; +4.3% from Jun 2; third consecutive up session; on Qeshm strike + Kuwait airport attack) |
+| **JKM** | $18.81/MMBtu est. (Platts May 22; Canada LNG Group weekly pending) |
+| **TTF** | €49.50/MWh (Jun 3, TradingView; +11.2% on escalation + Israel-Hezbollah breakdown) |
 
 ---
 
@@ -467,7 +467,8 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 89**: May 30 — Iran reasserts full Hormuz control; vessels need IRGC permission (Al Jazeera); Hegseth US ready to restart war (Shangri-La); Hellfire missile disables ship; tail 27%.
 - **Day 90**: May 31 — US warns Iran of strikes if no deal; Lebanon slams Israel scorched earth; deal in limbo; Brent carries $92.05; tail 27%.
 - **Day 91**: Jun 1 — Iran suspends peace talks; US hits Iranian radar/drone; Iran targets Kuwait base; oil +4%; Israel-Hezbollah halt agreed; tail 35%.
-- **Day 92**: Jun 2 — Talks suspension holds; US-Iran trade blows continue; Trump insists talks continuing; Brent $94.53; tail 35%.
+- **Day 92**: Jun 2 — Talks suspension holds; US-Iran trade blows; Trump insists talks continuing; Brent $94.53; tail 35%.
+- **Day 93**: Jun 3 — US strikes Qeshm Island; Iran drone hits Kuwait airport (1 killed); Rubio rejects Hormuz deal; Brent $98.57 (+4.3%); tail 42%.
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -475,10 +476,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $94.53 (Jun 2, OilPrice.com; +2.7% from May 29; up 4%+ Monday Jun 1 on talks suspension + US-Iran exchange fire; May -19% worst since 2020 fully reversed). Iran suspended peace talks Jun 1 — major reversal, tail risk 35%. Working range $90-115 stress; $125-170 tail on deal collapse.
+- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $98.57 (Jun 3, TradingView; +4.3% from Jun 2; third consecutive up on Qeshm strike + Kuwait airport attack). US struck Qeshm Island; Iran drone hit Kuwait airport (Al Jazeera Jun 3) — triple escalation day. Rubio rejects Hormuz-linked deal. Tail 42% (up from 35%). Working range $95-120 stress; $125-170 tail on full collapse.
 - **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.81/MMBtu est. (carried; Platts May 22; Canada LNG Group weekly pending); Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing ~6 months delays Qatar LNG normalisation
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €44.50/MWh est. (carried; talks suspension + US-Iran exchange may support tighter European gas)
-- **Credit**: iTraxx Asia IG est. ~182bp (Jun 1-2, +16bp on talks suspension); ASEAN HY est. ~555bp (+27bp est.); tail scenario targets 230-260bp on deal collapse; remove hedge at 160bp + confirmed talks resumption; tail risk 35% (up from 27%)
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €49.50/MWh (Jun 3, TradingView; +11.2% from €44.50 carried on Qeshm escalation + Israel-Hezbollah breakdown)
+- **Credit**: iTraxx Asia IG est. ~195bp (Jun 3, +13bp on Qeshm escalation); ASEAN HY est. ~580bp (+25bp est.); tail scenario targets 230-260bp on full collapse; remove hedge at 160bp + confirmed talks resumption + mine clearance; tail risk 42% (up from 35% on triple escalation day)
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

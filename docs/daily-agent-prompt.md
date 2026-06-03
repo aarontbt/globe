@@ -9,12 +9,12 @@
 
 | Field | Value |
 |-------|-------|
-| **asOf** | 2026-04-12T00:00:00Z |
-| **Day** | D42 |
-| **Crisis Level** | 4 — High (ceasefire active Apr 8; fragile — no Hormuz deal) |
-| **Last Brent** | $95.20 (D40, Apr 10, confirmed TradingEconomics) |
-| **Last JKM** | $19.42/MMBtu (D40, Apr 10, confirmed TradingEconomics) |
-| **Last TTF** | €44.46/MWh (D40, Apr 10, confirmed OilPriceAPI) |
+| **asOf** | 2026-06-03T00:00:00Z |
+| **Day** | D93 |
+| **Crisis Level** | 5 — Severe (US struck Qeshm Island; Iran drone hit Kuwait airport — triple escalation) |
+| **Last Brent** | $98.57 (Jun 3, confirmed TradingView) |
+| **Last JKM** | $18.81/MMBtu (Platts May 22, carried; Canada LNG Group weekly pending) |
+| **Last TTF** | €49.50 (Jun 3, confirmed TradingView) |
 
 ---
 
