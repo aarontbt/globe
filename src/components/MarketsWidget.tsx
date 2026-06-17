@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "95-120";
-const SUSTAINED_PRICE = "170";
-const TOP_ALERT = "JUN 3 US strikes Qeshm Island; Iran drone hits Kuwait airport (1 killed); Rubio rejects Hormuz deal; Brent $98.57";
+const NEAR_TERM_RANGE = "75-95";
+const SUSTAINED_PRICE = "130";
+const TOP_ALERT = "JUN 14 US-IRAN DEAL: MOU signing June 19 Switzerland; Hormuz to reopen; Brent $79.45 (-19% from Jun 3 peak); tail 15%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

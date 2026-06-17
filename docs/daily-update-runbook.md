@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-06-03 (Day 93) |
-| **Crisis level** | 5 — Severe (Jun 3: US struck Qeshm Island; Iran drone hit Kuwait airport — triple escalation; tail 42%) |
-| **Brent** | $98.57 (Jun 3, TradingView; +4.3% from Jun 2; third consecutive up session; on Qeshm strike + Kuwait airport attack) |
-| **JKM** | $18.81/MMBtu est. (Platts May 22; Canada LNG Group weekly pending) |
-| **TTF** | €49.50/MWh (Jun 3, TradingView; +11.2% on escalation + Israel-Hezbollah breakdown) |
+| **Last updated** | 2026-06-17 (Day 107) |
+| **Crisis level** | 3 — Heightened (Jun 14: US-Iran MOU agreed; signing Jun 19 Switzerland; tail 15%) |
+| **Brent** | $79.45 (Jun 17, TradingEconomics; +0.6% minor bounce; -19% from Jun 3 $98.57 peak; 3-month lows on deal expectations) |
+| **JKM** | $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried — Ras Laffan restart not before late Aug 2026) |
+| **TTF** | €41.12/MWh (Jun 17, TradingEconomics; -1.6%; deal de-escalation) |
 
 ---
 
@@ -469,6 +469,19 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 91**: Jun 1 — Iran suspends peace talks; US hits Iranian radar/drone; Iran targets Kuwait base; oil +4%; Israel-Hezbollah halt agreed; tail 35%.
 - **Day 92**: Jun 2 — Talks suspension holds; US-Iran trade blows; Trump insists talks continuing; Brent $94.53; tail 35%.
 - **Day 93**: Jun 3 — US strikes Qeshm Island; Iran drone hits Kuwait airport (1 killed); Rubio rejects Hormuz deal; Brent $98.57 (+4.3%); tail 42%.
+- **Day 94**: Jun 4 — Aftermath of Qeshm escalation; Brent carries $98.57; tail 42% sustained; no new exchanges.
+- **Day 95**: Jun 5 — US shoots down 4 Iranian drones headed toward Hormuz; strikes Iranian coastal radar sites; Iran fires 7 ballistic missiles at Kuwait/Bahrain (6 intercepted); tail 47%.
+- **Day 96-97**: Jun 6-7 — Weekend; markets closed; scenarios carried from D95.
+- **Day 98**: Jun 8 — Markets reopen post-Jun 5 exchange; tension plateau; tail 47%.
+- **Day 99**: Jun 9 — Iran shoots down US Army Apache helicopter over Hormuz; first US aircraft lost in conflict; US issues stern warning; tail 50%.
+- **Day 100**: Jun 10 — US retaliates: 49 Tomahawk missiles strike targets within 40 miles of Tehran; largest US strike on Iran since conflict began; tail 50%.
+- **Day 101**: Jun 11 — No Iranian response to Tomahawk strikes; Pakistan backchannel accelerating; tail 48%.
+- **Day 102**: Jun 12 — Pakistan PM Sharif announces US-Iran 'final agreed text' agreed; Brent falls on deal signal; tail 37%.
+- **Day 103**: Jun 13 — Weekend; deal details finalised; signing set Jun 19 Switzerland; scenarios carried from D102.
+- **Day 104**: Jun 14 — Trump announces deal (Sunday); US lifts naval blockade immediately; Hormuz to reopen Jun 19 as 'permanently toll free'; Brent -5% to $83.17; tail 20%.
+- **Day 105**: Jun 15 — Brent -4.7% to $84.62; Iran 'differing versions' of MOU text; nuclear sequencing unresolved; tail 15%.
+- **Day 106**: Jun 16 — Brent $81.55 (Fortune morning); 5th consecutive session lower from D93 peak; iTraxx ~142bp; EM FX broadly stronger; tail 15%.
+- **Day 107**: Jun 17 — Brent $79.45 (TradingEconomics, +0.6% minor bounce); WTI $75.47; TTF €41.12; -19% from D93 peak; 2 days to signing; tail 15%.
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -476,10 +489,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $110.87 (Day 72, May 13, Fortune confirmed; post-MOU-rejection peak) → $98.57 (Jun 3, TradingView; +4.3% from Jun 2; third consecutive up on Qeshm strike + Kuwait airport attack). US struck Qeshm Island; Iran drone hit Kuwait airport (Al Jazeera Jun 3) — triple escalation day. Rubio rejects Hormuz-linked deal. Tail 42% (up from 35%). Working range $95-120 stress; $125-170 tail on full collapse.
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.81/MMBtu est. (carried; Platts May 22; Canada LNG Group weekly pending); Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing ~6 months delays Qatar LNG normalisation
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €49.50/MWh (Jun 3, TradingView; +11.2% from €44.50 carried on Qeshm escalation + Israel-Hezbollah breakdown)
-- **Credit**: iTraxx Asia IG est. ~195bp (Jun 3, +13bp on Qeshm escalation); ASEAN HY est. ~580bp (+25bp est.); tail scenario targets 230-260bp on full collapse; remove hedge at 160bp + confirmed talks resumption + mine clearance; tail risk 42% (up from 35% on triple escalation day)
+- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) → $79.45 (Jun 17, TradingEconomics; +0.6% minor bounce; -19% from D93 peak in 14 days; 3-month lows on US-Iran MOU deal Jun 14). MOU signing Jun 19 Switzerland. Mine-clearing ~6 months. Working range $75-95 base/stress; $110-130 on deal collapse (tail 15%).
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried). Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing ~6 months delays Qatar LNG normalisation; JKM supply lag means LNG stays elevated well after deal signing.
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €49.50/MWh (Jun 3 D93 peak) → €41.12/MWh (Jun 17, TradingEconomics; -1.6%; deal de-escalation unwinding crisis premium)
+- **Credit**: iTraxx Asia IG est. ~142bp (Jun 17, -53bp from D93 195bp peak); ASEAN HY est. ~495bp (-85bp from D93 580bp); trim CDS protection; remove fully at confirmed mine clearance + physical Hormuz reopening (~115-120bp target); tail 15% (deal collapse spikes to 200-230bp)
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
