@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "75-95";
+const NEAR_TERM_RANGE = "70-90";
 const SUSTAINED_PRICE = "130";
-const TOP_ALERT = "JUN 14 US-IRAN DEAL: MOU signing June 19 Switzerland; Hormuz to reopen; Brent $79.45 (-19% from Jun 3 peak); tail 15%";
+const TOP_ALERT = "JUN 19 MOU SIGNED: US-Iran Burgenstock ceremony complete; Hormuz permanently toll-free; Phase 2 nuclear talks begin; Brent $79.34; tail 10%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
