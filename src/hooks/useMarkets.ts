@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback — reflects market brief snapshot (2026-06-19; Jun 18 close carried — US markets closed Juneteenth; MOU formally signed Burgenstock Jun 19; Phase 2 nuclear talks begin)
-// Brent $79.34 (TradingEconomics Jun 18, -0.27%); WTI $76.43 (Jun 18, -0.47%); Gold $4,218.09 (TradingEconomics Jun 18, -0.97%)
+// Static fallback — reflects market brief snapshot (2026-06-26; Jun 25 close confirmed — roadmap agreed Jun 22-23 Switzerland; Goldman Q4 $80; mine-clearing Day 7 of 30)
+// Brent $75.04 (TradingEconomics Jun 25, +1.76%); WTI $69.95 est. (below $70 Jun 25, CNBC); Gold $4,040.30 (TradingEconomics Jun 25, +1.02%)
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 79.34,   change: -0.21,  changePct: -0.27, currency: "USD", unit: "/barrel", lastUpdated: "2026-06-19T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 76.43,   change: -0.36,  changePct: -0.47, currency: "USD", unit: "/barrel", lastUpdated: "2026-06-19T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 4218.09, change: -40.92, changePct: -0.97, currency: "USD", unit: "/oz",     lastUpdated: "2026-06-19T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 75.04,   change: 1.30,   changePct: 1.76,  currency: "USD", unit: "/barrel", lastUpdated: "2026-06-26T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude",   price: 69.95,   change: -0.15,  changePct: -0.21, currency: "USD", unit: "/barrel", lastUpdated: "2026-06-26T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold",        price: 4040.30, change: 40.77,  changePct: 1.02,  currency: "USD", unit: "/oz",     lastUpdated: "2026-06-26T00:00:00Z" },
 ];
 
 interface UseMarketsResult {

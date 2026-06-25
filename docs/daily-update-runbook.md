@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-06-19 (Day 109) |
-| **Crisis level** | 2 — Elevated (Jun 19: MOU formally signed Burgenstock; Phase 2 nuclear talks begin; tail 10%) |
-| **Brent** | $79.34 (Jun 18, TradingEconomics; -0.3%; US markets closed Juneteenth Jun 19; -20% from Jun 3 $98.57 peak) |
+| **Last updated** | 2026-06-26 (Day 116) |
+| **Crisis level** | 2 — Elevated (Jun 22-23: roadmap agreed Switzerland; IAEA access disputed; mine-clearing Day 7; tail 8%) |
+| **Brent** | $75.04 (Jun 25, TradingEconomics confirmed; +1.76%; -24% from Jun 3 $98.57 peak; Goldman Q4 $80) |
 | **JKM** | $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried — Ras Laffan restart not before late Aug 2026) |
-| **TTF** | €41.33/MWh (Jun 18, TradingEconomics; -1.4%; deal de-escalation continued) |
+| **TTF** | €41.54/MWh est. (Jun 26 carried; roadmap de-escalation continued) |
 
 ---
 
@@ -484,6 +484,13 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - **Day 107**: Jun 17 — Brent $79.45 (TradingEconomics, +0.6% minor bounce); WTI $75.47; TTF €41.12; -19% from D93 peak; 2 days to signing; tail 15%.
 - **Day 108**: Jun 18 — MOU digitally pre-signed at G7 Versailles (Haaretz); formal ceremony Jun 19 Burgenstock; Brent $79.34 (TradingEconomics, -0.27%); WTI $76.43; TTF €41.33; tail 12%.
 - **Day 109**: Jun 19 — MOU formally signed Burgenstock, Switzerland; Phase 2 nuclear talks begin; US markets closed Juneteenth; Brent $79.34 carried; escalation level 2; tail 10%.
+- **Day 110**: Jun 20 — Phase 2 nuclear talks in Switzerland abruptly postponed (CNBC); Iran disputes MOU text elements; Brent ~$79.80 est.; tail 11%.
+- **Day 111**: Jun 21 — Weekend, market closed; scenarios carried from D110.
+- **Day 112**: Jun 22 — US-Iran Phase 2 talks kick off Sunday in Switzerland (Al Jazeera); Vance leads US delegation; Brent ~$79.25 est.
+- **Day 113**: Jun 23 — Roadmap agreed: final deal within 60 days (Al Jazeera/CNBC/NPR); Vance: IAEA inspectors invited; Iran FM disputes; Lebanon deconfliction agreed.
+- **Day 114**: Jun 24 — Brent -5.3% to ~$73.87 on tanker traffic recovery; Goldman cuts Q4 Brent to $80 from $90; WTI briefly below $70 (CNBC); tail 9%.
+- **Day 115**: Jun 25 — Brent +1.76% to $75.04 (TradingEconomics confirmed); WTI ~$69.95 est.; Gold $4,040.30 (TradingEconomics confirmed); mine-clearing Day 6; tail 9%.
+- **Day 116**: Jun 26 — Brent $75.04 carried (Jun 25 confirmed); roadmap holds; IAEA access disputed; mine-clearing Day 7 of 30-day mandate; Goldman Q4 $80; tail 8%.
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 
@@ -491,10 +498,10 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) → $79.34 (Jun 18, TradingEconomics; -0.3%; -20% from D93 peak; US markets closed Juneteenth Jun 19). MOU formally signed Jun 19 Burgenstock. Mine-clearing ~6 months from Jun 19. Working range $70-90 base/stress; $110-130 on deal collapse (tail 10%).
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried). Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing ~6 months from Jun 19 delays Qatar LNG normalisation; JKM supply lag means LNG stays elevated well after deal signing.
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €49.50/MWh (Jun 3 D93 peak) → €41.33/MWh (Jun 18, TradingEconomics; -1.4%; deal de-escalation unwinding crisis premium; MOU signed Jun 19)
-- **Credit**: iTraxx Asia IG est. ~139bp (Jun 19, -56bp from D93 195bp peak); ASEAN HY est. ~488bp (-92bp from D93 580bp); trim CDS protection; remove fully at confirmed mine clearance + physical Hormuz reopening (~115-120bp target); tail 10% (deal collapse spikes to 200-230bp)
+- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) → $75.04 (Jun 25, TradingEconomics confirmed, +1.76%; -24% from D93 peak). Roadmap agreed Jun 22-23 Switzerland; Goldman cuts Q4 to $80 from $90 (Investing.com) — GCC exports normalised by end-Jul. Mine-clearing Day 7 of 30-day mandate from Jun 19. Working range $70-85 base; $80-95 stress; $110-130 on deal collapse (tail 8%).
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried). Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing 30-day mandate from Jun 19 (physical reopening late-2026 on central route); JKM supply lag means LNG stays elevated well after roadmap agreement.
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €49.50/MWh (Jun 3 D93 peak) → €41.54/MWh est. (Jun 26; carried; roadmap progress continued de-escalation unwinding crisis premium)
+- **Credit**: iTraxx Asia IG est. ~128bp (Jun 26, -67bp from D93 195bp peak; -11bp from D109 139bp); ASEAN HY est. ~460bp (-120bp from D93 580bp; -28bp from D109 488bp); trim CDS protection; remove fully at confirmed mine clearance + physical Hormuz reopening (~115-120bp target); tail 8% (deal collapse spikes to 200-230bp)
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

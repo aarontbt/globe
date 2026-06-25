@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "70-90";
 const SUSTAINED_PRICE = "130";
-const TOP_ALERT = "JUN 19 MOU SIGNED: US-Iran Burgenstock ceremony complete; Hormuz permanently toll-free; Phase 2 nuclear talks begin; Brent $79.34; tail 10%";
+const TOP_ALERT = "JUN 23 ROADMAP: US-Iran Switzerland talks conclude; IAEA inspectors invited (Vance); Iran disputes; Goldman cuts Q4 Brent to $80; Brent $75.04 Jun 25; tail 8%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
