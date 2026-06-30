@@ -117,3 +117,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D116**: Jun 26 — Brent $75.04 carried (Jun 25 confirmed); roadmap holds; IAEA access disputed; mine-clearing Day 7 of 30-day mandate; Goldman Q4 $80; tail 8%.
 
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
+- **D120**: Jun 30 — Iran blocks Oman/UN southern Hormuz route; attacks Singaporean tanker Jun 25 (IMO abandons plan); central route mined; Iran insists sole control; France/UK naval taskforce ready; Doha talks upcoming; tail raised 15%.

@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "70-90";
+const NEAR_TERM_RANGE = "70-85";
 const SUSTAINED_PRICE = "130";
-const TOP_ALERT = "JUN 23 ROADMAP: US-Iran Switzerland talks conclude; IAEA inspectors invited (Vance); Iran disputes; Goldman cuts Q4 Brent to $80; Brent $75.04 Jun 25; tail 8%";
+const TOP_ALERT = "JUN 30 IRAN BLOCKS HORMUZ REOPEN: Central route mined; Iran attacks Singaporean ship on southern route; IMO abandons Omani plan; France/UK taskforce ready; Brent $73.68; tail 15%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

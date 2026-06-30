@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-06-26 (D116) |
-| **Crisis level** | 2 - Elevated (Jun 22-23: roadmap agreed Switzerland; IAEA access disputed; mine-clearing Day 7; tail 8%) |
-| **Brent** | $75.04 (Jun 25, TradingEconomics confirmed; +1.76%; -24% from Jun 3 $98.57 peak; Goldman Q4 $80) |
+| **Last updated** | 2026-06-30 (D120) |
+| **Crisis level** | 2 - Elevated (Jun 30: Iran blocks Oman/UN southern route reopening; attacks Singaporean ship Jun 25; central route mined/closed; Iran insists sole control; IAEA dispute ongoing; France/UK naval taskforce ready; tail 15%) |
+| **Brent** | $73.68 (Jun 30, Yahoo Finance; +0.7% from Mon; -27% from D93 $98.57 peak; Goldman Q4 $80 contingent on Hormuz) |
 | **JKM** | $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried - Ras Laffan restart not before late Aug 2026) |
-| **TTF** | €41.54/MWh est. (Jun 26 carried; roadmap de-escalation continued) |
+| **TTF** | €41.54/MWh est. (Jun 26; carried Jun 30; contested Hormuz reopening delays unwinding) |
 
 ---
 
@@ -386,10 +386,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) → $75.04 (Jun 25, TradingEconomics confirmed, +1.76%; -24% from D93 peak). Roadmap agreed Jun 22-23 Switzerland; Goldman cuts Q4 to $80 from $90 (Investing.com) — GCC exports normalised by end-Jul. Mine-clearing Day 7 of 30-day mandate from Jun 19. Working range $70-85 base; $80-95 stress; $110-130 on deal collapse (tail 8%).
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried). Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing 30-day mandate from Jun 19 (physical reopening late-2026 on central route); JKM supply lag means LNG stays elevated well after roadmap agreement.
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €49.50/MWh (Jun 3 D93 peak) → €41.54/MWh est. (Jun 26; carried; roadmap progress continued de-escalation unwinding crisis premium)
-- **Credit**: iTraxx Asia IG est. ~128bp (Jun 26, -67bp from D93 195bp peak; -11bp from D109 139bp); ASEAN HY est. ~460bp (-120bp from D93 580bp; -28bp from D109 488bp); trim CDS protection; remove fully at confirmed mine clearance + physical Hormuz reopening (~115-120bp target); tail 8% (deal collapse spikes to 200-230bp)
+- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) → $75.04 (Jun 25, TradingEconomics) → $71.99 (Jun 26, Hormuz reopening hopes crash, Yahoo Finance) → $73.68 (Jun 30, +0.7% from Mon). Iran blocking all routes it doesn't control — Jun 25 ship attack, IMO abandons Omani route. France/UK naval taskforce ready. Markets pricing normalisation but reopening deeply contested. Goldman Q4 $80 contingent on timeline. Working range $70-85 base; $72-88 stress; $110-130 tail.
+- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried). Ras Laffan restart not before late Aug 2026 even on deal; contested Hormuz reopening means elevated prices persist longer than market expects.
+- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €49.50/MWh (Jun 3 D93 peak) → €41.54/MWh est. (Jun 26; carried Jun 30; contested Hormuz reopening delays crisis premium unwinding)
+- **Credit**: iTraxx Asia IG est. ~122bp (Jun 30, -73bp from D93 195bp peak; -6bp from D116 128bp); ASEAN HY est. ~450bp (-130bp from D93 580bp; -10bp from D116 460bp); markets still pricing progressive normalisation but Guardian reporting (Iran blocking routes, ship attack) raises re-escalation risk. Tail 15% (+7pp from D116). Wait for Doha talks outcome before removing further CDS protection.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
