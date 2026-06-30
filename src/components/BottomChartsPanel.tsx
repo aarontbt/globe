@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
-import volatilityData from "../data/charts-volatility.json";
+import { useStaticJson } from "../hooks/useStaticJson";
 
-const entries = volatilityData.days;
-const DAYS     = entries.map(d => d.day);
-const DATES    = entries.map(d => d.date);
-const BASE_OVX = entries.map(d => d.ovx);
-const SCENARIOS = entries.map(d => d.scenarios as [number, number, number]);
-const BASE_VXEEM = entries.map(d => d.vxeem);
-const BASE_OVX_CONFIRMED = entries.map(d => d.ovxConfirmed);
-const BASE_VXEEM_CONFIRMED = entries.map(d => d.vxeemConfirmed);
+interface VolatilityDay {
+  day: string;
+  date: string;
+  ovx: number;
+  ovxConfirmed: boolean;
+  vxeem: number;
+  vxeemConfirmed: boolean;
+  scenarios: [number, number, number];
+}
+
+interface VolatilityData {
+  days: VolatilityDay[];
+}
+
+const EMPTY_VOLATILITY: VolatilityData = { days: [] };
 
 const CBOE_BASE = "/api/cboe/api/global/us_indices/daily_prices";
 const CBOE_OVX_URL = `${CBOE_BASE}/OVX_History.csv`;
@@ -178,23 +185,35 @@ function makeAreaPath(data: number[], minVal: number, maxVal: number): string {
   return `M${pts[0]} L${pts.join(' L')} L${W},${H} L0,${H} Z`;
 }
 
-function DayAxis() {
-  const ticks = [0, 5, 10];
+function DayAxis({ days }: { days: string[] }) {
+  const ticks = [0, Math.floor(days.length / 2), days.length - 1].filter((i, index, arr) => i >= 0 && arr.indexOf(i) === index);
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
       {ticks.map(i => (
-        <span key={i} style={{ ...labelStyle, fontSize: 9 }}>{DAYS[i]}</span>
+        <span key={i} style={{ ...labelStyle, fontSize: 9 }}>{days[i]}</span>
       ))}
     </div>
   );
 }
 
-function OVXChart() {
+function OVXChart({
+  days,
+  dates,
+  baseOvx,
+  baseOvxConfirmed,
+}: {
+  days: string[];
+  dates: string[];
+  baseOvx: number[];
+  baseOvxConfirmed: boolean[];
+}) {
   const live = useCBOELive(CBOE_OVX_URL);
   const minVal = 0;
   const maxVal = 130;
 
-  const { data: OVX, confirmed: OVX_CONFIRMED } = mergeHistory(DATES, BASE_OVX, BASE_OVX_CONFIRMED, live.history);
+  if (dates.length === 0) return null;
+
+  const { data: OVX, confirmed: OVX_CONFIRMED } = mergeHistory(dates, baseOvx, baseOvxConfirmed, live.history);
   const currentVal = OVX[OVX.length - 1];
   const currentConfirmed = OVX_CONFIRMED[OVX_CONFIRMED.length - 1];
   const isLive = live.price !== null && !live.error;
@@ -245,16 +264,18 @@ function OVXChart() {
           return <circle cx={W} cy={finalY} r={3} fill={currentColor} opacity={currentConfirmed ? 1 : 0.6} />;
         })()}
       </svg>
-      <DayAxis />
+      <DayAxis days={days} />
     </div>
   );
 }
 
-function ScenarioChart() {
-  const barH = H / SCENARIOS.length;
+function ScenarioChart({ scenarios }: { scenarios: [number, number, number][] }) {
+  if (scenarios.length === 0) return null;
+
+  const barH = H / scenarios.length;
   const colors = ['#4ade80', '#f59e0b', '#f87171'];
   const labels = ['Base', 'Stress', 'Tail'];
-  const current = SCENARIOS[SCENARIOS.length - 1];
+  const current = scenarios[scenarios.length - 1];
 
   return (
     <div style={cardStyle}>
@@ -268,7 +289,7 @@ function ScenarioChart() {
         </span>
       </div>
       <svg width={W} height={H}>
-        {SCENARIOS.map((row, i) => {
+        {scenarios.map((row, i) => {
           let x = 0;
           return (
             <g key={i}>
@@ -277,7 +298,7 @@ function ScenarioChart() {
                 const rect = (
                   <rect
                     key={j} x={x} y={i * barH + 0.5} width={w} height={barH - 1}
-                    fill={colors[j]} opacity={i === SCENARIOS.length - 1 ? 0.85 : 0.45}
+                    fill={colors[j]} opacity={i === scenarios.length - 1 ? 0.85 : 0.45}
                   />
                 );
                 x += w;
@@ -299,12 +320,24 @@ function ScenarioChart() {
   );
 }
 
-function VXEEMChart() {
+function VXEEMChart({
+  days,
+  dates,
+  baseVxeem,
+  baseVxeemConfirmed,
+}: {
+  days: string[];
+  dates: string[];
+  baseVxeem: number[];
+  baseVxeemConfirmed: boolean[];
+}) {
   const live = useCBOELive(CBOE_VXEEM_URL);
   const minVal = 15;
   const maxVal = 50;
 
-  const { data: VXEEM, confirmed: VXEEM_CONFIRMED } = mergeHistory(DATES, BASE_VXEEM, BASE_VXEEM_CONFIRMED, live.history);
+  if (dates.length === 0) return null;
+
+  const { data: VXEEM, confirmed: VXEEM_CONFIRMED } = mergeHistory(dates, baseVxeem, baseVxeemConfirmed, live.history);
   const currentVal = VXEEM[VXEEM.length - 1];
   const currentConfirmed = VXEEM_CONFIRMED[VXEEM_CONFIRMED.length - 1];
   const isLive = live.price !== null && !live.error;
@@ -357,12 +390,22 @@ function VXEEMChart() {
           return <circle cx={W} cy={finalY} r={3} fill="#a78bfa" opacity={currentConfirmed ? 1 : 0.6} />;
         })()}
       </svg>
-      <DayAxis />
+      <DayAxis days={days} />
     </div>
   );
 }
 
 export default function BottomChartsPanel() {
+  const { data: volatilityData } = useStaticJson<VolatilityData>("/data/charts-volatility.json", EMPTY_VOLATILITY);
+  const entries = volatilityData.days;
+  const days = entries.map(d => d.day);
+  const dates = entries.map(d => d.date);
+  const baseOvx = entries.map(d => d.ovx);
+  const scenarios = entries.map(d => d.scenarios);
+  const baseVxeem = entries.map(d => d.vxeem);
+  const baseOvxConfirmed = entries.map(d => d.ovxConfirmed);
+  const baseVxeemConfirmed = entries.map(d => d.vxeemConfirmed);
+
   return (
     <div
       style={{
@@ -376,9 +419,9 @@ export default function BottomChartsPanel() {
         pointerEvents: 'none',
       }}
     >
-      <OVXChart />
-      <ScenarioChart />
-      <VXEEMChart />
+      <OVXChart days={days} dates={dates} baseOvx={baseOvx} baseOvxConfirmed={baseOvxConfirmed} />
+      <ScenarioChart scenarios={scenarios} />
+      <VXEEMChart days={days} dates={dates} baseVxeem={baseVxeem} baseVxeemConfirmed={baseVxeemConfirmed} />
     </div>
   );
 }

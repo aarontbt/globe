@@ -1,6 +1,5 @@
-import sanctionsData from "../../data/banker-sanctions.json";
-
 import { FONT_SANS } from "../../styles/fonts";
+import { useStaticJson } from "../../hooks/useStaticJson";
 const MONO = FONT_SANS;
 const CONDENSED = FONT_SANS;
 
@@ -43,7 +42,38 @@ const TABLE_COLUMNS: { label: string; align: "center" | "left" }[] = [
   { label: "Description", align: "left" },
 ];
 
+interface SanctionsData {
+  sanctionsEntries: Array<{
+    id: string;
+    date: string;
+    authority: string;
+    status: string;
+    description: string;
+    affectedEntities: string[];
+  }>;
+  redFlagClients: Array<{
+    id: string;
+    name: string;
+    severity: string;
+    reason: string;
+  }>;
+  evidenceLinks: Array<{
+    id: string;
+    title: string;
+    source: string;
+    date: string;
+    url: string;
+  }>;
+}
+
+const EMPTY_SANCTIONS: SanctionsData = {
+  sanctionsEntries: [],
+  redFlagClients: [],
+  evidenceLinks: [],
+};
+
 export default function SanctionsTrackerPanel() {
+  const { data: sanctionsData } = useStaticJson<SanctionsData>("/data/banker-sanctions.json", EMPTY_SANCTIONS);
   const { sanctionsEntries, redFlagClients, evidenceLinks } = sanctionsData;
 
   return (

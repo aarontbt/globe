@@ -1,14 +1,12 @@
 import { useMemo } from "react";
 import type { GlobeEvent } from "../types";
 import { useGdeltEvents } from "./useGdeltEvents";
-import { useRedditSignals } from "./useRedditSignals";
 import { useBlueskySignals } from "./useBlueskySignals";
 
 const TOP_N = 30;
 
 export interface SocialStatus {
   gdelt:  { loading: boolean; error: string | null };
-  reddit: { loading: boolean; error: string | null };
   bsky:   { loading: boolean; error: string | null };
 }
 
@@ -43,13 +41,11 @@ function titleDistance(a: string, b: string): number {
 
 export function useSocialSignals(): Result {
   const gdelt  = useGdeltEvents();
-  const reddit = useRedditSignals();
   const bsky   = useBlueskySignals();
 
   const events = useMemo<GlobeEvent[]>(() => {
     const all = [
       ...gdelt.events,
-      ...reddit.events,
       ...bsky.events,
     ];
 
@@ -65,11 +61,10 @@ export function useSocialSignals(): Result {
     return deduped
       .sort((a, b) => (b.probability ?? -1) - (a.probability ?? -1))
       .slice(0, TOP_N);
-  }, [gdelt.events, reddit.events, bsky.events]);
+  }, [gdelt.events, bsky.events]);
 
   const status: SocialStatus = {
     gdelt:  { loading: gdelt.loading,  error: gdelt.error },
-    reddit: { loading: reddit.loading, error: reddit.error },
     bsky:   { loading: bsky.loading,   error: bsky.error },
   };
 

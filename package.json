@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "daily:fetch": "bun scripts/daily-fetch.mjs",
+    "daily:apply": "bun scripts/daily-apply.mjs",
+    "daily:check": "bun scripts/daily-check.mjs",
+    "daily:update": "bun run daily:fetch -- --dry-run && bun run daily:apply && bun run daily:check && bun run build"
   },
   "dependencies": {
     "@deck.gl/core": "^9.1.0",

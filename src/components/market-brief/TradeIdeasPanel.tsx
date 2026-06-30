@@ -1,4 +1,4 @@
-import tradeData from "../../data/banker-trade-ideas.json";
+import { useStaticJson } from "../../hooks/useStaticJson";
 
 // Inject pulse keyframe once at module load
 const _style = document.createElement("style");
@@ -40,7 +40,29 @@ const urgencyColors: Record<string, string> = {
   medium: "#fbbf24",
 };
 
+interface TradeIdeasData {
+  tradeIdeas: Array<{
+    id: string;
+    title: string;
+    direction: string;
+    conviction: string;
+    rationale: string;
+    instruments: string[];
+  }>;
+  cfTriggers: Array<{
+    id: string;
+    client: string;
+    trigger: string;
+    urgency: string;
+    description: string;
+  }>;
+}
+
+const EMPTY_TRADE_DATA: TradeIdeasData = { tradeIdeas: [], cfTriggers: [] };
+
 export default function TradeIdeasPanel() {
+  const { data: tradeData } = useStaticJson<TradeIdeasData>("/data/banker-trade-ideas.json", EMPTY_TRADE_DATA);
+
   return (
     <div
       style={{

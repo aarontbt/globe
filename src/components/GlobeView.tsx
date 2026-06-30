@@ -4,11 +4,6 @@ import DeckGL from "@deck.gl/react";
 import { GeoJsonLayer } from "@deck.gl/layers";
 import { _GlobeView } from "@deck.gl/core";
 
-import corridorsData from "../data/corridors.json";
-import portsData from "../data/ports.json";
-import tradeArcsData from "../data/trade-arcs.json";
-import iranIntelEvents from "../data/iran-intel-events.json";
-import oilSupplyChainData from "../data/oil-supply-chain.json";
 import { createGlobalShippingLanesLayer } from "../layers/shippingLanes";
 import { createCorridorLayers } from "../layers/corridors";
 import { createPortsLayer } from "../layers/ports";
@@ -26,6 +21,7 @@ import { useAsteroidImpacts } from "../hooks/useAsteroidImpacts";
 import { useSatellites } from "../hooks/useSatellites";
 import { useCountryLabels } from "../hooks/useCountryLabels";
 import { useSocialSignals } from "../hooks/useSocialSignals";
+import { useStaticJson } from "../hooks/useStaticJson";
 
 import RightPanel, { type RightPanelTab } from "./RightPanel";
 import LayerTogglePanel from "./LayerTogglePanel";
@@ -62,6 +58,12 @@ const ALL_CATEGORIES: EventCategory[] = [
   "security", "political", "economic", "climate", "election", "diplomatic", "social",
 ];
 
+const EMPTY_EVENTS: GlobeEvent[] = [];
+const EMPTY_CORRIDORS: Corridor[] = [];
+const EMPTY_PORTS: Port[] = [];
+const EMPTY_ARCS: TradeArc[] = [];
+const EMPTY_OIL_SUPPLY_CHAIN: { nodes: OilNode[]; routes: OilRoute[] } = { nodes: [], routes: [] };
+
 export default function GlobeView() {
   const pulse = useEventPulse(0.5);
   const vessels = useVesselAnimation();
@@ -70,14 +72,16 @@ export default function GlobeView() {
 
   const { events: polymarketEvents, newEvents, loading: eventsLoading, error: eventsError } = usePolymarketEvents();
   const { events: socialEvents, status: socialStatus } = useSocialSignals();
+  const { data: iranIntelEvents } = useStaticJson<GlobeEvent[]>("/data/iran-intel-events.json", EMPTY_EVENTS);
+  const { data: corridors } = useStaticJson<Corridor[]>("/data/corridors.json", EMPTY_CORRIDORS);
+  const { data: ports } = useStaticJson<Port[]>("/data/ports.json", EMPTY_PORTS);
+  const { data: arcs } = useStaticJson<TradeArc[]>("/data/trade-arcs.json", EMPTY_ARCS);
+  const { data: oilSupplyChainData } = useStaticJson<{ nodes: OilNode[]; routes: OilRoute[] }>("/data/oil-supply-chain.json", EMPTY_OIL_SUPPLY_CHAIN);
   const events = useMemo(
-    () => [...polymarketEvents, ...(iranIntelEvents as GlobeEvent[]), ...socialEvents],
-    [polymarketEvents, socialEvents]
+    () => [...polymarketEvents, ...iranIntelEvents, ...socialEvents],
+    [polymarketEvents, iranIntelEvents, socialEvents]
   );
   const asteroidImpacts = useAsteroidImpacts(newEvents);
-  const corridors = corridorsData as Corridor[];
-  const ports = portsData as Port[];
-  const arcs = tradeArcsData as TradeArc[];
   const oilNodes = oilSupplyChainData.nodes as OilNode[];
   const oilRoutes = oilSupplyChainData.routes as OilRoute[];
   // Deck.gl render timing — written by onBeforeRender/onAfterRender, read by PerformanceMonitor

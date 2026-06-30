@@ -1,7 +1,7 @@
-import { useRef, useState, useEffect } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import type { AnimatedVessel } from "../types";
 import { interpolateAlongPath } from "../utils/interpolate";
-import globalLanePaths from "../data/global-lane-paths.json";
+import { useStaticJson } from "./useStaticJson";
 
 interface VesselState {
   id: number;
@@ -10,9 +10,12 @@ interface VesselState {
   speed: number;
 }
 
-const majorPaths = globalLanePaths.major as [number, number][][];
-const middlePaths = globalLanePaths.middle as [number, number][][];
-const allPaths: [number, number][][] = [...majorPaths, ...middlePaths];
+interface GlobalLanePaths {
+  major: [number, number][][];
+  middle: [number, number][][];
+}
+
+const EMPTY_LANE_PATHS: GlobalLanePaths = { major: [], middle: [] };
 
 // Budget: 2 vessels per major lane, 1 per middle lane (capped at 130 total)
 const VESSEL_BUDGET = 130;
@@ -20,7 +23,7 @@ const TARGET_FPS = 30;
 const FRAME_MS = 1000 / TARGET_FPS;
 const NOMINAL_FRAME_MS = 1000 / 60; // speeds were originally tuned for 60fps
 
-function initializeVessels(): VesselState[] {
+function initializeVessels(majorPaths: [number, number][][], middlePaths: [number, number][][]): VesselState[] {
   const vessels: VesselState[] = [];
   let id = 0;
 
@@ -50,25 +53,39 @@ function initializeVessels(): VesselState[] {
 }
 
 export function useVesselAnimation(): AnimatedVessel[] {
-  const vesselsRef = useRef<VesselState[]>(initializeVessels());
+  const { data: globalLanePaths } = useStaticJson<GlobalLanePaths>("/data/global-lane-paths.json", EMPTY_LANE_PATHS);
+  const majorPaths = globalLanePaths.major;
+  const middlePaths = globalLanePaths.middle;
+  const allPaths = useMemo(() => [...majorPaths, ...middlePaths], [majorPaths, middlePaths]);
+  const vesselsRef = useRef<VesselState[]>([]);
   const rafIdRef = useRef<number>(0);
 
   const computePositions = (states: VesselState[]): AnimatedVessel[] =>
-    states.map((v) => ({
-      id: v.id,
-      laneIndex: v.pathIndex,
-      offset: v.offset,
-      speed: v.speed,
-      position: interpolateAlongPath(allPaths[v.pathIndex], v.offset),
-    }));
+    states
+      .filter((v) => allPaths[v.pathIndex]?.length > 0)
+      .map((v) => ({
+        id: v.id,
+        laneIndex: v.pathIndex,
+        offset: v.offset,
+        speed: v.speed,
+        position: interpolateAlongPath(allPaths[v.pathIndex], v.offset),
+      }));
 
-  const [positions, setPositions] = useState<AnimatedVessel[]>(() =>
-    computePositions(vesselsRef.current)
-  );
+  const [positions, setPositions] = useState<AnimatedVessel[]>([]);
 
   const lastFrameTimeRef = useRef<number>(0);
 
   useEffect(() => {
+    if (allPaths.length === 0) {
+      vesselsRef.current = [];
+      setPositions([]);
+      return;
+    }
+
+    vesselsRef.current = initializeVessels(majorPaths, middlePaths);
+    setPositions(computePositions(vesselsRef.current));
+    lastFrameTimeRef.current = 0;
+
     const animate = (time: number) => {
       if (lastFrameTimeRef.current > 0) {
         const elapsed = time - lastFrameTimeRef.current;
@@ -89,7 +106,7 @@ export function useVesselAnimation(): AnimatedVessel[] {
 
     rafIdRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafIdRef.current);
-  }, []);
+  }, [allPaths, majorPaths, middlePaths]);
 
   return positions;
 }

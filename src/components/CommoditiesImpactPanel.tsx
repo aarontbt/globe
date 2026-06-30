@@ -1,7 +1,14 @@
 import { useState } from "react";
-import type { CommodityAsset, CommodityCategory } from "../types";
+import type { CommodityAsset, CommodityCategory, CommoditiesImpactData } from "../types";
 import { FONT_SANS } from "../styles/fonts";
-import commoditiesData from "../data/commodities-impact.json";
+import { useStaticJson } from "../hooks/useStaticJson";
+
+const EMPTY_COMMODITIES: CommoditiesImpactData = {
+  asOf: "",
+  scenario: "",
+  marketContext: "",
+  categories: [],
+};
 
 const SIGNAL_COLOR: Record<string, string> = {
   red:   "#ef4444",
@@ -25,7 +32,7 @@ function SignalDot({ signal, size = 7 }: { signal: string; size?: number }) {
 }
 
 
-function AssetRow({ asset }: { asset: CommodityAsset }) {
+function AssetRow({ asset, marketContext }: { asset: CommodityAsset; marketContext: string }) {
   const [expanded, setExpanded] = useState(false);
   const changeNum = parseFloat(asset.change1d);
   const changeColor = changeNum > 0 ? "#f87171" : changeNum < 0 ? "#4ade80" : "rgba(255,255,255,0.4)";
@@ -65,7 +72,7 @@ function AssetRow({ asset }: { asset: CommodityAsset }) {
           lineHeight: 1.55,
           color: "rgba(255,255,255,0.55)",
         }}>
-          {asset.narrative}
+          {marketContext} {asset.narrative}
           <div style={{ display: "flex", gap: 8, marginTop: 6, fontSize: 10, color: "rgba(255,255,255,0.3)" }}>
             <span>30d baseline: {asset.baseline30d.toLocaleString()}</span>
             <span>90d baseline: {asset.baseline90d.toLocaleString()}</span>
@@ -76,7 +83,7 @@ function AssetRow({ asset }: { asset: CommodityAsset }) {
   );
 }
 
-function CategorySection({ category }: { category: CommodityCategory }) {
+function CategorySection({ category, marketContext }: { category: CommodityCategory; marketContext: string }) {
   const [open, setOpen] = useState(true);
 
   const worstSignal = category.assets.some(a => a.signal === "red")
@@ -134,7 +141,7 @@ function CategorySection({ category }: { category: CommodityCategory }) {
             {category.supplyChainImpact}
           </div>
           {category.assets.map(asset => (
-            <AssetRow key={asset.id} asset={asset} />
+            <AssetRow key={asset.id} asset={asset} marketContext={marketContext} />
           ))}
         </div>
       )}
@@ -143,7 +150,8 @@ function CategorySection({ category }: { category: CommodityCategory }) {
 }
 
 export default function CommoditiesImpactPanel() {
-  const categories = commoditiesData.categories as CommodityCategory[];
+  const { data } = useStaticJson<CommoditiesImpactData>("/data/commodities-impact.json", EMPTY_COMMODITIES);
+  const categories = data.categories as CommodityCategory[];
 
   return (
     <div style={{
@@ -179,7 +187,7 @@ export default function CommoditiesImpactPanel() {
             HORMUZ CRISIS — SUPPLY CHAIN IMPACT
           </div>
           <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>
-            Day 26 · as of {commoditiesData.asOf.slice(0, 10)}
+            Day 26 · as of {data.asOf ? data.asOf.slice(0, 10) : "Loading"}
           </div>
         </div>
       </div>
@@ -193,7 +201,7 @@ export default function CommoditiesImpactPanel() {
         scrollbarColor: "rgba(255,255,255,0.12) transparent",
       }}>
         {categories.map(cat => (
-          <CategorySection key={cat.id} category={cat} />
+          <CategorySection key={cat.id} category={cat} marketContext={data.marketContext} />
         ))}
 
       </div>

@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
-import clientsData from "../../data/banker-clients.json";
+import { useStaticJson } from "../../hooks/useStaticJson";
 
 import { FONT_SANS } from "../../styles/fonts";
 const MONO = FONT_SANS;
@@ -21,6 +21,20 @@ const sectionHeader: React.CSSProperties = {
 
 type ScenarioKey = "base" | "stress" | "tail";
 
+interface ClientData {
+  clients: Array<{
+    id: string;
+    name: string;
+    sector: string;
+    country: string;
+    exposure: Record<string, number>;
+    scenarioImpacts: Record<ScenarioKey, string>;
+    talkingPoints: string[];
+  }>;
+}
+
+const EMPTY_CLIENTS: ClientData = { clients: [] };
+
 const SCENARIO_OPTIONS: { key: ScenarioKey; label: string; color: string }[] = [
   { key: "base", label: "Base", color: "#34d399" },
   { key: "stress", label: "Stress", color: "#fbbf24" },
@@ -28,6 +42,7 @@ const SCENARIO_OPTIONS: { key: ScenarioKey; label: string; color: string }[] = [
 ];
 
 export default function ClientBriefPanel() {
+  const { data: clientsData } = useStaticJson<ClientData>("/data/banker-clients.json", EMPTY_CLIENTS);
   const { clients } = clientsData;
   const [selectedClientId, setSelectedClientId] = useState(clients[0]?.id ?? "");
   const [scenario, setScenario] = useState<ScenarioKey>("base");

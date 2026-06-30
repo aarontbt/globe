@@ -70,14 +70,6 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api\/gdelt/, "/api/v2/doc/doc"),
       },
-      "/api/reddit": {
-        target: "https://www.reddit.com",
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api\/reddit/, ""),
-        headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; ASEANIntelDashboard/1.0)",
-        },
-      },
     },
   },
 });

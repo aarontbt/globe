@@ -28,13 +28,6 @@ const SOCIAL_SOURCES: SocialSourceMeta[] = [
     color: "#7c3aed",
   },
   {
-    key: "reddit",
-    name: "Reddit Signals",
-    description: "Social Discourse",
-    detail: "Hot posts from r/worldnews, r/geopolitics, r/wallstreetbets, r/investing, r/stocks filtered by ASEAN and Middle East keywords. Upvote velocity → signal strength. Polls every 5 min.",
-    color: "#f97316",
-  },
-  {
     key: "bsky",
     name: "Bluesky Firehose",
     description: "Real-time Social",

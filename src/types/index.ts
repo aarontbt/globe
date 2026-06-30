@@ -50,7 +50,7 @@ export type EventCategory =
   | "diplomatic"
   | "social";
 
-export type SocialPlatform = "gdelt" | "acled" | "reddit" | "bluesky";
+export type SocialPlatform = "gdelt" | "acled" | "bluesky";
 
 export interface SocialSignal {
   platform: SocialPlatform;
@@ -167,6 +167,13 @@ export interface CommodityCategory {
   label: string;
   supplyChainImpact: string;
   assets: CommodityAsset[];
+}
+
+export interface CommoditiesImpactData {
+  asOf: string;
+  scenario: string;
+  marketContext: string;
+  categories: CommodityCategory[];
 }
 
 export interface GlobeEvent {

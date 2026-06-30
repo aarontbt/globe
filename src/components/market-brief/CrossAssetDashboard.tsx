@@ -1,17 +1,5 @@
-import crossAssetData from "../../data/banker-cross-asset.json";
-
-const formattedTime = new Date(crossAssetData.asOf).toLocaleString("en-GB", {
-  day: "2-digit",
-  month: "short",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-  timeZoneName: "short",
-});
-
-const formatVal = (v: number) => (v >= 1000 ? v.toLocaleString() : v.toString());
-
 import { FONT_SANS } from "../../styles/fonts";
+import { useStaticJson } from "../../hooks/useStaticJson";
 const MONO = FONT_SANS;
 const CONDENSED = FONT_SANS;
 
@@ -42,7 +30,28 @@ const cardStyle: React.CSSProperties = {
   padding: "12px 14px",
 };
 
-type Asset = (typeof crossAssetData.categories)[0]["assets"][0];
+interface CrossAssetData {
+  asOf: string;
+  categories: Array<{
+    id: string;
+    label: string;
+    assets: Asset[];
+  }>;
+}
+
+interface Asset {
+  id: string;
+  name: string;
+  current: number;
+  unit: string;
+  change1d: string;
+  zscore: number;
+  signal: string;
+}
+
+const EMPTY_CROSS_ASSET: CrossAssetData = { asOf: "", categories: [] };
+
+const formatVal = (v: number) => (v >= 1000 ? v.toLocaleString() : v.toString());
 
 function AssetRow({ a }: { a: Asset }) {
   const changeColor = a.change1d.startsWith("+")
@@ -124,7 +133,18 @@ function AssetRow({ a }: { a: Asset }) {
 }
 
 export default function CrossAssetDashboard() {
+  const { data: crossAssetData } = useStaticJson<CrossAssetData>("/data/banker-cross-asset.json", EMPTY_CROSS_ASSET);
   const { categories } = crossAssetData;
+  const formattedTime = crossAssetData.asOf
+    ? new Date(crossAssetData.asOf).toLocaleString("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZoneName: "short",
+      })
+    : "Loading";
 
   const gridCats = categories.filter((c) => c.id !== "fx");
   const fxCat = categories.find((c) => c.id === "fx");

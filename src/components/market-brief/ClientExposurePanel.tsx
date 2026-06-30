@@ -1,5 +1,5 @@
 import { useState } from "react";
-import clientData from "../../data/banker-clients.json";
+import { useStaticJson } from "../../hooks/useStaticJson";
 
 import { FONT_SANS } from "../../styles/fonts";
 const MONO = FONT_SANS;
@@ -39,7 +39,22 @@ const exposureLabels: Record<string, string> = {
   refinancing: "Refi",
 };
 
+interface ClientExposureData {
+  clients: Array<{
+    id: string;
+    name: string;
+    sector: string;
+    country: string;
+    exposure: Record<(typeof exposureKeys)[number], number>;
+    scenarioImpacts: Record<string, string>;
+    talkingPoints: string[];
+  }>;
+}
+
+const EMPTY_CLIENT_EXPOSURE: ClientExposureData = { clients: [] };
+
 export default function ClientExposurePanel() {
+  const { data: clientData } = useStaticJson<ClientExposureData>("/data/banker-clients.json", EMPTY_CLIENT_EXPOSURE);
   const [expandedClientId, setExpandedClientId] = useState<string | null>(null);
 
   return (

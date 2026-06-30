@@ -1,9 +1,8 @@
-import conflictData from "../../data/banker-conflict.json";
-
 const ESCALATION_COLORS = ["#4ade80", "#a3e635", "#fbbf24", "#fb923c", "#ef4444"];
 const ESCALATION_LABELS = ["Low", "Guarded", "Heightened", "High", "Severe"];
 
 import { FONT_SANS } from "../../styles/fonts";
+import { useStaticJson } from "../../hooks/useStaticJson";
 const MONO = FONT_SANS;
 const CONDENSED = FONT_SANS;
 
@@ -22,7 +21,22 @@ const scenarioColors: Record<string, string> = { base: "#34d399", stress: "#fbbf
 const textPrimary = "rgba(255,255,255,0.9)";
 const textSecondary = "rgba(255,255,255,0.5)";
 
+interface ConflictData {
+  escalationLevel: number;
+  deltaVsYesterday: number;
+  todaysEvents: Array<{ id: string; summary: string; delta: string; direction: string }>;
+  scenarios: Array<{ id: string; label: string; probability: number; description: string; oilImpact: string; lngImpact: string }>;
+}
+
+const EMPTY_CONFLICT: ConflictData = {
+  escalationLevel: 1,
+  deltaVsYesterday: 0,
+  todaysEvents: [],
+  scenarios: [],
+};
+
 export default function ConflictStatusPanel() {
+  const { data: conflictData } = useStaticJson<ConflictData>("/data/banker-conflict.json", EMPTY_CONFLICT);
   const { escalationLevel, deltaVsYesterday, todaysEvents, scenarios } = conflictData;
   const deltaSign = deltaVsYesterday > 0 ? "+" : "";
   const deltaColor =
@@ -196,21 +210,21 @@ export default function ConflictStatusPanel() {
                     </span>
                     <span
                       style={{
-                        fontSize: 11,
+                        fontSize: 12,
                         fontWeight: 700,
-                        color: "rgba(255,255,255,0.4)",
+                        color: textPrimary,
                         fontFamily: CONDENSED,
                         letterSpacing: "0.06em",
                         textTransform: "uppercase",
                       }}
                     >
-                      {evt.delta}
+                      {evt.summary}
                     </span>
                   </div>
                   <div
-                    style={{ fontSize: 13, color: textPrimary, lineHeight: 1.5 }}
+                    style={{ fontSize: 12, color: "rgba(255,255,255,0.58)", lineHeight: 1.45 }}
                   >
-                    {evt.summary}
+                    {evt.delta}
                   </div>
                 </div>
               );

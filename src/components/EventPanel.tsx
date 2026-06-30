@@ -41,7 +41,6 @@ function toRgba(rgb: [number, number, number], a = 1) {
 const PLATFORM_META: Record<SocialPlatform, { label: string; color: string; icon: string }> = {
   gdelt:   { label: "GDELT",    color: "#7c3aed", icon: "📡" },
   acled:   { label: "ACLED",    color: "#dc2626", icon: "⚔️" },
-  reddit:  { label: "REDDIT",   color: "#f97316", icon: "💬" },
   bluesky: { label: "BLUESKY",  color: "#3b82f6", icon: "🦋" },
 };
 
