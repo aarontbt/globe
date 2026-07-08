@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import type { NewsArticle } from "../types";
-import { fetchAllFeeds, STATIC_FALLBACK_ARTICLES } from "../services/newsService";
+import { clearNewsCache, fetchAllFeeds, STATIC_FALLBACK_ARTICLES } from "../services/newsService";
 
 const CACHE_KEY = "news_cache";
 const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
@@ -90,6 +90,7 @@ export function useNews(): UseNewsResult {
     try {
       localStorage.removeItem(CACHE_KEY);
     } catch { /* ignore */ }
+    clearNewsCache();
     return doFetch(setArticles, setCacheAge, setLoading, true);
   };
 

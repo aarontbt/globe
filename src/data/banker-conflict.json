@@ -1,51 +1,51 @@
 {
-  "escalationLevel": 2,
-  "escalationLabel": "Elevated",
-  "deltaVsYesterday": 0,
+  "escalationLevel": 4,
+  "escalationLabel": "High",
+  "deltaVsYesterday": 1,
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "Iran blocks Oman/UN southern Hormuz route",
-      "delta": "Up: Guardian analysis (Jun 29) reveals Iran rejected a southern route through Omani waters developed with the UN IMO as an alternative to the mined central channel. Iran attacked a Singaporean tanker using the route on Jun 25 (Thu), forcing the IMO to abandon the plan. Iran FM Araghchi in Baghdad: 'Any attempt to adopt new or separate arrangements will only lead to further complications, delays in reopening.' Iran insists it alone controls the strait under maximalist interpretation of the Jun 18 MOU, which only requires 'best endeavours' to lift the blockade. Central route remains closed by mines; limited northern route traffic under Iranian control.",
+      "summary": "US strikes Hormuz sites",
+      "delta": "Up: Guardian (Jul 8) reports US strikes on Iranian launch, air-defence and surveillance sites after three commercial vessels were hit near Hormuz.",
       "direction": "up"
     },
     {
       "id": "e2",
-      "summary": "Brent $73.68 despite contested Hormuz picture",
-      "delta": "Neutral: Brent $73.68 (Yahoo Finance Jun 30, +0.7% from Mon $73.15). Jun 26 crash to $71.99 (-4.3%) partially reversed. Markets pricing supply normalisation but Guardian reporting shows reopening deeply contested — Iran blocking all routes it doesn't control. WTI ~$70.44. Gold $3,981.80. Goldman Q4 $80 Brent forecast contingent on Hormuz timeline. Risk that markets are pricing too optimistic a reopening given Iran's obstruction. iTraxx Asia IG ~122bp est.; ASEAN HY ~450bp est.",
-      "direction": "neutral"
+      "summary": "Iran hits three tankers",
+      "delta": "Up: Axios (Jul 7) says Iran attacked three commercial ships in 24 hours; UKMTO reported a tanker struck near Oman with fire.",
+      "direction": "up"
     },
     {
       "id": "e3",
-      "summary": "France/UK naval taskforce ready; Oman legal plan",
-      "delta": "Neutral: Guardian reports Macron and Starmer have a naval taskforce ready to police any freedom-of-navigation agreement. Oman's Sultan met Macron on Jun 29 to argue Omani strait management plan — UK commercial legal advice drafted. Omani FM Badr al-Busaidi: 'not in favour of imposing tolls — prohibited internationally — whereas service fees are legal.' France/UK intervention would only deploy if Iran blocks all diplomatic reopening. Thousands of trapped sailors remain; humanitarian operation stalled by route disputes. Iran deputy FM Gharibabadi held joint talks in Muscat — tacit acknowledgment Iran doesn't have sole decision-making power. Doha talks upcoming.",
-      "direction": "neutral"
+      "summary": "Oil waivers revoked",
+      "delta": "Up: Axios (Jul 7) reports Treasury revoked temporary Iran oil waivers after renewed Strait attacks, weakening MOU incentives.",
+      "direction": "up"
     }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 60,
-      "description": "Iran eventually accepts an internationally-monitored reopening under combined pressure (Doha talks, Oman plan, France/UK naval threat). Central channel mine-clearing resumes under IMO supervision; southern route reopened with security guarantees. Brent normalises $68-78/bbl on phased supply resumption (Goldman Q4 $80). Ras Laffan restart late Aug 2026. Probability lowered to 60% from 75% after Iran blocked southern route and attacked a ship — reopening clearly harder than markets price.",
-      "oilImpact": "-$5/bbl",
-      "lngImpact": "-25%"
+      "probability": 45,
+      "description": "A damaged but salvageable MOU survives after Qatar/Oman mediation. Iran stops further attacks, US strikes remain limited, and monitored corridors reopen in phases. Brent holds $72-82/bbl as shipping resumes unevenly and Ras Laffan recovery remains late-August at best. Probability cut to 45% after renewed tanker attacks, US strikes and oil-waiver revocation.",
+      "oilImpact": "+$3/bbl",
+      "lngImpact": "+10%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 25,
-      "description": "Prolonged Iranian obstruction. Doha talks stall on Iran's insistence on sole control; Oman plan fails to gain Iranian consent. Northern-route-only traffic continues at low volume. Iran-IAEA sequencing dispute stalls nuclear track. Brent stays $72-88/bbl. iTraxx Asia IG 128-145bp; JKM holds $16-20/MMBtu. Ras Laffan slips to Q4 2026/Q1 2027. France/UK taskforce deploys to enforce freedom of navigation — naval skirmish risk.",
-      "oilImpact": "+$10/bbl",
-      "lngImpact": "+25%"
+      "probability": 35,
+      "description": "Repeated MOU breach claims keep Hormuz traffic constrained. Iran insists on Tehran-approved routes; US/UK/French patrols expand; insurers price high-risk transit. Brent trades $78-95/bbl, JKM holds $18-22/MMBtu, iTraxx Asia IG widens toward 145bp, and ASEAN importers hedge freight and fuel exposure.",
+      "oilImpact": "+$15/bbl",
+      "lngImpact": "+35%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 15,
-      "description": "Deal collapse. Singaporean tanker attack escalates: US/UK retaliatory strikes or Iran seizes more vessels. MOU voided; Hormuz re-militarised; Brent spikes $110-130/bbl. Probability raised to 15% from 8% (D116) on Jun 25 ship attack signalling IRGC hardliner rejection of MOU terms. Key triggers: second vessel attack, IDF unilateral strike, US Congress sanctions relief veto, Iran walks on frozen-assets impasse.",
-      "oilImpact": "+$55/bbl",
-      "lngImpact": "+120%"
+      "probability": 20,
+      "description": "Retaliation cycle resumes. Iran attacks or seizes more vessels, US strikes broaden, and the MOU collapses before nuclear talks progress. Hormuz is re-militarised; Brent spikes $115-140/bbl and LNG risk premia surge. Probability raised to 20% after three vessel attacks and direct US strikes around the strait.",
+      "oilImpact": "+$65/bbl",
+      "lngImpact": "+140%"
     }
   ]
 }

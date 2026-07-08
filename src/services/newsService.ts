@@ -24,6 +24,12 @@ function writeNewsCache(data: NewsArticle[]) {
   } catch {}
 }
 
+export function clearNewsCache() {
+  try {
+    localStorage.removeItem(NEWS_CACHE_KEY);
+  } catch {}
+}
+
 const FEEDS: Array<{ proxyPath: string; source: NewsArticle["source"] }> = [
   { proxyPath: "/api/rss/cna", source: "CNA" },
   { proxyPath: "/api/rss/bbc", source: "BBC" },

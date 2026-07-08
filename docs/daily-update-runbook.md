@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-06-30 (D120) |
-| **Crisis level** | 2 - Elevated (Jun 30: Iran blocks Oman/UN southern route reopening; attacks Singaporean ship Jun 25; central route mined/closed; Iran insists sole control; IAEA dispute ongoing; France/UK naval taskforce ready; tail 15%) |
-| **Brent** | $73.68 (Jun 30, Yahoo Finance; +0.7% from Mon; -27% from D93 $98.57 peak; Goldman Q4 $80 contingent on Hormuz) |
-| **JKM** | $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried - Ras Laffan restart not before late Aug 2026) |
-| **TTF** | €41.54/MWh est. (Jun 26; carried Jun 30; contested Hormuz reopening delays unwinding) |
+| **Last updated** | 2026-07-08 (D128) |
+| **Crisis level** | 4 - High (Jul 8: US strikes Iranian launch, air-defence and surveillance sites after Iran hit three commercial vessels including Qatari LNG tanker Al Rekayyat; US revoked Iran oil waivers Jul 7; MOU credibility damaged; Doha talks stalled; tail 20%) |
+| **Brent** | $76.05 (Jul 8, Yahoo Finance; +6.3%; US strikes after Iran hit three vessels; oil waivers revoked) |
+| **JKM** | $19.75/MMBtu est. (Jul 8; last confirmed $18.86 Jun 12, TradingEconomics; Qatari LNG tanker hit; Ras Laffan restart not before late Aug 2026) |
+| **TTF** | €43.20/MWh est. (Jul 8; Hormuz risk premium rebuilds after tanker attacks and US strikes) |
 
 ---
 
@@ -386,10 +386,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) → $75.04 (Jun 25, TradingEconomics) → $71.99 (Jun 26, Hormuz reopening hopes crash, Yahoo Finance) → $73.68 (Jun 30, +0.7% from Mon). Iran blocking all routes it doesn't control — Jun 25 ship attack, IMO abandons Omani route. France/UK naval taskforce ready. Markets pricing normalisation but reopening deeply contested. Goldman Q4 $80 contingent on timeline. Working range $70-85 base; $72-88 stress; $110-130 tail.
-- **JKM LNG**: Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried). Ras Laffan restart not before late Aug 2026 even on deal; contested Hormuz reopening means elevated prices persist longer than market expects.
-- **TTF Gas**: Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €49.50/MWh (Jun 3 D93 peak) → €41.54/MWh est. (Jun 26; carried Jun 30; contested Hormuz reopening delays crisis premium unwinding)
-- **Credit**: iTraxx Asia IG est. ~122bp (Jun 30, -73bp from D93 195bp peak; -6bp from D116 128bp); ASEAN HY est. ~450bp (-130bp from D93 580bp; -10bp from D116 460bp); markets still pricing progressive normalisation but Guardian reporting (Iran blocking routes, ship attack) raises re-escalation risk. Tail 15% (+7pp from D116). Wait for Doha talks outcome before removing further CDS protection.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) -> $73.68 (Jun 30) -> $76.05 (Jul 8, Yahoo Finance, +6.3%). Jul 7-8 tanker attacks and US strikes break the de-escalation trend; US revokes Iran oil waivers. Working range $75-95 stress; $115-140 tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried) -> ~$19.75 est. (Jul 8). Qatari LNG vessel Al Rekayyat hit per Guardian; Ras Laffan full restart still unlikely before late Aug 2026.
+- **TTF Gas**: Pre-shock ~$34/MWh -> €49.97/MWh (Day 33) -> €49.50/MWh (Jun 3 D93 peak) -> €41.54/MWh est. (Jun 26) -> €43.20/MWh est. (Jul 8) as Hormuz risk premium rebuilds after attacks and US strikes.
+- **Credit**: iTraxx Asia IG est. ~135bp (Jul 8, +13bp from Jun 30); ASEAN HY est. ~475bp (+25bp). Renewed vessel attacks, US strikes and oil-waiver revocation argue against removing CDS protection. Tail 20% (+5pp from D120).
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

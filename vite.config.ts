@@ -25,7 +25,7 @@ export default defineConfig({
       "/api/rss/cna": {
         target: "https://www.channelnewsasia.com",
         changeOrigin: true,
-        rewrite: () => "/rss/8395986",
+        rewrite: () => "/api/v1/rss-outbound-feed?_format=xml",
       },
       "/api/rss/bbc": {
         target: "https://feeds.bbci.co.uk",
