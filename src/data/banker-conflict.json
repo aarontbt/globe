@@ -1,49 +1,49 @@
 {
   "escalationLevel": 4,
   "escalationLabel": "High",
-  "deltaVsYesterday": 1,
+  "deltaVsYesterday": 0,
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "US strikes Hormuz sites",
-      "delta": "Up: Guardian (Jul 8) reports US strikes on Iranian launch, air-defence and surveillance sites after three commercial vessels were hit near Hormuz.",
+      "summary": "US strikes continue",
+      "delta": "Up: Axios (Jul 9) reports US strikes on Iranian Hormuz targets for a second straight day to degrade threats to navigation.",
       "direction": "up"
     },
     {
       "id": "e2",
-      "summary": "Iran hits three tankers",
-      "delta": "Up: Axios (Jul 7) says Iran attacked three commercial ships in 24 hours; UKMTO reported a tanker struck near Oman with fire.",
+      "summary": "Iran retaliates across Gulf",
+      "delta": "Up: AP (Jul 9) reports Iran struck US military infrastructure in three Gulf states after renewed American attacks.",
       "direction": "up"
     },
     {
       "id": "e3",
-      "summary": "Oil waivers revoked",
-      "delta": "Up: Axios (Jul 7) reports Treasury revoked temporary Iran oil waivers after renewed Strait attacks, weakening MOU incentives.",
-      "direction": "up"
+      "summary": "Mediators seek new talks",
+      "delta": "Down: Axios (Jul 9) reports Qatar, Pakistan and regional mediators are trying to revive negotiations and prevent a return to all-out war.",
+      "direction": "down"
     }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 45,
-      "description": "A damaged but salvageable MOU survives after Qatar/Oman mediation. Iran stops further attacks, US strikes remain limited, and monitored corridors reopen in phases. Brent holds $72-82/bbl as shipping resumes unevenly and Ras Laffan recovery remains late-August at best. Probability cut to 45% after renewed tanker attacks, US strikes and oil-waiver revocation.",
+      "probability": 40,
+      "description": "Qatar and Pakistan secure a new pause after the ceasefire's collapse. Iran stops further attacks, US strikes remain limited, and monitored corridors reopen in phases. Brent holds $72-82/bbl as shipping resumes unevenly and Ras Laffan recovery remains late-August at best. Probability cut to 40% after a second day of US strikes and Iranian retaliation.",
       "oilImpact": "+$3/bbl",
       "lngImpact": "+10%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 35,
-      "description": "Repeated MOU breach claims keep Hormuz traffic constrained. Iran insists on Tehran-approved routes; US/UK/French patrols expand; insurers price high-risk transit. Brent trades $78-95/bbl, JKM holds $18-22/MMBtu, iTraxx Asia IG widens toward 145bp, and ASEAN importers hedge freight and fuel exposure.",
+      "probability": 38,
+      "description": "Continued limited exchanges keep Hormuz traffic constrained while mediation proceeds. US patrols and strikes contain immediate threats, but insurers price high-risk transit. Brent trades $78-95/bbl, JKM holds $18-22/MMBtu, iTraxx Asia IG widens toward 145bp, and ASEAN importers hedge freight and fuel exposure.",
       "oilImpact": "+$15/bbl",
       "lngImpact": "+35%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 20,
-      "description": "Retaliation cycle resumes. Iran attacks or seizes more vessels, US strikes broaden, and the MOU collapses before nuclear talks progress. Hormuz is re-militarised; Brent spikes $115-140/bbl and LNG risk premia surge. Probability raised to 20% after three vessel attacks and direct US strikes around the strait.",
+      "probability": 22,
+      "description": "The retaliation cycle broadens. Iran attacks or seizes more vessels, US strikes deepen, and mediation fails before nuclear talks resume. Hormuz remains militarised; Brent spikes $115-140/bbl and LNG risk premia surge. Probability raised to 22% after second-day US strikes and Iranian retaliation across Gulf states.",
       "oilImpact": "+$65/bbl",
       "lngImpact": "+140%"
     }

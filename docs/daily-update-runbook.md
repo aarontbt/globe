@@ -8,9 +8,9 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-07-08 (D128) |
-| **Crisis level** | 4 - High (Jul 8: US strikes Iranian launch, air-defence and surveillance sites after Iran hit three commercial vessels including Qatari LNG tanker Al Rekayyat; US revoked Iran oil waivers Jul 7; MOU credibility damaged; Doha talks stalled; tail 20%) |
-| **Brent** | $76.05 (Jul 8, Yahoo Finance; +6.3%; US strikes after Iran hit three vessels; oil waivers revoked) |
+| **Last updated** | 2026-07-09 (D129) |
+| **Crisis level** | 4 - High (Jul 9: US struck Iranian Hormuz targets for a second straight day and Iran retaliated against US infrastructure in three Gulf states; Qatar and Pakistan began a mediation push; ceasefire remains over and tail risk is 22%) |
+| **Brent** | $76.03 (Jul 9, Yahoo Finance; +5.6%; second-day US strikes and Iranian retaliation sustain Hormuz risk premium) |
 | **JKM** | $19.75/MMBtu est. (Jul 8; last confirmed $18.86 Jun 12, TradingEconomics; Qatari LNG tanker hit; Ras Laffan restart not before late Aug 2026) |
 | **TTF** | €43.20/MWh est. (Jul 8; Hormuz risk premium rebuilds after tanker attacks and US strikes) |
 
@@ -386,10 +386,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) -> $73.68 (Jun 30) -> $76.05 (Jul 8, Yahoo Finance, +6.3%). Jul 7-8 tanker attacks and US strikes break the de-escalation trend; US revokes Iran oil waivers. Working range $75-95 stress; $115-140 tail.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) -> $73.68 (Jun 30) -> $76.03 (Jul 9, Yahoo Finance, +5.6%). Second-day US strikes and Iranian retaliation sustain the rebuilt Hormuz risk premium despite mediation. Working range $75-95 stress; $115-140 tail.
 - **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried) -> ~$19.75 est. (Jul 8). Qatari LNG vessel Al Rekayyat hit per Guardian; Ras Laffan full restart still unlikely before late Aug 2026.
 - **TTF Gas**: Pre-shock ~$34/MWh -> €49.97/MWh (Day 33) -> €49.50/MWh (Jun 3 D93 peak) -> €41.54/MWh est. (Jun 26) -> €43.20/MWh est. (Jul 8) as Hormuz risk premium rebuilds after attacks and US strikes.
-- **Credit**: iTraxx Asia IG est. ~135bp (Jul 8, +13bp from Jun 30); ASEAN HY est. ~475bp (+25bp). Renewed vessel attacks, US strikes and oil-waiver revocation argue against removing CDS protection. Tail 20% (+5pp from D120).
+- **Credit**: iTraxx Asia IG est. ~135bp (Jul 8, +13bp from Jun 30); ASEAN HY est. ~475bp (+25bp). Second-day US strikes and Iranian retaliation argue against removing CDS protection while mediation remains unproven. Tail 22% (+7pp from D120).
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

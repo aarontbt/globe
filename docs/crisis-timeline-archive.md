@@ -119,3 +119,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 > **Add each new day's headline here on the day it occurs.** Keep each entry ≤25 words; note the single most market-significant event first.
 - **D120**: Jun 30 — Iran blocks Oman/UN southern Hormuz route; attacks Singaporean tanker Jun 25 (IMO abandons plan); central route mined; Iran insists sole control; France/UK naval taskforce ready; Doha talks upcoming; tail raised 15%.
 - **D128**: Jul 8 - US strikes Iranian Hormuz sites after three vessel attacks; oil waivers revoked; Brent $76.05; tail raised 20%.
+- **D129**: Jul 9 - US strikes continue for second day; Iran retaliates across Gulf states; regional mediators seek renewed talks; tail 22%.

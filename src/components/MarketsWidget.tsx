@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "75-95";
 const SUSTAINED_PRICE = "140";
-const TOP_ALERT = "JUL 8 US STRIKES HORMUZ: Iran hit three tankers; US revokes oil waivers; Brent $76.05; tail 20%";
+const TOP_ALERT = "JUL 9 HORMUZ STRIKES CONTINUE: US attacks for second day; Iran retaliates in Gulf; mediators seek talks; tail 22%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
