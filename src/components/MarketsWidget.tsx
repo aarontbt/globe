@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "75-95";
-const SUSTAINED_PRICE = "140";
-const TOP_ALERT = "JUL 9 HORMUZ STRIKES CONTINUE: US attacks for second day; Iran retaliates in Gulf; mediators seek talks; tail 22%";
+const NEAR_TERM_RANGE = "95-120";
+const SUSTAINED_PRICE = "160";
+const TOP_ALERT = "JUL 11-12 HORMUZ CLOSED: Iran declares Strait closed, strikes container ship; US hits 140 targets; war expands to Jordan, Qatar, Oman; tail 55%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

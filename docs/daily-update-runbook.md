@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-07-09 (D129) |
-| **Crisis level** | 4 - High (Jul 9: US struck Iranian Hormuz targets for a second straight day and Iran retaliated against US infrastructure in three Gulf states; Qatar and Pakistan began a mediation push; ceasefire remains over and tail risk is 22%) |
-| **Brent** | $76.03 (Jul 9, Yahoo Finance; +5.6%; second-day US strikes and Iranian retaliation sustain Hormuz risk premium) |
-| **JKM** | $19.75/MMBtu est. (Jul 8; last confirmed $18.86 Jun 12, TradingEconomics; Qatari LNG tanker hit; Ras Laffan restart not before late Aug 2026) |
-| **TTF** | €43.20/MWh est. (Jul 8; Hormuz risk premium rebuilds after tanker attacks and US strikes) |
+| **Last updated** | 2026-07-12 (D130) |
+| **Crisis level** | 5 - Severe (Jul 11-12: Iran declared Strait of Hormuz closed and attacked a Cyprus-flagged container ship (GFS Galaxy); US hit 140 Iranian military targets in third strike wave this week; Iran retaliated against US bases in Jordan, Qatar, Oman, and Kuwait; one crew member missing; conflict now spans multiple Gulf states) |
+| **Brent** | $76.01 (Jul 10 Friday close, Yahoo Finance; flat; weekend Hormuz closure and 140-target US strikes not yet priced - expect significant gap-open Monday) |
+| **JKM** | $19.75/MMBtu est. (Jul 8; last confirmed $18.86 Jun 12, TradingEconomics; Qatari LNG tanker hit; Ras Laffan restart not before late Aug 2026; formal Hormuz closure adds severe upside risk) |
+| **TTF** | €43.20/MWh est. (Jul 8; weekend Hormuz formal closure opens risk of surge to €60+/MWh) |
 
 ---
 
@@ -386,10 +386,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) -> $73.68 (Jun 30) -> $76.03 (Jul 9, Yahoo Finance, +5.6%). Second-day US strikes and Iranian retaliation sustain the rebuilt Hormuz risk premium despite mediation. Working range $75-95 stress; $115-140 tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried) -> ~$19.75 est. (Jul 8). Qatari LNG vessel Al Rekayyat hit per Guardian; Ras Laffan full restart still unlikely before late Aug 2026.
-- **TTF Gas**: Pre-shock ~$34/MWh -> €49.97/MWh (Day 33) -> €49.50/MWh (Jun 3 D93 peak) -> €41.54/MWh est. (Jun 26) -> €43.20/MWh est. (Jul 8) as Hormuz risk premium rebuilds after attacks and US strikes.
-- **Credit**: iTraxx Asia IG est. ~135bp (Jul 8, +13bp from Jun 30); ASEAN HY est. ~475bp (+25bp). Second-day US strikes and Iranian retaliation argue against removing CDS protection while mediation remains unproven. Tail 22% (+7pp from D120).
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) -> $73.68 (Jun 30) -> $76.01 (Jul 10 Friday close, Yahoo Finance, flat). Markets not yet open to price the weekend escalation: Iran declared Hormuz closed and struck a container ship while the US hit 140 targets. Expect significant gap-open Monday. Working range $95-120 stress; $115-140 tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried) -> ~$19.75 est. (Jul 8). Qatari LNG vessel Al Rekayyat hit per Guardian; Ras Laffan full restart still unlikely before late Aug 2026. Formal Hormuz closure over the weekend adds severe upside risk.
+- **TTF Gas**: Pre-shock ~$34/MWh -> €49.97/MWh (Day 33) -> €49.50/MWh (Jun 3 D93 peak) -> €41.54/MWh est. (Jun 26) -> €43.20/MWh est. (Jul 8) as Hormuz risk premium rebuilds. Weekend formal closure of Hormuz opens risk of a surge to €60+/MWh on Monday.
+- **Credit**: iTraxx Asia IG est. ~135bp (Jul 8, +13bp from Jun 30); ASEAN HY est. ~475bp (+25bp). Weekend Hormuz closure and multi-country conflict expansion will severely test Asian credit markets Monday. Expect significant spread widening. Tail 55% (+33pp from D129).
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
