@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-07-12 (D130) |
-| **Crisis level** | 5 - Severe (Jul 11-12: Iran declared Strait of Hormuz closed and attacked a Cyprus-flagged container ship (GFS Galaxy); US hit 140 Iranian military targets in third strike wave this week; Iran retaliated against US bases in Jordan, Qatar, Oman, and Kuwait; one crew member missing; conflict now spans multiple Gulf states) |
-| **Brent** | $76.01 (Jul 10 Friday close, Yahoo Finance; flat; weekend Hormuz closure and 140-target US strikes not yet priced - expect significant gap-open Monday) |
-| **JKM** | $19.75/MMBtu est. (Jul 8; last confirmed $18.86 Jun 12, TradingEconomics; Qatari LNG tanker hit; Ras Laffan restart not before late Aug 2026; formal Hormuz closure adds severe upside risk) |
-| **TTF** | €43.20/MWh est. (Jul 8; weekend Hormuz formal closure opens risk of surge to €60+/MWh) |
+| **Last updated** | 2026-07-14 (D132) |
+| **Crisis level** | 5 - Severe (Jul 13-14: Trump ordered the US Navy to reimpose its Hormuz blockade and announced a 20% cargo tribute fee; US struck Iran for a third consecutive night; IRGC hit US carrier logistics at Duqm, Oman; Iran extended strikes to Qatar and the UAE for the first time in months, plus continued hits on Jordan, Kuwait, and Oman; Brent surged to $84.70) |
+| **Brent** | $84.70 (Jul 14, Yahoo Finance; +8.56%; Trump orders Hormuz blockade and 20% cargo tribute; US strikes Iran third consecutive night; briefly topped $85.50 intraday in Asia trade per Reuters) |
+| **JKM** | $18.75/MMBtu (Jul 13, LNGPriceIndex.com; -5.1% vs Jul 8 est; Qatar extends LNG force majeure into Aug-Sept; Ras Laffan restart not before late Aug 2026) |
+| **TTF** | €50.43/MWh (Jul 13, OilPrice.com/Yahoo Finance; +16.7% vs Jul 8 est; new multi-month high on Hormuz transit collapse plus Qatar force majeure) |
 
 ---
 
@@ -29,6 +29,21 @@
 | `src/hooks/useMarkets.ts` | Ticker bar (fallback quotes) | Daily |
 | `src/components/MarketsWidget.tsx` | Ticker alert banner + oil forecast ranges | Daily |
 | `src/data/charts-volatility.json` | Bottom volatility charts (OVX, VXEEM, Scenarios) | OVX + VXEEM fetch live from CBOE on load; only Scenarios need manual daily update |
+
+### Runtime Data Source — READ BEFORE EDITING (critical)
+
+**The running app fetches every JSON dataset from `public/data/*.json` at runtime (`useStaticJson`), not from `src/data/`.** `bun run daily:apply` only auto-mirrors 4 files to `public/data/`: `banker-cross-asset.json`, `banker-conflict.json`, `charts-volatility.json`, `commodities-impact.json`. It does **not** mirror `iran-intel-events.json`, `banker-trade-ideas.json`, `banker-sanctions.json`, or `banker-clients.json` — `bun run daily:check` does not catch drift on these four either.
+
+If you hand-edit any of those four files in `src/data/`, you **must** also copy them to `public/data/` or the browser will keep rendering old cached content indefinitely with no error or warning:
+
+```bash
+cp src/data/iran-intel-events.json public/data/iran-intel-events.json
+cp src/data/banker-trade-ideas.json public/data/banker-trade-ideas.json
+cp src/data/banker-sanctions.json public/data/banker-sanctions.json
+cp src/data/banker-clients.json public/data/banker-clients.json
+```
+
+This gap let `banker-trade-ideas.json` and `iran-intel-events.json` drift for at least 12+ days undetected (found 2026-07-14) — always diff `src/data/` vs `public/data/` for these 4 files as part of E2E verification, not just JSON validation.
 
 ---
 
@@ -348,6 +363,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - [ ] **Crisis timeline archive**: Append today's headline in `docs/crisis-timeline-archive.md`; keep entries to ≤25 words each
 - [ ] **Sanctions**: Check for overnight OFAC/EU announcements; update `s0` description if MAS/SGX actions occurred
 - [ ] **Validate JSON**: Run `node -e "JSON.parse(require('fs').readFileSync('./src/data/<file>.json','utf8'))"` for each modified file — including `commodities-impact.json`
+- [ ] **Sync manually-mirrored files to `public/data/`**: If you edited `iran-intel-events.json`, `banker-trade-ideas.json`, `banker-sanctions.json`, or `banker-clients.json`, copy each to `public/data/` — see "Runtime Data Source" note above. `daily:apply`/`daily:check` do not do this for you.
 - [ ] **Build check**: Run `bun run build` — verify TypeScript compiles with no errors
 
 ### Weekly Review
@@ -373,6 +389,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 4. Right panel — **SUPPLY CHAIN**: all 4 categories present; `asOf` matches today; asset rows expand
 5. Browser console — no errors
 6. Ticker bar — fallback prices match `useMarkets.ts`
+7. If `iran-intel-events.json` / `banker-trade-ideas.json` / `banker-sanctions.json` / `banker-clients.json` were edited: `diff public/data/<file> src/data/<file>` must be empty before declaring done — the app renders from `public/data/` only
 
 ---
 
@@ -386,10 +403,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) -> $73.68 (Jun 30) -> $76.01 (Jul 10 Friday close, Yahoo Finance, flat). Markets not yet open to price the weekend escalation: Iran declared Hormuz closed and struck a container ship while the US hit 140 targets. Expect significant gap-open Monday. Working range $95-120 stress; $115-140 tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried) -> ~$19.75 est. (Jul 8). Qatari LNG vessel Al Rekayyat hit per Guardian; Ras Laffan full restart still unlikely before late Aug 2026. Formal Hormuz closure over the weekend adds severe upside risk.
-- **TTF Gas**: Pre-shock ~$34/MWh -> €49.97/MWh (Day 33) -> €49.50/MWh (Jun 3 D93 peak) -> €41.54/MWh est. (Jun 26) -> €43.20/MWh est. (Jul 8) as Hormuz risk premium rebuilds. Weekend formal closure of Hormuz opens risk of a surge to €60+/MWh on Monday.
-- **Credit**: iTraxx Asia IG est. ~135bp (Jul 8, +13bp from Jun 30); ASEAN HY est. ~475bp (+25bp). Weekend Hormuz closure and multi-country conflict expansion will severely test Asian credit markets Monday. Expect significant spread widening. Tail 55% (+33pp from D129).
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak) -> $84.70 (Jul 14, +8.56% day, Yahoo Finance) as Trump reimposes the Hormuz blockade and demands a 20% cargo tribute; US strikes Iran a third consecutive night; Brent rallied 9.4% Jul 13 alone (Bloomberg), briefly topping $85.50 in Asia trade (Reuters). Working range $100-130 stress; $115-140+ tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $19.75 est. (Jul 8) -> $18.75/MMBtu (Jul 13, LNGPriceIndex.com) as Qatar extends LNG force majeure into Aug-Sept (JOGMEC) while Asian demand lull partially offsets the Hormuz risk premium. Ras Laffan full restart still unlikely before late Aug 2026.
+- **TTF Gas**: Pre-shock ~$34/MWh -> €49.97/MWh (Day 33) -> €43.20/MWh est. (Jul 8) -> €50.43/MWh (Jul 13, +16.7% vs Jul 8, OilPrice.com/Yahoo Finance) as Qatar extends LNG force majeure into Aug-Sept and Hormuz transit collapses to a trickle - a new multi-month high.
+- **Credit**: iTraxx Asia IG est. ~140bp (Jul 14, +5bp from Jul 8); ASEAN HY est. ~485bp (+10bp) as Trump's Hormuz blockade/tribute order and a third night of US strikes on Iran weigh on Asian risk sentiment. Tail 65% (+10pp from D130).
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

@@ -121,3 +121,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D128**: Jul 8 - US strikes Iranian Hormuz sites after three vessel attacks; oil waivers revoked; Brent $76.05; tail raised 20%.
 - **D129**: Jul 9 - US strikes continue for second day; Iran retaliates across Gulf states; regional mediators seek renewed talks; tail 22%.
 - **D130**: Jul 12 - Iran declares Hormuz closed, strikes container ship (GFS Galaxy); US hits 140 targets in third strike wave; Iran retaliates across Jordan, Qatar, Oman, Kuwait; conflict escalates to Severe (level 5); tail 55%.
+- **D132**: Jul 14 - Trump orders Hormuz blockade, demands 20% cargo tribute; US strikes Iran third consecutive night; Iran hits Qatar, UAE for first time in months plus Jordan/Kuwait/Oman; Brent surges to $84.70 (+8.56%); tail 65%.
