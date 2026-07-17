@@ -10,7 +10,7 @@ interface Props {
 
 const NEAR_TERM_RANGE = "95-120";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "JUL 13-14: Trump orders Hormuz blockade, demands 20% cargo tribute; 3rd night of US strikes; Iran hits Qatar, UAE first time in months; Brent $84.70";
+const TOP_ALERT = "JUL 15-17: US strikes Iran 6th consecutive day; hits Greater Tunb Island, tanker skirting blockade; Iran warns of regional infrastructure strikes; Brent ~$85";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
