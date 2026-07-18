@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback - generated from src/data/daily-state.json (2026-07-17; D135)
-// Brent Crude 85.42 (Yahoo Finance 2026-07-17, confirmed); WTI Crude 79.42 (Yahoo Finance 2026-07-17, confirmed); Gold 3994.70 (Yahoo Finance 2026-07-17, confirmed)
+// Static fallback - generated from src/data/daily-state.json (2026-07-18; D136)
+// Brent Crude 88.09 (Yahoo Finance 2026-07-18, confirmed); WTI Crude 81.77 (Yahoo Finance 2026-07-18, confirmed); Gold 4023 (Yahoo Finance 2026-07-18, confirmed)
 const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 85.42, change: 2.12, changePct: 2.55, currency: "USD", unit: "/barrel", lastUpdated: "2026-07-17T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude", price: 79.42, change: 1.28, changePct: 1.64, currency: "USD", unit: "/barrel", lastUpdated: "2026-07-17T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold", price: 3994.7, change: -2.27, changePct: -0.06, currency: "USD", unit: "/oz", lastUpdated: "2026-07-17T00:00:00Z" },
+  { symbol: "BZ=F", name: "Brent Crude", price: 88.09, change: 4.77, changePct: 5.75, currency: "USD", unit: "/barrel", lastUpdated: "2026-07-18T00:00:00Z" },
+  { symbol: "CL=F", name: "WTI Crude", price: 81.77, change: 3.63, changePct: 4.65, currency: "USD", unit: "/barrel", lastUpdated: "2026-07-18T00:00:00Z" },
+  { symbol: "GC=F", name: "Gold", price: 4023, change: 26, changePct: 0.65, currency: "USD", unit: "/oz", lastUpdated: "2026-07-18T00:00:00Z" },
 ];
 
 interface UseMarketsResult {
