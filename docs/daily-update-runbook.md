@@ -8,11 +8,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-07-18 (D136) |
-| **Crisis level** | 5 - Severe (Jul 18: US strikes Iran for 7th consecutive night; CENTCOM expands to infrastructure targets — bridges near Bandar Abbas, Chabahar port tower collapsed, power plants hit (AP/RFE/RL, Jul 18); Iran retaliates against Kuwait water desalination plant, Qatar, Bahrain, Jordan; Iran threatens 'full-scale offensive operations' if strikes continue 2-3 more days (IRIB/AP, Jul 18); Hormuz traffic at 3-week low (Kpler: 8 transits Jul 16); Brent surges to $88.09 (+5.75%)) |
-| **Brent** | $88.09 (Jul 18, Yahoo Finance; +5.75%; US strikes Iran 7th consecutive night, expands to infrastructure targets; Iran threatens full-scale offensive ops; Hormuz traffic at 3-week low) |
-| **JKM** | $19.93/MMBtu (Jul 16, Trading Economics; +0.0%; carried; Qatar extends LNG force majeure into Aug-Sept; Ras Laffan restart not before late Aug 2026) |
-| **TTF** | €59.03/MWh (Jul 17, Trading Economics; +7.51% vs Jul 16; new multi-month high as US 7th night strikes and infrastructure escalation compound Qatar LNG force majeure and sustained Hormuz transit collapse) |
+| **Last updated** | 2026-07-27 (D145) |
+| **Crisis level** | 5 - Severe (Jul 27: US pauses Iran strikes for third straight day after 13 consecutive nights of strikes — diplomatic window opens as Omani delegation engages in Hormuz talks (Al Jazeera/AP, Jul 25-27); tanker explodes after hitting mine in Hormuz (Al Jazeera, Jul 27); Iran demands 'full coordination' for passage; Brent eases to $91.91 (-5% from Jul 24 $96.78) as risk premium partially deflates on pause; tail 45%) |
+| **Brent** | $91.91 (Jul 27, Yahoo Finance; +0.99%; US pauses Iran strikes 3rd day after 13 consecutive nights; Omani Hormuz talks in Tehran; tail 45%) |
+| **JKM** | $22.00/MMBtu (Jul 24, Trading Economics; +0.80%; 13 nights of US strikes and sustained Hormuz closure tighten Asian LNG balances; Qatar force majeure into Aug-Sept) |
+| **TTF** | €63.58/MWh (Jul 24, Trading Economics; +2.71% vs Jul 23; new multi-month high as 13 consecutive nights of strikes and sustained Hormuz transit collapse compound Qatar LNG force majeure) |
 
 ---
 
@@ -403,10 +403,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak) -> $85.42 (Jul 17, +2.55%, Yahoo Finance) -> $88.09 (Jul 18, +5.75%, Yahoo Finance) as US expands 7th consecutive night of strikes to infrastructure targets (bridges, Chabahar port tower, power plants) and Iran threatens full-scale offensive operations (AP/RFE/RL, Jul 18). Hormuz traffic at 3-week low of 8 transits (Kpler Jul 16). Working range $100-130 stress; $115-140+ tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $19.75 est. (Jul 8) -> $18.75/MMBtu (Jul 13, LNGPriceIndex.com) -> $19.93/MMBtu (Jul 16, Trading Economics) as Qatar extends LNG force majeure into Aug-Sept (JOGMEC) while Asian demand lull partially offsets the Hormuz risk premium. Ras Laffan full restart still unlikely before late Aug 2026.
-- **TTF Gas**: Pre-shock ~$34/MWh -> €49.97/MWh (Day 33) -> €43.20/MWh est. (Jul 8) -> €55.28/MWh (Jul 16, +1.4% vs Jul 15, Trading Economics/ICE) -> €59.03/MWh (Jul 17, +7.51% vs Jul 16, Trading Economics) as US 7th consecutive night of strikes and infrastructure escalation compound Qatar LNG force majeure and sustained Hormuz transit collapse — a new multi-month high.
-- **Credit**: iTraxx Asia IG est. ~145bp (Jul 17, +3bp from Jul 16); ASEAN HY est. ~492bp (+4bp) as 7th consecutive night of US strikes expanding to infrastructure targets and Iran's full-scale ops threat weigh on Asian risk sentiment. Tail 70%.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak) -> $85.42 (Jul 17, +2.55%, Yahoo Finance) -> $88.09 (Jul 18, +5.75%) -> $96.78 (Jul 24, -5.0% from $101.16 intraday high, Yahoo Finance/ICE) -> $91.91 (Jul 27, +0.99%, Yahoo Finance) as US pauses Iran strikes for 3rd consecutive day after 13 nights of bombing. Over 1,000 targets struck including infrastructure. Brent briefly crossed $100 intraday Jul 24. Working range $90-100 stress; $100-130+ tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $19.75 est. (Jul 8) -> $18.75/MMBtu (Jul 13, LNGPriceIndex.com) -> $19.93/MMBtu (Jul 16, Trading Economics) -> $22.00/MMBtu (Jul 24, Trading Economics, +0.80%) as 13 nights of US strikes and sustained Hormuz closure tightened Asian LNG balances. Qatar force majeure extended into Aug-Sept (JOGMEC). Ras Laffan restart not before late Aug 2026.
+- **TTF Gas**: Pre-shock ~$34/MWh -> €49.97/MWh (Day 33) -> €43.20/MWh est. (Jul 8) -> €55.28/MWh (Jul 16, +1.4% vs Jul 15, Trading Economics/ICE) -> €59.03/MWh (Jul 17, +7.51%) -> €63.58/MWh (Jul 24, +2.71% vs Jul 23, Trading Economics) as 13 consecutive nights of US strikes, infrastructure escalation, and sustained Hormuz transit collapse compounded Qatar LNG force majeure — a new multi-month high.
+- **Credit**: iTraxx Asia IG est. ~138bp (Jul 27, -7bp from Jul 17); ASEAN HY est. ~478bp (-14bp) as US-Iran strike pause and Omani diplomatic talks ease Asian risk sentiment. Tail 45% (reduced from 70% on diplomatic opening). Pause fragile; credit markets remain on watch for breakdown.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

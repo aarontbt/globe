@@ -8,9 +8,9 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "95-120";
+const NEAR_TERM_RANGE = "85-105";
 const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "JUL 18: US 7th consecutive strike night expands to bridges, port tower, power plants; Iran hits Kuwait desalination plant, threatens full-scale ops; Brent $88 (+5.75%)";
+const TOP_ALERT = "JUL 27: US pauses Iran strikes for 3rd day — Omani Hormuz talks underway; tanker hits mine in strait; Brent $91.91 (-5% from $100+ intraday peak)";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

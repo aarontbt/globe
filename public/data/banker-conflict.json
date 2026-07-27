@@ -1,51 +1,51 @@
 {
   "escalationLevel": 5,
   "escalationLabel": "Severe",
-  "deltaVsYesterday": 1,
+  "deltaVsYesterday": -1,
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "US 7th night strikes expand to infrastructure",
-      "delta": "Up: CENTCOM launched 7th consecutive night of strikes against Iran (Jul 18), expanding beyond purely military targets to bridges near Bandar Abbas, the tower at Chabahar port, and electrical power infrastructure (AP, Jul 18; RFE/RL, Jul 18). The highway and railway bridge strikes appeared aimed at cutting off Bandar Abbas from roads into Iran's central region. US acknowledged 13 additional service members injured since Monday.",
-      "direction": "up"
+      "summary": "US pauses Iran strikes for 3rd day; Omani talks",
+      "delta": "Neutral: After 13 consecutive nights of US strikes over 1,000 targets, the Trump administration paused operations on Jul 25. The pause entered its 3rd day Jul 27 with no US strikes and no Iranian retaliatory attacks. An Omani delegation arrived in Tehran for talks on Hormuz passage mechanisms (Al Jazeera, Jul 24-27). UN Ambassador Waltz: 'giving diplomacy some space' (CBS, Jul 26). Diplomatic window fragile but open.",
+      "direction": "neutral"
     },
     {
       "id": "e2",
-      "summary": "Iran threatens full-scale offensive operations",
-      "delta": "Up: Iranian Maj. Gen. Mohsen Rezaei threatened Tehran is ready to resume 'full-scale offensive operations' if US strikes continue for another 2-3 days, warning 'no political border will be safe' (IRIB/AP, Jul 18). Iran retaliated by striking a Kuwait water desalination plant, and targeting Qatar, Bahrain, and Jordan with missiles.",
+      "summary": "Tanker explodes after hitting mine in Hormuz",
+      "delta": "Up: An oil tanker attempting to pass through the Strait of Hormuz exploded after hitting naval mines, Iranian officials confirmed Jul 27. Iran warned that any ship attempting passage must be in 'full coordination' otherwise Iran cannot guarantee safety (Al Jazeera, Jul 27). Incident underscores continued danger in the waterway despite pause in airstrikes.",
       "direction": "up"
     },
     {
       "id": "e3",
-      "summary": "Hormuz traffic at 3-week low; Brent surges",
-      "delta": "Up: Shipping through Hormuz fell to 8 transits on Jul 16, lowest in 3 weeks and down from 15 the previous day and >100 prewar (Kpler/CNBC, Jul 17). Brent surged to $88.09 (+5.75%, Yahoo Finance Jul 18) as supply disruption fears intensified. TTF jumped to €59.03 (+7.51%, Trading Economics Jul 17). 'Worst case scenario' for oil tankers per Marisks CEO (CNBC, Jul 17).",
-      "direction": "up"
+      "summary": "Brent recedes from $100+ to $91.91 on pause",
+      "delta": "Down: Brent briefly crossed $100/bbl intraday Jul 24 (ICE $100.91 open, $101.16 high) before closing at $96.78 (Yahoo Finance). With the US strike pause entering day 3 and diplomatic channels active, Brent eased to $91.91 (Jul 27, +0.99% intraday). TTF rose to €63.58 (Jul 24, +2.71%) on sustained LNG supply concerns. Tail reduced from 70% to 45% on diplomatic opening.",
+      "direction": "down"
     }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 10,
-      "description": "A diplomatic off-ramp remains highly unlikely after Trump's blockade and tribute order and the expansion of US strikes to infrastructure targets. No talks have materialized. Any resumption of negotiations would require Iran to accept both the blockade and the 20% cargo fee, which Tehran has already rejected. Brent would settle toward $85-95/bbl as risk premium partially deflates. Probability held at 10%.",
+      "probability": 20,
+      "description": "The Omani-led diplomatic channel gains traction as both sides observe a pause in hostilities. Diplomatic talks produce a framework for phased Hormuz reopening and restoration of the June MOU ceasefire. Brent settles toward $80-90/bbl as risk premium deflates. Probability raised to 20% reflecting the active diplomatic window and mutual pause.",
       "oilImpact": "+$10/bbl",
       "lngImpact": "+15%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 20,
-      "description": "Hormuz blockade continues with sporadic enforcement; Iranian strikes persist at a constrained tempo. US strikes expanding to infrastructure targets (bridges, port tower, power) signal a broader campaign. Iran's threat of full-scale offensive operations if strikes continue 2-3 more days raises the ceiling on this scenario. Brent trades $100-130/bbl, JKM surges toward $25-30/MMBtu, iTraxx Asia IG breaks 150bp. Probability reduced to 20% as tail scenario becomes more likely.",
-      "oilImpact": "+$35/bbl",
-      "lngImpact": "+65%"
+      "probability": 35,
+      "description": "Pause collapses after talks fail to make progress on core issues (Hormuz control, nuclear program, blockade conditions). US resumes intermittent strikes; Iran retaliates at a constrained tempo. Hormuz remains effectively closed with occasional tanker transits. Brent trades $90-110/bbl, TTF stays elevated. Probability increased to 35% reflecting the fragility of the pause and unresolved core issues.",
+      "oilImpact": "+$30/bbl",
+      "lngImpact": "+60%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 70,
-      "description": "Conflict widens as US strikes now target Iranian infrastructure beyond purely military sites. Iran follows through on full-scale offensive operations threat, expanding the war beyond Gulf states to new geographies. Kuwait's water desalination plant already damaged. Brent spikes $115-140+/bbl with sustained outages; JKM above $35/MMBtu; Asian credit markets dislocate. Probability raised to 70% reflecting infrastructure escalation and full-scale ops threat.",
-      "oilImpact": "+$65/bbl",
-      "lngImpact": "+140%"
+      "probability": 45,
+      "description": "Diplomacy fails and the pause breaks down. US strikes resume at scale, potentially targeting nuclear sites. Iran escalates with full-scale offensive ops. Kuwait water infrastructure already damaged; GCC states face sustained attacks. Brent spikes $100-130+/bbl, JKM above $30/MMBtu. Probability reduced from 70% to 45% reflecting the diplomatic opening but still elevated given the underlying conflict intensity.",
+      "oilImpact": "+$60/bbl",
+      "lngImpact": "+130%"
     }
   ]
 }
