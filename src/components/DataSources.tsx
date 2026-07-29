@@ -50,7 +50,7 @@ const DATA_SOURCES: DataSource[] = [
     type: "live",
     description: "Commodity Prices",
     detail:
-      "Real-time Brent Crude (BZ=F), LNG/Nat Gas (NG=F), and Gold (GC=F) spot prices. Refreshes every 60s with Stooq as fallback.",
+      "Real-time Brent Crude (BZ=F) and LNG/Nat Gas (NG=F) prices. Refreshes every 60s with Stooq as fallback.",
     color: "#34d399",
   },
   {

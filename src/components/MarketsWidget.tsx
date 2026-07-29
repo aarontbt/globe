@@ -8,9 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const NEAR_TERM_RANGE = "85-105";
-const SUSTAINED_PRICE = "160";
-const TOP_ALERT = "JUL 27: US pauses Iran strikes for 3rd day — Omani Hormuz talks underway; tanker hits mine in strait; Brent $91.91 (-5% from $100+ intraday peak)";
+const TOP_ALERT = "JUL 29: US pause extends to 5th day — Omani Hormuz talks ongoing; Saudi intercepts Iraq-launched drones; Brent $86.81 (-13.78% from peak)";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
@@ -202,49 +200,41 @@ function QuoteRow({
 }
 
 function AlertStrip({ text }: { text: string }) {
-  const [hovered, setHovered] = useState(false);
   return (
-    <div style={{ position: "relative" }}>
-      {hovered && (
-        <div style={{
-          position: "absolute",
-          bottom: "calc(100% + 6px)",
-          left: 0,
-          right: 0,
-          background: "rgba(15,10,10,0.97)",
-          border: "1px solid rgba(239,68,68,0.4)",
-          borderRadius: 6,
-          padding: "7px 10px",
-          fontSize: 9,
-          color: "rgba(255,255,255,0.75)",
-          lineHeight: 1.55,
-          zIndex: 50,
-          pointerEvents: "none",
-          boxShadow: "0 4px 16px rgba(0,0,0,0.6)",
-        }}>
-          <span style={{ color: "#f87171", fontWeight: 800, letterSpacing: "0.06em", display: "block", marginBottom: 3 }}>
-            ▲ RED ALERT
-          </span>
-          {text}
-        </div>
-      )}
-      <div
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{
-          padding: "4px 14px 4px 10px",
-          background: hovered ? "rgba(239,68,68,0.14)" : "rgba(239,68,68,0.08)",
-          borderBottom: "1px solid rgba(239,68,68,0.15)",
-          borderLeft: "2px solid #ef4444",
-          display: "flex",
-          alignItems: "center",
-          gap: 5,
-          overflow: "hidden",
-          cursor: "default",
-          transition: "background 150ms",
-        }}>
-        <span style={{ fontSize: 10, color: "#f87171", fontWeight: 800, letterSpacing: "0.06em", flexShrink: 0 }}>▲ RED ALERT</span>
-        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.45)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{text}</span>
+    <div
+      style={{
+        padding: "10px 14px 12px 12px",
+        background: "linear-gradient(135deg, rgba(127,29,29,0.28), rgba(239,68,68,0.08))",
+        borderBottom: "1px solid rgba(239,68,68,0.22)",
+        borderLeft: "3px solid #ef4444",
+      }}
+    >
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        marginBottom: 6,
+      }}>
+        <span style={{
+          width: 7,
+          height: 7,
+          borderRadius: "50%",
+          background: "#ef4444",
+          boxShadow: "0 0 8px rgba(239,68,68,0.9)",
+          animation: "blinkDot 1.5s ease-in-out infinite",
+        }} />
+        <span style={{ fontSize: 10, color: "#f87171", fontWeight: 800, letterSpacing: "0.09em" }}>
+          RED ALERT
+        </span>
+      </div>
+      <div style={{
+        fontSize: 11,
+        color: "rgba(255,255,255,0.78)",
+        lineHeight: 1.55,
+        whiteSpace: "normal",
+        overflowWrap: "anywhere",
+      }}>
+        {text}
       </div>
     </div>
   );
@@ -261,7 +251,6 @@ export default function MarketsWidget({ quotes, loading, lastUpdated }: Props) {
 
   const brent = useMemo(() => quotes.find(q => q.symbol === "BZ=F"), [quotes]);
   const lng   = useMemo(() => quotes.find(q => q.symbol === "NG=F"), [quotes]);
-  const gold  = useMemo(() => quotes.find(q => q.symbol === "GC=F"), [quotes]);
 
   // Tick counter
   const tickCount = useRef(0);
@@ -341,30 +330,12 @@ export default function MarketsWidget({ quotes, loading, lastUpdated }: Props) {
           <>
             {brent && <QuoteRow quote={brent} size="large" priceDecimals={2} />}
             {lng   && <QuoteRow quote={lng}   size="small" priceDecimals={3} />}
-            {gold  && <QuoteRow quote={gold}  size="small" priceDecimals={0} />}
           </>
         )}
       </div>
 
       {/* Alert strip */}
       <AlertStrip text={TOP_ALERT} />
-
-      {/* Swarm Forecast */}
-      <div style={sectionStyle}>
-        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", color: "#a78bfa", marginBottom: 6 }}>
-          SWARM FORECAST
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Near-term target</span>
-            <span style={{ fontSize: 11, fontWeight: 700, color: "#fbbf24", fontVariantNumeric: "tabular-nums" }}>${NEAR_TERM_RANGE}/bbl</span>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Sustained disruption</span>
-            <span style={{ fontSize: 11, fontWeight: 700, color: "#f87171", fontVariantNumeric: "tabular-nums" }}>${SUSTAINED_PRICE}/bbl</span>
-          </div>
-        </div>
-      </div>
 
       {/* Footer */}
       <div style={{ padding: "5px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>

@@ -12,6 +12,7 @@ import { createAnimatedVesselsLayer } from "../layers/animatedVessels";
 import { createEventRingsLayer, createEventDotsLayer, createAsteroidImpactLayers } from "../layers/globeEvents";
 import { createSatellitesLayer } from "../layers/satellites";
 import { createOilSupplyChainLayers } from "../layers/oilSupplyChain";
+import { createExposureTraceLayers } from "../layers/exposureTrace";
 import { getOilReservesFillColor, OIL_RESERVES_MAP } from "../layers/oilReserves";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
@@ -36,7 +37,18 @@ import { useMarkets } from "../hooks/useMarkets";
 import { useNews } from "../hooks/useNews";
 import type { LayerVisibility } from "./LayerTogglePanel";
 
-import type { GlobeEvent, EventCategory, Corridor, Port, TradeArc, Satellite, OilNode, OilRoute } from "../types";
+import type {
+  GlobeEvent,
+  EventCategory,
+  Corridor,
+  Port,
+  TradeArc,
+  Satellite,
+  OilNode,
+  OilRoute,
+  ExposureTraceData,
+  PublicEntity,
+} from "../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GLOBE_VIEW = new (_GlobeView as any)({ id: "globe", controller: true });
@@ -63,6 +75,16 @@ const EMPTY_CORRIDORS: Corridor[] = [];
 const EMPTY_PORTS: Port[] = [];
 const EMPTY_ARCS: TradeArc[] = [];
 const EMPTY_OIL_SUPPLY_CHAIN: { nodes: OilNode[]; routes: OilRoute[] } = { nodes: [], routes: [] };
+const EMPTY_EXPOSURE_TRACES: ExposureTraceData = {
+  schemaVersion: 2,
+  asOf: "",
+  day: "",
+  headline: "",
+  entities: [],
+  evidence: [],
+  commercialInputs: [],
+  traces: [],
+};
 
 export default function GlobeView() {
   const pulse = useEventPulse(0.5);
@@ -77,6 +99,7 @@ export default function GlobeView() {
   const { data: ports } = useStaticJson<Port[]>("/data/ports.json", EMPTY_PORTS);
   const { data: arcs } = useStaticJson<TradeArc[]>("/data/trade-arcs.json", EMPTY_ARCS);
   const { data: oilSupplyChainData } = useStaticJson<{ nodes: OilNode[]; routes: OilRoute[] }>("/data/oil-supply-chain.json", EMPTY_OIL_SUPPLY_CHAIN);
+  const { data: exposureTraceData } = useStaticJson<ExposureTraceData>("/data/exposure-traces.json", EMPTY_EXPOSURE_TRACES);
   const events = useMemo(
     () => [...polymarketEvents, ...iranIntelEvents, ...socialEvents],
     [polymarketEvents, iranIntelEvents, socialEvents]
@@ -89,6 +112,7 @@ export default function GlobeView() {
   const deckRenderMsRef = useRef(0);
 
   const [rightPanelTab, setRightPanelTab] = useState<RightPanelTab>("events");
+  const [activeTraceId, setActiveTraceId] = useState("qatar-supply");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeCategories, setActiveCategories] = useState<Set<EventCategory>>(() => {
     try {
@@ -210,8 +234,9 @@ export default function GlobeView() {
     if (visibility.showArcs) result.push(createTradeArcsLayer(arcs));
     if (visibility.showPorts) result.push(createPortsLayer(ports));
     if (visibility.showOilSupplyChain) result.push(...createOilSupplyChainLayers(oilNodes, oilRoutes));
+    result.push(...createExposureTraceLayers(exposureTraceData, activeTraceId));
     return result;
-  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showOilReserves, corridors, ports, arcs, oilNodes, oilRoutes]);
+  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showOilReserves, corridors, ports, arcs, oilNodes, oilRoutes, exposureTraceData, activeTraceId]);
 
   // Label layer — separate memo so staticLayers doesn't rebuild on camera move
   const labelLayer = useMemo(
@@ -390,6 +415,38 @@ export default function GlobeView() {
       };
     }
 
+    if (layer?.id === "exposure-trace-nodes") {
+      const entity = object as PublicEntity;
+      return {
+        html: `<div style="font-family:${FONT_SANS};padding:4px 0;min-width:180px">
+          <div style="font-weight:700;font-size:14px;color:#e0f2fe">${entity.name}</div>
+          <div style="font-size:10px;color:#7dd3fc;text-transform:uppercase;letter-spacing:0.08em;margin-top:3px">${entity.kind} · ${entity.country}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.55);margin-top:6px;line-height:1.4">${entity.description}</div>
+        </div>`,
+        style: {
+          backgroundColor: "rgba(8,12,22,0.94)",
+          borderRadius: "8px",
+          padding: "9px 12px",
+          border: "1px solid rgba(56,189,248,0.25)",
+        },
+      };
+    }
+
+    if (layer?.id === "exposure-trace-arcs") {
+      return {
+        html: `<div style="font-family:${FONT_SANS};padding:3px 0">
+          <div style="font-weight:700;font-size:12px;color:#e0f2fe">${object.traceTitle}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.52);margin-top:3px">${object.from.shortName} → ${object.to.shortName}</div>
+        </div>`,
+        style: {
+          backgroundColor: "rgba(8,12,22,0.94)",
+          borderRadius: "8px",
+          padding: "8px 11px",
+          border: "1px solid rgba(167,139,250,0.25)",
+        },
+      };
+    }
+
     if (layer?.id === "corridors-core" || layer?.id === "corridors-glow") {
       const c = object.properties as Corridor;
       return {
@@ -550,7 +607,11 @@ export default function GlobeView() {
       </div>
 
       <BottomChartsPanel />
-      <MarketBriefOverlay />
+      <MarketBriefOverlay
+        data={exposureTraceData}
+        activeTraceId={activeTraceId}
+        onTraceChange={setActiveTraceId}
+      />
     </div>
   );
 }

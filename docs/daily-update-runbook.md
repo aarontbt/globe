@@ -1,6 +1,6 @@
-# Market Brief Update Guide
+# Signal-to-Exposure Daily Update Guide
 
-**Purpose**: Reference manual for the ASEAN maritime intelligence globe demo. Routine daily updates start in `src/data/daily-state.json`; the generated static JSON/TS files are then refreshed with `bun run daily:apply`.
+**Purpose**: Reference manual for the Iran-Hormuz public-intelligence demonstrator. Routine updates start in `src/data/daily-state.json`; reviewed state is distributed with `bun run daily:apply`.
 
 > **Daily execution**: Load `docs/daily-agent-prompt.md` instead — it is the lean, token-efficient daily prompt. This file is the reference manual for schemas, conventions, and rare operations.
 
@@ -8,11 +8,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-07-27 (D145) |
-| **Crisis level** | 5 - Severe (Jul 27: US pauses Iran strikes for third straight day after 13 consecutive nights of strikes — diplomatic window opens as Omani delegation engages in Hormuz talks (Al Jazeera/AP, Jul 25-27); tanker explodes after hitting mine in Hormuz (Al Jazeera, Jul 27); Iran demands 'full coordination' for passage; Brent eases to $91.91 (-5% from Jul 24 $96.78) as risk premium partially deflates on pause; tail 45%) |
-| **Brent** | $91.91 (Jul 27, Yahoo Finance; +0.99%; US pauses Iran strikes 3rd day after 13 consecutive nights; Omani Hormuz talks in Tehran; tail 45%) |
-| **JKM** | $22.00/MMBtu (Jul 24, Trading Economics; +0.80%; 13 nights of US strikes and sustained Hormuz closure tighten Asian LNG balances; Qatar force majeure into Aug-Sept) |
-| **TTF** | €63.58/MWh (Jul 24, Trading Economics; +2.71% vs Jul 23; new multi-month high as 13 consecutive nights of strikes and sustained Hormuz transit collapse compound Qatar LNG force majeure) |
+| **Last updated** | 2026-07-29 (D147) |
+| **Crisis level** | 5 - Severe (Jul 29: US pauses Iran strikes for 5th consecutive day - US-Iran de-escalation pause extends to day 5 (Jul 25-29) with continued Omani mediation in Tehran (CBS/AP, Jul 27-29); Iran denies direct talks but confirms Omani dialogue on Hormuz passage mechanisms; Saudi intercepts drones targeting oil facilities launched from Iraq (France 24/AFP, Jul 27); Houthis claim attacks on Saudi Aramco facilities in Jizan/Yanbu (NHK, Jul 27); Brent $86.81, down 13.78% from intraday peak (Yahoo Finance BZ=F, Jul 29); 78 vessels through Hormuz since Saturday; tail 40%) |
+| **Brent** | $86.81 (2026-07-29, Yahoo Finance BZ=F; -13.78%) |
+| **JKM** | $22.00/MMBtu (Jul 24, Trading Economics; +0.80%; 13 nights of US strikes and sustained Hormuz closure tighten Asian LNG balances; Qatar force majeure extended to mid-September) |
+| **TTF** | 56.50 EUR/MWh (2026-07-28, Yahoo Finance TTF=F; -8.72%) |
+| **Exposure trace** | Reviewed evidence confirms Qatar force majeure remains in effect; the latest reviewed LNG transit observation is dated July 18, while current route-cost data remains unavailable. |
+| **Evidence audit** | 15 checked · 12 verified · 3 carried · 0 unsupported · PASS |
+| **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
 ---
 
@@ -20,30 +23,32 @@
 
 | File | Panel | Update Frequency |
 |------|-------|-----------------|
-| `src/data/banker-clients.json` | Client Brief | Per engagement / roster change |
+| `src/data/banker-clients.json` | Archived legacy dataset (not rendered) | Per engagement / roster change |
 | `src/data/banker-cross-asset.json` | Cross-Asset | Daily (morning) |
 | `src/data/banker-conflict.json` | Conflict Status | Daily |
-| `src/data/banker-trade-ideas.json` | Trade Ideas | Daily or on major event |
-| `src/data/banker-sanctions.json` | Sanctions Tracker | On new designation events |
+| `src/data/banker-trade-ideas.json` | Archived legacy dataset (not rendered) | On explicit archive maintenance |
+| `src/data/banker-sanctions.json` | Archived legacy dataset (not rendered) | On explicit archive maintenance |
 | `src/data/commodities-impact.json` | Right panel — Supply Chain tab | Daily (key prices); narratives on material supply chain shift |
 | `src/hooks/useMarkets.ts` | Ticker bar (fallback quotes) | Daily |
 | `src/components/MarketsWidget.tsx` | Ticker alert banner + oil forecast ranges | Daily |
 | `src/data/charts-volatility.json` | Bottom volatility charts (OVX, VXEEM, Scenarios) | OVX + VXEEM fetch live from CBOE on load; only Scenarios need manual daily update |
+| `src/data/exposure-traces.json` | Signal to Exposure, globe routes, Counterparties, Actions, Evidence | Daily inputs; event and contract changes as triggered |
+| `src/data/evidence-audit.json` | Reviewed evidence-validation gate | Every daily run; recrawl changed or due sources |
+| `src/data/iran-intel-events.json` | Right panel - Events | Daily |
 
 ### Runtime Data Source — READ BEFORE EDITING (critical)
 
-**The running app fetches every JSON dataset from `public/data/*.json` at runtime (`useStaticJson`), not from `src/data/`.** `bun run daily:apply` only auto-mirrors 4 files to `public/data/`: `banker-cross-asset.json`, `banker-conflict.json`, `charts-volatility.json`, `commodities-impact.json`. It does **not** mirror `iran-intel-events.json`, `banker-trade-ideas.json`, `banker-sanctions.json`, or `banker-clients.json` — `bun run daily:check` does not catch drift on these four either.
+**The running app fetches every JSON dataset from `public/data/*.json` at runtime (`useStaticJson`), not from `src/data/`.** `bun run daily:apply` auto-mirrors `daily-state.json`, `exposure-traces.json`, `iran-intel-events.json`, `banker-cross-asset.json`, `banker-conflict.json`, `charts-volatility.json`, and `commodities-impact.json`. `bun run daily:check` rejects drift for all seven.
 
-If you hand-edit any of those four files in `src/data/`, you **must** also copy them to `public/data/` or the browser will keep rendering old cached content indefinitely with no error or warning:
+The remaining archive datasets are manually mirrored:
 
 ```bash
-cp src/data/iran-intel-events.json public/data/iran-intel-events.json
 cp src/data/banker-trade-ideas.json public/data/banker-trade-ideas.json
 cp src/data/banker-sanctions.json public/data/banker-sanctions.json
 cp src/data/banker-clients.json public/data/banker-clients.json
 ```
 
-This gap let `banker-trade-ideas.json` and `iran-intel-events.json` drift for at least 12+ days undetected (found 2026-07-14) — always diff `src/data/` vs `public/data/` for these 4 files as part of E2E verification, not just JSON validation.
+Always diff `src/data/` vs `public/data/` for the three manually mirrored archive files as part of E2E verification.
 
 ---
 
@@ -75,7 +80,35 @@ This gap let `banker-trade-ideas.json` and `iran-intel-events.json` drift for at
    - Do not claim precision beyond the last confirmed close
    - Flag with `(est.)` in internal notes if no source is available
 
-5. **Before committing**: Run a mental checklist — for each number entered, ask: *"What is my source for this exact figure?"* If the answer is "I estimated it," that is acceptable for EM data only, and only if directionally validated.
+5. **Before committing**: Run `bun run daily:evidence`. Every confirmed exposure or commercial metric must have directly supporting audited evidence. Assumed or estimated inputs are rejected from the published trace dataset.
+
+### Reviewed Evidence Gate
+
+The live Firecrawl step happens before publishing. Its reviewed output is stored in `src/data/evidence-audit.json`; `daily:update` never recrawls after approval.
+
+For every due or changed evidence URL:
+
+1. Scrape the exact article, release, PDF, official-data page, or market-data page. Category and landing pages are not accepted.
+2. Record the final canonical URL, HTTP status, page type, title, publisher, publication date, retrieval time, claim summary, and extracted facts.
+3. Map the evidence explicitly to every supported trace hop, confirmed metric, commercial input, derived metric, and counterparty relationship.
+4. For a market observation, record its exact value, unit, instrument, provider, source date, and observation timestamp when available.
+5. Set `contentStatus` to `verified`, `unsupported`, `stale`, `unreachable`, or `manual-review`, then record the analyst decision in `reviewStatus`.
+6. Run `bun run daily:evidence`; resolve every failure before `daily:apply`.
+
+`daily:evidence` and `daily:check` reject:
+
+- unsuccessful or non-HTTPS links;
+- broad landing pages;
+- unsupported, unreachable, pending, or rejected evidence;
+- URL, publisher, publication-date, or last-checked drift;
+- unresolved or duplicate evidence IDs;
+- evidence reused on a hop or commercial input it was not reviewed to support;
+- confirmed or carried metrics and commercial inputs without direct audited support;
+- dated market values that do not match their audited value, unit, source date, instrument, or provider;
+- counterparty relationships without directly supporting audited evidence;
+- carried evidence without both a note and a carry reason.
+
+If Firecrawl cannot retrieve dependable content, do not mark the evidence verified. Carry the prior reviewed observation with its original date and a precise reason, or downgrade the affected metric until a replacement source is approved.
 
 ### Confirmed Source Map (daily update)
 
@@ -83,9 +116,12 @@ This gap let `banker-trade-ideas.json` and `iran-intel-events.json` drift for at
 |-------|---------------|-----------------|
 | Brent crude | Qatar News Agency, Reuters, EIA | Bloomberg `CO1 Comdty`; TradingView `UKOIL` |
 | WTI crude | Qatar News Agency, Reuters, EIA | Bloomberg `CL1 Comdty`; TradingView `USOIL`; FRED |
-| TTF Gas | Trading Economics, ICE, Investing.com historical | Bloomberg `TTFMBASE Index`; ICE TTF front-month |
+| Dubai/Oman crude | Exact dated Platts, Argus, DME, Reuters or approved equivalent | Manual until a dependable feed is approved |
+| TTF Gas | Yahoo Finance machine refresh; ICE or Trading Economics analyst cross-check | Yahoo `TTF=F`; Bloomberg `TTFMBASE Index`; ICE TTF front-month |
 | JKM LNG | Reuters (Platts assessment), globallnghub.com | Bloomberg `JKMNEDAN Index`; CME JKM futures |
-| Gold | Trading Economics, MarketWatch | Investing.com |
+| EUR/USD | Yahoo Finance machine refresh; ECB cross-check | Yahoo `EURUSD=X`; ECB reference rates |
+| SOFR | Federal Reserve Bank of New York API | `markets.newyorkfed.org` |
+| LNG/VLCC freight | Exact dated Baltic, Argus, Reuters or approved route assessment | Must state route, cargo/vessel size, unit and date |
 | EM FX (SGD, IDR, MYR, THB, PHP) | Reuters, Bloomberg FX | xe.com (directional only) |
 | EM Rates | Bloomberg sovereign pages, Investing.com | Tickers: `GIDN10YR`, `GPHL10YR`, `GTHA10YR` |
 | iTraxx Asia ex-Japan IG | Bloomberg, Markit | Bloomberg `ITRXAXIG5Y Index` |
@@ -102,7 +138,7 @@ This gap let `banker-trade-ideas.json` and `iran-intel-events.json` drift for at
 - **Client IDs**: lowercase slugs, no spaces (e.g., `"pttep"`, `"sapura"`, `"wilmar"`)
 - **Exposure scores**: integers **1-10** (not 0-10)
 - **`change1d` format**: always include sign prefix - `"+7bp"`, `"-3.7%"`, `"+0.4%"`
-- **No em dashes**: use ` - ` (space-hyphen-space) in all JSON data fields; em dashes cause rendering inconsistencies
+- **No em dashes**: use ` - ` (space-hyphen-space) in JSON data fields
 - **`signal` values**: `"green"` | `"amber"` | `"red"`
 - **All dates**: ISO 8601 — `"2026-03-03T08:00:00Z"`
 - **Scenario narrative tone**: institutional/banker — factual, instrument-specific, no marketing language
@@ -121,7 +157,63 @@ This gap let `banker-trade-ideas.json` and `iran-intel-events.json` drift for at
 
 ---
 
-## 1. Cross-Asset Data (`banker-cross-asset.json`)
+## 1. Exposure and Commercial Data
+
+The trace dataset is authored in `src/data/exposure-traces.json` at schema version 2 and mirrored automatically. Daily state is schema version 3. Trace observations are controlled from `traceInputs`; commercial observations are controlled from `commercialInputs`.
+
+### Required hop fields
+
+Every trace has exactly five ordered stages: `signal`, `supply`, `transport`, `demand`, `counterparty`.
+
+| Field | Rule |
+|-------|------|
+| `entityIds` | Every ID must resolve to a public entity |
+| `direction` | `positive`, `negative`, or `mixed` |
+| `metrics` | Use a verified current value, a dated carried observation, or unavailable |
+| `source`, `sourceDate` | Required for confirmed metrics |
+| `status` | `confirmed`, `carried`, or `unavailable` |
+| `maxAgeDays` | Freshness window enforced by `daily:check` |
+| `evidenceIds` | Every ID must resolve to public evidence |
+| `missingReason` | Required for unavailable values |
+
+Relationships may only be `public-contract`, `operational-dependency`, or `market-sensitivity`. These labels document public linkages and must never be described as a PETCO position or confidential contract exposure.
+
+### Freshness and carry-forward
+
+| Cadence | Inputs | Review rule |
+|---------|--------|-------------|
+| Daily | Brent, TTF, JKM, Hormuz transit status, freight/delay ranges, trace headline | Refresh each run; carry only with the original date and a reason |
+| Event-driven | Qatar output, force majeure, attacks, reopening, route changes | Change when a sourced event occurs; otherwise retain the latest valid state |
+| Contract-driven | Named counterparties and public agreements | Change only after a public disclosure or amendment |
+
+If a dependable source is unavailable:
+
+1. Use `carried` only when the historical observation remains useful and retain its original date.
+2. Add a precise `carryReason`; carried values remain outside commercial calculations.
+3. Otherwise use `unavailable`, remove value/range/source fields, and add `missingReason`.
+4. Never create a midpoint, scenario range, inferred cost, or replacement-volume estimate.
+
+### Three-trace review
+
+- **Qatar supply disruption**: verify force-majeure status, latest JKM observation, public buyer relationship, and missing current volume/cost data.
+- **Hormuz delivery constraint**: verify the latest LNG-specific transit observation, Nakilat relationship, TTF, and current freight-data availability.
+- **Hormuz crude-export constraint**: verify EIA flow baselines, current Dubai/Oman and VLCC data, and keep company counterparties unnamed without company evidence.
+
+### Commercial calculation gate
+
+`daily:apply` calculates gross spread, transformation cost, and residual public proxy only when every required input is:
+
+- `confirmed` and inside its freshness window;
+- directly supported by an approved evidence-audit observation;
+- numeric and in the same currency and physical unit.
+
+Range arithmetic is allowed only for a source-published range. If any operand is carried, unavailable, stale, or unit-incompatible, all derived outputs remain `Insufficient verified data`.
+
+Mechanical residual statuses are `positive residual`, `crosses zero`, `negative residual`, and `insufficient verified data`. They are not profit, margin, or trade recommendations.
+
+---
+
+## 2. Cross-Asset Data (`banker-cross-asset.json`)
 
 ### Field Guidance
 
@@ -154,31 +246,24 @@ Update the `FALLBACK_QUOTES` array near the top of the file:
 const FALLBACK_QUOTES: MarketQuote[] = [
   { symbol: "BZ=F", name: "Brent Crude", price: 80.2,   change: 8.2,  changePct: 11.4, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-03T00:00:00Z" },
   { symbol: "CL=F", name: "WTI Crude",   price: 76.9,   change: 7.6,  changePct: 11.0, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-03T00:00:00Z" },
-  { symbol: "GC=F", name: "Gold",        price: 2858.0, change: 13.0, changePct: 0.46, currency: "USD", unit: "/oz",     lastUpdated: "2026-03-03T00:00:00Z" },
 ];
 ```
 
-- `change` = absolute dollar/oz move from prior close
+- `change` = absolute price move from prior close
 - `changePct` = percentage move (positive = up)
 - `lastUpdated` = today's date at `T00:00:00Z`
 
 ---
 
-## 2.5 MarketsWidget Hardcoded Constants (`src/components/MarketsWidget.tsx`)
+## 2.5 MarketsWidget Red Alert (`src/components/MarketsWidget.tsx`)
 
-Three constants at lines 11–13 must be updated daily alongside cross-asset data:
+The expanded Red Alert is controlled by one constant and must be updated alongside cross-asset data:
 
 ```typescript
-const NEAR_TERM_RANGE = "90-115";   // line 11 — near-term Brent range ($/bbl); update when scenario shifts
-const SUSTAINED_PRICE = "160";      // line 12 — tail/sustained disruption level; update when tail scenario changes
-const TOP_ALERT = "...";            // line 13 — rolling news banner; rewrite with today's top event ≤25 words
+const TOP_ALERT = "..."; // rolling news alert; rewrite with today's top event
 ```
 
-| Constant | When to change | Example |
-|----------|---------------|---------|
-| `TOP_ALERT` | Every day — replace with single most market-significant event | `"APR 12 NO DEAL: Vance-Iran Pakistan talks fail after 21hrs; Hormuz remains conditional; tail risk 38%"` |
-| `NEAR_TERM_RANGE` | When stress scenario Brent range shifts materially | `"90-115"` → `"85-105"` on sustained de-escalation |
-| `SUSTAINED_PRICE` | When tail scenario changes (Kharg seizure, full GCC collapse) | Raise on tail escalation, lower on ceasefire hold |
+The alert is always rendered in full. Replace it daily with the single most market-significant event; keep it concise enough for the market panel.
 
 ---
 
@@ -346,10 +431,16 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 ### Morning Update (Pre-Market Open, ~08:00 SGT)
 
+- [ ] **Preview without mutation**: Run `bun run daily:fetch -- --dry-run`; verify Brent, WTI, and `TTF=F` results. Confirm `git diff -- src/data/daily-state.json` shows no change from this command.
+- [ ] **Persist machine refresh**: Run `bun run daily:refresh`. This writes successful liquid values to daily state only; it does not publish.
+- [ ] **Firecrawl evidence review**: Scrape every changed or due evidence URL and update `src/data/evidence-audit.json` with the reviewed content result and claim mappings.
+- [ ] **Evidence gate**: Run `bun run daily:evidence`. Do not continue with unsupported, unreachable, pending, rejected, landing-page, or observation-mismatch failures.
+- [ ] **Complete analyst inputs**: Review JKM, Qatar output/force majeure, Hormuz condition and AIS count, LNG freight/delay ranges, evidence updates, and the trace headline. Carry unavailable observations with original dates and reasons.
+- [ ] **Review three traces**: Read every five-hop chain, confirmed/carried/unavailable metric, named public relationship, and portfolio action before publishing.
 - [ ] **Source check first**: For each price you plan to enter, confirm a named source exists (see Source Validation Policy above). Do not enter a number if the only answer to "where did this come from?" is "I estimated it" — use last confirmed level instead and note the date.
 - [ ] **Cross-asset**: Update `asOf` date, refresh all `current` prices and `change1d` values
 - [ ] **useMarkets.ts**: Update `FALLBACK_QUOTES` prices, changes, and `lastUpdated` dates
-- [ ] **MarketsWidget.tsx**: Update `TOP_ALERT` banner text; adjust `NEAR_TERM_RANGE` and `SUSTAINED_PRICE` if scenario has shifted materially
+- [ ] **MarketsWidget.tsx**: Update the expanded `TOP_ALERT` with the single most market-significant event
 - [ ] **Conflict**: Replace `todaysEvents` with 3 new events; update `deltaVsYesterday`; verify scenario probabilities sum to 100
 - [ ] **Trade ideas**: Update date references (e.g., "Mar N"); refresh price citations in rationale
 - [ ] **Intel events — refresh prices**: In `iran-intel-events.json`, update stale Brent/JKM/TTF price references in `energy-003`, `trade-001`, `trade-003`, and any event citing a specific price level
@@ -363,7 +454,8 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - [ ] **Crisis timeline archive**: Append today's headline in `docs/crisis-timeline-archive.md`; keep entries to ≤25 words each
 - [ ] **Sanctions**: Check for overnight OFAC/EU announcements; update `s0` description if MAS/SGX actions occurred
 - [ ] **Validate JSON**: Run `node -e "JSON.parse(require('fs').readFileSync('./src/data/<file>.json','utf8'))"` for each modified file — including `commodities-impact.json`
-- [ ] **Sync manually-mirrored files to `public/data/`**: If you edited `iran-intel-events.json`, `banker-trade-ideas.json`, `banker-sanctions.json`, or `banker-clients.json`, copy each to `public/data/` — see "Runtime Data Source" note above. `daily:apply`/`daily:check` do not do this for you.
+- [ ] **Apply and validate reviewed state**: Run `bun run daily:apply -- --dry-run`, inspect the file list, then run `bun run daily:update`. This command must not refetch or recrawl.
+- [ ] **Sync manually-mirrored archive files to `public/data/`**: If you edited `banker-trade-ideas.json`, `banker-sanctions.json`, or `banker-clients.json`, copy each to `public/data/` - see "Runtime Data Source" above.
 - [ ] **Build check**: Run `bun run build` — verify TypeScript compiles with no errors
 
 ### Weekly Review
@@ -384,12 +476,17 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 ## E2E Verification Recipe
 
 1. `bun run dev` → open `http://localhost:5173`
-2. **MARKET BRIEF** overlay: verify `asOf` shows today; Brent price matches; scenario % sums to 100; `cfTriggers` reference correct client names; sanctions entry current
-3. Right panel — **EVENTS**: intel events visible, no `pm-` events, filters work
-4. Right panel — **SUPPLY CHAIN**: all 4 categories present; `asOf` matches today; asset rows expand
-5. Browser console — no errors
-6. Ticker bar — fallback prices match `useMarkets.ts`
-7. If `iran-intel-events.json` / `banker-trade-ideas.json` / `banker-sanctions.json` / `banker-clients.json` were edited: `diff public/data/<file> src/data/<file>` must be empty before declaring done — the app renders from `public/data/` only
+2. Open **SIGNAL → EXPOSURE**, switch all three traces, and verify the five-hop chain, verified-data statuses, evidence, commercial evaluation, and portfolio action update together
+3. Close the overlay and verify the globe shows only the selected trace route, with LNG production/carrier/terminal/demand nodes and no stale route from the previous selection
+4. Open **Counterparties**, **Actions**, and **Evidence**; copy the decision brief and confirm named relationships and evidence resolve correctly
+5. Right panel — **EVENTS**: intel events visible, no `pm-` events, filters work
+6. Right panel — **SUPPLY CHAIN**: all 4 categories present; `asOf` matches today; asset rows expand
+7. Browser console — no errors
+8. Ticker bar — fallback prices match `useMarkets.ts`
+9. Verify at 1280×720 and 1440×900; no clipped chain cards, tabs, or action controls
+10. `diff src/data/exposure-traces.json public/data/exposure-traces.json` must be empty
+11. If manually mirrored files were edited, their source/runtime diffs must also be empty
+12. `bun run daily:evidence` must report zero unsupported and zero pending evidence
 
 ---
 
@@ -403,10 +500,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak) -> $85.42 (Jul 17, +2.55%, Yahoo Finance) -> $88.09 (Jul 18, +5.75%) -> $96.78 (Jul 24, -5.0% from $101.16 intraday high, Yahoo Finance/ICE) -> $91.91 (Jul 27, +0.99%, Yahoo Finance) as US pauses Iran strikes for 3rd consecutive day after 13 nights of bombing. Over 1,000 targets struck including infrastructure. Brent briefly crossed $100 intraday Jul 24. Working range $90-100 stress; $100-130+ tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $19.75 est. (Jul 8) -> $18.75/MMBtu (Jul 13, LNGPriceIndex.com) -> $19.93/MMBtu (Jul 16, Trading Economics) -> $22.00/MMBtu (Jul 24, Trading Economics, +0.80%) as 13 nights of US strikes and sustained Hormuz closure tightened Asian LNG balances. Qatar force majeure extended into Aug-Sept (JOGMEC). Ras Laffan restart not before late Aug 2026.
-- **TTF Gas**: Pre-shock ~$34/MWh -> €49.97/MWh (Day 33) -> €43.20/MWh est. (Jul 8) -> €55.28/MWh (Jul 16, +1.4% vs Jul 15, Trading Economics/ICE) -> €59.03/MWh (Jul 17, +7.51%) -> €63.58/MWh (Jul 24, +2.71% vs Jul 23, Trading Economics) as 13 consecutive nights of US strikes, infrastructure escalation, and sustained Hormuz transit collapse compounded Qatar LNG force majeure — a new multi-month high.
-- **Credit**: iTraxx Asia IG est. ~138bp (Jul 27, -7bp from Jul 17); ASEAN HY est. ~478bp (-14bp) as US-Iran strike pause and Omani diplomatic talks ease Asian risk sentiment. Tail 45% (reduced from 70% on diplomatic opening). Pause fragile; credit markets remain on watch for breakdown.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak) -> $85.42 (Jul 17, +2.55%, Yahoo Finance) -> $88.09 (Jul 18, +5.75%) -> $96.78 (Jul 24, -5.0% from $101.16 intraday high, Yahoo Finance/ICE) -> $91.91 (Jul 27, +0.99%, Yahoo Finance) -> $86.72 (Jul 28, -7.81%, Yahoo Finance BZ=F) -> $86.81 (Jul 29, -13.78% from peak, Yahoo Finance BZ=F) as US-Iran pause extends to a 5th consecutive day and Omani Hormuz talks continue. Brent working range lowered to $75-90 base; $80-100 stress; $100-130+ tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $19.75 est. (Jul 8) -> $18.75/MMBtu (Jul 13, LNGPriceIndex.com) -> $19.93/MMBtu (Jul 16, Trading Economics) -> $22.00/MMBtu (Jul 24, Trading Economics, +0.80%) as 13 nights of US strikes and sustained Hormuz closure tightened Asian LNG balances. Qatar force majeure extended to mid-September (Reuters, Jul 23). Ras Laffan restart not before late Aug 2026.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 49.97/MWh (Day 33) -> 43.20/MWh est. (Jul 8) -> 55.28/MWh (Jul 16, +1.4% vs Jul 15, Trading Economics/ICE) -> 59.03/MWh (Jul 17, +7.51%) -> 63.58/MWh (Jul 24, +2.71% vs Jul 23, MacroMicro) -> 58.70/MWh (Jul 27, -6.1% from Jul 24, Yahoo Finance) -> 56.50/MWh (Jul 28, -8.72% from Jul 27, Yahoo Finance TTF=F) as US-Iran pause extends to 5th day and gas demand eases. Still elevated on persistent LNG supply disruption from Qatar force majeure.
+- **Credit**: iTraxx Asia IG est. ~130bp (Jul 28, -8bp from Jul 27); ASEAN HY est. ~465bp (-13bp) as US-Iran strike pause extends to 5th consecutive day and Omani diplomatic talks continue, further easing Asian risk sentiment. Tail 40% (reduced from 45% on Omani progress). Pause fragile with ongoing drone attacks on Saudi and Houthi Red Sea escalation.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

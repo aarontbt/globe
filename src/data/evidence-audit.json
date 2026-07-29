@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 2,
+  "asOf": "2026-07-29T00:00:00Z",
+  "reviewedAt": "2026-07-29T00:15:00Z",
+  "reviewer": "Codex with Firecrawl and direct machine-source verification",
+  "entries": [
+    {
+      "evidenceId": "e-qatar-force-majeure",
+      "url": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
+      "canonicalUrl": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "QatarEnergy extends LNG force majeure and charters out tankers into October, sources say",
+      "publisher": "Reuters",
+      "publishedAt": "2026-07-23",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "QatarEnergy extended force majeure for LNG supplies to several Asian buyers into mid-September.",
+      "extractedFacts": [
+        "Force-majeure notices due to expire in August and early September were extended until mid-September.",
+        "Affected buyers include customers in South Korea, India and Bangladesh.",
+        "QatarEnergy continued leasing some LNG tankers through mid-October.",
+        "At least nine QELM/QET-controlled LNG carriers were sub-chartered to named third parties."
+      ],
+      "supportedHopIds": [
+        "qatar-supply:qatar-signal",
+        "qatar-supply:qatar-supply-hop",
+        "hormuz-delivery:delivery-supply",
+        "hormuz-delivery:delivery-transport"
+      ],
+      "supportedMetricIds": [
+        "qatar-output-status",
+        "qatar-subchartered-carriers"
+      ],
+      "supportedRelationshipIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": []
+    },
+    {
+      "evidenceId": "e-hormuz-transit",
+      "url": "https://www.kpler.com/blog/no-lng-tankers-cross-strait-of-hormuz-since-july-11-amid-escalating-us-iran-conflict",
+      "canonicalUrl": "https://www.kpler.com/blog/no-lng-tankers-cross-strait-of-hormuz-since-july-11-amid-escalating-us-iran-conflict",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "No LNG tankers cross Strait of Hormuz since July 11 amid escalating US-Iran conflict",
+      "publisher": "Kpler",
+      "publishedAt": "2026-07-18",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "Kpler reported no LNG carrier transits through Hormuz from July 11 through its July 18 observation.",
+      "extractedFacts": [
+        "No LNG carriers transited the Strait of Hormuz after July 11 through the July 18 publication.",
+        "The last known LNG carrier transit occurred on July 11.",
+        "Kpler counted eight LNG carrier transits during May, not eight per day."
+      ],
+      "supportedHopIds": [
+        "qatar-supply:qatar-transport"
+      ],
+      "supportedMetricIds": [
+        "hormuz-transits"
+      ],
+      "supportedRelationshipIds": [],
+      "carryReason": "No newer reviewed public LNG transit observation was available for the 2026-07-28 state.",
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": []
+    },
+    {
+      "evidenceId": "e-jkm",
+      "url": "https://www.reuters.com/business/energy/asia-lng-hits-four-month-high-fears-wider-mideast-shipping-disruption-2026-07-24/",
+      "canonicalUrl": "https://www.reuters.com/business/energy/asia-lng-hits-four-month-high-fears-wider-mideast-shipping-disruption-2026-07-24/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Asia LNG hits four-month high on fears of wider Mideast shipping disruption",
+      "publisher": "Reuters",
+      "publishedAt": "2026-07-24",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "Reuters reported the average price for September delivery into Northeast Asia at 22 USD/MMBtu on July 24.",
+      "extractedFacts": [
+        "The average price for September delivery into Northeast Asia was estimated at 22 USD/MMBtu.",
+        "The previous weekly observation was 20.10 USD/MMBtu."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": [
+        {
+          "inputId": "lng-jkm",
+          "value": 22,
+          "unit": "USD/MMBtu",
+          "sourceDate": "2026-07-24",
+          "instrument": "Northeast Asia September spot LNG assessment",
+          "provider": "Reuters / industry sources"
+        }
+      ],
+      "carryReason": "Reuters reported the latest approved Asian spot LNG assessment at 22 USD/MMBtu for September delivery on 2026-07-24.",
+      "supportedCommercialInputIds": [
+        "lng-jkm"
+      ],
+      "supportedDerivedMetricIds": []
+    },
+    {
+      "evidenceId": "e-ttf",
+      "url": "https://en.macromicro.me/charts/56759/dutch-ttf-natural-gas-futures",
+      "canonicalUrl": "https://en.macromicro.me/charts/56759/dutch-ttf-natural-gas-futures",
+      "httpStatus": 200,
+      "pageType": "market-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Dutch TTF Natural Gas Futures",
+      "publisher": "MacroMicro",
+      "publishedAt": "2026-07-24",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "Machine-refreshed from Yahoo Finance TTF=F; value at 56.5 EUR/MWh on Jul 28.",
+      "extractedFacts": [
+        "Machine-refreshed TTF value: 56.5 EUR/MWh (Yahoo Finance TTF=F, Jul 28)."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-demand"
+      ],
+      "supportedMetricIds": [
+        "ttf"
+      ],
+      "supportedRelationshipIds": [],
+      "observations": [
+        {
+          "inputId": "ttf",
+          "value": 56.5,
+          "unit": "EUR/MWh",
+          "sourceDate": "2026-07-28",
+          "instrument": "CME Dutch TTF Natural Gas",
+          "provider": "Yahoo Finance TTF=F",
+          "observedAt": "2026-07-28T15:21:15.000Z"
+        },
+        {
+          "inputId": "lng-ttf",
+          "value": 56.5,
+          "unit": "EUR/MWh",
+          "sourceDate": "2026-07-28",
+          "instrument": "CME Dutch TTF Natural Gas",
+          "provider": "Yahoo Finance TTF=F",
+          "observedAt": "2026-07-28T15:21:15.000Z"
+        }
+      ],
+      "supportedCommercialInputIds": [
+        "lng-ttf"
+      ],
+      "supportedDerivedMetricIds": []
+    },
+    {
+      "evidenceId": "e-jera-qatarenergy",
+      "url": "https://www.jera.co.jp/en/news/information/20260203_2351",
+      "canonicalUrl": "https://www.jera.co.jp/en/news/information/20260203_2351",
+      "httpStatus": 200,
+      "pageType": "release",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "JERA Signs 27-Year LNG Supply Agreement with QatarEnergy",
+      "publisher": "JERA",
+      "publishedAt": "2026-02-03",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "JERA and QatarEnergy signed a 27-year agreement for 3 MTPA beginning in 2028.",
+      "extractedFacts": [
+        "The agreement duration is 27 years.",
+        "Annual contract volume is 3 MTPA.",
+        "Supply commences in 2028."
+      ],
+      "supportedHopIds": [
+        "qatar-supply:qatar-counterparty",
+        "hormuz-delivery:delivery-counterparty"
+      ],
+      "supportedMetricIds": [
+        "jera-qatar-volume"
+      ],
+      "supportedRelationshipIds": [
+        "qatar-supply:qatarenergy",
+        "qatar-supply:jera",
+        "hormuz-delivery:jera"
+      ],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": []
+    },
+    {
+      "evidenceId": "e-nakilat-charters",
+      "url": "https://nakilat.com/qatarenergy-enters-time-charter-agreements-with-nakilat-for-the-operation-of-25-lng-vessels/",
+      "canonicalUrl": "https://nakilat.com/qatarenergy-enters-time-charter-agreements-with-nakilat-for-the-operation-of-25-lng-vessels/",
+      "httpStatus": 200,
+      "pageType": "release",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "QatarEnergy and Nakilat Sign Long-Term Charter Party Agreements for 25 Conventional LNG Vessels",
+      "publisher": "Nakilat",
+      "publishedAt": "2024-03-24",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "Nakilat signed long-term charter party agreements with QatarEnergy for 25 conventional LNG vessels.",
+      "extractedFacts": [
+        "The agreements cover 25 conventional LNG vessels.",
+        "The vessels form part of QatarEnergy's LNG fleet expansion programme."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-transport",
+        "hormuz-delivery:delivery-counterparty"
+      ],
+      "supportedMetricIds": [
+        "nakilat-charter-vessels"
+      ],
+      "supportedRelationshipIds": [
+        "hormuz-delivery:nakilat"
+      ],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": []
+    },
+    {
+      "evidenceId": "e-eia-hormuz",
+      "url": "https://www.eia.gov/international/analysis/special-topics/world_oil_transit_Chokepoints",
+      "canonicalUrl": "https://www.eia.gov/international/analysis/special-topics/world_oil_transit_Chokepoints",
+      "httpStatus": 200,
+      "pageType": "official-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "World Oil Transit Chokepoints - Strait of Hormuz",
+      "publisher": "U.S. EIA",
+      "publishedAt": "2026-03-03",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "EIA reports 1H25 Hormuz oil flows and Asian destination concentration.",
+      "extractedFacts": [
+        "Total oil flows averaged 20.9 million barrels per day in 1H25.",
+        "Crude oil and condensate flows averaged 14.7 million barrels per day in 1H25.",
+        "Asia received 89% of Hormuz crude and condensate flows in 1H25.",
+        "China, India, Japan and South Korea accounted for a combined 74% in 1H25."
+      ],
+      "supportedHopIds": [
+        "hormuz-crude-export:oil-constraint-signal",
+        "hormuz-crude-export:oil-constraint-supply",
+        "hormuz-crude-export:oil-constraint-demand",
+        "hormuz-crude-export:oil-constraint-counterparty"
+      ],
+      "supportedMetricIds": [
+        "hormuz-total-oil-flow",
+        "hormuz-crude-flow",
+        "asia-crude-share",
+        "asia-top-four-share"
+      ],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": []
+    },
+    {
+      "evidenceId": "e-eia-saudi",
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=65504",
+      "canonicalUrl": "https://www.eia.gov/todayinenergy/detail.php?id=65504",
+      "httpStatus": 200,
+      "pageType": "official-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Amid regional conflict, the Strait of Hormuz remains critical oil chokepoint",
+      "publisher": "U.S. EIA",
+      "publishedAt": "2025-06-16",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "EIA reports Saudi crude and condensate exports through Hormuz in 2024.",
+      "extractedFacts": [
+        "Saudi crude and condensate exports accounted for 5.5 million barrels per day of Hormuz crude flows in 2024."
+      ],
+      "supportedHopIds": [
+        "hormuz-crude-export:oil-constraint-supply"
+      ],
+      "supportedMetricIds": [
+        "saudi-hormuz-crude-2024"
+      ],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": []
+    },
+    {
+      "evidenceId": "e-brent",
+      "url": "https://finance.yahoo.com/quote/BZ=F/",
+      "canonicalUrl": "https://finance.yahoo.com/quote/BZ=F/",
+      "httpStatus": 200,
+      "pageType": "market-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Brent Crude Oil Last Day Financial Futures",
+      "publisher": "Yahoo Finance",
+      "publishedAt": "2026-07-29",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "Yahoo Finance machine observation for Brent was 86.81 USD/bbl on 2026-07-29.",
+      "extractedFacts": [
+        "BZ=F regular market price was 86.81 USD/bbl."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [
+        "oil-brent"
+      ],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": [
+        {
+          "inputId": "oil-brent",
+          "value": 86.81,
+          "unit": "USD/bbl",
+          "sourceDate": "2026-07-29",
+          "observedAt": "2026-07-29T00:04:52.000Z",
+          "instrument": "Brent Crude Oil Futures",
+          "provider": "Yahoo Finance BZ=F"
+        }
+      ]
+    },
+    {
+      "evidenceId": "e-wti",
+      "url": "https://finance.yahoo.com/quote/CL=F/",
+      "canonicalUrl": "https://finance.yahoo.com/quote/CL=F/",
+      "httpStatus": 200,
+      "pageType": "market-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "WTI Crude Oil Futures",
+      "publisher": "Yahoo Finance",
+      "publishedAt": "2026-07-29",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "Yahoo Finance machine observation for WTI was 82.1 USD/bbl on 2026-07-29.",
+      "extractedFacts": [
+        "CL=F regular market price was 82.1 USD/bbl."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [
+        "oil-wti"
+      ],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": [
+        {
+          "inputId": "oil-wti",
+          "value": 82.1,
+          "unit": "USD/bbl",
+          "sourceDate": "2026-07-29",
+          "observedAt": "2026-07-29T00:05:09.000Z",
+          "instrument": "WTI Crude Oil Futures",
+          "provider": "Yahoo Finance CL=F"
+        }
+      ]
+    },
+    {
+      "evidenceId": "e-eurusd",
+      "url": "https://finance.yahoo.com/quote/EURUSD=X/",
+      "canonicalUrl": "https://finance.yahoo.com/quote/EURUSD=X/",
+      "httpStatus": 200,
+      "pageType": "market-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "EUR/USD",
+      "publisher": "Yahoo Finance",
+      "publishedAt": "2026-07-29",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "Yahoo Finance machine observation for EUR/USD was 1.1387 on 2026-07-29.",
+      "extractedFacts": [
+        "EURUSD=X regular market price was 1.1387 USD/EUR."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [
+        "fx-eurusd"
+      ],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": [
+        {
+          "inputId": "fx-eurusd",
+          "value": 1.1387,
+          "unit": "USD/EUR",
+          "sourceDate": "2026-07-29",
+          "observedAt": "2026-07-29T00:14:21.000Z",
+          "instrument": "EUR/USD",
+          "provider": "Yahoo Finance EURUSD=X"
+        }
+      ]
+    },
+    {
+      "evidenceId": "e-sofr",
+      "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
+      "canonicalUrl": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
+      "httpStatus": 200,
+      "pageType": "market-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Secured Overnight Financing Rate",
+      "publisher": "Federal Reserve Bank of New York",
+      "publishedAt": "2026-07-27",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "The New York Fed API reports SOFR at 3.64% effective July 27, 2026.",
+      "extractedFacts": [
+        "SOFR percent rate was 3.64 with effective date 2026-07-27."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [
+        "usd-sofr"
+      ],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": [
+        {
+          "inputId": "usd-sofr",
+          "value": 3.64,
+          "unit": "%",
+          "sourceDate": "2026-07-27",
+          "observedAt": "2026-07-27T00:00:00Z",
+          "instrument": "SOFR",
+          "provider": "Federal Reserve Bank of New York"
+        }
+      ]
+    },
+    {
+      "evidenceId": "e-jkm-cfd",
+      "url": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
+      "canonicalUrl": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
+      "httpStatus": 200,
+      "pageType": "market-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
+      "publisher": "Trading Economics",
+      "publishedAt": "2026-07-27",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "The page reports a JKM-linked CFD market reference of 21.43 USD/MMBtu on July 27.",
+      "extractedFacts": [
+        "The displayed LNG Japan Korea reference was 21.43 USD/MMBtu on July 27, 2026.",
+        "Trading Economics states that the value is a CFD-derived general market reference and not an official benchmark assessment."
+      ],
+      "supportedHopIds": [
+        "qatar-supply:qatar-demand"
+      ],
+      "supportedMetricIds": [
+        "jkm-cfd-reference"
+      ],
+      "supportedRelationshipIds": [],
+      "observations": [
+        {
+          "inputId": "jkm-cfd-reference",
+          "value": 21.43,
+          "unit": "USD/MMBtu",
+          "sourceDate": "2026-07-27",
+          "instrument": "LNG Japan Korea CFD market reference",
+          "provider": "Trading Economics"
+        }
+      ],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": []
+    },
+    {
+      "evidenceId": "e-hormuz-total-transits",
+      "url": "https://www.reuters.com/world/middle-east/hormuz-tanker-crossings-slip-lowest-more-than-two-months-data-shows-2026-07-24/",
+      "canonicalUrl": "https://www.reuters.com/world/middle-east/hormuz-tanker-crossings-slip-lowest-more-than-two-months-data-shows-2026-07-24/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Hormuz ship transits steady at three for three days, data shows",
+      "publisher": "Reuters",
+      "publishedAt": "2026-07-24",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "Reuters reported Kpler preliminary data showing three total vessel transits per day from July 22 through July 24.",
+      "extractedFacts": [
+        "Three vessels passed through the Strait of Hormuz each day from July 22 to July 24.",
+        "The count covers total vessel traffic and does not establish an LNG-specific transit count."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-signal"
+      ],
+      "supportedMetricIds": [
+        "hormuz-total-transits"
+      ],
+      "supportedRelationshipIds": [],
+      "carryReason": "Kpler reported three total vessel transits per day from July 22 through July 24; no newer reviewed daily count is approved.",
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": []
+    },
+    {
+      "evidenceId": "e-gme-oman",
+      "url": "https://www.gulfmerc.com/",
+      "canonicalUrl": "https://www.gulfmerc.com/",
+      "httpStatus": 200,
+      "pageType": "market-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "OQD Daily Marker Price",
+      "publisher": "Gulf Mercantile Exchange",
+      "publishedAt": "2026-07-27",
+      "checkedAt": "2026-07-29T00:00:00Z",
+      "claimSummary": "GME published an OQD daily marker price of 82.41 USD/bbl on July 27.",
+      "extractedFacts": [
+        "The OQD daily marker price was 82.41 on July 27, 2026.",
+        "The GME OQD contract specification quotes prices in U.S. dollars and cents per barrel."
+      ],
+      "supportedHopIds": [
+        "hormuz-crude-export:oil-constraint-demand"
+      ],
+      "supportedMetricIds": [
+        "oman-marker"
+      ],
+      "supportedRelationshipIds": [],
+      "observations": [
+        {
+          "inputId": "oman-marker",
+          "value": 82.41,
+          "unit": "USD/bbl",
+          "sourceDate": "2026-07-27",
+          "instrument": "GME Oman Crude Oil Futures OQD Daily Marker",
+          "provider": "Gulf Mercantile Exchange"
+        },
+        {
+          "inputId": "oil-dubai-oman",
+          "value": 82.41,
+          "unit": "USD/bbl",
+          "sourceDate": "2026-07-27",
+          "instrument": "GME Oman Crude Oil Futures OQD Daily Marker",
+          "provider": "Gulf Mercantile Exchange"
+        }
+      ],
+      "supportedCommercialInputIds": [
+        "oil-dubai-oman"
+      ],
+      "supportedDerivedMetricIds": []
+    }
+  ]
+}

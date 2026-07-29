@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
+  computeCommercialEvaluation,
   PATHS,
   formatDateOnly,
   loadState,
@@ -8,6 +9,8 @@ import {
   readJson,
   readText,
   requireValidState,
+  summarizeEvidenceAudit,
+  validateEvidenceAudit,
   writeJson,
   writeText,
 } from "./daily-common.mjs";
@@ -15,6 +18,13 @@ import {
 const { dryRun } = parseArgs();
 const state = loadState();
 requireValidState(state);
+const authoredExposure = readJson(PATHS.exposure);
+const evidenceAudit = readJson(PATHS.evidenceAudit);
+const evidenceErrors = validateEvidenceAudit(state, authoredExposure, evidenceAudit);
+if (evidenceErrors.length) {
+  throw new Error(`evidence audit validation failed:\n- ${evidenceErrors.join("\n- ")}`);
+}
+const evidenceSummary = summarizeEvidenceAudit(authoredExposure, evidenceAudit);
 
 const changed = new Set();
 
@@ -96,6 +106,64 @@ function applyCommodities() {
   writeText(PATHS.commodities, after, dryRun);
 }
 
+function applyExposureTraces() {
+  const before = readText(PATHS.exposure);
+  const data = JSON.parse(before);
+  data.asOf = state.asOf;
+  data.day = state.day;
+  data.headline = state.traceInputs.headline;
+
+  const patchMetric = (metric) => {
+    const update = state.traceInputs.metrics[metric.inputId];
+    if (!update) {
+      throw new Error(`Exposure metric ${metric.inputId} has no matching daily-state trace input`);
+    }
+    for (const key of [
+      "value",
+      "low",
+      "high",
+      "unit",
+      "status",
+      "source",
+      "sourceDate",
+      "observedAt",
+      "maxAgeDays",
+      "carryReason",
+      "missingReason",
+    ]) {
+      if (update[key] === undefined) delete metric[key];
+      else metric[key] = update[key];
+    }
+  };
+
+  for (const trace of data.traces) {
+    for (const hop of trace.hops) {
+      for (const metric of hop.metrics) patchMetric(metric);
+    }
+    trace.commercialEvaluation = computeCommercialEvaluation(
+      trace.commercialEvaluation,
+      state.commercialInputs,
+      state.asOf,
+    );
+  }
+
+  data.commercialInputs = data.commercialInputs.map((input) => {
+    const update = state.commercialInputs[input.inputId];
+    if (!update) throw new Error(`Commercial input ${input.inputId} has no matching daily-state input`);
+    return { inputId: input.inputId, ...update };
+  });
+
+  for (const evidence of data.evidence) {
+    const update = state.traceInputs.evidenceUpdates[evidence.id];
+    if (!update) continue;
+    Object.assign(evidence, update);
+  }
+
+  const after = `${JSON.stringify(data, null, 2)}\n`;
+  mark(PATHS.exposure, before, after);
+  writeText(PATHS.exposure, after, dryRun);
+}
+
 function formatQuote(quote) {
   return `  { symbol: ${JSON.stringify(quote.symbol)}, name: ${JSON.stringify(quote.name)}, price: ${quote.price}, change: ${quote.change}, changePct: ${quote.changePct}, currency: ${JSON.stringify(quote.currency)}, unit: ${JSON.stringify(quote.unit)}, lastUpdated: ${JSON.stringify(quote.lastUpdated)} },`;
 }
@@ -126,10 +194,7 @@ function replaceConst(source, name, value) {
 
 function applyMarketsWidget() {
   const before = readText(PATHS.marketsWidget);
-  let after = before;
-  after = replaceConst(after, "NEAR_TERM_RANGE", state.nearTermRange);
-  after = replaceConst(after, "SUSTAINED_PRICE", state.sustainedPrice);
-  after = replaceConst(after, "TOP_ALERT", state.topAlert);
+  const after = replaceConst(before, "TOP_ALERT", state.topAlert);
   mark(PATHS.marketsWidget, before, after);
   writeText(PATHS.marketsWidget, after, dryRun);
 }
@@ -148,6 +213,28 @@ function applyRunbook() {
   after = after.replace(/\| \*\*Brent\*\* \| .* \|/, `| **Brent** | ${state.runbookState.brent} |`);
   after = after.replace(/\| \*\*JKM\*\* \| .* \|/, `| **JKM** | ${state.runbookState.jkm} |`);
   after = after.replace(/\| \*\*TTF\*\* \| .* \|/, `| **TTF** | ${state.runbookState.ttf} |`);
+  after = after.replace(
+    /\| \*\*Exposure trace\*\* \| .* \|/,
+    `| **Exposure trace** | ${state.traceInputs.headline} |`,
+  );
+  after = after.replace(
+    /\| \*\*Evidence audit\*\* \| .* \|/,
+    `| **Evidence audit** | ${evidenceSummary.checked} checked · ${evidenceSummary.verified} verified · ${evidenceSummary.carried} carried · ${evidenceSummary.unsupported} unsupported · PASS |`,
+  );
+  const commercialSummary = authoredExposure.traces
+    .map((trace) => {
+      const evaluation = computeCommercialEvaluation(
+        trace.commercialEvaluation,
+        state.commercialInputs,
+        state.asOf,
+      );
+      return `${trace.title}: ${evaluation.dataStatus} (${evaluation.residualStatus.replaceAll("-", " ")})`;
+    })
+    .join("; ");
+  after = after.replace(
+    /\| \*\*Commercial evaluation\*\* \| .* \|/,
+    `| **Commercial evaluation** | ${commercialSummary} |`,
+  );
 
   for (const [label, text] of Object.entries(state.priceNarratives)) {
     const pattern = new RegExp(`- \\*\\*${label}\\*\\*: .*`);
@@ -175,16 +262,33 @@ applyCrossAsset();
 applyConflict();
 applyCharts();
 applyCommodities();
+applyExposureTraces();
 applyUseMarkets();
 applyMarketsWidget();
 applyRunbook();
 applyTimeline();
 
-for (const file of [PATHS.crossAsset, PATHS.conflict, PATHS.charts, PATHS.commodities]) {
+for (const file of [
+  PATHS.state,
+  PATHS.crossAsset,
+  PATHS.conflict,
+  PATHS.charts,
+  PATHS.commodities,
+  PATHS.exposure,
+  PATHS.intelEvents,
+]) {
   mirrorPublicJson(file);
 }
 
-for (const file of [PATHS.crossAsset, PATHS.conflict, PATHS.charts, PATHS.commodities]) {
+for (const file of [
+  PATHS.state,
+  PATHS.crossAsset,
+  PATHS.conflict,
+  PATHS.charts,
+  PATHS.commodities,
+  PATHS.exposure,
+  PATHS.intelEvents,
+]) {
   JSON.parse(dryRun ? readText(file) : readText(file));
 }
 

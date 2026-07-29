@@ -2,9 +2,13 @@ import {
   CROSS_ASSET_IDS,
   COMMODITY_IDS,
   PATHS,
+  TRACE_RELATIONSHIPS,
+  TRACE_STAGES,
+  computeCommercialEvaluation,
   loadState,
   readJson,
   readText,
+  validateEvidenceAudit,
   validateStateShape,
 } from "./daily-common.mjs";
 import path from "node:path";
@@ -21,7 +25,15 @@ function sameNumber(a, b) {
   return Number(a) === Number(b);
 }
 
-for (const file of [PATHS.crossAsset, PATHS.conflict, PATHS.charts, PATHS.commodities]) {
+for (const file of [
+  PATHS.state,
+  PATHS.crossAsset,
+  PATHS.conflict,
+  PATHS.charts,
+  PATHS.commodities,
+  PATHS.exposure,
+  PATHS.intelEvents,
+]) {
   try {
     readJson(file);
   } catch (err) {
@@ -82,6 +94,137 @@ for (const category of commodities.categories) {
   }
 }
 
+const exposure = readJson(PATHS.exposure);
+let evidenceAudit;
+try {
+  evidenceAudit = readJson(PATHS.evidenceAudit);
+} catch (err) {
+  fail(`${PATHS.evidenceAudit} is not valid JSON: ${err.message}`);
+  evidenceAudit = { entries: [] };
+}
+for (const error of validateEvidenceAudit(state, exposure, evidenceAudit)) fail(error);
+if (exposure.asOf !== state.asOf) fail("exposure-traces.asOf does not match daily-state.asOf");
+if (exposure.day !== state.day) fail("exposure-traces.day does not match daily-state.day");
+if (exposure.headline !== state.traceInputs.headline) fail("exposure-traces.headline is out of sync");
+if (exposure.schemaVersion !== 2) fail("exposure-traces schemaVersion must be 2");
+if (exposure.traces?.length !== 3) fail("exposure-traces must contain exactly 3 traces");
+if ("scenarios" in exposure) fail("exposure-traces must not contain scenario probabilities");
+if ("assumptions" in exposure) fail("exposure-traces must not contain assumptions");
+
+const entityIds = new Set((exposure.entities ?? []).map((item) => item.id));
+const evidenceIds = new Set((exposure.evidence ?? []).map((item) => item.id));
+const commercialInputIds = new Set((exposure.commercialInputs ?? []).map((item) => item.inputId));
+
+function requireReferences(ids, knownIds, context) {
+  for (const id of ids ?? []) {
+    if (!knownIds.has(id)) fail(`${context} references unknown id ${id}`);
+  }
+}
+
+function compareTraceMetric(metric, context) {
+  const expected = state.traceInputs.metrics[metric.inputId];
+  if (!expected) {
+    fail(`${context} has unresolved trace input ${metric.inputId}`);
+    return;
+  }
+  for (const key of [
+    "value",
+    "low",
+    "high",
+    "unit",
+    "status",
+    "source",
+    "sourceDate",
+    "observedAt",
+    "maxAgeDays",
+    "carryReason",
+    "missingReason",
+  ]) {
+    if ((metric[key] ?? null) !== (expected[key] ?? null)) {
+      fail(`${context}.${key} is out of sync with traceInputs.metrics.${metric.inputId}`);
+    }
+  }
+  if ("assumptionIds" in metric) fail(`${context} must not contain assumptionIds`);
+  if (metric.status === "confirmed" && (!metric.source || !metric.sourceDate)) {
+    fail(`${context} confirmed metric requires source and sourceDate`);
+  }
+  if (metric.status === "unavailable" && (metric.value !== undefined || metric.low !== undefined || metric.high !== undefined)) {
+    fail(`${context} unavailable metric must not contain a value or range`);
+  }
+}
+
+for (const evidence of exposure.evidence ?? []) {
+  const update = state.traceInputs.evidenceUpdates[evidence.id];
+  if (update) {
+    if (evidence.lastChecked !== update.lastChecked || evidence.status !== update.status) {
+      fail(`evidence ${evidence.id} is out of sync with daily state`);
+    }
+    if (update.note !== undefined && evidence.note !== update.note) {
+      fail(`evidence ${evidence.id}.note is out of sync with daily state`);
+    }
+  }
+}
+for (const evidenceId of Object.keys(state.traceInputs.evidenceUpdates)) {
+  if (!evidenceIds.has(evidenceId)) fail(`traceInputs.evidenceUpdates has unresolved evidence id ${evidenceId}`);
+}
+
+for (const trace of exposure.traces ?? []) {
+  if ((trace.hops ?? []).length !== TRACE_STAGES.length) {
+    fail(`trace ${trace.id} must contain exactly ${TRACE_STAGES.length} hops`);
+  }
+  const stages = (trace.hops ?? []).map((hop) => hop.stage);
+  if (stages.join(",") !== TRACE_STAGES.join(",")) {
+    fail(`trace ${trace.id} stages must be ${TRACE_STAGES.join(" -> ")}`);
+  }
+  requireReferences(trace.routeEntityIds, entityIds, `trace ${trace.id}.routeEntityIds`);
+
+  for (const hop of trace.hops ?? []) {
+    requireReferences(hop.entityIds, entityIds, `trace ${trace.id} hop ${hop.id}.entityIds`);
+    requireReferences(hop.evidenceIds, evidenceIds, `trace ${trace.id} hop ${hop.id}.evidenceIds`);
+    if ("assumptionIds" in hop) fail(`trace ${trace.id} hop ${hop.id} must not contain assumptionIds`);
+    for (const metric of hop.metrics ?? []) {
+      compareTraceMetric(metric, `trace ${trace.id} hop ${hop.id} metric ${metric.inputId}`);
+    }
+  }
+  for (const counterparty of trace.counterparties ?? []) {
+    if (!TRACE_RELATIONSHIPS.includes(counterparty.relationship)) {
+      fail(`trace ${trace.id} counterparty ${counterparty.entityId} has invalid relationship`);
+    }
+    requireReferences([counterparty.entityId], entityIds, `trace ${trace.id} counterparty`);
+    requireReferences(counterparty.evidenceIds, evidenceIds, `trace ${trace.id} counterparty ${counterparty.entityId}.evidenceIds`);
+  }
+
+  const evaluation = trace.commercialEvaluation;
+  for (const inputId of evaluation?.observedInputIds ?? []) {
+    if (!commercialInputIds.has(inputId)) fail(`trace ${trace.id} references unknown commercial input ${inputId}`);
+  }
+  const expectedEvaluation = computeCommercialEvaluation(evaluation, state.commercialInputs, state.asOf);
+  if (JSON.stringify(evaluation) !== JSON.stringify(expectedEvaluation)) {
+    fail(`trace ${trace.id} commercial evaluation is not reproducible from daily state`);
+  }
+  if (evaluation.residualStatus !== "insufficient-verified-data") {
+    const required = evaluation.requiredInputIds.map((id) => state.commercialInputs[id]);
+    if (required.some((input) => input?.status !== "confirmed")) {
+      fail(`trace ${trace.id} calculates a residual from non-current inputs`);
+    }
+  }
+}
+
+for (const input of exposure.commercialInputs ?? []) {
+  const expected = state.commercialInputs[input.inputId];
+  if (!expected) {
+    fail(`exposure commercial input ${input.inputId} has no matching daily-state input`);
+    continue;
+  }
+  if (JSON.stringify(input) !== JSON.stringify({ inputId: input.inputId, ...expected })) {
+    fail(`commercial input ${input.inputId} is out of sync with daily state`);
+  }
+  if ("assumptionIds" in input) fail(`commercial input ${input.inputId} must not contain assumptionIds`);
+}
+for (const inputId of Object.keys(state.commercialInputs ?? {})) {
+  if (!commercialInputIds.has(inputId)) fail(`daily-state commercialInputs.${inputId} is unresolved`);
+}
+
 const useMarkets = readText(PATHS.useMarkets);
 for (const quote of state.fallbackQuotes) {
   if (!useMarkets.includes(`symbol: "${quote.symbol}"`) || !useMarkets.includes(`price: ${quote.price}`)) {
@@ -90,12 +233,8 @@ for (const quote of state.fallbackQuotes) {
 }
 
 const widget = readText(PATHS.marketsWidget);
-for (const [name, value] of [
-  ["NEAR_TERM_RANGE", state.nearTermRange],
-  ["SUSTAINED_PRICE", state.sustainedPrice],
-  ["TOP_ALERT", state.topAlert],
-]) {
-  if (!widget.includes(`const ${name} = ${JSON.stringify(value)};`)) fail(`MarketsWidget ${name} is out of sync`);
+if (!widget.includes(`const TOP_ALERT = ${JSON.stringify(state.topAlert)};`)) {
+  fail("MarketsWidget TOP_ALERT is out of sync");
 }
 
 const prompt = readText(PATHS.prompt);

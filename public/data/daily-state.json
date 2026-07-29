@@ -1,408 +1,826 @@
 {
-  "schemaVersion": 1,
-  "asOf": "2026-06-26T00:00:00Z",
-  "day": "D116",
+  "schemaVersion": 3,
+  "asOf": "2026-07-29T00:00:00Z",
+  "day": "D147",
   "crisis": {
-    "level": 2,
-    "label": "Elevated",
-    "detail": "Jun 22-23: roadmap agreed Switzerland; IAEA access disputed; mine-clearing Day 7; tail 8%"
+    "level": 5,
+    "label": "Severe",
+    "detail": "Jul 29: US pauses Iran strikes for 5th consecutive day - US-Iran de-escalation pause extends to day 5 (Jul 25-29) with continued Omani mediation in Tehran (CBS/AP, Jul 27-29); Iran denies direct talks but confirms Omani dialogue on Hormuz passage mechanisms; Saudi intercepts drones targeting oil facilities launched from Iraq (France 24/AFP, Jul 27); Houthis claim attacks on Saudi Aramco facilities in Jizan/Yanbu (NHK, Jul 27); Brent $86.81, down 13.78% from intraday peak (Yahoo Finance BZ=F, Jul 29); 78 vessels through Hormuz since Saturday; tail 40%"
   },
   "deltaVsYesterday": 0,
-  "topAlert": "JUN 23 ROADMAP: US-Iran Switzerland talks conclude; IAEA inspectors invited (Vance); Iran disputes; Goldman cuts Q4 Brent to $80; Brent $75.04 Jun 25; tail 8%",
-  "nearTermRange": "70-90",
-  "sustainedPrice": "130",
-  "commodityScenario": "Jun 23: Roadmap agreed Switzerland; IAEA access progress contested. Brent $75.04 (TradingEconomics Jun 25, +1.8%; -24% from Jun 3 $98.57 peak). Goldman Sachs cuts Q4 Brent to $80 from $90 — expects GCC exports at pre-war levels by end-Jul. Mine-clearing Day 7 of 30-day MOU mandate; physical Hormuz reopening on central route: late-2026. Ras Laffan LNG restart not before late Aug 2026. Tail 8%. Commodity markets continuing to price supply resumption — LNG and fertilizer supply lag limits pace of normalisation.",
-  "marketContext": "Roadmap agreed Jun 22-23 Switzerland; Brent $75.04 (TradingEconomics Jun 25, +1.76%); Goldman Q4 $80; mine-clearing Day 7 of 30-day mandate; tail 8%.",
+  "topAlert": "JUL 29: US pause extends to 5th day \u2014 Omani Hormuz talks ongoing; Saudi intercepts Iraq-launched drones; Brent $86.81 (-13.78% from peak)",
+  "commodityScenario": "Jul 29: US-Iran strike pause extends to a 5th consecutive day (Jul 25-29) \u2014 the longest break since hostilities began. Iran confirms Omani-led talks on Hormuz passage mechanisms continue in Tehran; no direct US-Iran negotiations. Saudi Arabia intercepted Iraq-launched drones targeting petroleum facilities for a second straight day (France 24/AFP, Jul 27); Houthis continue to claim Red Sea attacks. Brent was $86.81, down 13.78% from intraday peak (Yahoo Finance BZ=F, Jul 29), as markets priced further diplomatic progress. TTF eased to 56.50 EUR/MWh, down 8.72% from Jul 27 levels (Yahoo Finance TTF=F). CNN reported 78 vessels transited Hormuz since Saturday, citing Marisks; the count is not LNG-specific. Tail remains at 40% as pause continues but drone/missile attacks on Saudi infrastructure keep escalation risk elevated.",
+  "marketContext": "US pause extends to 5th day; Iran confirms ongoing Omani dialogue on Hormuz; Saudi intercepts Iraq-launched drones for second day; Brent $86.81, down 13.78% from peak (Yahoo Finance BZ=F, Jul 29); TTF 56.50 EUR/MWh, down 8.72% from Jul 27; tail 40%.",
   "crossAsset": {
     "brent": {
-      "current": 75.04,
-      "change1d": "+1.8%",
-      "zscore": -0.72,
+      "current": 86.81,
+      "change1d": "-13.8%",
+      "zscore": 0.87,
       "signal": "green",
-      "source": "TradingEconomics",
-      "sourceDate": "2026-06-25",
+      "source": "Yahoo Finance BZ=F",
+      "sourceDate": "2026-07-29",
       "status": "confirmed"
     },
     "ttf": {
-      "current": 41.54,
-      "change1d": "0.0%",
-      "zscore": 0.75,
-      "signal": "green",
-      "source": "TradingEconomics",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "current": 56.5,
+      "change1d": "-8.7%",
+      "zscore": 3.35,
+      "signal": "red",
+      "source": "Yahoo Finance TTF=F",
+      "sourceDate": "2026-07-28",
+      "status": "confirmed"
     },
     "lng-ja": {
-      "current": 18.86,
-      "change1d": "0.0%",
-      "zscore": 2.38,
+      "current": 22,
+      "change1d": "+0.80%",
+      "zscore": 3.3,
       "signal": "red",
-      "source": "TradingEconomics",
-      "sourceDate": "2026-06-12",
-      "status": "carried"
+      "source": "Trading Economics",
+      "sourceDate": "2026-07-24",
+      "status": "confirmed"
     },
     "id10y": {
       "current": 6.7,
-      "change1d": "-3bp",
-      "zscore": -1.22,
+      "change1d": "-12bp",
+      "zscore": -0.5,
       "signal": "green",
-      "source": "Investing.com",
-      "sourceDate": "2026-06-26",
+      "source": "Investing.com (est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "ph10y": {
-      "current": 6.3,
-      "change1d": "-4bp",
-      "zscore": -0.2,
+      "current": 6.35,
+      "change1d": "-8bp",
+      "zscore": 0.42,
       "signal": "green",
-      "source": "Investing.com",
-      "sourceDate": "2026-06-26",
+      "source": "Investing.com (est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "th10y": {
-      "current": 1.9,
+      "current": 1.95,
       "change1d": "-3bp",
-      "zscore": -0.49,
+      "zscore": -0.22,
       "signal": "green",
-      "source": "Investing.com",
-      "sourceDate": "2026-06-26",
+      "source": "Investing.com (est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "asean-ig": {
-      "current": 128,
-      "change1d": "-4bp",
-      "zscore": 1.76,
-      "signal": "amber",
-      "source": "Bloomberg/Markit",
-      "sourceDate": "2026-06-26",
+      "current": 138,
+      "change1d": "-7bp",
+      "zscore": 2.1,
+      "signal": "red",
+      "source": "Bloomberg/Markit (est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "asean-hy": {
-      "current": 460,
-      "change1d": "-7bp",
-      "zscore": 3,
+      "current": 478,
+      "change1d": "-14bp",
+      "zscore": 3.28,
       "signal": "red",
-      "source": "JPMorgan CEMBI/BAML",
-      "sourceDate": "2026-06-26",
+      "source": "JPMorgan CEMBI/BAML (est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "sgd": {
-      "current": 1.225,
-      "change1d": "-0.5%",
-      "zscore": -4.92,
-      "signal": "green",
-      "source": "Reuters/xe.com",
-      "sourceDate": "2026-06-26",
+      "current": 1.23,
+      "change1d": "-0.6%",
+      "zscore": -4.52,
+      "signal": "red",
+      "source": "Reuters (Asia FX wrap, est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "idr": {
-      "current": 15700,
-      "change1d": "-1.3%",
-      "zscore": -2.35,
-      "signal": "green",
-      "source": "Reuters/xe.com",
-      "sourceDate": "2026-06-26",
+      "current": 15750,
+      "change1d": "-0.6%",
+      "zscore": -2.42,
+      "signal": "red",
+      "source": "Reuters (Asia FX wrap, est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "myr": {
-      "current": 3.71,
-      "change1d": "-0.4%",
-      "zscore": -5.71,
-      "signal": "green",
-      "source": "Reuters/xe.com",
-      "sourceDate": "2026-06-26",
+      "current": 3.74,
+      "change1d": "-0.8%",
+      "zscore": -5.06,
+      "signal": "red",
+      "source": "Reuters (Asia FX wrap, est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "thb": {
-      "current": 31,
-      "change1d": "-1.5%",
-      "zscore": -2.63,
-      "signal": "green",
-      "source": "Reuters/xe.com",
-      "sourceDate": "2026-06-26",
+      "current": 31.3,
+      "change1d": "-0.4%",
+      "zscore": -2.1,
+      "signal": "red",
+      "source": "Reuters/xe.com (est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "php": {
-      "current": 55.2,
-      "change1d": "-1.0%",
-      "zscore": -2.96,
-      "signal": "green",
-      "source": "Reuters/xe.com",
-      "sourceDate": "2026-06-26",
+      "current": 55.65,
+      "change1d": "-0.4%",
+      "zscore": -2.37,
+      "signal": "red",
+      "source": "Reuters/xe.com (est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "energy-eq": {
-      "current": 106,
-      "change1d": "-2.1%",
-      "zscore": -4.86,
-      "signal": "green",
-      "source": "MSCI ASEAN/SGX",
-      "sourceDate": "2026-06-26",
+      "current": 118,
+      "change1d": "+2.6%",
+      "zscore": -3.4,
+      "signal": "red",
+      "source": "MSCI ASEAN/SGX (est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "shipping-eq": {
-      "current": 79,
-      "change1d": "+2.0%",
-      "zscore": -2.73,
-      "signal": "green",
-      "source": "SGX shipping sub-index",
-      "sourceDate": "2026-06-26",
+      "current": 76,
+      "change1d": "+4.1%",
+      "zscore": -3.65,
+      "signal": "red",
+      "source": "SGX shipping sub-index (est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     },
     "banks-eq": {
-      "current": 218,
-      "change1d": "+2.1%",
-      "zscore": 0.62,
+      "current": 206,
+      "change1d": "-1.0%",
+      "zscore": 0.01,
       "signal": "green",
-      "source": "MSCI ASEAN Banks",
-      "sourceDate": "2026-06-26",
+      "source": "MSCI ASEAN Banks (est.)",
+      "sourceDate": "2026-07-27",
       "status": "estimated"
     }
   },
   "fallbackCommentLines": [
-    "Static fallback - generated from src/data/daily-state.json (2026-06-26; D116)",
-    "Brent Crude 75.04 (TradingEconomics 2026-06-25, confirmed); WTI Crude 69.95 (CNBC 2026-06-25, estimated); Gold 4040.3 (TradingEconomics 2026-06-25, confirmed)"
+    "Static fallback - generated from src/data/daily-state.json (2026-07-28; D146)",
+    "Brent Crude 86.81 (Yahoo Finance BZ=F 2026-07-29, confirmed); WTI Crude 82.1 (Yahoo Finance CL=F 2026-07-29, confirmed)"
   ],
   "fallbackQuotes": [
     {
       "symbol": "BZ=F",
       "name": "Brent Crude",
-      "price": 75.04,
-      "change": 1.3,
-      "changePct": 1.76,
+      "price": 86.81,
+      "change": -13.88,
+      "changePct": -13.78,
       "currency": "USD",
       "unit": "/barrel",
-      "lastUpdated": "2026-06-26T00:00:00Z",
-      "source": "TradingEconomics",
-      "sourceDate": "2026-06-25",
+      "lastUpdated": "2026-07-29T00:04:52.000Z",
+      "source": "Yahoo Finance BZ=F",
+      "sourceDate": "2026-07-29",
       "status": "confirmed"
     },
     {
       "symbol": "CL=F",
       "name": "WTI Crude",
-      "price": 69.95,
-      "change": -0.15,
-      "changePct": -0.21,
+      "price": 82.1,
+      "change": -10.09,
+      "changePct": -10.94,
       "currency": "USD",
       "unit": "/barrel",
-      "lastUpdated": "2026-06-26T00:00:00Z",
-      "source": "CNBC",
-      "sourceDate": "2026-06-25",
-      "status": "estimated"
-    },
-    {
-      "symbol": "GC=F",
-      "name": "Gold",
-      "price": 4040.3,
-      "change": 40.77,
-      "changePct": 1.02,
-      "currency": "USD",
-      "unit": "/oz",
-      "lastUpdated": "2026-06-26T00:00:00Z",
-      "source": "TradingEconomics",
-      "sourceDate": "2026-06-25",
+      "lastUpdated": "2026-07-29T00:05:09.000Z",
+      "source": "Yahoo Finance CL=F",
+      "sourceDate": "2026-07-29",
       "status": "confirmed"
     }
   ],
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "US-Iran Phase 2 talks: roadmap agreed Jun 22-23 Switzerland; IAEA inspectors 'invited' per Vance; Iran FM disputes any new access agreement (Al Jazeera/CNBC/Times of Israel)",
-      "delta": "Down: First round of Phase 2 nuclear talks concluded early Jun 23 at Burgenstock. Vance: 'roadmap toward final deal within 60 days agreed; Iranians agreed to invite IAEA inspectors this week - major milestone.' Lebanon deconfliction mechanism agreed. Iran FM disputes: no IAEA meeting held; no new access planned beyond existing NPT/safeguards. IAEA director Grossi says inspections 'will indeed take place' and discussions on dates/procedures beginning. Technical talks continuing in Switzerland throughout the week. Tail 8%.",
-      "direction": "down"
+      "summary": "US-Iran pause enters fifth day",
+      "delta": "Neutral: The US-Iran pause extended through Jul 29 for a fifth consecutive day. Iran confirmed continued Omani mediation in Tehran but denied direct US talks. No Hormuz framework has been announced. Sources: CBS/AP, CNN.",
+      "direction": "neutral"
     },
     {
       "id": "e2",
-      "summary": "Brent $75.04 (TradingEconomics Jun 25 confirmed, +1.76%); partial rebound after Jun 24 -5.3% crash on tanker traffic surge; Goldman cuts Q4 Brent to $80 from $90 (Investing.com)",
-      "delta": "Down: Brent $75.04 (TradingEconomics Jun 25 confirmed, +1.76% from $73.87 Jun 24 close). Jun 24 was the big crash day: -5.3% as tankers transited Hormuz and Goldman Sachs cut Q4 Brent forecast to $80 from $90 - expects Persian Gulf crude exports normalised to pre-war levels by end-Jul, a month ahead of prior estimate. WTI ~$69.95 est. (below $70 on Jun 25, CNBC). Gold $4,040.30 (TradingEconomics Jun 25, +1.02%). iTraxx Asia IG ~128bp est. (-4bp); ASEAN HY ~460bp est. (-7bp). EM FX continuing to strengthen: USD/PHP ~55.20 est., USD/IDR ~15,700 est.",
-      "direction": "down"
+      "summary": "Saudi intercepts drones; Houthis active",
+      "delta": "Up: Saudi Arabia intercepted Iraq-launched drones targeting petroleum facilities and Riyadh for a second consecutive day. Houthis separately claimed attacks on Saudi oil infrastructure at Yanbu and Jizan, sustaining Red Sea route risk. Sources: France 24/AFP, Jul 27; NHK, Jul 27.",
+      "direction": "up"
     },
     {
       "id": "e3",
-      "summary": "Hormuz mine-clearing: Day 7 of 30-day MOU mandate (Jun 19 start); tanker traffic recovering (20+ transits Jun 19, highest since Jun 2); Ras Laffan restart not before late Aug 2026 (Jun 26)",
-      "delta": "Neutral: Mine-clearing Day 7 of 30-day MOU mandate from Jun 19 signing. Conventional minesweeping/underwater drones may require 40-50 days before P&I clubs re-enter; Pentagon internal estimate: up to 6 months for full clearance. Tanker transits recovering: 20+ transits Jun 19 (highest since Jun 2 vs 100+ pre-war); still well below normal. Central deep-water channel remains closed pending clearance of ~80 mines. Ras Laffan LNG restart not before late Aug 2026 regardless of mine-clearing pace. Nuclear sequencing: Iran deputy FM - nuclear talks begin only after frozen funds released.",
-      "direction": "neutral"
+      "summary": "Brent recedes further on diplomacy",
+      "delta": "Down: Brent was $86.81, down 13.78% from its intraday peak (Yahoo Finance BZ=F, Jul 29), as the pause and Omani talks further reduced the risk premium. TTF eased to 56.50 EUR/MWh as European gas priced de-escalation.",
+      "direction": "down"
     }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 67,
-      "description": "Roadmap agreed Jun 22-23 Switzerland; IAEA inspectors invited per Vance; Lebanon deconfliction mechanism agreed. Ceasefire holds; Iran dilutes uranium under IAEA; US sanctions lifted progressively; Iran oil sales resume. Hormuz mine-clearing proceeds (~30 days per MOU mandate, up to 6 months for full clearance); P&I clubs re-enter progressively; Ras Laffan restart late Aug 2026. Brent normalises $70-85/bbl on supply resumption (Goldman Q4 $80 forecast). Phase 2 nuclear deal in 60-day window. Probability raised to 67% on roadmap progress.",
-      "oilImpact": "-$5/bbl",
-      "lngImpact": "-25%"
-    },
-    {
-      "id": "stress",
-      "label": "Stress",
       "probability": 25,
-      "description": "Implementation delays. Nuclear sequencing dispute (Iran withholds IAEA cooperation until frozen funds released; Iran FM disputes IAEA access claim) stalls mine-clearing beyond MOU mandate; Hormuz physically inaccessible 60-90 days past signing. Ras Laffan slips to Q4 2026. Brent stays $80-95/bbl as market discounts partial supply resumption. iTraxx Asia IG settles 130-150bp; JKM holds $15-18/MMBtu. IRGC hardliner resistance to terms or US congressional opposition to sanctions relief are the main stress vectors.",
+      "description": "The Omani-led diplomatic channel gains further traction as the mutual pause extends past 4 days. Iran-US indirect talks via Oman produce a framework for phased Hormuz reopening and restoration of the June MOU ceasefire. Brent settles toward $75-85/bbl as risk premium deflates materially. Probability raised to 25% reflecting extended pause, constructive Omani dialogue, and Trump's public engagement signal.",
       "oilImpact": "+$10/bbl",
       "lngImpact": "+15%"
     },
     {
+      "id": "stress",
+      "label": "Stress",
+      "probability": 35,
+      "description": "Pause collapses after talks fail to make progress on core issues (Hormuz control, nuclear program, blockade conditions). US resumes intermittent strikes; Iran retaliates at a constrained tempo. Hormuz remains constrained with limited tanker transits. Brent trades $80-100/bbl, TTF stays elevated. Probability unchanged at 35% given hawkish rhetoric from both sides and ongoing drone/missile activity against Saudi.",
+      "oilImpact": "+$30/bbl",
+      "lngImpact": "+60%"
+    },
+    {
       "id": "tail",
       "label": "Tail",
-      "probability": 8,
-      "description": "Deal collapse. Iran hardliners or IRGC reject MOU implementation; nuclear sequencing terms break down; US Congress blocks sanctions relief; Israel unilateral strikes restart hostilities. Hormuz re-closed; Brent spikes $110-130/bbl; mine-clearing timeline extends 12+ months. Probability lowered to 8% from 10% (D109) on roadmap agreement Jun 22-23. Key triggers: frozen-assets impasse causes Iran to withdraw; IDF unilateral strike; US congressional veto on sanctions relief.",
-      "oilImpact": "+$55/bbl",
-      "lngImpact": "+120%"
+      "probability": 40,
+      "description": "Diplomacy fails outright and the pause breaks down. US strikes resume at scale, potentially targeting nuclear sites. Iran escalates with full-scale offensive ops. Kuwait water infrastructure already damaged; GCC states face sustained attacks. Brent spikes $100-130+/bbl, JKM above $30/MMBtu. Probability reduced from 45% to 40% reflecting the extended pause and positive Omani diplomatic signals, but still elevated given unresolved conflict drivers.",
+      "oilImpact": "+$60/bbl",
+      "lngImpact": "+130%"
     }
   ],
+  "traceInputs": {
+    "headline": "Reviewed evidence confirms Qatar force majeure remains in effect; the latest reviewed LNG transit observation is dated July 18, while current route-cost data remains unavailable.",
+    "metrics": {
+      "qatar-output-status": {
+        "value": "Force majeure extended to mid-September",
+        "unit": "",
+        "status": "confirmed",
+        "source": "Reuters",
+        "sourceDate": "2026-07-23",
+        "maxAgeDays": 14,
+        "cadence": "event-driven"
+      },
+      "qatar-volume-at-risk": {
+        "unit": "MTPA",
+        "status": "unavailable",
+        "source": "",
+        "sourceDate": "",
+        "maxAgeDays": 1,
+        "cadence": "daily",
+        "missingReason": "No current source-verified unavailable-volume figure is approved."
+      },
+      "hormuz-transits": {
+        "value": 0,
+        "unit": "LNG transits",
+        "status": "carried",
+        "source": "Kpler",
+        "sourceDate": "2026-07-18",
+        "maxAgeDays": 1,
+        "cadence": "daily",
+        "carryReason": "Kpler reported no LNG carrier transits after July 11 through its July 18 publication; no newer reviewed LNG count is approved."
+      },
+      "jera-qatar-volume": {
+        "value": 3,
+        "unit": "MTPA",
+        "status": "confirmed",
+        "source": "JERA",
+        "sourceDate": "2026-02-03",
+        "maxAgeDays": 365,
+        "cadence": "contract-driven"
+      },
+      "nakilat-charter-vessels": {
+        "value": 25,
+        "unit": "LNG vessels",
+        "status": "confirmed",
+        "source": "Nakilat",
+        "sourceDate": "2024-03-24",
+        "maxAgeDays": 3650,
+        "cadence": "contract-driven"
+      },
+      "lng-freight-delay": {
+        "unit": "days",
+        "status": "unavailable",
+        "source": "",
+        "sourceDate": "",
+        "maxAgeDays": 1,
+        "cadence": "daily",
+        "missingReason": "No current source-verified LNG rerouting delay is approved."
+      },
+      "ttf": {
+        "value": 56.5,
+        "unit": "EUR/MWh",
+        "status": "confirmed",
+        "source": "Yahoo Finance TTF=F",
+        "sourceDate": "2026-07-28",
+        "maxAgeDays": 3,
+        "cadence": "daily",
+        "observedAt": "2026-07-28T15:21:15.000Z"
+      },
+      "hormuz-total-oil-flow": {
+        "value": 20.9,
+        "unit": "million b/d",
+        "status": "confirmed",
+        "source": "U.S. EIA",
+        "sourceDate": "2026-03-03",
+        "maxAgeDays": 730,
+        "cadence": "event-driven"
+      },
+      "hormuz-crude-flow": {
+        "value": 14.7,
+        "unit": "million b/d",
+        "status": "confirmed",
+        "source": "U.S. EIA",
+        "sourceDate": "2026-03-03",
+        "maxAgeDays": 730,
+        "cadence": "event-driven"
+      },
+      "saudi-hormuz-crude-2024": {
+        "value": 5.5,
+        "unit": "million b/d",
+        "status": "confirmed",
+        "source": "U.S. EIA",
+        "sourceDate": "2025-06-16",
+        "maxAgeDays": 730,
+        "cadence": "event-driven"
+      },
+      "asia-crude-share": {
+        "value": 89,
+        "unit": "%",
+        "status": "confirmed",
+        "source": "U.S. EIA",
+        "sourceDate": "2026-03-03",
+        "maxAgeDays": 730,
+        "cadence": "event-driven"
+      },
+      "asia-top-four-share": {
+        "value": 74,
+        "unit": "%",
+        "status": "confirmed",
+        "source": "U.S. EIA",
+        "sourceDate": "2026-03-03",
+        "maxAgeDays": 730,
+        "cadence": "event-driven"
+      },
+      "oil-vlcc-freight": {
+        "unit": "USD/bbl",
+        "status": "unavailable",
+        "source": "",
+        "sourceDate": "",
+        "maxAgeDays": 1,
+        "cadence": "daily",
+        "missingReason": "No current route-normalised VLCC freight observation is approved."
+      },
+      "oil-counterparty-relationship": {
+        "unit": "",
+        "status": "unavailable",
+        "source": "",
+        "sourceDate": "",
+        "maxAgeDays": 30,
+        "cadence": "contract-driven",
+        "missingReason": "No named company-level buyer relationship is verified by the approved oil-flow sources."
+      },
+      "jkm-cfd-reference": {
+        "value": 21.43,
+        "unit": "USD/MMBtu",
+        "status": "confirmed",
+        "source": "Trading Economics",
+        "sourceDate": "2026-07-27",
+        "maxAgeDays": 3,
+        "cadence": "daily"
+      },
+      "hormuz-total-transits": {
+        "value": 3,
+        "unit": "vessels/day",
+        "status": "carried",
+        "source": "Reuters / Kpler",
+        "sourceDate": "2026-07-24",
+        "maxAgeDays": 1,
+        "cadence": "daily",
+        "carryReason": "Kpler reported three total vessel transits per day from July 22 through July 24; no newer reviewed daily count is approved."
+      },
+      "qatar-subchartered-carriers": {
+        "value": 9,
+        "unit": "LNG carriers minimum",
+        "status": "confirmed",
+        "source": "Reuters",
+        "sourceDate": "2026-07-23",
+        "maxAgeDays": 14,
+        "cadence": "event-driven"
+      },
+      "oman-marker": {
+        "value": 82.41,
+        "unit": "USD/bbl",
+        "status": "confirmed",
+        "source": "Gulf Mercantile Exchange",
+        "sourceDate": "2026-07-27",
+        "maxAgeDays": 3,
+        "cadence": "daily"
+      }
+    },
+    "evidenceUpdates": {
+      "e-qatar-force-majeure": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed",
+        "note": "Reuters content confirms force-majeure extensions into mid-September."
+      },
+      "e-hormuz-transit": {
+        "lastChecked": "2026-07-29",
+        "status": "carried",
+        "note": "Observation remains the latest reviewed public LNG-transit count; refresh before treating it as current."
+      },
+      "e-jkm": {
+        "lastChecked": "2026-07-29",
+        "status": "carried",
+        "note": "Reuters reported 22 USD/MMBtu for September delivery on July 24; retained for commercial lineage until a newer approved spot assessment is available."
+      },
+      "e-ttf": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed",
+        "note": "Machine-refreshed from Yahoo Finance TTF=F."
+      },
+      "e-jera-qatarenergy": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed"
+      },
+      "e-nakilat-charters": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed"
+      },
+      "e-eia-hormuz": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed"
+      },
+      "e-eia-saudi": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed"
+      },
+      "e-brent": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed",
+        "note": "Machine-refreshed from Yahoo Finance BZ=F."
+      },
+      "e-wti": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed",
+        "note": "Machine-refreshed from Yahoo Finance CL=F."
+      },
+      "e-eurusd": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed",
+        "note": "Machine-refreshed from Yahoo Finance EURUSD=X."
+      },
+      "e-sofr": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed",
+        "note": "Machine-refreshed from Federal Reserve Bank of New York."
+      },
+      "e-jkm-cfd": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed",
+        "note": "Current JKM-linked CFD market reference; displayed as context and excluded from commercial calculations."
+      },
+      "e-hormuz-total-transits": {
+        "lastChecked": "2026-07-29",
+        "status": "carried",
+        "note": "Latest reviewed total-vessel count is dated July 24 and does not establish an LNG-specific count."
+      },
+      "e-gme-oman": {
+        "lastChecked": "2026-07-29",
+        "status": "confirmed",
+        "note": "Official OQD daily marker quoted in U.S. dollars per barrel."
+      }
+    }
+  },
   "volatilityDay": {
-    "day": "D116",
-    "date": "2026-06-26",
-    "note": "Thu - Brent ~$75.04 carried (Jun 25 confirmed; Jun 26 not yet confirmed). Roadmap agreed Jun 22-23; IAEA access disputed but Grossi says inspections 'will take place.' Mine-clearing Day 7 of 30-day mandate. Goldman Q4 $80 Brent. iTraxx ~128bp est. EM FX strengthening. Tail 8%.",
+    "day": "D147",
+    "date": "2026-07-29",
+    "note": "Wed - US pause extends to 5th day; Iran confirms Omani Hormuz talks ongoing; Saudi intercepts Iraq-launched drones; Brent 6.81, down 13.78%; TTF 56.50 EUR/MWh, down 8.72%; tail 40%.",
     "ovx": 58,
     "ovxConfirmed": false,
-    "vxeem": 20,
+    "vxeem": 22,
     "vxeemConfirmed": false,
     "scenarios": [
-      67,
       25,
-      8
+      35,
+      40
     ],
     "scenariosConfirmed": true
   },
   "commodities": {
     "wheat": {
-      "current": 620,
-      "change1d": "0.0%",
-      "zscore": 0.71,
-      "signal": "green",
+      "current": 640,
+      "change1d": "+1.4%",
+      "zscore": 1.02,
+      "signal": "amber",
       "source": "Barchart ZWK26",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     },
     "corn": {
-      "current": 490,
-      "change1d": "0.0%",
-      "zscore": 0.56,
+      "current": 502,
+      "change1d": "+0.8%",
+      "zscore": 0.8,
       "signal": "green",
       "source": "CME ZCK26",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     },
     "soybeans": {
-      "current": 1100,
-      "change1d": "0.0%",
-      "zscore": 0.4,
+      "current": 1125,
+      "change1d": "+0.8%",
+      "zscore": 0.64,
       "signal": "green",
       "source": "CME ZSK26",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     },
     "palm-oil": {
-      "current": 4350,
-      "change1d": "-1.0%",
-      "zscore": 0.61,
+      "current": 4500,
+      "change1d": "+1.4%",
+      "zscore": 0.92,
       "signal": "green",
       "source": "Bursa Malaysia BMD",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     },
     "rice": {
-      "current": 595,
-      "change1d": "-1.2%",
-      "zscore": 0.76,
+      "current": 605,
+      "change1d": "+1.0%",
+      "zscore": 0.95,
       "signal": "green",
       "source": "Bangkok export quotes",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     },
     "naphtha": {
-      "current": 685,
-      "change1d": "-1.1%",
-      "zscore": 0.22,
-      "signal": "green",
-      "source": "ICIS/Platts",
-      "sourceDate": "2026-06-26",
+      "current": 810,
+      "change1d": "+5.9%",
+      "zscore": 1.35,
+      "signal": "amber",
+      "source": "ICIS/Platts (est., crude-correlated)",
+      "sourceDate": "2026-07-24",
       "status": "estimated"
     },
     "ethylene": {
-      "current": 995,
-      "change1d": "-1.2%",
-      "zscore": 0.27,
+      "current": 1045,
+      "change1d": "+1.3%",
+      "zscore": 0.63,
       "signal": "green",
       "source": "ICE/ICIS CFR NE Asia",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     },
     "methanol": {
-      "current": 290,
-      "change1d": "-1.0%",
-      "zscore": -0.39,
+      "current": 308,
+      "change1d": "+1.7%",
+      "zscore": -0.06,
       "signal": "green",
       "source": "Investing.com CFR China",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     },
     "urea": {
-      "current": 520,
-      "change1d": "-1.2%",
-      "zscore": 2.13,
+      "current": 560,
+      "change1d": "+2.2%",
+      "zscore": 2.68,
       "signal": "red",
       "source": "DTN/Argus Fertilizers",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     },
     "dap": {
-      "current": 680,
-      "change1d": "-1.1%",
-      "zscore": 1.2,
+      "current": 710,
+      "change1d": "+1.1%",
+      "zscore": 1.56,
       "signal": "amber",
       "source": "Argus Fertilizers",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     },
     "potash": {
-      "current": 405,
-      "change1d": "-1.0%",
-      "zscore": 0.47,
+      "current": 418,
+      "change1d": "+1.2%",
+      "zscore": 0.67,
       "signal": "green",
       "source": "Argus Fertilizers/CRU",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     },
     "bdi": {
-      "current": 1670,
-      "change1d": "+1.2%",
-      "zscore": 0.49,
-      "signal": "green",
+      "current": 1850,
+      "change1d": "+2.2%",
+      "zscore": 1.08,
+      "signal": "amber",
       "source": "Baltic Exchange/Hellenic Shipping News",
-      "sourceDate": "2026-06-26",
+      "sourceDate": "2026-07-24",
       "status": "estimated"
     },
     "vlcc": {
-      "current": 87,
-      "change1d": "+2.4%",
-      "zscore": 0.38,
-      "signal": "green",
-      "source": "Seatrade Maritime/Clarkson",
-      "sourceDate": "2026-06-26",
+      "current": 105,
+      "change1d": "+7.1%",
+      "zscore": 1.12,
+      "signal": "amber",
+      "source": "Seatrade Maritime/Clarkson (est.)",
+      "sourceDate": "2026-07-24",
       "status": "estimated"
     },
     "scfi": {
-      "current": 1425,
-      "change1d": "-1.7%",
-      "zscore": 0.66,
+      "current": 1480,
+      "change1d": "+1.7%",
+      "zscore": 0.94,
       "signal": "green",
       "source": "Shanghai Shipping Exchange",
-      "sourceDate": "2026-06-26",
-      "status": "estimated"
+      "sourceDate": "2026-07-24",
+      "status": "carried"
     }
   },
   "priceNarratives": {
-    "Brent": "Pre-shock ~$65 → $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) → $98.57 (Jun 3 D93 peak; Qeshm strike + Kuwait airport + Rubio rejection) → $75.04 (Jun 25, TradingEconomics confirmed, +1.76%; -24% from D93 peak). Roadmap agreed Jun 22-23 Switzerland; Goldman cuts Q4 to $80 from $90 (Investing.com) — GCC exports normalised by end-Jul. Mine-clearing Day 7 of 30-day mandate from Jun 19. Working range $70-85 base; $80-95 stress; $110-130 on deal collapse (tail 8%).",
-    "JKM LNG": "Baseline $9.5 → $23.40/MMBtu (Day 20, Reuters/Platts) → $18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried). Ras Laffan restart not before late Aug 2026 even on deal; mine-clearing 30-day mandate from Jun 19 (physical reopening late-2026 on central route); JKM supply lag means LNG stays elevated well after roadmap agreement.",
-    "TTF Gas": "Pre-shock ~$34/MWh → €49.97/MWh (Day 33) → €49.50/MWh (Jun 3 D93 peak) → €41.54/MWh est. (Jun 26; carried; roadmap progress continued de-escalation unwinding crisis premium)",
-    "Credit": "iTraxx Asia IG est. ~128bp (Jun 26, -67bp from D93 195bp peak; -11bp from D109 139bp); ASEAN HY est. ~460bp (-120bp from D93 580bp; -28bp from D109 488bp); trim CDS protection; remove fully at confirmed mine clearance + physical Hormuz reopening (~115-120bp target); tail 8% (deal collapse spikes to 200-230bp)"
+    "Brent": "Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak) -> $85.42 (Jul 17, +2.55%, Yahoo Finance) -> $88.09 (Jul 18, +5.75%) -> $96.78 (Jul 24, -5.0% from $101.16 intraday high, Yahoo Finance/ICE) -> $91.91 (Jul 27, +0.99%, Yahoo Finance) -> $86.72 (Jul 28, -7.81%, Yahoo Finance BZ=F) -> $86.81 (Jul 29, -13.78% from peak, Yahoo Finance BZ=F) as US-Iran pause extends to a 5th consecutive day and Omani Hormuz talks continue. Brent working range lowered to $75-90 base; $80-100 stress; $100-130+ tail.",
+    "JKM LNG": "Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $19.75 est. (Jul 8) -> $18.75/MMBtu (Jul 13, LNGPriceIndex.com) -> $19.93/MMBtu (Jul 16, Trading Economics) -> $22.00/MMBtu (Jul 24, Trading Economics, +0.80%) as 13 nights of US strikes and sustained Hormuz closure tightened Asian LNG balances. Qatar force majeure extended to mid-September (Reuters, Jul 23). Ras Laffan restart not before late Aug 2026.",
+    "TTF Gas": "Pre-shock ~$34/MWh -> 49.97/MWh (Day 33) -> 43.20/MWh est. (Jul 8) -> 55.28/MWh (Jul 16, +1.4% vs Jul 15, Trading Economics/ICE) -> 59.03/MWh (Jul 17, +7.51%) -> 63.58/MWh (Jul 24, +2.71% vs Jul 23, MacroMicro) -> 58.70/MWh (Jul 27, -6.1% from Jul 24, Yahoo Finance) -> 56.50/MWh (Jul 28, -8.72% from Jul 27, Yahoo Finance TTF=F) as US-Iran pause extends to 5th day and gas demand eases. Still elevated on persistent LNG supply disruption from Qatar force majeure.",
+    "Credit": "iTraxx Asia IG est. ~130bp (Jul 28, -8bp from Jul 27); ASEAN HY est. ~465bp (-13bp) as US-Iran strike pause extends to 5th consecutive day and Omani diplomatic talks continue, further easing Asian risk sentiment. Tail 40% (reduced from 45% on Omani progress). Pause fragile with ongoing drone attacks on Saudi and Houthi Red Sea escalation."
   },
   "runbookState": {
-    "brent": "$75.04 (Jun 25, TradingEconomics confirmed; +1.76%; -24% from Jun 3 $98.57 peak; Goldman Q4 $80)",
-    "jkm": "$18.86/MMBtu (last confirmed Jun 12, TradingEconomics; carried - Ras Laffan restart not before late Aug 2026)",
-    "ttf": "€41.54/MWh est. (Jun 26 carried; roadmap de-escalation continued)"
+    "brent": "$86.81 (2026-07-29, Yahoo Finance BZ=F; -13.78%)",
+    "jkm": "$22.00/MMBtu (Jul 24, Trading Economics; +0.80%; 13 nights of US strikes and sustained Hormuz closure tighten Asian LNG balances; Qatar force majeure extended to mid-September)",
+    "ttf": "56.50 EUR/MWh (2026-07-28, Yahoo Finance TTF=F; -8.72%)"
   },
-  "timelineEntry": "- **D116**: Jun 26 — Brent $75.04 carried (Jun 25 confirmed); roadmap holds; IAEA access disputed; mine-clearing Day 7 of 30-day mandate; Goldman Q4 $80; tail 8%."
+  "timelineEntry": "- **D147**: Jul 29 - US pause extends to 5th day; Omani Hormuz talks ongoing; Saudi intercepts Iraq-launched drones; Brent $86.81 (-13.78% from peak); tail 40%.",
+  "commercialInputs": {
+    "lng-origin-value": {
+      "label": "Qatar origin value",
+      "commodity": "lng",
+      "role": "origin-value",
+      "evidenceIds": [],
+      "requiredForCalculation": true,
+      "unit": "USD/MMBtu",
+      "status": "unavailable",
+      "source": "",
+      "sourceDate": "",
+      "maxAgeDays": 1,
+      "cadence": "daily",
+      "missingReason": "No verified public cargo purchase value is available."
+    },
+    "lng-jkm": {
+      "label": "JKM",
+      "commodity": "lng",
+      "role": "destination-value",
+      "evidenceIds": [
+        "e-jkm"
+      ],
+      "requiredForCalculation": true,
+      "value": 22,
+      "unit": "USD/MMBtu",
+      "status": "carried",
+      "source": "Reuters",
+      "sourceDate": "2026-07-24",
+      "maxAgeDays": 3,
+      "cadence": "daily",
+      "carryReason": "Reuters reported the latest approved Asian spot LNG assessment at 22 USD/MMBtu for September delivery on 2026-07-24."
+    },
+    "lng-ttf": {
+      "label": "Dutch TTF",
+      "commodity": "lng",
+      "role": "destination-value",
+      "evidenceIds": [
+        "e-ttf"
+      ],
+      "requiredForCalculation": false,
+      "value": 56.5,
+      "unit": "EUR/MWh",
+      "status": "confirmed",
+      "source": "Yahoo Finance TTF=F",
+      "sourceDate": "2026-07-28",
+      "maxAgeDays": 3,
+      "cadence": "daily",
+      "observedAt": "2026-07-28T15:21:15.000Z"
+    },
+    "fx-eurusd": {
+      "label": "EUR/USD",
+      "commodity": "lng",
+      "role": "fx",
+      "value": 1.1387,
+      "unit": "USD/EUR",
+      "status": "confirmed",
+      "source": "Yahoo Finance EURUSD=X",
+      "sourceDate": "2026-07-29",
+      "observedAt": "2026-07-29T00:14:21.000Z",
+      "maxAgeDays": 3,
+      "cadence": "daily",
+      "evidenceIds": [
+        "e-eurusd"
+      ],
+      "requiredForCalculation": false
+    },
+    "lng-freight": {
+      "label": "LNG freight",
+      "commodity": "lng",
+      "role": "freight",
+      "evidenceIds": [],
+      "requiredForCalculation": true,
+      "unit": "USD/MMBtu",
+      "status": "unavailable",
+      "source": "",
+      "sourceDate": "",
+      "maxAgeDays": 1,
+      "cadence": "daily",
+      "missingReason": "No current route-normalised LNG freight observation is approved."
+    },
+    "lng-war-risk": {
+      "label": "LNG war-risk insurance",
+      "commodity": "lng",
+      "role": "insurance",
+      "evidenceIds": [],
+      "requiredForCalculation": true,
+      "unit": "USD/MMBtu",
+      "status": "unavailable",
+      "source": "",
+      "sourceDate": "",
+      "maxAgeDays": 1,
+      "cadence": "daily",
+      "missingReason": "No current cargo-normalised war-risk premium is approved."
+    },
+    "oil-brent": {
+      "label": "Brent",
+      "commodity": "crude-oil",
+      "role": "destination-value",
+      "value": 86.81,
+      "unit": "USD/bbl",
+      "status": "confirmed",
+      "source": "Yahoo Finance BZ=F",
+      "sourceDate": "2026-07-29",
+      "observedAt": "2026-07-29T00:04:52.000Z",
+      "maxAgeDays": 3,
+      "cadence": "daily",
+      "evidenceIds": [
+        "e-brent"
+      ],
+      "requiredForCalculation": false
+    },
+    "oil-wti": {
+      "label": "WTI",
+      "commodity": "crude-oil",
+      "role": "origin-value",
+      "value": 82.1,
+      "unit": "USD/bbl",
+      "status": "confirmed",
+      "source": "Yahoo Finance CL=F",
+      "sourceDate": "2026-07-29",
+      "observedAt": "2026-07-29T00:05:09.000Z",
+      "maxAgeDays": 3,
+      "cadence": "daily",
+      "evidenceIds": [
+        "e-wti"
+      ],
+      "requiredForCalculation": true
+    },
+    "oil-dubai-oman": {
+      "label": "Dubai/Oman destination reference",
+      "commodity": "crude-oil",
+      "role": "destination-value",
+      "evidenceIds": [
+        "e-gme-oman"
+      ],
+      "requiredForCalculation": true,
+      "unit": "USD/bbl",
+      "status": "confirmed",
+      "source": "Gulf Mercantile Exchange",
+      "sourceDate": "2026-07-27",
+      "maxAgeDays": 3,
+      "cadence": "daily",
+      "value": 82.41
+    },
+    "oil-vlcc-freight": {
+      "label": "VLCC freight",
+      "commodity": "crude-oil",
+      "role": "freight",
+      "evidenceIds": [],
+      "requiredForCalculation": true,
+      "unit": "USD/bbl",
+      "status": "unavailable",
+      "source": "",
+      "sourceDate": "",
+      "maxAgeDays": 1,
+      "cadence": "daily",
+      "missingReason": "No current route-normalised VLCC freight observation is approved."
+    },
+    "oil-war-risk": {
+      "label": "Crude war-risk insurance",
+      "commodity": "crude-oil",
+      "role": "insurance",
+      "evidenceIds": [],
+      "requiredForCalculation": true,
+      "unit": "USD/bbl",
+      "status": "unavailable",
+      "source": "",
+      "sourceDate": "",
+      "maxAgeDays": 1,
+      "cadence": "daily",
+      "missingReason": "No current cargo-normalised war-risk premium is approved."
+    },
+    "usd-sofr": {
+      "label": "SOFR",
+      "commodity": "crude-oil",
+      "role": "financing",
+      "value": 3.64,
+      "unit": "%",
+      "status": "confirmed",
+      "source": "Federal Reserve Bank of New York",
+      "sourceDate": "2026-07-27",
+      "maxAgeDays": 7,
+      "cadence": "daily",
+      "evidenceIds": [
+        "e-sofr"
+      ],
+      "requiredForCalculation": false,
+      "observedAt": "2026-07-27T00:00:00Z"
+    }
+  }
 }

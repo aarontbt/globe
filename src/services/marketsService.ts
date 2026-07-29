@@ -27,14 +27,12 @@ function writeMarketCache(data: MarketQuote[]) {
 const SYMBOLS: Array<Pick<MarketQuote, "symbol" | "name" | "unit">> = [
   { symbol: "BZ=F", name: "Brent Crude", unit: "/barrel" },
   { symbol: "NG=F", name: "LNG",         unit: "/MMBtu" },
-  { symbol: "GC=F", name: "Gold",        unit: "/oz" },
 ];
 
 // Stooq symbol mapping (free, no API key, CSV endpoint)
 const STOOQ_SYMBOLS: Record<string, string> = {
   "BZ=F": "bz.f",
   "NG=F": "ng.f",
-  "GC=F": "gc.f",
 };
 
 async function fetchQuoteStooq(

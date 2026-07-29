@@ -1,6 +1,6 @@
 # ASEAN Maritime Intelligence Globe
 
-Interactive deck.gl globe for ASEAN trade, maritime risk, and banker-style market briefing workflows. The app combines curated static scenario data with a small set of live market, news, social, satellite, and prediction-market feeds exposed through browser-safe proxies.
+Interactive deck.gl globe for tracing Iran-Hormuz disruption through LNG supply, transport, downstream demand, and public counterparty relationships. The app combines curated public-intelligence scenarios with live market, news, social, satellite, and prediction-market feeds exposed through browser-safe proxies.
 
 ## What It Does
 
@@ -11,13 +11,9 @@ Interactive deck.gl globe for ASEAN trade, maritime risk, and banker-style marke
   - live Polymarket event signals
   - live social signal events from GDELT, Reddit, and Bluesky
 - Shows live market and news widgets alongside the globe
-- Includes a full-screen `MARKET BRIEF` overlay with six banker-facing tabs:
-  - Conflict Status
-  - Cross-Asset
-  - Client Exposure
-  - Trade Ideas
-  - Sanctions
-  - Client Brief
+- Opens a full-screen `SIGNAL → EXPOSURE` view with two LNG traces and one crude-oil trace
+- Provides primary `Signals`, `Market Transmission`, `Counterparties`, `Actions`, and `Evidence` views
+- Highlights only the selected trace route across LNG production, carrier, terminal, market, and buyer nodes
 - Adds a bottom scenario/volatility panel with live CBOE overlays for `OVX` and `VXEEM`
 
 ## Stack
@@ -75,6 +71,7 @@ Two data models coexist in the repo:
 Files under [`src/data`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data) drive the banker overlay and scenario storytelling. The most important daily-maintained files are:
 
 - [`src/data/banker-cross-asset.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/banker-cross-asset.json)
+- [`src/data/exposure-traces.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/exposure-traces.json)
 - [`src/data/banker-conflict.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/banker-conflict.json)
 - [`src/data/banker-trade-ideas.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/banker-trade-ideas.json)
 - [`src/data/banker-sanctions.json`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/data/banker-sanctions.json)
@@ -100,6 +97,7 @@ Hooks and services under [`src/hooks`](/Users/xenohawk/Downloads/rainmarket-demo
 - Animated vessels
 - Event rings and dots
 - Oil supply chain
+- Selected LNG exposure trace
 - Optional crisis vessels
 - Optional satellites
 - Country labels
@@ -180,14 +178,16 @@ Notable proxied paths:
 
 ## Validation
 
-For data-only updates, the minimum safe check is:
+For a reviewed daily refresh:
 
 ```bash
-node -e "JSON.parse(require('fs').readFileSync('src/data/banker-cross-asset.json','utf8'))"
-npm run build
+bun run daily:fetch -- --dry-run
+bun run daily:refresh
+# Complete and review manual LNG/physical inputs in src/data/daily-state.json
+bun run daily:update
 ```
 
-For full daily refreshes, follow [`docs/daily-update-runbook.md`](/Users/xenohawk/Downloads/rainmarket-demo/globe/docs/daily-update-runbook.md).
+`daily:update` applies, mirrors, validates, and builds the reviewed state without silently refetching. Full field and carry-forward rules are in [`docs/daily-update-runbook.md`](/Users/xenohawk/Downloads/rainmarket-demo/globe/docs/daily-update-runbook.md).
 
 ## Embedding
 
