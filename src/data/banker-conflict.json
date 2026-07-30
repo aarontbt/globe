@@ -1,49 +1,49 @@
 {
   "escalationLevel": 5,
   "escalationLabel": "Severe",
-  "deltaVsYesterday": 0,
+  "deltaVsYesterday": 1,
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "US-Iran pause enters fifth day",
-      "delta": "Neutral: The US-Iran pause extended through Jul 29 for a fifth consecutive day. Iran confirmed continued Omani mediation in Tehran but denied direct US talks. No Hormuz framework has been announced. Sources: CBS/AP, CNN.",
-      "direction": "neutral"
+      "summary": "Iran missile attack breaks 5-day pause",
+      "delta": "Up: Iran's IRGC fired ballistic missiles at a US base in Jordan in an attempted surprise attack Jul 28, ending the 5-day pause. CENTCOM says all missiles intercepted, no casualties. Sources: CENTCOM, CNBC, Al Jazeera, Jul 29.",
+      "direction": "up"
     },
     {
       "id": "e2",
-      "summary": "Saudi intercepts drones; Houthis active",
-      "delta": "Up: Saudi Arabia intercepted Iraq-launched drones targeting petroleum facilities and Riyadh for a second consecutive day. Houthis separately claimed attacks on Saudi oil infrastructure at Yanbu and Jizan, sustaining Red Sea route risk. Sources: France 24/AFP, Jul 27; NHK, Jul 27.",
+      "summary": "US, Saudi strike Iran proxies in Iraq",
+      "delta": "Up: US and Saudi aircraft struck Iran-backed militia sites across seven Iraqi provinces, retaliating for 30+ drone attacks in 72 hours; 20+ militia fighters reported killed. First announced Saudi offensive strikes of the war. Sources: NPR, PBS, Jul 29.",
       "direction": "up"
     },
     {
       "id": "e3",
-      "summary": "Brent recedes further on diplomacy",
-      "delta": "Down: Brent was $86.81, down 13.78% from its intraday peak (Yahoo Finance BZ=F, Jul 29), as the pause and Omani talks further reduced the risk premium. TTF eased to 56.50 EUR/MWh as European gas priced de-escalation.",
-      "direction": "down"
+      "summary": "Trump vows retaliation as Brent surges",
+      "delta": "Up: Trump told Fox News Iran 'is going to get a beating,' vowing to hit Iran hard. Brent traded as high as $90.74 intraday Wednesday before easing to $89.46, up from Jul 29's $86.81 close (Yahoo Finance BZ=F, Jul 30; CNBC). Sources: CNBC, Jul 29.",
+      "direction": "up"
     }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 25,
-      "description": "The Omani-led diplomatic channel gains further traction as the mutual pause extends past 4 days. Iran-US indirect talks via Oman produce a framework for phased Hormuz reopening and restoration of the June MOU ceasefire. Brent settles toward $75-85/bbl as risk premium deflates materially. Probability raised to 25% reflecting extended pause, constructive Omani dialogue, and Trump's public engagement signal.",
+      "probability": 10,
+      "description": "The Omani-led diplomatic channel resumes traction after this shock is absorbed without further widening. Indirect Iran-US contact via Oman eventually produces a framework for phased Hormuz reopening. Brent settles toward $80-90/bbl as the risk premium partially deflates. Probability cut from 25% to 10% given the pause has now broken with a direct Iranian attack on US forces and broadened US-Saudi retaliation.",
       "oilImpact": "+$10/bbl",
       "lngImpact": "+15%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 35,
-      "description": "Pause collapses after talks fail to make progress on core issues (Hormuz control, nuclear program, blockade conditions). US resumes intermittent strikes; Iran retaliates at a constrained tempo. Hormuz remains constrained with limited tanker transits. Brent trades $80-100/bbl, TTF stays elevated. Probability unchanged at 35% given hawkish rhetoric from both sides and ongoing drone/missile activity against Saudi.",
+      "probability": 30,
+      "description": "The current retaliatory exchange stays roughly contained to proxy targets (Iraq militias) rather than direct strikes on Iranian soil or Saudi energy infrastructure. Hormuz remains constrained with minimal tanker transits. Brent trades $90-110/bbl, TTF stays elevated. Probability held near prior level at 30% given the exchange has so far avoided direct Iran-Saudi energy infrastructure hits.",
       "oilImpact": "+$30/bbl",
       "lngImpact": "+60%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 40,
-      "description": "Diplomacy fails outright and the pause breaks down. US strikes resume at scale, potentially targeting nuclear sites. Iran escalates with full-scale offensive ops. Kuwait water infrastructure already damaged; GCC states face sustained attacks. Brent spikes $100-130+/bbl, JKM above $30/MMBtu. Probability reduced from 45% to 40% reflecting the extended pause and positive Omani diplomatic signals, but still elevated given unresolved conflict drivers.",
+      "probability": 60,
+      "description": "The pause has broken and US strikes resume at scale, potentially targeting nuclear sites, with Iran escalating to full-scale offensive operations; Saudi Arabia's first offensive strikes convert it from target to active belligerent, raising the risk of direct retaliation against Saudi energy infrastructure. Brent spikes $100-140+/bbl, JKM above $30/MMBtu. Probability raised from 40% to 60% reflecting the collapsed pause, Iran's direct attack on US forces, and Saudi Arabia's entry as a combatant.",
       "oilImpact": "+$60/bbl",
       "lngImpact": "+130%"
     }

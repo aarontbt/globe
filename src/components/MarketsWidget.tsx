@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "JUL 29: US pause extends to 5th day — Omani Hormuz talks ongoing; Saudi intercepts Iraq-launched drones; Brent $86.81 (-13.78% from peak)";
+const TOP_ALERT = "JUL 30: Pause breaks - Iran missile attack on US Jordan base intercepted; US/Saudi retaliate in Iraq, first Saudi offensive strikes of war; Trump vows 'beating'; Brent $89.46, up from $86.81 close";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
