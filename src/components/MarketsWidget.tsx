@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "JUL 30: Pause breaks - Iran missile attack on US Jordan base intercepted; US/Saudi retaliate in Iraq, first Saudi offensive strikes of war; Trump vows 'beating'; Brent $89.46, up from $86.81 close";
+const TOP_ALERT = "JUL 31: US hits dozens of IRGC targets; Iran launches another barrage at Jordan and Kuwait; Hormuz weekly traffic halves; Brent $88.00; tail 70%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

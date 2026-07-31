@@ -8,13 +8,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-07-30 (D148) |
-| **Crisis level** | 5 - Severe (Jul 30: US-Iran pause breaks after 5 days - Iran's IRGC fired ballistic missiles at a US base in Jordan in an attempted surprise attack (~5:45pm ET Jul 28); CENTCOM confirmed all missiles intercepted, no casualties or damage (CNBC/Al Jazeera, Jul 29). US and Saudi aircraft retaliated with strikes on Iran-backed militia logistics and weapons sites across seven Iraqi provinces, the first announced Saudi participation in offensive strikes of the war (NPR/PBS, Jul 29); Iraqi sources report 20+ Popular Mobilization Forces fighters killed. Trump told Fox News Iran 'is going to get a beating.' Brent $89.46, up from Jul 29's $86.81 close after trading as high as $90.74 intraday Wednesday (Yahoo Finance BZ=F, CNBC); Hormuz remains effectively closed to commercial tanker traffic with zero tanker crossings Jul 27 (Windward); tail raised to 60%) |
-| **Brent** | $89.46 (2026-07-30, Yahoo Finance BZ=F; -7.56%) |
-| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $21.43/MMBtu, Trading Economics, Jul 29; Qatar force majeure extended to mid-September) |
-| **TTF** | 60.35 EUR/MWh (2026-07-29, Yahoo Finance TTF=F; -5.07%) |
+| **Last updated** | 2026-07-31 (D149) |
+| **Crisis level** | 5 - Severe (Jul 31: Direct US-Iran exchanges widen - US forces struck dozens of IRGC command, missile, drone, coastal-surveillance and defence targets in a two-hour heavy wave after Iran attacked a US base in Jordan. Iran then launched another barrage: Jordan intercepted five missiles for a second consecutive day, while a strike on a Chinese company's building in Kuwait killed one worker; Iranian media reported three killed and two wounded by US strikes on Qeshm Island (AP, Jul 30). Hormuz traffic fell from 82 ships in Jul 13-19 to 39 in Jul 20-26, according to Lloyd's List Intelligence cited by AP. Brent $88.00 (-0.41%, Yahoo Finance BZ=F, Jul 31); tail raised to 70%.) |
+| **Brent** | $88.00 (2026-07-31, Yahoo Finance BZ=F; -0.41%) |
+| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $21.38/MMBtu, Trading Economics, Jul 30; Qatar force majeure extended to mid-September) |
+| **TTF** | 60.49 EUR/MWh (2026-07-29, Yahoo Finance TTF=F; +3.83%) |
 | **Exposure trace** | Reviewed evidence confirms Qatar force majeure remains in effect; the latest reviewed LNG transit observation is dated July 18, while current route-cost data remains unavailable. |
-| **Evidence audit** | 15 checked · 12 verified · 3 carried · 0 unsupported · PASS |
+| **Evidence audit** | 15 checked · 11 verified · 4 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
 ---
@@ -500,10 +500,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak) -> $86.81 (Jul 29, -13.78% from peak, Yahoo Finance BZ=F) as the US-Iran pause held for a 5th day -> $89.46 (Jul 30, Yahoo Finance BZ=F), up from Jul 29's close, after Iran's missile attack on a US base in Jordan broke the pause and Trump vowed retaliation; Brent traded as high as $90.74 intraday Wednesday (CNBC). Working range raised to $80-95 base; $90-110 stress; $110-140+ tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $19.93/MMBtu (Jul 16, Trading Economics) -> $22.00/MMBtu (Jul 24, Trading Economics/Reuters Sept-delivery assessment, +0.80%) as 13 nights of US strikes and sustained Hormuz closure tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $21.43/MMBtu (Trading Economics, Jul 29). Qatar force majeure extended to mid-September (Reuters, Jul 23; AGBI, confirmed into a fourth month). Ras Laffan restart not before late Aug 2026.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, +2.71% vs Jul 23, MacroMicro) -> 56.50/MWh (Jul 28, -8.72% from Jul 27, Yahoo Finance TTF=F) as the pause held -> 60.35/MWh (Jul 29, +6.8% vs Jul 28, Yahoo Finance TTF=F) as the pause broke and the risk premium returned. Still elevated on persistent LNG supply disruption from Qatar force majeure.
-- **Credit**: iTraxx Asia IG est. ~145bp (Jul 30, +7bp); ASEAN HY est. ~492bp (+14bp) as the US-Iran pause broke after Iran's missile attack on US forces in Jordan and Trump vowed retaliation, reversing prior de-escalation in Asian risk sentiment. Tail raised to 60% (from 40%) on the collapsed pause and Saudi Arabia's entry as an active belligerent.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak) -> $89.46 (Jul 30, Yahoo Finance BZ=F) after the five-day pause broke -> $88.00 (Jul 31, -0.41%, Yahoo Finance BZ=F) as direct US-Iran exchanges widened. Working range remains $80-95 base; $90-110 stress; $110-140+ tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $19.93/MMBtu (Jul 16, Trading Economics) -> $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $21.38/MMBtu (Trading Economics, Jul 30, -0.26%). Qatar force majeure remains extended to mid-September (Reuters, Jul 23).
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, +2.71% vs Jul 23, MacroMicro) -> 56.50/MWh (Jul 28, -8.72% from Jul 27, Yahoo Finance TTF=F) during the pause -> 60.49/MWh (Jul 29, +3.83%, Yahoo Finance TTF=F) after the pause broke. The marker remains elevated on persistent Qatar LNG disruption.
+- **Credit**: iTraxx Asia IG est. ~145bp (Jul 31, +7bp); ASEAN HY est. ~492bp (+14bp) as direct US-Iran attacks widened to IRGC sites, Jordan and Kuwait. Tail raised to 70% from 60% while Hormuz traffic remains at wartime lows.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

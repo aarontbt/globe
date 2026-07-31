@@ -81,6 +81,7 @@ else {
 
 const commodities = readJson(PATHS.commodities);
 if (commodities.asOf !== state.asOf) fail("commodities-impact.asOf does not match daily-state.asOf");
+if (commodities.day !== state.day) fail("commodities-impact.day does not match daily-state.day");
 if (commodities.marketContext !== state.marketContext) fail("commodities-impact.marketContext is out of sync");
 for (const category of commodities.categories) {
   for (const asset of category.assets) {

@@ -98,6 +98,7 @@ function applyCommodities() {
   const before = readText(PATHS.commodities);
   const data = JSON.parse(before);
   data.asOf = state.asOf;
+  data.day = state.day;
   data.scenario = state.commodityScenario;
   data.marketContext = state.marketContext;
   patchAssetCollections(data.categories, state.commodities);

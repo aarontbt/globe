@@ -5,6 +5,7 @@ import { useStaticJson } from "../hooks/useStaticJson";
 
 const EMPTY_COMMODITIES: CommoditiesImpactData = {
   asOf: "",
+  day: "",
   scenario: "",
   marketContext: "",
   categories: [],
@@ -187,7 +188,7 @@ export default function CommoditiesImpactPanel() {
             HORMUZ CRISIS — SUPPLY CHAIN IMPACT
           </div>
           <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>
-            Day 26 · as of {data.asOf ? data.asOf.slice(0, 10) : "Loading"}
+            {data.day || "Loading"} · as of {data.asOf ? data.asOf.slice(0, 10) : "Loading"}
           </div>
         </div>
       </div>

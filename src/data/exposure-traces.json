@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-07-30T00:00:00Z",
-  "day": "D148",
+  "asOf": "2026-07-31T00:00:00Z",
+  "day": "D149",
   "headline": "Reviewed evidence confirms Qatar force majeure remains in effect; the latest reviewed LNG transit observation is dated July 18, while current route-cost data remains unavailable.",
   "entities": [
     {
@@ -133,12 +133,12 @@
       "publisher": "Kpler",
       "url": "https://www.kpler.com/blog/no-lng-tankers-cross-strait-of-hormuz-since-july-11-amid-escalating-us-iran-conflict",
       "publishedAt": "2026-07-18",
-      "lastChecked": "2026-07-29",
+      "lastChecked": "2026-07-31",
       "kind": "event",
       "cadence": "daily",
       "maxAgeDays": 1,
       "status": "carried",
-      "note": "Observation remains the latest reviewed public LNG-transit count; refresh before treating it as current."
+      "note": "Firecrawl rechecked the Kpler article; the July 18 observation remains the latest reviewed public LNG-specific transit count."
     },
     {
       "id": "e-jkm",
@@ -146,12 +146,12 @@
       "publisher": "Reuters",
       "url": "https://www.reuters.com/business/energy/asia-lng-hits-four-month-high-fears-wider-mideast-shipping-disruption-2026-07-24/",
       "publishedAt": "2026-07-24",
-      "lastChecked": "2026-07-29",
+      "lastChecked": "2026-07-31",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "carried",
-      "note": "Reuters reported 22 USD/MMBtu for September delivery on July 24; retained for commercial lineage until a newer approved spot assessment is available."
+      "note": "Firecrawl rechecked the Reuters article; 22 USD/MMBtu for September delivery on July 24 remains the latest approved spot assessment."
     },
     {
       "id": "e-ttf",
@@ -159,7 +159,7 @@
       "publisher": "MacroMicro",
       "url": "https://en.macromicro.me/charts/56759/dutch-ttf-natural-gas-futures",
       "publishedAt": "2026-07-24",
-      "lastChecked": "2026-07-30",
+      "lastChecked": "2026-07-31",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
@@ -220,7 +220,7 @@
       "publisher": "Yahoo Finance",
       "url": "https://finance.yahoo.com/quote/BZ=F/",
       "publishedAt": "2026-07-30",
-      "lastChecked": "2026-07-30",
+      "lastChecked": "2026-07-31",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
@@ -233,7 +233,7 @@
       "publisher": "Yahoo Finance",
       "url": "https://finance.yahoo.com/quote/CL=F/",
       "publishedAt": "2026-07-30",
-      "lastChecked": "2026-07-30",
+      "lastChecked": "2026-07-31",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
@@ -246,7 +246,7 @@
       "publisher": "Yahoo Finance",
       "url": "https://finance.yahoo.com/quote/EURUSD=X/",
       "publishedAt": "2026-07-30",
-      "lastChecked": "2026-07-30",
+      "lastChecked": "2026-07-31",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
@@ -259,7 +259,7 @@
       "publisher": "Federal Reserve Bank of New York",
       "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
       "publishedAt": "2026-07-28",
-      "lastChecked": "2026-07-30",
+      "lastChecked": "2026-07-31",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 7,
@@ -272,7 +272,7 @@
       "publisher": "Trading Economics",
       "url": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
       "publishedAt": "2026-07-29",
-      "lastChecked": "2026-07-30",
+      "lastChecked": "2026-07-31",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
@@ -285,12 +285,12 @@
       "publisher": "Windward",
       "url": "https://windward.ai/blog/strait-of-hormuz-and-bab-el-mandeb-effectively-closed/",
       "publishedAt": "2026-07-28",
-      "lastChecked": "2026-07-30",
+      "lastChecked": "2026-07-31",
       "kind": "event",
       "cadence": "daily",
       "maxAgeDays": 1,
       "status": "carried",
-      "note": "Windward reported 6 total transits and zero tanker crossings on July 27; does not establish an LNG-specific count."
+      "note": "Firecrawl rechecked Windward's July 28 article; the July 27 count remains carried and does not establish an LNG-specific count."
     },
     {
       "id": "e-gme-oman",
@@ -298,12 +298,12 @@
       "publisher": "Gulf Mercantile Exchange",
       "url": "https://www.gulfmerc.com/",
       "publishedAt": "2026-07-27",
-      "lastChecked": "2026-07-29",
+      "lastChecked": "2026-07-31",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
-      "status": "confirmed",
-      "note": "Official OQD daily marker quoted in U.S. dollars per barrel."
+      "status": "carried",
+      "note": "The reviewed GME page did not expose a newer dated marker; the July 27 observation is retained only as carried evidence and excluded from calculations."
     }
   ],
   "commercialInputs": [
@@ -349,26 +349,26 @@
         "e-ttf"
       ],
       "requiredForCalculation": false,
-      "value": 60.35,
+      "value": 60.49,
       "unit": "EUR/MWh",
       "status": "confirmed",
       "source": "Yahoo Finance TTF=F",
       "sourceDate": "2026-07-29",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "observedAt": "2026-07-29T16:14:55.000Z"
+      "observedAt": "2026-07-29T15:06:50.000Z"
     },
     {
       "inputId": "fx-eurusd",
       "label": "EUR/USD",
       "commodity": "lng",
       "role": "fx",
-      "value": 1.146,
+      "value": 1.1517,
       "unit": "USD/EUR",
       "status": "confirmed",
       "source": "Yahoo Finance EURUSD=X",
-      "sourceDate": "2026-07-30",
-      "observedAt": "2026-07-30T01:21:21.000Z",
+      "sourceDate": "2026-07-31",
+      "observedAt": "2026-07-31T02:19:23.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
@@ -411,12 +411,12 @@
       "label": "Brent",
       "commodity": "crude-oil",
       "role": "destination-value",
-      "value": 89.46,
+      "value": 88,
       "unit": "USD/bbl",
       "status": "confirmed",
       "source": "Yahoo Finance BZ=F",
-      "sourceDate": "2026-07-30",
-      "observedAt": "2026-07-30T01:11:27.000Z",
+      "sourceDate": "2026-07-31",
+      "observedAt": "2026-07-31T01:06:23.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
@@ -429,12 +429,12 @@
       "label": "WTI",
       "commodity": "crude-oil",
       "role": "origin-value",
-      "value": 83.81,
+      "value": 81.89,
       "unit": "USD/bbl",
       "status": "confirmed",
       "source": "Yahoo Finance CL=F",
-      "sourceDate": "2026-07-30",
-      "observedAt": "2026-07-30T01:11:51.000Z",
+      "sourceDate": "2026-07-31",
+      "observedAt": "2026-07-31T02:09:24.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
@@ -447,17 +447,15 @@
       "label": "Dubai/Oman destination reference",
       "commodity": "crude-oil",
       "role": "destination-value",
-      "evidenceIds": [
-        "e-gme-oman"
-      ],
+      "evidenceIds": [],
       "requiredForCalculation": true,
       "unit": "USD/bbl",
-      "status": "confirmed",
-      "source": "Gulf Mercantile Exchange",
-      "sourceDate": "2026-07-27",
+      "status": "unavailable",
+      "source": "",
+      "sourceDate": "",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "value": 82.41
+      "missingReason": "No current dated GME Oman marker was exposed by the reviewed public page."
     },
     {
       "inputId": "oil-vlcc-freight",
@@ -498,14 +496,14 @@
       "unit": "%",
       "status": "confirmed",
       "source": "Federal Reserve Bank of New York",
-      "sourceDate": "2026-07-28",
+      "sourceDate": "2026-07-29",
       "maxAgeDays": 7,
       "cadence": "daily",
       "evidenceIds": [
         "e-sofr"
       ],
       "requiredForCalculation": false,
-      "observedAt": "2026-07-28T00:00:00Z"
+      "observedAt": "2026-07-29T00:00:00Z"
     }
   ],
   "traces": [
@@ -616,11 +614,11 @@
             {
               "inputId": "jkm-cfd-reference",
               "label": "JKM-linked market reference",
-              "value": 21.43,
+              "value": 21.38,
               "unit": "USD/MMBtu",
               "status": "confirmed",
               "source": "Trading Economics",
-              "sourceDate": "2026-07-29",
+              "sourceDate": "2026-07-30",
               "maxAgeDays": 3,
               "cadence": "daily"
             }
@@ -714,7 +712,7 @@
               "lng-origin-value"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-07-30T00:00:00Z",
+            "calculatedAt": "2026-07-31T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -732,7 +730,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-07-30T00:00:00Z",
+            "calculatedAt": "2026-07-31T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -752,7 +750,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-07-30T00:00:00Z",
+            "calculatedAt": "2026-07-31T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -961,14 +959,14 @@
             {
               "inputId": "ttf",
               "label": "Dutch TTF",
-              "value": 60.35,
+              "value": 60.49,
               "unit": "EUR/MWh",
               "status": "confirmed",
               "source": "Yahoo Finance TTF=F",
               "sourceDate": "2026-07-29",
               "maxAgeDays": 3,
               "cadence": "daily",
-              "observedAt": "2026-07-29T16:14:55.000Z"
+              "observedAt": "2026-07-29T15:06:50.000Z"
             }
           ],
           "evidenceIds": [
@@ -1061,7 +1059,7 @@
               "lng-origin-value"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-07-30T00:00:00Z",
+            "calculatedAt": "2026-07-31T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -1079,7 +1077,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-07-30T00:00:00Z",
+            "calculatedAt": "2026-07-31T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -1099,7 +1097,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-07-30T00:00:00Z",
+            "calculatedAt": "2026-07-31T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -1312,13 +1310,13 @@
             {
               "inputId": "oman-marker",
               "label": "Oman crude marker",
-              "value": 82.41,
               "unit": "USD/bbl",
-              "status": "confirmed",
-              "source": "Gulf Mercantile Exchange",
-              "sourceDate": "2026-07-27",
+              "status": "unavailable",
+              "source": "",
+              "sourceDate": "",
               "maxAgeDays": 3,
-              "cadence": "daily"
+              "cadence": "daily",
+              "missingReason": "No current dated GME Oman marker was exposed by the reviewed public page."
             }
           ],
           "evidenceIds": [
@@ -1386,9 +1384,10 @@
               "oil-dubai-oman"
             ],
             "unit": "USD/bbl",
-            "calculatedAt": "2026-07-30T00:00:00Z",
+            "calculatedAt": "2026-07-31T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
+              "oil-dubai-oman",
               "oil-vlcc-freight",
               "oil-war-risk"
             ]
@@ -1402,9 +1401,10 @@
               "oil-war-risk"
             ],
             "unit": "USD/bbl",
-            "calculatedAt": "2026-07-30T00:00:00Z",
+            "calculatedAt": "2026-07-31T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
+              "oil-dubai-oman",
               "oil-vlcc-freight",
               "oil-war-risk"
             ]
@@ -1420,9 +1420,10 @@
               "oil-war-risk"
             ],
             "unit": "USD/bbl",
-            "calculatedAt": "2026-07-30T00:00:00Z",
+            "calculatedAt": "2026-07-31T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
+              "oil-dubai-oman",
               "oil-vlcc-freight",
               "oil-war-risk"
             ]
@@ -1431,6 +1432,7 @@
         "dataStatus": "partial",
         "residualStatus": "insufficient-verified-data",
         "missingInputIds": [
+          "oil-dubai-oman",
           "oil-vlcc-freight",
           "oil-war-risk"
         ],

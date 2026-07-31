@@ -171,6 +171,7 @@ export interface CommodityCategory {
 
 export interface CommoditiesImpactData {
   asOf: string;
+  day: string;
   scenario: string;
   marketContext: string;
   categories: CommodityCategory[];
