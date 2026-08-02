@@ -129,3 +129,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D147**: Jul 29 - US pause extends to 5th day; Omani Hormuz talks ongoing; Saudi intercepts Iraq-launched drones; Brent $86.81 (-13.78% from peak); tail 40%.
 - **D148**: Jul 30 - US-Iran pause breaks after 5 days; Iran missile attack on US Jordan base intercepted; US/Saudi retaliate in Iraq, first Saudi offensive strikes of war; Trump vows 'beating'; Brent $89.46, up from $86.81 close; tail 60%.
 - **D149**: Jul 31 - US and Iran trade fresh barrages; strikes hit IRGC sites, Jordan and Kuwait; Hormuz weekly traffic halves; tail 70%.
+- **D150**: Aug 1 - Iran attacks Kuwait; a tanker is struck near Hormuz; US threatens more strikes; Gulf mediators press for reopening; tail 70%.

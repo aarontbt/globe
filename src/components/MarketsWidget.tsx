@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "JUL 31: US hits dozens of IRGC targets; Iran launches another barrage at Jordan and Kuwait; Hormuz weekly traffic halves; Brent $88.00; tail 70%";
+const TOP_ALERT = "AUG 1: Tanker struck near Hormuz; Iran attacks Kuwait; US threatens more strikes; Brent $90.12; tail 70%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
