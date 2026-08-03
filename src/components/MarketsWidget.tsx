@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 1: Tanker struck near Hormuz; Iran attacks Kuwait; US threatens more strikes; Brent $90.12; tail 70%";
+const TOP_ALERT = "AUG 3: Trump cancels Iran strikes, calls deal 'imminent'; Oman-Iran Hormuz talks reach final stage; Brent -4.9% to $83.61; tail cut to 45%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

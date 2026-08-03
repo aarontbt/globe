@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-08-01T00:00:00Z",
-  "reviewedAt": "2026-08-02T02:07:47Z",
-  "reviewer": "Codex with Firecrawl, web search and direct machine-source verification",
+  "asOf": "2026-08-03T00:00:00Z",
+  "reviewedAt": "2026-08-03T06:10:00Z",
+  "reviewer": "Claude with web search and direct machine-source verification",
   "entries": [
     {
       "evidenceId": "e-qatar-force-majeure",
@@ -104,19 +104,20 @@
     },
     {
       "evidenceId": "e-ttf",
-      "url": "https://en.macromicro.me/charts/56759/dutch-ttf-natural-gas-futures",
-      "canonicalUrl": "https://en.macromicro.me/charts/56759/dutch-ttf-natural-gas-futures",
+      "url": "https://tradingeconomics.com/commodity/eu-natural-gas",
+      "canonicalUrl": "https://tradingeconomics.com/commodity/eu-natural-gas",
       "httpStatus": 200,
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Dutch TTF Natural Gas Futures",
-      "publisher": "MacroMicro",
-      "publishedAt": "2026-07-24",
-      "checkedAt": "2026-07-31T23:59:00Z",
-      "claimSummary": "Machine-refreshed from Yahoo Finance TTF=F; value at 59.07 EUR/MWh on Jul 31.",
+      "title": "EU Natural Gas (Dutch TTF)",
+      "publisher": "Trading Economics",
+      "publishedAt": "2026-08-03",
+      "checkedAt": "2026-08-03T02:00:00Z",
+      "claimSummary": "Yahoo Finance TTF=F was verified stale at the Jul 31 print; Trading Economics reported TTF at 56.06 EUR/MWh on Aug 3, down 5.09% from the previous day.",
       "extractedFacts": [
-        "Machine-refreshed TTF value: 59.07 EUR/MWh (Yahoo Finance TTF=F, Jul 31)."
+        "EU Gas (Dutch TTF) fell to 56.06 EUR/MWh on 2026-08-03, down 5.09% from the previous day.",
+        "Yahoo Finance TTF=F was checked directly and remained stuck at its Jul 31 print, consistent with the BZ=F feed delay observed the same day."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-demand"
@@ -128,21 +129,21 @@
       "observations": [
         {
           "inputId": "ttf",
-          "value": 59.07,
+          "value": 56.06,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-07-31",
-          "instrument": "CME Dutch TTF Natural Gas",
-          "provider": "Yahoo Finance TTF=F",
-          "observedAt": "2026-07-31T15:21:40.000Z"
+          "sourceDate": "2026-08-03",
+          "instrument": "EU Natural Gas (Dutch TTF)",
+          "provider": "Trading Economics",
+          "observedAt": "2026-08-03T02:00:00.000Z"
         },
         {
           "inputId": "lng-ttf",
-          "value": 59.07,
+          "value": 56.06,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-07-31",
-          "instrument": "CME Dutch TTF Natural Gas",
-          "provider": "Yahoo Finance TTF=F",
-          "observedAt": "2026-07-31T15:21:40.000Z"
+          "sourceDate": "2026-08-03",
+          "instrument": "EU Natural Gas (Dutch TTF)",
+          "provider": "Trading Economics",
+          "observedAt": "2026-08-03T02:00:00.000Z"
         }
       ],
       "supportedCommercialInputIds": [
@@ -276,20 +277,21 @@
     },
     {
       "evidenceId": "e-brent",
-      "url": "https://finance.yahoo.com/quote/BZ=F/",
-      "canonicalUrl": "https://finance.yahoo.com/quote/BZ=F/",
+      "url": "https://www.investing.com/commodities/brent-oil",
+      "canonicalUrl": "https://www.investing.com/commodities/brent-oil",
       "httpStatus": 200,
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Brent Crude Oil Last Day Financial Futures",
-      "publisher": "Yahoo Finance",
-      "publishedAt": "2026-07-30",
-      "checkedAt": "2026-07-31T23:59:00Z",
-      "claimSummary": "Yahoo Finance machine observation for Brent was 90.12 USD/bbl on 2026-07-31.",
+      "title": "Brent Crude Oil Futures Price Today",
+      "publisher": "Investing.com",
+      "publishedAt": "2026-08-03",
+      "checkedAt": "2026-08-03T01:53:11Z",
+      "claimSummary": "Yahoo Finance BZ=F was checked directly and confirmed stale at the Jul 31 print (page explicitly flagged delayed data); Investing.com reported Brent at 83.61 USD/bbl real-time on Aug 3, down 4.91% from a previous close of 87.93.",
       "extractedFacts": [
-        "BZ=F regular market price was 90.12 USD/bbl.",
-        "The machine feed reported a +1.99% daily move on 2026-07-31."
+        "Investing.com showed Brent at $83.61/bbl, real-time, down 4.91% ($4.32) from a previous close of $87.93.",
+        "Yahoo Finance BZ=F was checked directly at https://finance.yahoo.com/quote/BZ=F/ and still showed the Jul 31 14:28:19 EDT print ($90.12, +1.22%) with an explicit on-page notice that market data was delayed.",
+        "Cross-checked against Oilprice.com futures page, which showed Brent (Oct 2026 contract) at $83.28, down 5.29%, consistent with the Investing.com reading."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -301,12 +303,12 @@
       "observations": [
         {
           "inputId": "oil-brent",
-          "value": 90.12,
+          "value": 83.61,
           "unit": "USD/bbl",
-          "sourceDate": "2026-07-31",
-          "observedAt": "2026-07-31T18:28:19.000Z",
+          "sourceDate": "2026-08-03",
+          "observedAt": "2026-08-03T01:53:11.000Z",
           "instrument": "Brent Crude Oil Futures",
-          "provider": "Yahoo Finance BZ=F"
+          "provider": "Investing.com"
         }
       ]
     },
@@ -321,10 +323,11 @@
       "title": "WTI Crude Oil Futures",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-07-30",
-      "checkedAt": "2026-07-31T23:59:00Z",
-      "claimSummary": "Yahoo Finance machine observation for WTI was 84.67 USD/bbl on 2026-07-31.",
+      "checkedAt": "2026-08-03T05:36:29Z",
+      "claimSummary": "Yahoo Finance machine observation for WTI was 79.45 USD/bbl on 2026-08-03, down 5.93% as markets priced out Iran/Hormuz risk premium after Trump canceled planned strikes.",
       "extractedFacts": [
-        "CL=F regular market price was 84.67 USD/bbl."
+        "CL=F regular market price was 79.45 USD/bbl, down 5.93% on 2026-08-03.",
+        "Cross-checked against Oilprice.com futures page (Sep 2026 WTI contract, CLU26), which showed $79.50, down 6.11%, consistent with the Yahoo Finance CL=F reading."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -336,10 +339,10 @@
       "observations": [
         {
           "inputId": "oil-wti",
-          "value": 84.67,
+          "value": 79.45,
           "unit": "USD/bbl",
-          "sourceDate": "2026-07-31",
-          "observedAt": "2026-07-31T20:59:59.000Z",
+          "sourceDate": "2026-08-03",
+          "observedAt": "2026-08-03T05:36:29.000Z",
           "instrument": "WTI Crude Oil Futures",
           "provider": "Yahoo Finance CL=F"
         }
@@ -356,10 +359,10 @@
       "title": "EUR/USD",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-07-30",
-      "checkedAt": "2026-07-31T23:59:00Z",
-      "claimSummary": "Yahoo Finance machine observation for EUR/USD was 1.1527 on 2026-07-31.",
+      "checkedAt": "2026-08-03T05:45:55Z",
+      "claimSummary": "Yahoo Finance machine observation for EUR/USD was 1.1539 on 2026-08-03.",
       "extractedFacts": [
-        "EURUSD=X regular market price was 1.1527 USD/EUR."
+        "EURUSD=X regular market price was 1.1539 USD/EUR."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -371,10 +374,10 @@
       "observations": [
         {
           "inputId": "fx-eurusd",
-          "value": 1.1527,
+          "value": 1.1539,
           "unit": "USD/EUR",
-          "sourceDate": "2026-07-31",
-          "observedAt": "2026-07-31T21:29:53.000Z",
+          "sourceDate": "2026-08-03",
+          "observedAt": "2026-08-03T05:45:55.000Z",
           "instrument": "EUR/USD",
           "provider": "Yahoo Finance EURUSD=X"
         }
@@ -391,7 +394,7 @@
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
       "publishedAt": "2026-07-28",
-      "checkedAt": "2026-07-31T23:59:00Z",
+      "checkedAt": "2026-08-03T00:00:00Z",
       "claimSummary": "The New York Fed API reports SOFR at 3.65% effective July 30, 2026.",
       "extractedFacts": [
         "SOFR percent rate was 3.65 with effective date 2026-07-30."
@@ -425,12 +428,13 @@
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-07-29",
-      "checkedAt": "2026-07-31T02:07:00Z",
-      "claimSummary": "The page reports a JKM-linked CFD market reference of 21.38 USD/MMBtu on July 30.",
+      "publishedAt": "2026-07-31",
+      "checkedAt": "2026-08-03T02:10:00Z",
+      "claimSummary": "The page reports a JKM-linked CFD market reference of 21.45 USD/MMBtu on July 31, the latest print available at time of Aug 3 check.",
       "extractedFacts": [
-        "The displayed LNG Japan Korea reference was 21.38 USD/MMBtu on July 30, 2026, down 0.26% from the previous day.",
-        "Trading Economics states that the value is a CFD-derived general market reference and not an official benchmark assessment."
+        "The displayed LNG Japan Korea reference was 21.45 USD/MMBtu on July 31, 2026, up 0.35% from the previous day.",
+        "Trading Economics states that the value is a CFD-derived general market reference and not an official benchmark assessment.",
+        "No fresher print was available as of the Aug 3 check."
       ],
       "supportedHopIds": [
         "qatar-supply:qatar-demand"
@@ -442,9 +446,9 @@
       "observations": [
         {
           "inputId": "jkm-cfd-reference",
-          "value": 21.38,
+          "value": 21.45,
           "unit": "USD/MMBtu",
-          "sourceDate": "2026-07-30",
+          "sourceDate": "2026-07-31",
           "instrument": "LNG Japan Korea CFD market reference",
           "provider": "Trading Economics"
         }

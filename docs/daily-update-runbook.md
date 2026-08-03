@@ -8,12 +8,12 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-08-01 (D150) |
-| **Crisis level** | 5 - Severe (Aug 1: US threats of further strikes coincided with new Iranian drone attacks on Kuwait and a tanker strike near Hormuz; a separate explosion was reported close to another tanker. AP reported no casualties in the incidents, while Axios reported Saudi pressure for de-escalation and talks on reopening the strait. Brent $90.12 (+1.99%, Yahoo Finance BZ=F, Jul 31); tail remains 70%.) |
-| **Brent** | $90.12 (2026-07-31, Yahoo Finance BZ=F; +1.99%) |
-| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $21.38/MMBtu, Trading Economics, Jul 30; Qatar force majeure extended to mid-September) |
-| **TTF** | 59.07 EUR/MWh (2026-07-31, Yahoo Finance TTF=F; +1.4%) |
-| **Exposure trace** | Reviewed evidence confirms Qatar force majeure remains in effect; the latest reviewed LNG transit observation is dated July 18, while current route-cost data remains unavailable. |
+| **Last updated** | 2026-08-03 (D152) |
+| **Crisis level** | 5 - Severe (Aug 3: Trump canceled planned US strikes on Iranian energy infrastructure (Truth Social, night of Aug 1) at the request of Saudi Crown Prince Mohammed bin Salman, the UAE, Qatar and Iran, and said a deal covering the Strait of Hormuz and Iran's denuclearization is imminent, with fresh talks beginning today (Newsweek, ABC News, Aug 2). Iran's FM Araghchi says Oman-mediated Hormuz talks have reached their final stages (Xinhua, Aug 2-3). Markets priced out risk premium sharply: Brent -4.9% to $83.61 (Investing.com, Aug 3); TTF -5.1% to 56.06 EUR/MWh (Trading Economics, Aug 3). The strait remains physically closed with no confirmed reopening yet, and the Jul 26-30 pause broke after 5 days, so this de-escalation should be treated as fragile. Tail cut to 45%.) |
+| **Brent** | $83.61 (2026-08-03, Investing.com; -4.9%; Yahoo Finance BZ=F feed remained stuck at its Jul 31 print) |
+| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $21.45/MMBtu, Trading Economics, Jul 31; Qatar force majeure extended to mid-September) |
+| **TTF** | 56.06 EUR/MWh (2026-08-03, Trading Economics; -5.1%) |
+| **Exposure trace** | Reviewed evidence confirms Qatar force majeure remains in effect and the strait remains physically closed; Trump's strike stand-down and the Oman-Iran Hormuz talks have not yet produced a newer reviewed transit observation beyond July 18, and current route-cost data remains unavailable. |
 | **Evidence audit** | 15 checked · 11 verified · 4 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
@@ -500,10 +500,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak) -> $89.46 (Jul 30, Yahoo Finance BZ=F) after the five-day pause broke -> $90.12 (Jul 31, +1.99%, Yahoo Finance BZ=F) as tanker incidents and threats of further strikes kept risk elevated. Working range remains $80-95 base; $90-110 stress; $110-140+ tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $19.93/MMBtu (Jul 16, Trading Economics) -> $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $21.38/MMBtu (Trading Economics, Jul 30, -0.26%). Qatar force majeure remains extended to mid-September (Reuters, Jul 23).
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, +2.71% vs Jul 23, MacroMicro) -> 56.50/MWh (Jul 28, -8.72% from Jul 27, Yahoo Finance TTF=F) during the pause -> 59.07/MWh (Jul 31, +1.4%, Yahoo Finance TTF=F) as tanker incidents kept the supply-risk premium elevated. The marker remains elevated on persistent Qatar LNG disruption.
-- **Credit**: iTraxx Asia IG est. ~145bp (Jul 31, +7bp); ASEAN HY est. ~492bp (+14bp) as tanker incidents, attacks on Kuwait and threats of further US strikes kept Hormuz risk elevated. Tail remains at 70% while the latest reviewed LNG transit count is still zero after July 11.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.57 (Jun 3 D93 peak) -> $90.12 (Aug 1, Yahoo Finance BZ=F) as tanker incidents and Kuwait attacks kept risk elevated -> $83.61 (Aug 3, -4.9%, Investing.com) as Trump canceled planned strikes and called a Hormuz/denuclearization deal 'imminent'. Yahoo's BZ=F feed remained stuck at its Jul 31 print, so Investing.com is used as the confirmed source pending a fresher Yahoo print. Working range narrows to $75-90 base; $85-105 stress; $105-135+ tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $19.93/MMBtu (Jul 16, Trading Economics) -> $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $21.45/MMBtu (Trading Economics, Jul 31, +0.35%). Qatar force majeure remains extended to mid-September (Reuters, Jul 23).
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, +2.71% vs Jul 23, MacroMicro) -> 59.07/MWh (Jul 31, +1.4%, Yahoo Finance TTF=F) as tanker incidents kept the supply-risk premium elevated -> 56.06 EUR/MWh (Aug 3, -5.1%, Trading Economics) as Trump's strike stand-down and the Oman-Iran Hormuz talks eased the risk premium. The marker remains elevated versus the pre-crisis baseline on persistent Qatar LNG disruption.
+- **Credit**: iTraxx Asia IG est. ~138bp (Aug 3, -7bp); ASEAN HY est. ~478bp (-14bp) as Trump's strike stand-down and progress in the Oman-Iran Hormuz talks eased Gulf risk premia. Tail falls to 45% while the strait remains physically closed and the latest reviewed LNG transit count is still zero after July 11.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
