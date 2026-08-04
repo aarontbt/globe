@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-08-03T00:00:00Z",
-  "day": "D152",
-  "headline": "Reviewed evidence confirms Qatar force majeure remains in effect and the strait remains physically closed; Trump's strike stand-down and the Oman-Iran Hormuz talks have not yet produced a newer reviewed transit observation beyond July 18, and current route-cost data remains unavailable.",
+  "asOf": "2026-08-04T00:00:00Z",
+  "day": "D153",
+  "headline": "Kpler data published Aug 3 shows Hormuz weekly crossings rose 8% to about 15/day (Jul 27-Aug 2) with 3 LNG tanker transits in the week, the first sustained LNG-specific movement since the carried July 18 zero-transit observation; Qatar force majeure remains confirmed through mid-September, with a further extension to mid-October reportedly in preparation but not yet formally confirmed. Iran's Aug 3 denial of a full reopening deal and Monday's tanker strike off Oman leave current route-cost data still unavailable.",
   "entities": [
     {
       "id": "qatarenergy",
@@ -129,16 +129,16 @@
     },
     {
       "id": "e-hormuz-transit",
-      "title": "No LNG tankers cross Strait of Hormuz since July 11",
-      "publisher": "Kpler",
-      "url": "https://www.kpler.com/blog/no-lng-tankers-cross-strait-of-hormuz-since-july-11-amid-escalating-us-iran-conflict",
-      "publishedAt": "2026-07-18",
-      "lastChecked": "2026-07-31",
+      "title": "Strait of Hormuz Crossings Rise 8% Week-on-Week, But Dark AIS Activity Remains Elevated",
+      "publisher": "Foreign Policy Journal (Kpler data)",
+      "url": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
+      "publishedAt": "2026-08-03",
+      "lastChecked": "2026-08-03",
       "kind": "event",
       "cadence": "daily",
-      "maxAgeDays": 1,
-      "status": "carried",
-      "note": "Firecrawl rechecked the Kpler article; the July 18 observation remains the latest reviewed public LNG-specific transit count."
+      "maxAgeDays": 7,
+      "status": "confirmed",
+      "note": "Kpler vessel-type breakdown published via Foreign Policy Journal on Aug 3 shows 3 LNG tanker transits during the Jul 27-Aug 2 week, superseding the carried July 18 zero-transit observation."
     },
     {
       "id": "e-jkm",
@@ -158,13 +158,13 @@
       "title": "EU Natural Gas (Dutch TTF)",
       "publisher": "Trading Economics",
       "url": "https://tradingeconomics.com/commodity/eu-natural-gas",
-      "publishedAt": "2026-08-03",
-      "lastChecked": "2026-08-03",
+      "publishedAt": "2026-08-04",
+      "lastChecked": "2026-08-04",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Yahoo Finance TTF=F was also stale at the Jul 31 print; Trading Economics used as the confirmed source for the Aug 3 observation."
+      "note": "Trading Economics used as source of record: Yahoo Finance TTF=F's regularMarketTime was checked directly and still resolved to Aug 3 15:52 UTC, not yet rolled to Aug 4."
     },
     {
       "id": "e-jera-qatarenergy",
@@ -216,81 +216,81 @@
     },
     {
       "id": "e-brent",
-      "title": "Brent Crude Oil Futures Price Today",
-      "publisher": "Investing.com",
-      "url": "https://www.investing.com/commodities/brent-oil",
-      "publishedAt": "2026-08-03",
-      "lastChecked": "2026-08-03",
+      "title": "Brent Crude Oil - Price - Chart - Historical Data - News",
+      "publisher": "Trading Economics",
+      "url": "https://tradingeconomics.com/commodity/brent-crude-oil",
+      "publishedAt": "2026-08-04",
+      "lastChecked": "2026-08-04",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Yahoo Finance BZ=F feed was verified stale at the Jul 31 print (page explicitly flagged delayed data); Investing.com used as the confirmed source for the Aug 3 observation."
+      "note": "Trading Economics used as source of record: Yahoo Finance BZ=F's regularMarketPrice was live ($84.47) but its chartPreviousClose field read $90.74 - a stale multi-day-old reference - producing a spurious self-reported changePercent of -6.96% that was rejected in favor of Trading Economics' own day-over-day change."
     },
     {
       "id": "e-wti",
-      "title": "WTI Crude Oil Futures",
-      "publisher": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/quote/CL=F/",
-      "publishedAt": "2026-07-30",
-      "lastChecked": "2026-08-03",
+      "title": "Crude Oil (WTI) - Price - Chart - Historical Data - News",
+      "publisher": "Trading Economics",
+      "url": "https://tradingeconomics.com/commodity/crude-oil",
+      "publishedAt": "2026-08-04",
+      "lastChecked": "2026-08-04",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Machine-refreshed from Yahoo Finance CL=F."
+      "note": "Trading Economics used as source of record: Yahoo Finance CL=F's chartPreviousClose field read $84.46 (stale, same defect as BZ=F), producing a spurious -4.06% changePercent against a live price that was actually up from Aug 3."
     },
     {
       "id": "e-eurusd",
-      "title": "EUR/USD",
-      "publisher": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/quote/EURUSD=X/",
-      "publishedAt": "2026-07-30",
-      "lastChecked": "2026-08-03",
+      "title": "EURUSD - Euro Area Currency",
+      "publisher": "Trading Economics",
+      "url": "https://tradingeconomics.com/euro-area/currency",
+      "publishedAt": "2026-08-04",
+      "lastChecked": "2026-08-04",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Machine-refreshed from Yahoo Finance EURUSD=X."
+      "note": "Trading Economics used as source of record: Yahoo Finance EURUSD=X's chartPreviousClose field read 1.1387 (stale), producing a spurious +1.07% changePercent versus Trading Economics' own -0.03%."
     },
     {
       "id": "e-sofr",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
       "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
-      "publishedAt": "2026-07-28",
-      "lastChecked": "2026-08-03",
+      "publishedAt": "2026-07-31",
+      "lastChecked": "2026-08-04",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 7,
       "status": "confirmed",
-      "note": "Machine-refreshed from Federal Reserve Bank of New York; no fresher print available since Jul 30."
+      "note": "Machine-refreshed from Federal Reserve Bank of New York; new effective-Jul-31 print (3.66%) supersedes the prior Jul-30 print (3.65%)."
     },
     {
       "id": "e-jkm-cfd",
       "title": "Liquefied Natural Gas Japan Korea - Price",
       "publisher": "Trading Economics",
       "url": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
-      "publishedAt": "2026-07-31",
+      "publishedAt": "2026-08-03",
       "lastChecked": "2026-08-03",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Current JKM-linked CFD market reference (Jul 31 print); displayed as context and excluded from commercial calculations."
+      "note": "Current JKM-linked CFD market reference (Aug 3 print, -0.91% vs prior day); displayed as context and excluded from commercial calculations."
     },
     {
       "id": "e-hormuz-total-transits",
-      "title": "Two Closed Corridors: Hormuz and Bab el-Mandeb Both Effectively Shut to Tanker Traffic",
-      "publisher": "Windward",
-      "url": "https://windward.ai/blog/strait-of-hormuz-and-bab-el-mandeb-effectively-closed/",
-      "publishedAt": "2026-07-28",
-      "lastChecked": "2026-07-31",
+      "title": "Strait of Hormuz Crossings Rise 8% Week-on-Week, But Dark AIS Activity Remains Elevated",
+      "publisher": "Foreign Policy Journal (Kpler data)",
+      "url": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
+      "publishedAt": "2026-08-03",
+      "lastChecked": "2026-08-03",
       "kind": "event",
       "cadence": "daily",
       "maxAgeDays": 1,
-      "status": "carried",
-      "note": "Firecrawl rechecked Windward's July 28 article; the July 27 count remains carried and does not establish an LNG-specific count."
+      "status": "confirmed",
+      "note": "Kpler daily breakdown published via Foreign Policy Journal on Aug 3 shows 9 crossings on Aug 2 (week of Jul 27-Aug 2 averaged about 15.1/day, +8% w/w), superseding the carried July 27 Windward count."
     },
     {
       "id": "e-gme-oman",
@@ -349,26 +349,26 @@
         "e-ttf"
       ],
       "requiredForCalculation": false,
-      "value": 56.06,
+      "value": 58.12,
       "unit": "EUR/MWh",
       "status": "confirmed",
       "source": "Trading Economics",
-      "sourceDate": "2026-08-03",
+      "sourceDate": "2026-08-04",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "observedAt": "2026-08-03T02:00:00.000Z"
+      "observedAt": "2026-08-04T00:00:00.000Z"
     },
     {
       "inputId": "fx-eurusd",
       "label": "EUR/USD",
       "commodity": "lng",
       "role": "fx",
-      "value": 1.1539,
+      "value": 1.1505,
       "unit": "USD/EUR",
       "status": "confirmed",
-      "source": "Yahoo Finance EURUSD=X",
-      "sourceDate": "2026-08-03",
-      "observedAt": "2026-08-03T05:45:55.000Z",
+      "source": "Trading Economics",
+      "sourceDate": "2026-08-04",
+      "observedAt": "2026-08-04T00:00:00.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
@@ -411,12 +411,12 @@
       "label": "Brent",
       "commodity": "crude-oil",
       "role": "destination-value",
-      "value": 83.61,
+      "value": 84.28,
       "unit": "USD/bbl",
       "status": "confirmed",
-      "source": "Investing.com",
-      "sourceDate": "2026-08-03",
-      "observedAt": "2026-08-03T01:53:11.000Z",
+      "source": "Trading Economics",
+      "sourceDate": "2026-08-04",
+      "observedAt": "2026-08-04T00:00:00.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
@@ -429,12 +429,12 @@
       "label": "WTI",
       "commodity": "crude-oil",
       "role": "origin-value",
-      "value": 79.45,
+      "value": 80.84,
       "unit": "USD/bbl",
       "status": "confirmed",
-      "source": "Yahoo Finance CL=F",
-      "sourceDate": "2026-08-03",
-      "observedAt": "2026-08-03T05:36:29.000Z",
+      "source": "Trading Economics",
+      "sourceDate": "2026-08-04",
+      "observedAt": "2026-08-04T00:00:00.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
@@ -492,18 +492,18 @@
       "label": "SOFR",
       "commodity": "crude-oil",
       "role": "financing",
-      "value": 3.65,
+      "value": 3.66,
       "unit": "%",
       "status": "confirmed",
       "source": "Federal Reserve Bank of New York",
-      "sourceDate": "2026-07-30",
+      "sourceDate": "2026-07-31",
       "maxAgeDays": 7,
       "cadence": "daily",
       "evidenceIds": [
         "e-sofr"
       ],
       "requiredForCalculation": false,
-      "observedAt": "2026-07-30T00:00:00Z"
+      "observedAt": "2026-07-31T00:00:00Z"
     }
   ],
   "traces": [
@@ -534,7 +534,7 @@
             {
               "inputId": "qatar-output-status",
               "label": "Current status",
-              "value": "Force majeure extended to mid-September",
+              "value": "Force majeure extended to mid-September; Bloomberg (Jul 22) reports a further extension to mid-October is in preparation, not yet formally confirmed",
               "unit": "",
               "status": "confirmed",
               "source": "Reuters",
@@ -587,14 +587,13 @@
             {
               "inputId": "hormuz-transits",
               "label": "Last reviewed LNG transits",
-              "value": 0,
-              "unit": "LNG transits",
-              "status": "carried",
-              "source": "Kpler",
-              "sourceDate": "2026-07-18",
-              "maxAgeDays": 1,
-              "cadence": "daily",
-              "carryReason": "Kpler reported no LNG carrier transits after July 11 through its July 18 publication; no newer reviewed LNG-transit count is approved. Note: Bloomberg (Aug 1) reported the LNG carrier Gaslog Shanghai, carrying Qatari cargo, was struck while transiting Hormuz on Jul 31 -- this shows at least one LNG carrier attempted the passage after Jul 18, but is a single-vessel incident report, not a dated transit count, so it does not supersede the carried Kpler figure."
+              "value": 3,
+              "unit": "LNG transits (week of Jul 27-Aug 2)",
+              "status": "confirmed",
+              "source": "Kpler via Foreign Policy Journal",
+              "sourceDate": "2026-08-03",
+              "maxAgeDays": 7,
+              "cadence": "daily"
             }
           ],
           "evidenceIds": [
@@ -614,11 +613,11 @@
             {
               "inputId": "jkm-cfd-reference",
               "label": "JKM-linked market reference",
-              "value": 21.45,
+              "value": 21.26,
               "unit": "USD/MMBtu",
               "status": "confirmed",
               "source": "Trading Economics",
-              "sourceDate": "2026-07-31",
+              "sourceDate": "2026-08-03",
               "maxAgeDays": 3,
               "cadence": "daily"
             }
@@ -712,7 +711,7 @@
               "lng-origin-value"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-08-03T00:00:00Z",
+            "calculatedAt": "2026-08-04T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -730,7 +729,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-08-03T00:00:00Z",
+            "calculatedAt": "2026-08-04T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -750,7 +749,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-08-03T00:00:00Z",
+            "calculatedAt": "2026-08-04T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -854,14 +853,13 @@
             {
               "inputId": "hormuz-total-transits",
               "label": "Last reviewed total traffic",
-              "value": 6,
+              "value": 9,
               "unit": "vessels/day",
-              "status": "carried",
-              "source": "Windward",
-              "sourceDate": "2026-07-27",
-              "maxAgeDays": 1,
-              "cadence": "daily",
-              "carryReason": "Windward reported 6 total transits (3 inbound, 3 outbound, all via the northern corridor) and zero tanker crossings in either direction on July 27; no newer reviewed daily count is approved."
+              "status": "confirmed",
+              "source": "Kpler via Foreign Policy Journal",
+              "sourceDate": "2026-08-02",
+              "maxAgeDays": 3,
+              "cadence": "daily"
             }
           ],
           "evidenceIds": [
@@ -882,7 +880,7 @@
             {
               "inputId": "qatar-output-status",
               "label": "Production status",
-              "value": "Force majeure extended to mid-September",
+              "value": "Force majeure extended to mid-September; Bloomberg (Jul 22) reports a further extension to mid-October is in preparation, not yet formally confirmed",
               "unit": "",
               "status": "confirmed",
               "source": "Reuters",
@@ -959,14 +957,14 @@
             {
               "inputId": "ttf",
               "label": "Dutch TTF",
-              "value": 56.06,
+              "value": 58.12,
               "unit": "EUR/MWh",
               "status": "confirmed",
               "source": "Trading Economics",
-              "sourceDate": "2026-08-03",
+              "sourceDate": "2026-08-04",
               "maxAgeDays": 3,
               "cadence": "daily",
-              "observedAt": "2026-08-03T02:00:00.000Z"
+              "observedAt": "2026-08-04T00:00:00.000Z"
             }
           ],
           "evidenceIds": [
@@ -1059,7 +1057,7 @@
               "lng-origin-value"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-08-03T00:00:00Z",
+            "calculatedAt": "2026-08-04T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -1077,7 +1075,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-08-03T00:00:00Z",
+            "calculatedAt": "2026-08-04T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -1097,7 +1095,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-08-03T00:00:00Z",
+            "calculatedAt": "2026-08-04T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -1384,7 +1382,7 @@
               "oil-dubai-oman"
             ],
             "unit": "USD/bbl",
-            "calculatedAt": "2026-08-03T00:00:00Z",
+            "calculatedAt": "2026-08-04T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "oil-dubai-oman",
@@ -1401,7 +1399,7 @@
               "oil-war-risk"
             ],
             "unit": "USD/bbl",
-            "calculatedAt": "2026-08-03T00:00:00Z",
+            "calculatedAt": "2026-08-04T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "oil-dubai-oman",
@@ -1420,7 +1418,7 @@
               "oil-war-risk"
             ],
             "unit": "USD/bbl",
-            "calculatedAt": "2026-08-03T00:00:00Z",
+            "calculatedAt": "2026-08-04T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "oil-dubai-oman",

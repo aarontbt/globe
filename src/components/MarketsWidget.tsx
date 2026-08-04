@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 3: Trump cancels Iran strikes, calls deal 'imminent'; Oman-Iran Hormuz talks reach final stage; Brent -4.9% to $83.61; tail cut to 45%";
+const TOP_ALERT = "AUG 4: Iran denies full Hormuz deal, calls talks 'Oman-only' on a temporary corridor; tanker struck by unknown projectile off Oman; Brent +0.8% to $84.28; tail raised to 47%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

@@ -131,3 +131,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D149**: Jul 31 - US and Iran trade fresh barrages; strikes hit IRGC sites, Jordan and Kuwait; Hormuz weekly traffic halves; tail 70%.
 - **D150**: Aug 1 - Iran attacks Kuwait; a tanker is struck near Hormuz; US threatens more strikes; Gulf mediators press for reopening; tail 70%.
 - **D152**: Aug 3 - Trump cancels planned Iran strikes at Gulf allies' request, calls Hormuz/denuclearization deal 'imminent'; Iran-Oman Hormuz talks reach final stage; Brent -4.9% to $83.61; tail cut to 45%.
+- **D153**: Aug 4 - Iran denies full Hormuz deal, calls talks Oman-only on temporary corridor; tanker struck off Oman; Brent +0.8% to $84.28; tail raised to 47%.

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-08-03T00:00:00Z",
-  "reviewedAt": "2026-08-03T06:10:00Z",
+  "asOf": "2026-08-04T00:00:00Z",
+  "reviewedAt": "2026-08-04T01:30:00Z",
   "reviewer": "Claude with web search and direct machine-source verification",
   "entries": [
     {
@@ -39,21 +39,21 @@
     },
     {
       "evidenceId": "e-hormuz-transit",
-      "url": "https://www.kpler.com/blog/no-lng-tankers-cross-strait-of-hormuz-since-july-11-amid-escalating-us-iran-conflict",
-      "canonicalUrl": "https://www.kpler.com/blog/no-lng-tankers-cross-strait-of-hormuz-since-july-11-amid-escalating-us-iran-conflict",
+      "url": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
+      "canonicalUrl": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
       "httpStatus": 200,
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "No LNG tankers cross Strait of Hormuz since July 11 amid escalating US-Iran conflict",
-      "publisher": "Kpler",
-      "publishedAt": "2026-07-18",
-      "checkedAt": "2026-07-31T02:05:00Z",
-      "claimSummary": "Kpler reported no LNG carrier transits through Hormuz from July 11 through its July 18 observation.",
+      "title": "Strait of Hormuz Crossings Rise 8% Week-on-Week, But Dark AIS Activity Remains Elevated",
+      "publisher": "Foreign Policy Journal (Kpler data)",
+      "publishedAt": "2026-08-03",
+      "checkedAt": "2026-08-03T00:00:00Z",
+      "claimSummary": "Kpler vessel-type data reported via Foreign Policy Journal shows 3 LNG tanker transits among 106 total Hormuz crossings during Jul 27-Aug 2, the first LNG-specific movement since the carried July 18 zero-transit observation.",
       "extractedFacts": [
-        "No LNG carriers transited the Strait of Hormuz after July 11 through the July 18 publication.",
-        "The last known LNG carrier transit occurred on July 11.",
-        "Kpler counted eight LNG carrier transits during May, not eight per day."
+        "The week of Jul 27-Aug 2 recorded 106 total crossings by 96 distinct vessels, up 8% from 98 crossings the prior week.",
+        "Vessel-type breakdown of the 106 crossings included 3 LNG tankers, 40 liquid tankers, 24 bulk carriers, and smaller counts of other vessel types.",
+        "Dark AIS activity (undetermined routes) covered 41% of crossings, down from 49% the prior week."
       ],
       "supportedHopIds": [
         "qatar-supply:qatar-transport"
@@ -62,7 +62,16 @@
         "hormuz-transits"
       ],
       "supportedRelationshipIds": [],
-      "carryReason": "Firecrawl rechecked the exact Kpler article on 2026-07-31; no newer reviewed public LNG-specific transit observation was approved.",
+      "observations": [
+        {
+          "inputId": "hormuz-transits",
+          "value": 3,
+          "unit": "LNG transits (week of Jul 27-Aug 2)",
+          "sourceDate": "2026-08-02",
+          "instrument": "Kpler Hormuz vessel-type breakdown",
+          "provider": "Kpler via Foreign Policy Journal"
+        }
+      ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": []
     },
@@ -112,12 +121,12 @@
       "reviewStatus": "approved",
       "title": "EU Natural Gas (Dutch TTF)",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-08-03",
-      "checkedAt": "2026-08-03T02:00:00Z",
-      "claimSummary": "Yahoo Finance TTF=F was verified stale at the Jul 31 print; Trading Economics reported TTF at 56.06 EUR/MWh on Aug 3, down 5.09% from the previous day.",
+      "publishedAt": "2026-08-04",
+      "checkedAt": "2026-08-04T00:00:00Z",
+      "claimSummary": "Yahoo Finance TTF=F's regularMarketTime was checked directly and still resolved to Aug 3 15:52 UTC, not yet rolled to Aug 4; Trading Economics reported TTF at 58.12 EUR/MWh on Aug 4, up 1.07% from the previous day.",
       "extractedFacts": [
-        "EU Gas (Dutch TTF) fell to 56.06 EUR/MWh on 2026-08-03, down 5.09% from the previous day.",
-        "Yahoo Finance TTF=F was checked directly and remained stuck at its Jul 31 print, consistent with the BZ=F feed delay observed the same day."
+        "EU Gas (Dutch TTF) rose to 58.12 EUR/MWh on 2026-08-04, up 1.07% (0.62) from the previous day, per Trading Economics.",
+        "Yahoo Finance TTF=F was checked directly; its regularMarketTime field resolved to 2026-08-03T15:52:00Z, not a fresh Aug 4 print."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-demand"
@@ -129,21 +138,21 @@
       "observations": [
         {
           "inputId": "ttf",
-          "value": 56.06,
+          "value": 58.12,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-08-03",
+          "sourceDate": "2026-08-04",
           "instrument": "EU Natural Gas (Dutch TTF)",
           "provider": "Trading Economics",
-          "observedAt": "2026-08-03T02:00:00.000Z"
+          "observedAt": "2026-08-04T00:00:00.000Z"
         },
         {
           "inputId": "lng-ttf",
-          "value": 56.06,
+          "value": 58.12,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-08-03",
+          "sourceDate": "2026-08-04",
           "instrument": "EU Natural Gas (Dutch TTF)",
           "provider": "Trading Economics",
-          "observedAt": "2026-08-03T02:00:00.000Z"
+          "observedAt": "2026-08-04T00:00:00.000Z"
         }
       ],
       "supportedCommercialInputIds": [
@@ -277,21 +286,20 @@
     },
     {
       "evidenceId": "e-brent",
-      "url": "https://www.investing.com/commodities/brent-oil",
-      "canonicalUrl": "https://www.investing.com/commodities/brent-oil",
+      "url": "https://tradingeconomics.com/commodity/brent-crude-oil",
+      "canonicalUrl": "https://tradingeconomics.com/commodity/brent-crude-oil",
       "httpStatus": 200,
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Brent Crude Oil Futures Price Today",
-      "publisher": "Investing.com",
-      "publishedAt": "2026-08-03",
-      "checkedAt": "2026-08-03T01:53:11Z",
-      "claimSummary": "Yahoo Finance BZ=F was checked directly and confirmed stale at the Jul 31 print (page explicitly flagged delayed data); Investing.com reported Brent at 83.61 USD/bbl real-time on Aug 3, down 4.91% from a previous close of 87.93.",
+      "title": "Brent Crude Oil - Price - Chart - Historical Data - News",
+      "publisher": "Trading Economics",
+      "publishedAt": "2026-08-04",
+      "checkedAt": "2026-08-04T00:00:00Z",
+      "claimSummary": "Yahoo Finance BZ=F's regularMarketPrice was live ($84.47) but its chartPreviousClose field read $90.74, a stale multi-day-old reference producing a spurious self-reported changePercent of -6.96%; Trading Economics reported Brent at 84.28 USD/bbl on Aug 4, up 0.60% from the previous day.",
       "extractedFacts": [
-        "Investing.com showed Brent at $83.61/bbl, real-time, down 4.91% ($4.32) from a previous close of $87.93.",
-        "Yahoo Finance BZ=F was checked directly at https://finance.yahoo.com/quote/BZ=F/ and still showed the Jul 31 14:28:19 EDT print ($90.12, +1.22%) with an explicit on-page notice that market data was delayed.",
-        "Cross-checked against Oilprice.com futures page, which showed Brent (Oct 2026 contract) at $83.28, down 5.29%, consistent with the Investing.com reading."
+        "Trading Economics showed Brent at $84.28/bbl on 2026-08-04, up 0.60% from the previous day.",
+        "Yahoo Finance BZ=F was checked directly via its chart API: regularMarketPrice was $84.47 (live, Aug 4), but chartPreviousClose was $90.74 - inconsistent with the confirmed Aug 3 close of $83.61 and consistent with a stale multi-day-old reference, which would produce an incorrect self-reported daily change percentage."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -303,31 +311,31 @@
       "observations": [
         {
           "inputId": "oil-brent",
-          "value": 83.61,
+          "value": 84.28,
           "unit": "USD/bbl",
-          "sourceDate": "2026-08-03",
-          "observedAt": "2026-08-03T01:53:11.000Z",
+          "sourceDate": "2026-08-04",
+          "observedAt": "2026-08-04T00:00:00.000Z",
           "instrument": "Brent Crude Oil Futures",
-          "provider": "Investing.com"
+          "provider": "Trading Economics"
         }
       ]
     },
     {
       "evidenceId": "e-wti",
-      "url": "https://finance.yahoo.com/quote/CL=F/",
-      "canonicalUrl": "https://finance.yahoo.com/quote/CL=F/",
+      "url": "https://tradingeconomics.com/commodity/crude-oil",
+      "canonicalUrl": "https://tradingeconomics.com/commodity/crude-oil",
       "httpStatus": 200,
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "WTI Crude Oil Futures",
-      "publisher": "Yahoo Finance",
-      "publishedAt": "2026-07-30",
-      "checkedAt": "2026-08-03T05:36:29Z",
-      "claimSummary": "Yahoo Finance machine observation for WTI was 79.45 USD/bbl on 2026-08-03, down 5.93% as markets priced out Iran/Hormuz risk premium after Trump canceled planned strikes.",
+      "title": "Crude Oil (WTI) - Price - Chart - Historical Data - News",
+      "publisher": "Trading Economics",
+      "publishedAt": "2026-08-04",
+      "checkedAt": "2026-08-04T00:00:00Z",
+      "claimSummary": "Yahoo Finance CL=F's chartPreviousClose field read $84.46, the same stale-baseline defect observed on BZ=F, producing a spurious -4.06% changePercent; Trading Economics reported WTI at 80.84 USD/bbl on Aug 4, up 0.62% from the previous day.",
       "extractedFacts": [
-        "CL=F regular market price was 79.45 USD/bbl, down 5.93% on 2026-08-03.",
-        "Cross-checked against Oilprice.com futures page (Sep 2026 WTI contract, CLU26), which showed $79.50, down 6.11%, consistent with the Yahoo Finance CL=F reading."
+        "Trading Economics showed WTI at $80.84/bbl on 2026-08-04, up 0.62% from the previous day.",
+        "Yahoo Finance CL=F's chart API returned regularMarketPrice $81.03 (live) but chartPreviousClose $84.46, inconsistent with the confirmed Aug 3 close of $79.45."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -339,30 +347,31 @@
       "observations": [
         {
           "inputId": "oil-wti",
-          "value": 79.45,
+          "value": 80.84,
           "unit": "USD/bbl",
-          "sourceDate": "2026-08-03",
-          "observedAt": "2026-08-03T05:36:29.000Z",
+          "sourceDate": "2026-08-04",
+          "observedAt": "2026-08-04T00:00:00.000Z",
           "instrument": "WTI Crude Oil Futures",
-          "provider": "Yahoo Finance CL=F"
+          "provider": "Trading Economics"
         }
       ]
     },
     {
       "evidenceId": "e-eurusd",
-      "url": "https://finance.yahoo.com/quote/EURUSD=X/",
-      "canonicalUrl": "https://finance.yahoo.com/quote/EURUSD=X/",
+      "url": "https://tradingeconomics.com/euro-area/currency",
+      "canonicalUrl": "https://tradingeconomics.com/euro-area/currency",
       "httpStatus": 200,
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "EUR/USD",
-      "publisher": "Yahoo Finance",
-      "publishedAt": "2026-07-30",
-      "checkedAt": "2026-08-03T05:45:55Z",
-      "claimSummary": "Yahoo Finance machine observation for EUR/USD was 1.1539 on 2026-08-03.",
+      "title": "EURUSD - Euro Area Currency",
+      "publisher": "Trading Economics",
+      "publishedAt": "2026-08-04",
+      "checkedAt": "2026-08-04T00:00:00Z",
+      "claimSummary": "Yahoo Finance EURUSD=X's chartPreviousClose field read 1.1387 (stale), producing a spurious +1.07% changePercent; Trading Economics reported EUR/USD at 1.1505 on Aug 4, down 0.03% from the previous day.",
       "extractedFacts": [
-        "EURUSD=X regular market price was 1.1539 USD/EUR."
+        "Trading Economics showed EUR/USD at 1.1505 on 2026-08-04, down 0.03% from the previous day.",
+        "Yahoo Finance EURUSD=X's chart API returned regularMarketPrice 1.1509 (live) but chartPreviousClose 1.1387, inconsistent with the confirmed Aug 3 value of 1.1539."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -374,12 +383,12 @@
       "observations": [
         {
           "inputId": "fx-eurusd",
-          "value": 1.1539,
+          "value": 1.1505,
           "unit": "USD/EUR",
-          "sourceDate": "2026-08-03",
-          "observedAt": "2026-08-03T05:45:55.000Z",
+          "sourceDate": "2026-08-04",
+          "observedAt": "2026-08-04T00:00:00.000Z",
           "instrument": "EUR/USD",
-          "provider": "Yahoo Finance EURUSD=X"
+          "provider": "Trading Economics"
         }
       ]
     },
@@ -393,11 +402,11 @@
       "reviewStatus": "approved",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
-      "publishedAt": "2026-07-28",
-      "checkedAt": "2026-08-03T00:00:00Z",
-      "claimSummary": "The New York Fed API reports SOFR at 3.65% effective July 30, 2026.",
+      "publishedAt": "2026-07-31",
+      "checkedAt": "2026-08-04T00:00:00Z",
+      "claimSummary": "The New York Fed API reports SOFR at 3.66% effective July 31, 2026, superseding the prior 3.65% (Jul 30) print.",
       "extractedFacts": [
-        "SOFR percent rate was 3.65 with effective date 2026-07-30."
+        "SOFR percent rate was 3.66 with effective date 2026-07-31."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -409,10 +418,10 @@
       "observations": [
         {
           "inputId": "usd-sofr",
-          "value": 3.65,
+          "value": 3.66,
           "unit": "%",
-          "sourceDate": "2026-07-30",
-          "observedAt": "2026-07-30T00:00:00Z",
+          "sourceDate": "2026-07-31",
+          "observedAt": "2026-07-31T00:00:00Z",
           "instrument": "SOFR",
           "provider": "Federal Reserve Bank of New York"
         }
@@ -428,13 +437,12 @@
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-07-31",
+      "publishedAt": "2026-08-03",
       "checkedAt": "2026-08-03T02:10:00Z",
-      "claimSummary": "The page reports a JKM-linked CFD market reference of 21.45 USD/MMBtu on July 31, the latest print available at time of Aug 3 check.",
+      "claimSummary": "The page reports a JKM-linked CFD market reference of 21.26 USD/MMBtu on Aug 3, down 0.91% from the previous day.",
       "extractedFacts": [
-        "The displayed LNG Japan Korea reference was 21.45 USD/MMBtu on July 31, 2026, up 0.35% from the previous day.",
-        "Trading Economics states that the value is a CFD-derived general market reference and not an official benchmark assessment.",
-        "No fresher print was available as of the Aug 3 check."
+        "The displayed LNG Japan Korea reference was 21.26 USD/MMBtu on August 3, 2026, down 0.91% from the previous day.",
+        "Trading Economics states that the value is a CFD-derived general market reference and not an official benchmark assessment."
       ],
       "supportedHopIds": [
         "qatar-supply:qatar-demand"
@@ -446,9 +454,9 @@
       "observations": [
         {
           "inputId": "jkm-cfd-reference",
-          "value": 21.45,
+          "value": 21.26,
           "unit": "USD/MMBtu",
-          "sourceDate": "2026-07-31",
+          "sourceDate": "2026-08-03",
           "instrument": "LNG Japan Korea CFD market reference",
           "provider": "Trading Economics"
         }
@@ -458,21 +466,21 @@
     },
     {
       "evidenceId": "e-hormuz-total-transits",
-      "url": "https://windward.ai/blog/strait-of-hormuz-and-bab-el-mandeb-effectively-closed/",
-      "canonicalUrl": "https://windward.ai/blog/strait-of-hormuz-and-bab-el-mandeb-effectively-closed/",
+      "url": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
+      "canonicalUrl": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
       "httpStatus": 200,
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Two Closed Corridors: Hormuz and Bab el-Mandeb Both Effectively Shut to Tanker Traffic",
-      "publisher": "Windward",
-      "publishedAt": "2026-07-28",
-      "checkedAt": "2026-07-31T02:08:00Z",
-      "claimSummary": "Windward reported the Strait of Hormuz effectively closed to commercial tanker traffic, with 6 total transits and zero tanker crossings on July 27.",
+      "title": "Strait of Hormuz Crossings Rise 8% Week-on-Week, But Dark AIS Activity Remains Elevated",
+      "publisher": "Foreign Policy Journal (Kpler data)",
+      "publishedAt": "2026-08-03",
+      "checkedAt": "2026-08-03T00:00:00Z",
+      "claimSummary": "Kpler daily breakdown reported via Foreign Policy Journal shows 9 total Hormuz crossings on Aug 2, part of a week (Jul 27-Aug 2) averaging about 15.1/day, up 8% w/w, superseding the carried July 27 Windward count of 6.",
       "extractedFacts": [
-        "On July 27, 2026 the Strait recorded 6 total transits (3 inbound, 3 outbound), all via the northern corridor, with zero tanker crossings in either direction.",
-        "The closure is attributed to IRGC enforcement, sustained IRGC high-speed craft presence in the southern strait, and a northern-corridor bottleneck.",
-        "The count covers total vessel traffic and does not establish an LNG-specific transit count."
+        "Daily crossing counts for the week: Jul 27: 9, Jul 28: 21, Jul 29: 25, Jul 30: 8, Jul 31: 23, Aug 1: 11, Aug 2: 9.",
+        "The week totaled 106 crossings by 96 distinct vessels, averaging just over 15/day, up from 98 the prior week.",
+        "45 vessels entered the Gulf and 61 exited during the week."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal"
@@ -481,7 +489,16 @@
         "hormuz-total-transits"
       ],
       "supportedRelationshipIds": [],
-      "carryReason": "Firecrawl rechecked the exact Windward article on 2026-07-31; no newer reviewed daily count was approved.",
+      "observations": [
+        {
+          "inputId": "hormuz-total-transits",
+          "value": 9,
+          "unit": "vessels/day",
+          "sourceDate": "2026-08-02",
+          "instrument": "Kpler Hormuz daily crossing count",
+          "provider": "Kpler via Foreign Policy Journal"
+        }
+      ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": []
     },

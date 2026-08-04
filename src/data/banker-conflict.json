@@ -1,33 +1,33 @@
 {
   "escalationLevel": 5,
   "escalationLabel": "Severe",
-  "deltaVsYesterday": -1,
+  "deltaVsYesterday": 0,
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "Trump cancels Iran strikes, deal imminent",
-      "delta": "Down: Trump canceled planned strikes on Iranian energy infrastructure at the request of Saudi Crown Prince MBS, UAE, Qatar and Iran; says a Hormuz and denuclearization deal is imminent. Source: Newsweek, Aug 2.",
-      "direction": "down"
+      "summary": "Iran denies full Hormuz reopening deal",
+      "delta": "Up: Iran's FM Ministry said talks are exclusively with Oman over a 'temporary' shipping corridor, not a full reopening, and vowed the Strait 'will in no way return' to its pre-Feb 28 status. Source: Fox News, Aug 3.",
+      "direction": "up"
     },
     {
       "id": "e2",
-      "summary": "Iran-Oman Hormuz talks reach final stage",
-      "delta": "Down: Iran's FM Araghchi said Oman-mediated talks on reopening Hormuz are in their final stages; Oman proposed a joint maritime-security framework, though Iran still seeks transit fees. Source: Xinhua, Aug 2-3.",
-      "direction": "down"
+      "summary": "Tanker struck by unknown projectile off Oman",
+      "delta": "Up: A tanker was hit by an unknown projectile about 20nm NE of Al Khasab, Oman Monday; engine room damaged, vessel not under command, no casualties reported. Source: UKMTO via Gulf News, Aug 3.",
+      "direction": "up"
     },
     {
       "id": "e3",
-      "summary": "Oil, gas prices tumble on de-escalation",
-      "delta": "Down: Brent fell 4.9% to $83.61 (Investing.com); TTF fell 5.1% to 56.06 EUR/MWh (Trading Economics) as markets priced out risk premium. Hormuz remains physically closed; last reviewed count was 6 transits Jul 27 (Windward).",
-      "direction": "down"
+      "summary": "Hormuz transits up 8% w/w, LNG resumes",
+      "delta": "Neutral: Kpler data published Aug 3 shows Hormuz crossings averaged about 15/day (Jul 27-Aug 2, +8% w/w) with 3 LNG tanker transits in the week - the first sustained LNG movement since mid-July; 41% of routes remained dark-AIS.",
+      "direction": "neutral"
     }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 20,
-      "description": "Trump's Aug 1-2 strike stand-down and the Oman-mediated 'final stage' Hormuz talks convert into a phased reopening arrangement. Risk premia continue easing and Brent settles toward $75-85/bbl. Probability remains capped because the strait is still physically closed and no ceasefire or reopening has been confirmed yet.",
+      "probability": 18,
+      "description": "Trump's Aug 1-2 strike stand-down holds and Oman-mediated talks eventually convert into a phased reopening, but Iran's Aug 3 denial of a full deal and insistence on only a 'temporary' corridor lengthens the timeline. Probability trimmed because the 'imminent' framing from Aug 1-2 has not been confirmed by Iran's own statements.",
       "oilImpact": "-$5/bbl",
       "lngImpact": "-20%"
     },
@@ -35,15 +35,15 @@
       "id": "stress",
       "label": "Stress",
       "probability": 35,
-      "description": "Talks continue but stall on Iran's insistence on retaining control and collecting transit fees; sporadic incidents persist even as large-scale strikes stay paused. Hormuz remains constrained at wartime-low traffic, keeping Brent in an $85-105/bbl range and TTF elevated. This mirrors the Jul 26-30 pause, which ultimately broke.",
+      "description": "Talks continue but remain stuck on Iran's insistence on a Oman-mediated 'temporary' corridor rather than a full reopening; sporadic incidents persist, illustrated by Monday's unknown-projectile strike on a tanker off Oman even as large-scale strikes stay paused. Hormuz traffic ticks up (Kpler: about 15/day, +8% w/w) but remains far below the roughly 88/day pre-war norm.",
       "oilImpact": "+$20/bbl",
       "lngImpact": "+40%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 45,
-      "description": "The stand-down proves as fragile as the Jul 26-30 pause: talks collapse, US strikes resume against IRGC and strategic targets, and Iran renews drone and missile attacks across US-allied Gulf states and commercial shipping. Brent spikes back toward $105-135+/bbl and JKM exceeds $30/MMBtu.",
+      "probability": 47,
+      "description": "The stand-down proves as fragile as the Jul 26-30 pause: Iran's denial of a full reopening deal and the fresh tanker strike signal talks are stalling. A resumption of US strikes against IRGC and strategic targets, and renewed Iranian attacks across Gulf states and commercial shipping, would send Brent back toward $105-135+/bbl and JKM above $30/MMBtu.",
       "oilImpact": "+$50/bbl",
       "lngImpact": "+110%"
     }
