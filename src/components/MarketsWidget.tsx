@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 4: Iran denies full Hormuz deal, calls talks 'Oman-only' on a temporary corridor; tanker struck by unknown projectile off Oman; Brent +0.8% to $84.28; tail raised to 47%";
+const TOP_ALERT = "AUG 5: Bessent: US-Iran Hormuz deal could come today or tomorrow; Qatar floats de-escalation resolution; Brent -5.8% Tue to $78.88, ~flat Wed at $79.18; level cut to 4; tail 30%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

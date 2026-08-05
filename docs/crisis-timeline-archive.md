@@ -132,3 +132,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D150**: Aug 1 - Iran attacks Kuwait; a tanker is struck near Hormuz; US threatens more strikes; Gulf mediators press for reopening; tail 70%.
 - **D152**: Aug 3 - Trump cancels planned Iran strikes at Gulf allies' request, calls Hormuz/denuclearization deal 'imminent'; Iran-Oman Hormuz talks reach final stage; Brent -4.9% to $83.61; tail cut to 45%.
 - **D153**: Aug 4 - Iran denies full Hormuz deal, calls talks Oman-only on temporary corridor; tanker struck off Oman; Brent +0.8% to $84.28; tail raised to 47%.
+- **D154**: Aug 5 - Bessent says US-Iran Hormuz deal could come within days; Qatar floats de-escalation resolution; Brent -5.8% Tue to $78.88, ~flat Wed at $79.18; level cut to 4; tail 30%.

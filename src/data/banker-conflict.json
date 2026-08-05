@@ -1,49 +1,49 @@
 {
-  "escalationLevel": 5,
-  "escalationLabel": "Severe",
-  "deltaVsYesterday": 0,
+  "escalationLevel": 4,
+  "escalationLabel": "High",
+  "deltaVsYesterday": -1,
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "Iran denies full Hormuz reopening deal",
-      "delta": "Up: Iran's FM Ministry said talks are exclusively with Oman over a 'temporary' shipping corridor, not a full reopening, and vowed the Strait 'will in no way return' to its pre-Feb 28 status. Source: Fox News, Aug 3.",
-      "direction": "up"
+      "summary": "US says Hormuz deal could come within days",
+      "delta": "Down: Treasury Secretary Bessent told CNBC the US and Iran could reach a deal to open the Strait with 'freedom of movement' for commercial ships 'today or tomorrow', expecting prices to fall further as trapped vessels exit. Source: CNBC, Aug 4.",
+      "direction": "down"
     },
     {
       "id": "e2",
-      "summary": "Tanker struck by unknown projectile off Oman",
-      "delta": "Up: A tanker was hit by an unknown projectile about 20nm NE of Al Khasab, Oman Monday; engine room damaged, vessel not under command, no casualties reported. Source: UKMTO via Gulf News, Aug 3.",
-      "direction": "up"
+      "summary": "Qatar floats de-escalation resolution",
+      "delta": "Down: Qatar said a proposed de-escalation resolution is being circulated between the parties and an interim proposal has been prepared; Rubio confirmed progress but cautioned no final deal to reopen the strait has been reached. Source: Trading Economics; ABC/AP, Aug 4-5.",
+      "direction": "down"
     },
     {
       "id": "e3",
-      "summary": "Hormuz transits up 8% w/w, LNG resumes",
-      "delta": "Neutral: Kpler data published Aug 3 shows Hormuz crossings averaged about 15/day (Jul 27-Aug 2, +8% w/w) with 3 LNG tanker transits in the week - the first sustained LNG movement since mid-July; 41% of routes remained dark-AIS.",
-      "direction": "neutral"
+      "summary": "Second vessel struck off Khasab in 24 hours",
+      "delta": "Up: UKMTO reported a cargo vessel struck by an unknown projectile 20nm NE of Khasab at 22:00 UTC Aug 3 - the same location as the prior day's tanker explosion report - with identity and damage unreleased. Source: Windward MIOC, Aug 4.",
+      "direction": "up"
     }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 18,
-      "description": "Trump's Aug 1-2 strike stand-down holds and Oman-mediated talks eventually convert into a phased reopening, but Iran's Aug 3 denial of a full deal and insistence on only a 'temporary' corridor lengthens the timeline. Probability trimmed because the 'imminent' framing from Aug 1-2 has not been confirmed by Iran's own statements.",
-      "oilImpact": "-$5/bbl",
-      "lngImpact": "-20%"
+      "probability": 25,
+      "description": "Bessent's 'today or tomorrow' window and Qatar's de-escalation resolution convert into a signed Oman-mediated reopening within days, with traffic normalising on a phased basis under Iranian/Omani routing oversight (NYT/AP, Aug 3-4). Brent drifts toward $70-80 as trapped Gulf vessels exit and the LNG risk premium unwinds.",
+      "oilImpact": "-$10/bbl",
+      "lngImpact": "-25%"
     },
     {
       "id": "stress",
       "label": "Stress",
-      "probability": 35,
-      "description": "Talks continue but remain stuck on Iran's insistence on a Oman-mediated 'temporary' corridor rather than a full reopening; sporadic incidents persist, illustrated by Monday's unknown-projectile strike on a tanker off Oman even as large-scale strikes stay paused. Hormuz traffic ticks up (Kpler: about 15/day, +8% w/w) but remains far below the roughly 88/day pre-war norm.",
-      "oilImpact": "+$20/bbl",
-      "lngImpact": "+40%"
+      "probability": 45,
+      "description": "Negotiations continue but stop short of a signed deal: Iran keeps insisting on controlling maritime traffic, sporadic attacks persist (a second vessel struck off Khasab within 24 hours, UKMTO via Windward, Aug 3), and Hormuz traffic recovers only gradually (about 15/day vs the roughly 88/day pre-war norm). Brent holds $75-90 and JKM stays elevated on Qatar force majeure through mid-September.",
+      "oilImpact": "+$8/bbl",
+      "lngImpact": "+15%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 47,
-      "description": "The stand-down proves as fragile as the Jul 26-30 pause: Iran's denial of a full reopening deal and the fresh tanker strike signal talks are stalling. A resumption of US strikes against IRGC and strategic targets, and renewed Iranian attacks across Gulf states and commercial shipping, would send Brent back toward $105-135+/bbl and JKM above $30/MMBtu.",
+      "probability": 30,
+      "description": "The talks collapse as the Jul 26-30 pause did: Trump's 'last chance' warning expires, US strikes resume, and Iran retaliates against shipping and Gulf states. Brent returns to $105-135+/bbl and JKM above $30/MMBtu as the strait closes again.",
       "oilImpact": "+$50/bbl",
       "lngImpact": "+110%"
     }
