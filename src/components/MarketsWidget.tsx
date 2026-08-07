@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 5: Bessent: US-Iran Hormuz deal could come today or tomorrow; Qatar floats de-escalation resolution; Brent -5.8% Tue to $78.88, ~flat Wed at $79.18; level cut to 4; tail 30%";
+const TOP_ALERT = "AUG 7: Hormuz traffic 33 vessels Mon-Thu vs 50 prior week; only 4 on Thu; Iran draft may bar US/Israeli ships; Brent $83.46; stress 55%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
