@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 7: Hormuz traffic 33 vessels Mon-Thu vs 50 prior week; only 4 on Thu; Iran draft may bar US/Israeli ships; Brent $83.46; stress 55%";
+const TOP_ALERT = "AUG 10: Iran sets Hormuz terms - blockade lift, reparations, troop pullout; ADNOC tanker hit by missile, 1 dead 20 hurt this week; Kpler: 8 crossings Aug 7; Brent $84.35; tail 33%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
