@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 10: Iran sets Hormuz terms - blockade lift, reparations, troop pullout; ADNOC tanker hit by missile, 1 dead 20 hurt this week; Kpler: 8 crossings Aug 7; Brent $84.35; tail 33%";
+const TOP_ALERT = "AUG 11: Trump demands Iran pay 50yr reparations, claims '100%' Hormuz control after clearing mines; MarineTraffic: crossings fell 15->11->6 Fri-Sun; Iran-Oman agree route map; Brent $88.05; tail 35%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

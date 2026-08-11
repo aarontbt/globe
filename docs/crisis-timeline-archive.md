@@ -135,3 +135,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D154**: Aug 5 - Bessent says US-Iran Hormuz deal could come within days; Qatar floats de-escalation resolution; Brent -5.8% Tue to $78.88, ~flat Wed at $79.18; level cut to 4; tail 30%.
 - **D156**: Aug 7 - Hormuz traffic 33 vessels Monday-Thursday versus 50 in the prior week, only 4 on Aug 6; proposed Iran-Oman passage framework faces sanctions and insurance barriers; draft bill may bar hostile ships; stress 55%.
 - **D159**: Aug 10 - Iran sets Hormuz reopening terms (blockade lift, reparations); ADNOC tanker hit by missile, 1 dead 20 hurt this week; Brent $84.35.
+- **D160**: Aug 11 - Trump demands Iran pay reparations, claims '100%' Hormuz control; MarineTraffic shows crossings falling to 6; Iran-Oman agree route coordinates; Brent $88.05.
