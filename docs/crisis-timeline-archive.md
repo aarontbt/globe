@@ -136,3 +136,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D156**: Aug 7 - Hormuz traffic 33 vessels Monday-Thursday versus 50 in the prior week, only 4 on Aug 6; proposed Iran-Oman passage framework faces sanctions and insurance barriers; draft bill may bar hostile ships; stress 55%.
 - **D159**: Aug 10 - Iran sets Hormuz reopening terms (blockade lift, reparations); ADNOC tanker hit by missile, 1 dead 20 hurt this week; Brent $84.35.
 - **D160**: Aug 11 - Trump demands Iran pay reparations, claims '100%' Hormuz control; MarineTraffic shows crossings falling to 6; Iran-Oman agree route coordinates; Brent $88.05.
+- **D161**: Aug 12 - Latest reviewed Hormuz report still shows no signed reopening; MarineTraffic recorded crossings falling to 6; Iran-Oman agree route coordinates; Brent $89.11.

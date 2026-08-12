@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 11: Trump demands Iran pay 50yr reparations, claims '100%' Hormuz control after clearing mines; MarineTraffic: crossings fell 15->11->6 Fri-Sun; Iran-Oman agree route map; Brent $88.05; tail 35%";
+const TOP_ALERT = "AUG 12: Latest reviewed Hormuz report still shows no signed reopening; crossings fell 15->11->6 Fri-Sun; Brent $89.11; WTI $83.47; TTF 60.18; tail 35%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
