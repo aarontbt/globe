@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 12: Latest reviewed Hormuz report still shows no signed reopening; crossings fell 15->11->6 Fri-Sun; Brent $89.11; WTI $83.47; TTF 60.18; tail 35%";
+const TOP_ALERT = "AUG 13: Iran says Hormuz 'remains blocked', disputes Trump's '100%' control claim; Kpler shows transits averaging 13/day, ~90% below pre-war baseline; Brent $88.59; WTI $82.86; TTF 59.96; tail 35%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
