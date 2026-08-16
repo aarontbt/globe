@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 13: Iran says Hormuz 'remains blocked', disputes Trump's '100%' control claim; Kpler shows transits averaging 13/day, ~90% below pre-war baseline; Brent $88.59; WTI $82.86; TTF 59.96; tail 35%";
+const TOP_ALERT = "AUG 14-16: Trump says he'll declare Hormuz 'US territory'; Iran's Gharibabadi rejects claim, vows to keep enforcing blockade; UAE says Iran struck 2 ADNOC tankers with drones; Iran-Oman 'homing in' on strait deal; Brent $88.52; TTF 61.43; tail 35%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
