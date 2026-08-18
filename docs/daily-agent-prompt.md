@@ -2,6 +2,7 @@
 
 > Routine daily updates start from `src/data/daily-state.json` (schema version 3).
 > Consult `docs/daily-update-runbook.md` for field definitions, freshness policy, carry rules, or rare operations.
+> The future public-data ingestion layer is specified in [`energy-lng-data-ingestion.md`](energy-lng-data-ingestion.md); it must produce reviewable candidates and must not bypass this workflow.
 
 ## Daily Workflow
 

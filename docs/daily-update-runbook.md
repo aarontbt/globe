@@ -3,6 +3,8 @@
 **Purpose**: Reference manual for the Iran-Hormuz public-intelligence demonstrator. Routine updates start in `src/data/daily-state.json`; reviewed state is distributed with `bun run daily:apply`.
 
 > **Daily execution**: Load `docs/daily-agent-prompt.md` instead — it is the lean, token-efficient daily prompt. This file is the reference manual for schemas, conventions, and rare operations.
+>
+> **Energy/LNG ingestion**: See [`energy-lng-data-ingestion.md`](energy-lng-data-ingestion.md) for the future public-data connector, provenance and promotion design. It does not replace the reviewed daily workflow.
 
 ## Current State
 
