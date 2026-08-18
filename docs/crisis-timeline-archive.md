@@ -139,3 +139,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D161**: Aug 12 - Latest reviewed Hormuz report still shows no signed reopening; MarineTraffic recorded crossings falling to 6; Iran-Oman agree route coordinates; Brent $89.11.
 - **D162**: Aug 13 - Iran's Persian Gulf Strait Authority says Hormuz 'remains blocked', disputes Trump's '100%' control claim; Kpler shows transits averaging 13/day, near 3-month low; Brent $88.59.
 - **D165**: Aug 16 - Trump vows to declare Hormuz 'US territory'; Iran's Gharibabadi rejects claim; UAE says Iran struck 2 ADNOC tankers with drones; Iran-Oman 'homing in' on strait deal; Brent $88.52.
+- **D167**: Aug 18 - AP reports Trump threatened Oman over an Iran route deal; projectile hits ship exiting Hormuz with crew casualty; Iran says no reopening before US conditions; Brent $91.29.
