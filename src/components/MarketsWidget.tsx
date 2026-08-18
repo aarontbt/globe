@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 14-16: Trump says he'll declare Hormuz 'US territory'; Iran's Gharibabadi rejects claim, vows to keep enforcing blockade; UAE says Iran struck 2 ADNOC tankers with drones; Iran-Oman 'homing in' on strait deal; Brent $88.52; TTF 61.43; tail 35%";
+const TOP_ALERT = "AUG 17-18: Trump threatens Oman over Iran route deal; projectile hits ship exiting Hormuz with crew casualty; Iran says no reopening before US conditions; Brent $91.29; TTF 63.92; tail 40%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
