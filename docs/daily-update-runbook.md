@@ -1,6 +1,6 @@
 # Signal-to-Exposure Daily Update Guide
 
-**Purpose**: Reference manual for the Iran-Hormuz public-intelligence demonstrator. Routine updates start in `src/data/daily-state.json`; reviewed state is distributed with `bun run daily:apply`.
+**Purpose**: Reference manual for the Energy/LNG Signal-to-Exposure workflow. Routine updates start in `src/data/daily-state.json`; reviewed state is distributed with `bun run daily:apply`.
 
 > **Daily execution**: Load `docs/daily-agent-prompt.md` instead — it is the lean, token-efficient daily prompt. This file is the reference manual for schemas, conventions, and rare operations.
 >
@@ -183,6 +183,29 @@ Every trace has exactly five ordered stages: `signal`, `supply`, `transport`, `d
 | `missingReason` | Required for unavailable values |
 
 Relationships may only be `public-contract`, `operational-dependency`, or `market-sensitivity`. These labels document public linkages and must never be described as a PETCO position or confidential contract exposure.
+
+### Flow Pressure review
+
+Flow Pressure is generated at runtime from the canonical Energy/LNG adapter; it is not a manually entered field in `exposure-traces.json`. The current `flow-pressure-v1` calculation combines six components:
+
+| Component | Weight |
+|-----------|--------|
+| Supply interruption | 25% |
+| Route / chokepoint pressure | 20% |
+| Vessel / port disruption | 15% |
+| Destination dependency | 15% |
+| Price / basis movement | 15% |
+| Alternative availability | 10% |
+
+Each component is scored from 0 (no observed pressure) to 100 (high pressure). A negative, mixed, or positive trace direction starts at 75, 50, or 25 respectively. Carried observations pull the component toward neutral and reduce confidence; fully unavailable observations remain neutral at 50 and are marked unresolved. A market price without an explicit movement, spread, premium, discount, or basis observation remains neutral rather than being interpreted as directional pressure.
+
+Alternative candidates must remain explicitly classified:
+
+- `potential` means a source, market, route, or terminal is a plausible candidate, not verified capacity or execution;
+- `physically-feasible` requires evidence for demonstrated capacity, infrastructure compatibility, and route/lead-time constraints;
+- `commercially-executable` additionally requires verified cost, contract flexibility, sanctions/insurance, and availability evidence.
+
+Daily operators should update the underlying metrics, directions, evidence links, freshness, and alternative records. Do not write or hand-tune a Flow Pressure score. After publishing, switch through all traces in **SIGNAL → EXPOSURE** and confirm the score, component statuses, confidence, evidence count, and alternative wording are consistent with the reviewed inputs. A `provisional` or `insufficient verified data` result is expected when required observations are carried or unavailable.
 
 ### Freshness and carry-forward
 
@@ -443,6 +466,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - [ ] **Evidence gate**: Run `bun run daily:evidence`. Do not continue with unsupported, unreachable, pending, rejected, landing-page, or observation-mismatch failures.
 - [ ] **Complete analyst inputs**: Review JKM, Qatar output/force majeure, Hormuz condition and AIS count, LNG freight/delay ranges, evidence updates, and the trace headline. Carry unavailable observations with original dates and reasons.
 - [ ] **Review three traces**: Read every five-hop chain, confirmed/carried/unavailable metric, named public relationship, and portfolio action before publishing.
+- [ ] **Review Flow Pressure**: In **SIGNAL → EXPOSURE → Exposure Trace**, verify each trace's score, six component weights/statuses, confidence, evidence count, and alternative feasibility. Do not treat a potential alternative as executable capacity.
 - [ ] **Source check first**: For each price you plan to enter, confirm a named source exists (see Source Validation Policy above). Do not enter a number if the only answer to "where did this come from?" is "I estimated it" — use last confirmed level instead and note the date.
 - [ ] **Cross-asset**: Update `asOf` date, refresh all `current` prices and `change1d` values
 - [ ] **useMarkets.ts**: Update `FALLBACK_QUOTES` prices, changes, and `lastUpdated` dates
@@ -483,7 +507,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 ## E2E Verification Recipe
 
 1. `bun run dev` → open `http://localhost:5173`
-2. Open **SIGNAL → EXPOSURE**, switch all three traces, and verify the five-hop chain, verified-data statuses, evidence, commercial evaluation, and portfolio action update together
+2. Open **SIGNAL → EXPOSURE**, switch all three traces, and verify the five-hop chain, Flow Pressure score/components/confidence, verified-data statuses, evidence, commercial evaluation, and portfolio action update together
 3. Close the overlay and verify the globe shows only the selected trace route, with LNG production/carrier/terminal/demand nodes and no stale route from the previous selection
 4. Open **Counterparties**, **Actions**, and **Evidence**; copy the decision brief and confirm named relationships and evidence resolve correctly
 5. Right panel — **EVENTS**: intel events visible, no `pm-` events, filters work

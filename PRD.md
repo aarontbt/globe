@@ -1,7 +1,7 @@
 # Rainmarket Energy & LNG Intelligence - Product Requirements Document
 
-- **Status:** Planning on `feat/energy-lng-vertical`
-- **Date:** 18 August 2026
+- **Status:** Implementation in progress on `feat/energy-lng-vertical`
+- **Date:** 19 August 2026
 - **Implementation plan:** [`docs/energy-lng-vertical-plan.md`](docs/energy-lng-vertical-plan.md)
 
 ## Product thesis

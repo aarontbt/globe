@@ -1,3 +1,5 @@
+import type { EnergyAlternative, FlowPressureAssessment } from "./energyLng";
+
 export interface Port {
   id: string;
   name: string;
@@ -219,6 +221,7 @@ export interface TraceMetric {
   sourceDate: string;
   observedAt?: string;
   maxAgeDays: number;
+  cadence?: "daily" | "event-driven" | "contract-driven";
   carryReason?: string;
   missingReason?: string;
 }
@@ -375,12 +378,16 @@ export interface ExposureTrace {
   hops: TraceHop[];
   counterparties: TraceCounterparty[];
   commercialEvaluation: CommercialEvaluation;
+  flowPressure?: FlowPressureAssessment;
+  alternatives?: EnergyAlternative[];
   portfolioAction: string;
   watchItems: string[];
 }
 
 export interface ExposureTraceData {
   schemaVersion: 2;
+  readModelVersion?: "energy-lng-read-model-v1";
+  canonicalModelVersion?: "energy-lng-domain-v1";
   asOf: string;
   day: string;
   headline: string;

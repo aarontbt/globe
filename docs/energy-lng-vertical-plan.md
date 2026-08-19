@@ -1,8 +1,8 @@
 # Energy & LNG Vertical Plan
 
 - **Branch:** `feat/energy-lng-vertical`
-- **Status:** Planning; no implementation started
-- **Date:** 18 August 2026
+- **Status:** Implementation in progress — Phase 0 canonical boundary and provisional Flow Pressure slice landed
+- **Date:** 19 August 2026
 - **PRD:** [`../PRD.md`](../PRD.md)
 
 ## Objective
@@ -121,6 +121,13 @@ Start with an explainable 0-100 score using:
 
 Persist component values, weights, model version, calculation timestamp and evidence links.
 
+The initial implementation uses `flow-pressure-v1`: supply interruption (25%),
+route/chokepoint pressure (20%), vessel/port disruption (15%), destination
+dependency (15%), price/basis movement (15%) and alternative availability (10%).
+Scores run from 0 (no observed pressure) to 100 (high pressure). Missing or
+carried observations remain visible; unresolved components use a neutral score
+of 50 and lower the assessment confidence rather than being silently estimated.
+
 #### Delivered economics
 
 Progressively model:
@@ -169,6 +176,15 @@ Add:
 - assessment snapshots that can be revisited and audited.
 
 ## Delivery sequence
+
+### Current implementation checkpoint — 19 August 2026
+
+- canonical Energy/LNG entity, relationship, observation and provenance types are in place;
+- the reviewed exposure fixture is migrated through a canonical domain adapter;
+- the existing Globe panels and map now consume a generated Energy/LNG read model;
+- the first explainable Flow Pressure assessment is calculated and shown per trace;
+- trace-scoped observation IDs prevent reused legacy input IDs from merging incompatible source context;
+- alternative slots and feasibility semantics are present; the LNG traces expose European TTF only as a potential market candidate, with execution constraints explicitly unresolved.
 
 ### Phase 0 - Foundation
 

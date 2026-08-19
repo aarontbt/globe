@@ -13,6 +13,7 @@ import { createEventRingsLayer, createEventDotsLayer, createAsteroidImpactLayers
 import { createSatellitesLayer } from "../layers/satellites";
 import { createOilSupplyChainLayers } from "../layers/oilSupplyChain";
 import { createExposureTraceLayers } from "../layers/exposureTrace";
+import { toEnergyLngDomain, toExposureTraceReadModel } from "../domain/energyLngAdapter";
 import { getOilReservesFillColor, OIL_RESERVES_MAP } from "../layers/oilReserves";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
@@ -100,6 +101,8 @@ export default function GlobeView() {
   const { data: arcs } = useStaticJson<TradeArc[]>("/data/trade-arcs.json", EMPTY_ARCS);
   const { data: oilSupplyChainData } = useStaticJson<{ nodes: OilNode[]; routes: OilRoute[] }>("/data/oil-supply-chain.json", EMPTY_OIL_SUPPLY_CHAIN);
   const { data: exposureTraceData } = useStaticJson<ExposureTraceData>("/data/exposure-traces.json", EMPTY_EXPOSURE_TRACES);
+  const energyLngDomain = useMemo(() => toEnergyLngDomain(exposureTraceData), [exposureTraceData]);
+  const energyLngReadModel = useMemo(() => toExposureTraceReadModel(energyLngDomain), [energyLngDomain]);
   const events = useMemo(
     () => [...polymarketEvents, ...iranIntelEvents, ...socialEvents],
     [polymarketEvents, iranIntelEvents, socialEvents]
@@ -234,9 +237,9 @@ export default function GlobeView() {
     if (visibility.showArcs) result.push(createTradeArcsLayer(arcs));
     if (visibility.showPorts) result.push(createPortsLayer(ports));
     if (visibility.showOilSupplyChain) result.push(...createOilSupplyChainLayers(oilNodes, oilRoutes));
-    result.push(...createExposureTraceLayers(exposureTraceData, activeTraceId));
+    result.push(...createExposureTraceLayers(energyLngReadModel, activeTraceId));
     return result;
-  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showOilReserves, corridors, ports, arcs, oilNodes, oilRoutes, exposureTraceData, activeTraceId]);
+  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showOilReserves, corridors, ports, arcs, oilNodes, oilRoutes, energyLngReadModel, activeTraceId]);
 
   // Label layer — separate memo so staticLayers doesn't rebuild on camera move
   const labelLayer = useMemo(
@@ -608,7 +611,7 @@ export default function GlobeView() {
 
       <BottomChartsPanel />
       <MarketBriefOverlay
-        data={exposureTraceData}
+        data={energyLngReadModel}
         activeTraceId={activeTraceId}
         onTraceChange={setActiveTraceId}
       />

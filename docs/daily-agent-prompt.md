@@ -21,8 +21,9 @@
    - If a prior observation is still useful, keep its original date and mark it `carried`; it will display but cannot enter a calculation.
    - If no dependable value exists, set `status: "unavailable"`, remove value/range/source fields, and add `missingReason`.
 5. **Review all three traces** - check Qatar supply disruption, Hormuz delivery constraint, and Hormuz crude-export constraint. Oil counterparty stages remain unnamed unless company-level evidence is approved.
-6. **Review commercial evaluation** - residual calculations must remain unavailable unless every required input is current, verified, unit-compatible, and directly audited.
-7. **Publish** - run `bun run daily:apply -- --dry-run`, review the proposed files, then run `bun run daily:update`.
+6. **Review Flow Pressure** - the score is generated from the reviewed trace directions, observations, freshness, evidence, and alternative candidates; do not manually edit or tune the score. In **SIGNAL → EXPOSURE**, check all six component statuses and weights, confidence, evidence count, and ensure `potential` alternatives are not described as executable.
+7. **Review commercial evaluation** - residual calculations must remain unavailable unless every required input is current, verified, unit-compatible, and directly audited.
+8. **Publish** - run `bun run daily:apply -- --dry-run`, review the proposed files, then run `bun run daily:update`.
 
 `daily:update` first enforces the reviewed evidence gate, then applies state, mirrors runtime data, validates, and builds. It never refetches or recrawls after review.
 
