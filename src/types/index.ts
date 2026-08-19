@@ -1,4 +1,5 @@
 import type { EnergyAlternative, FlowPressureAssessment } from "./energyLng";
+import type { EnergyLngMachineEvidence } from "./energyLngPipeline";
 
 export interface Port {
   id: string;
@@ -222,6 +223,7 @@ export interface TraceMetric {
   observedAt?: string;
   maxAgeDays: number;
   cadence?: "daily" | "event-driven" | "contract-driven";
+  machineEvidenceIds?: string[];
   carryReason?: string;
   missingReason?: string;
 }
@@ -393,6 +395,7 @@ export interface ExposureTraceData {
   headline: string;
   entities: PublicEntity[];
   evidence: EvidenceReference[];
+  machineEvidence?: EnergyLngMachineEvidence[];
   commercialInputs: ObservedCommercialInput[];
   traces: ExposureTrace[];
 }

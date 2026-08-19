@@ -1,7 +1,7 @@
 # Energy & LNG Vertical Plan
 
 - **Branch:** `feat/energy-lng-vertical`
-- **Status:** Implementation in progress — Phase 0 canonical boundary and provisional Flow Pressure slice landed
+- **Status:** Phase 1 automated Energy/LNG MVP landed; Phase 2 physical-flow expansion remains ahead
 - **Date:** 19 August 2026
 - **PRD:** [`../PRD.md`](../PRD.md)
 
@@ -185,6 +185,11 @@ Add:
 - the first explainable Flow Pressure assessment is calculated and shown per trace;
 - trace-scoped observation IDs prevent reused legacy input IDs from merging incompatible source context;
 - alternative slots and feasibility semantics are present; the LNG traces expose European TTF only as a potential market candidate, with execution constraints explicitly unresolved.
+- staged refresh is available through `bun run energy:refresh` and `bun run energy:refresh -- --event`;
+- EIA physical-flow, IMF PortWatch route-context, and existing TTF market source definitions emit normalized candidates with snapshot lineage, freshness and fallback status;
+- `bun run daily:update` promotes only validated same-as-of candidates, recalculates Flow Pressure through the adapter, ranks alternatives, generates the Energy/LNG read model, and mirrors promoted runtime data;
+- source selectors, target publication policies, deterministic record-key checks, machine snapshot evidence, refresh fingerprints, unavailable TTF handling, and staged fail-closed publication gates harden the Phase 1 workflow;
+- reviewed Qatar force-majeure and Hormuz disruption evidence remains manual-only and is preserved during carry-forward.
 
 ### Phase 0 - Foundation
 

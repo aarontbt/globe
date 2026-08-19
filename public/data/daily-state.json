@@ -28,7 +28,8 @@
       "signal": "red",
       "source": "Yahoo Finance TTF=F",
       "sourceDate": "2026-08-18",
-      "status": "confirmed"
+      "status": "carried",
+      "carryReason": "Machine refresh returned no usable record. Previous approved observation carried with its original observation date."
     },
     "lng-ja": {
       "current": 21.22,
@@ -240,32 +241,32 @@
     "headline": "AP reported Trump threatened Oman over its near-term deal with Iran to manage Hormuz traffic. A projectile hit a ship leaving the strait off Oman on Aug 18, damaging the engine room and causing a crew casualty; no responsibility was claimed. Iran says the strait will not reopen until US conditions are met. Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable.",
     "metrics": {
       "qatar-output-status": {
-        "value": "Force majeure extended to mid-September; Bloomberg (Jul 22) reports a further extension to mid-October is in preparation, not yet formally confirmed",
         "unit": "",
         "status": "carried",
-        "source": "Reuters",
-        "sourceDate": "2026-07-23",
         "maxAgeDays": 14,
         "cadence": "event-driven",
+        "value": "Force majeure extended to mid-September; Bloomberg (Jul 22) reports a further extension to mid-October is in preparation, not yet formally confirmed",
+        "source": "Reuters",
+        "sourceDate": "2026-07-23",
         "carryReason": "No newer source-verified QatarEnergy force-majeure notice was approved in the Aug 18 review; retain the Reuters July 23 notice that force majeure extends through mid-September and keep the later mid-October extension as unconfirmed preparation."
       },
       "qatar-volume-at-risk": {
         "unit": "MTPA",
         "status": "unavailable",
-        "source": "",
-        "sourceDate": "",
         "maxAgeDays": 1,
         "cadence": "daily",
-        "missingReason": "No current source-verified unavailable-volume figure is approved."
+        "source": "",
+        "sourceDate": "",
+        "missingReason": "Machine refresh returned no usable record. No approved observation is available."
       },
       "hormuz-transits": {
-        "value": 3,
         "unit": "LNG transits (week of Jul 27-Aug 2)",
         "status": "carried",
-        "source": "Kpler via Foreign Policy Journal",
-        "sourceDate": "2026-08-03",
         "maxAgeDays": 7,
         "cadence": "daily",
+        "value": 3,
+        "source": "Kpler via Foreign Policy Journal",
+        "sourceDate": "2026-08-03",
         "carryReason": "No newer source-verified weekly Kpler LNG-transit breakdown was approved in the Aug 18 review; retain the Aug 3 Foreign Policy Journal count of 3 LNG transits for the week of Jul 27-Aug 2."
       },
       "jera-qatar-volume": {
@@ -296,14 +297,15 @@
         "missingReason": "No current source-verified LNG rerouting delay is approved."
       },
       "ttf": {
-        "value": 63.92,
         "unit": "EUR/MWh",
-        "status": "confirmed",
-        "source": "Yahoo Finance TTF=F",
-        "sourceDate": "2026-08-18",
+        "status": "carried",
         "maxAgeDays": 3,
         "cadence": "daily",
-        "observedAt": "2026-08-18T15:50:45.000Z"
+        "value": 63.92,
+        "source": "Yahoo Finance TTF=F",
+        "sourceDate": "2026-08-18",
+        "observedAt": "2026-08-18T15:50:45.000Z",
+        "carryReason": "Machine refresh returned no usable record. Previous approved observation carried with its original observation date."
       },
       "hormuz-total-oil-flow": {
         "value": 20.9,
@@ -667,7 +669,7 @@
   "runbookState": {
     "brent": "$91.29 (2026-08-18, Yahoo Finance BZ=F; +4.85%)",
     "jkm": "$22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $21.22/MMBtu, Trading Economics, Aug 14; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation)",
-    "ttf": "63.92 EUR/MWh (2026-08-18, Yahoo Finance TTF=F; +5.82%)"
+    "ttf": "63.92 EUR/MWh (2026-08-18, Yahoo Finance TTF=F; +5.82%); carried after machine refresh failure"
   },
   "timelineEntry": "- **D167**: Aug 18 - AP reports Trump threatened Oman over an Iran route deal; projectile hits ship exiting Hormuz with crew casualty; Iran says no reopening before US conditions; Brent $91.29.",
   "commercialInputs": {
@@ -710,14 +712,15 @@
         "e-ttf"
       ],
       "requiredForCalculation": false,
-      "value": 63.92,
       "unit": "EUR/MWh",
-      "status": "confirmed",
-      "source": "Yahoo Finance TTF=F",
-      "sourceDate": "2026-08-18",
+      "status": "carried",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "observedAt": "2026-08-18T15:50:45.000Z"
+      "value": 63.92,
+      "source": "Yahoo Finance TTF=F",
+      "sourceDate": "2026-08-18",
+      "observedAt": "2026-08-18T15:50:45.000Z",
+      "carryReason": "Machine refresh returned no usable record. Previous approved observation carried with its original observation date."
     },
     "fx-eurusd": {
       "label": "EUR/USD",

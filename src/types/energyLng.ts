@@ -7,6 +7,8 @@
  * changing the experience layer.
  */
 
+import type { EnergyLngMachineEvidence } from "./energyLngPipeline";
+
 export type EnergyLngEntityKind =
   | "producer"
   | "field"
@@ -46,6 +48,19 @@ export type EnergyLngRecordStatus = "confirmed" | "carried" | "unavailable" | "i
 export type EnergyLngConfidence = "high" | "medium" | "low" | "unknown";
 export type EnergyLngCadence = "daily" | "event-driven" | "contract-driven";
 
+export interface EnergyLngLineage {
+  sourceId: string;
+  sourceUrl: string;
+  provider: string;
+  observationAt: string | null;
+  retrievedAt: string;
+  snapshotHash: string | null;
+  snapshotRef: string;
+  parserVersion: string;
+  recordKey: string;
+  derivedFrom: string[];
+}
+
 /** Required provenance and validity fields for every canonical record. */
 export interface EnergyLngRecordMeta {
   asOf: string;
@@ -69,6 +84,8 @@ export interface EnergyLngSource {
   maxAgeDays: number;
   status: "confirmed" | "carried";
   note?: string;
+  provider?: string;
+  lineage?: EnergyLngLineage;
 }
 
 export interface EnergyLngEntity {
@@ -99,6 +116,8 @@ export interface EnergyLngObservation {
   value?: number | string;
   low?: number;
   high?: number;
+  change?: number;
+  changePct?: number;
   unit: string | null;
   sourceName?: string;
   sourceDate?: string;
@@ -108,7 +127,9 @@ export interface EnergyLngObservation {
   carryReason?: string;
   missingReason?: string;
   evidenceIds: string[];
+  machineEvidenceIds?: string[];
   record: EnergyLngRecordMeta;
+  lineage?: EnergyLngLineage;
 }
 
 export type EnergyLngTraceStage = "signal" | "supply" | "transport" | "demand" | "counterparty";
@@ -269,6 +290,7 @@ export interface EnergyLngDomain {
   day: string;
   headline: string;
   sources: EnergyLngSource[];
+  machineEvidence?: EnergyLngMachineEvidence[];
   entities: EnergyLngEntity[];
   relationships: EnergyLngRelationship[];
   observations: EnergyLngObservation[];

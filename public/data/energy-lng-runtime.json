@@ -1,0 +1,3245 @@
+{
+  "schemaVersion": "energy-lng-runtime-v1",
+  "promotionStatus": "promoted",
+  "promotedAt": "2026-08-19T04:28:11.538Z",
+  "assessmentVersion": "energy-runtime:9327f6f4aac4a95060eb9ca6",
+  "sourceRunId": "energy-refresh:d723785e74723ba4fbaa3220",
+  "baseFingerprint": "28770a55917698c405a5aef2aced2e6259d91d7239eb8481ad08f95bf54e7dd3",
+  "promotedRecordIds": [
+    "energy-observation:src-eia-lng-baseline:qatar-volume-at-risk:unavailable",
+    "energy-observation:src-imf-portwatch-hormuz:hormuz-transits:2026-08-03",
+    "energy-observation:src-yahoo-ttf:ttf-lng-ttf:2026-08-18",
+    "energy-observation:src-reviewed-qatar-force-majeure:qatar-output-status:2026-07-23"
+  ],
+  "domain": {
+    "schemaVersion": "energy-lng-domain-v1",
+    "readModelVersion": "energy-lng-read-model-v1",
+    "asOf": "2026-08-18T00:00:00Z",
+    "day": "D167",
+    "headline": "AP reported Trump threatened Oman over its near-term deal with Iran to manage Hormuz traffic. A projectile hit a ship leaving the strait off Oman on Aug 18, damaging the engine room and causing a crew casualty; no responsibility was claimed. Iran says the strait will not reopen until US conditions are met. Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable.",
+    "sources": [
+      {
+        "id": "e-qatar-force-majeure",
+        "title": "QatarEnergy extends LNG force majeure and charters out tankers into October",
+        "publisher": "Reuters",
+        "url": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
+        "publishedAt": "2026-07-23",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "event",
+        "cadence": "event-driven",
+        "maxAgeDays": 14,
+        "status": "carried",
+        "note": "No newer source-verified QatarEnergy force-majeure notice was approved in the Aug 18 review; carry the Reuters July 23 notice through mid-September and keep the later mid-October extension as unconfirmed preparation.",
+        "provider": "Reuters"
+      },
+      {
+        "id": "e-hormuz-transit",
+        "title": "Strait of Hormuz Crossings Rise 8% Week-on-Week, But Dark AIS Activity Remains Elevated",
+        "publisher": "Foreign Policy Journal (Kpler data)",
+        "url": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
+        "publishedAt": "2026-08-03",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "event",
+        "cadence": "daily",
+        "maxAgeDays": 7,
+        "status": "carried",
+        "note": "No newer source-verified weekly Kpler LNG-transit breakdown was approved in the Aug 18 review; retain the Aug 3 Foreign Policy Journal count of 3 LNG transits for the week of Jul 27-Aug 2.",
+        "provider": "Foreign Policy Journal (Kpler data)"
+      },
+      {
+        "id": "e-jkm",
+        "title": "Asia LNG hits four-month high on fears of wider Mideast shipping disruption",
+        "publisher": "Reuters",
+        "url": "https://www.reuters.com/business/energy/asia-lng-hits-four-month-high-fears-wider-mideast-shipping-disruption-2026-07-24/",
+        "publishedAt": "2026-07-24",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "market-observation",
+        "cadence": "daily",
+        "maxAgeDays": 3,
+        "status": "carried",
+        "note": "No newer source-verified weekly Asia spot LNG assessment was approved on Aug 18. The Reuters July 24 assessment of 22 USD/MMBtu for September delivery remains carried without a fresh recheck of the article.",
+        "provider": "Reuters"
+      },
+      {
+        "id": "e-ttf",
+        "title": "Yahoo Finance chart API - Dutch TTF",
+        "publisher": "Yahoo Finance",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+        "publishedAt": "2026-08-18",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "market-observation",
+        "cadence": "daily",
+        "maxAgeDays": 3,
+        "status": "confirmed",
+        "note": "Machine-refreshed from Yahoo Finance TTF=F; exact observation captured on Aug 18.",
+        "provider": "Yahoo Finance"
+      },
+      {
+        "id": "e-jera-qatarenergy",
+        "title": "JERA Signs 27-Year LNG Supply Agreement with QatarEnergy",
+        "publisher": "JERA",
+        "url": "https://www.jera.co.jp/en/news/information/20260203_2351",
+        "publishedAt": "2026-02-03",
+        "retrievedAt": "2026-07-29T00:00:00Z",
+        "kind": "contract",
+        "cadence": "contract-driven",
+        "maxAgeDays": 365,
+        "status": "confirmed",
+        "provider": "JERA"
+      },
+      {
+        "id": "e-nakilat-charters",
+        "title": "QatarEnergy and Nakilat sign long-term charter agreements for 25 LNG vessels",
+        "publisher": "Nakilat",
+        "url": "https://nakilat.com/qatarenergy-enters-time-charter-agreements-with-nakilat-for-the-operation-of-25-lng-vessels/",
+        "publishedAt": "2024-03-24",
+        "retrievedAt": "2026-07-29T00:00:00Z",
+        "kind": "contract",
+        "cadence": "contract-driven",
+        "maxAgeDays": 365,
+        "status": "confirmed",
+        "provider": "Nakilat"
+      },
+      {
+        "id": "e-eia-hormuz",
+        "title": "World Oil Transit Chokepoints - Strait of Hormuz",
+        "publisher": "U.S. EIA",
+        "url": "https://www.eia.gov/international/analysis/special-topics/world_oil_transit_Chokepoints",
+        "publishedAt": "2026-03-03",
+        "retrievedAt": "2026-07-29T00:00:00Z",
+        "kind": "official-statistics",
+        "cadence": "event-driven",
+        "maxAgeDays": 730,
+        "status": "confirmed",
+        "provider": "U.S. EIA"
+      },
+      {
+        "id": "e-eia-saudi",
+        "title": "Amid regional conflict, the Strait of Hormuz remains critical oil chokepoint",
+        "publisher": "U.S. EIA",
+        "url": "https://www.eia.gov/todayinenergy/detail.php?id=65504",
+        "publishedAt": "2025-06-16",
+        "retrievedAt": "2026-07-29T00:00:00Z",
+        "kind": "official-statistics",
+        "cadence": "event-driven",
+        "maxAgeDays": 730,
+        "status": "confirmed",
+        "provider": "U.S. EIA"
+      },
+      {
+        "id": "e-brent",
+        "title": "Yahoo Finance chart API - Brent Crude",
+        "publisher": "Yahoo Finance",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=1d&range=5d",
+        "publishedAt": "2026-08-18",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "market-observation",
+        "cadence": "daily",
+        "maxAgeDays": 3,
+        "status": "confirmed",
+        "note": "Machine-refreshed from Yahoo Finance BZ=F; exact observation captured on Aug 18.",
+        "provider": "Yahoo Finance"
+      },
+      {
+        "id": "e-wti",
+        "title": "Yahoo Finance chart API - WTI Crude",
+        "publisher": "Yahoo Finance",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=5d",
+        "publishedAt": "2026-08-18",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "market-observation",
+        "cadence": "daily",
+        "maxAgeDays": 3,
+        "status": "confirmed",
+        "note": "Machine-refreshed from Yahoo Finance CL=F; exact observation captured on Aug 18.",
+        "provider": "Yahoo Finance"
+      },
+      {
+        "id": "e-eurusd",
+        "title": "Yahoo Finance chart API - EUR/USD",
+        "publisher": "Yahoo Finance",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?interval=1d&range=5d",
+        "publishedAt": "2026-08-18",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "market-observation",
+        "cadence": "daily",
+        "maxAgeDays": 3,
+        "status": "confirmed",
+        "note": "Machine-refreshed from Yahoo Finance EURUSD=X; exact observation captured on Aug 18.",
+        "provider": "Yahoo Finance"
+      },
+      {
+        "id": "e-sofr",
+        "title": "Secured Overnight Financing Rate",
+        "publisher": "Federal Reserve Bank of New York",
+        "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
+        "publishedAt": "2026-08-17",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "market-observation",
+        "cadence": "daily",
+        "maxAgeDays": 7,
+        "status": "confirmed",
+        "note": "Machine-refreshed from Federal Reserve Bank of New York; SOFR effective Aug 17 at 3.66%.",
+        "provider": "Federal Reserve Bank of New York"
+      },
+      {
+        "id": "e-jkm-cfd",
+        "title": "Liquefied Natural Gas Japan Korea - Price",
+        "publisher": "Trading Economics",
+        "url": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
+        "publishedAt": "2026-08-14",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "market-observation",
+        "cadence": "daily",
+        "maxAgeDays": 3,
+        "status": "carried",
+        "note": "No newer source-verified JKM-linked CFD observation was approved on Aug 18; the Aug 14 reference at 21.22 USD/MMBtu remains carried and contextual, excluded from commercial calculations.",
+        "provider": "Trading Economics"
+      },
+      {
+        "id": "e-hormuz-total-transits",
+        "title": "Ship traffic through Strait of Hormuz near three-month low",
+        "publisher": "Investing.com (via Yahoo Finance UK, citing Kpler)",
+        "url": "https://uk.finance.yahoo.com/news/ship-traffic-strait-hormuz-near-180011589.html",
+        "publishedAt": "2026-08-13",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "event",
+        "cadence": "daily",
+        "maxAgeDays": 1,
+        "status": "carried",
+        "note": "AP reported limited traffic but did not provide a comparable current five-day average; no newer source-verified Kpler daily/5-day-average figure was approved on Aug 18. Retain the Aug 13 Kpler-sourced figure of 13/day through Aug 11.",
+        "provider": "Investing.com (via Yahoo Finance UK, citing Kpler)"
+      },
+      {
+        "id": "e-ap-hormuz-20260818",
+        "title": "Trump threatens Oman over Hormuz deal as ship is hit",
+        "publisher": "Associated Press",
+        "url": "https://apnews.com/article/oman-iran-war-us-hormuz-a8298715a51159225d2f37a6d50ce682",
+        "publishedAt": "2026-08-18",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "event",
+        "cadence": "daily",
+        "maxAgeDays": 7,
+        "status": "confirmed",
+        "note": "AP reported a projectile hit a ship leaving Hormuz off Oman on Aug 18, causing a crew casualty, while Trump threatened Oman over its near-term route-management arrangement with Iran.",
+        "provider": "Associated Press"
+      },
+      {
+        "id": "e-gme-oman",
+        "title": "OQD Daily Marker Price",
+        "publisher": "Gulf Mercantile Exchange",
+        "url": "https://www.gulfmerc.com/",
+        "publishedAt": "2026-08-14",
+        "retrievedAt": "2026-08-18T00:00:00Z",
+        "kind": "market-observation",
+        "cadence": "daily",
+        "maxAgeDays": 3,
+        "status": "carried",
+        "note": "No current public GME OQD marker was approved after Aug 14; retain the Aug 14 marker price of 86.83 USD/bbl.",
+        "provider": "Gulf Mercantile Exchange"
+      }
+    ],
+    "machineEvidence": [],
+    "entities": [
+      {
+        "id": "qatarenergy",
+        "kind": "producer",
+        "name": "QatarEnergy",
+        "shortName": "QatarEnergy",
+        "country": "Qatar",
+        "coordinates": [
+          51.53,
+          25.29
+        ],
+        "description": "Publicly documented LNG producer and contracting party.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-qatar-force-majeure",
+            "e-jera-qatarenergy"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "ras-laffan",
+        "kind": "export-terminal",
+        "name": "Ras Laffan LNG Complex",
+        "shortName": "Ras Laffan",
+        "country": "Qatar",
+        "coordinates": [
+          51.55,
+          25.92
+        ],
+        "description": "Qatar's principal LNG production and export complex.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-qatar-force-majeure"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        }
+      },
+      {
+        "id": "hormuz",
+        "kind": "chokepoint",
+        "name": "Strait of Hormuz",
+        "shortName": "Hormuz",
+        "country": "Iran / Oman",
+        "coordinates": [
+          56.25,
+          26.55
+        ],
+        "description": "Maritime chokepoint linking Gulf LNG production to global markets.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-hormuz-transit",
+            "e-hormuz-total-transits",
+            "e-ap-hormuz-20260818",
+            "e-nakilat-charters",
+            "e-qatar-force-majeure",
+            "e-eia-hormuz"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "nakilat",
+        "kind": "carrier",
+        "name": "Qatar Gas Transport Company (Nakilat)",
+        "shortName": "Nakilat",
+        "country": "Qatar",
+        "coordinates": [
+          51.53,
+          25.31
+        ],
+        "description": "Publicly documented owner and operator of LNG carriers chartered to QatarEnergy affiliates.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-nakilat-charters",
+            "e-qatar-force-majeure",
+            "e-jera-qatarenergy"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "jkm",
+        "kind": "benchmark",
+        "name": "Japan Korea Marker",
+        "shortName": "JKM",
+        "country": "Asia",
+        "coordinates": [
+          103.82,
+          1.35
+        ],
+        "description": "Benchmark for spot LNG delivered into Northeast Asia.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-jkm-cfd",
+            "e-ttf"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "ttf",
+        "kind": "benchmark",
+        "name": "Title Transfer Facility",
+        "shortName": "TTF",
+        "country": "Netherlands",
+        "coordinates": [
+          4.9,
+          52.37
+        ],
+        "description": "European gas benchmark competing with Asia for flexible LNG cargoes.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-ttf"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "jera",
+        "kind": "buyer",
+        "name": "JERA Co., Inc.",
+        "shortName": "JERA",
+        "country": "Japan",
+        "coordinates": [
+          139.7,
+          35.68
+        ],
+        "description": "Japanese power and LNG buyer with a publicly announced long-term QatarEnergy agreement.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-jera-qatarenergy",
+            "e-nakilat-charters"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "saudi-crude",
+        "kind": "producer",
+        "name": "Saudi Arabian Crude Exports",
+        "shortName": "Saudi crude",
+        "country": "Saudi Arabia",
+        "coordinates": [
+          50.15,
+          26.65
+        ],
+        "description": "Country-level crude-export node supported by EIA flow statistics.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-eia-hormuz",
+            "e-eia-saudi"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "asia-crude-demand",
+        "kind": "demand-region",
+        "name": "Asian Crude Demand",
+        "shortName": "Asian demand",
+        "country": "China / India / Japan / South Korea",
+        "coordinates": [
+          112,
+          25
+        ],
+        "description": "Country-level destination market supported by EIA Hormuz-flow statistics.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-eia-hormuz",
+            "e-gme-oman"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      }
+    ],
+    "relationships": [
+      {
+        "id": "relationship:route-segment:ras-laffan:hormuz",
+        "type": "route-segment",
+        "fromEntityId": "ras-laffan",
+        "toEntityId": "hormuz",
+        "evidenceIds": [
+          "e-qatar-force-majeure",
+          "e-hormuz-transit",
+          "e-jkm-cfd",
+          "e-jera-qatarenergy"
+        ],
+        "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-qatar-force-majeure",
+            "e-hormuz-transit",
+            "e-jkm-cfd",
+            "e-jera-qatarenergy"
+          ],
+          "status": "inferred",
+          "confidence": "low"
+        }
+      },
+      {
+        "id": "relationship:route-segment:hormuz:jkm",
+        "type": "route-segment",
+        "fromEntityId": "hormuz",
+        "toEntityId": "jkm",
+        "evidenceIds": [
+          "e-qatar-force-majeure",
+          "e-hormuz-transit",
+          "e-jkm-cfd",
+          "e-jera-qatarenergy"
+        ],
+        "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-qatar-force-majeure",
+            "e-hormuz-transit",
+            "e-jkm-cfd",
+            "e-jera-qatarenergy"
+          ],
+          "status": "inferred",
+          "confidence": "low"
+        }
+      },
+      {
+        "id": "relationship:route-segment:jkm:jera",
+        "type": "route-segment",
+        "fromEntityId": "jkm",
+        "toEntityId": "jera",
+        "evidenceIds": [
+          "e-qatar-force-majeure",
+          "e-hormuz-transit",
+          "e-jkm-cfd",
+          "e-jera-qatarenergy"
+        ],
+        "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-qatar-force-majeure",
+            "e-hormuz-transit",
+            "e-jkm-cfd",
+            "e-jera-qatarenergy"
+          ],
+          "status": "inferred",
+          "confidence": "low"
+        }
+      },
+      {
+        "id": "relationship:operates:qatarenergy:ras-laffan",
+        "type": "operates",
+        "fromEntityId": "qatarenergy",
+        "toEntityId": "ras-laffan",
+        "evidenceIds": [
+          "e-qatar-force-majeure"
+        ],
+        "note": "Operational relationship inferred from the source-backed trace hop.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-qatar-force-majeure"
+          ],
+          "status": "inferred",
+          "confidence": "low"
+        }
+      },
+      {
+        "id": "relationship:contracted-supply:qatarenergy:jera",
+        "type": "contracted-supply",
+        "fromEntityId": "qatarenergy",
+        "toEntityId": "jera",
+        "evidenceIds": [
+          "e-jera-qatarenergy"
+        ],
+        "note": "Relationship type is constrained to the approved public observation; it is not a customer exposure claim.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-jera-qatarenergy"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "relationship:route-segment:ras-laffan:nakilat",
+        "type": "route-segment",
+        "fromEntityId": "ras-laffan",
+        "toEntityId": "nakilat",
+        "evidenceIds": [
+          "e-hormuz-total-transits",
+          "e-ap-hormuz-20260818",
+          "e-qatar-force-majeure",
+          "e-nakilat-charters",
+          "e-ttf",
+          "e-jera-qatarenergy"
+        ],
+        "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-hormuz-total-transits",
+            "e-ap-hormuz-20260818",
+            "e-qatar-force-majeure",
+            "e-nakilat-charters",
+            "e-ttf",
+            "e-jera-qatarenergy"
+          ],
+          "status": "inferred",
+          "confidence": "low"
+        }
+      },
+      {
+        "id": "relationship:route-segment:nakilat:hormuz",
+        "type": "route-segment",
+        "fromEntityId": "nakilat",
+        "toEntityId": "hormuz",
+        "evidenceIds": [
+          "e-hormuz-total-transits",
+          "e-ap-hormuz-20260818",
+          "e-qatar-force-majeure",
+          "e-nakilat-charters",
+          "e-ttf",
+          "e-jera-qatarenergy"
+        ],
+        "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-hormuz-total-transits",
+            "e-ap-hormuz-20260818",
+            "e-qatar-force-majeure",
+            "e-nakilat-charters",
+            "e-ttf",
+            "e-jera-qatarenergy"
+          ],
+          "status": "inferred",
+          "confidence": "low"
+        }
+      },
+      {
+        "id": "relationship:route-segment:hormuz:jera",
+        "type": "route-segment",
+        "fromEntityId": "hormuz",
+        "toEntityId": "jera",
+        "evidenceIds": [
+          "e-hormuz-total-transits",
+          "e-ap-hormuz-20260818",
+          "e-qatar-force-majeure",
+          "e-nakilat-charters",
+          "e-ttf",
+          "e-jera-qatarenergy"
+        ],
+        "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-hormuz-total-transits",
+            "e-ap-hormuz-20260818",
+            "e-qatar-force-majeure",
+            "e-nakilat-charters",
+            "e-ttf",
+            "e-jera-qatarenergy"
+          ],
+          "status": "inferred",
+          "confidence": "low"
+        }
+      },
+      {
+        "id": "relationship:operational-dependency:nakilat:jera",
+        "type": "operational-dependency",
+        "fromEntityId": "nakilat",
+        "toEntityId": "jera",
+        "evidenceIds": [
+          "e-nakilat-charters",
+          "e-jera-qatarenergy"
+        ],
+        "note": "Relationship type is constrained to the approved public observation; it is not a customer exposure claim.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-nakilat-charters",
+            "e-jera-qatarenergy"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "relationship:route-segment:saudi-crude:hormuz",
+        "type": "route-segment",
+        "fromEntityId": "saudi-crude",
+        "toEntityId": "hormuz",
+        "evidenceIds": [
+          "e-eia-hormuz",
+          "e-eia-saudi",
+          "e-gme-oman"
+        ],
+        "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-eia-hormuz",
+            "e-eia-saudi",
+            "e-gme-oman"
+          ],
+          "status": "inferred",
+          "confidence": "low"
+        }
+      },
+      {
+        "id": "relationship:route-segment:hormuz:asia-crude-demand",
+        "type": "route-segment",
+        "fromEntityId": "hormuz",
+        "toEntityId": "asia-crude-demand",
+        "evidenceIds": [
+          "e-eia-hormuz",
+          "e-eia-saudi",
+          "e-gme-oman"
+        ],
+        "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-eia-hormuz",
+            "e-eia-saudi",
+            "e-gme-oman"
+          ],
+          "status": "inferred",
+          "confidence": "low"
+        }
+      }
+    ],
+    "observations": [
+      {
+        "id": "observation:qatar-supply:qatar-output-status",
+        "label": "Current status",
+        "entityIds": [
+          "ras-laffan",
+          "qatarenergy"
+        ],
+        "value": "Force majeure extended to mid-September; Bloomberg (Jul 22) reports a further extension to mid-October is in preparation, not yet formally confirmed",
+        "unit": "",
+        "sourceName": "Reuters",
+        "sourceDate": "2026-07-23",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 14,
+        "carryReason": "No newer source-verified QatarEnergy force-majeure notice was approved in the Aug 18 review; retain the Reuters July 23 notice that force majeure extends through mid-September and keep the later mid-October extension as unconfirmed preparation.",
+        "evidenceIds": [
+          "e-qatar-force-majeure"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-07-23T00:00:00Z",
+          "validTo": null,
+          "unit": "",
+          "sourceIds": [
+            "e-qatar-force-majeure"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        },
+        "lineage": {
+          "sourceId": "src-reviewed-qatar-force-majeure",
+          "sourceUrl": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
+          "provider": "Reuters",
+          "observationAt": "2026-07-23T00:00:00.000Z",
+          "retrievedAt": "2026-08-19T04:28:11.538Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:2026-08-19t04-28-11-538z",
+          "parserVersion": "manual-reviewed-v1",
+          "recordKey": "b2c19c916fe118bcce3e995bf2ebfc63531b459ef0714b74f378fca4b811ab6a",
+          "derivedFrom": [
+            "e-qatar-force-majeure"
+          ]
+        }
+      },
+      {
+        "id": "observation:qatar-supply:qatar-volume-at-risk",
+        "label": "Verified volume unavailable",
+        "entityIds": [
+          "qatarenergy",
+          "ras-laffan"
+        ],
+        "unit": "MTPA",
+        "cadence": "daily",
+        "freshnessWindowDays": 1,
+        "missingReason": "Machine refresh returned no usable record. No approved observation is available.",
+        "evidenceIds": [],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": null,
+          "validTo": null,
+          "unit": "MTPA",
+          "sourceIds": [],
+          "status": "unavailable",
+          "confidence": "unknown"
+        },
+        "lineage": {
+          "sourceId": "src-eia-lng-baseline",
+          "sourceUrl": "https://api.eia.gov/v2/international/data/",
+          "provider": "U.S. EIA",
+          "observationAt": null,
+          "retrievedAt": "2026-08-19T04:28:11.538Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-eia-lng-baseline:2026-08-19t04-28-11-538z",
+          "parserVersion": "eia-international-v1",
+          "recordKey": "cbba9b64c7e5582feb24cd2157ca52f9c9f8bab40d5ab4e6044bcaafcd05f75f",
+          "derivedFrom": []
+        }
+      },
+      {
+        "id": "observation:qatar-supply:hormuz-transits",
+        "label": "Last reviewed LNG transits",
+        "entityIds": [
+          "hormuz"
+        ],
+        "value": 3,
+        "unit": "LNG transits (week of Jul 27-Aug 2)",
+        "sourceName": "Kpler via Foreign Policy Journal",
+        "sourceDate": "2026-08-03",
+        "cadence": "daily",
+        "freshnessWindowDays": 7,
+        "carryReason": "No newer source-verified weekly Kpler LNG-transit breakdown was approved in the Aug 18 review; retain the Aug 3 Foreign Policy Journal count of 3 LNG transits for the week of Jul 27-Aug 2.",
+        "evidenceIds": [
+          "e-hormuz-transit"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-03T00:00:00Z",
+          "validTo": null,
+          "unit": "LNG transits (week of Jul 27-Aug 2)",
+          "sourceIds": [
+            "e-hormuz-transit"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        },
+        "lineage": {
+          "sourceId": "src-imf-portwatch-hormuz",
+          "sourceUrl": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
+          "provider": "Kpler via Foreign Policy Journal",
+          "observationAt": "2026-08-03T00:00:00.000Z",
+          "retrievedAt": "2026-08-19T04:28:11.538Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:2026-08-19t04-28-11-538z",
+          "parserVersion": "portwatch-route-v1",
+          "recordKey": "d060d71e44e8273e278a6a4ee4fe283288a9aa3977a707db58d831a280723eb6",
+          "derivedFrom": [
+            "e-hormuz-transit"
+          ]
+        }
+      },
+      {
+        "id": "observation:qatar-supply:jkm-cfd-reference",
+        "label": "JKM-linked market reference",
+        "entityIds": [
+          "jkm"
+        ],
+        "value": 21.22,
+        "unit": "USD/MMBtu",
+        "sourceName": "Trading Economics",
+        "sourceDate": "2026-08-14",
+        "cadence": "daily",
+        "freshnessWindowDays": 3,
+        "carryReason": "No newer source-verified JKM-linked CFD observation was approved on Aug 18; retain the Trading Economics Aug 14 reference at 21.22 USD/MMBtu.",
+        "evidenceIds": [
+          "e-jkm-cfd"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-14T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/MMBtu",
+          "sourceIds": [
+            "e-jkm-cfd"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        }
+      },
+      {
+        "id": "observation:qatar-supply:jera-qatar-volume",
+        "label": "JERA agreement volume",
+        "entityIds": [
+          "jera",
+          "qatarenergy"
+        ],
+        "value": 3,
+        "unit": "MTPA",
+        "sourceName": "JERA",
+        "sourceDate": "2026-02-03",
+        "cadence": "contract-driven",
+        "freshnessWindowDays": 365,
+        "evidenceIds": [
+          "e-jera-qatarenergy"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-02-03T00:00:00Z",
+          "validTo": null,
+          "unit": "MTPA",
+          "sourceIds": [
+            "e-jera-qatarenergy"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "observation:hormuz-delivery:hormuz-total-transits",
+        "label": "Last reviewed total traffic",
+        "entityIds": [
+          "hormuz"
+        ],
+        "value": 13,
+        "unit": "vessels/day (5-day avg through 2026-08-11)",
+        "sourceName": "Kpler via Investing.com/Yahoo Finance",
+        "sourceDate": "2026-08-13",
+        "cadence": "daily",
+        "freshnessWindowDays": 1,
+        "carryReason": "AP reported limited traffic but did not provide a comparable current five-day average; no newer source-verified Kpler daily/5-day-average figure was approved on Aug 18. Retain the Aug 13 Kpler figure of 13/day through Aug 11.",
+        "evidenceIds": [
+          "e-hormuz-total-transits",
+          "e-ap-hormuz-20260818"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-13T00:00:00Z",
+          "validTo": null,
+          "unit": "vessels/day (5-day avg through 2026-08-11)",
+          "sourceIds": [
+            "e-hormuz-total-transits",
+            "e-ap-hormuz-20260818"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        }
+      },
+      {
+        "id": "observation:hormuz-delivery:qatar-output-status",
+        "label": "Production status",
+        "entityIds": [
+          "ras-laffan",
+          "qatarenergy"
+        ],
+        "value": "Force majeure extended to mid-September; Bloomberg (Jul 22) reports a further extension to mid-October is in preparation, not yet formally confirmed",
+        "unit": "",
+        "sourceName": "Reuters",
+        "sourceDate": "2026-07-23",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 14,
+        "carryReason": "No newer source-verified QatarEnergy force-majeure notice was approved in the Aug 18 review; retain the Reuters July 23 notice that force majeure extends through mid-September and keep the later mid-October extension as unconfirmed preparation.",
+        "evidenceIds": [
+          "e-qatar-force-majeure"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-07-23T00:00:00Z",
+          "validTo": null,
+          "unit": "",
+          "sourceIds": [
+            "e-qatar-force-majeure"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        },
+        "lineage": {
+          "sourceId": "src-reviewed-qatar-force-majeure",
+          "sourceUrl": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
+          "provider": "Reuters",
+          "observationAt": "2026-07-23T00:00:00.000Z",
+          "retrievedAt": "2026-08-19T04:28:11.538Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:2026-08-19t04-28-11-538z",
+          "parserVersion": "manual-reviewed-v1",
+          "recordKey": "b2c19c916fe118bcce3e995bf2ebfc63531b459ef0714b74f378fca4b811ab6a",
+          "derivedFrom": [
+            "e-qatar-force-majeure"
+          ]
+        }
+      },
+      {
+        "id": "observation:hormuz-delivery:nakilat-charter-vessels",
+        "label": "QatarEnergy charters",
+        "entityIds": [
+          "nakilat",
+          "hormuz"
+        ],
+        "value": 25,
+        "unit": "LNG vessels",
+        "sourceName": "Nakilat",
+        "sourceDate": "2024-03-24",
+        "cadence": "contract-driven",
+        "freshnessWindowDays": 3650,
+        "evidenceIds": [
+          "e-nakilat-charters",
+          "e-qatar-force-majeure"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2024-03-24T00:00:00Z",
+          "validTo": null,
+          "unit": "LNG vessels",
+          "sourceIds": [
+            "e-nakilat-charters",
+            "e-qatar-force-majeure"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "observation:hormuz-delivery:qatar-subchartered-carriers",
+        "label": "Minimum sub-chartered",
+        "entityIds": [
+          "nakilat",
+          "hormuz"
+        ],
+        "value": 9,
+        "unit": "LNG carriers minimum",
+        "sourceName": "Reuters",
+        "sourceDate": "2026-07-23",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 14,
+        "carryReason": "No newer source-verified QatarEnergy sub-charter count was approved in the Aug 18 review; retain the Reuters July 23 minimum of nine carriers with its original date.",
+        "evidenceIds": [
+          "e-nakilat-charters",
+          "e-qatar-force-majeure"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-07-23T00:00:00Z",
+          "validTo": null,
+          "unit": "LNG carriers minimum",
+          "sourceIds": [
+            "e-nakilat-charters",
+            "e-qatar-force-majeure"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        }
+      },
+      {
+        "id": "observation:hormuz-delivery:lng-freight-delay",
+        "label": "Verified route delay",
+        "entityIds": [
+          "nakilat",
+          "hormuz"
+        ],
+        "unit": "days",
+        "cadence": "daily",
+        "freshnessWindowDays": 1,
+        "missingReason": "No current source-verified LNG rerouting delay is approved.",
+        "evidenceIds": [
+          "e-nakilat-charters",
+          "e-qatar-force-majeure"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "days",
+          "sourceIds": [
+            "e-nakilat-charters",
+            "e-qatar-force-majeure"
+          ],
+          "status": "unavailable",
+          "confidence": "unknown"
+        }
+      },
+      {
+        "id": "observation:hormuz-delivery:ttf",
+        "label": "Dutch TTF",
+        "entityIds": [
+          "ttf",
+          "jkm"
+        ],
+        "value": 63.92,
+        "unit": "EUR/MWh",
+        "sourceName": "Yahoo Finance TTF=F",
+        "sourceDate": "2026-08-18",
+        "observedAt": "2026-08-18T15:50:45.000Z",
+        "cadence": "daily",
+        "freshnessWindowDays": 3,
+        "carryReason": "Machine refresh returned no usable record. Previous approved observation carried with its original observation date.",
+        "evidenceIds": [
+          "e-ttf"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "EUR/MWh",
+          "sourceIds": [
+            "e-ttf"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        },
+        "lineage": {
+          "sourceId": "src-yahoo-ttf",
+          "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+          "provider": "Yahoo Finance TTF=F",
+          "observationAt": "2026-08-18T15:50:45.000Z",
+          "retrievedAt": "2026-08-19T04:28:11.538Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:2026-08-19t04-28-11-538z",
+          "parserVersion": "yahoo-chart-v1",
+          "recordKey": "26fdbcd2f4272c9e87ff4741a8bceb9899171143cacdffd0ad91bb15a5b63d54",
+          "derivedFrom": [
+            "e-ttf"
+          ]
+        }
+      },
+      {
+        "id": "observation:hormuz-delivery:jera-qatar-volume",
+        "label": "JERA agreement volume",
+        "entityIds": [
+          "nakilat",
+          "jera"
+        ],
+        "value": 3,
+        "unit": "MTPA",
+        "sourceName": "JERA",
+        "sourceDate": "2026-02-03",
+        "cadence": "contract-driven",
+        "freshnessWindowDays": 365,
+        "evidenceIds": [
+          "e-nakilat-charters",
+          "e-jera-qatarenergy"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-02-03T00:00:00Z",
+          "validTo": null,
+          "unit": "MTPA",
+          "sourceIds": [
+            "e-nakilat-charters",
+            "e-jera-qatarenergy"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "observation:hormuz-crude-export:hormuz-total-oil-flow",
+        "label": "1H25 total oil flow",
+        "entityIds": [
+          "hormuz"
+        ],
+        "value": 20.9,
+        "unit": "million b/d",
+        "sourceName": "U.S. EIA",
+        "sourceDate": "2026-03-03",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 730,
+        "evidenceIds": [
+          "e-eia-hormuz"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-03-03T00:00:00Z",
+          "validTo": null,
+          "unit": "million b/d",
+          "sourceIds": [
+            "e-eia-hormuz"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "observation:hormuz-crude-export:hormuz-crude-flow",
+        "label": "1H25 crude and condensate",
+        "entityIds": [
+          "saudi-crude"
+        ],
+        "value": 14.7,
+        "unit": "million b/d",
+        "sourceName": "U.S. EIA",
+        "sourceDate": "2026-03-03",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 730,
+        "evidenceIds": [
+          "e-eia-hormuz",
+          "e-eia-saudi"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-03-03T00:00:00Z",
+          "validTo": null,
+          "unit": "million b/d",
+          "sourceIds": [
+            "e-eia-hormuz",
+            "e-eia-saudi"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "observation:hormuz-crude-export:saudi-hormuz-crude-2024",
+        "label": "Saudi 2024 Hormuz crude",
+        "entityIds": [
+          "saudi-crude"
+        ],
+        "value": 5.5,
+        "unit": "million b/d",
+        "sourceName": "U.S. EIA",
+        "sourceDate": "2025-06-16",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 730,
+        "evidenceIds": [
+          "e-eia-hormuz",
+          "e-eia-saudi"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2025-06-16T00:00:00Z",
+          "validTo": null,
+          "unit": "million b/d",
+          "sourceIds": [
+            "e-eia-hormuz",
+            "e-eia-saudi"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "observation:hormuz-crude-export:oil-vlcc-freight",
+        "label": "Verified VLCC freight",
+        "entityIds": [
+          "hormuz"
+        ],
+        "unit": "USD/bbl",
+        "cadence": "daily",
+        "freshnessWindowDays": 1,
+        "missingReason": "No current route-normalised VLCC freight observation is approved.",
+        "evidenceIds": [],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/bbl",
+          "sourceIds": [],
+          "status": "unavailable",
+          "confidence": "unknown"
+        }
+      },
+      {
+        "id": "observation:hormuz-crude-export:asia-crude-share",
+        "label": "Asian share",
+        "entityIds": [
+          "asia-crude-demand"
+        ],
+        "value": 89,
+        "unit": "%",
+        "sourceName": "U.S. EIA",
+        "sourceDate": "2026-03-03",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 730,
+        "evidenceIds": [
+          "e-eia-hormuz",
+          "e-gme-oman"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-03-03T00:00:00Z",
+          "validTo": null,
+          "unit": "%",
+          "sourceIds": [
+            "e-eia-hormuz",
+            "e-gme-oman"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "observation:hormuz-crude-export:asia-top-four-share",
+        "label": "China, India, Japan and South Korea",
+        "entityIds": [
+          "asia-crude-demand"
+        ],
+        "value": 74,
+        "unit": "%",
+        "sourceName": "U.S. EIA",
+        "sourceDate": "2026-03-03",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 730,
+        "evidenceIds": [
+          "e-eia-hormuz",
+          "e-gme-oman"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-03-03T00:00:00Z",
+          "validTo": null,
+          "unit": "%",
+          "sourceIds": [
+            "e-eia-hormuz",
+            "e-gme-oman"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "observation:hormuz-crude-export:oman-marker",
+        "label": "Oman crude marker",
+        "entityIds": [
+          "asia-crude-demand"
+        ],
+        "value": 86.83,
+        "unit": "USD/bbl",
+        "sourceName": "Gulf Mercantile Exchange",
+        "sourceDate": "2026-08-14",
+        "cadence": "daily",
+        "freshnessWindowDays": 3,
+        "carryReason": "No current public GME OQD marker was approved after Aug 14; retain the Aug 14 value of 86.83 USD/bbl.",
+        "evidenceIds": [
+          "e-eia-hormuz",
+          "e-gme-oman"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-14T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/bbl",
+          "sourceIds": [
+            "e-eia-hormuz",
+            "e-gme-oman"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        }
+      },
+      {
+        "id": "observation:hormuz-crude-export:oil-counterparty-relationship",
+        "label": "Verified named buyer",
+        "entityIds": [
+          "asia-crude-demand"
+        ],
+        "unit": "",
+        "cadence": "contract-driven",
+        "freshnessWindowDays": 30,
+        "missingReason": "No named company-level buyer relationship is verified by the approved oil-flow sources.",
+        "evidenceIds": [
+          "e-eia-hormuz"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "",
+          "sourceIds": [
+            "e-eia-hormuz"
+          ],
+          "status": "unavailable",
+          "confidence": "unknown"
+        }
+      },
+      {
+        "id": "commercial-observation:lng-origin-value",
+        "label": "Qatar origin value",
+        "entityIds": [],
+        "unit": "USD/MMBtu",
+        "cadence": "daily",
+        "freshnessWindowDays": 1,
+        "missingReason": "No verified public cargo purchase value is available.",
+        "evidenceIds": [],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/MMBtu",
+          "sourceIds": [],
+          "status": "unavailable",
+          "confidence": "unknown"
+        }
+      },
+      {
+        "id": "commercial-observation:lng-jkm",
+        "label": "JKM",
+        "entityIds": [],
+        "value": 22,
+        "unit": "USD/MMBtu",
+        "sourceName": "Reuters",
+        "sourceDate": "2026-07-24",
+        "cadence": "daily",
+        "freshnessWindowDays": 3,
+        "carryReason": "Reuters reported the latest approved Asian spot LNG assessment at 22 USD/MMBtu for September delivery on 2026-07-24.",
+        "evidenceIds": [
+          "e-jkm"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-07-24T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/MMBtu",
+          "sourceIds": [
+            "e-jkm"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        }
+      },
+      {
+        "id": "commercial-observation:lng-ttf",
+        "label": "Dutch TTF",
+        "entityIds": [],
+        "value": 63.92,
+        "unit": "EUR/MWh",
+        "sourceName": "Yahoo Finance TTF=F",
+        "sourceDate": "2026-08-18",
+        "observedAt": "2026-08-18T15:50:45.000Z",
+        "cadence": "daily",
+        "freshnessWindowDays": 3,
+        "carryReason": "Machine refresh returned no usable record. Previous approved observation carried with its original observation date.",
+        "evidenceIds": [
+          "e-ttf"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "EUR/MWh",
+          "sourceIds": [
+            "e-ttf"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        },
+        "lineage": {
+          "sourceId": "src-yahoo-ttf",
+          "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+          "provider": "Yahoo Finance TTF=F",
+          "observationAt": "2026-08-18T15:50:45.000Z",
+          "retrievedAt": "2026-08-19T04:28:11.538Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:2026-08-19t04-28-11-538z",
+          "parserVersion": "yahoo-chart-v1",
+          "recordKey": "26fdbcd2f4272c9e87ff4741a8bceb9899171143cacdffd0ad91bb15a5b63d54",
+          "derivedFrom": [
+            "e-ttf"
+          ]
+        }
+      },
+      {
+        "id": "commercial-observation:fx-eurusd",
+        "label": "EUR/USD",
+        "entityIds": [],
+        "value": 1.1585,
+        "unit": "USD/EUR",
+        "sourceName": "Yahoo Finance EURUSD=X",
+        "sourceDate": "2026-08-18",
+        "observedAt": "2026-08-18T16:30:55.000Z",
+        "cadence": "daily",
+        "freshnessWindowDays": 3,
+        "evidenceIds": [
+          "e-eurusd"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/EUR",
+          "sourceIds": [
+            "e-eurusd"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "commercial-observation:lng-freight",
+        "label": "LNG freight",
+        "entityIds": [],
+        "unit": "USD/MMBtu",
+        "cadence": "daily",
+        "freshnessWindowDays": 1,
+        "missingReason": "No current route-normalised LNG freight observation is approved.",
+        "evidenceIds": [],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/MMBtu",
+          "sourceIds": [],
+          "status": "unavailable",
+          "confidence": "unknown"
+        }
+      },
+      {
+        "id": "commercial-observation:lng-war-risk",
+        "label": "LNG war-risk insurance",
+        "entityIds": [],
+        "unit": "USD/MMBtu",
+        "cadence": "daily",
+        "freshnessWindowDays": 1,
+        "missingReason": "No current cargo-normalised war-risk premium is approved.",
+        "evidenceIds": [],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/MMBtu",
+          "sourceIds": [],
+          "status": "unavailable",
+          "confidence": "unknown"
+        }
+      },
+      {
+        "id": "commercial-observation:oil-brent",
+        "label": "Brent",
+        "entityIds": [],
+        "value": 91.29,
+        "unit": "USD/bbl",
+        "sourceName": "Yahoo Finance BZ=F",
+        "sourceDate": "2026-08-18",
+        "observedAt": "2026-08-18T16:20:53.000Z",
+        "cadence": "daily",
+        "freshnessWindowDays": 3,
+        "evidenceIds": [
+          "e-brent"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/bbl",
+          "sourceIds": [
+            "e-brent"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "commercial-observation:oil-wti",
+        "label": "WTI",
+        "entityIds": [],
+        "value": 84.3,
+        "unit": "USD/bbl",
+        "sourceName": "Yahoo Finance CL=F",
+        "sourceDate": "2026-08-18",
+        "observedAt": "2026-08-18T16:21:01.000Z",
+        "cadence": "daily",
+        "freshnessWindowDays": 3,
+        "evidenceIds": [
+          "e-wti"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/bbl",
+          "sourceIds": [
+            "e-wti"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "commercial-observation:oil-dubai-oman",
+        "label": "Dubai/Oman destination reference",
+        "entityIds": [],
+        "value": 86.83,
+        "unit": "USD/bbl",
+        "sourceName": "Gulf Mercantile Exchange",
+        "sourceDate": "2026-08-14",
+        "cadence": "daily",
+        "freshnessWindowDays": 3,
+        "carryReason": "No current public GME OQD marker was approved after Aug 14; retain the Aug 14 value of 86.83 USD/bbl.",
+        "evidenceIds": [
+          "e-gme-oman"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-14T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/bbl",
+          "sourceIds": [
+            "e-gme-oman"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        }
+      },
+      {
+        "id": "commercial-observation:oil-vlcc-freight",
+        "label": "VLCC freight",
+        "entityIds": [],
+        "unit": "USD/bbl",
+        "cadence": "daily",
+        "freshnessWindowDays": 1,
+        "missingReason": "No current route-normalised VLCC freight observation is approved.",
+        "evidenceIds": [],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/bbl",
+          "sourceIds": [],
+          "status": "unavailable",
+          "confidence": "unknown"
+        }
+      },
+      {
+        "id": "commercial-observation:oil-war-risk",
+        "label": "Crude war-risk insurance",
+        "entityIds": [],
+        "unit": "USD/bbl",
+        "cadence": "daily",
+        "freshnessWindowDays": 1,
+        "missingReason": "No current cargo-normalised war-risk premium is approved.",
+        "evidenceIds": [],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-18T00:00:00Z",
+          "validTo": null,
+          "unit": "USD/bbl",
+          "sourceIds": [],
+          "status": "unavailable",
+          "confidence": "unknown"
+        }
+      },
+      {
+        "id": "commercial-observation:usd-sofr",
+        "label": "SOFR",
+        "entityIds": [],
+        "value": 3.66,
+        "unit": "%",
+        "sourceName": "Federal Reserve Bank of New York",
+        "sourceDate": "2026-08-17",
+        "observedAt": "2026-08-17T00:00:00Z",
+        "cadence": "daily",
+        "freshnessWindowDays": 7,
+        "evidenceIds": [
+          "e-sofr"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-08-18T00:00:00Z",
+          "validFrom": "2026-08-17T00:00:00Z",
+          "validTo": null,
+          "unit": "%",
+          "sourceIds": [
+            "e-sofr"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      }
+    ],
+    "commercialInputs": [
+      {
+        "id": "lng-origin-value",
+        "label": "Qatar origin value",
+        "commodity": "lng",
+        "role": "origin-value",
+        "observationId": "commercial-observation:lng-origin-value",
+        "requiredForCalculation": true
+      },
+      {
+        "id": "lng-jkm",
+        "label": "JKM",
+        "commodity": "lng",
+        "role": "destination-value",
+        "observationId": "commercial-observation:lng-jkm",
+        "requiredForCalculation": true
+      },
+      {
+        "id": "lng-ttf",
+        "label": "Dutch TTF",
+        "commodity": "lng",
+        "role": "destination-value",
+        "observationId": "commercial-observation:lng-ttf",
+        "requiredForCalculation": false
+      },
+      {
+        "id": "fx-eurusd",
+        "label": "EUR/USD",
+        "commodity": "lng",
+        "role": "fx",
+        "observationId": "commercial-observation:fx-eurusd",
+        "requiredForCalculation": false
+      },
+      {
+        "id": "lng-freight",
+        "label": "LNG freight",
+        "commodity": "lng",
+        "role": "freight",
+        "observationId": "commercial-observation:lng-freight",
+        "requiredForCalculation": true
+      },
+      {
+        "id": "lng-war-risk",
+        "label": "LNG war-risk insurance",
+        "commodity": "lng",
+        "role": "insurance",
+        "observationId": "commercial-observation:lng-war-risk",
+        "requiredForCalculation": true
+      },
+      {
+        "id": "oil-brent",
+        "label": "Brent",
+        "commodity": "crude-oil",
+        "role": "destination-value",
+        "observationId": "commercial-observation:oil-brent",
+        "requiredForCalculation": false
+      },
+      {
+        "id": "oil-wti",
+        "label": "WTI",
+        "commodity": "crude-oil",
+        "role": "origin-value",
+        "observationId": "commercial-observation:oil-wti",
+        "requiredForCalculation": true
+      },
+      {
+        "id": "oil-dubai-oman",
+        "label": "Dubai/Oman destination reference",
+        "commodity": "crude-oil",
+        "role": "destination-value",
+        "observationId": "commercial-observation:oil-dubai-oman",
+        "requiredForCalculation": true
+      },
+      {
+        "id": "oil-vlcc-freight",
+        "label": "VLCC freight",
+        "commodity": "crude-oil",
+        "role": "freight",
+        "observationId": "commercial-observation:oil-vlcc-freight",
+        "requiredForCalculation": true
+      },
+      {
+        "id": "oil-war-risk",
+        "label": "Crude war-risk insurance",
+        "commodity": "crude-oil",
+        "role": "insurance",
+        "observationId": "commercial-observation:oil-war-risk",
+        "requiredForCalculation": true
+      },
+      {
+        "id": "usd-sofr",
+        "label": "SOFR",
+        "commodity": "crude-oil",
+        "role": "financing",
+        "observationId": "commercial-observation:usd-sofr",
+        "requiredForCalculation": false
+      }
+    ],
+    "assessments": [
+      {
+        "id": "assessment:qatar-supply:2026-08-18T00:00:00Z",
+        "traceId": "qatar-supply",
+        "commodity": "lng",
+        "title": "Qatar supply disruption",
+        "kicker": "Production to Asian demand",
+        "headline": "Verified production status is traced separately from unavailable volume-loss and cargo-economics data.",
+        "routeEntityIds": [
+          "ras-laffan",
+          "hormuz",
+          "jkm",
+          "jera"
+        ],
+        "hops": [
+          {
+            "id": "qatar-signal",
+            "stage": "signal",
+            "label": "Ras Laffan status",
+            "summary": "The latest approved force-majeure disclosure is the physical trigger.",
+            "direction": "negative",
+            "entityIds": [
+              "ras-laffan",
+              "qatarenergy"
+            ],
+            "observationIds": [
+              "observation:qatar-supply:qatar-output-status"
+            ],
+            "evidenceIds": [
+              "e-qatar-force-majeure"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-qatar-force-majeure"
+              ],
+              "status": "carried",
+              "confidence": "medium"
+            }
+          },
+          {
+            "id": "qatar-supply-hop",
+            "stage": "supply",
+            "label": "Qatar LNG availability",
+            "summary": "No verified unavailable-volume figure is published.",
+            "direction": "negative",
+            "entityIds": [
+              "qatarenergy",
+              "ras-laffan"
+            ],
+            "observationIds": [
+              "observation:qatar-supply:qatar-volume-at-risk"
+            ],
+            "evidenceIds": [
+              "e-qatar-force-majeure"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-qatar-force-majeure"
+              ],
+              "status": "unavailable",
+              "confidence": "unknown"
+            }
+          },
+          {
+            "id": "qatar-transport",
+            "stage": "transport",
+            "label": "Hormuz passage",
+            "summary": "The latest reviewed LNG transit observation is historical and excluded from commercial calculations.",
+            "direction": "negative",
+            "entityIds": [
+              "hormuz"
+            ],
+            "observationIds": [
+              "observation:qatar-supply:hormuz-transits"
+            ],
+            "evidenceIds": [
+              "e-hormuz-transit"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-hormuz-transit"
+              ],
+              "status": "carried",
+              "confidence": "medium"
+            }
+          },
+          {
+            "id": "qatar-demand",
+            "stage": "demand",
+            "label": "Asian market observation",
+            "summary": "The current JKM-linked CFD reference is shown as market context; the commercial assessment remains separately carried.",
+            "direction": "negative",
+            "entityIds": [
+              "jkm"
+            ],
+            "observationIds": [
+              "observation:qatar-supply:jkm-cfd-reference"
+            ],
+            "evidenceIds": [
+              "e-jkm-cfd"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-jkm-cfd"
+              ],
+              "status": "carried",
+              "confidence": "medium"
+            }
+          },
+          {
+            "id": "qatar-counterparty",
+            "stage": "counterparty",
+            "label": "Verified public buyer",
+            "summary": "The JERA-QatarEnergy agreement provides a named public relationship and volume.",
+            "direction": "mixed",
+            "entityIds": [
+              "jera",
+              "qatarenergy"
+            ],
+            "observationIds": [
+              "observation:qatar-supply:jera-qatar-volume"
+            ],
+            "evidenceIds": [
+              "e-jera-qatarenergy"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-jera-qatarenergy"
+              ],
+              "status": "confirmed",
+              "confidence": "high"
+            }
+          }
+        ],
+        "counterparties": [
+          {
+            "entityId": "qatarenergy",
+            "role": "supplier",
+            "relationship": "public-contract",
+            "exposureDirection": "negative",
+            "summary": "Named supplier in the approved JERA disclosure.",
+            "publicObservation": "3 MTPA agreement",
+            "evidenceIds": [
+              "e-jera-qatarenergy"
+            ],
+            "record": {
+              "asOf": "2026-08-18T00:00:00Z",
+              "validFrom": "2026-08-18T00:00:00Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-jera-qatarenergy"
+              ],
+              "status": "confirmed",
+              "confidence": "high"
+            }
+          },
+          {
+            "entityId": "jera",
+            "role": "buyer",
+            "relationship": "public-contract",
+            "exposureDirection": "negative",
+            "summary": "Named buyer in the approved QatarEnergy disclosure.",
+            "publicObservation": "3 MTPA from 2028",
+            "evidenceIds": [
+              "e-jera-qatarenergy"
+            ],
+            "record": {
+              "asOf": "2026-08-18T00:00:00Z",
+              "validFrom": "2026-08-18T00:00:00Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-jera-qatarenergy"
+              ],
+              "status": "confirmed",
+              "confidence": "high"
+            }
+          }
+        ],
+        "commercialEvaluation": {
+          "mode": "market-pull",
+          "observedInputIds": [
+            "lng-origin-value",
+            "lng-jkm",
+            "lng-ttf",
+            "fx-eurusd",
+            "lng-freight",
+            "lng-war-risk",
+            "usd-sofr"
+          ],
+          "requiredInputIds": [
+            "lng-origin-value",
+            "lng-jkm",
+            "lng-freight",
+            "lng-war-risk"
+          ],
+          "originInputId": "lng-origin-value",
+          "destinationInputId": "lng-jkm",
+          "costInputIds": [
+            "lng-freight",
+            "lng-war-risk"
+          ],
+          "derivedMetrics": [
+            {
+              "id": "gross-spread",
+              "label": "Gross verified spread",
+              "formulaId": "destination-minus-origin",
+              "inputObservationIds": [
+                "commercial-observation:lng-jkm",
+                "commercial-observation:lng-origin-value"
+              ],
+              "unit": "USD/MMBtu",
+              "calculatedAt": "2026-08-18T00:00:00Z",
+              "status": "unavailable",
+              "missingInputIds": [
+                "lng-origin-value",
+                "lng-jkm",
+                "lng-freight",
+                "lng-war-risk"
+              ]
+            },
+            {
+              "id": "transformation-cost",
+              "label": "Verified transformation cost",
+              "formulaId": "sum-transformation-costs",
+              "inputObservationIds": [
+                "commercial-observation:lng-freight",
+                "commercial-observation:lng-war-risk"
+              ],
+              "unit": "USD/MMBtu",
+              "calculatedAt": "2026-08-18T00:00:00Z",
+              "status": "unavailable",
+              "missingInputIds": [
+                "lng-origin-value",
+                "lng-jkm",
+                "lng-freight",
+                "lng-war-risk"
+              ]
+            },
+            {
+              "id": "residual-proxy",
+              "label": "Residual public proxy",
+              "formulaId": "gross-minus-costs",
+              "inputObservationIds": [
+                "commercial-observation:lng-origin-value",
+                "commercial-observation:lng-jkm",
+                "commercial-observation:lng-freight",
+                "commercial-observation:lng-war-risk"
+              ],
+              "unit": "USD/MMBtu",
+              "calculatedAt": "2026-08-18T00:00:00Z",
+              "status": "unavailable",
+              "missingInputIds": [
+                "lng-origin-value",
+                "lng-jkm",
+                "lng-freight",
+                "lng-war-risk"
+              ]
+            }
+          ],
+          "dataStatus": "partial",
+          "residualStatus": "insufficient-verified-data",
+          "missingInputIds": [
+            "lng-origin-value",
+            "lng-jkm",
+            "lng-freight",
+            "lng-war-risk"
+          ],
+          "riskControls": [
+            {
+              "id": "flat-price",
+              "label": "flat price",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "basis",
+              "label": "basis",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "freight",
+              "label": "freight",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "financing",
+              "label": "financing",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "credit",
+              "label": "credit",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "political",
+              "label": "political",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "operational",
+              "label": "operational",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            }
+          ]
+        },
+        "alternatives": [
+          {
+            "id": "alternative:qatar-supply:ttf-market",
+            "kind": "market",
+            "label": "European TTF",
+            "summary": "Potential destination market for flexible LNG; the reviewed TTF observation confirms market context only.",
+            "feasibility": "potential",
+            "rank": 1,
+            "score": null,
+            "constraintSummary": "Cargo availability, route cost, regasification capacity, sanctions/insurance constraints and contract flexibility are not verified.",
+            "evidenceIds": [
+              "e-ttf"
+            ],
+            "record": {
+              "asOf": "2026-08-18T00:00:00Z",
+              "validFrom": "2026-08-18T00:00:00Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-ttf"
+              ],
+              "status": "inferred",
+              "confidence": "low"
+            }
+          }
+        ],
+        "portfolioAction": "Obtain a current verified origin value, JKM observation, freight cost and war-risk cost before calculating a residual proxy.",
+        "watchItems": [
+          "QatarEnergy operating disclosure",
+          "Current JKM observation",
+          "Route-normalised LNG freight",
+          "Cargo-normalised war-risk cost"
+        ],
+        "flowPressure": {
+          "modelVersion": "flow-pressure-v1",
+          "score": 64,
+          "status": "provisional",
+          "confidence": "unknown",
+          "calculatedAt": "2026-08-19T04:28:11.538Z",
+          "components": [
+            {
+              "id": "supply-interruption",
+              "label": "Supply interruption",
+              "weight": 0.25,
+              "score": 61,
+              "status": "unresolved",
+              "confidence": "unknown",
+              "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); unresolved because the required observation is unavailable.",
+              "observationIds": [
+                "observation:qatar-supply:qatar-output-status",
+                "observation:qatar-supply:qatar-volume-at-risk"
+              ],
+              "evidenceIds": [
+                "e-qatar-force-majeure"
+              ]
+            },
+            {
+              "id": "route-chokepoint-pressure",
+              "label": "Route / chokepoint pressure",
+              "weight": 0.2,
+              "score": 71,
+              "status": "partially-observed",
+              "confidence": "medium",
+              "rationale": "Route / chokepoint pressure is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+              "observationIds": [
+                "observation:qatar-supply:hormuz-transits"
+              ],
+              "evidenceIds": [
+                "e-hormuz-transit"
+              ]
+            },
+            {
+              "id": "vessel-port-disruption",
+              "label": "Vessel / port disruption",
+              "weight": 0.15,
+              "score": 71,
+              "status": "partially-observed",
+              "confidence": "medium",
+              "rationale": "Vessel / port disruption is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+              "observationIds": [
+                "observation:qatar-supply:hormuz-transits"
+              ],
+              "evidenceIds": [
+                "e-hormuz-transit"
+              ]
+            },
+            {
+              "id": "destination-dependency",
+              "label": "Destination dependency",
+              "weight": 0.15,
+              "score": 61,
+              "status": "partially-observed",
+              "confidence": "medium",
+              "rationale": "Destination dependency is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+              "observationIds": [
+                "observation:qatar-supply:jkm-cfd-reference",
+                "observation:qatar-supply:jera-qatar-volume"
+              ],
+              "evidenceIds": [
+                "e-jkm-cfd",
+                "e-jera-qatarenergy"
+              ]
+            },
+            {
+              "id": "price-basis-movement",
+              "label": "Price / basis movement",
+              "weight": 0.15,
+              "score": 50,
+              "status": "partially-observed",
+              "confidence": "low",
+              "rationale": "Market observations are present, but the fixture does not contain an explicit price or basis movement observation.",
+              "observationIds": [
+                "observation:qatar-supply:jkm-cfd-reference"
+              ],
+              "evidenceIds": [
+                "e-jkm-cfd"
+              ]
+            },
+            {
+              "id": "alternative-availability",
+              "label": "Alternative availability",
+              "weight": 0.1,
+              "score": 70,
+              "status": "partially-observed",
+              "confidence": "low",
+              "rationale": "Alternative pressure is ranked from candidate feasibility; commercial execution requires separate verified capacity, cost and contract evidence.",
+              "observationIds": [],
+              "evidenceIds": [
+                "e-ttf"
+              ]
+            }
+          ],
+          "evidenceIds": [
+            "e-qatar-force-majeure",
+            "e-hormuz-transit",
+            "e-jkm-cfd",
+            "e-jera-qatarenergy",
+            "e-ttf"
+          ],
+          "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
+        },
+        "record": {
+          "asOf": "2026-08-19T04:28:11.538Z",
+          "validFrom": "2026-08-19T04:28:11.538Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-qatar-force-majeure",
+            "e-hormuz-transit",
+            "e-jkm-cfd",
+            "e-jera-qatarenergy",
+            "e-ttf"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "assessment:hormuz-delivery:2026-08-18T00:00:00Z",
+        "traceId": "hormuz-delivery",
+        "commodity": "lng",
+        "title": "Hormuz delivery constraint",
+        "kicker": "Passage to delivered cargo",
+        "headline": "Verified fleet relationships are separated from unavailable current freight and delivery-delay data.",
+        "routeEntityIds": [
+          "ras-laffan",
+          "nakilat",
+          "hormuz",
+          "jera"
+        ],
+        "hops": [
+          {
+            "id": "delivery-signal",
+            "stage": "signal",
+            "label": "Passage condition",
+            "summary": "The latest reviewed total traffic count shows the passage remained severely constrained; it is not an LNG-specific count.",
+            "direction": "negative",
+            "entityIds": [
+              "hormuz"
+            ],
+            "observationIds": [
+              "observation:hormuz-delivery:hormuz-total-transits"
+            ],
+            "evidenceIds": [
+              "e-hormuz-total-transits",
+              "e-ap-hormuz-20260818"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-hormuz-total-transits",
+                "e-ap-hormuz-20260818"
+              ],
+              "status": "carried",
+              "confidence": "medium"
+            }
+          },
+          {
+            "id": "delivery-supply",
+            "stage": "supply",
+            "label": "Loaded cargo availability",
+            "summary": "The approved force-majeure disclosure confirms the supply constraint.",
+            "direction": "negative",
+            "entityIds": [
+              "ras-laffan",
+              "qatarenergy"
+            ],
+            "observationIds": [
+              "observation:hormuz-delivery:qatar-output-status"
+            ],
+            "evidenceIds": [
+              "e-qatar-force-majeure"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-qatar-force-majeure"
+              ],
+              "status": "carried",
+              "confidence": "medium"
+            }
+          },
+          {
+            "id": "delivery-transport",
+            "stage": "transport",
+            "label": "LNG shipping capacity",
+            "summary": "The charter count is verified; a current route-delay value is not.",
+            "direction": "negative",
+            "entityIds": [
+              "nakilat",
+              "hormuz"
+            ],
+            "observationIds": [
+              "observation:hormuz-delivery:nakilat-charter-vessels",
+              "observation:hormuz-delivery:qatar-subchartered-carriers",
+              "observation:hormuz-delivery:lng-freight-delay"
+            ],
+            "evidenceIds": [
+              "e-nakilat-charters",
+              "e-qatar-force-majeure"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-nakilat-charters",
+                "e-qatar-force-majeure"
+              ],
+              "status": "confirmed",
+              "confidence": "high"
+            }
+          },
+          {
+            "id": "delivery-demand",
+            "stage": "demand",
+            "label": "Competing market observation",
+            "summary": "TTF is current but does not establish delivered LNG cargo economics.",
+            "direction": "mixed",
+            "entityIds": [
+              "ttf",
+              "jkm"
+            ],
+            "observationIds": [
+              "observation:hormuz-delivery:ttf"
+            ],
+            "evidenceIds": [
+              "e-ttf"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-ttf"
+              ],
+              "status": "carried",
+              "confidence": "medium"
+            }
+          },
+          {
+            "id": "delivery-counterparty",
+            "stage": "counterparty",
+            "label": "Verified carrier and buyer",
+            "summary": "Public disclosures identify the carrier relationship and named buyer.",
+            "direction": "mixed",
+            "entityIds": [
+              "nakilat",
+              "jera"
+            ],
+            "observationIds": [
+              "observation:hormuz-delivery:jera-qatar-volume"
+            ],
+            "evidenceIds": [
+              "e-nakilat-charters",
+              "e-jera-qatarenergy"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-nakilat-charters",
+                "e-jera-qatarenergy"
+              ],
+              "status": "confirmed",
+              "confidence": "high"
+            }
+          }
+        ],
+        "counterparties": [
+          {
+            "entityId": "nakilat",
+            "role": "carrier",
+            "relationship": "operational-dependency",
+            "exposureDirection": "negative",
+            "summary": "Approved disclosure identifies QatarEnergy charter agreements with Nakilat.",
+            "publicObservation": "25 LNG vessels",
+            "evidenceIds": [
+              "e-nakilat-charters"
+            ],
+            "record": {
+              "asOf": "2026-08-18T00:00:00Z",
+              "validFrom": "2026-08-18T00:00:00Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-nakilat-charters"
+              ],
+              "status": "confirmed",
+              "confidence": "high"
+            }
+          },
+          {
+            "entityId": "jera",
+            "role": "buyer",
+            "relationship": "public-contract",
+            "exposureDirection": "negative",
+            "summary": "Approved disclosure identifies JERA as a QatarEnergy buyer.",
+            "publicObservation": "3 MTPA from 2028",
+            "evidenceIds": [
+              "e-jera-qatarenergy"
+            ],
+            "record": {
+              "asOf": "2026-08-18T00:00:00Z",
+              "validFrom": "2026-08-18T00:00:00Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-jera-qatarenergy"
+              ],
+              "status": "confirmed",
+              "confidence": "high"
+            }
+          }
+        ],
+        "commercialEvaluation": {
+          "mode": "market-pull",
+          "observedInputIds": [
+            "lng-origin-value",
+            "lng-jkm",
+            "lng-ttf",
+            "fx-eurusd",
+            "lng-freight",
+            "lng-war-risk",
+            "usd-sofr"
+          ],
+          "requiredInputIds": [
+            "lng-origin-value",
+            "lng-jkm",
+            "lng-freight",
+            "lng-war-risk"
+          ],
+          "originInputId": "lng-origin-value",
+          "destinationInputId": "lng-jkm",
+          "costInputIds": [
+            "lng-freight",
+            "lng-war-risk"
+          ],
+          "derivedMetrics": [
+            {
+              "id": "gross-spread",
+              "label": "Gross verified spread",
+              "formulaId": "destination-minus-origin",
+              "inputObservationIds": [
+                "commercial-observation:lng-jkm",
+                "commercial-observation:lng-origin-value"
+              ],
+              "unit": "USD/MMBtu",
+              "calculatedAt": "2026-08-18T00:00:00Z",
+              "status": "unavailable",
+              "missingInputIds": [
+                "lng-origin-value",
+                "lng-jkm",
+                "lng-freight",
+                "lng-war-risk"
+              ]
+            },
+            {
+              "id": "transformation-cost",
+              "label": "Verified transformation cost",
+              "formulaId": "sum-transformation-costs",
+              "inputObservationIds": [
+                "commercial-observation:lng-freight",
+                "commercial-observation:lng-war-risk"
+              ],
+              "unit": "USD/MMBtu",
+              "calculatedAt": "2026-08-18T00:00:00Z",
+              "status": "unavailable",
+              "missingInputIds": [
+                "lng-origin-value",
+                "lng-jkm",
+                "lng-freight",
+                "lng-war-risk"
+              ]
+            },
+            {
+              "id": "residual-proxy",
+              "label": "Residual public proxy",
+              "formulaId": "gross-minus-costs",
+              "inputObservationIds": [
+                "commercial-observation:lng-origin-value",
+                "commercial-observation:lng-jkm",
+                "commercial-observation:lng-freight",
+                "commercial-observation:lng-war-risk"
+              ],
+              "unit": "USD/MMBtu",
+              "calculatedAt": "2026-08-18T00:00:00Z",
+              "status": "unavailable",
+              "missingInputIds": [
+                "lng-origin-value",
+                "lng-jkm",
+                "lng-freight",
+                "lng-war-risk"
+              ]
+            }
+          ],
+          "dataStatus": "partial",
+          "residualStatus": "insufficient-verified-data",
+          "missingInputIds": [
+            "lng-origin-value",
+            "lng-jkm",
+            "lng-freight",
+            "lng-war-risk"
+          ],
+          "riskControls": [
+            {
+              "id": "flat-price",
+              "label": "flat price",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "basis",
+              "label": "basis",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "freight",
+              "label": "freight",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "financing",
+              "label": "financing",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "credit",
+              "label": "credit",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "political",
+              "label": "political",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "operational",
+              "label": "operational",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            }
+          ]
+        },
+        "alternatives": [
+          {
+            "id": "alternative:hormuz-delivery:ttf-market",
+            "kind": "market",
+            "label": "European TTF",
+            "summary": "Potential destination market for flexible LNG; the reviewed TTF observation confirms market context only.",
+            "feasibility": "potential",
+            "rank": 1,
+            "score": null,
+            "constraintSummary": "Cargo availability, route cost, regasification capacity, sanctions/insurance constraints and contract flexibility are not verified.",
+            "evidenceIds": [
+              "e-ttf"
+            ],
+            "record": {
+              "asOf": "2026-08-18T00:00:00Z",
+              "validFrom": "2026-08-18T00:00:00Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-ttf"
+              ],
+              "status": "inferred",
+              "confidence": "low"
+            }
+          }
+        ],
+        "portfolioAction": "Do not calculate delivered economics until current LNG freight, war-risk, origin value and destination value are all verified.",
+        "watchItems": [
+          "LNG-specific transit observation",
+          "Current LNG freight",
+          "War-risk premium",
+          "Buyer delivery notices"
+        ],
+        "flowPressure": {
+          "modelVersion": "flow-pressure-v1",
+          "score": 64,
+          "status": "provisional",
+          "confidence": "low",
+          "calculatedAt": "2026-08-19T04:28:11.538Z",
+          "components": [
+            {
+              "id": "supply-interruption",
+              "label": "Supply interruption",
+              "weight": 0.25,
+              "score": 71,
+              "status": "partially-observed",
+              "confidence": "medium",
+              "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+              "observationIds": [
+                "observation:hormuz-delivery:hormuz-total-transits",
+                "observation:hormuz-delivery:qatar-output-status"
+              ],
+              "evidenceIds": [
+                "e-hormuz-total-transits",
+                "e-ap-hormuz-20260818",
+                "e-qatar-force-majeure"
+              ]
+            },
+            {
+              "id": "route-chokepoint-pressure",
+              "label": "Route / chokepoint pressure",
+              "weight": 0.2,
+              "score": 68,
+              "status": "partially-observed",
+              "confidence": "low",
+              "rationale": "Route / chokepoint pressure is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+              "observationIds": [
+                "observation:hormuz-delivery:nakilat-charter-vessels",
+                "observation:hormuz-delivery:qatar-subchartered-carriers",
+                "observation:hormuz-delivery:lng-freight-delay"
+              ],
+              "evidenceIds": [
+                "e-nakilat-charters",
+                "e-qatar-force-majeure"
+              ]
+            },
+            {
+              "id": "vessel-port-disruption",
+              "label": "Vessel / port disruption",
+              "weight": 0.15,
+              "score": 68,
+              "status": "partially-observed",
+              "confidence": "low",
+              "rationale": "Vessel / port disruption is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+              "observationIds": [
+                "observation:hormuz-delivery:nakilat-charter-vessels",
+                "observation:hormuz-delivery:qatar-subchartered-carriers",
+                "observation:hormuz-delivery:lng-freight-delay"
+              ],
+              "evidenceIds": [
+                "e-nakilat-charters",
+                "e-qatar-force-majeure"
+              ]
+            },
+            {
+              "id": "destination-dependency",
+              "label": "Destination dependency",
+              "weight": 0.15,
+              "score": 50,
+              "status": "partially-observed",
+              "confidence": "medium",
+              "rationale": "Destination dependency is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+              "observationIds": [
+                "observation:hormuz-delivery:ttf",
+                "observation:hormuz-delivery:jera-qatar-volume"
+              ],
+              "evidenceIds": [
+                "e-ttf",
+                "e-nakilat-charters",
+                "e-jera-qatarenergy"
+              ]
+            },
+            {
+              "id": "price-basis-movement",
+              "label": "Price / basis movement",
+              "weight": 0.15,
+              "score": 50,
+              "status": "partially-observed",
+              "confidence": "low",
+              "rationale": "Market observations are present, but the fixture does not contain an explicit price or basis movement observation.",
+              "observationIds": [
+                "observation:hormuz-delivery:ttf"
+              ],
+              "evidenceIds": [
+                "e-ttf"
+              ]
+            },
+            {
+              "id": "alternative-availability",
+              "label": "Alternative availability",
+              "weight": 0.1,
+              "score": 70,
+              "status": "partially-observed",
+              "confidence": "low",
+              "rationale": "Alternative pressure is ranked from candidate feasibility; commercial execution requires separate verified capacity, cost and contract evidence.",
+              "observationIds": [],
+              "evidenceIds": [
+                "e-ttf"
+              ]
+            }
+          ],
+          "evidenceIds": [
+            "e-hormuz-total-transits",
+            "e-ap-hormuz-20260818",
+            "e-qatar-force-majeure",
+            "e-nakilat-charters",
+            "e-ttf",
+            "e-jera-qatarenergy"
+          ],
+          "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
+        },
+        "record": {
+          "asOf": "2026-08-19T04:28:11.538Z",
+          "validFrom": "2026-08-19T04:28:11.538Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-hormuz-total-transits",
+            "e-ap-hormuz-20260818",
+            "e-qatar-force-majeure",
+            "e-nakilat-charters",
+            "e-ttf",
+            "e-jera-qatarenergy"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "assessment:hormuz-crude-export:2026-08-18T00:00:00Z",
+        "traceId": "hormuz-crude-export",
+        "commodity": "crude-oil",
+        "title": "Hormuz crude-export constraint",
+        "kicker": "Export flow to Asian demand",
+        "headline": "EIA baseline flows establish the scale and destination concentration; current route economics remain unavailable.",
+        "routeEntityIds": [
+          "saudi-crude",
+          "hormuz",
+          "asia-crude-demand"
+        ],
+        "hops": [
+          {
+            "id": "oil-constraint-signal",
+            "stage": "signal",
+            "label": "Hormuz oil-flow baseline",
+            "summary": "EIA reports the first-half 2025 total flow through the strait.",
+            "direction": "negative",
+            "entityIds": [
+              "hormuz"
+            ],
+            "observationIds": [
+              "observation:hormuz-crude-export:hormuz-total-oil-flow"
+            ],
+            "evidenceIds": [
+              "e-eia-hormuz"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-eia-hormuz"
+              ],
+              "status": "confirmed",
+              "confidence": "high"
+            }
+          },
+          {
+            "id": "oil-constraint-supply",
+            "stage": "supply",
+            "label": "Crude export baseline",
+            "summary": "EIA reports crude and condensate flow and Saudi Arabia's 2024 contribution.",
+            "direction": "negative",
+            "entityIds": [
+              "saudi-crude"
+            ],
+            "observationIds": [
+              "observation:hormuz-crude-export:hormuz-crude-flow",
+              "observation:hormuz-crude-export:saudi-hormuz-crude-2024"
+            ],
+            "evidenceIds": [
+              "e-eia-hormuz",
+              "e-eia-saudi"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-eia-hormuz",
+                "e-eia-saudi"
+              ],
+              "status": "confirmed",
+              "confidence": "high"
+            }
+          },
+          {
+            "id": "oil-constraint-transport",
+            "stage": "transport",
+            "label": "VLCC freight",
+            "summary": "No current route-normalised VLCC freight observation is approved.",
+            "direction": "negative",
+            "entityIds": [
+              "hormuz"
+            ],
+            "observationIds": [
+              "observation:hormuz-crude-export:oil-vlcc-freight"
+            ],
+            "evidenceIds": [],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [],
+              "status": "unavailable",
+              "confidence": "unknown"
+            }
+          },
+          {
+            "id": "oil-constraint-demand",
+            "stage": "demand",
+            "label": "Asian destination concentration",
+            "summary": "EIA quantifies the Asian share and the combined top-four destination share.",
+            "direction": "negative",
+            "entityIds": [
+              "asia-crude-demand"
+            ],
+            "observationIds": [
+              "observation:hormuz-crude-export:asia-crude-share",
+              "observation:hormuz-crude-export:asia-top-four-share",
+              "observation:hormuz-crude-export:oman-marker"
+            ],
+            "evidenceIds": [
+              "e-eia-hormuz",
+              "e-gme-oman"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-eia-hormuz",
+                "e-gme-oman"
+              ],
+              "status": "confirmed",
+              "confidence": "high"
+            }
+          },
+          {
+            "id": "oil-constraint-counterparty",
+            "stage": "counterparty",
+            "label": "Named buyer relationship",
+            "summary": "The approved EIA sources identify destination countries, not company-level buyers.",
+            "direction": "mixed",
+            "entityIds": [
+              "asia-crude-demand"
+            ],
+            "observationIds": [
+              "observation:hormuz-crude-export:oil-counterparty-relationship"
+            ],
+            "evidenceIds": [
+              "e-eia-hormuz"
+            ],
+            "record": {
+              "asOf": "2026-08-19T04:28:11.538Z",
+              "validFrom": "2026-08-19T04:28:11.538Z",
+              "validTo": null,
+              "unit": null,
+              "sourceIds": [
+                "e-eia-hormuz"
+              ],
+              "status": "unavailable",
+              "confidence": "unknown"
+            }
+          }
+        ],
+        "counterparties": [],
+        "commercialEvaluation": {
+          "mode": "market-pull",
+          "observedInputIds": [
+            "oil-brent",
+            "oil-wti",
+            "oil-dubai-oman",
+            "oil-vlcc-freight",
+            "oil-war-risk",
+            "usd-sofr"
+          ],
+          "requiredInputIds": [
+            "oil-dubai-oman",
+            "oil-brent",
+            "oil-vlcc-freight",
+            "oil-war-risk"
+          ],
+          "originInputId": "oil-dubai-oman",
+          "destinationInputId": "oil-brent",
+          "costInputIds": [
+            "oil-vlcc-freight",
+            "oil-war-risk"
+          ],
+          "derivedMetrics": [
+            {
+              "id": "gross-spread",
+              "label": "Gross verified spread",
+              "formulaId": "destination-minus-origin",
+              "inputObservationIds": [
+                "commercial-observation:oil-brent",
+                "commercial-observation:oil-dubai-oman"
+              ],
+              "unit": "USD/bbl",
+              "calculatedAt": "2026-08-18T00:00:00Z",
+              "status": "unavailable",
+              "missingInputIds": [
+                "oil-dubai-oman",
+                "oil-vlcc-freight",
+                "oil-war-risk"
+              ]
+            },
+            {
+              "id": "transformation-cost",
+              "label": "Verified transformation cost",
+              "formulaId": "sum-transformation-costs",
+              "inputObservationIds": [
+                "commercial-observation:oil-vlcc-freight",
+                "commercial-observation:oil-war-risk"
+              ],
+              "unit": "USD/bbl",
+              "calculatedAt": "2026-08-18T00:00:00Z",
+              "status": "unavailable",
+              "missingInputIds": [
+                "oil-dubai-oman",
+                "oil-vlcc-freight",
+                "oil-war-risk"
+              ]
+            },
+            {
+              "id": "residual-proxy",
+              "label": "Residual public proxy",
+              "formulaId": "gross-minus-costs",
+              "inputObservationIds": [
+                "commercial-observation:oil-dubai-oman",
+                "commercial-observation:oil-brent",
+                "commercial-observation:oil-vlcc-freight",
+                "commercial-observation:oil-war-risk"
+              ],
+              "unit": "USD/bbl",
+              "calculatedAt": "2026-08-18T00:00:00Z",
+              "status": "unavailable",
+              "missingInputIds": [
+                "oil-dubai-oman",
+                "oil-vlcc-freight",
+                "oil-war-risk"
+              ]
+            }
+          ],
+          "dataStatus": "partial",
+          "residualStatus": "insufficient-verified-data",
+          "missingInputIds": [
+            "oil-dubai-oman",
+            "oil-vlcc-freight",
+            "oil-war-risk"
+          ],
+          "riskControls": [
+            {
+              "id": "flat-price",
+              "label": "flat price",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "basis",
+              "label": "basis",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "freight",
+              "label": "freight",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "financing",
+              "label": "financing",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "credit",
+              "label": "credit",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "political",
+              "label": "political",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            },
+            {
+              "id": "operational",
+              "label": "operational",
+              "status": "not-assessed",
+              "summary": "No current source-verified control assessment is published.",
+              "evidenceIds": []
+            }
+          ]
+        },
+        "alternatives": [],
+        "portfolioAction": "Use the EIA figures as structural exposure only; obtain current Dubai/Oman, VLCC and war-risk observations before calculating a residual proxy.",
+        "watchItems": [
+          "Current Hormuz crude flow",
+          "Dubai/Oman assessment",
+          "TD3C route-normalised freight",
+          "Company-level buyer disclosure"
+        ],
+        "flowPressure": {
+          "modelVersion": "flow-pressure-v1",
+          "score": 58,
+          "status": "provisional",
+          "confidence": "unknown",
+          "calculatedAt": "2026-08-19T04:28:11.538Z",
+          "components": [
+            {
+              "id": "supply-interruption",
+              "label": "Supply interruption",
+              "weight": 0.25,
+              "score": 75,
+              "status": "observed",
+              "confidence": "high",
+              "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); supported by the reviewed observations.",
+              "observationIds": [
+                "observation:hormuz-crude-export:hormuz-total-oil-flow",
+                "observation:hormuz-crude-export:hormuz-crude-flow",
+                "observation:hormuz-crude-export:saudi-hormuz-crude-2024"
+              ],
+              "evidenceIds": [
+                "e-eia-hormuz",
+                "e-eia-saudi"
+              ]
+            },
+            {
+              "id": "route-chokepoint-pressure",
+              "label": "Route / chokepoint pressure",
+              "weight": 0.2,
+              "score": 50,
+              "status": "unresolved",
+              "confidence": "unknown",
+              "rationale": "Route / chokepoint pressure is scored from the direction of the relevant trace hop(s); unresolved because the required observation is unavailable.",
+              "observationIds": [
+                "observation:hormuz-crude-export:oil-vlcc-freight"
+              ],
+              "evidenceIds": []
+            },
+            {
+              "id": "vessel-port-disruption",
+              "label": "Vessel / port disruption",
+              "weight": 0.15,
+              "score": 50,
+              "status": "unresolved",
+              "confidence": "unknown",
+              "rationale": "Vessel / port disruption is scored from the direction of the relevant trace hop(s); unresolved because the required observation is unavailable.",
+              "observationIds": [
+                "observation:hormuz-crude-export:oil-vlcc-freight"
+              ],
+              "evidenceIds": []
+            },
+            {
+              "id": "destination-dependency",
+              "label": "Destination dependency",
+              "weight": 0.15,
+              "score": 61,
+              "status": "unresolved",
+              "confidence": "unknown",
+              "rationale": "Destination dependency is scored from the direction of the relevant trace hop(s); unresolved because the required observation is unavailable.",
+              "observationIds": [
+                "observation:hormuz-crude-export:asia-crude-share",
+                "observation:hormuz-crude-export:asia-top-four-share",
+                "observation:hormuz-crude-export:oman-marker",
+                "observation:hormuz-crude-export:oil-counterparty-relationship"
+              ],
+              "evidenceIds": [
+                "e-eia-hormuz",
+                "e-gme-oman"
+              ]
+            },
+            {
+              "id": "price-basis-movement",
+              "label": "Price / basis movement",
+              "weight": 0.15,
+              "score": 50,
+              "status": "partially-observed",
+              "confidence": "low",
+              "rationale": "Market observations are present, but the fixture does not contain an explicit price or basis movement observation.",
+              "observationIds": [
+                "observation:hormuz-crude-export:asia-crude-share",
+                "observation:hormuz-crude-export:asia-top-four-share",
+                "observation:hormuz-crude-export:oman-marker"
+              ],
+              "evidenceIds": [
+                "e-eia-hormuz",
+                "e-gme-oman"
+              ]
+            },
+            {
+              "id": "alternative-availability",
+              "label": "Alternative availability",
+              "weight": 0.1,
+              "score": 50,
+              "status": "unresolved",
+              "confidence": "unknown",
+              "rationale": "No ranked alternative source, market, route or terminal is currently present in the reviewed data.",
+              "observationIds": [],
+              "evidenceIds": []
+            }
+          ],
+          "evidenceIds": [
+            "e-eia-hormuz",
+            "e-eia-saudi",
+            "e-gme-oman"
+          ],
+          "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
+        },
+        "record": {
+          "asOf": "2026-08-19T04:28:11.538Z",
+          "validFrom": "2026-08-19T04:28:11.538Z",
+          "validTo": null,
+          "unit": null,
+          "sourceIds": [
+            "e-eia-hormuz",
+            "e-eia-saudi",
+            "e-gme-oman"
+          ],
+          "status": "confirmed",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "readModelVersion": "energy-lng-read-model-v1"
+}

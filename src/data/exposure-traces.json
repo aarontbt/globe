@@ -1,5 +1,7 @@
 {
   "schemaVersion": 2,
+  "readModelVersion": "energy-lng-read-model-v1",
+  "canonicalModelVersion": "energy-lng-domain-v1",
   "asOf": "2026-08-18T00:00:00Z",
   "day": "D167",
   "headline": "AP reported Trump threatened Oman over its near-term deal with Iran to manage Hormuz traffic. A projectile hit a ship leaving the strait off Oman on Aug 18, damaging the engine room and causing a crew casualty; no responsibility was claimed. Iran says the strait will not reopen until US conditions are met. Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable.",
@@ -319,31 +321,26 @@
       "note": "No current public GME OQD marker was approved after Aug 14; retain the Aug 14 marker price of 86.83 USD/bbl."
     }
   ],
+  "machineEvidence": [],
   "commercialInputs": [
     {
       "inputId": "lng-origin-value",
       "label": "Qatar origin value",
-      "commodity": "lng",
-      "role": "origin-value",
-      "evidenceIds": [],
-      "requiredForCalculation": true,
       "unit": "USD/MMBtu",
       "status": "unavailable",
       "source": "",
       "sourceDate": "",
       "maxAgeDays": 1,
       "cadence": "daily",
-      "missingReason": "No verified public cargo purchase value is available."
+      "missingReason": "No verified public cargo purchase value is available.",
+      "commodity": "lng",
+      "role": "origin-value",
+      "evidenceIds": [],
+      "requiredForCalculation": true
     },
     {
       "inputId": "lng-jkm",
       "label": "JKM",
-      "commodity": "lng",
-      "role": "destination-value",
-      "evidenceIds": [
-        "e-jkm"
-      ],
-      "requiredForCalculation": true,
       "value": 22,
       "unit": "USD/MMBtu",
       "status": "carried",
@@ -351,31 +348,36 @@
       "sourceDate": "2026-07-24",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "carryReason": "Reuters reported the latest approved Asian spot LNG assessment at 22 USD/MMBtu for September delivery on 2026-07-24."
+      "carryReason": "Reuters reported the latest approved Asian spot LNG assessment at 22 USD/MMBtu for September delivery on 2026-07-24.",
+      "commodity": "lng",
+      "role": "destination-value",
+      "evidenceIds": [
+        "e-jkm"
+      ],
+      "requiredForCalculation": true
     },
     {
       "inputId": "lng-ttf",
       "label": "Dutch TTF",
+      "value": 63.92,
+      "unit": "EUR/MWh",
+      "status": "carried",
+      "source": "Yahoo Finance TTF=F",
+      "sourceDate": "2026-08-18",
+      "observedAt": "2026-08-18T15:50:45.000Z",
+      "maxAgeDays": 3,
+      "cadence": "daily",
+      "carryReason": "Machine refresh returned no usable record. Previous approved observation carried with its original observation date.",
       "commodity": "lng",
       "role": "destination-value",
       "evidenceIds": [
         "e-ttf"
       ],
-      "requiredForCalculation": false,
-      "value": 63.92,
-      "unit": "EUR/MWh",
-      "status": "confirmed",
-      "source": "Yahoo Finance TTF=F",
-      "sourceDate": "2026-08-18",
-      "maxAgeDays": 3,
-      "cadence": "daily",
-      "observedAt": "2026-08-18T15:50:45.000Z"
+      "requiredForCalculation": false
     },
     {
       "inputId": "fx-eurusd",
       "label": "EUR/USD",
-      "commodity": "lng",
-      "role": "fx",
       "value": 1.1585,
       "unit": "USD/EUR",
       "status": "confirmed",
@@ -384,6 +386,8 @@
       "observedAt": "2026-08-18T16:30:55.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
+      "commodity": "lng",
+      "role": "fx",
       "evidenceIds": [
         "e-eurusd"
       ],
@@ -392,78 +396,72 @@
     {
       "inputId": "lng-freight",
       "label": "LNG freight",
-      "commodity": "lng",
-      "role": "freight",
-      "evidenceIds": [],
-      "requiredForCalculation": true,
       "unit": "USD/MMBtu",
       "status": "unavailable",
       "source": "",
       "sourceDate": "",
       "maxAgeDays": 1,
       "cadence": "daily",
-      "missingReason": "No current route-normalised LNG freight observation is approved."
+      "missingReason": "No current route-normalised LNG freight observation is approved.",
+      "commodity": "lng",
+      "role": "freight",
+      "evidenceIds": [],
+      "requiredForCalculation": true
     },
     {
       "inputId": "lng-war-risk",
       "label": "LNG war-risk insurance",
-      "commodity": "lng",
-      "role": "insurance",
-      "evidenceIds": [],
-      "requiredForCalculation": true,
       "unit": "USD/MMBtu",
       "status": "unavailable",
       "source": "",
       "sourceDate": "",
       "maxAgeDays": 1,
       "cadence": "daily",
-      "missingReason": "No current cargo-normalised war-risk premium is approved."
+      "missingReason": "No current cargo-normalised war-risk premium is approved.",
+      "commodity": "lng",
+      "role": "insurance",
+      "evidenceIds": [],
+      "requiredForCalculation": true
     },
     {
       "inputId": "oil-brent",
       "label": "Brent",
-      "commodity": "crude-oil",
-      "role": "destination-value",
       "value": 91.29,
       "unit": "USD/bbl",
       "status": "confirmed",
       "source": "Yahoo Finance BZ=F",
       "sourceDate": "2026-08-18",
+      "observedAt": "2026-08-18T16:20:53.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
+      "commodity": "crude-oil",
+      "role": "destination-value",
       "evidenceIds": [
         "e-brent"
       ],
-      "requiredForCalculation": false,
-      "observedAt": "2026-08-18T16:20:53.000Z"
+      "requiredForCalculation": false
     },
     {
       "inputId": "oil-wti",
       "label": "WTI",
-      "commodity": "crude-oil",
-      "role": "origin-value",
       "value": 84.3,
       "unit": "USD/bbl",
       "status": "confirmed",
       "source": "Yahoo Finance CL=F",
       "sourceDate": "2026-08-18",
+      "observedAt": "2026-08-18T16:21:01.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
+      "commodity": "crude-oil",
+      "role": "origin-value",
       "evidenceIds": [
         "e-wti"
       ],
-      "requiredForCalculation": true,
-      "observedAt": "2026-08-18T16:21:01.000Z"
+      "requiredForCalculation": true
     },
     {
       "inputId": "oil-dubai-oman",
       "label": "Dubai/Oman destination reference",
-      "commodity": "crude-oil",
-      "role": "destination-value",
-      "evidenceIds": [
-        "e-gme-oman"
-      ],
-      "requiredForCalculation": true,
       "value": 86.83,
       "unit": "USD/bbl",
       "status": "carried",
@@ -471,55 +469,61 @@
       "sourceDate": "2026-08-14",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "carryReason": "No current public GME OQD marker was approved after Aug 14; retain the Aug 14 value of 86.83 USD/bbl."
+      "carryReason": "No current public GME OQD marker was approved after Aug 14; retain the Aug 14 value of 86.83 USD/bbl.",
+      "commodity": "crude-oil",
+      "role": "destination-value",
+      "evidenceIds": [
+        "e-gme-oman"
+      ],
+      "requiredForCalculation": true
     },
     {
       "inputId": "oil-vlcc-freight",
       "label": "VLCC freight",
-      "commodity": "crude-oil",
-      "role": "freight",
-      "evidenceIds": [],
-      "requiredForCalculation": true,
       "unit": "USD/bbl",
       "status": "unavailable",
       "source": "",
       "sourceDate": "",
       "maxAgeDays": 1,
       "cadence": "daily",
-      "missingReason": "No current route-normalised VLCC freight observation is approved."
+      "missingReason": "No current route-normalised VLCC freight observation is approved.",
+      "commodity": "crude-oil",
+      "role": "freight",
+      "evidenceIds": [],
+      "requiredForCalculation": true
     },
     {
       "inputId": "oil-war-risk",
       "label": "Crude war-risk insurance",
-      "commodity": "crude-oil",
-      "role": "insurance",
-      "evidenceIds": [],
-      "requiredForCalculation": true,
       "unit": "USD/bbl",
       "status": "unavailable",
       "source": "",
       "sourceDate": "",
       "maxAgeDays": 1,
       "cadence": "daily",
-      "missingReason": "No current cargo-normalised war-risk premium is approved."
+      "missingReason": "No current cargo-normalised war-risk premium is approved.",
+      "commodity": "crude-oil",
+      "role": "insurance",
+      "evidenceIds": [],
+      "requiredForCalculation": true
     },
     {
       "inputId": "usd-sofr",
       "label": "SOFR",
-      "commodity": "crude-oil",
-      "role": "financing",
       "value": 3.66,
       "unit": "%",
       "status": "confirmed",
       "source": "Federal Reserve Bank of New York",
       "sourceDate": "2026-08-17",
+      "observedAt": "2026-08-17T00:00:00Z",
       "maxAgeDays": 7,
       "cadence": "daily",
+      "commodity": "crude-oil",
+      "role": "financing",
       "evidenceIds": [
         "e-sofr"
       ],
-      "requiredForCalculation": false,
-      "observedAt": "2026-08-17T00:00:00Z"
+      "requiredForCalculation": false
     }
   ],
   "traces": [
@@ -584,7 +588,7 @@
               "sourceDate": "",
               "maxAgeDays": 1,
               "cadence": "daily",
-              "missingReason": "No current source-verified unavailable-volume figure is approved."
+              "missingReason": "Machine refresh returned no usable record. No approved observation is available."
             }
           ],
           "evidenceIds": [
@@ -838,6 +842,140 @@
           }
         ]
       },
+      "flowPressure": {
+        "modelVersion": "flow-pressure-v1",
+        "score": 64,
+        "status": "provisional",
+        "confidence": "unknown",
+        "calculatedAt": "2026-08-19T04:28:11.538Z",
+        "components": [
+          {
+            "id": "supply-interruption",
+            "label": "Supply interruption",
+            "weight": 0.25,
+            "score": 61,
+            "status": "unresolved",
+            "confidence": "unknown",
+            "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); unresolved because the required observation is unavailable.",
+            "observationIds": [
+              "observation:qatar-supply:qatar-output-status",
+              "observation:qatar-supply:qatar-volume-at-risk"
+            ],
+            "evidenceIds": [
+              "e-qatar-force-majeure"
+            ]
+          },
+          {
+            "id": "route-chokepoint-pressure",
+            "label": "Route / chokepoint pressure",
+            "weight": 0.2,
+            "score": 71,
+            "status": "partially-observed",
+            "confidence": "medium",
+            "rationale": "Route / chokepoint pressure is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+            "observationIds": [
+              "observation:qatar-supply:hormuz-transits"
+            ],
+            "evidenceIds": [
+              "e-hormuz-transit"
+            ]
+          },
+          {
+            "id": "vessel-port-disruption",
+            "label": "Vessel / port disruption",
+            "weight": 0.15,
+            "score": 71,
+            "status": "partially-observed",
+            "confidence": "medium",
+            "rationale": "Vessel / port disruption is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+            "observationIds": [
+              "observation:qatar-supply:hormuz-transits"
+            ],
+            "evidenceIds": [
+              "e-hormuz-transit"
+            ]
+          },
+          {
+            "id": "destination-dependency",
+            "label": "Destination dependency",
+            "weight": 0.15,
+            "score": 61,
+            "status": "partially-observed",
+            "confidence": "medium",
+            "rationale": "Destination dependency is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+            "observationIds": [
+              "observation:qatar-supply:jkm-cfd-reference",
+              "observation:qatar-supply:jera-qatar-volume"
+            ],
+            "evidenceIds": [
+              "e-jkm-cfd",
+              "e-jera-qatarenergy"
+            ]
+          },
+          {
+            "id": "price-basis-movement",
+            "label": "Price / basis movement",
+            "weight": 0.15,
+            "score": 50,
+            "status": "partially-observed",
+            "confidence": "low",
+            "rationale": "Market observations are present, but the fixture does not contain an explicit price or basis movement observation.",
+            "observationIds": [
+              "observation:qatar-supply:jkm-cfd-reference"
+            ],
+            "evidenceIds": [
+              "e-jkm-cfd"
+            ]
+          },
+          {
+            "id": "alternative-availability",
+            "label": "Alternative availability",
+            "weight": 0.1,
+            "score": 70,
+            "status": "partially-observed",
+            "confidence": "low",
+            "rationale": "Alternative pressure is ranked from candidate feasibility; commercial execution requires separate verified capacity, cost and contract evidence.",
+            "observationIds": [],
+            "evidenceIds": [
+              "e-ttf"
+            ]
+          }
+        ],
+        "evidenceIds": [
+          "e-qatar-force-majeure",
+          "e-hormuz-transit",
+          "e-jkm-cfd",
+          "e-jera-qatarenergy",
+          "e-ttf"
+        ],
+        "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
+      },
+      "alternatives": [
+        {
+          "id": "alternative:qatar-supply:ttf-market",
+          "kind": "market",
+          "label": "European TTF",
+          "summary": "Potential destination market for flexible LNG; the reviewed TTF observation confirms market context only.",
+          "feasibility": "potential",
+          "rank": 1,
+          "score": null,
+          "constraintSummary": "Cargo availability, route cost, regasification capacity, sanctions/insurance constraints and contract flexibility are not verified.",
+          "evidenceIds": [
+            "e-ttf"
+          ],
+          "record": {
+            "asOf": "2026-08-18T00:00:00Z",
+            "validFrom": "2026-08-18T00:00:00Z",
+            "validTo": null,
+            "unit": null,
+            "sourceIds": [
+              "e-ttf"
+            ],
+            "status": "inferred",
+            "confidence": "low"
+          }
+        }
+      ],
       "portfolioAction": "Obtain a current verified origin value, JKM observation, freight cost and war-risk cost before calculating a residual proxy.",
       "watchItems": [
         "QatarEnergy operating disclosure",
@@ -982,12 +1120,13 @@
               "label": "Dutch TTF",
               "value": 63.92,
               "unit": "EUR/MWh",
-              "status": "confirmed",
+              "status": "carried",
               "source": "Yahoo Finance TTF=F",
               "sourceDate": "2026-08-18",
+              "observedAt": "2026-08-18T15:50:45.000Z",
               "maxAgeDays": 3,
               "cadence": "daily",
-              "observedAt": "2026-08-18T15:50:45.000Z"
+              "carryReason": "Machine refresh returned no usable record. Previous approved observation carried with its original observation date."
             }
           ],
           "evidenceIds": [
@@ -1188,6 +1327,150 @@
           }
         ]
       },
+      "flowPressure": {
+        "modelVersion": "flow-pressure-v1",
+        "score": 64,
+        "status": "provisional",
+        "confidence": "low",
+        "calculatedAt": "2026-08-19T04:28:11.538Z",
+        "components": [
+          {
+            "id": "supply-interruption",
+            "label": "Supply interruption",
+            "weight": 0.25,
+            "score": 71,
+            "status": "partially-observed",
+            "confidence": "medium",
+            "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+            "observationIds": [
+              "observation:hormuz-delivery:hormuz-total-transits",
+              "observation:hormuz-delivery:qatar-output-status"
+            ],
+            "evidenceIds": [
+              "e-hormuz-total-transits",
+              "e-ap-hormuz-20260818",
+              "e-qatar-force-majeure"
+            ]
+          },
+          {
+            "id": "route-chokepoint-pressure",
+            "label": "Route / chokepoint pressure",
+            "weight": 0.2,
+            "score": 68,
+            "status": "partially-observed",
+            "confidence": "low",
+            "rationale": "Route / chokepoint pressure is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+            "observationIds": [
+              "observation:hormuz-delivery:nakilat-charter-vessels",
+              "observation:hormuz-delivery:qatar-subchartered-carriers",
+              "observation:hormuz-delivery:lng-freight-delay"
+            ],
+            "evidenceIds": [
+              "e-nakilat-charters",
+              "e-qatar-force-majeure"
+            ]
+          },
+          {
+            "id": "vessel-port-disruption",
+            "label": "Vessel / port disruption",
+            "weight": 0.15,
+            "score": 68,
+            "status": "partially-observed",
+            "confidence": "low",
+            "rationale": "Vessel / port disruption is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+            "observationIds": [
+              "observation:hormuz-delivery:nakilat-charter-vessels",
+              "observation:hormuz-delivery:qatar-subchartered-carriers",
+              "observation:hormuz-delivery:lng-freight-delay"
+            ],
+            "evidenceIds": [
+              "e-nakilat-charters",
+              "e-qatar-force-majeure"
+            ]
+          },
+          {
+            "id": "destination-dependency",
+            "label": "Destination dependency",
+            "weight": 0.15,
+            "score": 50,
+            "status": "partially-observed",
+            "confidence": "medium",
+            "rationale": "Destination dependency is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+            "observationIds": [
+              "observation:hormuz-delivery:ttf",
+              "observation:hormuz-delivery:jera-qatar-volume"
+            ],
+            "evidenceIds": [
+              "e-ttf",
+              "e-nakilat-charters",
+              "e-jera-qatarenergy"
+            ]
+          },
+          {
+            "id": "price-basis-movement",
+            "label": "Price / basis movement",
+            "weight": 0.15,
+            "score": 50,
+            "status": "partially-observed",
+            "confidence": "low",
+            "rationale": "Market observations are present, but the fixture does not contain an explicit price or basis movement observation.",
+            "observationIds": [
+              "observation:hormuz-delivery:ttf"
+            ],
+            "evidenceIds": [
+              "e-ttf"
+            ]
+          },
+          {
+            "id": "alternative-availability",
+            "label": "Alternative availability",
+            "weight": 0.1,
+            "score": 70,
+            "status": "partially-observed",
+            "confidence": "low",
+            "rationale": "Alternative pressure is ranked from candidate feasibility; commercial execution requires separate verified capacity, cost and contract evidence.",
+            "observationIds": [],
+            "evidenceIds": [
+              "e-ttf"
+            ]
+          }
+        ],
+        "evidenceIds": [
+          "e-hormuz-total-transits",
+          "e-ap-hormuz-20260818",
+          "e-qatar-force-majeure",
+          "e-nakilat-charters",
+          "e-ttf",
+          "e-jera-qatarenergy"
+        ],
+        "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
+      },
+      "alternatives": [
+        {
+          "id": "alternative:hormuz-delivery:ttf-market",
+          "kind": "market",
+          "label": "European TTF",
+          "summary": "Potential destination market for flexible LNG; the reviewed TTF observation confirms market context only.",
+          "feasibility": "potential",
+          "rank": 1,
+          "score": null,
+          "constraintSummary": "Cargo availability, route cost, regasification capacity, sanctions/insurance constraints and contract flexibility are not verified.",
+          "evidenceIds": [
+            "e-ttf"
+          ],
+          "record": {
+            "asOf": "2026-08-18T00:00:00Z",
+            "validFrom": "2026-08-18T00:00:00Z",
+            "validTo": null,
+            "unit": null,
+            "sourceIds": [
+              "e-ttf"
+            ],
+            "status": "inferred",
+            "confidence": "low"
+          }
+        }
+      ],
       "portfolioAction": "Do not calculate delivered economics until current LNG freight, war-risk, origin value and destination value are all verified.",
       "watchItems": [
         "LNG-specific transit observation",
@@ -1331,13 +1614,13 @@
             {
               "inputId": "oman-marker",
               "label": "Oman crude marker",
+              "value": 86.83,
               "unit": "USD/bbl",
               "status": "carried",
               "source": "Gulf Mercantile Exchange",
               "sourceDate": "2026-08-14",
               "maxAgeDays": 3,
               "cadence": "daily",
-              "value": 86.83,
               "carryReason": "No current public GME OQD marker was approved after Aug 14; retain the Aug 14 value of 86.83 USD/bbl."
             }
           ],
@@ -1510,6 +1793,114 @@
           }
         ]
       },
+      "flowPressure": {
+        "modelVersion": "flow-pressure-v1",
+        "score": 58,
+        "status": "provisional",
+        "confidence": "unknown",
+        "calculatedAt": "2026-08-19T04:28:11.538Z",
+        "components": [
+          {
+            "id": "supply-interruption",
+            "label": "Supply interruption",
+            "weight": 0.25,
+            "score": 75,
+            "status": "observed",
+            "confidence": "high",
+            "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); supported by the reviewed observations.",
+            "observationIds": [
+              "observation:hormuz-crude-export:hormuz-total-oil-flow",
+              "observation:hormuz-crude-export:hormuz-crude-flow",
+              "observation:hormuz-crude-export:saudi-hormuz-crude-2024"
+            ],
+            "evidenceIds": [
+              "e-eia-hormuz",
+              "e-eia-saudi"
+            ]
+          },
+          {
+            "id": "route-chokepoint-pressure",
+            "label": "Route / chokepoint pressure",
+            "weight": 0.2,
+            "score": 50,
+            "status": "unresolved",
+            "confidence": "unknown",
+            "rationale": "Route / chokepoint pressure is scored from the direction of the relevant trace hop(s); unresolved because the required observation is unavailable.",
+            "observationIds": [
+              "observation:hormuz-crude-export:oil-vlcc-freight"
+            ],
+            "evidenceIds": []
+          },
+          {
+            "id": "vessel-port-disruption",
+            "label": "Vessel / port disruption",
+            "weight": 0.15,
+            "score": 50,
+            "status": "unresolved",
+            "confidence": "unknown",
+            "rationale": "Vessel / port disruption is scored from the direction of the relevant trace hop(s); unresolved because the required observation is unavailable.",
+            "observationIds": [
+              "observation:hormuz-crude-export:oil-vlcc-freight"
+            ],
+            "evidenceIds": []
+          },
+          {
+            "id": "destination-dependency",
+            "label": "Destination dependency",
+            "weight": 0.15,
+            "score": 61,
+            "status": "unresolved",
+            "confidence": "unknown",
+            "rationale": "Destination dependency is scored from the direction of the relevant trace hop(s); unresolved because the required observation is unavailable.",
+            "observationIds": [
+              "observation:hormuz-crude-export:asia-crude-share",
+              "observation:hormuz-crude-export:asia-top-four-share",
+              "observation:hormuz-crude-export:oman-marker",
+              "observation:hormuz-crude-export:oil-counterparty-relationship"
+            ],
+            "evidenceIds": [
+              "e-eia-hormuz",
+              "e-gme-oman"
+            ]
+          },
+          {
+            "id": "price-basis-movement",
+            "label": "Price / basis movement",
+            "weight": 0.15,
+            "score": 50,
+            "status": "partially-observed",
+            "confidence": "low",
+            "rationale": "Market observations are present, but the fixture does not contain an explicit price or basis movement observation.",
+            "observationIds": [
+              "observation:hormuz-crude-export:asia-crude-share",
+              "observation:hormuz-crude-export:asia-top-four-share",
+              "observation:hormuz-crude-export:oman-marker"
+            ],
+            "evidenceIds": [
+              "e-eia-hormuz",
+              "e-gme-oman"
+            ]
+          },
+          {
+            "id": "alternative-availability",
+            "label": "Alternative availability",
+            "weight": 0.1,
+            "score": 50,
+            "status": "unresolved",
+            "confidence": "unknown",
+            "rationale": "No ranked alternative source, market, route or terminal is currently present in the reviewed data.",
+            "observationIds": [],
+            "evidenceIds": []
+          }
+        ],
+        "evidenceIds": [
+          "e-eia-hormuz",
+          "e-eia-saudi",
+          "e-gme-oman"
+        ],
+        "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
+      },
+      "alternatives": [],
       "portfolioAction": "Use the EIA figures as structural exposure only; obtain current Dubai/Oman, VLCC and war-risk observations before calculating a residual proxy.",
       "watchItems": [
         "Current Hormuz crude flow",

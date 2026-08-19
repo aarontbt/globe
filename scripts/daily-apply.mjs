@@ -11,14 +11,20 @@ import {
   requireValidState,
   summarizeEvidenceAudit,
   validateEvidenceAudit,
-  writeJson,
-  writeText,
+  validateStateShape,
 } from "./daily-common.mjs";
+import { prepareEnergyPromotion } from "./energy-lng-promote.mjs";
 
 const { dryRun } = parseArgs();
-const state = loadState();
+const baseState = loadState();
+const baseExposure = readJson(PATHS.exposure);
+const energyPromotion = prepareEnergyPromotion({ state: baseState, exposure: baseExposure });
+if (energyPromotion.errors.length) {
+  throw new Error(`Energy/LNG promotion gate failed; promoted runtime was left unchanged:\n- ${energyPromotion.errors.join("\n- ")}`);
+}
+const state = energyPromotion.state;
+const authoredExposure = energyPromotion.exposure;
 requireValidState(state);
-const authoredExposure = readJson(PATHS.exposure);
 const evidenceAudit = readJson(PATHS.evidenceAudit);
 const evidenceErrors = validateEvidenceAudit(state, authoredExposure, evidenceAudit);
 if (evidenceErrors.length) {
@@ -27,6 +33,16 @@ if (evidenceErrors.length) {
 const evidenceSummary = summarizeEvidenceAudit(authoredExposure, evidenceAudit);
 
 const changed = new Set();
+const pendingWrites = new Map();
+
+function writeText(file, text) {
+  pendingWrites.set(file, text);
+}
+
+function stagedText(file) {
+  if (pendingWrites.has(file)) return pendingWrites.get(file);
+  return readText(file);
+}
 
 function mark(file, before, after) {
   if (before !== after) changed.add(file);
@@ -39,9 +55,16 @@ function publicDataPath(sourceFile) {
 function mirrorPublicJson(sourceFile) {
   const publicFile = publicDataPath(sourceFile);
   const before = fs.existsSync(publicFile) ? readText(publicFile) : "";
-  const after = readText(sourceFile);
+  const after = pendingWrites.has(sourceFile) || fs.existsSync(sourceFile)
+    ? stagedText(sourceFile)
+    : sourceFile === PATHS.energyRuntime && energyPromotion.runtime
+      ? `${JSON.stringify(energyPromotion.runtime, null, 2)}\n`
+      : sourceFile === PATHS.energyReadModel && energyPromotion.readModel
+        ? `${JSON.stringify(energyPromotion.readModel, null, 2)}\n`
+        : "";
+  if (!after) throw new Error(`Cannot mirror missing source file ${sourceFile}`);
   mark(publicFile, before, after);
-  writeText(publicFile, after, dryRun);
+  writeText(publicFile, after);
 }
 
 function patchAssetCollections(collections, values) {
@@ -65,6 +88,14 @@ function applyCrossAsset() {
   const after = `${JSON.stringify(data, null, 2)}\n`;
   mark(PATHS.crossAsset, before, after);
   writeText(PATHS.crossAsset, after, dryRun);
+}
+
+function applyPromotedEnergyState() {
+  if (!energyPromotion.promoted) return;
+  const before = readText(PATHS.state);
+  const after = `${JSON.stringify(state, null, 2)}\n`;
+  mark(PATHS.state, before, after);
+  writeText(PATHS.state, after, dryRun);
 }
 
 function applyConflict() {
@@ -109,7 +140,13 @@ function applyCommodities() {
 
 function applyExposureTraces() {
   const before = readText(PATHS.exposure);
-  const data = JSON.parse(before);
+  const data = structuredClone(authoredExposure);
+  if (energyPromotion.promoted) {
+    const after = `${JSON.stringify(data, null, 2)}\n`;
+    mark(PATHS.exposure, before, after);
+    writeText(PATHS.exposure, after, dryRun);
+    return;
+  }
   data.asOf = state.asOf;
   data.day = state.day;
   data.headline = state.traceInputs.headline;
@@ -163,6 +200,19 @@ function applyExposureTraces() {
   const after = `${JSON.stringify(data, null, 2)}\n`;
   mark(PATHS.exposure, before, after);
   writeText(PATHS.exposure, after, dryRun);
+}
+
+function applyEnergyRuntime() {
+  if (!energyPromotion.runtime) return;
+  const runtimeBefore = fs.existsSync(PATHS.energyRuntime) ? readText(PATHS.energyRuntime) : "";
+  const runtimeAfter = `${JSON.stringify(energyPromotion.runtime, null, 2)}\n`;
+  mark(PATHS.energyRuntime, runtimeBefore, runtimeAfter);
+  writeText(PATHS.energyRuntime, runtimeAfter, dryRun);
+
+  const readModelBefore = fs.existsSync(PATHS.energyReadModel) ? readText(PATHS.energyReadModel) : "";
+  const readModelAfter = `${JSON.stringify(energyPromotion.readModel, null, 2)}\n`;
+  mark(PATHS.energyReadModel, readModelBefore, readModelAfter);
+  writeText(PATHS.energyReadModel, readModelAfter, dryRun);
 }
 
 function formatQuote(quote) {
@@ -259,11 +309,13 @@ function applyTimeline() {
   writeText(PATHS.timeline, after, dryRun);
 }
 
+applyPromotedEnergyState();
 applyCrossAsset();
 applyConflict();
 applyCharts();
 applyCommodities();
 applyExposureTraces();
+applyEnergyRuntime();
 applyUseMarkets();
 applyMarketsWidget();
 applyRunbook();
@@ -277,11 +329,13 @@ for (const file of [
   PATHS.commodities,
   PATHS.exposure,
   PATHS.intelEvents,
+  PATHS.energyRuntime,
+  PATHS.energyReadModel,
 ]) {
   mirrorPublicJson(file);
 }
 
-for (const file of [
+const jsonFiles = [
   PATHS.state,
   PATHS.crossAsset,
   PATHS.conflict,
@@ -289,8 +343,65 @@ for (const file of [
   PATHS.commodities,
   PATHS.exposure,
   PATHS.intelEvents,
-]) {
-  JSON.parse(dryRun ? readText(file) : readText(file));
+  PATHS.energyRuntime,
+  PATHS.energyReadModel,
+];
+
+function validateStagedBundle() {
+  const errors = [];
+  const staged = new Map();
+  for (const file of jsonFiles) {
+    try {
+      staged.set(file, JSON.parse(stagedText(file)));
+    } catch (error) {
+      errors.push(`${file} staged output is not valid JSON: ${error.message}`);
+    }
+  }
+  const stagedState = staged.get(PATHS.state);
+  const stagedExposure = staged.get(PATHS.exposure);
+  const stagedRuntime = staged.get(PATHS.energyRuntime);
+  const stagedReadModel = staged.get(PATHS.energyReadModel);
+  errors.push(...validateStateShape(stagedState || {}));
+  if (energyPromotion.promoted) {
+    if (JSON.stringify(stagedExposure) !== JSON.stringify(stagedReadModel)) {
+      errors.push("staged promoted Energy/LNG read model is out of sync with exposure-traces");
+    }
+    if (stagedRuntime?.domain?.asOf !== stagedState?.asOf) errors.push("staged Energy/LNG runtime asOf is out of sync");
+    if (stagedRuntime?.domain?.machineEvidence && JSON.stringify(stagedRuntime.domain.machineEvidence) !== JSON.stringify(stagedReadModel?.machineEvidence ?? [])) {
+      errors.push("staged Energy/LNG runtime machine evidence is out of sync");
+    }
+  }
+  const stagedCrossAsset = staged.get(PATHS.crossAsset);
+  for (const category of stagedCrossAsset?.categories ?? []) {
+    for (const asset of category.assets ?? []) {
+      const expected = stagedState?.crossAsset?.[asset.id];
+      if (!expected) continue;
+      for (const key of ["current", "change1d", "zscore", "signal"]) {
+        if (String(asset[key]) !== String(expected[key])) errors.push(`staged crossAsset.${asset.id}.${key} is out of sync`);
+      }
+    }
+  }
+  for (const trace of stagedExposure?.traces ?? []) {
+    for (const hop of trace.hops ?? []) {
+      for (const metric of hop.metrics ?? []) {
+        const expected = stagedState?.traceInputs?.metrics?.[metric.inputId];
+        if (!expected) {
+          errors.push(`staged exposure metric ${metric.inputId} has no matching daily-state input`);
+          continue;
+        }
+        for (const key of ["value", "low", "high", "unit", "status", "source", "sourceDate", "observedAt", "maxAgeDays", "cadence", "carryReason", "missingReason"]) {
+          if ((metric[key] ?? null) !== (expected[key] ?? null)) errors.push(`staged exposure metric ${metric.inputId}.${key} is out of sync`);
+        }
+      }
+    }
+  }
+  if (errors.length) throw new Error(`staged publication bundle validation failed:\n- ${errors.join("\n- ")}`);
+}
+
+validateStagedBundle();
+
+if (!dryRun) {
+  for (const [file, content] of pendingWrites) fs.writeFileSync(file, content);
 }
 
 if (dryRun) {

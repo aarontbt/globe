@@ -324,6 +324,9 @@ export default function ExposureTracePanel({ data, activeTraceId, onTraceChange 
                       </div>
                     )}
                     <div style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", marginTop: 1 }}>{statusLabel(metric)}</div>
+                    {(metric.machineEvidenceIds?.length ?? 0) > 0 && (
+                      <div style={{ fontSize: 11, color: "#67e8f9", marginTop: 2 }}>machine snapshot lineage validated</div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -554,6 +557,14 @@ export function TraceEvidencePanel({ data, activeTraceId, onTraceChange }: Trace
     ...trace.commercialEvaluation.observedInputIds.flatMap((id) => data.commercialInputs.find((input) => input.inputId === id)?.evidenceIds ?? []),
   ]);
   const evidence = data.evidence.filter((item) => traceEvidenceIds.has(item.id));
+  const traceInputIds = new Set([
+    ...trace.hops.flatMap((hop) => hop.metrics.map((metric) => metric.inputId)),
+    ...trace.commercialEvaluation.observedInputIds,
+  ]);
+  const machineEvidence = (data.machineEvidence ?? []).filter((item) =>
+    item.targetInputIds.some((id) => traceInputIds.has(id))
+      || item.targetCommercialInputIds.some((id) => traceInputIds.has(id)),
+  );
 
   return (
     <div style={{ fontFamily: FONT_SANS, color: "rgba(255,255,255,0.9)" }}>
@@ -568,6 +579,18 @@ export function TraceEvidencePanel({ data, activeTraceId, onTraceChange }: Trace
               <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)" }}>{item.publishedAt} ↗</span>
             </a>
           ))}
+          {machineEvidence.length > 0 && (
+            <>
+              <SectionLabel>Machine snapshot evidence</SectionLabel>
+              {machineEvidence.map((item) => (
+                <a key={item.id} href={item.url} target="_blank" rel="noreferrer" style={{ display: "grid", gridTemplateColumns: "110px 1fr auto", gap: 10, alignItems: "center", padding: "10px 0", borderBottom: "1px solid rgba(103,232,249,0.12)", color: "rgba(255,255,255,0.72)", textDecoration: "none" }}>
+                  <span style={{ color: "#67e8f9", fontSize: 12, fontWeight: 750 }}>{item.provider}</span>
+                  <span style={{ fontSize: 12 }}>Validated snapshot · {item.recordKeys.length} record{item.recordKeys.length === 1 ? "" : "s"}</span>
+                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)" }}>{item.retrievedAt.slice(0, 10)} ↗</span>
+                </a>
+              ))}
+            </>
+          )}
         </div>
         <div style={{ ...sectionCard, padding: 16 }}>
           <SectionLabel>Verified-data rule</SectionLabel>

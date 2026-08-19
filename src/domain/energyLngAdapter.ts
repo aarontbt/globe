@@ -30,6 +30,7 @@ import type {
   EnergyLngRiskControl,
   EnergyLngSource,
 } from "../types/energyLng";
+import type { EnergyLngNormalizedCandidate } from "../types/energyLngPipeline";
 
 type LegacyMetric = TraceMetric & { cadence?: EnergyLngCadence };
 
@@ -181,6 +182,7 @@ function toSource(evidence: EvidenceReference, fallbackAsOf: string): EnergyLngS
     maxAgeDays: evidence.maxAgeDays,
     status: evidence.status,
     note: evidence.note,
+    provider: evidence.publisher,
   };
 }
 
@@ -227,6 +229,7 @@ function observationFromMetric(
     carryReason: metric.carryReason,
     missingReason: metric.missingReason,
     evidenceIds: [...new Set(evidenceIds)],
+    machineEvidenceIds: [...new Set(metric.machineEvidenceIds ?? [])],
     record: recordMeta(
       asOf,
       evidenceIds,
@@ -242,12 +245,18 @@ function mergeObservation(existing: EnergyLngObservation, incoming: EnergyLngObs
   const status = strongerStatus(existing.record.status, incoming.record.status);
   const confidence = strongerConfidence(existing.record.confidence, incoming.record.confidence);
   const evidenceIds = [...new Set([...existing.evidenceIds, ...incoming.evidenceIds])];
+  const machineEvidenceIds = [...new Set([
+    ...(existing.machineEvidenceIds ?? []),
+    ...(incoming.machineEvidenceIds ?? []),
+  ])];
   return {
     ...existing,
     entityIds: [...new Set([...existing.entityIds, ...incoming.entityIds])],
     value: existing.value !== undefined ? existing.value : incoming.value,
     low: existing.low ?? incoming.low,
     high: existing.high ?? incoming.high,
+    change: existing.change ?? incoming.change,
+    changePct: existing.changePct ?? incoming.changePct,
     unit: existing.unit ?? incoming.unit,
     sourceName: existing.sourceName ?? incoming.sourceName,
     sourceDate: existing.sourceDate ?? incoming.sourceDate,
@@ -257,6 +266,7 @@ function mergeObservation(existing: EnergyLngObservation, incoming: EnergyLngObs
     carryReason: existing.carryReason ?? incoming.carryReason,
     missingReason: existing.missingReason ?? incoming.missingReason,
     evidenceIds,
+    machineEvidenceIds,
     record: {
       ...existing.record,
       sourceIds: evidenceIds,
@@ -465,6 +475,7 @@ function toTraceMetric(observation: EnergyLngObservation, sourcesById: Map<strin
     observedAt: observation.observedAt,
     maxAgeDays: observation.freshnessWindowDays,
     cadence: observation.cadence,
+    ...(observation.machineEvidenceIds?.length ? { machineEvidenceIds: observation.machineEvidenceIds } : {}),
     carryReason: observation.carryReason,
     missingReason: observation.missingReason,
   };
@@ -689,11 +700,139 @@ export function toEnergyLngDomain(legacy: ExposureTraceData): EnergyLngDomain {
     day: legacy.day,
     headline: legacy.headline,
     sources,
+    machineEvidence: legacy.machineEvidence,
     entities,
     relationships: [...relationshipsById.values()],
     observations: [...observationsById.values()],
     commercialInputs,
     assessments,
+  };
+}
+
+function candidateTargetMatches(observation: EnergyLngObservation, candidate: EnergyLngNormalizedCandidate): boolean {
+  const inputId = legacyObservationId(observation.id);
+  return candidate.targetInputIds.includes(inputId) || candidate.targetCommercialInputIds.includes(inputId);
+}
+
+function applyCandidateToObservation(
+  observation: EnergyLngObservation,
+  candidate: EnergyLngNormalizedCandidate,
+  asOf: string,
+): EnergyLngObservation {
+  const next: EnergyLngObservation = {
+    ...observation,
+    value: candidate.value,
+    low: candidate.low,
+    high: candidate.high,
+    change: candidate.change,
+    changePct: candidate.changePct,
+    unit: candidate.unit,
+    sourceName: candidate.status === "unavailable" ? undefined : candidate.provider,
+    sourceDate: candidate.status === "unavailable" ? undefined : candidate.observationDate ?? undefined,
+    observedAt: candidate.status === "unavailable" ? undefined : candidate.observedAt ?? undefined,
+    cadence: candidate.cadence,
+    freshnessWindowDays: candidate.freshnessWindowDays,
+    carryReason: candidate.carryReason,
+    missingReason: candidate.missingReason,
+    evidenceIds: [...new Set(candidate.evidenceIds)],
+    machineEvidenceIds: [...new Set(candidate.machineEvidenceIds ?? [])],
+    lineage: candidate.lineage,
+    record: {
+      ...observation.record,
+      asOf,
+      validFrom: candidate.observationDate ? dateToTimestamp(candidate.observationDate, asOf) : null,
+      unit: candidate.unit,
+      sourceIds: [...new Set(candidate.evidenceIds)],
+      status: candidate.status,
+      confidence: candidate.confidence,
+    },
+  };
+  if (candidate.value === undefined) delete next.value;
+  if (candidate.low === undefined) delete next.low;
+  if (candidate.high === undefined) delete next.high;
+  if (candidate.change === undefined) delete next.change;
+  if (candidate.changePct === undefined) delete next.changePct;
+  if (candidate.carryReason === undefined) delete next.carryReason;
+  if (candidate.missingReason === undefined) delete next.missingReason;
+  if (candidate.observationDate === null) delete next.sourceDate;
+  if (candidate.observedAt === null) delete next.observedAt;
+  return next;
+}
+
+function recalculateAssessment(
+  assessment: EnergyLngAssessment,
+  observationsById: Map<string, EnergyLngObservation>,
+  entityKindsById: Map<string, EnergyLngEntityKind>,
+  asOf: string,
+): EnergyLngAssessment {
+  const hops = assessment.hops.map((hop) => {
+    const observations = hop.observationIds
+      .map((id) => observationsById.get(id))
+      .filter((observation): observation is EnergyLngObservation => Boolean(observation));
+    const sourceIds = [...new Set([
+      ...hop.evidenceIds,
+      ...observations.flatMap((observation) => observation.evidenceIds),
+    ])];
+    const status = statusForRecords(observations.map((observation) => observation.record), sourceIds);
+    return {
+      ...hop,
+      record: recordMeta(
+        asOf,
+        sourceIds,
+        status,
+        confidenceForRecords(observations.map((observation) => observation.record), status),
+      ),
+    };
+  });
+  const alternatives = rankAlternatives(assessment.alternatives);
+  const base = { ...assessment, hops, alternatives };
+  const flowPressure = calculateFlowPressure(base, observationsById, entityKindsById, asOf);
+  const sourceIds = [...new Set([
+    ...hops.flatMap((hop) => hop.evidenceIds),
+    ...assessment.counterparties.flatMap((counterparty) => counterparty.evidenceIds),
+    ...flowPressure.evidenceIds,
+  ])];
+  const status = statusForRecords(
+    [...hops, ...assessment.counterparties].map((record) => record.record),
+    sourceIds,
+  );
+  return {
+    ...base,
+    flowPressure,
+    record: recordMeta(
+      asOf,
+      sourceIds,
+      status,
+      confidenceForRecords(
+        [...hops, ...assessment.counterparties].map((record) => record.record),
+        status,
+      ),
+    ),
+  };
+}
+
+/**
+ * Apply only validated staged observations and recalculate the assessment
+ * through the same Flow Pressure adapter used by the application.
+ */
+export function applyEnergyLngCandidates(
+  domain: EnergyLngDomain,
+  candidates: EnergyLngNormalizedCandidate[],
+  calculatedAt = domain.asOf,
+): EnergyLngDomain {
+  const next = structuredClone(domain);
+  for (const candidate of candidates) {
+    next.observations = next.observations.map((observation) =>
+      candidateTargetMatches(observation, candidate)
+        ? applyCandidateToObservation(observation, candidate, next.asOf)
+        : observation,
+    );
+  }
+  const observationsById = new Map(next.observations.map((observation) => [observation.id, observation]));
+  const entityKindsById = new Map(next.entities.map((entity) => [entity.id, entity.kind]));
+  return {
+    ...next,
+    assessments: next.assessments.map((assessment) => recalculateAssessment(assessment, observationsById, entityKindsById, calculatedAt)),
   };
 }
 
@@ -755,6 +894,7 @@ export function toExposureTraceReadModel(domain: EnergyLngDomain): ExposureTrace
     headline: domain.headline,
     entities,
     evidence: domain.sources.map(toLegacySource),
+    machineEvidence: domain.machineEvidence,
     commercialInputs: domain.commercialInputs.map((input) => toLegacyCommercialInput(input, observationsById, sourcesById)),
     traces,
   };

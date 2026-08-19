@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "energy-lng-source-registry-v1",
+  "sources": [
+    {
+      "id": "src-eia-lng-baseline",
+      "provider": "U.S. EIA",
+      "title": "EIA international energy observations",
+      "url": "https://api.eia.gov/v2/international/data/",
+      "category": "physical-flow",
+      "automation": "automated",
+      "cadence": "event-driven",
+      "maxAgeDays": 730,
+      "allowedUnits": ["MTPA", "million b/d", "%", "billion cubic feet"],
+      "entityIds": ["qatarenergy", "ras-laffan", "hormuz"],
+      "targetInputIds": ["qatar-volume-at-risk"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "eia-international-v1",
+      "enabled": true,
+      "selection": {
+        "type": "eia-series",
+        "seriesIdEnv": "EIA_SERIES_ID",
+        "entityId": "qatarenergy",
+        "metric": "qatar-lng-volume"
+      },
+      "targetPolicies": {
+        "qatar-volume-at-risk": {
+          "cadence": "daily",
+          "maxAgeDays": 1,
+          "allowedUnits": ["MTPA"],
+          "entityIds": ["qatarenergy", "ras-laffan"]
+        }
+      },
+      "note": "The connector requires EIA_API_KEY or EIA_DATA_URL plus EIA_SERIES_ID. It never converts an oil-flow baseline into a Qatar LNG volume."
+    },
+    {
+      "id": "src-imf-portwatch-hormuz",
+      "provider": "IMF PortWatch",
+      "title": "PortWatch route and chokepoint context",
+      "url": "https://portwatch.imf.org/pages/data-and-methodology",
+      "category": "route-context",
+      "automation": "automated",
+      "cadence": "daily",
+      "maxAgeDays": 7,
+      "allowedUnits": ["LNG transits", "vessels/day", "%", "index"],
+      "entityIds": ["hormuz"],
+      "targetInputIds": ["hormuz-transits"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": ["e-hormuz-transit"],
+      "fallback": "carry",
+      "parserVersion": "portwatch-route-v1",
+      "enabled": true,
+      "selection": {
+        "type": "portwatch-route",
+        "routeId": "hormuz",
+        "routeIdEnv": "PORTWATCH_ROUTE_ID",
+        "entityId": "hormuz",
+        "metric": "LNG transits"
+      },
+      "targetPolicies": {
+        "hormuz-transits": {
+          "cadence": "daily",
+          "maxAgeDays": 7,
+          "allowedUnits": ["LNG transits", "vessels/day", "%", "index"],
+          "entityIds": ["hormuz"]
+        }
+      },
+      "note": "A data endpoint may be supplied with PORTWATCH_DATA_URL and a route override with PORTWATCH_ROUTE_ID. The methodology page is not parsed as an observation; the reviewed Kpler route observation is carried when no machine-readable route response is available."
+    },
+    {
+      "id": "src-yahoo-ttf",
+      "provider": "Yahoo Finance",
+      "title": "Dutch TTF chart API",
+      "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+      "category": "market-context",
+      "automation": "automated",
+      "cadence": "daily",
+      "maxAgeDays": 3,
+      "allowedUnits": ["EUR/MWh"],
+      "entityIds": ["ttf"],
+      "targetInputIds": ["ttf"],
+      "targetCommercialInputIds": ["lng-ttf"],
+      "evidenceIds": ["e-ttf"],
+      "fallback": "carry",
+      "parserVersion": "yahoo-chart-v1",
+      "enabled": true,
+      "selection": {
+        "type": "yahoo-symbol",
+        "symbol": "TTF=F",
+        "entityId": "ttf",
+        "metric": "Dutch TTF"
+      },
+      "targetPolicies": {
+        "ttf": {
+          "cadence": "daily",
+          "maxAgeDays": 3,
+          "allowedUnits": ["EUR/MWh"],
+          "entityIds": ["ttf"]
+        },
+        "lng-ttf": {
+          "cadence": "daily",
+          "maxAgeDays": 3,
+          "allowedUnits": ["EUR/MWh"],
+          "entityIds": ["ttf"]
+        }
+      },
+      "note": "TTF is market context only. It does not establish cargo availability, freight, insurance or executable substitution."
+    },
+    {
+      "id": "src-reviewed-qatar-force-majeure",
+      "provider": "Reuters",
+      "title": "Reviewed QatarEnergy force-majeure disclosure",
+      "url": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
+      "category": "reviewed-event",
+      "automation": "manual-only",
+      "cadence": "event-driven",
+      "maxAgeDays": 14,
+      "allowedUnits": [""],
+      "entityIds": ["qatarenergy", "ras-laffan"],
+      "targetInputIds": ["qatar-output-status"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": ["e-qatar-force-majeure"],
+      "fallback": "preserve-reviewed",
+      "parserVersion": "manual-reviewed-v1",
+      "enabled": true,
+      "selection": {
+        "type": "reviewed-event",
+        "entityId": "qatarenergy",
+        "metric": "force majeure"
+      },
+      "targetPolicies": {
+        "qatar-output-status": {
+          "cadence": "event-driven",
+          "maxAgeDays": 14,
+          "allowedUnits": [""],
+          "entityIds": ["qatarenergy", "ras-laffan"]
+        }
+      },
+      "note": "Automation may carry this reviewed claim but cannot fetch, reinterpret, or replace the approved event evidence."
+    }
+  ]
+}
