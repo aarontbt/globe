@@ -22,15 +22,27 @@ function clone(value) {
   return structuredClone(value);
 }
 
-function patchInput(input, candidate) {
+function patchInput(input, candidate, asOf) {
   const next = { ...input };
-  for (const key of ["value", "low", "high", "source", "sourceDate", "observedAt", "carryReason", "missingReason"]) {
+  for (const key of [
+    "value", "low", "high", "source", "sourceDate", "observedAt", "carryReason", "missingReason",
+    "periodStart", "periodEnd", "coverageStatus", "coverageNote", "sourceAgeDays", "machineEvidenceIds",
+  ]) {
     delete next[key];
   }
   next.status = candidate.status;
   next.unit = candidate.unit;
   next.cadence = candidate.cadence;
   next.maxAgeDays = candidate.freshnessWindowDays;
+  next.observationKind = candidate.observationKind;
+  next.periodStart = candidate.periodStart;
+  next.periodEnd = candidate.periodEnd;
+  next.coverageStatus = candidate.coverage.status;
+  if (candidate.coverage.note) next.coverageNote = candidate.coverage.note;
+  next.sourceAgeDays = candidate.observationDate
+    ? Math.max(0, Math.floor((Date.parse(String(asOf).slice(0, 10)) - Date.parse(String(candidate.observationDate))) / 86_400_000))
+    : null;
+  if (candidate.machineEvidenceIds?.length) next.machineEvidenceIds = candidate.machineEvidenceIds;
   if (candidate.status === "unavailable") {
     next.source = "";
     next.sourceDate = "";
@@ -45,6 +57,32 @@ function patchInput(input, candidate) {
     if (candidate.status === "carried") next.carryReason = candidate.carryReason;
   }
   return next;
+}
+
+function candidateTargets(candidate) {
+  return [...new Set([...(candidate.targetInputIds ?? []), ...(candidate.targetCommercialInputIds ?? [])])];
+}
+
+function assessmentCandidates(candidates) {
+  const groups = new Map();
+  for (const candidate of candidates) {
+    if (candidate.selectedForAssessment === false) continue;
+    for (const target of candidateTargets(candidate)) {
+      const group = groups.get(target) ?? [];
+      group.push(candidate);
+      groups.set(target, group);
+    }
+  }
+  const selected = new Map();
+  for (const [target, group] of groups) {
+    const ranked = [...group].sort((left, right) =>
+      String(right.periodEnd || right.observationDate || "").localeCompare(String(left.periodEnd || left.observationDate || ""))
+      || (right.status === "confirmed" ? 3 : right.status === "carried" ? 2 : 1) - (left.status === "confirmed" ? 3 : left.status === "carried" ? 2 : 1)
+      || String(right.sourceId).localeCompare(String(left.sourceId)),
+    );
+    if (ranked[0]) selected.set(target, ranked[0]);
+  }
+  return [...new Set(selected.values())];
 }
 
 function round(value, digits = 2) {
@@ -114,15 +152,15 @@ function applyTtfCrossAsset(nextState, candidate) {
 
 function applyCandidateInputs(state, candidates) {
   const next = clone(state);
-  for (const candidate of candidates) {
+  for (const candidate of assessmentCandidates(candidates)) {
     for (const inputId of candidate.targetInputIds ?? []) {
       if (next.traceInputs?.metrics?.[inputId]) {
-        next.traceInputs.metrics[inputId] = patchInput(next.traceInputs.metrics[inputId], candidate);
+        next.traceInputs.metrics[inputId] = patchInput(next.traceInputs.metrics[inputId], candidate, state.asOf);
       }
     }
     for (const inputId of candidate.targetCommercialInputIds ?? []) {
       if (next.commercialInputs?.[inputId]) {
-        const patched = patchInput(next.commercialInputs[inputId], candidate);
+        const patched = patchInput(next.commercialInputs[inputId], candidate, state.asOf);
         patched.evidenceIds = [...new Set(candidate.evidenceIds ?? next.commercialInputs[inputId].evidenceIds ?? [])];
         next.commercialInputs[inputId] = patched;
       }
@@ -166,6 +204,13 @@ function applyStateToExposure(exposure, state) {
           "observedAt",
           "maxAgeDays",
           "cadence",
+          "observationKind",
+          "periodStart",
+          "periodEnd",
+          "coverageStatus",
+          "coverageNote",
+          "sourceAgeDays",
+          "machineEvidenceIds",
           "carryReason",
           "missingReason",
         ]) {
@@ -241,6 +286,29 @@ function candidateEnvelope() {
 
 function runtimeVersion(domain, asOf) {
   return `energy-runtime:${sha256({ asOf, domain }).slice(0, 24)}`;
+}
+
+function mergeById(existing, incoming) {
+  const values = new Map((existing ?? []).map((item) => [item.id, item]));
+  for (const item of incoming ?? []) values.set(item.id, item);
+  return [...values.values()];
+}
+
+function applyPublishedCollections(domain, report) {
+  const sourceFilter = report?.sourceFilter;
+  if (!sourceFilter) {
+    domain.machineEvidence = report?.machineEvidence ?? [];
+    domain.coverage = report?.coverage ?? {};
+    domain.reconciliations = report?.reconciliations ?? [];
+    return;
+  }
+
+  domain.machineEvidence = mergeById(domain.machineEvidence, report.machineEvidence);
+  const selectedCoverage = report.coverage?.[sourceFilter];
+  domain.coverage = selectedCoverage
+    ? { ...(domain.coverage ?? {}), [sourceFilter]: selectedCoverage }
+    : (domain.coverage ?? {});
+  domain.reconciliations = mergeById(domain.reconciliations, report.reconciliations);
 }
 
 export function prepareEnergyPromotion({
@@ -324,6 +392,11 @@ export function prepareEnergyPromotion({
   if (JSON.stringify(candidates?.machineEvidence ?? []) !== JSON.stringify(report?.machineEvidence ?? [])) {
     errors.push("Energy/LNG candidates do not match machine snapshot evidence in the refresh report");
   }
+  for (const key of ["reconciliations", "coverage", "sourceFilter", "requestedPeriod"]) {
+    if (candidates?.[key] !== undefined && JSON.stringify(candidates[key]) !== JSON.stringify(report?.[key] ?? null)) {
+      errors.push(`Energy/LNG candidates do not match refresh report ${key}`);
+    }
+  }
 
   const candidateValidation = validateNormalizedCandidates({
     candidates: candidates?.observations ?? [],
@@ -333,6 +406,7 @@ export function prepareEnergyPromotion({
     asOf: state.asOf,
     snapshots: report?.snapshots ?? [],
     machineEvidence: report?.machineEvidence ?? [],
+    allowHistorical: Boolean(report?.requestedPeriod),
   });
   errors.push(...candidateValidation.errors);
   warnings.push(...candidateValidation.warnings);
@@ -376,7 +450,7 @@ export function prepareEnergyPromotion({
     };
   }
   const stagedDomain = toEnergyLngDomain(stagedExposure);
-  stagedDomain.machineEvidence = report.machineEvidence ?? [];
+  applyPublishedCollections(stagedDomain, report);
   const domain = applyEnergyLngCandidates(stagedDomain, candidates.observations, report.promotion.calculatedAt || stagedState.asOf);
   const readModel = toExposureTraceReadModel(domain);
   const runtime = {

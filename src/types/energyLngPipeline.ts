@@ -7,12 +7,27 @@
  */
 
 export type EnergyLngRefreshTrigger = "daily" | "event";
-export type EnergyLngSourceCategory = "physical-flow" | "route-context" | "market-context" | "reviewed-event";
+export type EnergyLngSourceCategory =
+  | "physical-flow"
+  | "route-context"
+  | "market-context"
+  | "asset-registry"
+  | "trade-demand"
+  | "reviewed-event";
 export type EnergyLngSourceAutomation = "automated" | "manual-only";
 export type EnergyLngSnapshotStatus = "fetched" | "failed" | "skipped";
 export type EnergyLngCandidateStatus = "confirmed" | "carried" | "unavailable";
 export type EnergyLngPromotionStatus = "not-run" | "validated" | "blocked" | "promoted";
-export type EnergyLngSourceSelectorType = "eia-series" | "portwatch-route" | "yahoo-symbol" | "reviewed-event";
+export type EnergyLngCadence = "daily" | "weekly" | "monthly" | "annual" | "event-driven" | "contract-driven";
+export type EnergyLngObservationKind = "flow" | "capacity" | "asset-status" | "transit" | "trade-demand";
+export type EnergyLngCoverageStatus = "direct-observation" | "public-proxy" | "partial-coverage" | "unavailable";
+export type EnergyLngSourceSelectorType =
+  | "eia-series"
+  | "portwatch-route"
+  | "comtrade-trade"
+  | "asset-registry"
+  | "yahoo-symbol"
+  | "reviewed-event";
 
 export interface EnergyLngSourceSelection {
   type: EnergyLngSourceSelectorType;
@@ -20,16 +35,32 @@ export interface EnergyLngSourceSelection {
   seriesIdEnv?: string;
   routeId?: string;
   routeIdEnv?: string;
+  endpointEnv?: string;
   symbol?: string;
   entityId?: string;
   metric?: string;
+  metricId?: string;
+  dataset?: string;
+  assetNamespace?: "UN/LOCODE" | "GEM" | string;
+  assetCode?: string;
+  assetCodeEnv?: string;
+  assetField?: "status" | "capacity" | "identity" | string;
+  reporterCode?: string;
+  partnerCode?: string;
+  flowCode?: "M" | "X" | string;
+  commodityCode?: string;
+  classificationCode?: string;
+  periodField?: string;
+  includeHistory?: boolean;
 }
 
 export interface EnergyLngTargetPolicy {
-  cadence: "daily" | "event-driven" | "contract-driven";
+  cadence: EnergyLngCadence;
   maxAgeDays: number;
   allowedUnits: string[];
   entityIds: string[];
+  observationKind?: EnergyLngObservationKind;
+  coverageStatus?: EnergyLngCoverageStatus;
 }
 
 export interface EnergyLngSourceDefinition {
@@ -39,7 +70,7 @@ export interface EnergyLngSourceDefinition {
   url: string;
   category: EnergyLngSourceCategory;
   automation: EnergyLngSourceAutomation;
-  cadence: "daily" | "event-driven" | "contract-driven";
+  cadence: EnergyLngCadence;
   maxAgeDays: number;
   allowedUnits: string[];
   entityIds: string[];
@@ -51,6 +82,25 @@ export interface EnergyLngSourceDefinition {
   enabled: boolean;
   selection?: EnergyLngSourceSelection;
   targetPolicies?: Record<string, EnergyLngTargetPolicy>;
+  observationKind?: EnergyLngObservationKind;
+  coverageStatus?: EnergyLngCoverageStatus;
+  reconciliationPriority?: number;
+  approvedEndpointEnv?: string;
+  note?: string;
+}
+
+export interface EnergyLngPeriod {
+  start: string;
+  end: string;
+}
+
+export interface EnergyLngCoverageMetadata {
+  status: EnergyLngCoverageStatus;
+  sourcePeriod: EnergyLngPeriod | null;
+  expectedCadence: EnergyLngCadence;
+  observedPeriod: EnergyLngPeriod | null;
+  missingPeriods: string[];
+  sourceStatus: EnergyLngSnapshotStatus;
   note?: string;
 }
 
@@ -69,6 +119,13 @@ export interface EnergyLngSnapshotMetadata {
   canonicalUrl: string;
   evidenceId: string;
   recordKeys: string[];
+  rawSnapshotRef?: string;
+  artifactPath?: string;
+  sourcePeriod?: EnergyLngPeriod | null;
+  expectedCadence?: EnergyLngCadence;
+  observedPeriod?: EnergyLngPeriod | null;
+  missingPeriods?: string[];
+  sourceStatus?: EnergyLngSnapshotStatus;
   error?: string;
   lineageRef: string;
 }
@@ -86,6 +143,8 @@ export interface EnergyLngMachineEvidence {
   recordKeys: string[];
   targetInputIds: string[];
   targetCommercialInputIds: string[];
+  observationKind?: EnergyLngObservationKind;
+  coverage?: EnergyLngCoverageMetadata;
   status: "validated";
 }
 
@@ -109,6 +168,11 @@ export interface EnergyLngNormalizedCandidate {
   entityIds: string[];
   targetInputIds: string[];
   targetCommercialInputIds: string[];
+  observationKind: EnergyLngObservationKind;
+  periodStart: string | null;
+  periodEnd: string | null;
+  aliases?: string[];
+  coverage: EnergyLngCoverageMetadata;
   value?: number | string;
   low?: number;
   high?: number;
@@ -116,7 +180,7 @@ export interface EnergyLngNormalizedCandidate {
   observationDate: string | null;
   observedAt: string | null;
   retrievedAt: string;
-  cadence: "daily" | "event-driven" | "contract-driven";
+  cadence: EnergyLngCadence;
   freshnessWindowDays: number;
   provider: string;
   sourceId: string;
@@ -129,7 +193,20 @@ export interface EnergyLngNormalizedCandidate {
   machineEvidenceIds: string[];
   missingReason?: string;
   carryReason?: string;
+  reconciliationId?: string;
+  selectedForAssessment?: boolean;
   lineage: EnergyLngRecordLineage;
+}
+
+export interface EnergyLngReconciliation {
+  id: string;
+  targetKey: string;
+  candidateRecordKeys: string[];
+  sourceIds: string[];
+  selectedRecordKey: string | null;
+  status: "resolved" | "unresolved";
+  basis: "highest-priority-confirmed" | "latest-confirmed" | "preserved-unavailable";
+  note: string;
 }
 
 export interface EnergyLngValidationResult {
@@ -158,6 +235,10 @@ export interface EnergyLngRefreshReport {
   snapshots: EnergyLngSnapshotMetadata[];
   machineEvidence: EnergyLngMachineEvidence[];
   observations: EnergyLngNormalizedCandidate[];
+  reconciliations?: EnergyLngReconciliation[];
+  coverage?: Record<string, EnergyLngCoverageMetadata>;
+  sourceFilter?: string | null;
+  requestedPeriod?: EnergyLngPeriod | null;
   validation: EnergyLngValidationResult;
   promotion: EnergyLngPromotionResult;
 }

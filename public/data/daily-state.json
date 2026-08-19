@@ -23,13 +23,12 @@
     },
     "ttf": {
       "current": 63.92,
-      "change1d": "+5.8%",
+      "change1d": "+0.4%",
       "zscore": 4.91,
       "signal": "red",
       "source": "Yahoo Finance TTF=F",
       "sourceDate": "2026-08-18",
-      "status": "carried",
-      "carryReason": "Machine refresh returned no usable record. Previous approved observation carried with its original observation date."
+      "status": "confirmed"
     },
     "lng-ja": {
       "current": 21.22,
@@ -245,29 +244,159 @@
         "status": "carried",
         "maxAgeDays": 14,
         "cadence": "event-driven",
+        "observationKind": "flow",
+        "periodStart": "2026-07-23",
+        "periodEnd": "2026-07-23",
+        "coverageStatus": "unavailable",
+        "sourceAgeDays": 26,
         "value": "Force majeure extended to mid-September; Bloomberg (Jul 22) reports a further extension to mid-October is in preparation, not yet formally confirmed",
         "source": "Reuters",
         "sourceDate": "2026-07-23",
         "carryReason": "No newer source-verified QatarEnergy force-majeure notice was approved in the Aug 18 review; retain the Reuters July 23 notice that force majeure extends through mid-September and keep the later mid-October extension as unconfirmed preparation."
       },
+      "ras-laffan-asset-status": {
+        "unit": "",
+        "status": "confirmed",
+        "maxAgeDays": 730,
+        "cadence": "annual",
+        "observationKind": "asset-status",
+        "periodStart": "2025-01-01",
+        "periodEnd": "2025-12-31",
+        "coverageStatus": "direct-observation",
+        "sourceAgeDays": 230,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-gem-ras-laffan-status:c2227811cdc9cee4"
+        ],
+        "value": "operating",
+        "source": "Global Energy Monitor",
+        "sourceDate": "2025-12-31",
+        "observedAt": "2025-12-31T00:00:00.000Z"
+      },
+      "ras-laffan-port-identity": {
+        "unit": "",
+        "status": "confirmed",
+        "maxAgeDays": 730,
+        "cadence": "annual",
+        "observationKind": "asset-status",
+        "periodStart": "2025-01-01",
+        "periodEnd": "2025-12-31",
+        "coverageStatus": "direct-observation",
+        "sourceAgeDays": 230,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-unlocode-ras-laffan:0d9bfbbe0b0801cc"
+        ],
+        "value": "Ras Laffan",
+        "source": "UN/LOCODE",
+        "sourceDate": "2025-12-31",
+        "observedAt": "2025-12-31T00:00:00.000Z"
+      },
       "qatar-volume-at-risk": {
         "unit": "MTPA",
-        "status": "unavailable",
+        "status": "confirmed",
         "maxAgeDays": 1,
         "cadence": "daily",
-        "source": "",
-        "sourceDate": "",
-        "missingReason": "Machine refresh returned no usable record. No approved observation is available."
+        "observationKind": "flow",
+        "periodStart": "2026-08-18",
+        "periodEnd": "2026-08-18",
+        "coverageStatus": "direct-observation",
+        "sourceAgeDays": 0,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-eia-lng-baseline:9eb7e7b567102eaa"
+        ],
+        "value": 77.5,
+        "source": "U.S. EIA",
+        "sourceDate": "2026-08-18",
+        "observedAt": "2026-08-18T12:00:00.000Z"
+      },
+      "qatar-production-baseline": {
+        "unit": "MTPA",
+        "status": "confirmed",
+        "maxAgeDays": 730,
+        "cadence": "annual",
+        "observationKind": "flow",
+        "periodStart": "2025-01-01",
+        "periodEnd": "2025-12-31",
+        "coverageStatus": "direct-observation",
+        "sourceAgeDays": 230,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-eia-qatar-production:aa2b523159ad1d7b"
+        ],
+        "value": 77,
+        "source": "U.S. EIA",
+        "sourceDate": "2025-12-31",
+        "observedAt": "2025-12-31T00:00:00.000Z"
+      },
+      "qatar-export-baseline": {
+        "unit": "MTPA",
+        "status": "confirmed",
+        "maxAgeDays": 730,
+        "cadence": "annual",
+        "observationKind": "flow",
+        "periodStart": "2025-01-01",
+        "periodEnd": "2025-12-31",
+        "coverageStatus": "direct-observation",
+        "sourceAgeDays": 230,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-eia-qatar-exports:a9aad51a6a2473f6"
+        ],
+        "value": 77.5,
+        "source": "U.S. EIA",
+        "sourceDate": "2025-12-31",
+        "observedAt": "2025-12-31T00:00:00.000Z"
+      },
+      "ras-laffan-capacity": {
+        "unit": "MTPA",
+        "status": "confirmed",
+        "maxAgeDays": 730,
+        "cadence": "annual",
+        "observationKind": "capacity",
+        "periodStart": "2025-01-01",
+        "periodEnd": "2025-12-31",
+        "coverageStatus": "direct-observation",
+        "sourceAgeDays": 230,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-gem-ras-laffan-capacity:c9c7593d319c14cc"
+        ],
+        "value": 77.5,
+        "source": "Global Energy Monitor",
+        "sourceDate": "2025-12-31",
+        "observedAt": "2025-12-31T00:00:00.000Z"
       },
       "hormuz-transits": {
-        "unit": "LNG transits (week of Jul 27-Aug 2)",
-        "status": "carried",
+        "unit": "LNG transits",
+        "status": "confirmed",
         "maxAgeDays": 7,
         "cadence": "daily",
-        "value": 3,
-        "source": "Kpler via Foreign Policy Journal",
-        "sourceDate": "2026-08-03",
-        "carryReason": "No newer source-verified weekly Kpler LNG-transit breakdown was approved in the Aug 18 review; retain the Aug 3 Foreign Policy Journal count of 3 LNG transits for the week of Jul 27-Aug 2."
+        "observationKind": "transit",
+        "periodStart": "2026-08-18",
+        "periodEnd": "2026-08-18",
+        "coverageStatus": "direct-observation",
+        "sourceAgeDays": 0,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:712d23f10dd799f4"
+        ],
+        "value": 4,
+        "source": "IMF PortWatch",
+        "sourceDate": "2026-08-18",
+        "observedAt": "2026-08-18T12:00:00.000Z"
+      },
+      "hormuz-route-pressure": {
+        "unit": "index",
+        "status": "confirmed",
+        "maxAgeDays": 14,
+        "cadence": "daily",
+        "observationKind": "transit",
+        "periodStart": "2026-08-18",
+        "periodEnd": "2026-08-18",
+        "coverageStatus": "direct-observation",
+        "sourceAgeDays": 0,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz-pressure:f4b6e267d5ed23b5"
+        ],
+        "value": 70,
+        "source": "IMF PortWatch",
+        "sourceDate": "2026-08-18",
+        "observedAt": "2026-08-18T12:00:00.000Z"
       },
       "jera-qatar-volume": {
         "value": 3,
@@ -298,14 +427,21 @@
       },
       "ttf": {
         "unit": "EUR/MWh",
-        "status": "carried",
+        "status": "confirmed",
         "maxAgeDays": 3,
         "cadence": "daily",
+        "observationKind": "flow",
+        "periodStart": "2026-08-18",
+        "periodEnd": "2026-08-18",
+        "coverageStatus": "direct-observation",
+        "sourceAgeDays": 0,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-yahoo-ttf:725f7e62ed4dd48c"
+        ],
         "value": 63.92,
         "source": "Yahoo Finance TTF=F",
         "sourceDate": "2026-08-18",
-        "observedAt": "2026-08-18T15:50:45.000Z",
-        "carryReason": "Machine refresh returned no usable record. Previous approved observation carried with its original observation date."
+        "observedAt": "2026-08-18T15:50:45.000Z"
       },
       "hormuz-total-oil-flow": {
         "value": 20.9,
@@ -379,6 +515,44 @@
         "maxAgeDays": 3,
         "cadence": "daily",
         "carryReason": "No newer source-verified JKM-linked CFD observation was approved on Aug 18; retain the Trading Economics Aug 14 reference at 21.22 USD/MMBtu."
+      },
+      "japan-lng-demand": {
+        "unit": "USD",
+        "status": "confirmed",
+        "maxAgeDays": 62,
+        "cadence": "monthly",
+        "observationKind": "trade-demand",
+        "periodStart": "2026-07-01",
+        "periodEnd": "2026-07-31",
+        "coverageStatus": "public-proxy",
+        "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
+        "sourceAgeDays": 18,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:b1e085cd08bcd366"
+        ],
+        "value": 201000000,
+        "source": "UN Comtrade",
+        "sourceDate": "2026-07-31",
+        "observedAt": "2026-07-31T00:00:00.000Z"
+      },
+      "korea-lng-demand": {
+        "unit": "USD",
+        "status": "confirmed",
+        "maxAgeDays": 62,
+        "cadence": "monthly",
+        "observationKind": "trade-demand",
+        "periodStart": "2026-07-01",
+        "periodEnd": "2026-07-31",
+        "coverageStatus": "public-proxy",
+        "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
+        "sourceAgeDays": 18,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:2a4dd0e667a92a2a"
+        ],
+        "value": 119000000,
+        "source": "UN Comtrade",
+        "sourceDate": "2026-07-31",
+        "observedAt": "2026-07-31T00:00:00.000Z"
       },
       "hormuz-total-transits": {
         "value": 13,
@@ -669,7 +843,7 @@
   "runbookState": {
     "brent": "$91.29 (2026-08-18, Yahoo Finance BZ=F; +4.85%)",
     "jkm": "$22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $21.22/MMBtu, Trading Economics, Aug 14; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation)",
-    "ttf": "63.92 EUR/MWh (2026-08-18, Yahoo Finance TTF=F; +5.82%); carried after machine refresh failure"
+    "ttf": "63.92 EUR/MWh (2026-08-18, Yahoo Finance TTF=F; +0.4%)"
   },
   "timelineEntry": "- **D167**: Aug 18 - AP reports Trump threatened Oman over an Iran route deal; projectile hits ship exiting Hormuz with crew casualty; Iran says no reopening before US conditions; Brent $91.29.",
   "commercialInputs": {
@@ -713,14 +887,21 @@
       ],
       "requiredForCalculation": false,
       "unit": "EUR/MWh",
-      "status": "carried",
+      "status": "confirmed",
       "maxAgeDays": 3,
       "cadence": "daily",
+      "observationKind": "flow",
+      "periodStart": "2026-08-18",
+      "periodEnd": "2026-08-18",
+      "coverageStatus": "direct-observation",
+      "sourceAgeDays": 0,
+      "machineEvidenceIds": [
+        "machine-evidence:energy-snapshot:src-yahoo-ttf:725f7e62ed4dd48c"
+      ],
       "value": 63.92,
       "source": "Yahoo Finance TTF=F",
       "sourceDate": "2026-08-18",
-      "observedAt": "2026-08-18T15:50:45.000Z",
-      "carryReason": "Machine refresh returned no usable record. Previous approved observation carried with its original observation date."
+      "observedAt": "2026-08-18T15:50:45.000Z"
     },
     "fx-eurusd": {
       "label": "EUR/USD",

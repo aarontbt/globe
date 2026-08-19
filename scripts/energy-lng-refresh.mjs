@@ -13,6 +13,7 @@ import { fetchQuote } from "./daily-fetch.mjs";
 
 export const ENERGY_REFRESH_SCHEMA_VERSION = "energy-lng-refresh-v1";
 export const ENERGY_CANDIDATE_SCHEMA_VERSION = "energy-lng-candidates-v1";
+export const ENERGY_SNAPSHOT_SCHEMA_VERSION = "energy-lng-raw-snapshot-v1";
 
 const STATUS_CONFIDENCE = {
   confirmed: "high",
@@ -60,7 +61,82 @@ function isoOrNull(value) {
 
 function dateOnly(value) {
   if (!value) return null;
-  return String(value).slice(0, 10);
+  const text = String(value).trim();
+  if (/^\d{6}$/.test(text)) return `${text.slice(0, 4)}-${text.slice(4, 6)}-01`;
+  if (/^\d{4}$/.test(text)) return `${text}-01-01`;
+  return text.slice(0, 10);
+}
+
+function parseDateOnly(value) {
+  const normalized = dateOnly(value);
+  if (!normalized || !DATE_ONLY.test(normalized)) return null;
+  const timestamp = Date.parse(`${normalized}T00:00:00Z`);
+  return Number.isFinite(timestamp) ? normalized : null;
+}
+
+function lastDayOfMonth(year, month) {
+  return new Date(Date.UTC(year, month, 0)).toISOString().slice(0, 10);
+}
+
+export function periodBounds(value, cadence = "daily") {
+  const text = String(value ?? "").trim();
+  if (!text) return { start: null, end: null };
+  if (/^\d{4}$/.test(text)) return { start: `${text}-01-01`, end: `${text}-12-31` };
+  if (/^\d{6}$/.test(text)) {
+    const year = Number(text.slice(0, 4));
+    const month = Number(text.slice(4, 6));
+    return { start: `${text.slice(0, 4)}-${text.slice(4, 6)}-01`, end: lastDayOfMonth(year, month) };
+  }
+  const normalized = parseDateOnly(text);
+  if (!normalized) return { start: null, end: null };
+  const date = new Date(`${normalized}T00:00:00Z`);
+  if (cadence === "monthly") return { start: `${normalized.slice(0, 7)}-01`, end: lastDayOfMonth(date.getUTCFullYear(), date.getUTCMonth() + 1) };
+  if (cadence === "annual") return { start: `${date.getUTCFullYear()}-01-01`, end: `${date.getUTCFullYear()}-12-31` };
+  if (cadence === "weekly") {
+    const day = date.getUTCDay() || 7;
+    const start = new Date(date.getTime() - (day - 1) * 86_400_000).toISOString().slice(0, 10);
+    const end = new Date(date.getTime() + (7 - day) * 86_400_000).toISOString().slice(0, 10);
+    return { start, end };
+  }
+  return { start: normalized, end: normalized };
+}
+
+function periodKey(start, end) {
+  return `${start ?? "unavailable"}/${end ?? "unavailable"}`;
+}
+
+function cadenceFor(source, raw = {}) {
+  return raw.cadence || source.cadence || "daily";
+}
+
+function observationPeriod(raw, source) {
+  const cadence = cadenceFor(source, raw);
+  const explicitStart = parseDateOnly(raw.periodStart || raw.startDate);
+  const explicitEnd = parseDateOnly(raw.periodEnd || raw.endDate);
+  const bounds = periodBounds(raw.period || raw.observationDate || raw.sourceDate || raw.observedAt, cadence);
+  return {
+    start: explicitStart || bounds.start,
+    end: explicitEnd || bounds.end,
+  };
+}
+
+function expectedPeriods(from, to, cadence) {
+  const start = parseDateOnly(from);
+  const end = parseDateOnly(to);
+  if (!start || !end) return [];
+  const periods = [];
+  let cursor = new Date(`${start}T00:00:00Z`);
+  const endDate = new Date(`${end}T00:00:00Z`);
+  while (cursor <= endDate) {
+    const value = cursor.toISOString().slice(0, 10);
+    const bounds = periodBounds(value, cadence);
+    if (!periods.includes(periodKey(bounds.start, bounds.end))) periods.push(periodKey(bounds.start, bounds.end));
+    if (cadence === "annual") cursor = new Date(Date.UTC(cursor.getUTCFullYear() + 1, 0, 1));
+    else if (cadence === "monthly") cursor = new Date(Date.UTC(cursor.getUTCFullYear(), cursor.getUTCMonth() + 1, 1));
+    else if (cadence === "weekly") cursor = new Date(cursor.getTime() + 7 * 86_400_000);
+    else cursor = new Date(cursor.getTime() + 86_400_000);
+  }
+  return periods;
 }
 
 function daysBetween(asOf, sourceDate) {
@@ -108,6 +184,8 @@ function policyForSource(source) {
     maxAgeDays: first.maxAgeDays,
     allowedUnits: [...new Set(policies.flatMap((policy) => policy.allowedUnits || []))],
     entityIds: [...new Set(policies.flatMap((policy) => policy.entityIds || []))],
+    observationKind: first.observationKind,
+    coverageStatus: first.coverageStatus,
   };
 }
 
@@ -139,6 +217,9 @@ export function validateSourceRegistry(registry) {
   }
 
   const ids = new Set();
+  const cadences = new Set(["daily", "weekly", "monthly", "annual", "event-driven", "contract-driven"]);
+  const observationKinds = new Set(["flow", "capacity", "asset-status", "transit", "trade-demand"]);
+  const coverageStatuses = new Set(["direct-observation", "public-proxy", "partial-coverage", "unavailable"]);
   for (const source of registry.sources) {
     if (!source?.id) errors.push("source registry entries require id");
     if (ids.has(source?.id)) errors.push(`source registry contains duplicate id ${source.id}`);
@@ -146,6 +227,7 @@ export function validateSourceRegistry(registry) {
     if (!/^https:\/\//.test(source?.url ?? "")) errors.push(`source ${source?.id ?? "?"} url must use https`);
     if (!source?.provider) errors.push(`source ${source?.id ?? "?"} provider is required`);
     if (!source?.title) errors.push(`source ${source?.id ?? "?"} title is required`);
+    if (!cadences.has(source?.cadence)) errors.push(`source ${source?.id ?? "?"} cadence is invalid`);
     if (!Number.isFinite(Number(source?.maxAgeDays)) || Number(source.maxAgeDays) <= 0) {
       errors.push(`source ${source?.id ?? "?"} maxAgeDays must be positive`);
     }
@@ -167,15 +249,33 @@ export function validateSourceRegistry(registry) {
       errors.push(`source ${source?.id ?? "?"} fallback is invalid`);
     }
     const selection = source?.selection;
-    const validSelectionTypes = ["eia-series", "portwatch-route", "yahoo-symbol", "reviewed-event"];
+    const validSelectionTypes = ["eia-series", "portwatch-route", "comtrade-trade", "asset-registry", "yahoo-symbol", "reviewed-event"];
     if (!selection || !validSelectionTypes.includes(selection.type)) {
       errors.push(`source ${source?.id ?? "?"} selection.type is invalid`);
     } else if (selection.type === "eia-series" && !selection.seriesId && !selection.seriesIdEnv) {
       errors.push(`source ${source.id} eia-series selection requires seriesId or seriesIdEnv`);
     } else if (selection.type === "portwatch-route" && !selection.routeId && !selection.routeIdEnv) {
       errors.push(`source ${source.id} portwatch-route selection requires routeId or routeIdEnv`);
+    } else if (selection.type === "portwatch-route" && !selection.endpointEnv && !source.approvedEndpointEnv) {
+      errors.push(`source ${source.id} portwatch-route selection requires an approved machine-readable endpoint environment variable`);
+    } else if (selection.type === "comtrade-trade") {
+      for (const key of ["reporterCode", "partnerCode", "flowCode", "commodityCode", "classificationCode"]) {
+        if (!selection[key]) errors.push(`source ${source.id} comtrade-trade selection requires ${key}`);
+      }
+    } else if (selection.type === "asset-registry") {
+      if (!selection.assetNamespace) errors.push(`source ${source.id} asset-registry selection requires assetNamespace`);
+      if (!selection.assetField) errors.push(`source ${source.id} asset-registry selection requires assetField`);
     } else if (selection.type === "yahoo-symbol" && !selection.symbol) {
       errors.push(`source ${source.id} yahoo-symbol selection requires symbol`);
+    }
+    if (source.observationKind && !observationKinds.has(source.observationKind)) {
+      errors.push(`source ${source.id} observationKind is invalid`);
+    }
+    if (source.coverageStatus && !coverageStatuses.has(source.coverageStatus)) {
+      errors.push(`source ${source.id} coverageStatus is invalid`);
+    }
+    if (source.reconciliationPriority !== undefined && !Number.isFinite(Number(source.reconciliationPriority))) {
+      errors.push(`source ${source.id} reconciliationPriority must be numeric`);
     }
     for (const targetId of [...(source?.targetInputIds || []), ...(source?.targetCommercialInputIds || [])]) {
       const policy = source?.targetPolicies?.[targetId];
@@ -183,7 +283,7 @@ export function validateSourceRegistry(registry) {
         errors.push(`source ${source?.id ?? "?"} target ${targetId} requires a target policy`);
         continue;
       }
-      if (!["daily", "event-driven", "contract-driven"].includes(policy.cadence)) {
+      if (!cadences.has(policy.cadence)) {
         errors.push(`source ${source.id} target ${targetId} cadence is invalid`);
       }
       if (!Number.isFinite(Number(policy.maxAgeDays)) || Number(policy.maxAgeDays) <= 0) {
@@ -194,6 +294,12 @@ export function validateSourceRegistry(registry) {
       }
       if (!Array.isArray(policy.entityIds) || policy.entityIds.length === 0) {
         errors.push(`source ${source.id} target ${targetId} entityIds must not be empty`);
+      }
+      if (policy.observationKind && !observationKinds.has(policy.observationKind)) {
+        errors.push(`source ${source.id} target ${targetId} observationKind is invalid`);
+      }
+      if (policy.coverageStatus && !coverageStatuses.has(policy.coverageStatus)) {
+        errors.push(`source ${source.id} target ${targetId} coverageStatus is invalid`);
       }
     }
   }
@@ -207,6 +313,9 @@ export function stableRecordKey({
   targetCommercialInputIds,
   observationDate,
   unit,
+  observationKind,
+  periodStart,
+  periodEnd,
 }) {
   return sha256({
     sourceId,
@@ -215,6 +324,9 @@ export function stableRecordKey({
     targetCommercialInputIds: [...new Set(targetCommercialInputIds ?? [])].sort(),
     observationDate: observationDate ?? null,
     unit: unit ?? null,
+    observationKind: observationKind ?? "flow",
+    periodStart: periodStart ?? observationDate ?? null,
+    periodEnd: periodEnd ?? observationDate ?? null,
   });
 }
 
@@ -222,9 +334,9 @@ function snapshotRef(snapshot) {
   return `snapshot:${snapshot.id}`;
 }
 
-function defaultRecordId(source, targets, observationDate) {
+function defaultRecordId(source, targets, observationDate, periodStart = observationDate, periodEnd = observationDate) {
   const target = [...targets.targetInputIds, ...targets.targetCommercialInputIds].map(slug).join("-") || "source";
-  return `energy-observation:${slug(source.id)}:${target}:${slug(observationDate ?? "unavailable")}`;
+  return `energy-observation:${slug(source.id)}:${target}:${slug(periodStart ?? observationDate ?? "unavailable")}:${slug(periodEnd ?? observationDate ?? "unavailable")}`;
 }
 
 function sourceUrlFor(source, raw) {
@@ -241,7 +353,7 @@ function buildLineage(source, snapshot, recordKey, raw, derivedFrom = []) {
     sourceId: source.id,
     sourceUrl: sourceUrlFor(source, raw),
     provider: raw?.provider || source.provider,
-    observationAt: isoOrNull(raw?.observedAt || raw?.observationDate || raw?.sourceDate),
+    observationAt: isoOrNull(raw?.observedAt || raw?.periodEnd || raw?.observationDate || raw?.sourceDate),
     retrievedAt: snapshot.retrievedAt,
     snapshotHash: snapshot.contentHash,
     snapshotRef: snapshotRef(snapshot),
@@ -258,24 +370,48 @@ export function normalizeObservation(raw, source, snapshot, {
   const targets = sourceTargets(source);
   const policy = policyForSource(source);
   const entityIds = [...new Set(raw?.entityIds || policy.entityIds || source.entityIds || [])];
-  const observationDate = dateOnly(raw?.observationDate || raw?.sourceDate || raw?.observedAt);
+  const period = observationPeriod(raw || {}, source);
+  const observationDate = dateOnly(raw?.observationDate || period.end || period.start || raw?.sourceDate || raw?.observedAt);
   const unit = raw?.unit === undefined ? null : raw.unit;
+  const observationKind = raw?.observationKind || policy.observationKind || source.observationKind || "flow";
   const recordKey = raw?.recordKey || stableRecordKey({
     sourceId: source.id,
     entityIds,
     ...targets,
     observationDate,
     unit,
+    observationKind,
+    periodStart: period.start,
+    periodEnd: period.end,
   });
   const status = raw?.status || "confirmed";
-  const id = raw?.id || defaultRecordId(source, targets, observationDate);
+  const id = raw?.id || defaultRecordId(source, targets, observationDate, period.start, period.end);
   const value = raw?.value;
+  const coverageStatus = raw?.coverageStatus
+    || raw?.coverage?.status
+    || policy.coverageStatus
+    || source.coverageStatus
+    || (source.category === "trade-demand" ? "public-proxy" : "direct-observation");
+  const coverage = {
+    status: coverageStatus,
+    sourcePeriod: raw?.coverage?.sourcePeriod || (period.start && period.end ? { start: period.start, end: period.end } : null),
+    expectedCadence: raw?.coverage?.expectedCadence || cadenceFor(source, raw),
+    observedPeriod: raw?.coverage?.observedPeriod || (period.start && period.end ? { start: period.start, end: period.end } : null),
+    missingPeriods: [...new Set(raw?.coverage?.missingPeriods || [])],
+    sourceStatus: snapshot.status,
+    ...(raw?.coverage?.note || raw?.coverageNote ? { note: raw.coverage?.note || raw.coverageNote } : {}),
+  };
   const normalized = {
     id,
     recordKey,
     label: raw?.label || source.title,
     entityIds,
     ...targets,
+    observationKind,
+    periodStart: period.start,
+    periodEnd: period.end,
+    ...(Array.isArray(raw?.aliases) ? { aliases: [...new Set(raw.aliases)] } : {}),
+    coverage,
     ...(value !== undefined ? { value } : {}),
     ...(typeof raw?.low === "number" ? { low: raw.low } : {}),
     ...(typeof raw?.high === "number" ? { high: raw.high } : {}),
@@ -283,7 +419,7 @@ export function normalizeObservation(raw, source, snapshot, {
     ...(typeof raw?.changePct === "number" && Number.isFinite(raw.changePct) ? { changePct: raw.changePct } : {}),
     unit,
     observationDate,
-    observedAt: isoOrNull(raw?.observedAt || raw?.sourceDate),
+    observedAt: isoOrNull(raw?.observedAt || raw?.periodEnd || raw?.sourceDate),
     retrievedAt: snapshot.retrievedAt,
     cadence: raw?.cadence || policy.cadence,
     freshnessWindowDays: Number(raw?.freshnessWindowDays ?? policy.maxAgeDays),
@@ -316,6 +452,8 @@ function unavailableCandidate(source, snapshot, reason, raw = {}) {
     unit: raw.unit ?? source.allowedUnits?.[0] ?? null,
     missingReason: reason,
     confidence: "unknown",
+    coverageStatus: "unavailable",
+    observationKind: raw.observationKind || source.observationKind || "flow",
   }, source, snapshot);
 }
 
@@ -410,54 +548,90 @@ function rowEntityIds(row) {
 }
 
 function rowMetric(row) {
-  return row?.metric || row?.metricId || row?.measure || null;
+  return row?.metric || row?.metricId || row?.measure || row?.indicator || row?.measureId || null;
 }
 
-function keepSelectedRow(row, selection, { idKey, idValue }) {
-  const rowId = row?.[idKey] || row?.[`${idKey}_id`] || row?.id || row?.seriesId || row?.series_id || row?.routeId || row?.route_id;
+function rowIdentifier(row, idKey) {
+  return row?.[idKey] || row?.[`${idKey}_id`] || row?.[idKey.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)] || null;
+}
+
+function keepSelectedRow(row, selection, { idKey, idValue, requireId = false }) {
+  const rowId = rowIdentifier(row, idKey);
   if (idValue && rowId !== idValue) return false;
+  if (requireId && !rowId) return false;
   const entityIds = rowEntityIds(row);
   if (selection.entityId && entityIds.length && !entityIds.includes(selection.entityId)) return false;
   const metric = rowMetric(row);
-  if (selection.metric && metric && metric !== selection.metric) return false;
+  if (selection.metric && metric !== selection.metric) return false;
   return true;
 }
 
-function currentRows(rows) {
-  const dates = rows.map((row) => Date.parse(dateOnly(row.observationDate || row.sourceDate || row.observedAt) || "")).filter(Number.isFinite);
-  if (!dates.length) return rows;
-  const latest = Math.max(...dates);
-  return rows.filter((row) => Date.parse(dateOnly(row.observationDate || row.sourceDate || row.observedAt) || "") === latest);
+function filterPeriodRows(rows, source, { from = null, to = null } = {}) {
+  if (!from && !to) return rows;
+  const startLimit = parseDateOnly(from) || "0000-01-01";
+  const endLimit = parseDateOnly(to) || "9999-12-31";
+  return rows.filter((row) => {
+    const period = observationPeriod(row, source);
+    if (!period.start && !period.end) return false;
+    return (period.end || period.start) >= startLimit && (period.start || period.end) <= endLimit;
+  });
 }
 
-function parseEiaRecords(payload, source) {
+function eiaRowSeriesId(row) {
+  return row?.seriesId || row?.series_id || row?.series || row?.seriesID || null;
+}
+
+function eiaValue(row, selection) {
+  if (row?.value !== undefined) return row.value;
+  if (selection.metric && row?.[selection.metric] !== undefined) return row[selection.metric];
+  const valueKey = Object.keys(row || {}).find((key) => /value|quantity|volume|production|export/i.test(key) && !/units?$/i.test(key));
+  return valueKey ? row[valueKey] : undefined;
+}
+
+export function parseEiaRecords(payload, source, options = {}) {
   const rows = payload?.response?.data || payload?.data || payload?.observations || [];
   if (!Array.isArray(rows)) throw new Error("EIA response data must be an array");
   const selection = sourceSelection(source);
   const seriesId = selectorValue(selection, "seriesId", "seriesIdEnv");
   if (!seriesId) throw new Error(`${source.id}: EIA series selector is not configured`);
-  const selected = rows.filter((row) => keepSelectedRow(row, selection, { idKey: "seriesId", idValue: seriesId }));
+  const explicitSeriesIds = rows.map(eiaRowSeriesId).filter(Boolean);
+  const responseSeriesId = payload?.response?.seriesId || payload?.response?.series_id || payload?.seriesId || payload?.series_id;
+  if (explicitSeriesIds.length > 0 && explicitSeriesIds.some((id) => id !== seriesId)) {
+    if (!explicitSeriesIds.includes(seriesId)) throw new Error(`${source.id}: response contains the wrong EIA series; expected ${seriesId}`);
+  } else if (!explicitSeriesIds.length && responseSeriesId && responseSeriesId !== seriesId) {
+    throw new Error(`${source.id}: response series ${responseSeriesId} does not match configured EIA series ${seriesId}`);
+  } else if (!explicitSeriesIds.length && !responseSeriesId && rows.length) {
+    throw new Error(`${source.id}: EIA response does not identify configured series ${seriesId}`);
+  }
+  const selected = rows.filter((row) => keepSelectedRow(row, selection, { idKey: "seriesId", idValue: seriesId, requireId: explicitSeriesIds.length > 0 }));
   if (!selected.length) throw new Error(`${source.id}: response contains no selected series/entity rows`);
-  return currentRows(selected).map((row) => ({
+  const ranged = filterPeriodRows(selected, source, options);
+  if (!ranged.length) throw new Error(`${source.id}: selected EIA series has no observations in the requested period`);
+  return ranged.map((row) => ({
     label: row.seriesDescription || row.description || selection.metric || "EIA energy observation",
-    entityIds: rowEntityIds(row).length ? rowEntityIds(row) : [selection.entityId],
-    value: Number(row.value),
-    unit: row.unit || row.unitOfMeasure || "",
-    observationDate: row.period || row.date,
+    entityIds: rowEntityIds(row).length ? rowEntityIds(row) : policyForSource(source).entityIds,
+    value: Number(eiaValue(row, selection)),
+    unit: row.unit || row.unitOfMeasure || row[`${selection.metric || "value"}-units`] || "",
+    period: row.period || row.date,
     observedAt: row.observedAt || row.period,
     metric: rowMetric(row),
+    observationKind: source.observationKind || policyForSource(source).observationKind || "flow",
   }));
 }
 
-function parseRouteRecords(payload, source) {
+export function parseRouteRecords(payload, source, options = {}) {
   const rows = payload?.data || payload?.observations || payload?.records || payload;
   if (!Array.isArray(rows)) throw new Error("route response records must be an array");
   const selection = sourceSelection(source);
   const routeId = selectorValue(selection, "routeId", "routeIdEnv");
   if (!routeId) throw new Error(`${source.id}: PortWatch route selector is not configured`);
-  const selected = rows.filter((row) => keepSelectedRow(row, selection, { idKey: "routeId", idValue: routeId }));
+  const responseRouteId = payload?.routeId || payload?.route_id || payload?.route;
+  if (responseRouteId && responseRouteId !== routeId) throw new Error(`${source.id}: response route ${responseRouteId} does not match configured route ${routeId}`);
+  const selected = rows.filter((row) => keepSelectedRow(row, selection, { idKey: "routeId", idValue: routeId, requireId: true }));
   if (!selected.length) throw new Error(`${source.id}: response contains no selected route/entity rows`);
-  return currentRows(selected).map((row) => ({
+  const ranged = filterPeriodRows(selected, source, options);
+  if (!ranged.length) throw new Error(`${source.id}: selected PortWatch route has no observations in the requested period`);
+  return ranged.map((row) => ({
     label: row.label || row.name || selection.metric || "Hormuz route observation",
     entityIds: rowEntityIds(row).length ? rowEntityIds(row) : [selection.entityId],
     value: row.value ?? row.transits ?? row.count,
@@ -467,7 +641,118 @@ function parseRouteRecords(payload, source) {
     observationDate: row.observationDate || row.date || row.period,
     observedAt: row.observedAt || row.date,
     metric: rowMetric(row),
+    observationKind: source.observationKind || "transit",
   }));
+}
+
+function comtradeRows(payload) {
+  return payload?.data || payload?.results || payload?.records || payload?.dataset || payload;
+}
+
+function fieldValue(row, keys) {
+  for (const key of keys) if (row?.[key] !== undefined && row?.[key] !== null) return row[key];
+  return undefined;
+}
+
+function codeMatches(actual, expected) {
+  if (expected === undefined || expected === null || expected === "") return true;
+  return String(actual ?? "") === String(expected);
+}
+
+export function parseComtradeRecords(payload, source, options = {}) {
+  const rows = comtradeRows(payload);
+  if (!Array.isArray(rows)) throw new Error("UN Comtrade response records must be an array");
+  const selection = sourceSelection(source);
+  const selected = rows.filter((row) => (
+    codeMatches(fieldValue(row, ["reporterCode", "reporter", "reporterISO", "reporterIso"]), selection.reporterCode)
+      && codeMatches(fieldValue(row, ["partnerCode", "partner", "partnerISO", "partnerIso"]), selection.partnerCode)
+      && codeMatches(fieldValue(row, ["flowCode", "flow", "flowDesc"]), selection.flowCode)
+      && codeMatches(fieldValue(row, ["cmdCode", "commodityCode", "commodity"]), selection.commodityCode)
+  ));
+  if (!selected.length) throw new Error(`${source.id}: response contains no selected reporter/partner/flow/commodity rows`);
+  const ranged = filterPeriodRows(selected, source, options);
+  if (!ranged.length) throw new Error(`${source.id}: selected trade series has no observations in the requested period`);
+  return ranged.map((row) => {
+    const period = fieldValue(row, [selection.periodField || "period", "periodDesc", "date"]);
+    const bounds = periodBounds(period, source.cadence);
+    const primaryValue = Number(fieldValue(row, ["primaryValue", "primary_value", "tradeValue", "trade_value", "value"]));
+    const quantity = fieldValue(row, ["netWgt", "netWeight", "qty", "quantity"]);
+    const unit = fieldValue(row, ["primaryValueUnit", "primaryValueUnitAbbr"]) || "USD";
+    return {
+      label: `${fieldValue(row, ["cmdDesc", "commodityDescription"]) || selection.commodityCode} monthly trade-demand context`,
+      entityIds: rowEntityIds(row).length ? rowEntityIds(row) : policyForSource(source).entityIds,
+      value: primaryValue,
+      ...(quantity !== undefined ? { aliases: [`quantity:${quantity}${fieldValue(row, ["netWgtUnit", "qtyUnitAbbr", "quantityUnit"]) || ""}`] } : {}),
+      unit,
+      observationDate: bounds.end,
+      periodStart: bounds.start,
+      periodEnd: bounds.end,
+      observedAt: row.observedAt || bounds.end,
+      observationKind: "trade-demand",
+      coverageStatus: "public-proxy",
+      coverageNote: "UN Comtrade monthly customs trade context; it is not cargo-level movement or a live vessel observation.",
+      provider: row.provider || source.provider,
+    };
+  });
+}
+
+export function resolveStableEntityId(record, aliases = {}) {
+  const candidates = [
+    record?.stableEntityId,
+    record?.entityId,
+    record?.id,
+    record?.alias,
+    record?.code,
+    record?.locode,
+    record?.unlocode,
+    record?.assetCode,
+    record?.name,
+  ].filter(Boolean).map((value) => String(value));
+  for (const candidate of candidates) {
+    if (aliases[candidate]) return aliases[candidate];
+    const normalized = candidate.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    if (aliases[normalized]) return aliases[normalized];
+  }
+  return record?.stableEntityId || record?.entityId || null;
+}
+
+export function parseAssetRegistryRecords(payload, source) {
+  const rows = payload?.assets || payload?.data || payload?.records || payload;
+  if (!Array.isArray(rows)) throw new Error("asset registry response records must be an array");
+  const selection = sourceSelection(source);
+  const aliases = source.entityAliases || {};
+  const selected = rows.filter((row) => {
+    const namespace = row.namespace || row.source || row.registry || selection.assetNamespace;
+    if (selection.assetNamespace && namespace && String(namespace).toLowerCase() !== String(selection.assetNamespace).toLowerCase()) return false;
+    const stableId = resolveStableEntityId(row, aliases);
+    const configuredCode = selectorValue(selection, "assetCode", "assetCodeEnv");
+    if (configuredCode && stableId !== configuredCode && row.code !== configuredCode && row.locode !== configuredCode && row.unlocode !== configuredCode) return false;
+    if (selection.entityId && stableId && stableId !== selection.entityId) return false;
+    return true;
+  });
+  if (!selected.length) throw new Error(`${source.id}: asset registry contains no selected stable entity`);
+  return selected.map((row) => {
+    const entityId = resolveStableEntityId(row, aliases) || selection.entityId;
+    const field = selection.assetField;
+    const rawValue = field === "capacity"
+      ? fieldValue(row, ["capacity", "exportCapacity", "importCapacity", "capacityMTPA"])
+      : field === "status"
+        ? fieldValue(row, ["status", "projectStatus", "operatingStatus"])
+        : fieldValue(row, ["value", "name"]);
+    const isNumeric = rawValue !== undefined && rawValue !== null && rawValue !== "" && Number.isFinite(Number(rawValue));
+    return {
+      label: row.name || row.assetName || source.title,
+      entityIds: entityId ? [entityId] : policyForSource(source).entityIds,
+      aliases: [row.locode, row.unlocode, row.code, row.alias, row.name].filter(Boolean),
+      ...(isNumeric ? { value: Number(rawValue) } : { value: rawValue }),
+      unit: field === "capacity" ? (row.unit || "MTPA") : (row.unit || ""),
+      observationDate: row.observationDate || row.updatedAt || row.asOf || row.date,
+      observedAt: row.observedAt || row.updatedAt || row.asOf || row.date,
+      observationKind: field === "capacity" ? "capacity" : field === "status" || field === "identity" ? "asset-status" : "flow",
+      coverageStatus: "direct-observation",
+      sourceUrl: row.sourceUrl || source.url,
+    };
+  });
 }
 
 function snapshotFor(source, retrievedAt, {
@@ -480,7 +765,8 @@ function snapshotFor(source, retrievedAt, {
   error,
 } = {}) {
   const contentHash = content === null ? null : sha256(content);
-  const id = `energy-snapshot:${slug(source.id)}:${contentHash ? contentHash.slice(0, 16) : slug(retrievedAt)}`;
+  const id = `energy-snapshot:${slug(source.id)}:${contentHash ? contentHash.slice(0, 16) : sha256({ sourceId: source.id, status, error: error || null }).slice(0, 16)}`;
+  const artifactPath = content === null ? undefined : path.join("src/data/energy-lng-snapshots", `${id}.json`);
   return {
     id,
     sourceId: source.id,
@@ -496,9 +782,107 @@ function snapshotFor(source, retrievedAt, {
     canonicalUrl: source.url,
     evidenceId: `machine-evidence:${id}`,
     recordKeys: [],
+    ...(content !== null ? {
+      rawSnapshotRef: `raw-snapshot:${id}`,
+      artifactPath,
+    } : {}),
     ...(error ? { error } : {}),
     lineageRef: `snapshot:${id}`,
   };
+}
+
+function persistRawSnapshot(snapshot, content, dryRun = false) {
+  if (content === null || content === undefined || !snapshot.artifactPath || dryRun) return;
+  const file = path.join(ROOT, snapshot.artifactPath);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  if (!fs.existsSync(file)) fs.writeFileSync(file, content);
+  const actualHash = sha256(fs.readFileSync(file, "utf8"));
+  if (actualHash !== snapshot.contentHash) throw new Error(`${snapshot.sourceId}: persisted raw snapshot hash does not match metadata`);
+}
+
+function parseSnapshotRecords(source, snapshot, content, parser, dryRun = false) {
+  persistRawSnapshot(snapshot, content, dryRun);
+  try {
+    return parser();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    snapshot.status = "failed";
+    snapshot.error = message;
+    const wrapped = new Error(message);
+    wrapped.snapshot = snapshot;
+    throw wrapped;
+  }
+}
+
+function addQuery(url, params) {
+  const next = new URL(url);
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined && value !== null && value !== "") next.searchParams.set(key, String(value));
+  }
+  return next.toString();
+}
+
+function eiaEndpoint(source, selection, { from = null, to = null } = {}) {
+  const seriesId = selectorValue(selection, "seriesId", "seriesIdEnv");
+  const configured = process.env.EIA_DATA_URL || source.url;
+  let url = configured.replace("{seriesId}", encodeURIComponent(seriesId));
+  if (/\/seriesid\/?$/i.test(url)) url = `${url.replace(/\/$/, "")}/${encodeURIComponent(seriesId)}`;
+  const apiKey = process.env.EIA_API_KEY;
+  return addQuery(url, {
+    api_key: apiKey,
+    series_id: /\/seriesid\//i.test(url) ? undefined : seriesId,
+    start: from,
+    end: to,
+  });
+}
+
+function approvedPortWatchEndpoint(source, selection) {
+  const envKey = selection.endpointEnv || source.approvedEndpointEnv || "PORTWATCH_DATA_URL";
+  const endpoint = process.env[envKey];
+  if (!endpoint) throw new Error(`${source.id}: ${envKey} is required for the approved machine-readable PortWatch connector`);
+  if (!/^https:\/\//.test(endpoint) || /\/pages\//i.test(endpoint) || /methodology/i.test(endpoint)) {
+    throw new Error(`${source.id}: PortWatch endpoint must be an approved HTTPS machine-readable endpoint, not a methodology page`);
+  }
+  return endpoint;
+}
+
+function portWatchEndpoint(source, selection, { from = null, to = null } = {}) {
+  return addQuery(approvedPortWatchEndpoint(source, selection), {
+    routeId: selectorValue(selection, "routeId", "routeIdEnv"),
+    metric: selection.metric,
+    from,
+    to,
+  });
+}
+
+function comtradeEndpoint(source, selection, { from = null, to = null } = {}) {
+  const endpoint = process.env.COMTRADE_DATA_URL || source.url;
+  const periods = from && to && selection.frequency === "A" ? `${from.slice(0, 4)},${to.slice(0, 4)}` : from && to ? `${from.slice(0, 7).replace("-", "")},${to.slice(0, 7).replace("-", "")}` : from || to;
+  return addQuery(endpoint, {
+    subscription_key: process.env.COMTRADE_API_KEY,
+    typeCode: selection.typeCode || "C",
+    freqCode: selection.frequency || (source.cadence === "annual" ? "A" : "M"),
+    clCode: selection.classificationCode,
+    period: periods,
+    reporterCode: selection.reporterCode,
+    cmdCode: selection.commodityCode,
+    flowCode: selection.flowCode,
+    partnerCode: selection.partnerCode,
+    includeDesc: "true",
+  });
+}
+
+function assetRegistryEndpoint(source, selection, { from = null, to = null } = {}) {
+  const endpointEnv = selection.endpointEnv || source.approvedEndpointEnv || "ASSET_REGISTRY_DATA_URL";
+  const endpoint = process.env[endpointEnv];
+  if (!endpoint) throw new Error(`${source.id}: ${endpointEnv} is required for the asset registry connector`);
+  if (!/^https:\/\//.test(endpoint)) throw new Error(`${source.id}: asset registry endpoint must use https`);
+  return addQuery(endpoint, {
+    namespace: selection.assetNamespace,
+    code: selectorValue(selection, "assetCode", "assetCodeEnv"),
+    from,
+    to,
+  });
 }
 
 async function fetchAutomatedSource(source, {
@@ -506,26 +890,29 @@ async function fetchAutomatedSource(source, {
   retrievedAt,
   offline,
   fixture,
+  from = null,
+  to = null,
+  dryRun = false,
 }) {
   const fixtureRows = fixture?.sources?.[source.id];
   if (fixtureRows) {
     const content = JSON.stringify(fixtureRows);
     const selection = sourceSelection(source);
-    const records = selection.type === "eia-series"
-      ? parseEiaRecords({ data: fixtureRows }, source)
-      : selection.type === "portwatch-route"
-        ? parseRouteRecords(fixtureRows, source)
-        : fixtureRows;
-    return {
-      snapshot: snapshotFor(source, retrievedAt, {
-        status: "fetched",
-        httpStatus: 200,
-        contentType: "application/json",
-        content,
-        observedAt: fixtureRows[0]?.observedAt || fixtureRows[0]?.observationDate,
-      }),
-      records,
-    };
+    const snapshot = snapshotFor(source, retrievedAt, {
+      status: "fetched",
+      httpStatus: 200,
+      contentType: "application/json",
+      content,
+      observedAt: fixtureRows[0]?.observedAt || fixtureRows[0]?.observationDate,
+    });
+    const records = parseSnapshotRecords(source, snapshot, content, () => {
+      if (selection.type === "eia-series") return parseEiaRecords({ data: fixtureRows }, source, { from, to });
+      if (selection.type === "portwatch-route") return parseRouteRecords(fixtureRows, source, { from, to });
+      if (selection.type === "comtrade-trade") return parseComtradeRecords(fixtureRows, source, { from, to });
+      if (selection.type === "asset-registry") return parseAssetRegistryRecords(fixtureRows, source, { from, to });
+      return fixtureRows;
+    }, dryRun);
+    return { snapshot, records };
   }
   if (offline) {
     return {
@@ -548,55 +935,79 @@ async function fetchAutomatedSource(source, {
       observedAt: quote.observedAt,
       provider: quote.source,
     };
-    return {
-      snapshot: snapshotFor(source, retrievedAt, {
+    const content = JSON.stringify(raw);
+    const snapshot = snapshotFor(source, retrievedAt, {
         status: "fetched",
         httpStatus: 200,
         contentType: "application/json",
-        content: raw,
+        content,
         observedAt: quote.observedAt,
         url: source.url,
-      }),
-      records: [raw],
-    };
+      });
+    persistRawSnapshot(snapshot, content, dryRun);
+    return { snapshot, records: [raw] };
   }
 
-  if (source.id === "src-eia-lng-baseline") {
-    const apiKey = process.env.EIA_API_KEY;
-    const endpoint = process.env.EIA_DATA_URL;
-    if (!apiKey && !endpoint) throw new Error("EIA_API_KEY or EIA_DATA_URL is required for the EIA connector");
-    const url = endpoint || `${source.url}?api_key=${encodeURIComponent(apiKey)}`;
+  const selection = sourceSelection(source);
+  if (selection.type === "eia-series") {
+    if (!process.env.EIA_API_KEY && !process.env.EIA_DATA_URL) throw new Error("EIA_API_KEY or EIA_DATA_URL is required for the EIA connector");
+    const url = eiaEndpoint(source, selection, { from, to });
     const { response, text } = await fetchText(url, fetchImpl);
-    const payload = parseJsonOrThrow(text, source);
     if (!response.ok) throw new Error(`EIA ${response.status}`);
-    return {
-      snapshot: snapshotFor(source, retrievedAt, {
+    const snapshot = snapshotFor(source, retrievedAt, {
         status: "fetched",
         httpStatus: response.status,
-        contentType: response.headers.get("content-type"),
+        contentType: response.headers?.get?.("content-type") || "application/json",
         content: text,
         url,
-      }),
-      records: parseEiaRecords(payload, source),
-    };
+      });
+    const records = parseSnapshotRecords(source, snapshot, text, () => parseEiaRecords(parseJsonOrThrow(text, source), source, { from, to }), dryRun);
+    return { snapshot, records };
   }
 
-  if (source.id === "src-imf-portwatch-hormuz") {
-    const url = process.env.PORTWATCH_DATA_URL;
-    if (!url) throw new Error("PORTWATCH_DATA_URL is required for the machine-readable PortWatch connector");
+  if (selection.type === "portwatch-route") {
+    const url = portWatchEndpoint(source, selection, { from, to });
     const { response, text } = await fetchText(url, fetchImpl);
-    const payload = parseJsonOrThrow(text, source);
     if (!response.ok) throw new Error(`PortWatch ${response.status}`);
-    return {
-      snapshot: snapshotFor(source, retrievedAt, {
+    const snapshot = snapshotFor(source, retrievedAt, {
         status: "fetched",
         httpStatus: response.status,
-        contentType: response.headers.get("content-type"),
+        contentType: response.headers?.get?.("content-type") || "application/json",
         content: text,
         url,
-      }),
-      records: parseRouteRecords(payload, source),
-    };
+      });
+    const records = parseSnapshotRecords(source, snapshot, text, () => parseRouteRecords(parseJsonOrThrow(text, source), source, { from, to }), dryRun);
+    return { snapshot, records };
+  }
+
+  if (selection.type === "comtrade-trade") {
+    const url = comtradeEndpoint(source, selection, { from, to });
+    const { response, text } = await fetchText(url, fetchImpl);
+    if (!response.ok) throw new Error(`UN Comtrade ${response.status}`);
+    const snapshot = snapshotFor(source, retrievedAt, {
+      status: "fetched",
+      httpStatus: response.status,
+      contentType: response.headers?.get?.("content-type") || "application/json",
+      content: text,
+      url,
+    });
+    const records = parseSnapshotRecords(source, snapshot, text, () => parseComtradeRecords(parseJsonOrThrow(text, source), source, { from, to }), dryRun);
+    return { snapshot, records };
+  }
+
+  if (selection.type === "asset-registry") {
+    const url = assetRegistryEndpoint(source, selection, { from, to });
+    const { response, text } = await fetchText(url, fetchImpl);
+    if (!response.ok) throw new Error(`Asset registry ${response.status}`);
+    const snapshot = snapshotFor(source, retrievedAt, {
+      status: "fetched",
+      httpStatus: response.status,
+      contentType: response.headers?.get?.("content-type") || "application/json",
+      content: text,
+      url,
+    });
+    const records = parseSnapshotRecords(source, snapshot, text, () => parseAssetRegistryRecords(parseJsonOrThrow(text, source), source), dryRun);
+    return { snapshot, records };
   }
 
   throw new Error(`No connector is configured for ${source.id}`);
@@ -637,6 +1048,111 @@ export function deduplicateCandidates(candidates) {
     else byKey.set(key, candidate);
   }
   return { candidates: [...byKey.values()], duplicates };
+}
+
+function candidatePeriod(candidate) {
+  return {
+    start: candidate.periodStart || candidate.observationDate || null,
+    end: candidate.periodEnd || candidate.observationDate || null,
+  };
+}
+
+function candidateTargetKey(candidate) {
+  const targets = [...(candidate.targetInputIds || []), ...(candidate.targetCommercialInputIds || [])].sort();
+  const entities = [...(candidate.entityIds || [])].sort();
+  const period = candidatePeriod(candidate);
+  return `${targets.join(",") || entities.join(",")}:${candidate.observationKind || "flow"}:${period.start || "unavailable"}:${period.end || "unavailable"}:${candidate.unit || ""}`;
+}
+
+export function buildSourceCoverage(source, snapshots, candidates, { from = null, to = null } = {}) {
+  const sourceCandidates = candidates.filter((candidate) => candidate.sourceId === source.id);
+  const snapshot = snapshots.find((item) => item.sourceId === source.id);
+  const observed = sourceCandidates
+    .map(candidatePeriod)
+    .filter((period) => period.start && period.end)
+    .sort((left, right) => left.start.localeCompare(right.start));
+  const observedPeriod = observed.length
+    ? { start: observed[0].start, end: observed[observed.length - 1].end }
+    : null;
+  const sourcePeriod = observedPeriod || (from && to ? { start: from, end: to } : null);
+  const expectedCadence = source.cadence;
+  const expected = sourcePeriod ? expectedPeriods(sourcePeriod.start, sourcePeriod.end, expectedCadence) : [];
+  const observedKeys = new Set(observed.map((period) => periodKey(period.start, period.end)));
+  const missingPeriods = expected.filter((period) => !observedKeys.has(period));
+  const usable = sourceCandidates.filter((candidate) => candidate.status !== "unavailable");
+  let status = "direct-observation";
+  if (!usable.length || snapshot?.status === "failed" || snapshot?.status === "skipped") status = "unavailable";
+  else if (source.category === "trade-demand" || sourceCandidates.some((candidate) => candidate.coverage?.status === "public-proxy")) status = "public-proxy";
+  else if (missingPeriods.length || sourceCandidates.some((candidate) => candidate.coverage?.status === "partial-coverage")) status = "partial-coverage";
+  return {
+    status,
+    sourcePeriod,
+    expectedCadence,
+    observedPeriod,
+    missingPeriods,
+    sourceStatus: snapshot?.status || "skipped",
+    ...(source.category === "trade-demand" ? { note: "Monthly or annual customs trade context is not cargo-level movement." } : {}),
+  };
+}
+
+function candidateStatusPriority(status) {
+  return status === "confirmed" ? 3 : status === "carried" ? 2 : 1;
+}
+
+export function reconcileCandidates(candidates, sources) {
+  const sourceById = new Map((sources || []).map((source) => [source.id, source]));
+  const groups = new Map();
+  for (const candidate of candidates) {
+    const key = candidateTargetKey(candidate);
+    const group = groups.get(key) || [];
+    group.push(candidate);
+    groups.set(key, group);
+  }
+  const reconciliations = [];
+  const nextCandidates = candidates.map((candidate) => ({ ...candidate }));
+  const byRecordKey = new Map(nextCandidates.map((candidate) => [candidate.recordKey, candidate]));
+  for (const [targetKey, group] of groups) {
+    if (group.length < 2) {
+      if (group[0]) group[0].selectedForAssessment = true;
+      continue;
+    }
+    const ranked = [...group].sort((left, right) => {
+      const statusDelta = candidateStatusPriority(right.status) - candidateStatusPriority(left.status);
+      if (statusDelta) return statusDelta;
+      const priorityDelta = Number(sourceById.get(right.sourceId)?.reconciliationPriority || 0) - Number(sourceById.get(left.sourceId)?.reconciliationPriority || 0);
+      if (priorityDelta) return priorityDelta;
+      return String(right.observationDate || "").localeCompare(String(left.observationDate || "")) || left.sourceId.localeCompare(right.sourceId);
+    });
+    const selected = ranked.find((candidate) => candidate.status !== "unavailable") || null;
+    const reconciliationId = `reconciliation:${sha256({ targetKey, recordKeys: group.map((candidate) => candidate.recordKey).sort() }).slice(0, 24)}`;
+    const values = new Set(group.filter((candidate) => candidate.value !== undefined).map((candidate) => JSON.stringify(candidate.value)));
+    const status = selected ? "resolved" : "unresolved";
+    const basis = selected
+      ? ranked.some((candidate) => Number(sourceById.get(candidate.sourceId)?.reconciliationPriority || 0) !== Number(sourceById.get(selected.sourceId)?.reconciliationPriority || 0))
+        ? "highest-priority-confirmed"
+        : "latest-confirmed"
+      : "preserved-unavailable";
+    const note = values.size > 1
+      ? "Sources disagree for the same physical-flow period; all inputs are preserved and the selected assessment basis is explicit."
+      : "Multiple source observations are preserved for the same physical-flow period; the selected assessment basis is explicit.";
+    reconciliations.push({
+      id: reconciliationId,
+      targetKey,
+      candidateRecordKeys: group.map((candidate) => candidate.recordKey).sort(),
+      sourceIds: [...new Set(group.map((candidate) => candidate.sourceId))].sort(),
+      selectedRecordKey: selected?.recordKey || null,
+      status,
+      basis,
+      note,
+    });
+    for (const candidate of group) {
+      const next = byRecordKey.get(candidate.recordKey);
+      if (!next) continue;
+      next.reconciliationId = reconciliationId;
+      next.selectedForAssessment = Boolean(selected && next.recordKey === selected.recordKey);
+    }
+  }
+  return { candidates: nextCandidates, reconciliations };
 }
 
 export function computeEnergyRefreshFingerprint({ state, exposure, registry }) {
@@ -687,6 +1203,8 @@ function buildMachineEvidence(snapshots, candidates) {
         recordKeys: [...snapshot.recordKeys],
         targetInputIds: [...new Set(records.flatMap((candidate) => candidate.targetInputIds || []))],
         targetCommercialInputIds: [...new Set(records.flatMap((candidate) => candidate.targetCommercialInputIds || []))],
+        observationKind: records[0]?.observationKind,
+        coverage: records[0]?.coverage,
         status: "validated",
       };
     });
@@ -716,6 +1234,7 @@ export function validateNormalizedCandidates({
   asOf,
   snapshots = [],
   machineEvidence = [],
+  allowHistorical = false,
 }) {
   const errors = [];
   const warnings = [];
@@ -769,6 +1288,9 @@ export function validateNormalizedCandidates({
         targetCommercialInputIds: candidate.targetCommercialInputIds,
         observationDate: candidate.observationDate,
         unit: candidate.unit,
+        observationKind: candidate.observationKind,
+        periodStart: candidate.periodStart,
+        periodEnd: candidate.periodEnd,
       });
       if (candidate.recordKey !== expectedRecordKey) errors.push(`${context}.recordKey does not match normalized fields`);
       const expectedEvidenceIds = source.evidenceIds || [];
@@ -781,7 +1303,7 @@ export function validateNormalizedCandidates({
         errors.push(`${context}.freshnessWindowDays does not match target publication policy`);
       }
       for (const target of [...(candidate.targetInputIds || []), ...(candidate.targetCommercialInputIds || [])]) {
-        const targetKey = `${target}:${candidate.observationDate ?? "unavailable"}:${candidate.unit ?? ""}`;
+        const targetKey = `${candidate.sourceId}:${target}:${candidate.observationKind ?? "flow"}:${candidate.periodStart ?? candidate.observationDate ?? "unavailable"}:${candidate.periodEnd ?? candidate.observationDate ?? "unavailable"}:${candidate.unit ?? ""}`;
         if (targetKeys.has(targetKey)) errors.push(`${context} duplicates target observation ${targetKey}`);
         targetKeys.add(targetKey);
       }
@@ -828,6 +1350,25 @@ export function validateNormalizedCandidates({
     if (!candidate?.lineage?.recordKey || candidate.lineage.recordKey !== candidate.recordKey) {
       errors.push(`${context}.lineage.recordKey must match recordKey`);
     }
+    if (!["flow", "capacity", "asset-status", "transit", "trade-demand"].includes(candidate?.observationKind)) {
+      errors.push(`${context}.observationKind is invalid`);
+    }
+    for (const periodField of ["periodStart", "periodEnd"]) {
+      if (candidate?.[periodField] !== null && candidate?.[periodField] !== undefined && !DATE_ONLY.test(candidate[periodField])) {
+        errors.push(`${context}.${periodField} must be YYYY-MM-DD or null`);
+      }
+    }
+    if (candidate?.periodStart && candidate?.periodEnd && candidate.periodStart > candidate.periodEnd) {
+      errors.push(`${context}.periodStart must not be after periodEnd`);
+    }
+    const coverage = candidate?.coverage;
+    if (!coverage || !["direct-observation", "public-proxy", "partial-coverage", "unavailable"].includes(coverage.status)) {
+      errors.push(`${context}.coverage status is invalid or missing`);
+    } else {
+      if (!coverage.expectedCadence) errors.push(`${context}.coverage.expectedCadence is required`);
+      if (!Array.isArray(coverage.missingPeriods)) errors.push(`${context}.coverage.missingPeriods must be an array`);
+      if (!["fetched", "failed", "skipped"].includes(coverage.sourceStatus)) errors.push(`${context}.coverage.sourceStatus is invalid`);
+    }
     const candidateSnapshot = snapshotByRef.get(candidate?.lineage?.snapshotRef);
     if (!candidateSnapshot) {
       errors.push(`${context}.lineage.snapshotRef does not reference a report snapshot`);
@@ -860,7 +1401,7 @@ export function validateNormalizedCandidates({
       if (hasValue || hasRange) errors.push(`${context} unavailable records must not contain a value or range`);
       if (!candidate?.missingReason) errors.push(`${context} unavailable records require missingReason`);
     } else {
-      if (source && source.category !== "reviewed-event" && hasValue && typeof candidate.value !== "number") {
+      if (source && source.category !== "reviewed-event" && candidate.observationKind !== "asset-status" && hasValue && typeof candidate.value !== "number") {
         errors.push(`${context}.value must be numeric for ${source.category} observations`);
       }
       if (!hasValue && !hasRange) errors.push(`${context} requires value or low/high`);
@@ -869,7 +1410,7 @@ export function validateNormalizedCandidates({
       if (candidate?.status === "carried" && !candidate?.carryReason) errors.push(`${context} carried records require carryReason`);
       if (candidate?.status === "confirmed" && !candidate?.sourceUrl) errors.push(`${context} confirmed records require sourceUrl`);
       const age = daysBetween(asOf, candidate.observationDate);
-      if (candidate?.status === "confirmed" && Number.isFinite(age) && age > Number(candidate.freshnessWindowDays)) {
+      if (candidate?.status === "confirmed" && !allowHistorical && Number.isFinite(age) && age > Number(candidate.freshnessWindowDays)) {
         errors.push(`${context} is ${age} days old, above freshnessWindowDays ${candidate.freshnessWindowDays}`);
       }
       if (candidate?.status === "carried" && Number.isFinite(age) && age > Number(candidate.freshnessWindowDays)) {
@@ -887,6 +1428,9 @@ export function validateNormalizedCandidates({
     if (!["fetched", "failed", "skipped"].includes(snapshot.status)) errors.push(`snapshot ${snapshot.id} status is invalid`);
     if (snapshot.status === "fetched" && (!snapshot.contentHash || !SHA256.test(snapshot.contentHash))) {
       errors.push(`snapshot ${snapshot.id} fetched records require contentHash`);
+    }
+    if (snapshot.status === "fetched" && (!snapshot.rawSnapshotRef || !snapshot.artifactPath)) {
+      errors.push(`snapshot ${snapshot.id} fetched records require durable raw snapshot linkage`);
     }
     if (!/^https:\/\//.test(snapshot.url || "") || !/^https:\/\//.test(snapshot.canonicalUrl || "")) {
       errors.push(`snapshot ${snapshot.id} urls must use https`);
@@ -911,6 +1455,9 @@ export async function runEnergyRefresh({
   fetchImpl = globalThis.fetch,
   offline = process.env.ENERGY_OFFLINE === "1",
   fixtureName = null,
+  sourceId = null,
+  from = null,
+  to = null,
   dryRun = false,
 } = {}) {
   const startedAt = now;
@@ -934,6 +1481,10 @@ export async function runEnergyRefresh({
       snapshots,
       machineEvidence,
       observations,
+      reconciliations: [],
+      coverage: {},
+      sourceFilter: sourceId,
+      requestedPeriod: from || to ? { start: from, end: to } : null,
       validation,
       promotion: {
         status: "blocked",
@@ -959,8 +1510,14 @@ export async function runEnergyRefresh({
     return report;
   }
 
-  for (const source of registry.sources.filter((item) => item.enabled)) {
+  const enabledSources = registry.sources.filter((item) => item.enabled);
+  if (sourceId && !enabledSources.some((source) => source.id === sourceId)) validation.errors.push(`unknown source filter ${sourceId}`);
+  for (const source of enabledSources) {
     const retrievedAt = new Date(Date.parse(now)).toISOString();
+    if (sourceId && source.id !== sourceId) {
+      snapshots.push(snapshotFor(source, retrievedAt, { error: `Source filter ${sourceId} selected` }));
+      continue;
+    }
     if (source.automation === "manual-only") {
       const snapshot = snapshotFor(source, retrievedAt, { error: "Manual-only reviewed evidence is not fetched by automation" });
       snapshots.push(snapshot);
@@ -969,7 +1526,7 @@ export async function runEnergyRefresh({
     }
 
     try {
-      const fetched = await fetchAutomatedSource(source, { fetchImpl, retrievedAt, offline, fixture });
+      const fetched = await fetchAutomatedSource(source, { fetchImpl, retrievedAt, offline, fixture, from, to, dryRun });
       snapshots.push(fetched.snapshot);
       if (!fetched.records.length) {
         observations.push(...fallbackForSource(source, fetched.snapshot, state, exposure));
@@ -980,7 +1537,7 @@ export async function runEnergyRefresh({
       }
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      const snapshot = snapshotFor(source, retrievedAt, { status: "failed", error: message });
+      const snapshot = error?.snapshot || snapshotFor(source, retrievedAt, { status: "failed", error: message });
       snapshots.push(snapshot);
       validation.warnings.push(`${source.id}: ${message}; applying declared ${source.fallback} fallback`);
       observations.push(...fallbackForSource(source, snapshot, state, exposure, message));
@@ -989,27 +1546,45 @@ export async function runEnergyRefresh({
 
   const deduped = deduplicateCandidates(observations);
   for (const duplicate of deduped.duplicates) validation.errors.push(`duplicate candidate record ${duplicate.key} (${duplicate.id})`);
-  attachSnapshotRecords(snapshots, deduped.candidates);
-  machineEvidence.push(...buildMachineEvidence(snapshots, deduped.candidates));
+  const coverage = {};
+  for (const source of enabledSources) {
+    const sourceCoverage = buildSourceCoverage(source, snapshots, deduped.candidates, { from, to });
+    coverage[source.id] = sourceCoverage;
+    for (const candidate of deduped.candidates.filter((item) => item.sourceId === source.id)) {
+      candidate.coverage = { ...candidate.coverage, ...sourceCoverage };
+    }
+    const snapshot = snapshots.find((item) => item.sourceId === source.id);
+    if (snapshot) Object.assign(snapshot, {
+      sourcePeriod: sourceCoverage.sourcePeriod,
+      expectedCadence: sourceCoverage.expectedCadence,
+      observedPeriod: sourceCoverage.observedPeriod,
+      missingPeriods: sourceCoverage.missingPeriods,
+      sourceStatus: sourceCoverage.sourceStatus,
+    });
+  }
+  const reconciled = reconcileCandidates(deduped.candidates, registry.sources);
+  attachSnapshotRecords(snapshots, reconciled.candidates);
+  machineEvidence.push(...buildMachineEvidence(snapshots, reconciled.candidates));
   const finalCandidateValidation = validateNormalizedCandidates({
-    candidates: deduped.candidates,
+    candidates: reconciled.candidates,
     sources: registry.sources,
     state,
     exposure,
     asOf,
     snapshots,
     machineEvidence,
+    allowHistorical: Boolean(from || to),
   });
   validation.errors.push(...finalCandidateValidation.errors);
   validation.warnings.push(...finalCandidateValidation.warnings);
   const completedAt = new Date(Date.parse(now)).toISOString();
-  const runId = `energy-refresh:${sha256({ baseFingerprint, asOf, trigger, observations: deduped.candidates.map((item) => ({ recordKey: item.recordKey, status: item.status, value: item.value, low: item.low, high: item.high, change: item.change, changePct: item.changePct, provider: item.provider })) }).slice(0, 24)}`;
+  const runId = `energy-refresh:${sha256({ baseFingerprint, asOf, trigger, sourceId, from, to, observations: reconciled.candidates.map((item) => ({ recordKey: item.recordKey, status: item.status, value: item.value, low: item.low, high: item.high, change: item.change, changePct: item.changePct, provider: item.provider, selectedForAssessment: item.selectedForAssessment })) }).slice(0, 24)}`;
   const promotionErrors = [...validation.errors];
   const promotion = {
     status: promotionErrors.length ? "blocked" : "validated",
-    eligibleRecordIds: promotionErrors.length ? [] : deduped.candidates.map((item) => item.id),
-    rejectedRecordIds: promotionErrors.length ? deduped.candidates.map((item) => item.id) : [],
-    assessmentVersion: promotionErrors.length ? null : assessmentVersion(asOf, deduped.candidates),
+    eligibleRecordIds: promotionErrors.length ? [] : reconciled.candidates.map((item) => item.id),
+    rejectedRecordIds: promotionErrors.length ? reconciled.candidates.map((item) => item.id) : [],
+    assessmentVersion: promotionErrors.length ? null : assessmentVersion(asOf, reconciled.candidates),
     calculatedAt: promotionErrors.length ? null : completedAt,
     errors: promotionErrors,
   };
@@ -1024,7 +1599,11 @@ export async function runEnergyRefresh({
     sourceDefinitions: registry.sources,
     snapshots,
     machineEvidence,
-    observations: deduped.candidates,
+    observations: reconciled.candidates,
+    reconciliations: reconciled.reconciliations,
+    coverage,
+    sourceFilter: sourceId,
+    requestedPeriod: from || to ? { start: from, end: to } : null,
     validation,
     promotion,
   };
@@ -1035,22 +1614,37 @@ export async function runEnergyRefresh({
       asOf,
       baseFingerprint,
       generatedAt: completedAt,
-      observations: deduped.candidates,
+      observations: reconciled.candidates,
       machineEvidence,
+      reconciliations: reconciled.reconciliations,
+      coverage,
+      sourceFilter: sourceId,
+      requestedPeriod: from || to ? { start: from, end: to } : null,
       validation,
     });
     writeJson(PATHS.energyRefreshReport, report);
+    writeJson(PATHS.energySnapshotManifest, {
+      schemaVersion: ENERGY_SNAPSHOT_SCHEMA_VERSION,
+      generatedAt: completedAt,
+      snapshots: snapshots.map((snapshot) => ({ ...snapshot })),
+    });
   }
   return report;
 }
 
 function parseArgs(argv = process.argv.slice(2)) {
   const fixtureIndex = argv.indexOf("--fixture");
+  const sourceIndex = argv.indexOf("--source");
+  const fromIndex = argv.indexOf("--from");
+  const toIndex = argv.indexOf("--to");
   return {
     dryRun: argv.includes("--dry-run"),
     trigger: argv.includes("--event") ? "event" : "daily",
     offline: argv.includes("--offline"),
     fixtureName: fixtureIndex >= 0 ? argv[fixtureIndex + 1] : null,
+    sourceId: sourceIndex >= 0 ? argv[sourceIndex + 1] : null,
+    from: fromIndex >= 0 ? argv[fromIndex + 1] : null,
+    to: toIndex >= 0 ? argv[toIndex + 1] : null,
   };
 }
 
@@ -1060,6 +1654,9 @@ export async function main(argv = process.argv.slice(2)) {
     trigger: args.trigger,
     offline: args.offline || process.env.ENERGY_OFFLINE === "1",
     fixtureName: args.fixtureName,
+    sourceId: args.sourceId,
+    from: args.from,
+    to: args.to,
     dryRun: args.dryRun,
   });
   console.log(`energy:refresh ${args.dryRun ? "dry-run " : ""}result: ${report.promotion.status}`);
@@ -1069,6 +1666,9 @@ export async function main(argv = process.argv.slice(2)) {
   for (const observation of report.observations) {
     const value = observation.status === "unavailable" ? "unavailable" : observation.value ?? `${observation.low}–${observation.high}`;
     console.log(`- ${observation.id}: ${value} ${observation.unit ?? ""} · ${observation.status}`);
+  }
+  for (const [sourceId, item] of Object.entries(report.coverage || {})) {
+    console.log(`- coverage ${sourceId}: ${item.status} · ${item.expectedCadence} · missing ${item.missingPeriods.length}`);
   }
   if (report.validation.warnings.length) {
     console.log(`- warnings: ${report.validation.warnings.length}`);

@@ -11,6 +11,8 @@ export const PATHS = {
   energySourceRegistry: path.join(ROOT, "src/data/energy-lng-source-registry.json"),
   energyCandidates: path.join(ROOT, "src/data/energy-lng-candidates.json"),
   energyRefreshReport: path.join(ROOT, "src/data/energy-lng-refresh-report.json"),
+  energySnapshotDir: path.join(ROOT, "src/data/energy-lng-snapshots"),
+  energySnapshotManifest: path.join(ROOT, "src/data/energy-lng-snapshot-manifest.json"),
   energyRuntime: path.join(ROOT, "src/data/energy-lng-runtime.json"),
   energyReadModel: path.join(ROOT, "src/data/energy-lng-read-model.json"),
   crossAsset: path.join(ROOT, "src/data/banker-cross-asset.json"),
@@ -128,7 +130,7 @@ export function validateStateShape(state) {
   const statuses = new Set(["confirmed", "estimated", "carried", "inferred"]);
   const crossAssetStatuses = new Set([...statuses, "unavailable"]);
   const traceStatuses = new Set(["confirmed", "carried", "unavailable"]);
-  const traceCadences = new Set(["daily", "event-driven", "contract-driven"]);
+  const traceCadences = new Set(["daily", "weekly", "monthly", "annual", "event-driven", "contract-driven"]);
 
   assert(state.schemaVersion === 3, "schemaVersion must be 3", errors);
   assert(Boolean(state.asOf), "asOf is required", errors);

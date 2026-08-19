@@ -4,8 +4,16 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fetchQuote, fetchSofr, LIQUID_QUOTES } from "./daily-fetch.mjs";
 import {
+  buildSourceCoverage,
   loadSourceRegistry,
+  parseAssetRegistryRecords,
+  parseComtradeRecords,
+  parseEiaRecords,
+  parseRouteRecords,
+  reconcileCandidates,
   runEnergyRefresh,
+  resolveStableEntityId,
+  stableRecordKey,
 } from "./energy-lng-refresh.mjs";
 import { prepareEnergyPromotion } from "./energy-lng-promote.mjs";
 import { toEnergyLngDomain } from "../src/domain/energyLngAdapter.ts";
@@ -119,6 +127,10 @@ assert(
 
 const unavailableWithValue = structuredClone(baseline);
 unavailableWithValue.traceInputs.metrics["qatar-volume-at-risk"].value = 10;
+unavailableWithValue.traceInputs.metrics["qatar-volume-at-risk"].status = "unavailable";
+unavailableWithValue.traceInputs.metrics["qatar-volume-at-risk"].source = "";
+unavailableWithValue.traceInputs.metrics["qatar-volume-at-risk"].sourceDate = "";
+unavailableWithValue.traceInputs.metrics["qatar-volume-at-risk"].missingReason = "Hardening fixture unavailable reason.";
 assert(
   validateStateShape(unavailableWithValue).some((error) => error.includes("unavailable values must not contain value")),
   "unavailable trace inputs must not carry placeholder values",
@@ -237,6 +249,70 @@ assert.equal(evidenceCheck.status, 0, evidenceCheck.stderr || evidenceCheck.stdo
 assert(evidenceCheck.stdout.includes("PASS"), "daily:evidence should print a passing gate summary");
 
 const energyRegistry = loadSourceRegistry();
+const eiaProductionSource = energyRegistry.sources.find((source) => source.id === "src-eia-qatar-production");
+const eiaMultiPeriod = parseEiaRecords({
+  data: [
+    { seriesId: "QATAR_LNG_PRODUCTION", entityIds: ["qatarenergy", "ras-laffan"], metric: "qatar-lng-production", value: 76, unit: "MTPA", period: "2024" },
+    { seriesId: "QATAR_LNG_PRODUCTION", entityIds: ["qatarenergy", "ras-laffan"], metric: "qatar-lng-production", value: 77, unit: "MTPA", period: "2025" },
+  ],
+}, eiaProductionSource);
+assert.equal(eiaMultiPeriod.length, 2, "EIA parser should preserve multi-period series observations");
+assert.throws(
+  () => parseEiaRecords({ data: [{ seriesId: "WRONG_SERIES", entityIds: ["qatarenergy", "ras-laffan"], metric: "qatar-lng-production", value: 77, unit: "MTPA", period: "2025" }] }, eiaProductionSource),
+  /wrong EIA series|no selected series/,
+  "EIA parser must reject a wrong configured series",
+);
+
+const pressureSource = energyRegistry.sources.find((source) => source.id === "src-imf-portwatch-hormuz-pressure");
+const routeRecords = parseRouteRecords([
+  { routeId: "hormuz", entityIds: ["hormuz"], metric: "route-pressure", value: 70, unit: "index", date: "2026-08-18" },
+  { routeId: "suez", entityIds: ["hormuz"], metric: "route-pressure", value: 99, unit: "index", date: "2026-08-18" },
+], pressureSource);
+assert.equal(routeRecords.length, 1, "PortWatch parser must select the configured route exactly");
+assert.equal(routeRecords[0].value, 70);
+assert.throws(
+  () => parseRouteRecords([{ routeId: "suez", entityIds: ["hormuz"], metric: "route-pressure", value: 99, unit: "index", date: "2026-08-18" }], pressureSource),
+  /no selected route/,
+  "PortWatch parser must reject unrelated routes",
+);
+
+const unlocodeSource = energyRegistry.sources.find((source) => source.id === "src-unlocode-ras-laffan");
+const assetRecord = parseAssetRegistryRecords({ data: [{ namespace: "UN/LOCODE", code: "QARLF", stableEntityId: "ras-laffan-port", name: "Ras Laffan", observationDate: "2025-12-31" }] }, unlocodeSource)[0];
+assert.deepEqual(assetRecord.entityIds, ["ras-laffan-port"], "UN/LOCODE parser should resolve the stable port entity");
+assert.equal(resolveStableEntityId({ code: "QARLF", name: "Ras Laffan" }, { QARLF: "ras-laffan-port" }), "ras-laffan-port");
+const gemSource = energyRegistry.sources.find((source) => source.id === "src-gem-ras-laffan-status");
+const gemRecord = parseAssetRegistryRecords({ assets: [{ namespace: "GEM", code: "ras-laffan", stableEntityId: "ras-laffan", name: "Ras Laffan LNG Complex", status: "operating", observationDate: "2025-12-31" }] }, gemSource)[0];
+assert.deepEqual(gemRecord.entityIds, ["ras-laffan"], "GEM parser should resolve the stable terminal entity");
+assert(gemRecord.aliases.includes("ras-laffan"), "asset registry records should retain stable aliases");
+
+const comtradeSource = energyRegistry.sources.find((source) => source.id === "src-comtrade-japan-lng-demand");
+const tradeRecord = parseComtradeRecords([{
+  reporterCode: "392",
+  partnerCode: "0",
+  flowCode: "M",
+  cmdCode: "271111",
+  period: "202607",
+  primaryValue: 201000000,
+  netWgt: 2800000000,
+  netWgtUnit: "kg",
+}], comtradeSource)[0];
+assert.equal(tradeRecord.periodStart, "2026-07-01");
+assert.equal(tradeRecord.periodEnd, "2026-07-31");
+assert.equal(tradeRecord.unit, "USD");
+assert.equal(tradeRecord.coverageStatus, "public-proxy");
+assert(String(tradeRecord.coverageNote).includes("not cargo-level"), "Comtrade records must be explicitly labeled as non-cargo context");
+
+const conflictPeriod = { start: "2025-01-01", end: "2025-12-31" };
+const conflictCandidates = [
+  { recordKey: stableRecordKey({ sourceId: "src-eia-qatar-production", entityIds: ["qatarenergy", "ras-laffan"], targetInputIds: ["qatar-production-baseline"], targetCommercialInputIds: [], observationDate: "2025-12-31", unit: "MTPA", observationKind: "flow", periodStart: conflictPeriod.start, periodEnd: conflictPeriod.end }), sourceId: "src-eia-qatar-production", entityIds: ["qatarenergy", "ras-laffan"], targetInputIds: ["qatar-production-baseline"], targetCommercialInputIds: [], observationKind: "flow", periodStart: conflictPeriod.start, periodEnd: conflictPeriod.end, observationDate: "2025-12-31", unit: "MTPA", status: "confirmed", value: 77 },
+  { recordKey: stableRecordKey({ sourceId: "src-eia-qatar-exports", entityIds: ["qatarenergy", "ras-laffan"], targetInputIds: ["qatar-production-baseline"], targetCommercialInputIds: [], observationDate: "2025-12-31", unit: "MTPA", observationKind: "flow", periodStart: conflictPeriod.start, periodEnd: conflictPeriod.end }), sourceId: "src-eia-qatar-exports", entityIds: ["qatarenergy", "ras-laffan"], targetInputIds: ["qatar-production-baseline"], targetCommercialInputIds: [], observationKind: "flow", periodStart: conflictPeriod.start, periodEnd: conflictPeriod.end, observationDate: "2025-12-31", unit: "MTPA", status: "confirmed", value: 77.5 },
+];
+const conflictResolution = reconcileCandidates(conflictCandidates, energyRegistry.sources);
+assert.equal(conflictResolution.reconciliations.length, 1, "conflicting observations should create a reconciliation record");
+assert.equal(conflictResolution.reconciliations[0].status, "resolved");
+assert.equal(conflictResolution.reconciliations[0].candidateRecordKeys.length, 2);
+assert.equal(conflictResolution.candidates.filter((candidate) => candidate.selectedForAssessment).length, 1);
+
 const energyFixtureOptions = {
   state: baseline,
   exposure,
@@ -246,6 +322,101 @@ const energyFixtureOptions = {
   offline: true,
   dryRun: true,
 };
+const phase2Energy = await runEnergyRefresh({ ...energyFixtureOptions, fixtureName: "phase2-valid" });
+assert.equal(phase2Energy.promotion.status, "validated", "Qatar/Hormuz Phase 2 fixture should validate");
+assert(phase2Energy.observations.some((record) => record.observationKind === "capacity"), "Phase 2 should include terminal capacity observations");
+assert(phase2Energy.observations.some((record) => record.observationKind === "asset-status"), "Phase 2 should include stable asset observations");
+assert(phase2Energy.observations.some((record) => record.observationKind === "transit" && record.targetInputIds.includes("hormuz-route-pressure")), "Phase 2 should include route-pressure history");
+assert(phase2Energy.observations.some((record) => record.observationKind === "trade-demand" && record.coverage.status === "public-proxy"), "Phase 2 should include public-proxy trade context");
+const phase2Repeat = await runEnergyRefresh({ ...energyFixtureOptions, fixtureName: "phase2-valid" });
+assert.equal(phase2Repeat.runId, phase2Energy.runId, "Phase 2 refresh should be idempotent");
+assert.deepEqual(phase2Repeat.observations.map((record) => record.recordKey), phase2Energy.observations.map((record) => record.recordKey));
+const pressureSubset = phase2Energy.observations.filter((record) => record.targetInputIds.includes("hormuz-route-pressure") && record.periodStart !== "2026-08-17");
+const partialCoverage = buildSourceCoverage(pressureSource, [{ sourceId: pressureSource.id, status: "fetched" }], pressureSubset);
+assert.equal(partialCoverage.status, "partial-coverage", "coverage should flag missing route periods");
+assert(partialCoverage.missingPeriods.includes("2026-08-17/2026-08-17"));
+const phase2Observation = phase2Energy.observations.find((record) => record.targetInputIds.includes("qatar-production-baseline"));
+const phase2Snapshot = phase2Energy.snapshots.find((snapshot) => snapshot.sourceId === phase2Observation.sourceId);
+assert(phase2Observation.lineage.snapshotRef.startsWith("snapshot:energy-snapshot:"));
+assert.equal(phase2Observation.lineage.snapshotHash.length, 64);
+assert.equal(phase2Observation.lineage.snapshotHash, phase2Snapshot.contentHash, "normalized records should retain their raw snapshot hash");
+assert(phase2Snapshot.recordKeys.includes(phase2Observation.recordKey), "raw snapshots should list linked normalized record keys");
+assert(phase2Observation.machineEvidenceIds.length > 0, "confirmed Phase 2 observations should link machine evidence");
+const backfillOptions = { ...energyFixtureOptions, fixtureName: "phase2-valid", sourceId: "src-imf-portwatch-hormuz-pressure", from: "2026-08-16", to: "2026-08-18" };
+const backfill = await runEnergyRefresh(backfillOptions);
+const backfillRepeat = await runEnergyRefresh(backfillOptions);
+assert.equal(backfill.promotion.status, "validated", "a scoped historical backfill should validate");
+assert.equal(backfillRepeat.runId, backfill.runId, "historical backfills should be deterministic");
+assert.deepEqual(backfillRepeat.observations.map((record) => record.recordKey), backfill.observations.map((record) => record.recordKey));
+const phase2Promotion = prepareEnergyPromotion({
+  state: baseline,
+  exposure,
+  audit: evidenceAudit,
+  registry: energyRegistry,
+  candidateEnvelopeOverride: {
+    candidates: {
+      schemaVersion: "energy-lng-candidates-v1",
+      runId: phase2Energy.runId,
+      asOf: baseline.asOf,
+      baseFingerprint: phase2Energy.baseFingerprint,
+      observations: phase2Energy.observations,
+      machineEvidence: phase2Energy.machineEvidence,
+      reconciliations: phase2Energy.reconciliations,
+      coverage: phase2Energy.coverage,
+      sourceFilter: phase2Energy.sourceFilter,
+      requestedPeriod: phase2Energy.requestedPeriod,
+    },
+    report: phase2Energy,
+  },
+});
+assert(phase2Promotion.promoted, `Phase 2 promotion should update the read model: ${phase2Promotion.errors.join("; ")}`);
+assert.equal(validateStateShape(phase2Promotion.state).length, 0, "promoted Phase 2 state should remain valid");
+assert(phase2Promotion.readModel.entities.find((entity) => entity.id === "ras-laffan-port")?.identitySources?.includes("UN/LOCODE"));
+assert(phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.routeEntityIds.includes("ras-laffan-port"));
+const phase2Flow = phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.physicalFlow;
+assert(phase2Flow?.observations.some((record) => record.observationKind === "trade-demand" && record.coverageStatus === "public-proxy"));
+assert(phase2Flow?.observations.some((record) => record.observationKind === "transit" && record.periodEnd === "2026-08-18"));
+assert.equal(phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.flowPressure?.components.length, 6);
+assert((phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.alternatives ?? []).some((alternative) => alternative.feasibility === "potential"));
+assert((phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.watchItems.length ?? 0) > 0, "watchlist should remain available after Phase 2 promotion");
+const scopedBackfillPromotion = prepareEnergyPromotion({
+  state: baseline,
+  exposure,
+  audit: evidenceAudit,
+  registry: energyRegistry,
+  candidateEnvelopeOverride: {
+    candidates: {
+      schemaVersion: "energy-lng-candidates-v1",
+      runId: backfill.runId,
+      asOf: baseline.asOf,
+      baseFingerprint: backfill.baseFingerprint,
+      observations: backfill.observations,
+      machineEvidence: backfill.machineEvidence,
+      reconciliations: backfill.reconciliations,
+      coverage: backfill.coverage,
+      sourceFilter: backfill.sourceFilter,
+      requestedPeriod: backfill.requestedPeriod,
+    },
+    report: backfill,
+  },
+});
+assert(scopedBackfillPromotion.promoted, `scoped backfill should promote without dropping unrelated state: ${scopedBackfillPromotion.errors.join("; ")}`);
+const baseDomain = toEnergyLngDomain(exposure);
+const preservedCoverageSource = Object.keys(baseDomain.coverage ?? {}).find((sourceId) => sourceId !== backfill.sourceFilter);
+if (preservedCoverageSource) {
+  assert.deepEqual(
+    scopedBackfillPromotion.domain.coverage?.[preservedCoverageSource],
+    baseDomain.coverage?.[preservedCoverageSource],
+    "scoped backfill must preserve unrelated source coverage",
+  );
+}
+const preservedMachineEvidenceId = (baseDomain.machineEvidence ?? []).find((item) => item.sourceId !== backfill.sourceFilter)?.id;
+if (preservedMachineEvidenceId) {
+  assert(
+    scopedBackfillPromotion.domain.machineEvidence?.some((item) => item.id === preservedMachineEvidenceId),
+    "scoped backfill must preserve unrelated machine evidence",
+  );
+}
 const validEnergy = await runEnergyRefresh({ ...energyFixtureOptions, fixtureName: "valid" });
 assert.equal(validEnergy.promotion.status, "validated", "valid Energy/LNG fixture should validate");
 assert(validEnergy.observations.some((record) => record.status === "carried"), "valid refresh should retain explicit carried route/event data");

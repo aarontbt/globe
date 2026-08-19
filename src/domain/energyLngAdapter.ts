@@ -4,6 +4,8 @@ import type {
   CommercialEvaluation,
   DerivedCommercialMetric,
   EvidenceReference,
+  EnergyPhysicalFlowObservation,
+  EnergyPhysicalFlowReadModel,
   ExposureTrace,
   ExposureTraceData,
   ObservedCommercialInput,
@@ -30,7 +32,11 @@ import type {
   EnergyLngRiskControl,
   EnergyLngSource,
 } from "../types/energyLng";
-import type { EnergyLngNormalizedCandidate } from "../types/energyLngPipeline";
+import type {
+  EnergyLngCoverageMetadata,
+  EnergyLngNormalizedCandidate,
+  EnergyLngReconciliation,
+} from "../types/energyLngPipeline";
 
 type LegacyMetric = TraceMetric & { cadence?: EnergyLngCadence };
 
@@ -205,6 +211,28 @@ function traceEvidenceIds(trace: ExposureTrace): string[] {
   ];
 }
 
+function coverageFromMetric(metric: LegacyMetric): EnergyLngCoverageMetadata {
+  const status = metric.coverageStatus
+    || (metric.status === "unavailable"
+      ? "unavailable"
+      : metric.observationKind === "trade-demand"
+        ? "public-proxy"
+        : "direct-observation");
+  const periodStart = metric.periodStart ?? (metric.sourceDate || null);
+  const periodEnd = metric.periodEnd ?? (metric.sourceDate || null);
+  return {
+    status,
+    sourcePeriod: periodStart && periodEnd ? { start: periodStart, end: periodEnd } : null,
+    expectedCadence: metric.cadence ?? "daily",
+    observedPeriod: periodStart && periodEnd && metric.status !== "unavailable"
+      ? { start: periodStart, end: periodEnd }
+      : null,
+    missingPeriods: [],
+    sourceStatus: metric.status === "confirmed" ? "fetched" : "skipped",
+    ...(metric.coverageNote ? { note: metric.coverageNote } : {}),
+  };
+}
+
 function observationFromMetric(
   id: string,
   metric: LegacyMetric,
@@ -221,6 +249,10 @@ function observationFromMetric(
     low: metric.low,
     high: metric.high,
     unit: metric.unit ?? null,
+    observationKind: metric.observationKind ?? "flow",
+    periodStart: metric.periodStart ?? null,
+    periodEnd: metric.periodEnd ?? null,
+    coverage: coverageFromMetric(metric),
     sourceName: metric.source || undefined,
     sourceDate: metric.sourceDate || undefined,
     observedAt: metric.observedAt,
@@ -262,6 +294,11 @@ function mergeObservation(existing: EnergyLngObservation, incoming: EnergyLngObs
     sourceDate: existing.sourceDate ?? incoming.sourceDate,
     observedAt: existing.observedAt ?? incoming.observedAt,
     cadence: existing.cadence ?? incoming.cadence,
+    observationKind: existing.observationKind ?? incoming.observationKind,
+    periodStart: existing.periodStart ?? incoming.periodStart,
+    periodEnd: existing.periodEnd ?? incoming.periodEnd,
+    coverage: existing.coverage ?? incoming.coverage,
+    aliases: [...new Set([...(existing.aliases ?? []), ...(incoming.aliases ?? [])])],
     freshnessWindowDays: Math.min(existing.freshnessWindowDays, incoming.freshnessWindowDays),
     carryReason: existing.carryReason ?? incoming.carryReason,
     missingReason: existing.missingReason ?? incoming.missingReason,
@@ -456,13 +493,17 @@ function legacyFormulaId(value: string): DerivedCommercialMetric["formulaId"] {
   return "gross-minus-costs";
 }
 
-function toTraceMetric(observation: EnergyLngObservation, sourcesById: Map<string, EnergyLngSource>): TraceMetric {
+function toTraceMetric(
+  observation: EnergyLngObservation,
+  sourcesById: Map<string, EnergyLngSource>,
+  includePhysicalMetadata = true,
+): TraceMetric {
   const status: TraceMetric["status"] = observation.record.status === "confirmed"
     ? "confirmed"
     : observation.record.status === "carried"
       ? "carried"
       : "unavailable";
-  return {
+  const metric: TraceMetric = {
     inputId: legacyObservationId(observation.id),
     label: observation.label,
     value: observation.value,
@@ -479,6 +520,15 @@ function toTraceMetric(observation: EnergyLngObservation, sourcesById: Map<strin
     carryReason: observation.carryReason,
     missingReason: observation.missingReason,
   };
+  if (includePhysicalMetadata) {
+    metric.observationKind = observation.observationKind;
+    metric.periodStart = observation.periodStart;
+    metric.periodEnd = observation.periodEnd;
+    metric.coverageStatus = observation.coverage?.status;
+    metric.coverageNote = observation.coverage?.note;
+    metric.sourceAgeDays = sourceAgeDays(observation.record.asOf, observation);
+  }
+  return metric;
 }
 
 function toLegacyCommercialInput(
@@ -488,7 +538,11 @@ function toLegacyCommercialInput(
 ): ObservedCommercialInput {
   const observation = observationsById.get(input.observationId);
   const metric = observation
-    ? toTraceMetric(observation, sourcesById)
+    ? toTraceMetric(
+      observation,
+      sourcesById,
+      Boolean(observation.machineEvidenceIds?.length || observation.periodStart || observation.periodEnd || observation.observationKind !== "flow"),
+    )
     : {
         inputId: input.id,
         label: input.label,
@@ -540,6 +594,12 @@ function toLegacyCommercialEvaluation(evaluation: EnergyLngCommercialEvaluation)
 }
 
 function toLegacySource(source: EnergyLngSource): EvidenceReference {
+  const kind: EvidenceReference["kind"] = source.kind === "event"
+    || source.kind === "contract"
+    || source.kind === "market-observation"
+    || source.kind === "official-statistics"
+    ? source.kind
+    : "official-statistics";
   return {
     id: source.id,
     title: source.title,
@@ -547,11 +607,133 @@ function toLegacySource(source: EnergyLngSource): EvidenceReference {
     url: source.url,
     publishedAt: source.publishedAt,
     lastChecked: dateOnly(source.retrievedAt),
-    kind: source.kind,
+    kind,
     cadence: source.cadence,
     maxAgeDays: source.maxAgeDays,
     status: source.status,
     note: source.note,
+  };
+}
+
+function sourceAgeDays(asOf: string, observation: EnergyLngObservation): number | null {
+  const observed = observation.periodEnd || observation.sourceDate;
+  if (!observed) return null;
+  const age = Math.floor((Date.parse(dateOnly(asOf)) - Date.parse(dateOnly(observed))) / 86_400_000);
+  return Number.isFinite(age) ? Math.max(0, age) : null;
+}
+
+function toPhysicalFlowObservation(observation: EnergyLngObservation, asOf: string): EnergyPhysicalFlowObservation {
+  const status: EnergyPhysicalFlowObservation["status"] = observation.record.status === "confirmed"
+    ? "confirmed"
+    : observation.record.status === "carried"
+      ? "carried"
+      : "unavailable";
+  const coverageStatus = observation.coverage?.status
+    || (observation.observationKind === "trade-demand" ? "public-proxy" : status === "unavailable" ? "unavailable" : "direct-observation");
+  return {
+    id: observation.id,
+    label: observation.label,
+    entityIds: observation.entityIds,
+    observationKind: observation.observationKind ?? "flow",
+    periodStart: observation.periodStart ?? null,
+    periodEnd: observation.periodEnd ?? null,
+    value: observation.value,
+    unit: observation.unit,
+    status,
+    coverageStatus,
+    coverageNote: observation.coverage?.note,
+    source: observation.sourceName || observation.lineage?.provider || "",
+    sourceId: observation.lineage?.sourceId,
+    sourceUrl: observation.lineage?.sourceUrl,
+    sourceAgeDays: sourceAgeDays(asOf, observation),
+    cadence: observation.coverage?.expectedCadence ?? observation.cadence ?? "daily",
+    confidence: observation.record.confidence,
+    evidenceIds: observation.evidenceIds,
+    ...(observation.machineEvidenceIds?.length ? { machineEvidenceIds: observation.machineEvidenceIds } : {}),
+  };
+}
+
+function physicalFlowReadModel(domain: EnergyLngDomain): EnergyPhysicalFlowReadModel {
+  return {
+    observations: domain.periodObservations.map((observation) => toPhysicalFlowObservation(observation, domain.asOf)),
+    coverage: Object.entries(domain.coverage ?? {}).map(([sourceId, coverage]) => ({
+      sourceId,
+      sourcePeriod: coverage.sourcePeriod,
+      expectedCadence: coverage.expectedCadence,
+      observedPeriod: coverage.observedPeriod,
+      missingPeriods: coverage.missingPeriods,
+      status: coverage.status,
+      sourceStatus: coverage.sourceStatus,
+    })),
+    reconciliations: domain.reconciliations.map((reconciliation) => ({
+      id: reconciliation.id,
+      targetKey: reconciliation.targetKey,
+      sourceIds: reconciliation.sourceIds,
+      candidateRecordKeys: reconciliation.candidateRecordKeys,
+      selectedRecordKey: reconciliation.selectedRecordKey,
+      status: reconciliation.status,
+      basis: reconciliation.basis,
+      note: reconciliation.note,
+    })),
+  };
+}
+
+function periodObservationFromReadModel(
+  observation: EnergyPhysicalFlowObservation,
+  asOf: string,
+): EnergyLngObservation {
+  const sourceIds = [observation.sourceId, ...(observation.evidenceIds ?? [])].filter(Boolean) as string[];
+  return {
+    id: observation.id,
+    label: observation.label,
+    entityIds: observation.entityIds,
+    value: observation.value,
+    unit: observation.unit,
+    observationKind: observation.observationKind,
+    periodStart: observation.periodStart,
+    periodEnd: observation.periodEnd,
+    coverage: {
+      status: observation.coverageStatus,
+      sourcePeriod: observation.periodStart && observation.periodEnd
+        ? { start: observation.periodStart, end: observation.periodEnd }
+        : null,
+      expectedCadence: "daily",
+      observedPeriod: observation.periodStart && observation.periodEnd && observation.status !== "unavailable"
+        ? { start: observation.periodStart, end: observation.periodEnd }
+        : null,
+      missingPeriods: [],
+      sourceStatus: observation.status === "confirmed" ? "fetched" : "skipped",
+      ...(observation.coverageNote ? { note: observation.coverageNote } : {}),
+    },
+    sourceName: observation.source,
+    sourceDate: observation.periodEnd ?? undefined,
+    cadence: "daily",
+    freshnessWindowDays: observation.sourceAgeDays ?? 1,
+    evidenceIds: observation.evidenceIds ?? [],
+    machineEvidenceIds: observation.machineEvidenceIds ?? [],
+    record: recordMeta(
+      asOf,
+      sourceIds,
+      statusFromLegacy(observation.status),
+      observation.confidence,
+      observation.unit,
+      observation.periodStart ? dateToTimestamp(observation.periodStart, asOf) : asOf,
+    ),
+  };
+}
+
+function reconciliationFromReadModel(
+  reconciliation: NonNullable<EnergyPhysicalFlowReadModel["reconciliations"]>[number],
+): EnergyLngReconciliation {
+  return {
+    id: reconciliation.id,
+    targetKey: reconciliation.targetKey ?? reconciliation.candidateRecordKeys.join(","),
+    candidateRecordKeys: reconciliation.candidateRecordKeys,
+    sourceIds: reconciliation.sourceIds,
+    selectedRecordKey: reconciliation.selectedRecordKey,
+    status: reconciliation.status,
+    basis: reconciliation.basis ?? "latest-confirmed",
+    note: reconciliation.note,
   };
 }
 
@@ -575,6 +757,8 @@ export function toEnergyLngDomain(legacy: ExposureTraceData): EnergyLngDomain {
       country: entity.country,
       coordinates: entity.coordinates,
       description: entity.description,
+      aliases: entity.aliases,
+      identitySources: entity.identitySources,
       record: recordMeta(legacy.asOf, evidenceIds, status, sourceConfidenceForEvidence(evidenceIds, sourcesById)),
     };
   });
@@ -592,6 +776,10 @@ export function toEnergyLngDomain(legacy: ExposureTraceData): EnergyLngDomain {
     }
   }
   for (const input of legacy.commercialInputs) addMetric(commercialObservationId(input.inputId), input, [], input.evidenceIds);
+
+  const periodObservations = (legacy.physicalFlow?.observations ?? []).map((observation) =>
+    periodObservationFromReadModel(observation, legacy.asOf),
+  );
 
   const commercialInputs = legacy.commercialInputs.map<EnergyLngDomain["commercialInputs"][number]>((input) => ({
     id: input.inputId,
@@ -701,9 +889,19 @@ export function toEnergyLngDomain(legacy: ExposureTraceData): EnergyLngDomain {
     headline: legacy.headline,
     sources,
     machineEvidence: legacy.machineEvidence,
+    coverage: Object.fromEntries((legacy.physicalFlow?.coverage ?? []).map((item) => [item.sourceId, {
+      status: item.status,
+      sourcePeriod: item.sourcePeriod,
+      expectedCadence: item.expectedCadence as EnergyLngCadence,
+      observedPeriod: item.observedPeriod,
+      missingPeriods: item.missingPeriods,
+      sourceStatus: item.sourceStatus,
+    }])),
     entities,
     relationships: [...relationshipsById.values()],
     observations: [...observationsById.values()],
+    periodObservations,
+    reconciliations: (legacy.physicalFlow?.reconciliations ?? []).map(reconciliationFromReadModel),
     commercialInputs,
     assessments,
   };
@@ -712,6 +910,43 @@ export function toEnergyLngDomain(legacy: ExposureTraceData): EnergyLngDomain {
 function candidateTargetMatches(observation: EnergyLngObservation, candidate: EnergyLngNormalizedCandidate): boolean {
   const inputId = legacyObservationId(observation.id);
   return candidate.targetInputIds.includes(inputId) || candidate.targetCommercialInputIds.includes(inputId);
+}
+
+function candidateTargetIds(candidate: EnergyLngNormalizedCandidate): string[] {
+  return [...new Set([...(candidate.targetInputIds ?? []), ...(candidate.targetCommercialInputIds ?? [])])];
+}
+
+function candidateStatusPriority(status: EnergyLngNormalizedCandidate["status"]): number {
+  if (status === "confirmed") return 3;
+  if (status === "carried") return 2;
+  return 1;
+}
+
+function candidatePeriodEnd(candidate: EnergyLngNormalizedCandidate): string {
+  return candidate.periodEnd || candidate.observationDate || "";
+}
+
+function latestAssessmentCandidates(candidates: EnergyLngNormalizedCandidate[]): EnergyLngNormalizedCandidate[] {
+  const byTarget = new Map<string, EnergyLngNormalizedCandidate[]>();
+  for (const candidate of candidates) {
+    if (candidate.selectedForAssessment === false) continue;
+    for (const target of candidateTargetIds(candidate)) {
+      const group = byTarget.get(target) ?? [];
+      group.push(candidate);
+      byTarget.set(target, group);
+    }
+  }
+  const selected = new Map<string, EnergyLngNormalizedCandidate>();
+  for (const [target, group] of byTarget) {
+    const ranked = [...group].sort((left, right) =>
+      candidatePeriodEnd(right).localeCompare(candidatePeriodEnd(left))
+      || candidateStatusPriority(right.status) - candidateStatusPriority(left.status)
+      || right.observationDate?.localeCompare(left.observationDate ?? "")
+      || right.sourceId.localeCompare(left.sourceId),
+    );
+    if (ranked[0]) selected.set(target, ranked[0]);
+  }
+  return [...new Set([...selected.values()])];
 }
 
 function applyCandidateToObservation(
@@ -727,6 +962,11 @@ function applyCandidateToObservation(
     change: candidate.change,
     changePct: candidate.changePct,
     unit: candidate.unit,
+    observationKind: candidate.observationKind,
+    periodStart: candidate.periodStart,
+    periodEnd: candidate.periodEnd,
+    aliases: candidate.aliases,
+    coverage: candidate.coverage,
     sourceName: candidate.status === "unavailable" ? undefined : candidate.provider,
     sourceDate: candidate.status === "unavailable" ? undefined : candidate.observationDate ?? undefined,
     observedAt: candidate.status === "unavailable" ? undefined : candidate.observedAt ?? undefined,
@@ -742,7 +982,7 @@ function applyCandidateToObservation(
       asOf,
       validFrom: candidate.observationDate ? dateToTimestamp(candidate.observationDate, asOf) : null,
       unit: candidate.unit,
-      sourceIds: [...new Set(candidate.evidenceIds)],
+      sourceIds: [...new Set([candidate.sourceId, ...candidate.evidenceIds])],
       status: candidate.status,
       confidence: candidate.confidence,
     },
@@ -757,6 +997,46 @@ function applyCandidateToObservation(
   if (candidate.observationDate === null) delete next.sourceDate;
   if (candidate.observedAt === null) delete next.observedAt;
   return next;
+}
+
+function periodObservationFromCandidate(
+  candidate: EnergyLngNormalizedCandidate,
+  asOf: string,
+): EnergyLngObservation {
+  return {
+    id: candidate.id,
+    label: candidate.label,
+    entityIds: candidate.entityIds,
+    value: candidate.value,
+    low: candidate.low,
+    high: candidate.high,
+    change: candidate.change,
+    changePct: candidate.changePct,
+    unit: candidate.unit,
+    observationKind: candidate.observationKind,
+    periodStart: candidate.periodStart,
+    periodEnd: candidate.periodEnd,
+    aliases: candidate.aliases,
+    coverage: candidate.coverage,
+    sourceName: candidate.status === "unavailable" ? undefined : candidate.provider,
+    sourceDate: candidate.observationDate ?? undefined,
+    observedAt: candidate.observedAt ?? undefined,
+    cadence: candidate.cadence,
+    freshnessWindowDays: candidate.freshnessWindowDays,
+    carryReason: candidate.carryReason,
+    missingReason: candidate.missingReason,
+    evidenceIds: candidate.evidenceIds,
+    machineEvidenceIds: candidate.machineEvidenceIds,
+    lineage: candidate.lineage,
+    record: recordMeta(
+      asOf,
+      [candidate.sourceId, ...candidate.evidenceIds],
+      candidate.status,
+      candidate.confidence,
+      candidate.unit,
+      candidate.periodStart ? dateToTimestamp(candidate.periodStart, asOf) : null,
+    ),
+  };
 }
 
 function recalculateAssessment(
@@ -821,13 +1101,37 @@ export function applyEnergyLngCandidates(
   calculatedAt = domain.asOf,
 ): EnergyLngDomain {
   const next = structuredClone(domain);
-  for (const candidate of candidates) {
+  for (const candidate of latestAssessmentCandidates(candidates)) {
     next.observations = next.observations.map((observation) =>
       candidateTargetMatches(observation, candidate)
         ? applyCandidateToObservation(observation, candidate, next.asOf)
-        : observation,
+      : observation,
     );
   }
+  for (const candidate of candidates) {
+    const aliases = candidate.aliases;
+    if (!aliases?.length) continue;
+    next.entities = next.entities.map((entity) => candidate.entityIds.includes(entity.id)
+      ? {
+        ...entity,
+        aliases: [...new Set([...(entity.aliases ?? []), ...aliases])],
+        identitySources: candidate.observationKind === "asset-status"
+          ? [...new Set([...(entity.identitySources ?? []), candidate.provider, candidate.sourceId])]
+          : entity.identitySources,
+      }
+      : entity);
+  }
+  const periodByKey = new Map(next.periodObservations.map((observation) => [
+    observation.lineage?.recordKey || observation.id,
+    observation,
+  ]));
+  for (const candidate of candidates) {
+    const existingKey = [...periodByKey.entries()].find(([, observation]) =>
+      observation.id === candidate.id || observation.lineage?.recordKey === candidate.recordKey,
+    )?.[0];
+    periodByKey.set(existingKey ?? candidate.recordKey, periodObservationFromCandidate(candidate, next.asOf));
+  }
+  next.periodObservations = [...periodByKey.values()];
   const observationsById = new Map(next.observations.map((observation) => [observation.id, observation]));
   const entityKindsById = new Map(next.entities.map((entity) => [entity.id, entity.kind]));
   return {
@@ -847,7 +1151,11 @@ export function toExposureTraceReadModel(domain: EnergyLngDomain): ExposureTrace
     country: entity.country,
     coordinates: entity.coordinates,
     description: entity.description,
+    aliases: entity.aliases,
+    identitySources: entity.identitySources,
   }));
+
+  const allPhysicalFlow = physicalFlowReadModel(domain);
 
   const traces: ExposureTrace[] = domain.assessments.map((assessment) => ({
     id: assessment.traceId,
@@ -883,6 +1191,13 @@ export function toExposureTraceReadModel(domain: EnergyLngDomain): ExposureTrace
     alternatives: assessment.alternatives,
     portfolioAction: assessment.portfolioAction,
     watchItems: assessment.watchItems,
+    physicalFlow: {
+      ...allPhysicalFlow,
+      observations: allPhysicalFlow.observations.filter((observation) =>
+        observation.entityIds.some((entityId) => assessment.routeEntityIds.includes(entityId)
+          || assessment.hops.some((hop) => hop.entityIds.includes(entityId))),
+      ),
+    },
   }));
 
   return {
@@ -897,5 +1212,6 @@ export function toExposureTraceReadModel(domain: EnergyLngDomain): ExposureTrace
     machineEvidence: domain.machineEvidence,
     commercialInputs: domain.commercialInputs.map((input) => toLegacyCommercialInput(input, observationsById, sourcesById)),
     traces,
+    physicalFlow: allPhysicalFlow,
   };
 }

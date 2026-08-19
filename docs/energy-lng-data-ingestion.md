@@ -1,6 +1,6 @@
 # Energy & LNG Public-Data Ingestion Design
 
-**Status:** Phase 1 automated Energy/LNG MVP
+**Status:** Phase 2 Qatar/Hormuz physical-flow resolution
 **Last reviewed:** 2026-08-19
 **Scope:** Public-data collection, provenance, normalisation and promotion into Globe
 
@@ -46,6 +46,9 @@ This is the process that is live today:
    disruption change. Run it after the daily market refresh and after any
    manual state/exposure edit. This writes `energy-lng-candidates.json` and
    `energy-lng-refresh-report.json`, never the promoted runtime.
+   For a deterministic source-scoped backfill use
+   `bun run energy:refresh -- --source <source-id> --from YYYY-MM-DD --to YYYY-MM-DD`.
+   Backfills remain staged until the normal promotion gate is run.
 4. Use Firecrawl to review every due or changed URL in
    src/data/exposure-traces.json. Record the reviewed result in
    src/data/evidence-audit.json.
@@ -79,8 +82,8 @@ fallback.
 | Domain | Open source candidates | Useful observations | Cadence and limitation | Globe status |
 | --- | --- | --- | --- | --- |
 | Gas balances, production, storage and prices | [EIA Open Data](https://www.eia.gov/opendata/), [JODI-Gas](https://www.jodidata.org/gas/database/data-downloads.aspx) | Production, imports/exports, storage, prices, balances | EIA connector requires `EIA_API_KEY` or `EIA_DATA_URL`; no oil baseline is converted into LNG volume | Active physical connector |
-| Trade flows and concentration | [UN Comtrade](https://comtradeplus.un.org/TradeFlow) | Reporter, partner, HS commodity, value, quantity and direction | Monthly or annual customs data; does not prove cargo-level movement or current exposure | Future |
-| Terminals, pipelines and other assets | [Global Energy Monitor GGIT](https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/), [UN/LOCODE](https://unece.org/trade/cefact/unlocode-code-list-country-and-territory) | Asset identity, location, status, capacity and place identifiers | Release-based or static snapshots; validate against current operator/regulator material | Phase 0 / future |
+| Trade flows and concentration | [UN Comtrade](https://comtradeplus.un.org/TradeFlow) | Reporter, partner, HS commodity, value, quantity and direction | Monthly or annual customs data; public demand context only, never cargo-level movement or current exposure | Active Phase 2 trade-demand context |
+| Terminals, pipelines and other assets | [Global Energy Monitor GGIT](https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/), [UN/LOCODE](https://unece.org/trade/cefact/unlocode-code-list-country-and-territory) | Asset identity, location, status, capacity and place identifiers | Release-based or static snapshots; identity/capacity metadata does not prove current loading | Active Phase 2 asset registry |
 | Ports, chokepoints and maritime pressure | [IMF PortWatch](https://portwatch.imf.org/pages/data-and-methodology) | Port activity, trade proxies, chokepoint and disruption indicators | Set `PORTWATCH_DATA_URL`; methodology pages are never parsed as observations; reviewed Kpler route data may be carried | Active route connector |
 | European gas system | [AGSI+](https://agsi.gie.eu/), [ENTSOG Transparency](https://transparency.entsog.eu/) | Storage, nominations, flows, network and facility observations | Coverage is strongest in Europe and depends on the source's reporting rules | Future |
 | Historical LNG vessel and terminal baseline | [LNG-T3](https://zenodo.org/records/19571058) | Historical vessel voyages, terminals, throughput and country flows | Historical dataset; useful for backtesting and priors, not live status | Future |
@@ -93,13 +96,15 @@ freight, inventory nominations, contract terms, gas quality, insurance and
 counterparty credit. These require licensed, internal or manually verified
 inputs before they can support a stronger exposure claim.
 
-### Active Phase 1 contract
+### Active Phase 2 contract
 
-`bun run energy:refresh` fetches the configured physical-flow, route-context
-and TTF market sources. `--event` changes only the trigger recorded in the
-report. The command writes candidate observations and a promotion report; it
-does not modify `daily-state.json`, `exposure-traces.json`, or the promoted
-runtime.
+`bun run energy:refresh` fetches the configured EIA, IMF PortWatch, GEM,
+UN/LOCODE, UN Comtrade and TTF sources. `--event` changes only the trigger
+recorded in the report. `--source`, `--from` and `--to` constrain a
+deterministic backfill. The command writes candidate observations, a
+promotion report, a snapshot manifest and durable raw artifacts under
+`src/data/energy-lng-snapshots/`; it does not modify `daily-state.json`,
+`exposure-traces.json`, or the promoted runtime.
 
 Each candidate includes its provider, exact URL, observation and retrieval
 timestamps, entity IDs, unit, cadence, freshness window, confidence, status,
@@ -112,6 +117,15 @@ an automated snapshot. The promotion gate rejects malformed, stale confirmed,
 duplicate, unit-mismatched, unknown-entity, unknown-evidence, scope-mutated,
 fingerprint-stale and unsupported-source records. Carried observations remain
 dated and lower confidence; unavailable observations contain no invented value.
+
+Phase 2 candidates also carry an observation kind, explicit period bounds and
+coverage metadata: source period, expected cadence, observed period, missing
+periods and source status. Conflicting source observations preserve both
+lineages and identify the selected reconciliation basis. The read model keeps
+direct physical observations, public asset metadata, route proxies, monthly
+trade context and unavailable data visibly separate. UN Comtrade is never
+treated as live cargo movement, and unsupported vessel-specific observations
+remain unavailable.
 
 The report and candidate file are an atomic logical pair. `daily:apply` refuses
 one without the other, checks the refresh fingerprint against the current
@@ -200,7 +214,7 @@ All approved records are published through the existing `daily:apply` path.
   current React data contract.
 - Use the existing static fixtures to test provenance and derived metrics.
 
-### Phase 1 — High-value open-data connectors (active MVP)
+### Phase 1 — High-value open-data connectors (complete)
 
 - Start with EIA/JODI for balances and benchmarks, UN Comtrade for trade
   concentration, GEM/UNLOCODE for asset identity and PortWatch for
@@ -210,13 +224,18 @@ All approved records are published through the existing `daily:apply` path.
   is gated by the refresh report and `daily:apply`; connectors do not write
   directly into runtime JSON.
 
-### Phase 2 — Scheduled promotion and read model
+### Phase 2 — Physical-flow resolution (current)
 
-- Add scheduled fetches, freshness monitoring, backfill handling and
-  idempotent promotion.
-- Build a versioned read model/API while retaining static fallbacks for
-  degraded operation.
-- Expose source age, confidence, coverage and derivation in the UI.
+- Add deterministic multi-period EIA, PortWatch, asset-registry and Comtrade
+  normalisation with exact series, route and trade selectors.
+- Persist raw snapshot artifacts and hashes before parsing; retain normalized
+  record lineage through promotion.
+- Add Qatar production/export baselines, Ras Laffan identity/status/capacity,
+  Hormuz route-pressure history and Japan/Korea monthly demand context.
+- Expose source age, cadence, confidence, coverage and direct/proxy/unavailable
+  status in the UI while keeping execution manual through the daily runbook.
+- Do not add repository scheduling, realtime streaming, licensed AIS/cargo,
+  JKM, freight, insurance or customer-specific data in this phase.
 
 ### Phase 3 — Licensed and private coverage
 
@@ -252,6 +271,8 @@ An ingestion change is ready for promotion only when:
 - evidence checks, tests, data checks and the production build pass; and
 - the UI states “Insufficient verified data” when the available evidence does
   not support a stronger claim.
+- monthly trade context, route proxies and public relationships are visibly
+  separated from confirmed physical flow or cargo exposure.
 
 ## 8. Related documents
 

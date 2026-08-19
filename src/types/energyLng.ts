@@ -7,7 +7,15 @@
  * changing the experience layer.
  */
 
-import type { EnergyLngMachineEvidence } from "./energyLngPipeline";
+import type {
+  EnergyLngCadence as PipelineCadence,
+  EnergyLngCoverageMetadata,
+  EnergyLngCoverageStatus,
+  EnergyLngMachineEvidence,
+  EnergyLngObservationKind,
+  EnergyLngPeriod,
+  EnergyLngReconciliation,
+} from "./energyLngPipeline";
 
 export type EnergyLngEntityKind =
   | "producer"
@@ -46,7 +54,8 @@ export type EnergyLngRelationshipType =
 
 export type EnergyLngRecordStatus = "confirmed" | "carried" | "unavailable" | "inferred";
 export type EnergyLngConfidence = "high" | "medium" | "low" | "unknown";
-export type EnergyLngCadence = "daily" | "event-driven" | "contract-driven";
+export type EnergyLngCadence = PipelineCadence;
+export type { EnergyLngCoverageMetadata, EnergyLngCoverageStatus, EnergyLngObservationKind, EnergyLngPeriod, EnergyLngReconciliation };
 
 export interface EnergyLngLineage {
   sourceId: string;
@@ -79,7 +88,7 @@ export interface EnergyLngSource {
   url: string;
   publishedAt: string;
   retrievedAt: string;
-  kind: "event" | "market-observation" | "contract" | "official-statistics";
+  kind: "event" | "market-observation" | "contract" | "official-statistics" | "physical-flow" | "route-context" | "asset-registry" | "trade-demand";
   cadence: EnergyLngCadence;
   maxAgeDays: number;
   status: "confirmed" | "carried";
@@ -96,6 +105,8 @@ export interface EnergyLngEntity {
   country: string;
   coordinates?: [number, number];
   description: string;
+  aliases?: string[];
+  identitySources?: string[];
   record: EnergyLngRecordMeta;
 }
 
@@ -119,6 +130,11 @@ export interface EnergyLngObservation {
   change?: number;
   changePct?: number;
   unit: string | null;
+  observationKind?: EnergyLngObservationKind;
+  periodStart?: string | null;
+  periodEnd?: string | null;
+  aliases?: string[];
+  coverage?: EnergyLngCoverageMetadata;
   sourceName?: string;
   sourceDate?: string;
   observedAt?: string;
@@ -291,9 +307,12 @@ export interface EnergyLngDomain {
   headline: string;
   sources: EnergyLngSource[];
   machineEvidence?: EnergyLngMachineEvidence[];
+  coverage?: Record<string, EnergyLngCoverageMetadata>;
   entities: EnergyLngEntity[];
   relationships: EnergyLngRelationship[];
   observations: EnergyLngObservation[];
+  periodObservations: EnergyLngObservation[];
+  reconciliations: EnergyLngReconciliation[];
   commercialInputs: EnergyLngCommercialInput[];
   assessments: EnergyLngAssessment[];
 }

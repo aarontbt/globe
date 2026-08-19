@@ -8,7 +8,7 @@
 
 1. **Preview** - run `bun run daily:fetch -- --dry-run`. Confirm the preview includes Brent, WTI, Dutch TTF, EUR/USD, and SOFR. This command must not change files.
 2. **Refresh** - run `bun run daily:refresh`. This persists successfully fetched liquid values to daily state but does not publish them.
-3. **Refresh Energy/LNG candidates** - run `bun run energy:refresh`; use `bun run energy:refresh -- --event` after a material disruption change. Review the source snapshots, machine evidence, carried/unavailable outcomes, and promotion report. This command does not change promoted runtime data. Configure `EIA_SERIES_ID` for the EIA series and `PORTWATCH_DATA_URL` (plus `PORTWATCH_ROUTE_ID` when required by the endpoint) for PortWatch; unconfigured selectors fail closed to the declared fallback.
+3. **Refresh Energy/LNG candidates** - run `bun run energy:refresh`; use `bun run energy:refresh -- --event` after a material disruption change. Review source snapshots, raw artifact hashes, machine evidence, period coverage, carried/unavailable outcomes, reconciliations, and the promotion report. For a bounded backfill use `bun run energy:refresh -- --source <source-id> --from YYYY-MM-DD --to YYYY-MM-DD`. This command does not change promoted runtime data. Configure `EIA_API_KEY` or `EIA_DATA_URL` plus the relevant `EIA_SERIES_ID`/`EIA_QATAR_*_SERIES_ID`; configure approved machine-readable `PORTWATCH_DATA_URL`, `GEM_DATA_URL`, `UNLOCODE_DATA_URL`, and `COMTRADE_DATA_URL` outside the repository. Methodology pages are not endpoints; unconfigured selectors fail closed to the declared fallback.
 4. **Audit evidence** - use Firecrawl to scrape every due or changed URL in `src/data/exposure-traces.json`, then update the reviewed results in `src/data/evidence-audit.json`.
    - Verify the canonical URL, HTTP status, page type, title, publisher, publication date, extracted facts, and direct claim support.
    - For market observations, record the exact value, unit, instrument, provider, source date, and observation timestamp when available.
@@ -16,7 +16,8 @@
    - Run `bun run daily:evidence`. Resolve every failure before continuing.
 5. **Complete verified physical inputs** - edit `src/data/daily-state.json`:
    - Update `asOf`, `day`, crisis fields, alerts, scenarios, and `timelineEntry`.
-   - Under `traceInputs.metrics`, review JKM, Hormuz transit condition/count, Qatar output/force-majeure status, EIA oil-flow baselines, and the trace headline.
+   - Under `traceInputs.metrics`, review JKM, Hormuz transit condition/count, route pressure, Qatar output/force-majeure status, EIA production/export baselines, Ras Laffan capacity/status/UN/LOCODE identity, Japan/Korea monthly demand context, EIA oil-flow baselines, and the trace headline.
+   - Treat UN Comtrade monthly/annual values as public demand context, never as live cargo movement. Keep vessel-specific observations unavailable unless independently supported by dated public evidence.
    - Under `commercialInputs`, review Dubai/Oman, LNG and VLCC freight, war-risk costs, current origin/destination values, EUR/USD, and SOFR.
    - Every published value needs exact evidence, `source`, and `sourceDate`. Do not enter analyst estimates, assumed ranges, or placeholder values.
    - If a prior observation is still useful, keep its original date and mark it `carried`; it will display but cannot enter a calculation.
@@ -32,11 +33,15 @@
 ## Cadence and Source Rules
 
 - **Daily**: Brent, WTI, TTF, EUR/USD, SOFR, JKM, Dubai/Oman, Hormuz transit status, route-normalised freight, war-risk cost, and trace headline.
+- **Daily**: IMF PortWatch route pressure when the approved endpoint covers the exact route and metric.
+- **Annual**: EIA Qatar production/export baselines, GEM terminal capacity/status, and UN/LOCODE identity snapshots.
+- **Monthly/annual context**: UN Comtrade Japan/Korea LNG import demand; this is not cargo-level movement.
 - **Event-driven**: Qatar production, force majeure, attacks, reopening, and routing changes.
 - **Contract-driven**: named counterparties and public supply agreements.
 - Yahoo Finance with Stooq fallback is allowed for liquid instruments. Dutch TTF uses Yahoo `TTF=F`.
 - JKM, Dubai/Oman, LNG/VLCC freight, AIS/transit counts, Qatar output, force majeure, and war-risk costs remain manually verified unless a dependable machine-readable source is approved.
 - Missing data is published as unavailable. Carried or stale values never enter commercial calculations.
+- `bun run daily:update` is promotion-only: it must not fetch, recrawl, or create scheduler infrastructure.
 - Relationships must be typed as `public-contract`, `operational-dependency`, or `market-sensitivity`.
 - Broad landing pages are not valid evidence. Dynamic quote pages require a dated observation snapshot before they can support a historical metric.
 
@@ -47,6 +52,7 @@
 - `src/data/daily-state.json` and `public/data/daily-state.json`
 - `src/data/exposure-traces.json` and `public/data/exposure-traces.json`
 - `src/data/energy-lng-candidates.json` and `src/data/energy-lng-refresh-report.json` (staged inputs)
+- `src/data/energy-lng-snapshot-manifest.json` and `src/data/energy-lng-snapshots/` (raw snapshot lineage; generated by `energy:refresh`)
 - `src/data/energy-lng-runtime.json`, `src/data/energy-lng-read-model.json`, and their `public/data/` mirrors
 - `src/data/iran-intel-events.json` and `public/data/iran-intel-events.json`
 - `src/data/banker-cross-asset.json`

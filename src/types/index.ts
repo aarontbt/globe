@@ -222,7 +222,13 @@ export interface TraceMetric {
   sourceDate: string;
   observedAt?: string;
   maxAgeDays: number;
-  cadence?: "daily" | "event-driven" | "contract-driven";
+  cadence?: "daily" | "weekly" | "monthly" | "annual" | "event-driven" | "contract-driven";
+  observationKind?: "flow" | "capacity" | "asset-status" | "transit" | "trade-demand";
+  periodStart?: string | null;
+  periodEnd?: string | null;
+  coverageStatus?: "direct-observation" | "public-proxy" | "partial-coverage" | "unavailable";
+  coverageNote?: string;
+  sourceAgeDays?: number | null;
   machineEvidenceIds?: string[];
   carryReason?: string;
   missingReason?: string;
@@ -256,6 +262,8 @@ export interface PublicEntity {
   country: string;
   coordinates?: [number, number];
   description: string;
+  aliases?: string[];
+  identitySources?: string[];
 }
 
 export interface EvidenceReference {
@@ -266,7 +274,7 @@ export interface EvidenceReference {
   publishedAt: string;
   lastChecked: string;
   kind: "event" | "market-observation" | "contract" | "official-statistics";
-  cadence: "daily" | "event-driven" | "contract-driven";
+  cadence: "daily" | "weekly" | "monthly" | "annual" | "event-driven" | "contract-driven";
   maxAgeDays: number;
   status: "confirmed" | "carried";
   note?: string;
@@ -384,6 +392,52 @@ export interface ExposureTrace {
   alternatives?: EnergyAlternative[];
   portfolioAction: string;
   watchItems: string[];
+  physicalFlow?: EnergyPhysicalFlowReadModel;
+}
+
+export interface EnergyPhysicalFlowObservation {
+  id: string;
+  label: string;
+  entityIds: string[];
+  observationKind: "flow" | "capacity" | "asset-status" | "transit" | "trade-demand";
+  periodStart: string | null;
+  periodEnd: string | null;
+  value?: number | string;
+  unit: string | null;
+  status: TraceMetricStatus;
+  coverageStatus: "direct-observation" | "public-proxy" | "partial-coverage" | "unavailable";
+  coverageNote?: string;
+  source: string;
+  sourceId?: string;
+  sourceUrl?: string;
+  sourceAgeDays?: number | null;
+  cadence: "daily" | "weekly" | "monthly" | "annual" | "event-driven" | "contract-driven";
+  confidence: "high" | "medium" | "low" | "unknown";
+  evidenceIds: string[];
+  machineEvidenceIds?: string[];
+}
+
+export interface EnergyPhysicalFlowReadModel {
+  observations: EnergyPhysicalFlowObservation[];
+  coverage: Array<{
+    sourceId: string;
+    sourcePeriod: { start: string; end: string } | null;
+    expectedCadence: string;
+    observedPeriod: { start: string; end: string } | null;
+    missingPeriods: string[];
+    status: "direct-observation" | "public-proxy" | "partial-coverage" | "unavailable";
+    sourceStatus: "fetched" | "failed" | "skipped";
+  }>;
+  reconciliations?: Array<{
+    id: string;
+    targetKey?: string;
+    sourceIds: string[];
+    candidateRecordKeys: string[];
+    selectedRecordKey: string | null;
+    status: "resolved" | "unresolved";
+    basis?: "highest-priority-confirmed" | "latest-confirmed" | "preserved-unavailable";
+    note: string;
+  }>;
 }
 
 export interface ExposureTraceData {
@@ -398,6 +452,7 @@ export interface ExposureTraceData {
   machineEvidence?: EnergyLngMachineEvidence[];
   commercialInputs: ObservedCommercialInput[];
   traces: ExposureTrace[];
+  physicalFlow?: EnergyPhysicalFlowReadModel;
 }
 
 export interface GlobeEvent {

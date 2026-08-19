@@ -93,15 +93,19 @@ The staged Energy/LNG workflow covers the Qatar supply and Hormuz LNG traces:
 ```bash
 bun run energy:refresh
 bun run energy:refresh -- --event
+bun run energy:refresh -- --source src-comtrade-japan-lng-demand --from 2026-07-01 --to 2026-07-31
 bun run daily:update
 ```
 
-Refresh writes candidates and a promotion report. Only a validated report is
+Refresh writes candidates, a promotion report, raw snapshot artifacts and
+coverage metadata. Only a validated report is
 promoted by `daily:update`; failed sources become explicit carried or
 unavailable observations. The promoted canonical domain and generated read
-model are mirrored under `public/data/`. JKM, freight, insurance, cargo
-volume, and alternative execution capacity remain unavailable unless
-independently verified.
+model are mirrored under `public/data/`. EIA, PortWatch, GEM, UN/LOCODE and
+Comtrade records remain period-labeled; monthly trade values and route proxies
+are context, not confirmed cargo exposure. JKM, freight, insurance, cargo
+volume, vessel identity and alternative execution capacity remain unavailable
+unless independently verified.
 
 ## Main UI Surfaces
 

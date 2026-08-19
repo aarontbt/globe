@@ -1,7 +1,7 @@
 # Energy & LNG Vertical Plan
 
 - **Branch:** `feat/energy-lng-vertical`
-- **Status:** Phase 1 automated Energy/LNG MVP landed; Phase 2 physical-flow expansion remains ahead
+- **Status:** Phase 2 Qatar/Hormuz physical-flow resolution landed; manual daily promotion remains active
 - **Date:** 19 August 2026
 - **PRD:** [`../PRD.md`](../PRD.md)
 
@@ -186,9 +186,12 @@ Add:
 - trace-scoped observation IDs prevent reused legacy input IDs from merging incompatible source context;
 - alternative slots and feasibility semantics are present; the LNG traces expose European TTF only as a potential market candidate, with execution constraints explicitly unresolved.
 - staged refresh is available through `bun run energy:refresh` and `bun run energy:refresh -- --event`;
-- EIA physical-flow, IMF PortWatch route-context, and existing TTF market source definitions emit normalized candidates with snapshot lineage, freshness and fallback status;
+- source-scoped deterministic backfills are available through `bun run energy:refresh -- --source <source-id> --from YYYY-MM-DD --to YYYY-MM-DD`;
+- EIA production/export, IMF PortWatch route context, GEM/UN/LOCODE asset identity, UN Comtrade demand context and TTF source definitions emit normalized candidates with period bounds, coverage, snapshot lineage, freshness and fallback status;
+- the Qatar/Hormuz read model exposes Ras Laffan identity/status/capacity, Hormuz route-pressure history, Japan/Korea monthly trade context, source age and direct/proxy/unavailable labels;
+- raw snapshot artifacts are persisted and hashed before parsing; conflicts preserve both lineages and an explicit reconciliation basis;
 - `bun run daily:update` promotes only validated same-as-of candidates, recalculates Flow Pressure through the adapter, ranks alternatives, generates the Energy/LNG read model, and mirrors promoted runtime data;
-- source selectors, target publication policies, deterministic record-key checks, machine snapshot evidence, refresh fingerprints, unavailable TTF handling, and staged fail-closed publication gates harden the Phase 1 workflow;
+- source selectors, target publication policies, deterministic record-key checks, machine snapshot evidence, refresh fingerprints, period coverage, backfill idempotency, unavailable handling, and staged fail-closed publication gates harden the Phase 2 workflow;
 - reviewed Qatar force-majeure and Hormuz disruption evidence remains manual-only and is preserved during carry-forward.
 
 ### Phase 0 - Foundation
@@ -208,12 +211,13 @@ Add:
 - show one or more evidence-backed alternatives;
 - deliver the full assessment in Globe.
 
-### Phase 2 - Physical-flow resolution
+### Phase 2 - Physical-flow resolution (complete for Qatar/Hormuz MVP)
 
-- add production, terminal, vessel, port and chokepoint time series;
-- add route delay and destination-demand observations;
+- add production, terminal, port and chokepoint time series;
+- add route pressure and destination-demand observations;
 - reconcile source differences and show coverage explicitly;
-- support more LNG corridors without hard-coding each trace in React.
+- retain vessel-specific observations as unavailable until dated independent public evidence exists;
+- keep the current manual runbook trigger; scheduler, realtime, licensed AIS/cargo and customer-specific data are outside this phase.
 
 ### Phase 3 - Economics and scenarios
 
