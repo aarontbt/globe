@@ -75,20 +75,62 @@ function getActiveTrace(data: ExposureTraceData, activeTraceId: string) {
   return data.traces.find((trace) => trace.id === activeTraceId) ?? data.traces[0];
 }
 
+function formatValuePart(value: number | string, unit?: string | null) {
+  if (unit === "USD" && typeof value === "number" && Number.isFinite(value)) {
+    return new Intl.NumberFormat("en-US", {
+      notation: "compact",
+      maximumFractionDigits: 1,
+    }).format(value);
+  }
+  return String(value);
+}
+
+function displayValue(value: number | string | undefined, unit?: string | null) {
+  if (value === undefined) return "unavailable";
+  return `${formatValuePart(value, unit)}${unit ? ` ${unit}` : ""}`;
+}
+
+function signalLabel(observation: NonNullable<NonNullable<ExposureTrace["physicalFlow"]>["observations"]>[number]) {
+  switch (observation.sourceId) {
+    case "src-comtrade-japan-lng-demand":
+      return "Japan LNG imports";
+    case "src-comtrade-korea-lng-demand":
+      return "South Korea LNG imports";
+    case "src-gem-ras-laffan-capacity":
+      return "Ras Laffan capacity";
+    case "src-gem-ras-laffan-status":
+      return "Ras Laffan status";
+    default:
+      return observation.label;
+  }
+}
+
+function latestSignals(observations: NonNullable<NonNullable<ExposureTrace["physicalFlow"]>["observations"]>) {
+  const latest = new Map<string, (typeof observations)[number]>();
+  for (const observation of observations) {
+    const key = `${observation.sourceId ?? observation.label}:${observation.unit ?? ""}`;
+    const current = latest.get(key);
+    const observationDate = observation.periodEnd ?? observation.periodStart ?? "";
+    const currentDate = current?.periodEnd ?? current?.periodStart ?? "";
+    if (!current || observationDate >= currentDate) latest.set(key, observation);
+  }
+  return [...latest.values()];
+}
+
 function metricValue(metric: TraceMetric) {
   if (metric.low !== undefined && metric.high !== undefined) {
-    return `${metric.low}-${metric.high}${metric.unit ? ` ${metric.unit}` : ""}`;
+    return `${formatValuePart(metric.low, metric.unit)}-${formatValuePart(metric.high, metric.unit)}${metric.unit ? ` ${metric.unit}` : ""}`;
   }
   if (metric.value !== undefined) {
-    return `${metric.value}${metric.unit ? ` ${metric.unit}` : ""}`;
+    return displayValue(metric.value, metric.unit);
   }
   return "Insufficient verified data";
 }
 
 function statusLabel(metric: TraceMetric) {
-  if (metric.status === "carried") return `historical observation · ${metric.sourceDate}`;
-  if (metric.status === "unavailable") return metric.missingReason ?? "Insufficient verified data";
-  return `verified ${metric.sourceDate}`;
+  if (metric.status === "carried") return "historical";
+  if (metric.status === "unavailable") return "not currently verified";
+  return "verified";
 }
 
 function derivedValue(metric: DerivedCommercialMetric) {
@@ -128,90 +170,33 @@ function alternativeFeasibilityLabel(feasibility: EnergyAlternative["feasibility
   return "Insufficient verified data";
 }
 
-function physicalKindLabel(kind: NonNullable<NonNullable<ExposureTrace["physicalFlow"]>["observations"]>[number]["observationKind"]) {
-  if (kind === "asset-status") return "asset status";
-  if (kind === "capacity") return "capacity";
-  if (kind === "trade-demand") return "trade demand context";
-  if (kind === "transit") return "route observation";
-  return "physical flow";
-}
-
-function physicalCoverageLabel(observation: NonNullable<NonNullable<ExposureTrace["physicalFlow"]>["observations"]>[number]) {
-  if (observation.coverageStatus === "public-proxy") return "public context · not cargo-level";
-  if (observation.coverageStatus === "partial-coverage") return "partial public coverage";
-  if (observation.coverageStatus === "unavailable") return "unavailable";
-  if (observation.status === "carried") return "historical / carried";
-  return observation.observationKind === "flow" || observation.observationKind === "transit"
-    ? "confirmed physical observation"
-    : "confirmed public asset metadata";
-}
-
-function physicalPeriodLabel(observation: NonNullable<NonNullable<ExposureTrace["physicalFlow"]>["observations"]>[number]) {
-  if (!observation.periodStart && !observation.periodEnd) return "period unavailable";
-  if (observation.periodStart === observation.periodEnd || !observation.periodEnd) return observation.periodStart ?? "period unavailable";
-  return `${observation.periodStart} → ${observation.periodEnd}`;
-}
-
 function PhysicalFlowTimeline({ trace }: { trace: ExposureTrace }) {
-  const physicalFlow = trace.physicalFlow;
-  const observations = physicalFlow?.observations ?? [];
-  const direct = observations.filter((item) => item.coverageStatus === "direct-observation" && item.status === "confirmed");
-  const context = observations.filter((item) => item.coverageStatus === "public-proxy" || item.coverageStatus === "partial-coverage" || item.status === "carried");
-  const unavailableMetrics = trace.hops.flatMap((hop) => hop.metrics).filter((metric) => metric.status === "unavailable");
+  const observations = latestSignals(trace.physicalFlow?.observations ?? []);
+  const direct = observations.filter((item) => (
+    item.coverageStatus === "direct-observation"
+      && item.status === "confirmed"
+      && item.sourceId !== "src-unlocode-ras-laffan"
+      && !(item.observationKind === "asset-status" && item.value === item.label)
+  ));
   const groups = [
-    { label: "Confirmed physical flow / asset metadata", items: direct, color: "#34d399" },
-    { label: "Public context", items: context, color: "#fbbf24" },
+    { label: "Key physical signals", items: direct, color: "#34d399" },
   ].filter((group) => group.items.length > 0);
 
   return (
     <div style={{ ...sectionCard, padding: 14 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
-        <div>
-          <SectionLabel>Physical-flow timeline</SectionLabel>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.62)", lineHeight: 1.45 }}>
-            Period observations remain separate from the current assessment input. Cadence, age and proxy status stay visible.
-          </div>
-        </div>
-        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.42)", textAlign: "right" }}>
-          {observations.length} observations · {physicalFlow?.coverage.length ?? 0} source coverages
-        </div>
-      </div>
+      <SectionLabel>Key signals</SectionLabel>
 
       {groups.map((group) => (
         <div key={group.label} style={{ marginTop: 13 }}>
           <div style={{ color: group.color, fontSize: 12, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 5 }}>{group.label}</div>
           {group.items.map((observation) => (
-            <div key={observation.id} style={{ display: "grid", gridTemplateColumns: "1.55fr 1fr 1.35fr", gap: 10, padding: "8px 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-              <div>
-                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.86)", fontWeight: 700 }}>{observation.label}</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.34)", marginTop: 2 }}>{physicalKindLabel(observation.observationKind)} · {physicalPeriodLabel(observation)}</div>
-              </div>
-              <div style={{ fontSize: 12, color: group.color, fontWeight: 750 }}>{observation.value ?? "unavailable"}{observation.unit ? ` ${observation.unit}` : ""}</div>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)", textAlign: "right" }}>
-                <div>{physicalCoverageLabel(observation)}</div>
-                <div style={{ marginTop: 2 }}>{observation.cadence}{observation.sourceAgeDays === null || observation.sourceAgeDays === undefined ? "" : ` · ${observation.sourceAgeDays}d old`} · {observation.confidence} confidence</div>
-              </div>
+            <div key={observation.id} style={{ display: "grid", gridTemplateColumns: "1.8fr 1fr", gap: 10, padding: "8px 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.86)", fontWeight: 700 }}>{signalLabel(observation)}</div>
+              <div style={{ fontSize: 12, color: group.color, fontWeight: 750 }}>{displayValue(observation.value, observation.unit)}</div>
             </div>
           ))}
         </div>
       ))}
-
-      {unavailableMetrics.length > 0 && (
-        <div style={{ marginTop: 13, paddingTop: 10, borderTop: "1px solid rgba(248,113,113,0.18)" }}>
-          <div style={{ color: "#f87171", fontSize: 12, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 5 }}>Unavailable data</div>
-          {unavailableMetrics.map((metric) => (
-            <div key={metric.inputId} style={{ fontSize: 12, color: "rgba(255,255,255,0.46)", padding: "4px 0" }}>
-              {metric.label}: {metric.missingReason ?? "no approved observation"}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {(physicalFlow?.coverage ?? []).some((item) => item.missingPeriods.length > 0) && (
-        <div style={{ marginTop: 10, fontSize: 11, color: "#fbbf24" }}>
-          Missing periods remain explicit in source coverage metadata; no values are interpolated.
-        </div>
-      )}
     </div>
   );
 }
@@ -413,9 +398,6 @@ export default function ExposureTracePanel({ data, activeTraceId, onTraceChange 
                       </div>
                     )}
                     <div style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", marginTop: 1 }}>{statusLabel(metric)}</div>
-                    {(metric.machineEvidenceIds?.length ?? 0) > 0 && (
-                      <div style={{ fontSize: 11, color: "#67e8f9", marginTop: 2 }}>machine snapshot lineage validated</div>
-                    )}
                   </div>
                 ))}
               </div>
