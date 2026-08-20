@@ -588,19 +588,24 @@ export default function GlobeView() {
         />
       )}
 
-      {/* Top-right controls: layers + perf, left of EventPanel */}
+      {/* Top-right controls, left of EventPanel */}
       <div
         style={{
           position: "absolute",
           top: 16,
           right: 344,
-          zIndex: 10,
+          zIndex: 20,
           display: "flex",
           flexDirection: "row",
           alignItems: "flex-start",
           gap: 8,
         }}
       >
+        <MarketBriefOverlay
+          data={energyLngReadModel}
+          activeTraceId={activeTraceId}
+          onTraceChange={setActiveTraceId}
+        />
         <LayerTogglePanel
           visibility={visibility}
           onChange={handleVisibilityChange}
@@ -610,11 +615,6 @@ export default function GlobeView() {
       </div>
 
       <BottomChartsPanel />
-      <MarketBriefOverlay
-        data={energyLngReadModel}
-        activeTraceId={activeTraceId}
-        onTraceChange={setActiveTraceId}
-      />
     </div>
   );
 }

@@ -86,25 +86,23 @@ export default function MarketBriefOverlay({
             setOpen(true);
           }}
           style={{
-            position: "fixed",
-            top: 16,
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 20,
-            background: "rgba(56,189,248,0.08)",
-            border: "1px solid rgba(56,189,248,0.25)",
-            color: "#38bdf8",
-            padding: "6px 18px",
-            borderRadius: 20,
-            fontSize: 11,
-            fontWeight: 700,
-            letterSpacing: "0.12em",
+            background: "rgba(8,12,22,0.88)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            borderRadius: 8,
+            padding: "5px 11px",
+            color: "rgba(255,255,255,0.45)",
+            fontSize: 10,
+            letterSpacing: "0.16em",
             cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
             fontFamily: FONT_SANS,
             backdropFilter: "blur(8px)",
             whiteSpace: "nowrap",
           }}
         >
+          <span style={{ color: "#38bdf8", fontSize: 8, lineHeight: 1 }}>→</span>
           SIGNAL → EXPOSURE
         </button>
       )}
