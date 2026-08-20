@@ -6,8 +6,14 @@ export const STATE_PATH = path.join(ROOT, "src/data/daily-state.json");
 export const EVIDENCE_AUDIT_PATH = path.join(ROOT, "src/data/evidence-audit.json");
 
 export const PATHS = {
+  root: ROOT,
   state: STATE_PATH,
   publicData: path.join(ROOT, "public/data"),
+  climateSourceRegistry: path.join(ROOT, "src/data/climate-source-registry.json"),
+  climateCandidates: path.join(ROOT, "src/data/climate-candidates.json"),
+  climateRefreshReport: path.join(ROOT, "src/data/climate-refresh-report.json"),
+  climateSnapshotDir: path.join(ROOT, "src/data/climate-snapshots"),
+  climateReadModel: path.join(ROOT, "src/data/climate-read-model.json"),
   energySourceRegistry: path.join(ROOT, "src/data/energy-lng-source-registry.json"),
   energyCandidates: path.join(ROOT, "src/data/energy-lng-candidates.json"),
   energyRefreshReport: path.join(ROOT, "src/data/energy-lng-refresh-report.json"),

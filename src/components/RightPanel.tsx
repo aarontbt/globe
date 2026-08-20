@@ -3,13 +3,18 @@ import { FONT_SANS } from "../styles/fonts";
 import EventPanel from "./EventPanel";
 import PolymarketPanel from "./PolymarketPanel";
 import CommoditiesImpactPanel from "./CommoditiesImpactPanel";
+import ClimatePanel from "./ClimatePanel";
+import type { ClimateAlertLevel, ClimateReadModel } from "../types/climate";
 
-export type RightPanelTab = "events" | "predictions" | "supply-chain";
+export type RightPanelTab = "events" | "predictions" | "supply-chain" | "climate";
+
+const SHOW_CLIMATE_TAB = false;
 
 const TABS: { id: RightPanelTab; label: string }[] = [
   { id: "events",       label: "EVENTS" },
   { id: "predictions",  label: "PREDICTIONS" },
   { id: "supply-chain", label: "SUPPLY CHAIN" },
+  { id: "climate",      label: "CLIMATE" },
 ];
 
 interface RightPanelProps {
@@ -24,6 +29,11 @@ interface RightPanelProps {
   activeCategories: Set<EventCategory>;
   onSelect: (id: string | null) => void;
   onToggleCategory: (cat: EventCategory) => void;
+  climateData: ClimateReadModel;
+  selectedClimateId: string | null;
+  activeClimateAlerts: Set<ClimateAlertLevel>;
+  onSelectClimate: (id: string | null) => void;
+  onToggleClimateAlert: (alert: ClimateAlertLevel) => void;
 }
 
 export default function RightPanel({
@@ -37,7 +47,14 @@ export default function RightPanel({
   activeCategories,
   onSelect,
   onToggleCategory,
+  climateData,
+  selectedClimateId,
+  activeClimateAlerts,
+  onSelectClimate,
+  onToggleClimateAlert,
 }: RightPanelProps) {
+  const visibleActiveTab = !SHOW_CLIMATE_TAB && activeTab === "climate" ? "events" : activeTab;
+
   return (
     <div
       style={{
@@ -65,8 +82,8 @@ export default function RightPanel({
         borderBottom: "1px solid rgba(255,255,255,0.07)",
         background: "rgba(0,0,0,0.2)",
       }}>
-        {TABS.map(tab => {
-          const isActive = activeTab === tab.id;
+        {TABS.filter((tab) => SHOW_CLIMATE_TAB || tab.id !== "climate").map(tab => {
+          const isActive = visibleActiveTab === tab.id;
           return (
             <button
               key={tab.id}
@@ -94,7 +111,7 @@ export default function RightPanel({
 
       {/* Tab content */}
       <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column" }}>
-        {activeTab === "events" && (
+        {visibleActiveTab === "events" && (
           <EventPanel
             events={intelEvents}
             loading={eventsLoading}
@@ -105,7 +122,7 @@ export default function RightPanel({
             onToggleCategory={onToggleCategory}
           />
         )}
-        {activeTab === "predictions" && (
+        {visibleActiveTab === "predictions" && (
           <PolymarketPanel
             events={polymarketEvents}
             loading={eventsLoading}
@@ -114,8 +131,17 @@ export default function RightPanel({
             onSelect={onSelect}
           />
         )}
-        {activeTab === "supply-chain" && (
+        {visibleActiveTab === "supply-chain" && (
           <CommoditiesImpactPanel />
+        )}
+        {SHOW_CLIMATE_TAB && visibleActiveTab === "climate" && (
+          <ClimatePanel
+            data={climateData}
+            selectedId={selectedClimateId}
+            activeAlerts={activeClimateAlerts}
+            onSelect={onSelectClimate}
+            onToggleAlert={onToggleClimateAlert}
+          />
         )}
       </div>
     </div>

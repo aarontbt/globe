@@ -14,6 +14,8 @@ import {
 import fs from "node:fs";
 import path from "node:path";
 import { isDeepStrictEqual } from "node:util";
+import { readClimateTargetData, validateClimateReadModel } from "./climate-refresh.mjs";
+import { prepareClimatePromotion } from "./climate-promote.mjs";
 
 const errors = [];
 const state = loadState();
@@ -37,6 +39,7 @@ for (const file of [
   PATHS.intelEvents,
   PATHS.energyRuntime,
   PATHS.energyReadModel,
+  PATHS.climateReadModel,
 ]) {
   try {
     readJson(file);
@@ -49,6 +52,26 @@ for (const file of [
     if (readText(file) !== readText(publicFile)) fail(`${publicFile} is out of sync with ${file}`);
   } catch (err) {
     fail(`${publicFile} cannot be read: ${err.message}`);
+  }
+}
+
+let climateReadModel;
+try {
+  climateReadModel = readJson(PATHS.climateReadModel);
+  for (const error of validateClimateReadModel(climateReadModel, { targetData: readClimateTargetData() })) fail(error);
+} catch (err) {
+  fail(`${PATHS.climateReadModel} is not a valid climate read model: ${err.message}`);
+}
+const climateCandidatesPresent = fs.existsSync(PATHS.climateCandidates);
+const climateReportPresent = fs.existsSync(PATHS.climateRefreshReport);
+if (climateCandidatesPresent !== climateReportPresent) {
+  fail("Climate candidates and refresh report must be present as a complete pair");
+}
+if (climateCandidatesPresent && climateReportPresent) {
+  const climatePromotion = prepareClimatePromotion();
+  for (const error of climatePromotion.errors) fail(`Climate candidate/report files are invalid: ${error}`);
+  if (climatePromotion.promoted && JSON.stringify(climatePromotion.readModel) !== JSON.stringify(climateReadModel)) {
+    fail("promoted climate read model is out of sync with the validated candidate");
   }
 }
 

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { SocialStatus } from "../hooks/useSocialSignals";
 import { FONT_SANS } from "../styles/fonts";
+import { formatClimateTime, resolveClimateFreshness } from "../domain/climate";
+import type { ClimateSourceStatus } from "../types/climate";
 
 interface DataSource {
   name: string;
@@ -390,6 +392,31 @@ function SourceRow({ source }: { source: DataSource }) {
   );
 }
 
+function ClimateSourceRow({ status }: { status: ClimateSourceStatus }) {
+  const [hovered, setHovered] = useState(false);
+  const freshness = resolveClimateFreshness(status);
+  const dotColor = freshness === "fresh" ? "#4ade80" : freshness === "stale" ? "#fbbf24" : "#94a3b8";
+  return (
+    <div style={{ position: "relative" }} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 7px", borderRadius: 6, background: hovered ? "rgba(255,255,255,0.04)" : "transparent" }}>
+        <div style={{ width: 7, height: 7, borderRadius: "50%", background: dotColor, flexShrink: 0 }} />
+        <span style={{ fontSize: 11, color: hovered ? "rgba(255,255,255,0.75)" : "rgba(255,255,255,0.5)", flex: 1 }}>GDACS</span>
+        <span style={{ fontSize: 9, color: "rgba(255,255,255,0.25)", letterSpacing: "0.04em" }}>Cyclone + Flood</span>
+      </div>
+      {hovered && (
+        <div style={{ position: "absolute", left: "calc(100% + 8px)", top: 0, zIndex: 100, width: 230, background: "rgba(4,7,16,0.97)", border: `1px solid ${dotColor}44`, borderRadius: 8, padding: "9px 11px", pointerEvents: "none", boxShadow: "0 4px 24px rgba(0,0,0,0.6)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+            <span style={{ color: "#4ade80", fontSize: 10, letterSpacing: "0.1em" }}>GDACS</span>
+            <span style={{ marginLeft: "auto", color: dotColor, fontSize: 8, textTransform: "uppercase", border: `1px solid ${dotColor}55`, borderRadius: 3, padding: "1px 4px" }}>{freshness}</span>
+          </div>
+          <p style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", lineHeight: 1.55, margin: 0 }}>Staged tropical-cyclone and flood events with source geometry and deterministic Globe target intersections.</p>
+          <p style={{ fontSize: 9, color: "rgba(255,255,255,0.32)", margin: "6px 0 0" }}>Last successful refresh: {formatClimateTime(status.lastSuccessfulAt)}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function SectionLabel({ label }: { label: string }) {
   return (
     <div
@@ -416,7 +443,7 @@ function SectionLabel({ label }: { label: string }) {
   );
 }
 
-export default function DataSources({ socialStatus }: { socialStatus?: SocialStatus }) {
+export default function DataSources({ socialStatus, climateStatus }: { socialStatus?: SocialStatus; climateStatus: ClimateSourceStatus }) {
   const [expanded, setExpanded] = useState(false);
 
   const panelBase: React.CSSProperties = {
@@ -504,7 +531,7 @@ export default function DataSources({ socialStatus }: { socialStatus?: SocialSta
                 letterSpacing: "0.04em",
               }}
             >
-              {DATA_SOURCES.length + SOCIAL_SOURCES.length} feeds
+              {DATA_SOURCES.length + SOCIAL_SOURCES.length + 1} feeds
             </span>
           </div>
           <button
@@ -543,6 +570,11 @@ export default function DataSources({ socialStatus }: { socialStatus?: SocialSta
               />
             ))}
           </div>
+        </div>
+
+        <div style={{ marginTop: 8 }}>
+          <SectionLabel label="Staged Events" />
+          <ClimateSourceRow status={climateStatus} />
         </div>
 
         {/* Static sources */}

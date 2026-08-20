@@ -14,6 +14,8 @@ import {
   validateStateShape,
 } from "./daily-common.mjs";
 import { prepareEnergyPromotion } from "./energy-lng-promote.mjs";
+import { prepareClimatePromotion } from "./climate-promote.mjs";
+import { readClimateTargetData, validateClimateReadModel } from "./climate-refresh.mjs";
 
 const { dryRun } = parseArgs();
 const baseState = loadState();
@@ -21,6 +23,10 @@ const baseExposure = readJson(PATHS.exposure);
 const energyPromotion = prepareEnergyPromotion({ state: baseState, exposure: baseExposure });
 if (energyPromotion.errors.length) {
   throw new Error(`Energy/LNG promotion gate failed; promoted runtime was left unchanged:\n- ${energyPromotion.errors.join("\n- ")}`);
+}
+const climatePromotion = prepareClimatePromotion();
+if (climatePromotion.errors.length) {
+  throw new Error(`Climate promotion gate failed; promoted read model was left unchanged:\n- ${climatePromotion.errors.join("\n- ")}`);
 }
 const state = energyPromotion.state;
 const authoredExposure = energyPromotion.exposure;
@@ -223,6 +229,14 @@ function applyEnergyRuntime() {
   writeText(PATHS.energyReadModel, readModelAfter, dryRun);
 }
 
+function applyClimateReadModel() {
+  if (!climatePromotion.promoted) return;
+  const before = readText(PATHS.climateReadModel);
+  const after = `${JSON.stringify(climatePromotion.readModel, null, 2)}\n`;
+  mark(PATHS.climateReadModel, before, after);
+  writeText(PATHS.climateReadModel, after, dryRun);
+}
+
 function formatQuote(quote) {
   return `  { symbol: ${JSON.stringify(quote.symbol)}, name: ${JSON.stringify(quote.name)}, price: ${quote.price}, change: ${quote.change}, changePct: ${quote.changePct}, currency: ${JSON.stringify(quote.currency)}, unit: ${JSON.stringify(quote.unit)}, lastUpdated: ${JSON.stringify(quote.lastUpdated)} },`;
 }
@@ -324,6 +338,7 @@ applyCharts();
 applyCommodities();
 applyExposureTraces();
 applyEnergyRuntime();
+applyClimateReadModel();
 applyUseMarkets();
 applyMarketsWidget();
 applyRunbook();
@@ -339,6 +354,7 @@ for (const file of [
   PATHS.intelEvents,
   PATHS.energyRuntime,
   PATHS.energyReadModel,
+  PATHS.climateReadModel,
 ]) {
   mirrorPublicJson(file);
 }
@@ -353,6 +369,7 @@ const jsonFiles = [
   PATHS.intelEvents,
   PATHS.energyRuntime,
   PATHS.energyReadModel,
+  PATHS.climateReadModel,
 ];
 
 function validateStagedBundle() {
@@ -369,7 +386,9 @@ function validateStagedBundle() {
   const stagedExposure = staged.get(PATHS.exposure);
   const stagedRuntime = staged.get(PATHS.energyRuntime);
   const stagedReadModel = staged.get(PATHS.energyReadModel);
+  const stagedClimateReadModel = staged.get(PATHS.climateReadModel);
   errors.push(...validateStateShape(stagedState || {}));
+  errors.push(...validateClimateReadModel(stagedClimateReadModel || {}, { targetData: readClimateTargetData() }));
   if (energyPromotion.promoted) {
     if (JSON.stringify(stagedExposure) !== JSON.stringify(stagedReadModel)) {
       errors.push("staged promoted Energy/LNG read model is out of sync with exposure-traces");

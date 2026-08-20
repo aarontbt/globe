@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "climate-source-registry-v1",
+  "sources": [
+    {
+      "id": "gdacs-event-list",
+      "name": "GDACS",
+      "endpoint": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH",
+      "eventTypes": [
+        "TC",
+        "FL"
+      ],
+      "format": "geojson",
+      "cadence": "event-driven",
+      "freshnessHours": 6,
+      "attributionUrl": "https://www.gdacs.org/"
+    }
+  ]
+}
