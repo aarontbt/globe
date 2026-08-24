@@ -70,7 +70,7 @@ assert(
   "promoted climate data may be fresh; an unpromoted baseline may remain not-run",
 );
 
-const layers = createClimateHazardLayers(refreshed.readModel, new Set(["red", "orange"]), flood.id);
+const layers = createClimateHazardLayers(refreshed.readModel, new Set(["red", "orange"]), flood.id, Date.parse(NOW));
 assert.equal(layers.length, 3, "climate layer factory should return footprint, centroid, and selected-impact layers");
 assert.equal(layers[1].props.data.length, 2, "default red/orange filters should include both fixture hazards");
 assert(layers[2].props.data.every((impact) => impact.hazardId === flood.id), "impact layer should only display the selected hazard targets");

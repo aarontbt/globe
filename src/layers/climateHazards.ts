@@ -10,8 +10,9 @@ export function createClimateHazardLayers(
   data: ClimateReadModel,
   activeAlerts: Set<ClimateAlertLevel>,
   selectedHazardId: string | null,
+  now = Date.now(),
 ) {
-  const hazards = data.hazards.filter((hazard) => isClimateHazardActive(hazard) && activeAlerts.has(hazard.alertLevel));
+  const hazards = data.hazards.filter((hazard) => isClimateHazardActive(hazard, now) && activeAlerts.has(hazard.alertLevel));
   const footprints = hazards
     .filter((hazard) => hazard.geometry.type !== "Point")
     .map((hazard) => ({ type: "Feature" as const, geometry: hazard.geometry, properties: { hazard } }));
