@@ -65,7 +65,10 @@ assert(!rejectedTarget.promoted && rejectedTarget.errors.some((error) => error.i
 
 assert.equal(resolveClimateFreshness(refreshed.readModel.sourceStatus, Date.parse(NOW) + 5 * 3_600_000), "fresh");
 assert.equal(resolveClimateFreshness(refreshed.readModel.sourceStatus, Date.parse(NOW) + 7 * 3_600_000), "stale");
-assert.equal(resolveClimateFreshness(readJson(PATHS.climateReadModel).sourceStatus, Date.parse(NOW)), "not-run");
+assert(
+  ["fresh", "not-run"].includes(resolveClimateFreshness(readJson(PATHS.climateReadModel).sourceStatus, Date.parse(NOW))),
+  "promoted climate data may be fresh; an unpromoted baseline may remain not-run",
+);
 
 const layers = createClimateHazardLayers(refreshed.readModel, new Set(["red", "orange"]), flood.id);
 assert.equal(layers.length, 3, "climate layer factory should return footprint, centroid, and selected-impact layers");
