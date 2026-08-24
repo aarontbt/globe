@@ -12,12 +12,12 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-08-23 (D172) |
-| **Crisis level** | 4 - High (Aug 23: AP reported no confirmed attacks in the Strait of Hormuz over the prior 48 hours, but shipping traffic remained reduced. AP reported Iran's security chief said support for new US economic measures would be treated as an act of war; Iran and Oman are discussing management of the strait, likely including transit fees, while Pakistan's army chief is due in Tehran to revive talks. The 60-day US-Iran deadline passed without a settlement. Brent was $93.47 (Yahoo Finance, Aug 23) and TTF was $66.00 EUR/MWh (Yahoo Finance, Aug 21; +3.7%). Crisis level remains 4 (High); base is 5%, stress 55%, tail 40%.) |
-| **Brent** | $93.47 (2026-08-23, Yahoo Finance BZ=F; +2.69%) |
+| **Last updated** | 2026-08-24 (D173) |
+| **Crisis level** | 4 - High (Aug 24: AP reported Iran's rial hit a record low of 2.02 million per dollar as Washington prepared new sanctions, including secondary measures on countries trading with Iran. Iran repeated that it would not fully reopen the strait unless it could charge ships and warned any escalation would bring consequences, while Iran and Oman are reportedly in the final stages of a joint-management plan and Pakistan sent a delegation to Tehran. Brent was $92.68 (Yahoo Finance, Aug 24) and TTF was $68.41 EUR/MWh (Aug 24; +7.9%). Crisis level remains 4 (High); base 5%, stress 60%, tail 35%.) |
+| **Brent** | $92.68 (2026-08-24, Yahoo Finance BZ=F; +1.16%) |
 | **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $21.22/MMBtu, Trading Economics, Aug 14; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation) |
-| **TTF** | 66.00 EUR/MWh (2026-08-21, Yahoo Finance TTF=F; +3.7%) |
-| **Exposure trace** | AP reported no confirmed Hormuz attacks over the prior 48 hours, but traffic remains reduced and Iran's authority listed vessels facing future restrictions. Iran and Oman are discussing strait management, likely including fees; Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable. |
+| **TTF** | 68.41 EUR/MWh (2026-08-24, Yahoo Finance TTF=F; +7.9%) |
+| **Exposure trace** | AP reported Iran's rial hit a record low of 2.02 million per dollar as Washington prepared new sanctions including secondary measures, while Iran repeated it would not fully reopen Hormuz without transit fees. Iran and Oman are reportedly in the final stages of a joint-management plan; Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable. |
 | **Evidence audit** | 16 checked · 10 verified · 6 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
@@ -544,10 +544,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $93.47 (Aug 23, Yahoo Finance BZ=F; +2.69%) as AP reported reduced Hormuz traffic, no confirmed attacks in 48 hours, and an Iranian warning over sanctions support. Working range $75-85 base (signed workable deal); $78-95 stress (conditional routing); $105-135+ tail (renewed closure).
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $21.22/MMBtu (Trading Economics, Aug 14), also carried on Aug 23. Qatar force majeure is carried through mid-September from the Reuters Jul 23 notice; the reported mid-October extension remains unconfirmed.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 66.00 EUR/MWh (Aug 21, Yahoo Finance TTF=F; +3.7%) as reduced Hormuz traffic, Iranian transit restrictions and the unresolved Iran-Oman arrangement kept European gas flows at risk. The marker remains elevated versus the pre-crisis baseline while Qatar LNG force majeure persists.
-- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 5%, stress 55%, tail 40% after AP reported reduced traffic, Iranian transit restrictions and no signed reopening; no confirmed attack was reported in the prior 48 hours.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $92.68 (Aug 24, Yahoo Finance BZ=F; +1.16%) as AP reported Washington readying secondary sanctions while Iran conditions any reopening on transit fees. Working range $75-85 base (signed workable deal); $78-95 stress (conditional routing); $105-135+ tail (renewed closure).
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $21.22/MMBtu (Trading Economics, Aug 14), also carried on Aug 24. Qatar force majeure is carried through mid-September from the Reuters Jul 23 notice; the reported mid-October extension remains unconfirmed.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 68.41 EUR/MWh (Aug 24, Yahoo Finance TTF=F; +7.9%) as Washington prepared secondary sanctions, Iran insisted on transit fees before reopening, and the unresolved Iran-Oman arrangement kept European gas flows at risk. The marker remains elevated versus the pre-crisis baseline while Qatar LNG force majeure persists.
+- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 5%, stress 60%, tail 35% after AP reported record-low rial, incoming US secondary sanctions, Iran's transit-fee condition and an advancing Iran-Oman management plan.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

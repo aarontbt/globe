@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 23: Iran warns sanctions support is an act of war; no confirmed Hormuz attacks in 48h but traffic reduced; Iran-Oman management talks continue; Brent $93.47; TTF 66.00; tail 40%";
+const TOP_ALERT = "AUG 24: US readies secondary sanctions as rial hits record low; Iran demands Hormuz transit fees; Iran-Oman plan in final stages; Brent $92.68; TTF 68.41; tail 35%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

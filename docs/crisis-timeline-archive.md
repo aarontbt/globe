@@ -141,3 +141,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D165**: Aug 16 - Trump vows to declare Hormuz 'US territory'; Iran's Gharibabadi rejects claim; UAE says Iran struck 2 ADNOC tankers with drones; Iran-Oman 'homing in' on strait deal; Brent $88.52.
 - **D167**: Aug 18 - AP reports Trump threatened Oman over an Iran route deal; projectile hits ship exiting Hormuz with crew casualty; Iran says no reopening before US conditions; Brent $91.29.
 - **D172**: Aug 23 - AP reports no confirmed Hormuz attacks in 48 hours, but traffic remains reduced; Iran warns sanctions support is an act of war; talks continue.
+- **D173**: Aug 24 - AP reports rial at record low as US readies secondary sanctions; Iran demands Hormuz transit fees; Oman plan in final stages.
