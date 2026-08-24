@@ -108,7 +108,8 @@
       "aliases": [
         "392",
         "Japan",
-        "quantity:2800000000kg"
+        "quantity:2800000000kg",
+        "quantity:9435134000kg"
       ],
       "identitySources": [
         "UN Comtrade"
@@ -128,7 +129,8 @@
       "aliases": [
         "410",
         "Korea",
-        "quantity:1700000000kg"
+        "quantity:1700000000kg",
+        "quantity:4933555268kg"
       ],
       "identitySources": [
         "UN Comtrade"
@@ -396,7 +398,7 @@
       "provider": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
       "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:e4e6ca6e9e7e101a",
-      "retrievedAt": "2026-08-23T23:49:37.661Z",
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
       "observedAt": "2026-08-21T13:53:03.000Z",
       "contentHash": "e4e6ca6e9e7e101a827aed0d325d050e383a15f14b59343d60224463cb9d433a",
       "parserVersion": "yahoo-chart-v1",
@@ -423,6 +425,76 @@
         },
         "missingPeriods": [],
         "sourceStatus": "fetched"
+      },
+      "status": "validated"
+    },
+    {
+      "id": "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:609ee056166a0112",
+      "sourceId": "src-comtrade-japan-lng-demand",
+      "provider": "UN Comtrade",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?subscription_key=%REDACTED%&typeCode=C&freqCode=M&clCode=HS&reporterCode=392&cmdCode=271111&flowCode=M&partnerCode=0&includeDesc=true",
+      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:609ee056166a0112",
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "observedAt": null,
+      "contentHash": "609ee056166a0112f431eefe1be34769197944723031e8efc5d0313e69a9c6b7",
+      "parserVersion": "comtrade-trade-v1",
+      "recordKeys": [
+        "15c09e44774c6283af5a99edc46d8affa8eb7334b166005d932f066baacb4ce7"
+      ],
+      "targetInputIds": [
+        "japan-lng-demand"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "trade-demand",
+      "coverage": {
+        "status": "public-proxy",
+        "sourcePeriod": {
+          "start": "2026-06-01",
+          "end": "2026-06-30"
+        },
+        "expectedCadence": "monthly",
+        "observedPeriod": {
+          "start": "2026-06-01",
+          "end": "2026-06-30"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched",
+        "note": "Monthly or annual customs trade context is not cargo-level movement."
+      },
+      "status": "validated"
+    },
+    {
+      "id": "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:2aa2891b0e788347",
+      "sourceId": "src-comtrade-korea-lng-demand",
+      "provider": "UN Comtrade",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?subscription_key=%REDACTED%&typeCode=C&freqCode=M&clCode=HS&period=202512&reporterCode=410&cmdCode=271111&flowCode=M&partnerCode=0&includeDesc=true",
+      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:2aa2891b0e788347",
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "observedAt": null,
+      "contentHash": "2aa2891b0e788347e16e9101c9c874ef2c79a72b7ef136dcdb4f1cb1aea6f9fb",
+      "parserVersion": "comtrade-trade-v1",
+      "recordKeys": [
+        "7fac8a62f6fd7ea53da2f39857ccf1708f3252a4bf5d9297af62da91cd0d3e8f"
+      ],
+      "targetInputIds": [
+        "korea-lng-demand"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "trade-demand",
+      "coverage": {
+        "status": "public-proxy",
+        "sourcePeriod": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "expectedCadence": "monthly",
+        "observedPeriod": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched",
+        "note": "Monthly or annual customs trade context is not cargo-level movement."
       },
       "status": "validated"
     }
@@ -738,7 +810,7 @@
               "sourceDate": "",
               "maxAgeDays": 1,
               "cadence": "daily",
-              "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available.",
+              "missingReason": "Machine refresh failed: EIA 400. No approved observation is available.",
               "observationKind": "flow",
               "periodStart": null,
               "periodEnd": null,
@@ -754,7 +826,7 @@
               "sourceDate": "",
               "maxAgeDays": 730,
               "cadence": "annual",
-              "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available.",
+              "missingReason": "Machine refresh failed: EIA 404. No approved observation is available.",
               "observationKind": "flow",
               "periodStart": null,
               "periodEnd": null,
@@ -770,7 +842,7 @@
               "sourceDate": "",
               "maxAgeDays": 730,
               "cadence": "annual",
-              "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available.",
+              "missingReason": "Machine refresh failed: EIA 404. No approved observation is available.",
               "observationKind": "flow",
               "periodStart": null,
               "periodEnd": null,
@@ -879,36 +951,44 @@
             {
               "inputId": "japan-lng-demand",
               "label": "Japan LNG import context",
+              "value": 5407806363.239,
               "unit": "USD",
-              "status": "unavailable",
-              "source": "",
-              "sourceDate": "",
+              "status": "confirmed",
+              "source": "UN Comtrade",
+              "sourceDate": "2026-06-30",
+              "observedAt": "2026-06-30T00:00:00.000Z",
               "maxAgeDays": 62,
               "cadence": "monthly",
-              "missingReason": "Machine refresh failed: UN Comtrade 400. No approved observation is available.",
+              "machineEvidenceIds": [
+                "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:609ee056166a0112"
+              ],
               "observationKind": "trade-demand",
-              "periodStart": null,
-              "periodEnd": null,
-              "coverageStatus": "unavailable",
+              "periodStart": "2026-06-01",
+              "periodEnd": "2026-06-30",
+              "coverageStatus": "public-proxy",
               "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
-              "sourceAgeDays": null
+              "sourceAgeDays": 54
             },
             {
               "inputId": "korea-lng-demand",
               "label": "South Korea LNG import context",
+              "value": 2535174222,
               "unit": "USD",
-              "status": "unavailable",
-              "source": "",
-              "sourceDate": "",
-              "maxAgeDays": 62,
+              "status": "confirmed",
+              "source": "UN Comtrade",
+              "sourceDate": "2025-12-31",
+              "observedAt": "2025-12-31T00:00:00.000Z",
+              "maxAgeDays": 260,
               "cadence": "monthly",
-              "missingReason": "Machine refresh failed: UN Comtrade 429. No approved observation is available.",
+              "machineEvidenceIds": [
+                "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:2aa2891b0e788347"
+              ],
               "observationKind": "trade-demand",
-              "periodStart": null,
-              "periodEnd": null,
-              "coverageStatus": "unavailable",
+              "periodStart": "2025-12-01",
+              "periodEnd": "2025-12-31",
+              "coverageStatus": "public-proxy",
               "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
-              "sourceAgeDays": null
+              "sourceAgeDays": 235
             }
           ],
           "evidenceIds": [
@@ -1118,7 +1198,7 @@
         "score": 62,
         "status": "provisional",
         "confidence": "unknown",
-        "calculatedAt": "2026-08-23T23:49:37.661Z",
+        "calculatedAt": "2026-08-24T01:47:05.401Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -1177,9 +1257,9 @@
             "id": "destination-dependency",
             "label": "Destination dependency",
             "weight": 0.15,
-            "score": 59,
+            "score": 61,
             "status": "partially-observed",
-            "confidence": "low",
+            "confidence": "medium",
             "rationale": "Destination dependency is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
             "observationIds": [
               "observation:qatar-supply:jkm-cfd-reference",
@@ -1718,10 +1798,8 @@
             "coverageStatus": "unavailable",
             "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
             "source": "UN Comtrade",
-            "sourceId": "src-comtrade-japan-lng-demand",
-            "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
             "sourceAgeDays": null,
-            "cadence": "monthly",
+            "cadence": "daily",
             "confidence": "unknown",
             "evidenceIds": []
           },
@@ -1739,12 +1817,60 @@
             "coverageStatus": "unavailable",
             "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
             "source": "UN Comtrade",
-            "sourceId": "src-comtrade-korea-lng-demand",
-            "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
             "sourceAgeDays": null,
-            "cadence": "monthly",
+            "cadence": "daily",
             "confidence": "unknown",
             "evidenceIds": []
+          },
+          {
+            "id": "energy-observation:src-comtrade-japan-lng-demand:japan-lng-demand:2026-06-01:2026-06-30",
+            "label": "Petroleum gases and other gaseous hydrocarbons; liquefied, natural gas monthly trade-demand context",
+            "entityIds": [
+              "japan-lng-demand"
+            ],
+            "observationKind": "trade-demand",
+            "periodStart": "2026-06-01",
+            "periodEnd": "2026-06-30",
+            "value": 5407806363.239,
+            "unit": "USD",
+            "status": "confirmed",
+            "coverageStatus": "public-proxy",
+            "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
+            "source": "UN Comtrade",
+            "sourceId": "src-comtrade-japan-lng-demand",
+            "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
+            "sourceAgeDays": 54,
+            "cadence": "monthly",
+            "confidence": "high",
+            "evidenceIds": [],
+            "machineEvidenceIds": [
+              "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:609ee056166a0112"
+            ]
+          },
+          {
+            "id": "energy-observation:src-comtrade-korea-lng-demand:korea-lng-demand:2025-12-01:2025-12-31",
+            "label": "Petroleum gases and other gaseous hydrocarbons; liquefied, natural gas monthly trade-demand context",
+            "entityIds": [
+              "korea-lng-demand"
+            ],
+            "observationKind": "trade-demand",
+            "periodStart": "2025-12-01",
+            "periodEnd": "2025-12-31",
+            "value": 2535174222,
+            "unit": "USD",
+            "status": "confirmed",
+            "coverageStatus": "public-proxy",
+            "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
+            "source": "UN Comtrade",
+            "sourceId": "src-comtrade-korea-lng-demand",
+            "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
+            "sourceAgeDays": 235,
+            "cadence": "monthly",
+            "confidence": "high",
+            "evidenceIds": [],
+            "machineEvidenceIds": [
+              "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:2aa2891b0e788347"
+            ]
           }
         ],
         "coverage": [
@@ -1858,21 +1984,33 @@
           },
           {
             "sourceId": "src-comtrade-japan-lng-demand",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2026-06-01",
+              "end": "2026-06-30"
+            },
             "expectedCadence": "monthly",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2026-06-01",
+              "end": "2026-06-30"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "public-proxy",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-comtrade-korea-lng-demand",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2025-12-01",
+              "end": "2025-12-31"
+            },
             "expectedCadence": "monthly",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2025-12-01",
+              "end": "2025-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "public-proxy",
+            "sourceStatus": "fetched"
           }
         ],
         "reconciliations": []
@@ -2263,7 +2401,7 @@
         "score": 64,
         "status": "provisional",
         "confidence": "low",
-        "calculatedAt": "2026-08-23T23:49:37.661Z",
+        "calculatedAt": "2026-08-24T01:47:05.401Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -2922,21 +3060,33 @@
           },
           {
             "sourceId": "src-comtrade-japan-lng-demand",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2026-06-01",
+              "end": "2026-06-30"
+            },
             "expectedCadence": "monthly",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2026-06-01",
+              "end": "2026-06-30"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "public-proxy",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-comtrade-korea-lng-demand",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2025-12-01",
+              "end": "2025-12-31"
+            },
             "expectedCadence": "monthly",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2025-12-01",
+              "end": "2025-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "public-proxy",
+            "sourceStatus": "fetched"
           }
         ],
         "reconciliations": []
@@ -3301,7 +3451,7 @@
         "score": 58,
         "status": "provisional",
         "confidence": "unknown",
-        "calculatedAt": "2026-08-23T23:49:37.661Z",
+        "calculatedAt": "2026-08-24T01:47:05.401Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -3634,21 +3784,33 @@
           },
           {
             "sourceId": "src-comtrade-japan-lng-demand",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2026-06-01",
+              "end": "2026-06-30"
+            },
             "expectedCadence": "monthly",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2026-06-01",
+              "end": "2026-06-30"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "public-proxy",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-comtrade-korea-lng-demand",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2025-12-01",
+              "end": "2025-12-31"
+            },
             "expectedCadence": "monthly",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2025-12-01",
+              "end": "2025-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "public-proxy",
+            "sourceStatus": "fetched"
           }
         ],
         "reconciliations": []
@@ -4158,10 +4320,8 @@
         "coverageStatus": "unavailable",
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
         "source": "UN Comtrade",
-        "sourceId": "src-comtrade-japan-lng-demand",
-        "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
         "sourceAgeDays": null,
-        "cadence": "monthly",
+        "cadence": "daily",
         "confidence": "unknown",
         "evidenceIds": []
       },
@@ -4179,12 +4339,60 @@
         "coverageStatus": "unavailable",
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
         "source": "UN Comtrade",
-        "sourceId": "src-comtrade-korea-lng-demand",
-        "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
         "sourceAgeDays": null,
-        "cadence": "monthly",
+        "cadence": "daily",
         "confidence": "unknown",
         "evidenceIds": []
+      },
+      {
+        "id": "energy-observation:src-comtrade-japan-lng-demand:japan-lng-demand:2026-06-01:2026-06-30",
+        "label": "Petroleum gases and other gaseous hydrocarbons; liquefied, natural gas monthly trade-demand context",
+        "entityIds": [
+          "japan-lng-demand"
+        ],
+        "observationKind": "trade-demand",
+        "periodStart": "2026-06-01",
+        "periodEnd": "2026-06-30",
+        "value": 5407806363.239,
+        "unit": "USD",
+        "status": "confirmed",
+        "coverageStatus": "public-proxy",
+        "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
+        "source": "UN Comtrade",
+        "sourceId": "src-comtrade-japan-lng-demand",
+        "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
+        "sourceAgeDays": 54,
+        "cadence": "monthly",
+        "confidence": "high",
+        "evidenceIds": [],
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:609ee056166a0112"
+        ]
+      },
+      {
+        "id": "energy-observation:src-comtrade-korea-lng-demand:korea-lng-demand:2025-12-01:2025-12-31",
+        "label": "Petroleum gases and other gaseous hydrocarbons; liquefied, natural gas monthly trade-demand context",
+        "entityIds": [
+          "korea-lng-demand"
+        ],
+        "observationKind": "trade-demand",
+        "periodStart": "2025-12-01",
+        "periodEnd": "2025-12-31",
+        "value": 2535174222,
+        "unit": "USD",
+        "status": "confirmed",
+        "coverageStatus": "public-proxy",
+        "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
+        "source": "UN Comtrade",
+        "sourceId": "src-comtrade-korea-lng-demand",
+        "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
+        "sourceAgeDays": 235,
+        "cadence": "monthly",
+        "confidence": "high",
+        "evidenceIds": [],
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:2aa2891b0e788347"
+        ]
       }
     ],
     "coverage": [
@@ -4298,21 +4506,33 @@
       },
       {
         "sourceId": "src-comtrade-japan-lng-demand",
-        "sourcePeriod": null,
+        "sourcePeriod": {
+          "start": "2026-06-01",
+          "end": "2026-06-30"
+        },
         "expectedCadence": "monthly",
-        "observedPeriod": null,
+        "observedPeriod": {
+          "start": "2026-06-01",
+          "end": "2026-06-30"
+        },
         "missingPeriods": [],
-        "status": "unavailable",
-        "sourceStatus": "failed"
+        "status": "public-proxy",
+        "sourceStatus": "fetched"
       },
       {
         "sourceId": "src-comtrade-korea-lng-demand",
-        "sourcePeriod": null,
+        "sourcePeriod": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
         "expectedCadence": "monthly",
-        "observedPeriod": null,
+        "observedPeriod": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
         "missingPeriods": [],
-        "status": "unavailable",
-        "sourceStatus": "failed"
+        "status": "public-proxy",
+        "sourceStatus": "fetched"
       }
     ],
     "reconciliations": []

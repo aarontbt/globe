@@ -294,7 +294,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available."
+        "missingReason": "Machine refresh failed: EIA 400. No approved observation is available."
       },
       "qatar-production-baseline": {
         "unit": "MTPA",
@@ -308,7 +308,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available."
+        "missingReason": "Machine refresh failed: EIA 404. No approved observation is available."
       },
       "qatar-export-baseline": {
         "unit": "MTPA",
@@ -322,7 +322,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available."
+        "missingReason": "Machine refresh failed: EIA 404. No approved observation is available."
       },
       "ras-laffan-capacity": {
         "unit": "MTPA",
@@ -488,33 +488,41 @@
       },
       "japan-lng-demand": {
         "unit": "USD",
-        "status": "unavailable",
+        "status": "confirmed",
         "maxAgeDays": 62,
         "cadence": "monthly",
         "observationKind": "trade-demand",
-        "periodStart": null,
-        "periodEnd": null,
-        "coverageStatus": "unavailable",
+        "periodStart": "2026-06-01",
+        "periodEnd": "2026-06-30",
+        "coverageStatus": "public-proxy",
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
-        "sourceAgeDays": null,
-        "source": "",
-        "sourceDate": "",
-        "missingReason": "Machine refresh failed: UN Comtrade 400. No approved observation is available."
+        "sourceAgeDays": 54,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:609ee056166a0112"
+        ],
+        "value": 5407806363.239,
+        "source": "UN Comtrade",
+        "sourceDate": "2026-06-30",
+        "observedAt": "2026-06-30T00:00:00.000Z"
       },
       "korea-lng-demand": {
         "unit": "USD",
-        "status": "unavailable",
-        "maxAgeDays": 62,
+        "status": "confirmed",
+        "maxAgeDays": 260,
         "cadence": "monthly",
         "observationKind": "trade-demand",
-        "periodStart": null,
-        "periodEnd": null,
-        "coverageStatus": "unavailable",
+        "periodStart": "2025-12-01",
+        "periodEnd": "2025-12-31",
+        "coverageStatus": "public-proxy",
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
-        "sourceAgeDays": null,
-        "source": "",
-        "sourceDate": "",
-        "missingReason": "Machine refresh failed: UN Comtrade 429. No approved observation is available."
+        "sourceAgeDays": 235,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:2aa2891b0e788347"
+        ],
+        "value": 2535174222,
+        "source": "UN Comtrade",
+        "sourceDate": "2025-12-31",
+        "observedAt": "2025-12-31T00:00:00.000Z"
       },
       "hormuz-total-transits": {
         "value": 13,

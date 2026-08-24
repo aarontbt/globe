@@ -373,7 +373,7 @@
       "id": "src-comtrade-japan-lng-demand",
       "provider": "UN Comtrade",
       "title": "UN Comtrade Japan LNG import context",
-      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
       "category": "trade-demand",
       "automation": "automated",
       "cadence": "monthly",
@@ -414,11 +414,11 @@
       "id": "src-comtrade-korea-lng-demand",
       "provider": "UN Comtrade",
       "title": "UN Comtrade South Korea LNG import context",
-      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
       "category": "trade-demand",
       "automation": "automated",
       "cadence": "monthly",
-      "maxAgeDays": 62,
+      "maxAgeDays": 260,
       "allowedUnits": ["USD", "kg", "1000 USD"],
       "entityIds": ["korea-lng-demand"],
       "targetInputIds": ["korea-lng-demand"],
@@ -442,14 +442,14 @@
       "targetPolicies": {
         "korea-lng-demand": {
           "cadence": "monthly",
-          "maxAgeDays": 62,
+          "maxAgeDays": 260,
           "allowedUnits": ["USD", "kg", "1000 USD"],
           "entityIds": ["korea-lng-demand"],
           "observationKind": "trade-demand",
           "coverageStatus": "public-proxy"
         }
       },
-      "note": "Monthly customs trade context is explicitly labeled as demand context, never as live cargo movement."
+      "note": "Monthly customs trade context is explicitly labeled as demand context, never as live cargo movement. Korea's Comtrade monthly series publishes with roughly an eight-month lag; the freshness window matches that reality (newest verified month: 2025-12 as of 2026-08)."
     }
   ]
 }

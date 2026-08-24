@@ -532,6 +532,16 @@ async function fetchText(url, fetchImpl, timeoutMs = 10_000) {
   }
 }
 
+async function fetchTextWithRetry(url, fetchImpl, { retries = 2, backoffMs = 20_000, timeoutMs = 10_000 } = {}) {
+  let attempt = 0;
+  for (;;) {
+    const result = await fetchText(url, fetchImpl, timeoutMs);
+    if (result.response.status !== 429 || attempt >= retries) return result;
+    attempt += 1;
+    await new Promise((resolve) => setTimeout(resolve, backoffMs * attempt));
+  }
+}
+
 function parseJsonOrThrow(text, source) {
   try {
     return JSON.parse(text);
@@ -755,6 +765,13 @@ export function parseAssetRegistryRecords(payload, source) {
   });
 }
 
+function redactUrlSecrets(url) {
+  if (typeof url !== "string" || !url) return url;
+  return url
+    .replace(/(subscription[-_]?key|api[_-]?key|apikey|token|access[_-]?key)=([^&]*)/gi, (_match, param) => `${param}=%REDACTED%`)
+    .replace(/(subscription[-_]?key|api[_-]?key|apikey|token|access[_-]?key)\/([^/?&]+)/gi, (_match, param) => `${param}/%REDACTED%`);
+}
+
 function snapshotFor(source, retrievedAt, {
   status = "skipped",
   httpStatus = null,
@@ -771,7 +788,7 @@ function snapshotFor(source, retrievedAt, {
     id,
     sourceId: source.id,
     provider: source.provider,
-    url,
+    url: redactUrlSecrets(url),
     retrievedAt,
     observedAt: observedAt ? isoOrNull(observedAt) : null,
     httpStatus,
@@ -855,9 +872,9 @@ function portWatchEndpoint(source, selection, { from = null, to = null } = {}) {
   });
 }
 
-function comtradeEndpoint(source, selection, { from = null, to = null } = {}) {
+function comtradeEndpoint(source, selection, { from = null, to = null } = {}, overridePeriod = null) {
   const endpoint = process.env.COMTRADE_DATA_URL || source.url;
-  const periods = from && to && selection.frequency === "A" ? `${from.slice(0, 4)},${to.slice(0, 4)}` : from && to ? `${from.slice(0, 7).replace("-", "")},${to.slice(0, 7).replace("-", "")}` : from || to;
+  const periods = overridePeriod ?? (from && to && selection.frequency === "A" ? `${from.slice(0, 4)},${to.slice(0, 4)}` : from && to ? `${from.slice(0, 7).replace("-", "")},${to.slice(0, 7).replace("-", "")}` : from || to);
   return addQuery(endpoint, {
     subscription_key: process.env.COMTRADE_API_KEY,
     typeCode: selection.typeCode || "C",
@@ -981,8 +998,28 @@ async function fetchAutomatedSource(source, {
   }
 
   if (selection.type === "comtrade-trade") {
-    const url = comtradeEndpoint(source, selection, { from, to });
-    const { response, text } = await fetchText(url, fetchImpl);
+    let url = comtradeEndpoint(source, selection, { from, to });
+    let { response, text } = await fetchTextWithRetry(url, fetchImpl);
+    if (!response.ok) throw new Error(`UN Comtrade ${response.status}`);
+    // Monthly feeds publish with a lag; when the default latest-month request
+    // returns no rows and no explicit window was requested, walk back up to 12
+    // months to find the newest published period instead of failing over.
+    const parsedProbe = (() => { try { return parseJsonOrThrow(text, source); } catch { return null; } })();
+    const probeRows = comtradeRows(parsedProbe);
+    const hasExplicitWindow = Boolean(from || to);
+    if (selection.frequency !== "A" && !hasExplicitWindow && response.ok && Array.isArray(probeRows) && !probeRows.length) {
+      const cursor = new Date();
+      for (let step = 1; step <= 12; step += 1) {
+        cursor.setUTCMonth(cursor.getUTCMonth() - 1);
+        const candidatePeriod = `${cursor.getUTCFullYear()}${String(cursor.getUTCMonth() + 1).padStart(2, "0")}`;
+        url = comtradeEndpoint(source, selection, { from, to }, candidatePeriod);
+        ({ response, text } = await fetchTextWithRetry(url, fetchImpl));
+        if (!response.ok) throw new Error(`UN Comtrade ${response.status}`);
+        const parsed = (() => { try { return parseJsonOrThrow(text, source); } catch { return null; } })();
+        const rows = comtradeRows(parsed);
+        if (Array.isArray(rows) && rows.length) break;
+      }
+    }
     if (!response.ok) throw new Error(`UN Comtrade ${response.status}`);
     const snapshot = snapshotFor(source, retrievedAt, {
       status: "fetched",
