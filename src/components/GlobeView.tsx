@@ -13,6 +13,8 @@ import { createEventRingsLayer, createEventDotsLayer, createAsteroidImpactLayers
 import { createSatellitesLayer } from "../layers/satellites";
 import { createOilSupplyChainLayers } from "../layers/oilSupplyChain";
 import { createExposureTraceLayers } from "../layers/exposureTrace";
+import { createClimateHazardLayers } from "../layers/climateHazards";
+import { toEnergyLngDomain, toExposureTraceReadModel } from "../domain/energyLngAdapter";
 import { getOilReservesFillColor, OIL_RESERVES_MAP } from "../layers/oilReserves";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
 import { useVesselAnimation } from "../hooks/useVesselAnimation";
@@ -49,6 +51,7 @@ import type {
   ExposureTraceData,
   PublicEntity,
 } from "../types";
+import type { ClimateAlertLevel, ClimateHazard, ClimateImpact, ClimateReadModel } from "../types/climate";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GLOBE_VIEW = new (_GlobeView as any)({ id: "globe", controller: true });
@@ -85,6 +88,29 @@ const EMPTY_EXPOSURE_TRACES: ExposureTraceData = {
   commercialInputs: [],
   traces: [],
 };
+const EMPTY_CLIMATE_READ_MODEL: ClimateReadModel = {
+  schemaVersion: "climate-read-model-v1",
+  asOf: "",
+  generatedAt: "",
+  areaOfInterest: { west: 40, south: -20, east: 155, north: 45 },
+  sourceStatus: {
+    sourceId: "gdacs-event-list",
+    name: "GDACS",
+    sourceUrl: "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH",
+    status: "not-run",
+    checkedAt: null,
+    lastSuccessfulAt: null,
+    freshnessHours: 6,
+    contentHash: null,
+    error: null,
+  },
+  hazards: [],
+  impacts: [],
+};
+
+function escapeTooltip(value: unknown) {
+  return String(value ?? "").replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character]!);
+}
 
 export default function GlobeView() {
   const pulse = useEventPulse(0.5);
@@ -100,6 +126,9 @@ export default function GlobeView() {
   const { data: arcs } = useStaticJson<TradeArc[]>("/data/trade-arcs.json", EMPTY_ARCS);
   const { data: oilSupplyChainData } = useStaticJson<{ nodes: OilNode[]; routes: OilRoute[] }>("/data/oil-supply-chain.json", EMPTY_OIL_SUPPLY_CHAIN);
   const { data: exposureTraceData } = useStaticJson<ExposureTraceData>("/data/exposure-traces.json", EMPTY_EXPOSURE_TRACES);
+  const { data: climateReadModel } = useStaticJson<ClimateReadModel>("/data/climate-read-model.json", EMPTY_CLIMATE_READ_MODEL);
+  const energyLngDomain = useMemo(() => toEnergyLngDomain(exposureTraceData), [exposureTraceData]);
+  const energyLngReadModel = useMemo(() => toExposureTraceReadModel(energyLngDomain), [energyLngDomain]);
   const events = useMemo(
     () => [...polymarketEvents, ...iranIntelEvents, ...socialEvents],
     [polymarketEvents, iranIntelEvents, socialEvents]
@@ -114,6 +143,8 @@ export default function GlobeView() {
   const [rightPanelTab, setRightPanelTab] = useState<RightPanelTab>("events");
   const [activeTraceId, setActiveTraceId] = useState("qatar-supply");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedClimateId, setSelectedClimateId] = useState<string | null>(null);
+  const [activeClimateAlerts, setActiveClimateAlerts] = useState<Set<ClimateAlertLevel>>(() => new Set(["red", "orange"]));
   const [activeCategories, setActiveCategories] = useState<Set<EventCategory>>(() => {
     try {
       const saved = localStorage.getItem("gb:activeCategories");
@@ -133,6 +164,7 @@ export default function GlobeView() {
       showArcs: false,
       showVessels: false,
       showEvents: true,
+      showClimate: true,
       showSatellites: false,
       showOilSupplyChain: true,
       showOilReserves: false,
@@ -158,6 +190,15 @@ export default function GlobeView() {
       if (next.has(cat)) next.delete(cat);
       else next.add(cat);
       try { localStorage.setItem("gb:activeCategories", JSON.stringify([...next])); } catch {}
+      return next;
+    });
+  }, []);
+
+  const toggleClimateAlert = useCallback((alert: ClimateAlertLevel) => {
+    setActiveClimateAlerts((current) => {
+      const next = new Set(current);
+      if (next.has(alert)) next.delete(alert);
+      else next.add(alert);
       return next;
     });
   }, []);
@@ -234,9 +275,10 @@ export default function GlobeView() {
     if (visibility.showArcs) result.push(createTradeArcsLayer(arcs));
     if (visibility.showPorts) result.push(createPortsLayer(ports));
     if (visibility.showOilSupplyChain) result.push(...createOilSupplyChainLayers(oilNodes, oilRoutes));
-    result.push(...createExposureTraceLayers(exposureTraceData, activeTraceId));
+    if (visibility.showClimate) result.push(...createClimateHazardLayers(climateReadModel, activeClimateAlerts, selectedClimateId));
+    result.push(...createExposureTraceLayers(energyLngReadModel, activeTraceId));
     return result;
-  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showOilReserves, corridors, ports, arcs, oilNodes, oilRoutes, exposureTraceData, activeTraceId]);
+  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showOilReserves, visibility.showClimate, corridors, ports, arcs, oilNodes, oilRoutes, climateReadModel, activeClimateAlerts, selectedClimateId, energyLngReadModel, activeTraceId]);
 
   // Label layer — separate memo so staticLayers doesn't rebuild on camera move
   const labelLayer = useMemo(
@@ -271,6 +313,28 @@ export default function GlobeView() {
 
   const getTooltip = useCallback(({ object, layer }: any) => {
     if (!object) return null;
+
+    if (layer?.id === "climate-hazard-footprints" || layer?.id === "climate-hazard-centroids") {
+      const hazard = (object.properties?.hazard ?? object) as ClimateHazard;
+      const impactCount = climateReadModel.impacts.filter((impact) => impact.hazardId === hazard.id).length;
+      return {
+        html: `<div style="font-family:${FONT_SANS};padding:3px 0;max-width:250px">
+          <div style="font-weight:700;font-size:13px;color:#fff">${escapeTooltip(hazard.title)}</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.48);margin-top:4px;text-transform:uppercase">${escapeTooltip(hazard.type)} · ${escapeTooltip(hazard.alertLevel)} alert</div>
+          <div style="font-size:11px;color:#67e8f9;margin-top:6px">${hazard.impactAssessment === "available" ? `${impactCount} linked target${impactCount === 1 ? "" : "s"}` : "Impact unavailable · point-only source geometry"}</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:5px">Updated ${escapeTooltip(new Date(hazard.updatedAt).toLocaleString())} · GDACS</div>
+        </div>`,
+        style: { backgroundColor: "rgba(8,12,22,0.94)", borderRadius: "8px", padding: "9px 12px", border: "1px solid rgba(74,222,128,0.25)" },
+      };
+    }
+
+    if (layer?.id === "climate-impact-targets") {
+      const impact = object as ClimateImpact;
+      return {
+        html: `<div style="font-family:${FONT_SANS};padding:3px 0"><div style="font-weight:700;font-size:12px;color:#e0f2fe">${escapeTooltip(impact.targetName)}</div><div style="font-size:9px;color:#67e8f9;margin-top:4px;text-transform:uppercase">${escapeTooltip(impact.targetType)} · ${escapeTooltip(impact.relationship)} · derived</div></div>`,
+        style: { backgroundColor: "rgba(8,12,22,0.94)", borderRadius: "8px", padding: "8px 11px", border: "1px solid rgba(56,189,248,0.25)" },
+      };
+    }
 
     if (layer?.id === "event-dots") {
       const evt = object as GlobeEvent;
@@ -487,15 +551,24 @@ export default function GlobeView() {
     }
 
     return null;
-  }, []);
+  }, [climateReadModel.impacts]);
 
   const handleClick = useCallback(({ object, layer }: any) => {
-    if (layer?.id === "event-dots" && object) {
+    if ((layer?.id === "climate-hazard-footprints" || layer?.id === "climate-hazard-centroids") && object) {
+      const hazard = (object.properties?.hazard ?? object) as ClimateHazard;
+      setSelectedClimateId((previous) => previous === hazard.id ? null : hazard.id);
+      setRightPanelTab("climate");
+    } else if (layer?.id === "climate-impact-targets" && object) {
+      setSelectedClimateId((object as ClimateImpact).hazardId);
+      setRightPanelTab("climate");
+    } else if (layer?.id === "event-dots" && object) {
       setSelectedId((prev: string | null) =>
         prev === (object as GlobeEvent).id ? null : (object as GlobeEvent).id
       );
+      setRightPanelTab("events");
     } else if (!object) {
       setSelectedId(null);
+      setSelectedClimateId(null);
     }
   }, []);
 
@@ -582,36 +655,41 @@ export default function GlobeView() {
           activeCategories={activeCategories}
           onSelect={setSelectedId}
           onToggleCategory={toggleCategory}
+          climateData={climateReadModel}
+          selectedClimateId={selectedClimateId}
+          activeClimateAlerts={activeClimateAlerts}
+          onSelectClimate={setSelectedClimateId}
+          onToggleClimateAlert={toggleClimateAlert}
         />
       )}
 
-      {/* Top-right controls: layers + perf, left of EventPanel */}
+      {/* Top-right controls, left of the right panel */}
       <div
         style={{
           position: "absolute",
           top: 16,
           right: 344,
-          zIndex: 10,
+          zIndex: 20,
           display: "flex",
           flexDirection: "row",
           alignItems: "flex-start",
           gap: 8,
         }}
       >
+        <MarketBriefOverlay
+          data={energyLngReadModel}
+          activeTraceId={activeTraceId}
+          onTraceChange={setActiveTraceId}
+        />
         <LayerTogglePanel
           visibility={visibility}
           onChange={handleVisibilityChange}
         />
-        <DataSources socialStatus={socialStatus} />
+        <DataSources socialStatus={socialStatus} climateStatus={climateReadModel.sourceStatus} />
         <PerformanceMonitor deckRenderMsRef={deckRenderMsRef} />
       </div>
 
       <BottomChartsPanel />
-      <MarketBriefOverlay
-        data={exposureTraceData}
-        activeTraceId={activeTraceId}
-        onTraceChange={setActiveTraceId}
-      />
     </div>
   );
 }

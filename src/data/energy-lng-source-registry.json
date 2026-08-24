@@ -1,0 +1,455 @@
+{
+  "schemaVersion": "energy-lng-source-registry-v1",
+  "sources": [
+    {
+      "id": "src-eia-lng-baseline",
+      "provider": "U.S. EIA",
+      "title": "EIA international energy observations",
+      "url": "https://api.eia.gov/v2/international/data/",
+      "category": "physical-flow",
+      "automation": "automated",
+      "cadence": "event-driven",
+      "maxAgeDays": 730,
+      "allowedUnits": ["MTPA", "million b/d", "%", "billion cubic feet"],
+      "entityIds": ["qatarenergy", "ras-laffan", "hormuz"],
+      "targetInputIds": ["qatar-volume-at-risk"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "eia-international-v1",
+      "enabled": true,
+      "selection": {
+        "type": "eia-series",
+        "seriesId": "QATAR_LNG_VOLUME",
+        "seriesIdEnv": "EIA_SERIES_ID",
+        "entityId": "qatarenergy",
+        "metric": "qatar-lng-volume"
+      },
+      "targetPolicies": {
+        "qatar-volume-at-risk": {
+          "cadence": "daily",
+          "maxAgeDays": 1,
+          "allowedUnits": ["MTPA"],
+          "entityIds": ["qatarenergy", "ras-laffan"]
+        }
+      },
+      "note": "The connector requires EIA_API_KEY or EIA_DATA_URL plus EIA_SERIES_ID. It never converts an oil-flow baseline into a Qatar LNG volume."
+    },
+    {
+      "id": "src-imf-portwatch-hormuz",
+      "provider": "IMF PortWatch",
+      "title": "PortWatch route and chokepoint context",
+      "url": "https://portwatch.imf.org/pages/data-and-methodology",
+      "category": "route-context",
+      "automation": "automated",
+      "cadence": "daily",
+      "maxAgeDays": 7,
+      "allowedUnits": ["LNG transits", "vessels/day", "%", "index"],
+      "entityIds": ["hormuz"],
+      "targetInputIds": ["hormuz-transits"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": ["e-hormuz-transit"],
+      "fallback": "carry",
+      "parserVersion": "portwatch-route-v1",
+      "enabled": true,
+      "selection": {
+        "type": "portwatch-route",
+        "routeId": "hormuz",
+        "routeIdEnv": "PORTWATCH_ROUTE_ID",
+        "endpointEnv": "PORTWATCH_DATA_URL",
+        "entityId": "hormuz",
+        "metric": "LNG transits"
+      },
+      "targetPolicies": {
+        "hormuz-transits": {
+          "cadence": "daily",
+          "maxAgeDays": 7,
+          "allowedUnits": ["LNG transits", "vessels/day", "%", "index"],
+          "entityIds": ["hormuz"],
+          "observationKind": "transit"
+        }
+      },
+      "observationKind": "transit",
+      "note": "PORTWATCH_DATA_URL must be an approved HTTPS machine-readable endpoint. The methodology page is not parsed as an observation; the reviewed Kpler route observation is carried when no machine-readable route response is available."
+    },
+    {
+      "id": "src-yahoo-ttf",
+      "provider": "Yahoo Finance",
+      "title": "Dutch TTF chart API",
+      "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+      "category": "market-context",
+      "automation": "automated",
+      "cadence": "daily",
+      "maxAgeDays": 3,
+      "allowedUnits": ["EUR/MWh"],
+      "entityIds": ["ttf"],
+      "targetInputIds": ["ttf"],
+      "targetCommercialInputIds": ["lng-ttf"],
+      "evidenceIds": ["e-ttf"],
+      "fallback": "carry",
+      "parserVersion": "yahoo-chart-v1",
+      "enabled": true,
+      "selection": {
+        "type": "yahoo-symbol",
+        "symbol": "TTF=F",
+        "entityId": "ttf",
+        "metric": "Dutch TTF"
+      },
+      "targetPolicies": {
+        "ttf": {
+          "cadence": "daily",
+          "maxAgeDays": 3,
+          "allowedUnits": ["EUR/MWh"],
+          "entityIds": ["ttf"]
+        },
+        "lng-ttf": {
+          "cadence": "daily",
+          "maxAgeDays": 3,
+          "allowedUnits": ["EUR/MWh"],
+          "entityIds": ["ttf"]
+        }
+      },
+      "note": "TTF is market context only. It does not establish cargo availability, freight, insurance or executable substitution."
+    },
+    {
+      "id": "src-reviewed-qatar-force-majeure",
+      "provider": "Reuters",
+      "title": "Reviewed QatarEnergy force-majeure disclosure",
+      "url": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
+      "category": "reviewed-event",
+      "automation": "manual-only",
+      "cadence": "event-driven",
+      "maxAgeDays": 14,
+      "allowedUnits": [""],
+      "entityIds": ["qatarenergy", "ras-laffan"],
+      "targetInputIds": ["qatar-output-status"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": ["e-qatar-force-majeure"],
+      "fallback": "preserve-reviewed",
+      "parserVersion": "manual-reviewed-v1",
+      "enabled": true,
+      "selection": {
+        "type": "reviewed-event",
+        "entityId": "qatarenergy",
+        "metric": "force majeure"
+      },
+      "targetPolicies": {
+        "qatar-output-status": {
+          "cadence": "event-driven",
+          "maxAgeDays": 14,
+          "allowedUnits": [""],
+          "entityIds": ["qatarenergy", "ras-laffan"]
+        }
+      },
+      "note": "Automation may carry this reviewed claim but cannot fetch, reinterpret, or replace the approved event evidence."
+    },
+    {
+      "id": "src-eia-qatar-production",
+      "provider": "U.S. EIA",
+      "title": "EIA Qatar LNG production series",
+      "url": "https://api.eia.gov/v2/seriesid/",
+      "category": "physical-flow",
+      "automation": "automated",
+      "cadence": "annual",
+      "maxAgeDays": 730,
+      "allowedUnits": ["MTPA", "billion cubic feet"],
+      "entityIds": ["qatarenergy", "ras-laffan"],
+      "targetInputIds": ["qatar-production-baseline"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "eia-series-v2",
+      "enabled": true,
+      "observationKind": "flow",
+      "selection": {
+      "type": "eia-series",
+        "seriesId": "QATAR_LNG_PRODUCTION",
+        "seriesIdEnv": "EIA_QATAR_PRODUCTION_SERIES_ID",
+        "entityId": "qatarenergy",
+        "metric": "qatar-lng-production"
+      },
+      "targetPolicies": {
+        "qatar-production-baseline": {
+          "cadence": "annual",
+          "maxAgeDays": 730,
+          "allowedUnits": ["MTPA", "billion cubic feet"],
+          "entityIds": ["qatarenergy", "ras-laffan"],
+          "observationKind": "flow",
+          "coverageStatus": "direct-observation"
+        }
+      },
+      "note": "The configured EIA series ID is mandatory; the connector rejects a response that does not identify that exact series."
+    },
+    {
+      "id": "src-eia-qatar-exports",
+      "provider": "U.S. EIA",
+      "title": "EIA Qatar LNG export series",
+      "url": "https://api.eia.gov/v2/seriesid/",
+      "category": "physical-flow",
+      "automation": "automated",
+      "cadence": "annual",
+      "maxAgeDays": 730,
+      "allowedUnits": ["MTPA", "billion cubic feet"],
+      "entityIds": ["qatarenergy", "ras-laffan"],
+      "targetInputIds": ["qatar-export-baseline"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "eia-series-v2",
+      "enabled": true,
+      "observationKind": "flow",
+      "selection": {
+      "type": "eia-series",
+        "seriesId": "QATAR_LNG_EXPORTS",
+        "seriesIdEnv": "EIA_QATAR_EXPORT_SERIES_ID",
+        "entityId": "qatarenergy",
+        "metric": "qatar-lng-exports"
+      },
+      "targetPolicies": {
+        "qatar-export-baseline": {
+          "cadence": "annual",
+          "maxAgeDays": 730,
+          "allowedUnits": ["MTPA", "billion cubic feet"],
+          "entityIds": ["qatarenergy", "ras-laffan"],
+          "observationKind": "flow",
+          "coverageStatus": "direct-observation"
+        }
+      },
+      "note": "An EIA production/export baseline is structural capacity context, not a current cargo or vessel observation."
+    },
+    {
+      "id": "src-gem-ras-laffan-capacity",
+      "provider": "Global Energy Monitor",
+      "title": "GEM Ras Laffan LNG terminal capacity",
+      "url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
+      "category": "asset-registry",
+      "automation": "automated",
+      "cadence": "annual",
+      "maxAgeDays": 730,
+      "allowedUnits": ["MTPA"],
+      "entityIds": ["ras-laffan"],
+      "targetInputIds": ["ras-laffan-capacity"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "gem-asset-v1",
+      "enabled": true,
+      "observationKind": "capacity",
+      "selection": {
+        "type": "asset-registry",
+        "endpointEnv": "GEM_DATA_URL",
+        "assetNamespace": "GEM",
+        "assetCode": "ras-laffan",
+        "entityId": "ras-laffan",
+        "assetField": "capacity"
+      },
+      "targetPolicies": {
+        "ras-laffan-capacity": {
+          "cadence": "annual",
+          "maxAgeDays": 730,
+          "allowedUnits": ["MTPA"],
+          "entityIds": ["ras-laffan"],
+          "observationKind": "capacity",
+          "coverageStatus": "direct-observation"
+        }
+      },
+      "note": "GEM asset metadata identifies public terminal capacity; it does not prove current loading or operating utilization."
+    },
+    {
+      "id": "src-gem-ras-laffan-status",
+      "provider": "Global Energy Monitor",
+      "title": "GEM Ras Laffan LNG terminal status",
+      "url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
+      "category": "asset-registry",
+      "automation": "automated",
+      "cadence": "annual",
+      "maxAgeDays": 730,
+      "allowedUnits": [""],
+      "entityIds": ["ras-laffan"],
+      "targetInputIds": ["ras-laffan-asset-status"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "gem-asset-v1",
+      "enabled": true,
+      "observationKind": "asset-status",
+      "selection": {
+        "type": "asset-registry",
+        "endpointEnv": "GEM_DATA_URL",
+        "assetNamespace": "GEM",
+        "assetCode": "ras-laffan",
+        "entityId": "ras-laffan",
+        "assetField": "status"
+      },
+      "targetPolicies": {
+        "ras-laffan-asset-status": {
+          "cadence": "annual",
+          "maxAgeDays": 730,
+          "allowedUnits": [""],
+          "entityIds": ["ras-laffan"],
+          "observationKind": "asset-status",
+          "coverageStatus": "direct-observation"
+        }
+      },
+      "note": "Asset status is a public registry relationship, not independent proof of current physical flow."
+    },
+    {
+      "id": "src-unlocode-ras-laffan",
+      "provider": "UN/LOCODE",
+      "title": "UN/LOCODE Ras Laffan port identity",
+      "url": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
+      "category": "asset-registry",
+      "automation": "automated",
+      "cadence": "annual",
+      "maxAgeDays": 730,
+      "allowedUnits": [""],
+      "entityIds": ["ras-laffan-port"],
+      "targetInputIds": ["ras-laffan-port-identity"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "unlocode-asset-v1",
+      "enabled": true,
+      "observationKind": "asset-status",
+      "selection": {
+        "type": "asset-registry",
+        "endpointEnv": "UNLOCODE_DATA_URL",
+        "assetNamespace": "UN/LOCODE",
+        "assetCode": "QARLF",
+        "entityId": "ras-laffan-port",
+        "assetField": "identity"
+      },
+      "targetPolicies": {
+        "ras-laffan-port-identity": {
+          "cadence": "annual",
+          "maxAgeDays": 730,
+          "allowedUnits": [""],
+          "entityIds": ["ras-laffan-port"],
+          "observationKind": "asset-status",
+          "coverageStatus": "direct-observation"
+        }
+      },
+      "note": "UN/LOCODE supplies a stable place identifier and does not establish terminal throughput or cargo movement."
+    },
+    {
+      "id": "src-imf-portwatch-hormuz-pressure",
+      "provider": "IMF PortWatch",
+      "title": "PortWatch Hormuz route pressure",
+      "url": "https://portwatch.imf.org/pages/data-and-methodology",
+      "category": "route-context",
+      "automation": "automated",
+      "cadence": "daily",
+      "maxAgeDays": 14,
+      "allowedUnits": ["%", "index", "vessels/day"],
+      "entityIds": ["hormuz"],
+      "targetInputIds": ["hormuz-route-pressure"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "portwatch-route-v2",
+      "enabled": true,
+      "observationKind": "transit",
+      "selection": {
+        "type": "portwatch-route",
+        "routeId": "hormuz",
+        "routeIdEnv": "PORTWATCH_ROUTE_ID",
+        "endpointEnv": "PORTWATCH_DATA_URL",
+        "entityId": "hormuz",
+        "metric": "route-pressure"
+      },
+      "targetPolicies": {
+        "hormuz-route-pressure": {
+          "cadence": "daily",
+          "maxAgeDays": 14,
+          "allowedUnits": ["%", "index", "vessels/day"],
+          "entityIds": ["hormuz"],
+          "observationKind": "transit",
+          "coverageStatus": "direct-observation"
+        }
+      },
+      "note": "The endpoint must return the exact Hormuz route and route-pressure metric; unrelated route observations are rejected."
+    },
+    {
+      "id": "src-comtrade-japan-lng-demand",
+      "provider": "UN Comtrade",
+      "title": "UN Comtrade Japan LNG import context",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
+      "category": "trade-demand",
+      "automation": "automated",
+      "cadence": "monthly",
+      "maxAgeDays": 62,
+      "allowedUnits": ["USD", "kg", "1000 USD"],
+      "entityIds": ["japan-lng-demand"],
+      "targetInputIds": ["japan-lng-demand"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "comtrade-trade-v1",
+      "enabled": true,
+      "observationKind": "trade-demand",
+      "coverageStatus": "public-proxy",
+      "selection": {
+        "type": "comtrade-trade",
+        "endpointEnv": "COMTRADE_DATA_URL",
+        "classificationCode": "HS",
+        "reporterCode": "392",
+        "partnerCode": "0",
+        "flowCode": "M",
+        "commodityCode": "271111",
+        "entityId": "japan-lng-demand"
+      },
+      "targetPolicies": {
+        "japan-lng-demand": {
+          "cadence": "monthly",
+          "maxAgeDays": 62,
+          "allowedUnits": ["USD", "kg", "1000 USD"],
+          "entityIds": ["japan-lng-demand"],
+          "observationKind": "trade-demand",
+          "coverageStatus": "public-proxy"
+        }
+      },
+      "note": "Monthly customs trade context is explicitly labeled as demand context, never as live cargo movement."
+    },
+    {
+      "id": "src-comtrade-korea-lng-demand",
+      "provider": "UN Comtrade",
+      "title": "UN Comtrade South Korea LNG import context",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
+      "category": "trade-demand",
+      "automation": "automated",
+      "cadence": "monthly",
+      "maxAgeDays": 260,
+      "allowedUnits": ["USD", "kg", "1000 USD"],
+      "entityIds": ["korea-lng-demand"],
+      "targetInputIds": ["korea-lng-demand"],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "comtrade-trade-v1",
+      "enabled": true,
+      "observationKind": "trade-demand",
+      "coverageStatus": "public-proxy",
+      "selection": {
+        "type": "comtrade-trade",
+        "endpointEnv": "COMTRADE_DATA_URL",
+        "classificationCode": "HS",
+        "reporterCode": "410",
+        "partnerCode": "0",
+        "flowCode": "M",
+        "commodityCode": "271111",
+        "entityId": "korea-lng-demand"
+      },
+      "targetPolicies": {
+        "korea-lng-demand": {
+          "cadence": "monthly",
+          "maxAgeDays": 260,
+          "allowedUnits": ["USD", "kg", "1000 USD"],
+          "entityIds": ["korea-lng-demand"],
+          "observationKind": "trade-demand",
+          "coverageStatus": "public-proxy"
+        }
+      },
+      "note": "Monthly customs trade context is explicitly labeled as demand context, never as live cargo movement. Korea's Comtrade monthly series publishes with roughly an eight-month lag; the freshness window matches that reality (newest verified month: 2025-12 as of 2026-08)."
+    }
+  ]
+}

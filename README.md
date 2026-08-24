@@ -86,6 +86,27 @@ The operational runbook for those updates lives in [`docs/daily-update-runbook.m
 
 Hooks and services under [`src/hooks`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/hooks) and [`src/services`](/Users/xenohawk/Downloads/rainmarket-demo/globe/src/services) fetch live data and normalize it into the UI.
 
+### Energy/LNG refresh
+
+The staged Energy/LNG workflow covers the Qatar supply and Hormuz LNG traces:
+
+```bash
+bun run energy:refresh
+bun run energy:refresh -- --event
+bun run energy:refresh -- --source src-comtrade-japan-lng-demand --from 2026-07-01 --to 2026-07-31
+bun run daily:update
+```
+
+Refresh writes candidates, a promotion report, raw snapshot artifacts and
+coverage metadata. Only a validated report is
+promoted by `daily:update`; failed sources become explicit carried or
+unavailable observations. The promoted canonical domain and generated read
+model are mirrored under `public/data/`. EIA, PortWatch, GEM, UN/LOCODE and
+Comtrade records remain period-labeled; monthly trade values and route proxies
+are context, not confirmed cargo exposure. JKM, freight, insurance, cargo
+volume, vessel identity and alternative execution capacity remain unavailable
+unless independently verified.
+
 ## Main UI Surfaces
 
 ### Globe layers
@@ -184,6 +205,7 @@ For a reviewed daily refresh:
 bun run daily:fetch -- --dry-run
 bun run daily:refresh
 # Complete and review manual LNG/physical inputs in src/data/daily-state.json
+bun run energy:refresh
 bun run daily:update
 ```
 

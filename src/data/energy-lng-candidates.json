@@ -1,0 +1,916 @@
+{
+  "schemaVersion": "energy-lng-candidates-v1",
+  "runId": "energy-refresh:23a812be0d9154bb706c4693",
+  "asOf": "2026-08-23T00:00:00Z",
+  "baseFingerprint": "0f07ac7eef40f3296cb7aecc0808d897da1b76ecd70c626d5dce9663c1d39154",
+  "generatedAt": "2026-08-24T01:47:05.401Z",
+  "observations": [
+    {
+      "id": "energy-observation:src-eia-lng-baseline:qatar-volume-at-risk:unavailable:unavailable",
+      "recordKey": "5c742e847d3e0001fda252df915692714c9a9e334e3d7310368ed4bfd26c5424",
+      "label": "EIA international energy observations",
+      "entityIds": [
+        "qatarenergy",
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "qatar-volume-at-risk"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "flow",
+      "periodStart": null,
+      "periodEnd": null,
+      "coverage": {
+        "status": "unavailable",
+        "sourcePeriod": null,
+        "expectedCadence": "event-driven",
+        "observedPeriod": null,
+        "missingPeriods": [],
+        "sourceStatus": "failed"
+      },
+      "unit": "MTPA",
+      "observationDate": null,
+      "observedAt": null,
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "daily",
+      "freshnessWindowDays": 1,
+      "provider": "U.S. EIA",
+      "sourceId": "src-eia-lng-baseline",
+      "sourceUrl": "https://api.eia.gov/v2/international/data/",
+      "confidence": "unknown",
+      "status": "unavailable",
+      "evidenceIds": [],
+      "machineEvidenceIds": [],
+      "missingReason": "Machine refresh failed: EIA 400. No approved observation is available.",
+      "lineage": {
+        "sourceId": "src-eia-lng-baseline",
+        "sourceUrl": "https://api.eia.gov/v2/international/data/",
+        "provider": "U.S. EIA",
+        "observationAt": null,
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": null,
+        "snapshotRef": "snapshot:energy-snapshot:src-eia-lng-baseline:dc92c9676e0fe0eb",
+        "parserVersion": "eia-international-v1",
+        "recordKey": "5c742e847d3e0001fda252df915692714c9a9e334e3d7310368ed4bfd26c5424",
+        "derivedFrom": []
+      }
+    },
+    {
+      "id": "energy-observation:src-imf-portwatch-hormuz:hormuz-transits:2026-08-18:2026-08-18",
+      "recordKey": "1c474a0006c1daf79b20c7be419cb67fb7772dfaf05da768a0db4c4c845c7080",
+      "label": "PortWatch route and chokepoint context",
+      "entityIds": [
+        "hormuz"
+      ],
+      "targetInputIds": [
+        "hormuz-transits"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "transit",
+      "periodStart": "2026-08-18",
+      "periodEnd": "2026-08-18",
+      "coverage": {
+        "status": "unavailable",
+        "sourcePeriod": {
+          "start": "2026-08-18",
+          "end": "2026-08-18"
+        },
+        "expectedCadence": "daily",
+        "observedPeriod": {
+          "start": "2026-08-18",
+          "end": "2026-08-18"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "failed"
+      },
+      "value": 4,
+      "unit": "LNG transits",
+      "observationDate": "2026-08-18",
+      "observedAt": "2026-08-18T12:00:00.000Z",
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "daily",
+      "freshnessWindowDays": 7,
+      "provider": "IMF PortWatch",
+      "sourceId": "src-imf-portwatch-hormuz",
+      "sourceUrl": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
+      "confidence": "medium",
+      "status": "carried",
+      "evidenceIds": [
+        "e-hormuz-transit"
+      ],
+      "machineEvidenceIds": [],
+      "carryReason": "Machine refresh failed: src-imf-portwatch-hormuz: PORTWATCH_DATA_URL is required for the approved machine-readable PortWatch connector. Previous approved observation carried with its original observation date.",
+      "lineage": {
+        "sourceId": "src-imf-portwatch-hormuz",
+        "sourceUrl": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
+        "provider": "IMF PortWatch",
+        "observationAt": "2026-08-18T12:00:00.000Z",
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": null,
+        "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:eae468a1d1d93c93",
+        "parserVersion": "portwatch-route-v1",
+        "recordKey": "1c474a0006c1daf79b20c7be419cb67fb7772dfaf05da768a0db4c4c845c7080",
+        "derivedFrom": [
+          "e-hormuz-transit"
+        ]
+      }
+    },
+    {
+      "id": "energy-observation:src-yahoo-ttf:ttf-lng-ttf:2026-08-21:2026-08-21",
+      "recordKey": "370c6d8fe762c25e5029dac2a0cadef6afa8cec1f41b823a41280ad61c5cffd7",
+      "label": "Dutch TTF",
+      "entityIds": [
+        "ttf"
+      ],
+      "targetInputIds": [
+        "ttf"
+      ],
+      "targetCommercialInputIds": [
+        "lng-ttf"
+      ],
+      "observationKind": "flow",
+      "periodStart": "2026-08-21",
+      "periodEnd": "2026-08-21",
+      "coverage": {
+        "status": "direct-observation",
+        "sourcePeriod": {
+          "start": "2026-08-21",
+          "end": "2026-08-21"
+        },
+        "expectedCadence": "daily",
+        "observedPeriod": {
+          "start": "2026-08-21",
+          "end": "2026-08-21"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched"
+      },
+      "value": 66.002,
+      "change": 2.3559999999999945,
+      "changePct": 3.7017251673317952,
+      "unit": "EUR/MWh",
+      "observationDate": "2026-08-21",
+      "observedAt": "2026-08-21T13:53:03.000Z",
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "daily",
+      "freshnessWindowDays": 3,
+      "provider": "Yahoo Finance TTF=F",
+      "sourceId": "src-yahoo-ttf",
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+      "confidence": "high",
+      "status": "confirmed",
+      "evidenceIds": [
+        "e-ttf"
+      ],
+      "machineEvidenceIds": [
+        "machine-evidence:energy-snapshot:src-yahoo-ttf:e4e6ca6e9e7e101a"
+      ],
+      "lineage": {
+        "sourceId": "src-yahoo-ttf",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+        "provider": "Yahoo Finance TTF=F",
+        "observationAt": "2026-08-21T13:53:03.000Z",
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": "e4e6ca6e9e7e101a827aed0d325d050e383a15f14b59343d60224463cb9d433a",
+        "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:e4e6ca6e9e7e101a",
+        "parserVersion": "yahoo-chart-v1",
+        "recordKey": "370c6d8fe762c25e5029dac2a0cadef6afa8cec1f41b823a41280ad61c5cffd7",
+        "derivedFrom": []
+      }
+    },
+    {
+      "id": "energy-observation:src-reviewed-qatar-force-majeure:qatar-output-status:2026-07-23:2026-07-23",
+      "recordKey": "cedbcb0d41be6280671255be006ed720898a435e91a558c5ee506e668d24ae30",
+      "label": "Reviewed QatarEnergy force-majeure disclosure",
+      "entityIds": [
+        "qatarenergy",
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "qatar-output-status"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "flow",
+      "periodStart": "2026-07-23",
+      "periodEnd": "2026-07-23",
+      "coverage": {
+        "status": "unavailable",
+        "sourcePeriod": {
+          "start": "2026-07-23",
+          "end": "2026-07-23"
+        },
+        "expectedCadence": "event-driven",
+        "observedPeriod": {
+          "start": "2026-07-23",
+          "end": "2026-07-23"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "skipped"
+      },
+      "value": "Force majeure extended to mid-September; Bloomberg (Jul 22) reports a further extension to mid-October is in preparation, not yet formally confirmed",
+      "unit": "",
+      "observationDate": "2026-07-23",
+      "observedAt": null,
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "event-driven",
+      "freshnessWindowDays": 14,
+      "provider": "Reuters",
+      "sourceId": "src-reviewed-qatar-force-majeure",
+      "sourceUrl": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
+      "confidence": "medium",
+      "status": "carried",
+      "evidenceIds": [
+        "e-qatar-force-majeure"
+      ],
+      "machineEvidenceIds": [],
+      "carryReason": "No newer source-verified QatarEnergy force-majeure notice was approved in the Aug 18 review; retain the Reuters July 23 notice that force majeure extends through mid-September and keep the later mid-October extension as unconfirmed preparation.",
+      "lineage": {
+        "sourceId": "src-reviewed-qatar-force-majeure",
+        "sourceUrl": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
+        "provider": "Reuters",
+        "observationAt": "2026-07-23T00:00:00.000Z",
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": null,
+        "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:f4c3eb3ca5feeb61",
+        "parserVersion": "manual-reviewed-v1",
+        "recordKey": "cedbcb0d41be6280671255be006ed720898a435e91a558c5ee506e668d24ae30",
+        "derivedFrom": [
+          "e-qatar-force-majeure"
+        ]
+      }
+    },
+    {
+      "id": "energy-observation:src-eia-qatar-production:qatar-production-baseline:unavailable:unavailable",
+      "recordKey": "90f2e2663de8c852d7c8c0fc4a7ee956bc1fe34fb56312f7dabf61520f66e904",
+      "label": "EIA Qatar LNG production series",
+      "entityIds": [
+        "qatarenergy",
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "qatar-production-baseline"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "flow",
+      "periodStart": null,
+      "periodEnd": null,
+      "coverage": {
+        "status": "unavailable",
+        "sourcePeriod": null,
+        "expectedCadence": "annual",
+        "observedPeriod": null,
+        "missingPeriods": [],
+        "sourceStatus": "failed"
+      },
+      "unit": "MTPA",
+      "observationDate": null,
+      "observedAt": null,
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "annual",
+      "freshnessWindowDays": 730,
+      "provider": "U.S. EIA",
+      "sourceId": "src-eia-qatar-production",
+      "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+      "confidence": "unknown",
+      "status": "unavailable",
+      "evidenceIds": [],
+      "machineEvidenceIds": [],
+      "missingReason": "Machine refresh failed: EIA 404. No approved observation is available.",
+      "lineage": {
+        "sourceId": "src-eia-qatar-production",
+        "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+        "provider": "U.S. EIA",
+        "observationAt": null,
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": null,
+        "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:b02cb352a2579fb3",
+        "parserVersion": "eia-series-v2",
+        "recordKey": "90f2e2663de8c852d7c8c0fc4a7ee956bc1fe34fb56312f7dabf61520f66e904",
+        "derivedFrom": []
+      }
+    },
+    {
+      "id": "energy-observation:src-eia-qatar-exports:qatar-export-baseline:unavailable:unavailable",
+      "recordKey": "32b732173a975dc13247721b0c06f6a58119a316c0f8b64057dfd21a8815e52b",
+      "label": "EIA Qatar LNG export series",
+      "entityIds": [
+        "qatarenergy",
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "qatar-export-baseline"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "flow",
+      "periodStart": null,
+      "periodEnd": null,
+      "coverage": {
+        "status": "unavailable",
+        "sourcePeriod": null,
+        "expectedCadence": "annual",
+        "observedPeriod": null,
+        "missingPeriods": [],
+        "sourceStatus": "failed"
+      },
+      "unit": "MTPA",
+      "observationDate": null,
+      "observedAt": null,
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "annual",
+      "freshnessWindowDays": 730,
+      "provider": "U.S. EIA",
+      "sourceId": "src-eia-qatar-exports",
+      "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+      "confidence": "unknown",
+      "status": "unavailable",
+      "evidenceIds": [],
+      "machineEvidenceIds": [],
+      "missingReason": "Machine refresh failed: EIA 404. No approved observation is available.",
+      "lineage": {
+        "sourceId": "src-eia-qatar-exports",
+        "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+        "provider": "U.S. EIA",
+        "observationAt": null,
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": null,
+        "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:3cf67ec865a4e9d4",
+        "parserVersion": "eia-series-v2",
+        "recordKey": "32b732173a975dc13247721b0c06f6a58119a316c0f8b64057dfd21a8815e52b",
+        "derivedFrom": []
+      }
+    },
+    {
+      "id": "energy-observation:src-gem-ras-laffan-capacity:ras-laffan-capacity:unavailable:unavailable",
+      "recordKey": "89b136642d04a41c5ac2dc73c0686c26db37f71ba512c0d9e1588912fa11ae70",
+      "label": "GEM Ras Laffan LNG terminal capacity",
+      "entityIds": [
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "ras-laffan-capacity"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "capacity",
+      "periodStart": null,
+      "periodEnd": null,
+      "coverage": {
+        "status": "unavailable",
+        "sourcePeriod": null,
+        "expectedCadence": "annual",
+        "observedPeriod": null,
+        "missingPeriods": [],
+        "sourceStatus": "failed"
+      },
+      "unit": "MTPA",
+      "observationDate": null,
+      "observedAt": null,
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "annual",
+      "freshnessWindowDays": 730,
+      "provider": "Global Energy Monitor",
+      "sourceId": "src-gem-ras-laffan-capacity",
+      "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
+      "confidence": "unknown",
+      "status": "unavailable",
+      "evidenceIds": [],
+      "machineEvidenceIds": [],
+      "missingReason": "Machine refresh failed: src-gem-ras-laffan-capacity: GEM_DATA_URL is required for the asset registry connector. No approved observation is available.",
+      "lineage": {
+        "sourceId": "src-gem-ras-laffan-capacity",
+        "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
+        "provider": "Global Energy Monitor",
+        "observationAt": null,
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": null,
+        "snapshotRef": "snapshot:energy-snapshot:src-gem-ras-laffan-capacity:88a49e895ce16326",
+        "parserVersion": "gem-asset-v1",
+        "recordKey": "89b136642d04a41c5ac2dc73c0686c26db37f71ba512c0d9e1588912fa11ae70",
+        "derivedFrom": []
+      }
+    },
+    {
+      "id": "energy-observation:src-gem-ras-laffan-status:ras-laffan-asset-status:unavailable:unavailable",
+      "recordKey": "7824b5b7e2eb00f8ae2bc08f94c9f36b0e99c65a10ab2e3470dcc870632398a8",
+      "label": "GEM Ras Laffan LNG terminal status",
+      "entityIds": [
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "ras-laffan-asset-status"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "asset-status",
+      "periodStart": null,
+      "periodEnd": null,
+      "coverage": {
+        "status": "unavailable",
+        "sourcePeriod": null,
+        "expectedCadence": "annual",
+        "observedPeriod": null,
+        "missingPeriods": [],
+        "sourceStatus": "failed"
+      },
+      "unit": "",
+      "observationDate": null,
+      "observedAt": null,
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "annual",
+      "freshnessWindowDays": 730,
+      "provider": "Global Energy Monitor",
+      "sourceId": "src-gem-ras-laffan-status",
+      "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
+      "confidence": "unknown",
+      "status": "unavailable",
+      "evidenceIds": [],
+      "machineEvidenceIds": [],
+      "missingReason": "Machine refresh failed: src-gem-ras-laffan-status: GEM_DATA_URL is required for the asset registry connector. No approved observation is available.",
+      "lineage": {
+        "sourceId": "src-gem-ras-laffan-status",
+        "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
+        "provider": "Global Energy Monitor",
+        "observationAt": null,
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": null,
+        "snapshotRef": "snapshot:energy-snapshot:src-gem-ras-laffan-status:0129843fd54c7b61",
+        "parserVersion": "gem-asset-v1",
+        "recordKey": "7824b5b7e2eb00f8ae2bc08f94c9f36b0e99c65a10ab2e3470dcc870632398a8",
+        "derivedFrom": []
+      }
+    },
+    {
+      "id": "energy-observation:src-unlocode-ras-laffan:ras-laffan-port-identity:unavailable:unavailable",
+      "recordKey": "79ec73c6cb0abb308e1116500d1425ac6725c27471316c7d52c99137cada48c9",
+      "label": "UN/LOCODE Ras Laffan port identity",
+      "entityIds": [
+        "ras-laffan-port"
+      ],
+      "targetInputIds": [
+        "ras-laffan-port-identity"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "asset-status",
+      "periodStart": null,
+      "periodEnd": null,
+      "coverage": {
+        "status": "unavailable",
+        "sourcePeriod": null,
+        "expectedCadence": "annual",
+        "observedPeriod": null,
+        "missingPeriods": [],
+        "sourceStatus": "failed"
+      },
+      "unit": "",
+      "observationDate": null,
+      "observedAt": null,
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "annual",
+      "freshnessWindowDays": 730,
+      "provider": "UN/LOCODE",
+      "sourceId": "src-unlocode-ras-laffan",
+      "sourceUrl": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
+      "confidence": "unknown",
+      "status": "unavailable",
+      "evidenceIds": [],
+      "machineEvidenceIds": [],
+      "missingReason": "Machine refresh failed: src-unlocode-ras-laffan: UNLOCODE_DATA_URL is required for the asset registry connector. No approved observation is available.",
+      "lineage": {
+        "sourceId": "src-unlocode-ras-laffan",
+        "sourceUrl": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
+        "provider": "UN/LOCODE",
+        "observationAt": null,
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": null,
+        "snapshotRef": "snapshot:energy-snapshot:src-unlocode-ras-laffan:535413af6be16a3b",
+        "parserVersion": "unlocode-asset-v1",
+        "recordKey": "79ec73c6cb0abb308e1116500d1425ac6725c27471316c7d52c99137cada48c9",
+        "derivedFrom": []
+      }
+    },
+    {
+      "id": "energy-observation:src-imf-portwatch-hormuz-pressure:hormuz-route-pressure:unavailable:unavailable",
+      "recordKey": "a788f76acb8e7541ccc5b32beeb8fd2708b2db185125e37be0ff6724ec177ff1",
+      "label": "PortWatch Hormuz route pressure",
+      "entityIds": [
+        "hormuz"
+      ],
+      "targetInputIds": [
+        "hormuz-route-pressure"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "transit",
+      "periodStart": null,
+      "periodEnd": null,
+      "coverage": {
+        "status": "unavailable",
+        "sourcePeriod": null,
+        "expectedCadence": "daily",
+        "observedPeriod": null,
+        "missingPeriods": [],
+        "sourceStatus": "failed"
+      },
+      "unit": "%",
+      "observationDate": null,
+      "observedAt": null,
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "daily",
+      "freshnessWindowDays": 14,
+      "provider": "IMF PortWatch",
+      "sourceId": "src-imf-portwatch-hormuz-pressure",
+      "sourceUrl": "https://portwatch.imf.org/pages/data-and-methodology",
+      "confidence": "unknown",
+      "status": "unavailable",
+      "evidenceIds": [],
+      "machineEvidenceIds": [],
+      "missingReason": "Machine refresh failed: src-imf-portwatch-hormuz-pressure: PORTWATCH_DATA_URL is required for the approved machine-readable PortWatch connector. No approved observation is available.",
+      "lineage": {
+        "sourceId": "src-imf-portwatch-hormuz-pressure",
+        "sourceUrl": "https://portwatch.imf.org/pages/data-and-methodology",
+        "provider": "IMF PortWatch",
+        "observationAt": null,
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": null,
+        "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz-pressure:1c7ab7fc8d5588ed",
+        "parserVersion": "portwatch-route-v2",
+        "recordKey": "a788f76acb8e7541ccc5b32beeb8fd2708b2db185125e37be0ff6724ec177ff1",
+        "derivedFrom": []
+      }
+    },
+    {
+      "id": "energy-observation:src-comtrade-japan-lng-demand:japan-lng-demand:2026-06-01:2026-06-30",
+      "recordKey": "15c09e44774c6283af5a99edc46d8affa8eb7334b166005d932f066baacb4ce7",
+      "label": "Petroleum gases and other gaseous hydrocarbons; liquefied, natural gas monthly trade-demand context",
+      "entityIds": [
+        "japan-lng-demand"
+      ],
+      "targetInputIds": [
+        "japan-lng-demand"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "trade-demand",
+      "periodStart": "2026-06-01",
+      "periodEnd": "2026-06-30",
+      "aliases": [
+        "quantity:9435134000kg"
+      ],
+      "coverage": {
+        "status": "public-proxy",
+        "sourcePeriod": {
+          "start": "2026-06-01",
+          "end": "2026-06-30"
+        },
+        "expectedCadence": "monthly",
+        "observedPeriod": {
+          "start": "2026-06-01",
+          "end": "2026-06-30"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched",
+        "note": "Monthly or annual customs trade context is not cargo-level movement."
+      },
+      "value": 5407806363.239,
+      "unit": "USD",
+      "observationDate": "2026-06-30",
+      "observedAt": "2026-06-30T00:00:00.000Z",
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "monthly",
+      "freshnessWindowDays": 62,
+      "provider": "UN Comtrade",
+      "sourceId": "src-comtrade-japan-lng-demand",
+      "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
+      "confidence": "high",
+      "status": "confirmed",
+      "evidenceIds": [],
+      "machineEvidenceIds": [
+        "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:609ee056166a0112"
+      ],
+      "lineage": {
+        "sourceId": "src-comtrade-japan-lng-demand",
+        "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
+        "provider": "UN Comtrade",
+        "observationAt": "2026-06-30T00:00:00.000Z",
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": "609ee056166a0112f431eefe1be34769197944723031e8efc5d0313e69a9c6b7",
+        "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:609ee056166a0112",
+        "parserVersion": "comtrade-trade-v1",
+        "recordKey": "15c09e44774c6283af5a99edc46d8affa8eb7334b166005d932f066baacb4ce7",
+        "derivedFrom": []
+      }
+    },
+    {
+      "id": "energy-observation:src-comtrade-korea-lng-demand:korea-lng-demand:2025-12-01:2025-12-31",
+      "recordKey": "7fac8a62f6fd7ea53da2f39857ccf1708f3252a4bf5d9297af62da91cd0d3e8f",
+      "label": "Petroleum gases and other gaseous hydrocarbons; liquefied, natural gas monthly trade-demand context",
+      "entityIds": [
+        "korea-lng-demand"
+      ],
+      "targetInputIds": [
+        "korea-lng-demand"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "trade-demand",
+      "periodStart": "2025-12-01",
+      "periodEnd": "2025-12-31",
+      "aliases": [
+        "quantity:4933555268kg"
+      ],
+      "coverage": {
+        "status": "public-proxy",
+        "sourcePeriod": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "expectedCadence": "monthly",
+        "observedPeriod": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched",
+        "note": "Monthly or annual customs trade context is not cargo-level movement."
+      },
+      "value": 2535174222,
+      "unit": "USD",
+      "observationDate": "2025-12-31",
+      "observedAt": "2025-12-31T00:00:00.000Z",
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "cadence": "monthly",
+      "freshnessWindowDays": 260,
+      "provider": "UN Comtrade",
+      "sourceId": "src-comtrade-korea-lng-demand",
+      "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
+      "confidence": "high",
+      "status": "confirmed",
+      "evidenceIds": [],
+      "machineEvidenceIds": [
+        "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:2aa2891b0e788347"
+      ],
+      "lineage": {
+        "sourceId": "src-comtrade-korea-lng-demand",
+        "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
+        "provider": "UN Comtrade",
+        "observationAt": "2025-12-31T00:00:00.000Z",
+        "retrievedAt": "2026-08-24T01:47:05.401Z",
+        "snapshotHash": "2aa2891b0e788347e16e9101c9c874ef2c79a72b7ef136dcdb4f1cb1aea6f9fb",
+        "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:2aa2891b0e788347",
+        "parserVersion": "comtrade-trade-v1",
+        "recordKey": "7fac8a62f6fd7ea53da2f39857ccf1708f3252a4bf5d9297af62da91cd0d3e8f",
+        "derivedFrom": []
+      }
+    }
+  ],
+  "machineEvidence": [
+    {
+      "id": "machine-evidence:energy-snapshot:src-yahoo-ttf:e4e6ca6e9e7e101a",
+      "sourceId": "src-yahoo-ttf",
+      "provider": "Yahoo Finance",
+      "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+      "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:e4e6ca6e9e7e101a",
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "observedAt": "2026-08-21T13:53:03.000Z",
+      "contentHash": "e4e6ca6e9e7e101a827aed0d325d050e383a15f14b59343d60224463cb9d433a",
+      "parserVersion": "yahoo-chart-v1",
+      "recordKeys": [
+        "370c6d8fe762c25e5029dac2a0cadef6afa8cec1f41b823a41280ad61c5cffd7"
+      ],
+      "targetInputIds": [
+        "ttf"
+      ],
+      "targetCommercialInputIds": [
+        "lng-ttf"
+      ],
+      "observationKind": "flow",
+      "coverage": {
+        "status": "direct-observation",
+        "sourcePeriod": {
+          "start": "2026-08-21",
+          "end": "2026-08-21"
+        },
+        "expectedCadence": "daily",
+        "observedPeriod": {
+          "start": "2026-08-21",
+          "end": "2026-08-21"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched"
+      },
+      "status": "validated"
+    },
+    {
+      "id": "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:609ee056166a0112",
+      "sourceId": "src-comtrade-japan-lng-demand",
+      "provider": "UN Comtrade",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?subscription_key=%REDACTED%&typeCode=C&freqCode=M&clCode=HS&reporterCode=392&cmdCode=271111&flowCode=M&partnerCode=0&includeDesc=true",
+      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:609ee056166a0112",
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "observedAt": null,
+      "contentHash": "609ee056166a0112f431eefe1be34769197944723031e8efc5d0313e69a9c6b7",
+      "parserVersion": "comtrade-trade-v1",
+      "recordKeys": [
+        "15c09e44774c6283af5a99edc46d8affa8eb7334b166005d932f066baacb4ce7"
+      ],
+      "targetInputIds": [
+        "japan-lng-demand"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "trade-demand",
+      "coverage": {
+        "status": "public-proxy",
+        "sourcePeriod": {
+          "start": "2026-06-01",
+          "end": "2026-06-30"
+        },
+        "expectedCadence": "monthly",
+        "observedPeriod": {
+          "start": "2026-06-01",
+          "end": "2026-06-30"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched",
+        "note": "Monthly or annual customs trade context is not cargo-level movement."
+      },
+      "status": "validated"
+    },
+    {
+      "id": "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:2aa2891b0e788347",
+      "sourceId": "src-comtrade-korea-lng-demand",
+      "provider": "UN Comtrade",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?subscription_key=%REDACTED%&typeCode=C&freqCode=M&clCode=HS&period=202512&reporterCode=410&cmdCode=271111&flowCode=M&partnerCode=0&includeDesc=true",
+      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:2aa2891b0e788347",
+      "retrievedAt": "2026-08-24T01:47:05.401Z",
+      "observedAt": null,
+      "contentHash": "2aa2891b0e788347e16e9101c9c874ef2c79a72b7ef136dcdb4f1cb1aea6f9fb",
+      "parserVersion": "comtrade-trade-v1",
+      "recordKeys": [
+        "7fac8a62f6fd7ea53da2f39857ccf1708f3252a4bf5d9297af62da91cd0d3e8f"
+      ],
+      "targetInputIds": [
+        "korea-lng-demand"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "trade-demand",
+      "coverage": {
+        "status": "public-proxy",
+        "sourcePeriod": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "expectedCadence": "monthly",
+        "observedPeriod": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched",
+        "note": "Monthly or annual customs trade context is not cargo-level movement."
+      },
+      "status": "validated"
+    }
+  ],
+  "reconciliations": [],
+  "coverage": {
+    "src-eia-lng-baseline": {
+      "status": "unavailable",
+      "sourcePeriod": null,
+      "expectedCadence": "event-driven",
+      "observedPeriod": null,
+      "missingPeriods": [],
+      "sourceStatus": "failed"
+    },
+    "src-imf-portwatch-hormuz": {
+      "status": "unavailable",
+      "sourcePeriod": {
+        "start": "2026-08-18",
+        "end": "2026-08-18"
+      },
+      "expectedCadence": "daily",
+      "observedPeriod": {
+        "start": "2026-08-18",
+        "end": "2026-08-18"
+      },
+      "missingPeriods": [],
+      "sourceStatus": "failed"
+    },
+    "src-yahoo-ttf": {
+      "status": "direct-observation",
+      "sourcePeriod": {
+        "start": "2026-08-21",
+        "end": "2026-08-21"
+      },
+      "expectedCadence": "daily",
+      "observedPeriod": {
+        "start": "2026-08-21",
+        "end": "2026-08-21"
+      },
+      "missingPeriods": [],
+      "sourceStatus": "fetched"
+    },
+    "src-reviewed-qatar-force-majeure": {
+      "status": "unavailable",
+      "sourcePeriod": {
+        "start": "2026-07-23",
+        "end": "2026-07-23"
+      },
+      "expectedCadence": "event-driven",
+      "observedPeriod": {
+        "start": "2026-07-23",
+        "end": "2026-07-23"
+      },
+      "missingPeriods": [],
+      "sourceStatus": "skipped"
+    },
+    "src-eia-qatar-production": {
+      "status": "unavailable",
+      "sourcePeriod": null,
+      "expectedCadence": "annual",
+      "observedPeriod": null,
+      "missingPeriods": [],
+      "sourceStatus": "failed"
+    },
+    "src-eia-qatar-exports": {
+      "status": "unavailable",
+      "sourcePeriod": null,
+      "expectedCadence": "annual",
+      "observedPeriod": null,
+      "missingPeriods": [],
+      "sourceStatus": "failed"
+    },
+    "src-gem-ras-laffan-capacity": {
+      "status": "unavailable",
+      "sourcePeriod": null,
+      "expectedCadence": "annual",
+      "observedPeriod": null,
+      "missingPeriods": [],
+      "sourceStatus": "failed"
+    },
+    "src-gem-ras-laffan-status": {
+      "status": "unavailable",
+      "sourcePeriod": null,
+      "expectedCadence": "annual",
+      "observedPeriod": null,
+      "missingPeriods": [],
+      "sourceStatus": "failed"
+    },
+    "src-unlocode-ras-laffan": {
+      "status": "unavailable",
+      "sourcePeriod": null,
+      "expectedCadence": "annual",
+      "observedPeriod": null,
+      "missingPeriods": [],
+      "sourceStatus": "failed"
+    },
+    "src-imf-portwatch-hormuz-pressure": {
+      "status": "unavailable",
+      "sourcePeriod": null,
+      "expectedCadence": "daily",
+      "observedPeriod": null,
+      "missingPeriods": [],
+      "sourceStatus": "failed"
+    },
+    "src-comtrade-japan-lng-demand": {
+      "status": "public-proxy",
+      "sourcePeriod": {
+        "start": "2026-06-01",
+        "end": "2026-06-30"
+      },
+      "expectedCadence": "monthly",
+      "observedPeriod": {
+        "start": "2026-06-01",
+        "end": "2026-06-30"
+      },
+      "missingPeriods": [],
+      "sourceStatus": "fetched",
+      "note": "Monthly or annual customs trade context is not cargo-level movement."
+    },
+    "src-comtrade-korea-lng-demand": {
+      "status": "public-proxy",
+      "sourcePeriod": {
+        "start": "2025-12-01",
+        "end": "2025-12-31"
+      },
+      "expectedCadence": "monthly",
+      "observedPeriod": {
+        "start": "2025-12-01",
+        "end": "2025-12-31"
+      },
+      "missingPeriods": [],
+      "sourceStatus": "fetched",
+      "note": "Monthly or annual customs trade context is not cargo-level movement."
+    }
+  },
+  "sourceFilter": null,
+  "requestedPeriod": null,
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "src-eia-lng-baseline: EIA 400; applying declared unavailable fallback",
+      "src-imf-portwatch-hormuz: src-imf-portwatch-hormuz: PORTWATCH_DATA_URL is required for the approved machine-readable PortWatch connector; applying declared carry fallback",
+      "src-eia-qatar-production: EIA 404; applying declared unavailable fallback",
+      "src-eia-qatar-exports: EIA 404; applying declared unavailable fallback",
+      "src-gem-ras-laffan-capacity: src-gem-ras-laffan-capacity: GEM_DATA_URL is required for the asset registry connector; applying declared unavailable fallback",
+      "src-gem-ras-laffan-status: src-gem-ras-laffan-status: GEM_DATA_URL is required for the asset registry connector; applying declared unavailable fallback",
+      "src-unlocode-ras-laffan: src-unlocode-ras-laffan: UNLOCODE_DATA_URL is required for the asset registry connector; applying declared unavailable fallback",
+      "src-imf-portwatch-hormuz-pressure: src-imf-portwatch-hormuz-pressure: PORTWATCH_DATA_URL is required for the approved machine-readable PortWatch connector; applying declared unavailable fallback",
+      "candidate energy-observation:src-reviewed-qatar-force-majeure:qatar-output-status:2026-07-23:2026-07-23 is carried at 31 days old, above freshnessWindowDays 14"
+    ]
+  }
+}

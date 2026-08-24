@@ -1,0 +1,82 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "eventtype": "FL",
+        "eventid": "900001",
+        "episodeid": "1",
+        "name": "Singapore regional flood",
+        "description": "Flood footprint intersecting Singapore and the Malacca corridor.",
+        "alertlevel": "Orange",
+        "country": "Singapore; Malaysia",
+        "fromdate": "2026-08-19T00:00:00Z",
+        "todate": "2026-08-24T00:00:00Z",
+        "lastupdate": "2026-08-20T02:00:00Z",
+        "url": "https://www.gdacs.org/report.aspx?eventtype=FL&eventid=900001"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [100.0, 0.5],
+            [105.0, 0.5],
+            [105.0, 5.8],
+            [100.0, 5.8],
+            [100.0, 0.5]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventtype": "TC",
+        "eventid": "100001",
+        "episodeid": "2",
+        "name": "Cyclone Example",
+        "description": "Point-only cyclone advisory for unavailable-impact testing.",
+        "alertlevel": "Red",
+        "country": "Philippines",
+        "fromdate": "2026-08-19T00:00:00Z",
+        "todate": "2026-08-25T00:00:00Z",
+        "lastupdate": "2026-08-20T03:00:00Z",
+        "url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=100001"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [125.0, 15.0]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventtype": "FL",
+        "eventid": "outside-aoi",
+        "name": "Outside AOI",
+        "alertlevel": "Green",
+        "fromdate": "2026-08-19T00:00:00Z",
+        "todate": "2026-08-25T00:00:00Z"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.0, 30.0]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventtype": "FL",
+        "eventid": "malformed",
+        "name": "Malformed geometry",
+        "alertlevel": "Green",
+        "todate": "2026-08-25T00:00:00Z"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [999, 999]
+      }
+    }
+  ]
+}

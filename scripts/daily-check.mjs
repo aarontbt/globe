@@ -11,7 +11,11 @@ import {
   validateEvidenceAudit,
   validateStateShape,
 } from "./daily-common.mjs";
+import fs from "node:fs";
 import path from "node:path";
+import { isDeepStrictEqual } from "node:util";
+import { readClimateTargetData, validateClimateReadModel } from "./climate-refresh.mjs";
+import { prepareClimatePromotion } from "./climate-promote.mjs";
 
 const errors = [];
 const state = loadState();
@@ -33,6 +37,9 @@ for (const file of [
   PATHS.commodities,
   PATHS.exposure,
   PATHS.intelEvents,
+  PATHS.energyRuntime,
+  PATHS.energyReadModel,
+  PATHS.climateReadModel,
 ]) {
   try {
     readJson(file);
@@ -46,6 +53,73 @@ for (const file of [
   } catch (err) {
     fail(`${publicFile} cannot be read: ${err.message}`);
   }
+}
+
+let climateReadModel;
+try {
+  climateReadModel = readJson(PATHS.climateReadModel);
+  for (const error of validateClimateReadModel(climateReadModel, { targetData: readClimateTargetData() })) fail(error);
+} catch (err) {
+  fail(`${PATHS.climateReadModel} is not a valid climate read model: ${err.message}`);
+}
+const climateCandidatesPresent = fs.existsSync(PATHS.climateCandidates);
+const climateReportPresent = fs.existsSync(PATHS.climateRefreshReport);
+if (climateCandidatesPresent !== climateReportPresent) {
+  fail("Climate candidates and refresh report must be present as a complete pair");
+}
+if (climateCandidatesPresent && climateReportPresent) {
+  const climatePromotion = prepareClimatePromotion();
+  for (const error of climatePromotion.errors) fail(`Climate candidate/report files are invalid: ${error}`);
+  if (climatePromotion.promoted && JSON.stringify(climatePromotion.readModel) !== JSON.stringify(climateReadModel)) {
+    fail("promoted climate read model is out of sync with the validated candidate");
+  }
+}
+
+let energyRuntime;
+try {
+  energyRuntime = readJson(PATHS.energyRuntime);
+  if (energyRuntime.schemaVersion !== "energy-lng-runtime-v1") fail("energy-lng-runtime schemaVersion is invalid");
+  if (energyRuntime.domain?.asOf !== state.asOf) fail("energy-lng-runtime.domain.asOf does not match daily-state.asOf");
+  if (energyRuntime.readModelVersion !== "energy-lng-read-model-v1") fail("energy-lng-runtime readModelVersion is invalid");
+} catch (err) {
+  fail(`${PATHS.energyRuntime} is not a valid promoted runtime: ${err.message}`);
+}
+try {
+  const energyReadModel = readJson(PATHS.energyReadModel);
+  if (energyReadModel.schemaVersion !== 2) fail("energy-lng-read-model schemaVersion must be 2");
+  if (energyReadModel.asOf !== state.asOf) fail("energy-lng-read-model.asOf does not match daily-state.asOf");
+  if (energyReadModel.readModelVersion !== "energy-lng-read-model-v1") fail("energy-lng-read-model version is invalid");
+  if (energyRuntime?.promotionStatus === "promoted" && readText(PATHS.exposure) !== readText(PATHS.energyReadModel)) {
+    fail("promoted Energy/LNG read model is out of sync with exposure-traces");
+  }
+} catch (err) {
+  fail(`${PATHS.energyReadModel} is not a valid read model: ${err.message}`);
+}
+const energyCandidatesPresent = fs.existsSync(PATHS.energyCandidates);
+const energyReportPresent = fs.existsSync(PATHS.energyRefreshReport);
+if (energyCandidatesPresent !== energyReportPresent) {
+  fail("Energy/LNG candidates and refresh report must be present as a complete pair");
+}
+if (!energyCandidatesPresent && !energyReportPresent && energyRuntime?.promotionStatus === "promoted") {
+  fail("promoted Energy/LNG runtime is missing its candidate/report pair");
+}
+try {
+  if (!energyCandidatesPresent && !energyReportPresent) throw Object.assign(new Error("candidate/report pair is absent"), { code: "ENOENT" });
+  const energyReport = readJson(PATHS.energyRefreshReport);
+  const energyCandidates = readJson(PATHS.energyCandidates);
+  if (energyReport.schemaVersion !== "energy-lng-refresh-v1") fail("energy-lng-refresh-report schemaVersion is invalid");
+  if (energyCandidates.schemaVersion !== "energy-lng-candidates-v1") fail("energy-lng-candidates schemaVersion is invalid");
+  if (energyReport.runId !== energyCandidates.runId) fail("Energy/LNG candidates and refresh report runIds differ");
+  if (energyReport.asOf !== state.asOf) fail("Energy/LNG refresh report asOf does not match daily-state.asOf");
+  if (energyReport.baseFingerprint !== energyCandidates.baseFingerprint) fail("Energy/LNG candidate/report fingerprints differ");
+  if (JSON.stringify(energyReport.machineEvidence ?? []) !== JSON.stringify(energyCandidates.machineEvidence ?? [])) fail("Energy/LNG candidate/report machine evidence differs");
+  if (energyRuntime?.promotionStatus === "promoted" && energyRuntime.sourceRunId !== energyReport.runId) fail("promoted Energy/LNG runtime sourceRunId is out of sync");
+  if (energyRuntime?.promotionStatus === "promoted" && JSON.stringify(energyRuntime.domain?.machineEvidence ?? []) !== JSON.stringify(energyReport.machineEvidence ?? [])) fail("promoted Energy/LNG runtime machine evidence is out of sync");
+  if (energyRuntime?.promotionStatus === "promoted" && JSON.stringify(energyRuntime.promotedRecordIds ?? []) !== JSON.stringify((energyCandidates.observations ?? []).map((item) => item.id))) fail("promoted Energy/LNG record IDs are out of sync");
+  if (energyReport.promotion?.status !== "validated") fail(`Energy/LNG refresh report is ${energyReport.promotion?.status}, not validated`);
+  if ((energyReport.validation?.errors ?? []).length) fail("Energy/LNG refresh report contains validation errors");
+} catch (err) {
+  if (err.code !== "ENOENT") fail(`Energy/LNG candidate/report files are invalid: ${err.message}`);
 }
 
 const crossAsset = readJson(PATHS.crossAsset);
@@ -138,6 +212,7 @@ function compareTraceMetric(metric, context) {
     "sourceDate",
     "observedAt",
     "maxAgeDays",
+    "cadence",
     "carryReason",
     "missingReason",
   ]) {
@@ -217,7 +292,7 @@ for (const input of exposure.commercialInputs ?? []) {
     fail(`exposure commercial input ${input.inputId} has no matching daily-state input`);
     continue;
   }
-  if (JSON.stringify(input) !== JSON.stringify({ inputId: input.inputId, ...expected })) {
+  if (!isDeepStrictEqual(input, { inputId: input.inputId, ...expected })) {
     fail(`commercial input ${input.inputId} is out of sync with daily state`);
   }
   if ("assumptionIds" in input) fail(`commercial input ${input.inputId} must not contain assumptionIds`);

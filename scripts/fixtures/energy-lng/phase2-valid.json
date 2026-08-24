@@ -1,0 +1,159 @@
+{
+  "sources": {
+    "src-eia-lng-baseline": [
+      {
+        "seriesId": "QATAR_LNG_VOLUME",
+        "entityIds": ["qatarenergy", "ras-laffan"],
+        "metric": "qatar-lng-volume",
+        "seriesDescription": "Qatar LNG export baseline",
+        "value": 77.5,
+        "unit": "MTPA",
+        "period": "2026-08-23",
+        "observedAt": "2026-08-23T12:00:00.000Z"
+      }
+    ],
+    "src-imf-portwatch-hormuz": [
+      {
+        "routeId": "hormuz",
+        "entityIds": ["hormuz"],
+        "metric": "LNG transits",
+        "label": "Hormuz LNG transits",
+        "value": 4,
+        "unit": "LNG transits",
+        "date": "2026-08-18",
+        "observedAt": "2026-08-18T12:00:00.000Z"
+      }
+    ],
+    "src-yahoo-ttf": [
+      {
+        "label": "Dutch TTF",
+        "entityIds": ["ttf"],
+        "value": 66.002,
+        "change": 2.356,
+        "changePct": 3.7017,
+        "unit": "EUR/MWh",
+        "observationDate": "2026-08-21",
+        "observedAt": "2026-08-21T13:53:03.000Z",
+        "provider": "Yahoo Finance TTF=F"
+      }
+    ],
+    "src-eia-qatar-production": [
+      {
+        "seriesId": "QATAR_LNG_PRODUCTION",
+        "entityIds": ["qatarenergy", "ras-laffan"],
+        "metric": "qatar-lng-production",
+        "seriesDescription": "Qatar LNG production",
+        "value": 77.0,
+        "unit": "MTPA",
+        "period": "2025",
+        "observedAt": "2025-12-31T00:00:00.000Z"
+      }
+    ],
+    "src-eia-qatar-exports": [
+      {
+        "seriesId": "QATAR_LNG_EXPORTS",
+        "entityIds": ["qatarenergy", "ras-laffan"],
+        "metric": "qatar-lng-exports",
+        "seriesDescription": "Qatar LNG exports",
+        "value": 77.5,
+        "unit": "MTPA",
+        "period": "2025",
+        "observedAt": "2025-12-31T00:00:00.000Z"
+      }
+    ],
+    "src-gem-ras-laffan-capacity": [
+      {
+        "namespace": "GEM",
+        "code": "ras-laffan",
+        "stableEntityId": "ras-laffan",
+        "name": "Ras Laffan LNG Complex",
+        "capacity": 77.5,
+        "unit": "MTPA",
+        "observationDate": "2025-12-31",
+        "observedAt": "2025-12-31T00:00:00.000Z"
+      }
+    ],
+    "src-gem-ras-laffan-status": [
+      {
+        "namespace": "GEM",
+        "code": "ras-laffan",
+        "stableEntityId": "ras-laffan",
+        "name": "Ras Laffan LNG Complex",
+        "status": "operating",
+        "unit": "",
+        "observationDate": "2025-12-31",
+        "observedAt": "2025-12-31T00:00:00.000Z"
+      }
+    ],
+    "src-unlocode-ras-laffan": [
+      {
+        "namespace": "UN/LOCODE",
+        "code": "QARLF",
+        "stableEntityId": "ras-laffan-port",
+        "name": "Ras Laffan",
+        "locode": "QARLF",
+        "unit": "",
+        "observationDate": "2025-12-31",
+        "observedAt": "2025-12-31T00:00:00.000Z"
+      }
+    ],
+    "src-imf-portwatch-hormuz-pressure": [
+      {
+        "routeId": "hormuz",
+        "entityIds": ["hormuz"],
+        "metric": "route-pressure",
+        "label": "Hormuz route pressure",
+        "value": 62,
+        "unit": "index",
+        "date": "2026-08-16",
+        "observedAt": "2026-08-16T12:00:00.000Z"
+      },
+      {
+        "routeId": "hormuz",
+        "entityIds": ["hormuz"],
+        "metric": "route-pressure",
+        "label": "Hormuz route pressure",
+        "value": 68,
+        "unit": "index",
+        "date": "2026-08-17",
+        "observedAt": "2026-08-17T12:00:00.000Z"
+      },
+      {
+        "routeId": "hormuz",
+        "entityIds": ["hormuz"],
+        "metric": "route-pressure",
+        "label": "Hormuz route pressure",
+        "value": 70,
+        "unit": "index",
+        "date": "2026-08-18",
+        "observedAt": "2026-08-18T12:00:00.000Z"
+      }
+    ],
+    "src-comtrade-japan-lng-demand": [
+      {
+        "reporterCode": "392",
+        "partnerCode": "0",
+        "flowCode": "M",
+        "cmdCode": "271111",
+        "cmdDesc": "Liquefied natural gas",
+        "period": "202607",
+        "primaryValue": 201000000,
+        "netWgt": 2800000000,
+        "netWgtUnit": "kg"
+      }
+    ],
+    "src-comtrade-korea-lng-demand": [
+      {
+        "reporterCode": "410",
+        "partnerCode": "0",
+        "flowCode": "M",
+        "cmdCode": "271111",
+        "cmdDesc": "Liquefied natural gas",
+        "period": "202607",
+        "primaryValue": 119000000,
+        "netWgt": 1700000000,
+        "netWgtUnit": "kg"
+      }
+    ]
+  }
+}

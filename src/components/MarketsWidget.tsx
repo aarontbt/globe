@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 17-18: Trump threatens Oman over Iran route deal; projectile hits ship exiting Hormuz with crew casualty; Iran says no reopening before US conditions; Brent $91.29; TTF 63.92; tail 40%";
+const TOP_ALERT = "AUG 23: Iran warns sanctions support is an act of war; no confirmed Hormuz attacks in 48h but traffic reduced; Iran-Oman management talks continue; Brent $93.47; TTF 66.00; tail 40%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

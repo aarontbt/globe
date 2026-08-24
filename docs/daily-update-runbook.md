@@ -1,19 +1,23 @@
 # Signal-to-Exposure Daily Update Guide
 
-**Purpose**: Reference manual for the Iran-Hormuz public-intelligence demonstrator. Routine updates start in `src/data/daily-state.json`; reviewed state is distributed with `bun run daily:apply`.
+**Purpose**: Reference manual for the Energy/LNG Signal-to-Exposure workflow. Routine updates start in `src/data/daily-state.json`; reviewed state is distributed with `bun run daily:apply`.
 
 > **Daily execution**: Load `docs/daily-agent-prompt.md` instead — it is the lean, token-efficient daily prompt. This file is the reference manual for schemas, conventions, and rare operations.
+>
+> **Energy/LNG ingestion**: See [`energy-lng-data-ingestion.md`](energy-lng-data-ingestion.md) for the active Phase 2 staged connector, provenance and promotion contract. `bun run energy:refresh` produces a fingerprinted candidate/report pair with raw snapshot artifacts and coverage metadata; `bun run daily:update` promotes only a complete, validated same-as-of report whose fingerprint still matches current inputs. `daily:update` is promotion-only and never fetches or recrawls.
+>
+> **Climate ingestion**: See [`climate-disruption-layer-plan.md`](climate-disruption-layer-plan.md). `bun run climate:refresh` fetches GDACS tropical-cyclone and flood GeoJSON, saves an immutable snapshot, and generates a validated candidate/report pair. Use `bun run climate:refresh --dry-run` to validate the live source without writing artifacts. The next successful `daily:apply` promotes the pair; source failures leave the last promoted model unchanged.
 
 ## Current State
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-08-18 (D167) |
-| **Crisis level** | 4 - High (Aug 17-18: AP reported Trump threatened to bomb Oman over its near-term arrangement with Iran to manage Hormuz traffic; the US opposes parts of the joint route-management plan. AP reported a projectile hit a ship leaving the strait off Oman on Aug 18, damaging the engine room and causing a crew casualty; no responsibility was claimed. Iran's parliament speaker said the strait will not reopen until the US lifts the blockade, releases frozen assets, lifts oil sanctions, ends threats and military operations, and meets other conditions. The 60-day US-Iran deadline passed without a clear settlement. AP also reported a Houthi claim of a drone attack on a Saudi Aramco refinery, with no damage confirmed. Brent rose to $91.29 (+4.85%) and TTF to 63.92 EUR/MWh (+5.82%) on Aug 18. Crisis level remains 4 (High); base is 5%, stress 55%, tail 40%.) |
-| **Brent** | $91.29 (2026-08-18, Yahoo Finance BZ=F; +4.85%) |
+| **Last updated** | 2026-08-23 (D172) |
+| **Crisis level** | 4 - High (Aug 23: AP reported no confirmed attacks in the Strait of Hormuz over the prior 48 hours, but shipping traffic remained reduced. AP reported Iran's security chief said support for new US economic measures would be treated as an act of war; Iran and Oman are discussing management of the strait, likely including transit fees, while Pakistan's army chief is due in Tehran to revive talks. The 60-day US-Iran deadline passed without a settlement. Brent was $93.47 (Yahoo Finance, Aug 23) and TTF was $66.00 EUR/MWh (Yahoo Finance, Aug 21; +3.7%). Crisis level remains 4 (High); base is 5%, stress 55%, tail 40%.) |
+| **Brent** | $93.47 (2026-08-23, Yahoo Finance BZ=F; +2.69%) |
 | **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $21.22/MMBtu, Trading Economics, Aug 14; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation) |
-| **TTF** | 63.92 EUR/MWh (2026-08-18, Yahoo Finance TTF=F; +5.82%) |
-| **Exposure trace** | AP reported Trump threatened Oman over its near-term deal with Iran to manage Hormuz traffic. A projectile hit a ship leaving the strait off Oman on Aug 18, damaging the engine room and causing a crew casualty; no responsibility was claimed. Iran says the strait will not reopen until US conditions are met. Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable. |
+| **TTF** | 66.00 EUR/MWh (2026-08-21, Yahoo Finance TTF=F; +3.7%) |
+| **Exposure trace** | AP reported no confirmed Hormuz attacks over the prior 48 hours, but traffic remains reduced and Iran's authority listed vessels facing future restrictions. Iran and Oman are discussing strait management, likely including fees; Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable. |
 | **Evidence audit** | 16 checked · 10 verified · 6 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
@@ -33,12 +37,22 @@
 | `src/components/MarketsWidget.tsx` | Ticker alert banner + oil forecast ranges | Daily |
 | `src/data/charts-volatility.json` | Bottom volatility charts (OVX, VXEEM, Scenarios) | OVX + VXEEM fetch live from CBOE on load; only Scenarios need manual daily update |
 | `src/data/exposure-traces.json` | Signal to Exposure, globe routes, Counterparties, Actions, Evidence | Daily inputs; event and contract changes as triggered |
+| `src/data/energy-lng-source-registry.json` | Energy/LNG source definitions and fallback rules | Connector contract; change only with parser/validation review |
+| `src/data/energy-lng-candidates.json` | Staged normalized Energy/LNG observations | Generated by `bun run energy:refresh`; never hand-promote |
+| `src/data/energy-lng-snapshot-manifest.json` | Raw snapshot metadata, hashes and artifact links | Generated by `bun run energy:refresh`; inspect before promotion |
+| `src/data/energy-lng-snapshots/` | Durable raw source payloads | Generated by `bun run energy:refresh`; never parse a landing page as data |
+| `src/data/energy-lng-runtime.json` | Promoted canonical Energy/LNG domain and assessment lineage | Generated by `bun run daily:apply` |
+| `src/data/energy-lng-read-model.json` | Generated Energy/LNG UI read model | Generated and mirrored by `bun run daily:apply` |
+| `src/data/climate-source-registry.json` | GDACS endpoint, event types, attribution and freshness contract | Change only with parser/validation review |
+| `src/data/climate-candidates.json` and `climate-refresh-report.json` | Staged normalized climate read model and validation report | Generated by `bun run climate:refresh`; never hand-promote |
+| `src/data/climate-snapshots/` | Immutable GDACS GeoJSON snapshots and hashes | Generated by `bun run climate:refresh` |
+| `src/data/climate-read-model.json` | Promoted Climate panel and globe-layer read model | Generated and mirrored by `bun run daily:apply` |
 | `src/data/evidence-audit.json` | Reviewed evidence-validation gate | Every daily run; recrawl changed or due sources |
 | `src/data/iran-intel-events.json` | Right panel - Events | Daily |
 
 ### Runtime Data Source — READ BEFORE EDITING (critical)
 
-**The running app fetches every JSON dataset from `public/data/*.json` at runtime (`useStaticJson`), not from `src/data/`.** `bun run daily:apply` auto-mirrors `daily-state.json`, `exposure-traces.json`, `iran-intel-events.json`, `banker-cross-asset.json`, `banker-conflict.json`, `charts-volatility.json`, and `commodities-impact.json`. `bun run daily:check` rejects drift for all seven.
+**The running app fetches every JSON dataset from `public/data/*.json` at runtime (`useStaticJson`), not from `src/data/`.** `bun run daily:apply` auto-mirrors `daily-state.json`, `exposure-traces.json`, the Energy/LNG runtime/read model, the climate read model, `iran-intel-events.json`, `banker-cross-asset.json`, `banker-conflict.json`, `charts-volatility.json`, and `commodities-impact.json`. `bun run daily:check` rejects drift for all of these.
 
 The remaining archive datasets are manually mirrored:
 
@@ -181,6 +195,29 @@ Every trace has exactly five ordered stages: `signal`, `supply`, `transport`, `d
 | `missingReason` | Required for unavailable values |
 
 Relationships may only be `public-contract`, `operational-dependency`, or `market-sensitivity`. These labels document public linkages and must never be described as a PETCO position or confidential contract exposure.
+
+### Flow Pressure review
+
+Flow Pressure is generated at runtime from the canonical Energy/LNG adapter; it is not a manually entered field in `exposure-traces.json`. The current `flow-pressure-v1` calculation combines six components:
+
+| Component | Weight |
+|-----------|--------|
+| Supply interruption | 25% |
+| Route / chokepoint pressure | 20% |
+| Vessel / port disruption | 15% |
+| Destination dependency | 15% |
+| Price / basis movement | 15% |
+| Alternative availability | 10% |
+
+Each component is scored from 0 (no observed pressure) to 100 (high pressure). A negative, mixed, or positive trace direction starts at 75, 50, or 25 respectively. Carried observations pull the component toward neutral and reduce confidence; fully unavailable observations remain neutral at 50 and are marked unresolved. A market price without an explicit movement, spread, premium, discount, or basis observation remains neutral rather than being interpreted as directional pressure.
+
+Alternative candidates must remain explicitly classified:
+
+- `potential` means a source, market, route, or terminal is a plausible candidate, not verified capacity or execution;
+- `physically-feasible` requires evidence for demonstrated capacity, infrastructure compatibility, and route/lead-time constraints;
+- `commercially-executable` additionally requires verified cost, contract flexibility, sanctions/insurance, and availability evidence.
+
+Daily operators should update the underlying metrics, directions, evidence links, freshness, and alternative records. Do not write or hand-tune a Flow Pressure score. After publishing, switch through all traces in **SIGNAL → EXPOSURE** and confirm the score, component statuses, confidence, evidence count, and alternative wording are consistent with the reviewed inputs. A `provisional` or `insufficient verified data` result is expected when required observations are carried or unavailable.
 
 ### Freshness and carry-forward
 
@@ -437,10 +474,12 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 - [ ] **Preview without mutation**: Run `bun run daily:fetch -- --dry-run`; verify Brent, WTI, and `TTF=F` results. Confirm `git diff -- src/data/daily-state.json` shows no change from this command.
 - [ ] **Persist machine refresh**: Run `bun run daily:refresh`. This writes successful liquid values to daily state only; it does not publish.
+- [ ] **Stage Energy/LNG refresh**: Run `bun run energy:refresh` after the liquid refresh and after any state, exposure, evidence, or registry edit. For event-driven changes use `bun run energy:refresh -- --event`; for bounded history use `bun run energy:refresh -- --source <source-id> --from YYYY-MM-DD --to YYYY-MM-DD`. Review raw snapshot hashes/artifacts, period coverage, source age, machine evidence, reconciliation outcomes, carry/unavailable states, and the fingerprinted candidate/report pair. Configure live endpoints through environment variables; commit no secrets.
 - [ ] **Firecrawl evidence review**: Scrape every changed or due evidence URL and update `src/data/evidence-audit.json` with the reviewed content result and claim mappings.
 - [ ] **Evidence gate**: Run `bun run daily:evidence`. Do not continue with unsupported, unreachable, pending, rejected, landing-page, or observation-mismatch failures.
 - [ ] **Complete analyst inputs**: Review JKM, Qatar output/force majeure, Hormuz condition and AIS count, LNG freight/delay ranges, evidence updates, and the trace headline. Carry unavailable observations with original dates and reasons.
 - [ ] **Review three traces**: Read every five-hop chain, confirmed/carried/unavailable metric, named public relationship, and portfolio action before publishing.
+- [ ] **Review Flow Pressure**: In **SIGNAL → EXPOSURE → Exposure Trace**, verify each trace's score, six component weights/statuses, confidence, evidence count, and alternative feasibility. Do not treat a potential alternative as executable capacity.
 - [ ] **Source check first**: For each price you plan to enter, confirm a named source exists (see Source Validation Policy above). Do not enter a number if the only answer to "where did this come from?" is "I estimated it" — use last confirmed level instead and note the date.
 - [ ] **Cross-asset**: Update `asOf` date, refresh all `current` prices and `change1d` values
 - [ ] **useMarkets.ts**: Update `FALLBACK_QUOTES` prices, changes, and `lastUpdated` dates
@@ -481,7 +520,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 ## E2E Verification Recipe
 
 1. `bun run dev` → open `http://localhost:5173`
-2. Open **SIGNAL → EXPOSURE**, switch all three traces, and verify the five-hop chain, verified-data statuses, evidence, commercial evaluation, and portfolio action update together
+2. Open **SIGNAL → EXPOSURE**, switch all three traces, and verify the five-hop chain, Flow Pressure score/components/confidence, verified-data statuses, evidence, commercial evaluation, and portfolio action update together
 3. Close the overlay and verify the globe shows only the selected trace route, with LNG production/carrier/terminal/demand nodes and no stale route from the previous selection
 4. Open **Counterparties**, **Actions**, and **Evidence**; copy the decision brief and confirm named relationships and evidence resolve correctly
 5. Right panel — **EVENTS**: intel events visible, no `pm-` events, filters work
@@ -505,10 +544,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $91.29 (Aug 18, Yahoo Finance BZ=F; +4.85%) as a projectile hit a ship leaving Hormuz and Trump threatened Oman over its Iran route-management arrangement. Working range $75-85 base (signed workable deal); $78-95 stress (conditional routing); $105-135+ tail (renewed closure).
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $21.22/MMBtu (Trading Economics, Aug 14), also carried on Aug 18. Qatar force majeure is carried through mid-September from the Reuters Jul 23 notice; the reported mid-October extension remains unconfirmed.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 63.92 EUR/MWh (Aug 18, Yahoo Finance TTF=F; +5.82%) as the projectile strike on a ship leaving Hormuz and the Trump-Oman dispute kept European gas flows at risk. The marker remains elevated versus the pre-crisis baseline while Qatar LNG force majeure and constrained Hormuz traffic persist.
-- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 5%, stress 55%, tail 40% after the Aug 18 projectile strike, Trump's threat against Oman, and Iran's refusal to reopen before US conditions are met; no signed reopening is confirmed.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $93.47 (Aug 23, Yahoo Finance BZ=F; +2.69%) as AP reported reduced Hormuz traffic, no confirmed attacks in 48 hours, and an Iranian warning over sanctions support. Working range $75-85 base (signed workable deal); $78-95 stress (conditional routing); $105-135+ tail (renewed closure).
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $21.22/MMBtu (Trading Economics, Aug 14), also carried on Aug 23. Qatar force majeure is carried through mid-September from the Reuters Jul 23 notice; the reported mid-October extension remains unconfirmed.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 66.00 EUR/MWh (Aug 21, Yahoo Finance TTF=F; +3.7%) as reduced Hormuz traffic, Iranian transit restrictions and the unresolved Iran-Oman arrangement kept European gas flows at risk. The marker remains elevated versus the pre-crisis baseline while Qatar LNG force majeure persists.
+- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 5%, stress 55%, tail 40% after AP reported reduced traffic, Iranian transit restrictions and no signed reopening; no confirmed attack was reported in the prior 48 hours.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

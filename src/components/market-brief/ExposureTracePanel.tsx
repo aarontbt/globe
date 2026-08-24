@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type {
   DerivedCommercialMetric,
+  EvidenceReference,
   ExposureTrace,
   ExposureTraceData,
   PublicEntity,
@@ -8,6 +9,7 @@ import type {
   TraceMetric,
   TraceStage,
 } from "../../types";
+import type { EnergyAlternative, FlowPressureAssessment } from "../../types/energyLng";
 import { FONT_SANS } from "../../styles/fonts";
 
 const STAGE_COLORS: Record<TraceStage, string> = {
@@ -43,7 +45,7 @@ const rowStyle: React.CSSProperties = {
   justifyContent: "space-between",
   gap: 8,
   color: "rgba(255,255,255,0.5)",
-  fontSize: 9,
+  fontSize: 12,
   padding: "4px 0",
   borderBottom: "1px solid rgba(255,255,255,0.04)",
 };
@@ -52,9 +54,9 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div
       style={{
-        fontSize: 8,
+        fontSize: 12,
         fontWeight: 800,
-        color: "rgba(255,255,255,0.28)",
+        color: "rgba(255,255,255,0.48)",
         letterSpacing: "0.14em",
         textTransform: "uppercase",
         marginBottom: 5,
@@ -73,20 +75,62 @@ function getActiveTrace(data: ExposureTraceData, activeTraceId: string) {
   return data.traces.find((trace) => trace.id === activeTraceId) ?? data.traces[0];
 }
 
+function formatValuePart(value: number | string, unit?: string | null) {
+  if (unit === "USD" && typeof value === "number" && Number.isFinite(value)) {
+    return new Intl.NumberFormat("en-US", {
+      notation: "compact",
+      maximumFractionDigits: 1,
+    }).format(value);
+  }
+  return String(value);
+}
+
+function displayValue(value: number | string | undefined, unit?: string | null) {
+  if (value === undefined) return "unavailable";
+  return `${formatValuePart(value, unit)}${unit ? ` ${unit}` : ""}`;
+}
+
+function signalLabel(observation: NonNullable<NonNullable<ExposureTrace["physicalFlow"]>["observations"]>[number]) {
+  switch (observation.sourceId) {
+    case "src-comtrade-japan-lng-demand":
+      return "Japan LNG imports";
+    case "src-comtrade-korea-lng-demand":
+      return "South Korea LNG imports";
+    case "src-gem-ras-laffan-capacity":
+      return "Ras Laffan capacity";
+    case "src-gem-ras-laffan-status":
+      return "Ras Laffan status";
+    default:
+      return observation.label;
+  }
+}
+
+function latestSignals(observations: NonNullable<NonNullable<ExposureTrace["physicalFlow"]>["observations"]>) {
+  const latest = new Map<string, (typeof observations)[number]>();
+  for (const observation of observations) {
+    const key = `${observation.sourceId ?? observation.label}:${observation.unit ?? ""}`;
+    const current = latest.get(key);
+    const observationDate = observation.periodEnd ?? observation.periodStart ?? "";
+    const currentDate = current?.periodEnd ?? current?.periodStart ?? "";
+    if (!current || observationDate >= currentDate) latest.set(key, observation);
+  }
+  return [...latest.values()];
+}
+
 function metricValue(metric: TraceMetric) {
   if (metric.low !== undefined && metric.high !== undefined) {
-    return `${metric.low}-${metric.high}${metric.unit ? ` ${metric.unit}` : ""}`;
+    return `${formatValuePart(metric.low, metric.unit)}-${formatValuePart(metric.high, metric.unit)}${metric.unit ? ` ${metric.unit}` : ""}`;
   }
   if (metric.value !== undefined) {
-    return `${metric.value}${metric.unit ? ` ${metric.unit}` : ""}`;
+    return displayValue(metric.value, metric.unit);
   }
   return "Insufficient verified data";
 }
 
 function statusLabel(metric: TraceMetric) {
-  if (metric.status === "carried") return `historical observation · ${metric.sourceDate}`;
-  if (metric.status === "unavailable") return metric.missingReason ?? "Insufficient verified data";
-  return `verified ${metric.sourceDate}`;
+  if (metric.status === "carried") return "historical";
+  if (metric.status === "unavailable") return "not currently verified";
+  return "verified";
 }
 
 function derivedValue(metric: DerivedCommercialMetric) {
@@ -99,6 +143,121 @@ function derivedValue(metric: DerivedCommercialMetric) {
 
 function residualLabel(status: ResidualStatus) {
   return status.replace(/-/g, " ");
+}
+
+function pressureColor(score: number) {
+  if (score >= 70) return "#f87171";
+  if (score >= 45) return "#fbbf24";
+  return "#34d399";
+}
+
+function pressureStatusLabel(status: FlowPressureAssessment["status"]) {
+  if (status === "assessed") return "assessed";
+  if (status === "provisional") return "provisional";
+  return "insufficient verified data";
+}
+
+function alternativeKindLabel(kind: EnergyAlternative["kind"]) {
+  if (kind === "source") return "supply source";
+  if (kind === "market") return "destination market";
+  return "route / terminal";
+}
+
+function alternativeFeasibilityLabel(feasibility: EnergyAlternative["feasibility"]) {
+  if (feasibility === "potential") return "potential — not verified";
+  if (feasibility === "physically-feasible") return "Physically feasible";
+  if (feasibility === "commercially-executable") return "Commercially executable";
+  return "Insufficient verified data";
+}
+
+function PhysicalFlowTimeline({ trace }: { trace: ExposureTrace }) {
+  const observations = latestSignals(trace.physicalFlow?.observations ?? []);
+  const direct = observations.filter((item) => (
+    item.coverageStatus === "direct-observation"
+      && item.status === "confirmed"
+      && item.sourceId !== "src-unlocode-ras-laffan"
+      && !(item.observationKind === "asset-status" && item.value === item.label)
+  ));
+  const groups = [
+    { label: "Key physical signals", items: direct, color: "#34d399" },
+  ].filter((group) => group.items.length > 0);
+
+  return (
+    <div style={{ ...sectionCard, padding: 14 }}>
+      <SectionLabel>Key signals</SectionLabel>
+
+      {groups.map((group) => (
+        <div key={group.label} style={{ marginTop: 13 }}>
+          <div style={{ color: group.color, fontSize: 12, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 5 }}>{group.label}</div>
+          {group.items.map((observation) => (
+            <div key={observation.id} style={{ display: "grid", gridTemplateColumns: "1.8fr 1fr", gap: 10, padding: "8px 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.86)", fontWeight: 700 }}>{signalLabel(observation)}</div>
+              <div style={{ fontSize: 12, color: group.color, fontWeight: 750 }}>{displayValue(observation.value, observation.unit)}</div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FlowPressureCard({
+  assessment,
+  alternatives,
+  evidence,
+}: {
+  assessment?: FlowPressureAssessment;
+  alternatives?: EnergyAlternative[];
+  evidence: EvidenceReference[];
+}) {
+  if (!assessment) return null;
+  const color = pressureColor(assessment.score);
+  return (
+    <div style={{ ...sectionCard, padding: 14 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+        <div>
+          <SectionLabel>Flow pressure</SectionLabel>
+          <div style={{ fontSize: 28, fontWeight: 850, color, lineHeight: 1 }}>{assessment.score}<span style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", fontWeight: 600 }}> / 100</span></div>
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.70)", marginTop: 6 }}>
+            {pressureStatusLabel(assessment.status)} · {assessment.confidence} confidence
+          </div>
+        </div>
+        <div style={{ maxWidth: 360, fontSize: 12, color: "rgba(255,255,255,0.72)", lineHeight: 1.45, textAlign: "right" }}>
+          Higher score = more pressure. Missing data lowers confidence.
+          <div style={{ marginTop: 5, color: "rgba(255,255,255,0.62)" }}>
+            {assessment.evidenceIds.filter((id) => evidence.some((item) => item.id === id)).length} evidence
+          </div>
+        </div>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 8, marginTop: 14 }}>
+        {assessment.components.map((component) => {
+          const componentColor = pressureColor(component.score);
+          return (
+            <div key={component.id} style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: 8 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", gap: 6, fontSize: 12 }}>
+                <span style={{ color: "rgba(255,255,255,0.82)" }}>{component.label}</span>
+                <strong style={{ color: componentColor }}>{component.score}</strong>
+              </div>
+              <div style={{ height: 3, marginTop: 6, borderRadius: 2, background: "rgba(255,255,255,0.07)" }}>
+                <div style={{ width: `${component.score}%`, height: "100%", borderRadius: 2, background: componentColor }} />
+              </div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.68)", marginTop: 5, lineHeight: 1.35 }}>
+                {component.status.replace(/-/g, " ")} · {Math.round(component.weight * 100)}% · {component.evidenceIds.length} evidence
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div style={{ marginTop: 12, paddingTop: 10, borderTop: "1px solid rgba(255,255,255,0.07)", fontSize: 12, color: "rgba(255,255,255,0.72)" }}>
+        <strong style={{ color: "rgba(255,255,255,0.88)" }}>Alternative:</strong>{" "}
+        {alternatives && alternatives.length > 0
+          ? alternatives.map((alternative) => `${alternative.rank ?? "—"}. ${alternative.label} · ${alternativeKindLabel(alternative.kind)} · ${alternativeFeasibilityLabel(alternative.feasibility)}`).join("; ")
+          : "No ranked alternative source, market, route or terminal is currently verified."}
+      </div>
+    </div>
+  );
 }
 
 function TraceSelector({ data, activeTraceId, onTraceChange }: TracePanelProps) {
@@ -124,7 +283,7 @@ function TraceSelector({ data, activeTraceId, onTraceChange }: TracePanelProps) 
             <div
               style={{
                 color: active ? "#38bdf8" : "rgba(255,255,255,0.28)",
-                fontSize: 8,
+                fontSize: 12,
                 fontWeight: 800,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
@@ -133,7 +292,7 @@ function TraceSelector({ data, activeTraceId, onTraceChange }: TracePanelProps) 
             >
               Trace {String(index + 1).padStart(2, "0")} · {trace.commodity === "lng" ? "LNG" : "Crude oil"}
             </div>
-            <div style={{ fontSize: 13, fontWeight: 700 }}>{trace.title}</div>
+            <div style={{ fontSize: 15, fontWeight: 700 }}>{trace.title}</div>
           </button>
         );
       })}
@@ -146,7 +305,7 @@ function TraceHeader({ data, trace }: { data: ExposureTraceData; trace: Exposure
     <div style={{ maxWidth: 960 }}>
       <div
         style={{
-          fontSize: 9,
+          fontSize: 12,
           color: "#38bdf8",
           fontWeight: 800,
           letterSpacing: "0.16em",
@@ -156,8 +315,8 @@ function TraceHeader({ data, trace }: { data: ExposureTraceData; trace: Exposure
       >
         Iran / Hormuz {trace.commodity === "lng" ? "LNG" : "crude oil"} exposure trace
       </div>
-      <div style={{ fontSize: 18, color: "rgba(255,255,255,0.95)", fontWeight: 750 }}>{trace.headline}</div>
-      <div style={{ fontSize: 11, color: "rgba(255,255,255,0.42)", marginTop: 5, lineHeight: 1.45 }}>
+      <div style={{ fontSize: 22, color: "rgba(255,255,255,0.95)", fontWeight: 750 }}>{trace.headline}</div>
+      <div style={{ fontSize: 13, color: "rgba(255,255,255,0.42)", marginTop: 5, lineHeight: 1.45 }}>
         {data.headline}
       </div>
     </div>
@@ -181,6 +340,8 @@ export default function ExposureTracePanel({ data, activeTraceId, onTraceChange 
     <div style={{ fontFamily: FONT_SANS, color: "rgba(255,255,255,0.9)", display: "flex", flexDirection: "column", gap: 12 }}>
       <TraceHeader data={data} trace={trace} />
       <TraceSelector data={data} activeTraceId={trace.id} onTraceChange={onTraceChange} />
+      <FlowPressureCard assessment={trace.flowPressure} alternatives={trace.alternatives} evidence={data.evidence} />
+      <PhysicalFlowTimeline trace={trace} />
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(5, minmax(0, 1fr))", gap: 7, alignItems: "stretch" }}>
         {trace.hops.map((hop, index) => {
@@ -217,26 +378,26 @@ export default function ExposureTracePanel({ data, activeTraceId, onTraceChange 
                   →
                 </span>
               )}
-              <div style={{ color, fontSize: 8, fontWeight: 800, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 6 }}>
+              <div style={{ color, fontSize: 12, fontWeight: 800, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 6 }}>
                 {hop.stage}
               </div>
-              <div style={{ fontSize: 13, fontWeight: 750, lineHeight: 1.2, marginBottom: 5 }}>{hop.label}</div>
-              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.38)", marginBottom: 9 }}>{namedEntities}</div>
-              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.54)", lineHeight: 1.45 }}>{hop.summary}</div>
+              <div style={{ fontSize: 15, fontWeight: 750, lineHeight: 1.2, marginBottom: 5 }}>{hop.label}</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.38)", marginBottom: 9 }}>{namedEntities}</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.54)", lineHeight: 1.45 }}>{hop.summary}</div>
               <div style={{ marginTop: 10 }}>
                 {hop.metrics.map((metric) => (
                   <div key={`${hop.id}-${metric.inputId}`} style={{ marginTop: 6 }}>
-                    <div style={{ fontSize: 8, color: "rgba(255,255,255,0.30)", textTransform: "uppercase" }}>{metric.label}</div>
+                    <div style={{ fontSize: 12, color: "rgba(255,255,255,0.30)", textTransform: "uppercase" }}>{metric.label}</div>
                     {evidence && metric.status !== "unavailable" ? (
-                      <a href={evidence.url} target="_blank" rel="noreferrer" style={{ display: "block", fontSize: 12, fontWeight: 750, color, textDecoration: "none" }}>
+                      <a href={evidence.url} target="_blank" rel="noreferrer" style={{ display: "block", fontSize: 14, fontWeight: 750, color, textDecoration: "none" }}>
                         {metricValue(metric)} ↗
                       </a>
                     ) : (
-                      <div style={{ fontSize: 12, fontWeight: 750, color: metric.status === "unavailable" ? "rgba(255,255,255,0.32)" : color }}>
+                      <div style={{ fontSize: 14, fontWeight: 750, color: metric.status === "unavailable" ? "rgba(255,255,255,0.32)" : color }}>
                         {metricValue(metric)}
                       </div>
                     )}
-                    <div style={{ fontSize: 7, color: "rgba(255,255,255,0.25)", marginTop: 1 }}>{statusLabel(metric)}</div>
+                    <div style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", marginTop: 1 }}>{statusLabel(metric)}</div>
                   </div>
                 ))}
               </div>
@@ -257,18 +418,18 @@ export default function ExposureTracePanel({ data, activeTraceId, onTraceChange 
           <SectionLabel>Selected-hop evidence</SectionLabel>
           <div style={rowStyle}><span>Evidence links</span><strong>{selectedEvidence.length}</strong></div>
           {selectedEvidence.map((evidence) => (
-            <a key={evidence.id} href={evidence.url} target="_blank" rel="noreferrer" style={{ display: "block", color: "#7dd3fc", fontSize: 9, lineHeight: 1.35, textDecoration: "none", marginTop: 6 }}>
+            <a key={evidence.id} href={evidence.url} target="_blank" rel="noreferrer" style={{ display: "block", color: "#7dd3fc", fontSize: 12, lineHeight: 1.35, textDecoration: "none", marginTop: 6 }}>
               {evidence.publisher}: {evidence.title} ↗
             </a>
           ))}
         </div>
 
-        <div style={{ ...sectionCard, borderLeft: "2px solid rgba(56,189,248,0.55)" }}>
+        <div style={sectionCard}>
           <SectionLabel>Portfolio action</SectionLabel>
-          <div style={{ fontSize: 11, color: "rgba(255,255,255,0.68)", lineHeight: 1.5 }}>{trace.portfolioAction}</div>
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.68)", lineHeight: 1.5 }}>{trace.portfolioAction}</div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 9 }}>
             {trace.watchItems.map((item) => (
-              <span key={item} style={{ padding: "3px 6px", borderRadius: 4, background: "rgba(56,189,248,0.06)", color: "rgba(125,211,252,0.7)", fontSize: 8 }}>
+              <span key={item} style={{ padding: "3px 6px", borderRadius: 4, background: "rgba(56,189,248,0.06)", color: "rgba(125,211,252,0.7)", fontSize: 12 }}>
                 {item}
               </span>
             ))}
@@ -291,7 +452,7 @@ export function TraceCounterpartiesPanel({ data, activeTraceId, onTraceChange }:
         <div style={{ ...sectionCard, padding: 18, marginTop: 14 }}>
           <SectionLabel>Counterparty status</SectionLabel>
           <div style={{ fontSize: 15, fontWeight: 750 }}>No named public relationship verified</div>
-          <div style={{ fontSize: 11, color: "rgba(255,255,255,0.48)", marginTop: 7, lineHeight: 1.5 }}>
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.48)", marginTop: 7, lineHeight: 1.5 }}>
             Current sources support country and market exposure only. No company-level relationship is displayed.
           </div>
         </div>
@@ -303,8 +464,8 @@ export function TraceCounterpartiesPanel({ data, activeTraceId, onTraceChange }:
           return (
             <div key={counterparty.entityId} style={{ ...sectionCard, padding: 14 }}>
               <div style={{ fontSize: 15, fontWeight: 750 }}>{entity?.name ?? counterparty.entityId}</div>
-              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.32)", marginTop: 3 }}>{entity?.country} · {counterparty.role}</div>
-              <div style={{ margin: "12px 0", fontSize: 11, color: "rgba(255,255,255,0.58)", lineHeight: 1.5 }}>{counterparty.summary}</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.32)", marginTop: 3 }}>{entity?.country} · {counterparty.role}</div>
+              <div style={{ margin: "12px 0", fontSize: 12, color: "rgba(255,255,255,0.58)", lineHeight: 1.5 }}>{counterparty.summary}</div>
               <div style={rowStyle}><span>Relationship</span><strong>{counterparty.relationship}</strong></div>
               <div style={rowStyle}>
                 <span>Verified observation</span>
@@ -349,7 +510,7 @@ export function CommercialEvaluationPanel({ data, activeTraceId, onTraceChange }
             </strong>
           </div>
           {evaluation.missingInputIds.length > 0 && (
-            <div style={{ marginTop: 10, fontSize: 10, lineHeight: 1.5, color: "rgba(255,255,255,0.45)" }}>
+            <div style={{ marginTop: 10, fontSize: 12, lineHeight: 1.5, color: "rgba(255,255,255,0.45)" }}>
               Missing: {evaluation.missingInputIds.join(", ")}
             </div>
           )}
@@ -360,10 +521,10 @@ export function CommercialEvaluationPanel({ data, activeTraceId, onTraceChange }
           {evaluation.derivedMetrics.map((metric) => (
             <div key={metric.metricId} style={{ padding: "9px 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
-                <span style={{ fontSize: 11, fontWeight: 700 }}>{metric.label}</span>
-                <strong style={{ fontSize: 11, color: metric.status === "derived" ? "#7dd3fc" : "rgba(255,255,255,0.34)" }}>{derivedValue(metric)}</strong>
+                <span style={{ fontSize: 12, fontWeight: 700 }}>{metric.label}</span>
+                <strong style={{ fontSize: 12, color: metric.status === "derived" ? "#7dd3fc" : "rgba(255,255,255,0.34)" }}>{derivedValue(metric)}</strong>
               </div>
-              <div style={{ fontSize: 8, color: "rgba(255,255,255,0.25)", marginTop: 4 }}>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", marginTop: 4 }}>
                 {metric.formulaId} · {metric.inputIds.join(" + ")} · {metric.calculatedAt}
               </div>
             </div>
@@ -378,13 +539,13 @@ export function CommercialEvaluationPanel({ data, activeTraceId, onTraceChange }
             const evidence = input.evidenceIds.map((id) => evidenceById.get(id)).find(Boolean);
             return (
               <div key={input.inputId} style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gap: 10, padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-                <span style={{ fontSize: 10 }}>{input.label}</span>
+                <span style={{ fontSize: 12 }}>{input.label}</span>
                 {evidence && input.status !== "unavailable" ? (
-                  <a href={evidence.url} target="_blank" rel="noreferrer" style={{ color: "#7dd3fc", fontSize: 10, textDecoration: "none" }}>{metricValue(input)} ↗</a>
+                  <a href={evidence.url} target="_blank" rel="noreferrer" style={{ color: "#7dd3fc", fontSize: 12, textDecoration: "none" }}>{metricValue(input)} ↗</a>
                 ) : (
-                  <span style={{ color: "rgba(255,255,255,0.38)", fontSize: 10 }}>{metricValue(input)}</span>
+                  <span style={{ color: "rgba(255,255,255,0.38)", fontSize: 12 }}>{metricValue(input)}</span>
                 )}
-                <span style={{ color: "rgba(255,255,255,0.28)", fontSize: 9 }}>{statusLabel(input)}</span>
+                <span style={{ color: "rgba(255,255,255,0.28)", fontSize: 12 }}>{statusLabel(input)}</span>
               </div>
             );
           })}
@@ -395,10 +556,10 @@ export function CommercialEvaluationPanel({ data, activeTraceId, onTraceChange }
           {evaluation.riskControls.map((control) => (
             <div key={control.id} style={{ padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
-                <span style={{ fontSize: 10, fontWeight: 700 }}>{control.label}</span>
-                <span style={{ fontSize: 8, color: control.status === "verified" ? "#34d399" : "rgba(255,255,255,0.35)", textTransform: "uppercase" }}>{control.status.replace(/-/g, " ")}</span>
+                <span style={{ fontSize: 12, fontWeight: 700 }}>{control.label}</span>
+                <span style={{ fontSize: 12, color: control.status === "verified" ? "#34d399" : "rgba(255,255,255,0.35)", textTransform: "uppercase" }}>{control.status.replace(/-/g, " ")}</span>
               </div>
-              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", lineHeight: 1.4, marginTop: 4 }}>{control.summary}</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", lineHeight: 1.4, marginTop: 4 }}>{control.summary}</div>
             </div>
           ))}
         </div>
@@ -440,7 +601,7 @@ export function TraceActionsPanel({ data, activeTraceId, onTraceChange }: TraceP
           <SectionLabel>Decision brief</SectionLabel>
           <div style={{ fontSize: 21, fontWeight: 750, margin: "8px 0 10px" }}>{trace.title}</div>
           <div style={{ fontSize: 13, color: "rgba(255,255,255,0.62)", lineHeight: 1.65 }}>{trace.portfolioAction}</div>
-          <button onClick={copyBrief} style={{ marginTop: 18, padding: "8px 14px", borderRadius: 6, border: "1px solid rgba(56,189,248,0.28)", background: "rgba(56,189,248,0.08)", color: copied ? "#34d399" : "#7dd3fc", fontFamily: FONT_SANS, fontSize: 9, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
+          <button onClick={copyBrief} style={{ marginTop: 18, padding: "8px 14px", borderRadius: 6, border: "1px solid rgba(56,189,248,0.28)", background: "rgba(56,189,248,0.08)", color: copied ? "#34d399" : "#7dd3fc", fontFamily: FONT_SANS, fontSize: 12, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
             {copied ? "Copied" : "Copy decision brief"}
           </button>
         </div>
@@ -448,8 +609,8 @@ export function TraceActionsPanel({ data, activeTraceId, onTraceChange }: TraceP
           <SectionLabel>Watch next</SectionLabel>
           {trace.watchItems.map((item, index) => (
             <div key={item} style={{ display: "flex", gap: 9, marginTop: 10 }}>
-              <span style={{ color: "#38bdf8", fontSize: 10, fontWeight: 800 }}>{String(index + 1).padStart(2, "0")}</span>
-              <span style={{ fontSize: 11, color: "rgba(255,255,255,0.58)" }}>{item}</span>
+              <span style={{ color: "#38bdf8", fontSize: 12, fontWeight: 800 }}>{String(index + 1).padStart(2, "0")}</span>
+              <span style={{ fontSize: 12, color: "rgba(255,255,255,0.58)" }}>{item}</span>
             </div>
           ))}
         </div>
@@ -467,6 +628,14 @@ export function TraceEvidencePanel({ data, activeTraceId, onTraceChange }: Trace
     ...trace.commercialEvaluation.observedInputIds.flatMap((id) => data.commercialInputs.find((input) => input.inputId === id)?.evidenceIds ?? []),
   ]);
   const evidence = data.evidence.filter((item) => traceEvidenceIds.has(item.id));
+  const traceInputIds = new Set([
+    ...trace.hops.flatMap((hop) => hop.metrics.map((metric) => metric.inputId)),
+    ...trace.commercialEvaluation.observedInputIds,
+  ]);
+  const machineEvidence = (data.machineEvidence ?? []).filter((item) =>
+    item.targetInputIds.some((id) => traceInputIds.has(id))
+      || item.targetCommercialInputIds.some((id) => traceInputIds.has(id)),
+  );
 
   return (
     <div style={{ fontFamily: FONT_SANS, color: "rgba(255,255,255,0.9)" }}>
@@ -476,16 +645,28 @@ export function TraceEvidencePanel({ data, activeTraceId, onTraceChange }: Trace
           <SectionLabel>Verified evidence</SectionLabel>
           {evidence.map((item) => (
             <a key={item.id} href={item.url} target="_blank" rel="noreferrer" style={{ display: "grid", gridTemplateColumns: "110px 1fr auto", gap: 10, alignItems: "center", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.72)", textDecoration: "none" }}>
-              <span style={{ color: "#7dd3fc", fontSize: 10, fontWeight: 750 }}>{item.publisher}</span>
-              <span style={{ fontSize: 11 }}>{item.title}</span>
-              <span style={{ fontSize: 8, color: "rgba(255,255,255,0.25)" }}>{item.publishedAt} ↗</span>
+              <span style={{ color: "#7dd3fc", fontSize: 12, fontWeight: 750 }}>{item.publisher}</span>
+              <span style={{ fontSize: 12 }}>{item.title}</span>
+              <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)" }}>{item.publishedAt} ↗</span>
             </a>
           ))}
+          {machineEvidence.length > 0 && (
+            <>
+              <SectionLabel>Machine snapshot evidence</SectionLabel>
+              {machineEvidence.map((item) => (
+                <a key={item.id} href={item.url} target="_blank" rel="noreferrer" style={{ display: "grid", gridTemplateColumns: "110px 1fr auto", gap: 10, alignItems: "center", padding: "10px 0", borderBottom: "1px solid rgba(103,232,249,0.12)", color: "rgba(255,255,255,0.72)", textDecoration: "none" }}>
+                  <span style={{ color: "#67e8f9", fontSize: 12, fontWeight: 750 }}>{item.provider}</span>
+                  <span style={{ fontSize: 12 }}>Validated snapshot · {item.recordKeys.length} record{item.recordKeys.length === 1 ? "" : "s"}</span>
+                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)" }}>{item.retrievedAt.slice(0, 10)} ↗</span>
+                </a>
+              ))}
+            </>
+          )}
         </div>
         <div style={{ ...sectionCard, padding: 16 }}>
           <SectionLabel>Verified-data rule</SectionLabel>
-          <div style={{ fontSize: 11, fontWeight: 700 }}>No analytical inputs published</div>
-          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.46)", lineHeight: 1.5, marginTop: 6 }}>
+          <div style={{ fontSize: 12, fontWeight: 700 }}>No analytical inputs published</div>
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.46)", lineHeight: 1.5, marginTop: 6 }}>
             Missing, carried, or stale observations remain outside commercial calculations.
           </div>
         </div>

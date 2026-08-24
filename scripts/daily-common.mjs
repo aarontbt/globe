@@ -6,8 +6,21 @@ export const STATE_PATH = path.join(ROOT, "src/data/daily-state.json");
 export const EVIDENCE_AUDIT_PATH = path.join(ROOT, "src/data/evidence-audit.json");
 
 export const PATHS = {
+  root: ROOT,
   state: STATE_PATH,
   publicData: path.join(ROOT, "public/data"),
+  climateSourceRegistry: path.join(ROOT, "src/data/climate-source-registry.json"),
+  climateCandidates: path.join(ROOT, "src/data/climate-candidates.json"),
+  climateRefreshReport: path.join(ROOT, "src/data/climate-refresh-report.json"),
+  climateSnapshotDir: path.join(ROOT, "src/data/climate-snapshots"),
+  climateReadModel: path.join(ROOT, "src/data/climate-read-model.json"),
+  energySourceRegistry: path.join(ROOT, "src/data/energy-lng-source-registry.json"),
+  energyCandidates: path.join(ROOT, "src/data/energy-lng-candidates.json"),
+  energyRefreshReport: path.join(ROOT, "src/data/energy-lng-refresh-report.json"),
+  energySnapshotDir: path.join(ROOT, "src/data/energy-lng-snapshots"),
+  energySnapshotManifest: path.join(ROOT, "src/data/energy-lng-snapshot-manifest.json"),
+  energyRuntime: path.join(ROOT, "src/data/energy-lng-runtime.json"),
+  energyReadModel: path.join(ROOT, "src/data/energy-lng-read-model.json"),
   crossAsset: path.join(ROOT, "src/data/banker-cross-asset.json"),
   conflict: path.join(ROOT, "src/data/banker-conflict.json"),
   charts: path.join(ROOT, "src/data/charts-volatility.json"),
@@ -121,8 +134,9 @@ export function validateStateShape(state) {
   const errors = [];
   const changePattern = /^([+-]\d+(\.\d+)?%|[+-]\d+(\.\d+)?bp|0\.0%)$/;
   const statuses = new Set(["confirmed", "estimated", "carried", "inferred"]);
+  const crossAssetStatuses = new Set([...statuses, "unavailable"]);
   const traceStatuses = new Set(["confirmed", "carried", "unavailable"]);
-  const traceCadences = new Set(["daily", "event-driven", "contract-driven"]);
+  const traceCadences = new Set(["daily", "weekly", "monthly", "annual", "event-driven", "contract-driven"]);
 
   assert(state.schemaVersion === 3, "schemaVersion must be 3", errors);
   assert(Boolean(state.asOf), "asOf is required", errors);
@@ -168,9 +182,15 @@ export function validateStateShape(state) {
     assert(changePattern.test(item.change1d), `crossAsset.${id}.change1d must be signed or 0.0%`, errors);
     assert(typeof item.zscore === "number", `crossAsset.${id}.zscore must be a number`, errors);
     assert(["green", "amber", "red"].includes(item.signal), `crossAsset.${id}.signal is invalid`, errors);
-    assert(Boolean(item.source), `crossAsset.${id}.source is required`, errors);
-    assert(Boolean(item.sourceDate), `crossAsset.${id}.sourceDate is required`, errors);
-    assert(statuses.has(item.status), `crossAsset.${id}.status is invalid`, errors);
+    assert(crossAssetStatuses.has(item.status), `crossAsset.${id}.status is invalid`, errors);
+    if (item.status === "unavailable") {
+      assert(!item.source, `crossAsset.${id} unavailable values must not name a source`, errors);
+      assert(!item.sourceDate, `crossAsset.${id} unavailable values must not contain sourceDate`, errors);
+      assert(Boolean(item.missingReason), `crossAsset.${id} unavailable values require missingReason`, errors);
+    } else {
+      assert(Boolean(item.source), `crossAsset.${id}.source is required`, errors);
+      assert(Boolean(item.sourceDate), `crossAsset.${id}.sourceDate is required`, errors);
+    }
   }
 
   for (const id of COMMODITY_IDS) {
@@ -476,6 +496,41 @@ function sameAuditValue(actual, expected) {
   return actual === expected;
 }
 
+export function validateMachineEvidence(exposure) {
+  const errors = [];
+  const machineEvidence = exposure?.machineEvidence ?? [];
+  const ids = new Set();
+  for (const item of machineEvidence) {
+    if (!item?.id || ids.has(item.id)) errors.push(`machine evidence ${item?.id ?? "?"} is missing or duplicated`);
+    ids.add(item?.id);
+    if (!/^https:\/\//.test(item?.url ?? "")) errors.push(`machine evidence ${item?.id ?? "?"}.url must use https`);
+    if (!/^snapshot:/.test(item?.snapshotRef ?? "")) errors.push(`machine evidence ${item?.id ?? "?"}.snapshotRef is invalid`);
+    if (!/^[a-f0-9]{64}$/.test(item?.contentHash ?? "")) errors.push(`machine evidence ${item?.id ?? "?"}.contentHash must be a sha256 hash`);
+    if (!item?.parserVersion || item?.status !== "validated") errors.push(`machine evidence ${item?.id ?? "?"} status or parserVersion is invalid`);
+    if (!Array.isArray(item?.recordKeys) || item.recordKeys.some((key) => !/^[a-f0-9]{64}$/.test(key))) {
+      errors.push(`machine evidence ${item?.id ?? "?"}.recordKeys are invalid`);
+    }
+    if (!Array.isArray(item?.targetInputIds) || !Array.isArray(item?.targetCommercialInputIds)) {
+      errors.push(`machine evidence ${item?.id ?? "?"} target references are invalid`);
+    }
+  }
+  for (const trace of exposure?.traces ?? []) {
+    for (const hop of trace.hops ?? []) {
+      for (const metric of hop.metrics ?? []) {
+        for (const evidenceId of metric.machineEvidenceIds ?? []) {
+          const item = machineEvidence.find((candidate) => candidate.id === evidenceId);
+          if (!item) {
+            errors.push(`trace metric ${metric.inputId} references unknown machine evidence ${evidenceId}`);
+          } else if (!(item.targetInputIds ?? []).includes(metric.inputId) && !(item.targetCommercialInputIds ?? []).includes(metric.inputId)) {
+            errors.push(`machine evidence ${evidenceId} does not support trace metric ${metric.inputId}`);
+          }
+        }
+      }
+    }
+  }
+  return errors;
+}
+
 export function validateEvidenceAudit(state, exposure, audit) {
   const errors = [];
   const evidence = exposure?.evidence ?? [];
@@ -487,6 +542,7 @@ export function validateEvidenceAudit(state, exposure, audit) {
   const knownCommercialInputIds = new Set((exposure?.commercialInputs ?? []).map((item) => item.inputId));
   const knownDerivedMetricIds = new Set();
   const knownRelationshipIds = new Set();
+  errors.push(...validateMachineEvidence(exposure));
   for (const trace of exposure?.traces ?? []) {
     for (const hop of trace.hops ?? []) {
       knownHopIds.add(`${trace.id}:${hop.id}`);
@@ -643,7 +699,14 @@ export function validateEvidenceAudit(state, exposure, audit) {
           .map((id) => auditById.get(id))
           .filter((entry) => (entry?.supportedMetricIds ?? []).includes(metric.inputId));
         if (!supportingEntries.length) {
-          errors.push(`trace metric ${metric.inputId} has no directly supporting audited evidence in ${hopClaimId}`);
+          const machineSupport = (metric.machineEvidenceIds ?? [])
+            .map((id) => (exposure.machineEvidence ?? []).find((item) => item.id === id))
+            .filter((item) => item?.status === "validated" && (
+              (item.targetInputIds ?? []).includes(metric.inputId) || (item.targetCommercialInputIds ?? []).includes(metric.inputId)
+            ));
+          if (!machineSupport.length) {
+            errors.push(`trace metric ${metric.inputId} has no directly supporting audited or machine snapshot evidence in ${hopClaimId}`);
+          }
           continue;
         }
         if (

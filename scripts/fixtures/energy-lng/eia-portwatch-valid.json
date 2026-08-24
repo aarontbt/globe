@@ -1,0 +1,59 @@
+{
+  "sources": {
+    "src-eia-lng-baseline": [
+      {
+        "seriesId": "QATAR_LNG_TEST",
+        "entityIds": ["qatarenergy", "ras-laffan"],
+        "metric": "qatar-lng-volume",
+        "seriesDescription": "Qatar LNG export baseline",
+        "value": 77.5,
+        "unit": "MTPA",
+        "period": "2026-08-23",
+        "observedAt": "2026-08-23T12:00:00.000Z"
+      },
+      {
+        "seriesId": "SAUDI_OIL_TEST",
+        "entityIds": ["hormuz"],
+        "metric": "oil-flow",
+        "value": 19.2,
+        "unit": "million b/d",
+        "period": "2026-08-18",
+        "observedAt": "2026-08-18T12:00:00.000Z"
+      }
+    ],
+    "src-imf-portwatch-hormuz": [
+      {
+        "routeId": "hormuz",
+        "entityIds": ["hormuz"],
+        "metric": "LNG transits",
+        "label": "Hormuz LNG transits",
+        "value": 4,
+        "unit": "LNG transits",
+        "date": "2026-08-18",
+        "observedAt": "2026-08-18T12:00:00.000Z"
+      },
+      {
+        "routeId": "suez",
+        "entityIds": ["hormuz"],
+        "metric": "container transits",
+        "value": 99,
+        "unit": "vessels/day",
+        "date": "2026-08-18",
+        "observedAt": "2026-08-18T12:00:00.000Z"
+      }
+    ],
+    "src-yahoo-ttf": [
+      {
+        "label": "Dutch TTF",
+        "entityIds": ["ttf"],
+        "value": 66.002,
+        "change": 2.356,
+        "changePct": 3.7017,
+        "unit": "EUR/MWh",
+        "observationDate": "2026-08-21",
+        "observedAt": "2026-08-21T13:53:03.000Z",
+        "provider": "Yahoo Finance TTF=F"
+      }
+    ]
+  }
+}
