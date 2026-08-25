@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 24: US readies secondary sanctions as rial hits record low; Iran demands Hormuz transit fees; Iran-Oman plan in final stages; Brent $92.68; TTF 68.41; tail 35%";
+const TOP_ALERT = "AUG 25: US launches greatest financial offensive sanctions; Iran approves Hormuz transit fees, threatens ship seizure; Brent $92.09; TTF 68.41; tail 35%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
