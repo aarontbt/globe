@@ -944,9 +944,9 @@ async function fetchAutomatedSource(source, {
     const raw = {
       label: "Dutch TTF",
       entityIds: ["ttf"],
-      value: quote.price,
-      change: quote.change,
-      changePct: quote.changePct,
+      value: Number(quote.price.toFixed(2)),
+      change: Number(quote.change.toFixed(2)),
+      changePct: Number(quote.changePct.toFixed(2)),
       unit: "EUR/MWh",
       sourceDate: quote.sourceDate,
       observedAt: quote.observedAt,

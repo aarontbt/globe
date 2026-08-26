@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 25: US launches greatest financial offensive sanctions; Iran approves Hormuz transit fees, threatens ship seizure; Brent $92.09; TTF 68.41; tail 35%";
+const TOP_ALERT = "AUG 26: Iran-Oman corridor talks advance after tanker disabled off Oman; Brent $85.74; TTF 66.13; tail 30%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

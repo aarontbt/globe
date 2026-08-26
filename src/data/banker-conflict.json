@@ -5,29 +5,29 @@
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "US unveils sweeping Iran sanctions",
-      "delta": "CNBC reported Treasury Secretary Bessent unveiled 'the single greatest financial offensive ever' against Iran Monday, adding to sanctions on banking, energy, aviation and cryptocurrency, with no Chinese exemption signalled (CNBC, Aug 24).",
-      "direction": "up"
+      "summary": "Iran-Oman corridor framework advances",
+      "delta": "AP reported the ministers discussed a joint temporary navigational corridor and mine-clearance project, while Reuters said talks restarted under mounting economic pressure (AP/Reuters, Aug 25-26).",
+      "direction": "down"
     },
     {
       "id": "e2",
-      "summary": "Iran approves Hormuz transit fees",
-      "delta": "Iran's parliament approved a provision requiring ships through Hormuz to pay for Tehran-provided services, while the PGSA warned violating vessels face fines, seizure or confiscation; Araghchi dismissed US sanctions as desperate (CNBC/Anadolu, Aug 24).",
+      "summary": "Tanker disabled off Omani coast",
+      "delta": "AP reported an oil tanker was disabled in an attack off Oman, underscoring ongoing hazards while the strait remains largely shut (AP, Aug 25).",
       "direction": "up"
     },
     {
       "id": "e3",
-      "summary": "Iran-Oman strait plan talks advance",
-      "delta": "Oman's foreign minister is scheduled to visit Tehran Tuesday to continue discussions on the Strait of Hormuz joint-management arrangement, with a deal reportedly in its final stages (AP/CNBC, Aug 24).",
-      "direction": "neutral"
+      "summary": "Brent slides on corridor hopes",
+      "delta": "Brent fell to $85.74, down 8.57%, while TTF rose 1.27% to 66.13 EUR/MWh as reopening hopes met continued LNG supply risk (Yahoo Finance, Aug 26; TTF Aug 25).",
+      "direction": "down"
     }
   ],
   "scenarios": [
     {
       "id": "base",
       "label": "Base",
-      "probability": 5,
-      "description": "Oman's foreign minister visits Tehran Tuesday to discuss the joint-management plan reportedly in its final stages, but Iran's newly approved transit-fee provision and Washington's unveiled financial offensive leave a signed workable deal still required before Brent moves toward $75-85; Qatar's force majeure still limits LNG availability.",
+      "probability": 10,
+      "description": "Iran and Oman advance a temporary corridor and mine-clearance framework; a signed, monitored reopening restores traffic and lowers Brent toward $75-85, while Qatar's force majeure keeps LNG availability constrained.",
       "oilImpact": "-$10/bbl",
       "lngImpact": "-25%"
     },
@@ -35,15 +35,15 @@
       "id": "stress",
       "label": "Stress",
       "probability": 60,
-      "description": "CNBC reported the US unveiled its 'greatest financial offensive' sanctions with China not exempt, and Iran's parliament approved charging ships transiting Hormuz while the PGSA threatened seizure of rule-breaking vessels. Reduced traffic persists under a fee-and-sanctions standoff that extends into October; Brent holds $78-95 and JKM stays elevated on Qatar force majeure through mid-September.",
+      "description": "The corridor remains provisional and traffic stays selective under Iranian fees, sanctions pressure and residual mine and attack risk; Brent holds $78-95 and JKM stays elevated while Qatar's force majeure runs through mid-September.",
       "oilImpact": "+$8/bbl",
       "lngImpact": "+15%"
     },
     {
       "id": "tail",
       "label": "Tail",
-      "probability": 35,
-      "description": "The PGSA warned vessels violating Iran's transit rules face fines, seizure or confiscation, and UKMTO still flags active mine danger areas; enforcement against a major tanker or a collapse of the Iran-Oman talks could renew full closure and spill into the Red Sea/Bab el-Mandeb. Brent returns to $105-135+/bbl and JKM moves above $30/MMBtu.",
+      "probability": 30,
+      "description": "A failed framework, further tanker attack or sanctions retaliation could close the southern lane again and spill into Bab el-Mandeb; Brent returns to $105-135+/bbl and JKM moves above $30/MMBtu.",
       "oilImpact": "+$50/bbl",
       "lngImpact": "+110%"
     }

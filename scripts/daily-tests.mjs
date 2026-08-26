@@ -375,7 +375,7 @@ assert(phase2Promotion.readModel.entities.find((entity) => entity.id === "ras-la
 assert(phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.routeEntityIds.includes("ras-laffan-port"));
 const phase2Flow = phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.physicalFlow;
 assert(phase2Flow?.observations.some((record) => record.observationKind === "trade-demand" && record.coverageStatus === "public-proxy"));
-assert(phase2Flow?.observations.some((record) => record.observationKind === "transit" && record.periodEnd === "2026-08-18"));
+assert(phase2Flow?.observations.some((record) => record.observationKind === "transit" && record.periodEnd === "2026-08-19"));
 assert.equal(phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.flowPressure?.components.length, 6);
 assert((phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.alternatives ?? []).some((alternative) => alternative.feasibility === "potential"));
 assert((phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.watchItems.length ?? 0) > 0, "watchlist should remain available after Phase 2 promotion");

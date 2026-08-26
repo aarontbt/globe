@@ -143,3 +143,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D172**: Aug 23 - AP reports no confirmed Hormuz attacks in 48 hours, but traffic remains reduced; Iran warns sanctions support is an act of war; talks continue.
 - **D173**: Aug 24 - AP reports rial at record low as US readies secondary sanctions; Iran demands Hormuz transit fees; Oman plan in final stages.
 - **D174**: Aug 25 - US unveils 'greatest financial offensive' sanctions; Iran approves Hormuz transit fees; PGSA threatens vessel seizure; Oman FM in Tehran.
+- **D175**: Aug 26 - Iran and Oman advance a temporary Hormuz corridor and mine-clearance framework after a tanker is disabled off Oman; Brent falls 8.5%.
