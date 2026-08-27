@@ -313,12 +313,81 @@ assert.equal(conflictResolution.reconciliations[0].status, "resolved");
 assert.equal(conflictResolution.reconciliations[0].candidateRecordKeys.length, 2);
 assert.equal(conflictResolution.candidates.filter((candidate) => candidate.selectedForAssessment).length, 1);
 
+const energyFixtureAsOf = "2026-08-26T00:00:00Z";
+const energyFixtureDate = energyFixtureAsOf.slice(0, 10);
+const energyFixtureState = structuredClone(baseline);
+const energyFixtureExposure = structuredClone(exposure);
+const energyFixtureAudit = structuredClone(evidenceAudit);
+energyFixtureState.asOf = energyFixtureAsOf;
+energyFixtureState.day = "D175";
+energyFixtureState.volatilityDay.day = "D175";
+energyFixtureState.volatilityDay.date = energyFixtureDate;
+for (const input of Object.values(energyFixtureState.commercialInputs ?? {})) {
+  if (input.sourceDate && input.sourceDate > energyFixtureDate) {
+    input.sourceDate = energyFixtureDate;
+    if (input.observedAt) input.observedAt = `${energyFixtureDate}T00:00:00.000Z`;
+  }
+}
+energyFixtureExposure.asOf = energyFixtureAsOf;
+energyFixtureExposure.day = "D175";
+for (const update of Object.values(energyFixtureState.traceInputs?.evidenceUpdates ?? {})) {
+  update.lastChecked = energyFixtureDate;
+}
+for (const evidence of energyFixtureExposure.evidence ?? []) {
+  evidence.lastChecked = energyFixtureDate;
+}
+for (const entry of energyFixtureAudit.entries ?? []) {
+  if (entry.evidenceId !== "e-ttf") continue;
+  for (const observation of entry.observations ?? []) {
+    if (observation.inputId !== "ttf" && observation.inputId !== "lng-ttf") continue;
+    observation.value = 66.13;
+    observation.sourceDate = "2026-08-25";
+    observation.observedAt = "2026-08-25T15:50:09.000Z";
+  }
+}
+energyFixtureAudit.asOf = energyFixtureAsOf;
+energyFixtureAudit.reviewedAt = energyFixtureAsOf;
+for (const entry of energyFixtureAudit.entries ?? []) {
+  entry.checkedAt = energyFixtureAsOf;
+  const evidence = energyFixtureExposure.evidence.find((item) => item.id === entry.evidenceId);
+  if (evidence) entry.publishedAt = evidence.publishedAt;
+}
+const fixtureMarketInputs = {
+  "e-brent": "oil-brent",
+  "e-wti": "oil-wti",
+  "e-eurusd": "fx-eurusd",
+  "e-sofr": "usd-sofr",
+};
+for (const [evidenceId, inputId] of Object.entries(fixtureMarketInputs)) {
+  const input = energyFixtureState.commercialInputs[inputId];
+  const entry = energyFixtureAudit.entries.find((item) => item.evidenceId === evidenceId);
+  if (!input || !entry) continue;
+  const observation = (entry.observations ?? []).find((item) => item.inputId === inputId);
+  if (!observation) continue;
+  observation.value = input.value;
+  observation.sourceDate = input.sourceDate;
+  observation.observedAt = input.observedAt;
+  const evidence = energyFixtureExposure.evidence.find((item) => item.id === evidenceId);
+  if (evidence) {
+    evidence.publishedAt = input.sourceDate;
+    entry.publishedAt = input.sourceDate;
+  }
+  const update = energyFixtureState.traceInputs.evidenceUpdates[evidenceId];
+  if (update) update.publishedAt = input.sourceDate;
+}
+const fixtureTtfEvidence = energyFixtureExposure.evidence.find((item) => item.id === "e-ttf");
+const fixtureTtfAudit = energyFixtureAudit.entries.find((item) => item.evidenceId === "e-ttf");
+const fixtureTtfUpdate = energyFixtureState.traceInputs.evidenceUpdates["e-ttf"];
+if (fixtureTtfEvidence) fixtureTtfEvidence.publishedAt = "2026-08-25";
+if (fixtureTtfAudit) fixtureTtfAudit.publishedAt = "2026-08-25";
+if (fixtureTtfUpdate) fixtureTtfUpdate.publishedAt = "2026-08-25";
+
 const energyFixtureOptions = {
-  state: baseline,
-  exposure,
+  state: energyFixtureState,
+  exposure: energyFixtureExposure,
   registry: energyRegistry,
-  asOf: baseline.asOf,
-  now: baseline.asOf,
+  asOf: energyFixtureAsOf,
+  now: energyFixtureAsOf,
   offline: true,
   dryRun: true,
 };
@@ -349,15 +418,15 @@ assert.equal(backfill.promotion.status, "validated", "a scoped historical backfi
 assert.equal(backfillRepeat.runId, backfill.runId, "historical backfills should be deterministic");
 assert.deepEqual(backfillRepeat.observations.map((record) => record.recordKey), backfill.observations.map((record) => record.recordKey));
 const phase2Promotion = prepareEnergyPromotion({
-  state: baseline,
-  exposure,
-  audit: evidenceAudit,
+  state: energyFixtureState,
+  exposure: energyFixtureExposure,
+  audit: energyFixtureAudit,
   registry: energyRegistry,
   candidateEnvelopeOverride: {
     candidates: {
       schemaVersion: "energy-lng-candidates-v1",
       runId: phase2Energy.runId,
-      asOf: baseline.asOf,
+      asOf: energyFixtureAsOf,
       baseFingerprint: phase2Energy.baseFingerprint,
       observations: phase2Energy.observations,
       machineEvidence: phase2Energy.machineEvidence,
@@ -380,15 +449,15 @@ assert.equal(phase2Promotion.readModel.traces.find((trace) => trace.id === "qata
 assert((phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.alternatives ?? []).some((alternative) => alternative.feasibility === "potential"));
 assert((phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.watchItems.length ?? 0) > 0, "watchlist should remain available after Phase 2 promotion");
 const scopedBackfillPromotion = prepareEnergyPromotion({
-  state: baseline,
-  exposure,
-  audit: evidenceAudit,
+  state: energyFixtureState,
+  exposure: energyFixtureExposure,
+  audit: energyFixtureAudit,
   registry: energyRegistry,
   candidateEnvelopeOverride: {
     candidates: {
       schemaVersion: "energy-lng-candidates-v1",
       runId: backfill.runId,
-      asOf: baseline.asOf,
+      asOf: energyFixtureAsOf,
       baseFingerprint: backfill.baseFingerprint,
       observations: backfill.observations,
       machineEvidence: backfill.machineEvidence,
@@ -440,15 +509,15 @@ assert(scopedVolume.machineEvidenceIds.length === 1, "confirmed EIA observation 
 if (previousEiaSeriesId === undefined) process.env.EIA_SERIES_ID = "QATAR_LNG_TEST";
 else process.env.EIA_SERIES_ID = previousEiaSeriesId;
 const scopedPromotion = prepareEnergyPromotion({
-  state: baseline,
-  exposure,
-  audit: evidenceAudit,
+  state: energyFixtureState,
+  exposure: energyFixtureExposure,
+  audit: energyFixtureAudit,
   registry: energyRegistry,
   candidateEnvelopeOverride: {
     candidates: {
       schemaVersion: "energy-lng-candidates-v1",
       runId: scopedEnergy.runId,
-      asOf: baseline.asOf,
+      asOf: energyFixtureAsOf,
       baseFingerprint: scopedEnergy.baseFingerprint,
       observations: scopedEnergy.observations,
       machineEvidence: scopedEnergy.machineEvidence,
@@ -459,7 +528,7 @@ const scopedPromotion = prepareEnergyPromotion({
 if (previousEiaSeriesId === undefined) delete process.env.EIA_SERIES_ID;
 else process.env.EIA_SERIES_ID = previousEiaSeriesId;
 assert(scopedPromotion.promoted, `machine-evidenced EIA/PortWatch candidates should promote: ${scopedPromotion.errors.join("; ")}`);
-assert.equal(validateEvidenceAudit(scopedPromotion.state, scopedPromotion.exposure, evidenceAudit).length, 0, "machine snapshot evidence should support an automated trace metric");
+assert.equal(validateEvidenceAudit(scopedPromotion.state, scopedPromotion.exposure, energyFixtureAudit).length, 0, "machine snapshot evidence should support an automated trace metric");
 assert.equal(scopedPromotion.readModel.machineEvidence.length, 3, "promoted read model should expose machine snapshot evidence");
 
 if (previousEiaSeriesId === undefined) process.env.EIA_SERIES_ID = "QATAR_LNG_TEST";
@@ -474,15 +543,15 @@ const mutatedTarget = structuredClone(scopedEnergy.observations);
 const mutatedVolume = mutatedTarget.find((record) => record.targetInputIds.includes("qatar-volume-at-risk"));
 mutatedVolume.targetInputIds = ["hormuz-transits"];
 const mutatedTargetPromotion = prepareEnergyPromotion({
-  state: baseline,
-  exposure,
-  audit: evidenceAudit,
+  state: energyFixtureState,
+  exposure: energyFixtureExposure,
+  audit: energyFixtureAudit,
   registry: energyRegistry,
   candidateEnvelopeOverride: {
     candidates: {
       schemaVersion: "energy-lng-candidates-v1",
       runId: scopedEnergy.runId,
-      asOf: baseline.asOf,
+      asOf: energyFixtureAsOf,
       baseFingerprint: scopedEnergy.baseFingerprint,
       observations: mutatedTarget,
       machineEvidence: scopedEnergy.machineEvidence,
@@ -493,18 +562,18 @@ const mutatedTargetPromotion = prepareEnergyPromotion({
 assert(!mutatedTargetPromotion.promoted, "candidate target-scope mutation must be rejected");
 assert(mutatedTargetPromotion.errors.some((error) => error.includes("recordKey") || error.includes("targetInputIds")), "scope mutation should identify the integrity failure");
 
-const staleState = structuredClone(baseline);
+const staleState = structuredClone(energyFixtureState);
 staleState.traceInputs.metrics.ttf.value = 70;
 const stalePromotion = prepareEnergyPromotion({
   state: staleState,
-  exposure,
-  audit: evidenceAudit,
+  exposure: energyFixtureExposure,
+  audit: energyFixtureAudit,
   registry: energyRegistry,
   candidateEnvelopeOverride: {
     candidates: {
       schemaVersion: "energy-lng-candidates-v1",
       runId: scopedEnergy.runId,
-      asOf: baseline.asOf,
+      asOf: energyFixtureAsOf,
       baseFingerprint: scopedEnergy.baseFingerprint,
       observations: scopedEnergy.observations,
       machineEvidence: scopedEnergy.machineEvidence,
@@ -534,7 +603,7 @@ const blockedPromotion = prepareEnergyPromotion({
     candidates: {
       schemaVersion: "energy-lng-candidates-v1",
       runId: validEnergy.runId,
-      asOf: baseline.asOf,
+      asOf: energyFixtureAsOf,
       observations: validEnergy.observations,
     },
     report: {
@@ -659,7 +728,7 @@ const carriedHighPromotion = prepareEnergyPromotion({
     candidates: {
       schemaVersion: "energy-lng-candidates-v1",
       runId: unavailableEnergy.runId,
-      asOf: baseline.asOf,
+      asOf: energyFixtureAsOf,
       baseFingerprint: unavailableEnergy.baseFingerprint,
       observations: carriedHigh,
       machineEvidence: unavailableEnergy.machineEvidence,
@@ -669,9 +738,9 @@ const carriedHighPromotion = prepareEnergyPromotion({
 });
 assert(!carriedHighPromotion.promoted, "carried observations with high confidence must be rejected");
 
-const marketState = structuredClone(baseline);
-const marketExposure = structuredClone(exposure);
-const marketAudit = structuredClone(evidenceAudit);
+const marketState = structuredClone(energyFixtureState);
+const marketExposure = structuredClone(energyFixtureExposure);
+const marketAudit = structuredClone(energyFixtureAudit);
 marketState.traceInputs.metrics.ttf.value = 77.77;
 marketState.commercialInputs["lng-ttf"].value = 77.77;
 for (const trace of marketExposure.traces) {
@@ -685,7 +754,11 @@ const marketInput = marketExposure.commercialInputs.find((input) => input.inputI
 if (marketInput) marketInput.value = 77.77;
 for (const entry of marketAudit.entries) {
   for (const observation of entry.observations ?? []) {
-    if (observation.inputId === "ttf" || observation.inputId === "lng-ttf") observation.value = 77.77;
+    if (observation.inputId === "ttf" || observation.inputId === "lng-ttf") {
+      observation.value = 77.77;
+      observation.sourceDate = "2026-08-25";
+      observation.observedAt = "2026-08-25T15:50:09.000Z";
+    }
   }
 }
 const updatedTtf = await runEnergyRefresh({

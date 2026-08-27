@@ -1,9 +1,9 @@
 {
   "schemaVersion": "energy-lng-candidates-v1",
-  "runId": "energy-refresh:2effd8bc79c618d62497a414",
-  "asOf": "2026-08-26T00:00:00Z",
-  "baseFingerprint": "bb3b6b24d31ca30b8a644e5172e59b39c103ccb98cf8569a2be34ee09b936330",
-  "generatedAt": "2026-08-26T01:13:32.151Z",
+  "runId": "energy-refresh:b939eef1521394000345eb80",
+  "asOf": "2026-08-27T00:00:00Z",
+  "baseFingerprint": "56005b9320f8924b5a1b96ebf13df827874fc5237f6406dbe52b6c11d9bf4d69",
+  "generatedAt": "2026-08-27T02:29:46.906Z",
   "observations": [
     {
       "id": "energy-observation:src-eia-lng-baseline:qatar-volume-at-risk:unavailable:unavailable",
@@ -31,7 +31,7 @@
       "unit": "MTPA",
       "observationDate": null,
       "observedAt": null,
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "daily",
       "freshnessWindowDays": 1,
       "provider": "U.S. EIA",
@@ -47,7 +47,7 @@
         "sourceUrl": "https://api.eia.gov/v2/international/data/",
         "provider": "U.S. EIA",
         "observationAt": null,
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
         "snapshotHash": null,
         "snapshotRef": "snapshot:energy-snapshot:src-eia-lng-baseline:dc92c9676e0fe0eb",
         "parserVersion": "eia-international-v1",
@@ -87,7 +87,7 @@
       "unit": "LNG transits",
       "observationDate": "2026-08-18",
       "observedAt": "2026-08-18T12:00:00.000Z",
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "daily",
       "freshnessWindowDays": 7,
       "provider": "IMF PortWatch",
@@ -105,7 +105,7 @@
         "sourceUrl": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
         "provider": "IMF PortWatch",
         "observationAt": "2026-08-18T12:00:00.000Z",
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
         "snapshotHash": null,
         "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:eae468a1d1d93c93",
         "parserVersion": "portwatch-route-v1",
@@ -116,8 +116,8 @@
       }
     },
     {
-      "id": "energy-observation:src-yahoo-ttf:ttf-lng-ttf:2026-08-25:2026-08-25",
-      "recordKey": "d977fb8a66224ec2c155f3baa99daf22dd6f37a676d31c17d4fc6ba419fb2b20",
+      "id": "energy-observation:src-yahoo-ttf:ttf-lng-ttf:2026-08-26:2026-08-26",
+      "recordKey": "be43a6fc3c617ce72e98029d336ffe4fd2499b414eff37bc4cf48294e8425c7c",
       "label": "Dutch TTF",
       "entityIds": [
         "ttf"
@@ -129,29 +129,29 @@
         "lng-ttf"
       ],
       "observationKind": "flow",
-      "periodStart": "2026-08-25",
-      "periodEnd": "2026-08-25",
+      "periodStart": "2026-08-26",
+      "periodEnd": "2026-08-26",
       "coverage": {
         "status": "direct-observation",
         "sourcePeriod": {
-          "start": "2026-08-25",
-          "end": "2026-08-25"
+          "start": "2026-08-26",
+          "end": "2026-08-26"
         },
         "expectedCadence": "daily",
         "observedPeriod": {
-          "start": "2026-08-25",
-          "end": "2026-08-25"
+          "start": "2026-08-26",
+          "end": "2026-08-26"
         },
         "missingPeriods": [],
         "sourceStatus": "fetched"
       },
-      "value": 66.13,
-      "change": 0.83,
-      "changePct": 1.27,
+      "value": 66.17,
+      "change": 0.31,
+      "changePct": 0.47,
       "unit": "EUR/MWh",
-      "observationDate": "2026-08-25",
-      "observedAt": "2026-08-25T15:50:09.000Z",
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "observationDate": "2026-08-26",
+      "observedAt": "2026-08-26T15:53:33.000Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "daily",
       "freshnessWindowDays": 3,
       "provider": "Yahoo Finance TTF=F",
@@ -163,18 +163,18 @@
         "e-ttf"
       ],
       "machineEvidenceIds": [
-        "machine-evidence:energy-snapshot:src-yahoo-ttf:5dc2ac2f8f4f7168"
+        "machine-evidence:energy-snapshot:src-yahoo-ttf:638fc791a55ccef1"
       ],
       "lineage": {
         "sourceId": "src-yahoo-ttf",
         "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
         "provider": "Yahoo Finance TTF=F",
-        "observationAt": "2026-08-25T15:50:09.000Z",
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
-        "snapshotHash": "5dc2ac2f8f4f71682c479e7082fa38f3584e6f869a2b8dc5ccf04c357e9991e4",
-        "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:5dc2ac2f8f4f7168",
+        "observationAt": "2026-08-26T15:53:33.000Z",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
+        "snapshotHash": "638fc791a55ccef124f87f777ece7f615596ac2a2378037a075e5e12d449c4ab",
+        "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:638fc791a55ccef1",
         "parserVersion": "yahoo-chart-v1",
-        "recordKey": "d977fb8a66224ec2c155f3baa99daf22dd6f37a676d31c17d4fc6ba419fb2b20",
+        "recordKey": "be43a6fc3c617ce72e98029d336ffe4fd2499b414eff37bc4cf48294e8425c7c",
         "derivedFrom": []
       }
     },
@@ -211,7 +211,7 @@
       "unit": "",
       "observationDate": "2026-07-23",
       "observedAt": null,
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "event-driven",
       "freshnessWindowDays": 14,
       "provider": "Reuters",
@@ -229,7 +229,7 @@
         "sourceUrl": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
         "provider": "Reuters",
         "observationAt": "2026-07-23T00:00:00.000Z",
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
         "snapshotHash": null,
         "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:f4c3eb3ca5feeb61",
         "parserVersion": "manual-reviewed-v1",
@@ -265,7 +265,7 @@
       "unit": "MTPA",
       "observationDate": null,
       "observedAt": null,
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "annual",
       "freshnessWindowDays": 730,
       "provider": "U.S. EIA",
@@ -281,7 +281,7 @@
         "sourceUrl": "https://api.eia.gov/v2/seriesid/",
         "provider": "U.S. EIA",
         "observationAt": null,
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
         "snapshotHash": null,
         "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:b02cb352a2579fb3",
         "parserVersion": "eia-series-v2",
@@ -315,7 +315,7 @@
       "unit": "MTPA",
       "observationDate": null,
       "observedAt": null,
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "annual",
       "freshnessWindowDays": 730,
       "provider": "U.S. EIA",
@@ -331,7 +331,7 @@
         "sourceUrl": "https://api.eia.gov/v2/seriesid/",
         "provider": "U.S. EIA",
         "observationAt": null,
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
         "snapshotHash": null,
         "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:3cf67ec865a4e9d4",
         "parserVersion": "eia-series-v2",
@@ -364,7 +364,7 @@
       "unit": "MTPA",
       "observationDate": null,
       "observedAt": null,
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "annual",
       "freshnessWindowDays": 730,
       "provider": "Global Energy Monitor",
@@ -380,7 +380,7 @@
         "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
         "provider": "Global Energy Monitor",
         "observationAt": null,
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
         "snapshotHash": null,
         "snapshotRef": "snapshot:energy-snapshot:src-gem-ras-laffan-capacity:88a49e895ce16326",
         "parserVersion": "gem-asset-v1",
@@ -413,7 +413,7 @@
       "unit": "",
       "observationDate": null,
       "observedAt": null,
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "annual",
       "freshnessWindowDays": 730,
       "provider": "Global Energy Monitor",
@@ -429,7 +429,7 @@
         "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
         "provider": "Global Energy Monitor",
         "observationAt": null,
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
         "snapshotHash": null,
         "snapshotRef": "snapshot:energy-snapshot:src-gem-ras-laffan-status:0129843fd54c7b61",
         "parserVersion": "gem-asset-v1",
@@ -462,7 +462,7 @@
       "unit": "",
       "observationDate": null,
       "observedAt": null,
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "annual",
       "freshnessWindowDays": 730,
       "provider": "UN/LOCODE",
@@ -478,7 +478,7 @@
         "sourceUrl": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
         "provider": "UN/LOCODE",
         "observationAt": null,
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
         "snapshotHash": null,
         "snapshotRef": "snapshot:energy-snapshot:src-unlocode-ras-laffan:535413af6be16a3b",
         "parserVersion": "unlocode-asset-v1",
@@ -511,7 +511,7 @@
       "unit": "%",
       "observationDate": null,
       "observedAt": null,
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "daily",
       "freshnessWindowDays": 14,
       "provider": "IMF PortWatch",
@@ -527,7 +527,7 @@
         "sourceUrl": "https://portwatch.imf.org/pages/data-and-methodology",
         "provider": "IMF PortWatch",
         "observationAt": null,
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
         "snapshotHash": null,
         "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz-pressure:1c7ab7fc8d5588ed",
         "parserVersion": "portwatch-route-v2",
@@ -571,7 +571,7 @@
       "unit": "USD",
       "observationDate": "2026-06-30",
       "observedAt": "2026-06-30T00:00:00.000Z",
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "monthly",
       "freshnessWindowDays": 62,
       "provider": "UN Comtrade",
@@ -581,16 +581,16 @@
       "status": "confirmed",
       "evidenceIds": [],
       "machineEvidenceIds": [
-        "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:3d181f73919459d5"
+        "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:df6a42de08c8cf50"
       ],
       "lineage": {
         "sourceId": "src-comtrade-japan-lng-demand",
         "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
         "provider": "UN Comtrade",
         "observationAt": "2026-06-30T00:00:00.000Z",
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
-        "snapshotHash": "3d181f73919459d537b8bbf59aa6085a21d5618ece5de4749ac253fa08baf74f",
-        "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:3d181f73919459d5",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
+        "snapshotHash": "df6a42de08c8cf5060a8fb4176cc783212557a91378790ea551a31c11645aa03",
+        "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:df6a42de08c8cf50",
         "parserVersion": "comtrade-trade-v1",
         "recordKey": "15c09e44774c6283af5a99edc46d8affa8eb7334b166005d932f066baacb4ce7",
         "derivedFrom": []
@@ -632,7 +632,7 @@
       "unit": "USD",
       "observationDate": "2025-12-31",
       "observedAt": "2025-12-31T00:00:00.000Z",
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "cadence": "monthly",
       "freshnessWindowDays": 260,
       "provider": "UN Comtrade",
@@ -642,16 +642,16 @@
       "status": "confirmed",
       "evidenceIds": [],
       "machineEvidenceIds": [
-        "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:4cbb4c8742dea7eb"
+        "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:59edf2b99e8a8634"
       ],
       "lineage": {
         "sourceId": "src-comtrade-korea-lng-demand",
         "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
         "provider": "UN Comtrade",
         "observationAt": "2025-12-31T00:00:00.000Z",
-        "retrievedAt": "2026-08-26T01:13:32.151Z",
-        "snapshotHash": "4cbb4c8742dea7eb378cf5046e2185e043a26c399ef9bfd7f0ee0aab05a74348",
-        "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:4cbb4c8742dea7eb",
+        "retrievedAt": "2026-08-27T02:29:46.906Z",
+        "snapshotHash": "59edf2b99e8a8634131b48115d058dd41dc54e168eba609550b2f1c1647a126b",
+        "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:59edf2b99e8a8634",
         "parserVersion": "comtrade-trade-v1",
         "recordKey": "7fac8a62f6fd7ea53da2f39857ccf1708f3252a4bf5d9297af62da91cd0d3e8f",
         "derivedFrom": []
@@ -660,17 +660,17 @@
   ],
   "machineEvidence": [
     {
-      "id": "machine-evidence:energy-snapshot:src-yahoo-ttf:5dc2ac2f8f4f7168",
+      "id": "machine-evidence:energy-snapshot:src-yahoo-ttf:638fc791a55ccef1",
       "sourceId": "src-yahoo-ttf",
       "provider": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
-      "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:5dc2ac2f8f4f7168",
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
-      "observedAt": "2026-08-25T15:50:09.000Z",
-      "contentHash": "5dc2ac2f8f4f71682c479e7082fa38f3584e6f869a2b8dc5ccf04c357e9991e4",
+      "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:638fc791a55ccef1",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
+      "observedAt": "2026-08-26T15:53:33.000Z",
+      "contentHash": "638fc791a55ccef124f87f777ece7f615596ac2a2378037a075e5e12d449c4ab",
       "parserVersion": "yahoo-chart-v1",
       "recordKeys": [
-        "d977fb8a66224ec2c155f3baa99daf22dd6f37a676d31c17d4fc6ba419fb2b20"
+        "be43a6fc3c617ce72e98029d336ffe4fd2499b414eff37bc4cf48294e8425c7c"
       ],
       "targetInputIds": [
         "ttf"
@@ -682,13 +682,13 @@
       "coverage": {
         "status": "direct-observation",
         "sourcePeriod": {
-          "start": "2026-08-25",
-          "end": "2026-08-25"
+          "start": "2026-08-26",
+          "end": "2026-08-26"
         },
         "expectedCadence": "daily",
         "observedPeriod": {
-          "start": "2026-08-25",
-          "end": "2026-08-25"
+          "start": "2026-08-26",
+          "end": "2026-08-26"
         },
         "missingPeriods": [],
         "sourceStatus": "fetched"
@@ -696,14 +696,14 @@
       "status": "validated"
     },
     {
-      "id": "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:3d181f73919459d5",
+      "id": "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:df6a42de08c8cf50",
       "sourceId": "src-comtrade-japan-lng-demand",
       "provider": "UN Comtrade",
       "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?subscription_key=%REDACTED%&typeCode=C&freqCode=M&clCode=HS&reporterCode=392&cmdCode=271111&flowCode=M&partnerCode=0&includeDesc=true",
-      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:3d181f73919459d5",
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:df6a42de08c8cf50",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "observedAt": null,
-      "contentHash": "3d181f73919459d537b8bbf59aa6085a21d5618ece5de4749ac253fa08baf74f",
+      "contentHash": "df6a42de08c8cf5060a8fb4176cc783212557a91378790ea551a31c11645aa03",
       "parserVersion": "comtrade-trade-v1",
       "recordKeys": [
         "15c09e44774c6283af5a99edc46d8affa8eb7334b166005d932f066baacb4ce7"
@@ -731,14 +731,14 @@
       "status": "validated"
     },
     {
-      "id": "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:4cbb4c8742dea7eb",
+      "id": "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:59edf2b99e8a8634",
       "sourceId": "src-comtrade-korea-lng-demand",
       "provider": "UN Comtrade",
       "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?subscription_key=%REDACTED%&typeCode=C&freqCode=M&clCode=HS&period=202512&reporterCode=410&cmdCode=271111&flowCode=M&partnerCode=0&includeDesc=true",
-      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:4cbb4c8742dea7eb",
-      "retrievedAt": "2026-08-26T01:13:32.151Z",
+      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:59edf2b99e8a8634",
+      "retrievedAt": "2026-08-27T02:29:46.906Z",
       "observedAt": null,
-      "contentHash": "4cbb4c8742dea7eb378cf5046e2185e043a26c399ef9bfd7f0ee0aab05a74348",
+      "contentHash": "59edf2b99e8a8634131b48115d058dd41dc54e168eba609550b2f1c1647a126b",
       "parserVersion": "comtrade-trade-v1",
       "recordKeys": [
         "7fac8a62f6fd7ea53da2f39857ccf1708f3252a4bf5d9297af62da91cd0d3e8f"
@@ -793,13 +793,13 @@
     "src-yahoo-ttf": {
       "status": "direct-observation",
       "sourcePeriod": {
-        "start": "2026-08-25",
-        "end": "2026-08-25"
+        "start": "2026-08-26",
+        "end": "2026-08-26"
       },
       "expectedCadence": "daily",
       "observedPeriod": {
-        "start": "2026-08-25",
-        "end": "2026-08-25"
+        "start": "2026-08-26",
+        "end": "2026-08-26"
       },
       "missingPeriods": [],
       "sourceStatus": "fetched"
@@ -910,8 +910,8 @@
       "src-gem-ras-laffan-status: src-gem-ras-laffan-status: GEM_DATA_URL is required for the asset registry connector; applying declared unavailable fallback",
       "src-unlocode-ras-laffan: src-unlocode-ras-laffan: UNLOCODE_DATA_URL is required for the asset registry connector; applying declared unavailable fallback",
       "src-imf-portwatch-hormuz-pressure: src-imf-portwatch-hormuz-pressure: PORTWATCH_DATA_URL is required for the approved machine-readable PortWatch connector; applying declared unavailable fallback",
-      "candidate energy-observation:src-imf-portwatch-hormuz:hormuz-transits:2026-08-18:2026-08-18 is carried at 8 days old, above freshnessWindowDays 7",
-      "candidate energy-observation:src-reviewed-qatar-force-majeure:qatar-output-status:2026-07-23:2026-07-23 is carried at 34 days old, above freshnessWindowDays 14"
+      "candidate energy-observation:src-imf-portwatch-hormuz:hormuz-transits:2026-08-18:2026-08-18 is carried at 9 days old, above freshnessWindowDays 7",
+      "candidate energy-observation:src-reviewed-qatar-force-majeure:qatar-output-status:2026-07-23:2026-07-23 is carried at 35 days old, above freshnessWindowDays 14"
     ]
   }
 }
