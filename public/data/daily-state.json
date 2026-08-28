@@ -1,44 +1,43 @@
 {
   "schemaVersion": 3,
-  "asOf": "2026-08-27T00:00:00Z",
-  "day": "D176",
+  "asOf": "2026-08-28T00:00:00Z",
+  "day": "D177",
   "crisis": {
     "level": 4,
     "label": "High",
-    "detail": "Aug 27: AP reported Iran and Oman discussed a framework for a joint temporary navigational corridor and mine-clearance project, while a tanker was disabled in an attack off Oman. Reuters said the talks restarted under mounting US sanctions pressure. Brent is $86.45 (-8.41%, Yahoo Finance, Aug 27) and TTF is 66.17 EUR/MWh (+0.47%, Yahoo Finance, Aug 26). Crisis level remains 4 (High); base 10%, stress 60%, tail 30%."
+    "detail": "Aug 28: Iran and Oman agreed each side's share of Strait of Hormuz waters and corridor revenues, converting the temporary navigation-corridor framework into a revenue-sharing arrangement (Al Jazeera, Aug 27); Qatar's PM joined mediation efforts in Tehran the same day. Iran's reopening conditions - lifting the naval blockade, unfreezing assets, and removing oil sanctions - remain unmet. Brent is $88.14 (-0.43%, Trading Economics, Aug 28) and TTF is 68.80 EUR/MWh (+0.7%, Yahoo Finance, Aug 27). Crisis level remains 4 (High); base 10%, stress 60%, tail 30%."
   },
   "deltaVsYesterday": 0,
-  "topAlert": "AUG 27: Iran-Oman corridor remains provisional after tanker disabled off Oman; Brent $86.45; TTF 66.17; tail 30%",
-  "commodityScenario": "Aug 27: AP and Reuters reported progress on an Iran-Oman framework for a temporary Hormuz corridor and mine clearance after a tanker was disabled off Oman. Brent $86.45 (-8.41%), WTI $81.66 (-6.2%) and TTF $66.17 EUR/MWh (Aug 26; +0.47%); the JKM CFD reference remains carried at $21.22 and the $22.00 September-delivery assessment remains carried. Qatar LNG force majeure remains carried through mid-September. Crisis level remains 4 (High); base 10%, stress 60%, tail 30%.",
-  "marketContext": "Iran-Oman corridor framework remains provisional; tanker disabled off Oman; Brent $86.45 (-8.41%); TTF $66.17 (+0.47%); base 10%, stress 60%, tail 30%.",
+  "topAlert": "AUG 28: Iran-Oman convert Hormuz corridor into revenue-sharing deal; Qatar PM joins mediation; Brent $88.14; tail 30%",
+  "commodityScenario": "Aug 28: Al Jazeera reported Iran and Oman agreed each side's share of Strait waters and corridor revenues, converting the temporary Hormuz corridor framework into a revenue-sharing arrangement, while Qatar's PM joined mediation in Tehran. Brent $88.14 (-0.43%), WTI $83.02 (-0.61%) and TTF $68.80 EUR/MWh (Aug 27; +0.7%); the JKM CFD reference rose to $23.41 (Trading Economics, Aug 27) while the $22.00 Reuters September-delivery assessment remains carried. Qatar LNG force majeure remains carried through mid-September. Crisis level remains 4 (High); base 10%, stress 60%, tail 30%.",
+  "marketContext": "Iran-Oman corridor converted into a revenue-sharing arrangement; Qatar PM joins mediation; Brent $88.14 (-0.43%); TTF $68.80 (+0.7%); base 10%, stress 60%, tail 30%.",
   "crossAsset": {
     "brent": {
-      "current": 86.45,
-      "change1d": "-8.4%",
-      "zscore": 1.42,
+      "current": 88.14,
+      "change1d": "-0.4%",
+      "zscore": 1.79,
       "signal": "amber",
-      "source": "Yahoo Finance BZ=F",
-      "sourceDate": "2026-08-27",
+      "source": "Trading Economics",
+      "sourceDate": "2026-08-28",
       "status": "confirmed"
     },
     "ttf": {
-      "current": 66.17,
-      "change1d": "+0.5%",
-      "zscore": 5.35,
+      "current": 68.8,
+      "change1d": "+0.7%",
+      "zscore": 6.02,
       "signal": "red",
       "source": "Yahoo Finance TTF=F",
-      "sourceDate": "2026-08-26",
+      "sourceDate": "2026-08-27",
       "status": "confirmed"
     },
     "lng-ja": {
-      "current": 21.22,
-      "change1d": "-0.1%",
-      "zscore": 3.03,
+      "current": 23.41,
+      "change1d": "+2.0%",
+      "zscore": 3.65,
       "signal": "red",
       "source": "Trading Economics",
-      "sourceDate": "2026-08-14",
-      "status": "carried",
-      "carryReason": "No newer source-verified JKM-linked CFD observation was approved on Aug 18; retain the Trading Economics Aug 14 reference at 21.22 USD/MMBtu."
+      "sourceDate": "2026-08-27",
+      "status": "confirmed"
     },
     "id10y": {
       "current": 6.77,
@@ -159,54 +158,54 @@
     }
   },
   "fallbackCommentLines": [
-    "Static fallback - generated from src/data/daily-state.json (2026-08-27; D176)",
-    "Brent Crude 86.45 (Yahoo Finance BZ=F 2026-08-27, confirmed); WTI Crude 81.66 (Yahoo Finance CL=F 2026-08-27, confirmed)"
+    "Static fallback - generated from src/data/daily-state.json (2026-08-28; D177)",
+    "Brent Crude 88.14 (Trading Economics 2026-08-28, confirmed); WTI Crude 83.02 (Trading Economics 2026-08-28, confirmed)"
   ],
   "fallbackQuotes": [
     {
       "symbol": "BZ=F",
       "name": "Brent Crude",
-      "price": 86.45,
-      "change": -7.94,
-      "changePct": -8.41,
+      "price": 88.14,
+      "change": -0.38,
+      "changePct": -0.43,
       "currency": "USD",
       "unit": "/barrel",
-      "lastUpdated": "2026-08-27T02:11:31.000Z",
-      "source": "Yahoo Finance BZ=F",
-      "sourceDate": "2026-08-27",
+      "lastUpdated": "2026-08-28T00:00:00Z",
+      "source": "Trading Economics",
+      "sourceDate": "2026-08-28",
       "status": "confirmed"
     },
     {
       "symbol": "CL=F",
       "name": "WTI Crude",
-      "price": 81.66,
-      "change": -5.4,
-      "changePct": -6.2,
+      "price": 83.02,
+      "change": -0.51,
+      "changePct": -0.61,
       "currency": "USD",
       "unit": "/barrel",
-      "lastUpdated": "2026-08-27T02:12:15.000Z",
-      "source": "Yahoo Finance CL=F",
-      "sourceDate": "2026-08-27",
+      "lastUpdated": "2026-08-28T00:00:00Z",
+      "source": "Trading Economics",
+      "sourceDate": "2026-08-28",
       "status": "confirmed"
     }
   ],
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "Iran-Oman corridor framework advances",
-      "delta": "AP reported the ministers discussed a joint temporary navigational corridor and mine-clearance project, while Reuters said talks restarted under mounting economic pressure (AP/Reuters, Aug 25-26).",
+      "summary": "Iran-Oman agree Hormuz revenue split",
+      "delta": "Iran's IRGC said Tehran and Muscat agreed each country's share of Strait waters and corridor revenues, converting the temporary framework into a revenue-sharing deal, while Iran kept its blockade-lift and sanctions demands (Al Jazeera, Aug 27).",
       "direction": "down"
     },
     {
       "id": "e2",
-      "summary": "Tanker disabled off Omani coast",
-      "delta": "AP reported an oil tanker was disabled in an attack off Oman, underscoring ongoing hazards while the strait remains largely shut (AP, Aug 25).",
-      "direction": "up"
+      "summary": "Qatar PM joins Hormuz mediation push",
+      "delta": "Qatar's PM Sheikh Mohammed met Iranian officials in Tehran to review de-escalation efforts, following Pakistan's Aug 24 and Oman's Aug 25 visits; Iran still opposes the southern Oman-route channel (Al Jazeera, Aug 27).",
+      "direction": "down"
     },
     {
       "id": "e3",
-      "summary": "Oil lower; TTF edges higher",
-      "delta": "Brent is $86.45, down 8.41%, WTI is $81.66, down 6.2%, while TTF is 66.17 EUR/MWh, up 0.47%, as reopening hopes met continued LNG supply risk (Yahoo Finance, Aug 27; TTF Aug 26).",
+      "summary": "Brent steadies; TTF ticks higher",
+      "delta": "Brent is $88.14, down 0.43%, WTI is $83.02, down 0.61%, and TTF is 68.80 EUR/MWh, up 0.7%, as corridor diplomacy met continued LNG supply risk (Trading Economics/Yahoo Finance, Aug 27-28).",
       "direction": "down"
     }
   ],
@@ -237,7 +236,7 @@
     }
   ],
   "traceInputs": {
-    "headline": "AP reported Iran and Oman discussed a joint temporary navigational corridor and mine-clearance project after a tanker was disabled off Oman; Reuters said talks restarted under US sanctions pressure. Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable.",
+    "headline": "Al Jazeera reported Iran and Oman agreed each side's share of Strait of Hormuz waters and corridor revenues, converting the temporary navigation-corridor framework into a revenue-sharing arrangement; Qatar's PM joined mediation efforts in Tehran. Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable.",
     "metrics": {
       "qatar-output-status": {
         "unit": "",
@@ -248,7 +247,7 @@
         "periodStart": "2026-07-23",
         "periodEnd": "2026-07-23",
         "coverageStatus": "unavailable",
-        "sourceAgeDays": 35,
+        "sourceAgeDays": 36,
         "value": "Force majeure extended to mid-September; Bloomberg (Jul 22) reports a further extension to mid-October is in preparation, not yet formally confirmed",
         "source": "Reuters",
         "sourceDate": "2026-07-23",
@@ -294,7 +293,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA 400. No approved observation is available."
+        "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available."
       },
       "qatar-production-baseline": {
         "unit": "MTPA",
@@ -308,7 +307,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA 404. No approved observation is available."
+        "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available."
       },
       "qatar-export-baseline": {
         "unit": "MTPA",
@@ -322,7 +321,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA 404. No approved observation is available."
+        "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available."
       },
       "ras-laffan-capacity": {
         "unit": "MTPA",
@@ -347,7 +346,7 @@
         "periodStart": "2026-08-18",
         "periodEnd": "2026-08-18",
         "coverageStatus": "unavailable",
-        "sourceAgeDays": 9,
+        "sourceAgeDays": 10,
         "value": 4,
         "source": "IMF PortWatch",
         "sourceDate": "2026-08-18",
@@ -401,17 +400,17 @@
         "maxAgeDays": 3,
         "cadence": "daily",
         "observationKind": "flow",
-        "periodStart": "2026-08-26",
-        "periodEnd": "2026-08-26",
+        "periodStart": "2026-08-27",
+        "periodEnd": "2026-08-27",
         "coverageStatus": "direct-observation",
         "sourceAgeDays": 1,
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-yahoo-ttf:638fc791a55ccef1"
+          "machine-evidence:energy-snapshot:src-yahoo-ttf:bb9aaad48861cc33"
         ],
-        "value": 66.17,
+        "value": 68.8,
         "source": "Yahoo Finance TTF=F",
-        "sourceDate": "2026-08-26",
-        "observedAt": "2026-08-26T15:53:33.000Z"
+        "sourceDate": "2026-08-27",
+        "observedAt": "2026-08-27T15:54:29.000Z"
       },
       "hormuz-total-oil-flow": {
         "value": 20.9,
@@ -477,14 +476,13 @@
         "missingReason": "No named company-level buyer relationship is verified by the approved oil-flow sources."
       },
       "jkm-cfd-reference": {
-        "value": 21.22,
+        "value": 23.41,
         "unit": "USD/MMBtu",
-        "status": "carried",
+        "status": "confirmed",
         "source": "Trading Economics",
-        "sourceDate": "2026-08-14",
+        "sourceDate": "2026-08-27",
         "maxAgeDays": 3,
-        "cadence": "daily",
-        "carryReason": "No newer source-verified JKM-linked CFD observation was approved on Aug 18; retain the Trading Economics Aug 14 reference at 21.22 USD/MMBtu."
+        "cadence": "daily"
       },
       "japan-lng-demand": {
         "unit": "USD",
@@ -496,9 +494,9 @@
         "periodEnd": "2026-06-30",
         "coverageStatus": "public-proxy",
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
-        "sourceAgeDays": 58,
+        "sourceAgeDays": 59,
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:df6a42de08c8cf50"
+          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:a56a32d2c91d76a7"
         ],
         "value": 5407806363.239,
         "source": "UN Comtrade",
@@ -515,9 +513,9 @@
         "periodEnd": "2025-12-31",
         "coverageStatus": "public-proxy",
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
-        "sourceAgeDays": 239,
+        "sourceAgeDays": 240,
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:59edf2b99e8a8634"
+          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:3b2f630d1f8f8430"
         ],
         "value": 2535174222,
         "source": "UN Comtrade",
@@ -525,14 +523,13 @@
         "observedAt": "2025-12-31T00:00:00.000Z"
       },
       "hormuz-total-transits": {
-        "value": 13,
-        "unit": "vessels/day (5-day avg through 2026-08-11)",
-        "status": "carried",
-        "source": "Kpler via Investing.com/Yahoo Finance",
-        "sourceDate": "2026-08-13",
+        "value": 121,
+        "unit": "vessel crossings/week (Aug 17-23, vs 118 prior week)",
+        "status": "confirmed",
+        "source": "Foreign Policy Journal (Kpler data)",
+        "sourceDate": "2026-08-27",
         "maxAgeDays": 1,
-        "cadence": "daily",
-        "carryReason": "AP reported limited traffic but did not provide a comparable current five-day average; no newer source-verified Kpler daily/5-day-average figure was approved on Aug 18. Retain the Aug 13 Kpler figure of 13/day through Aug 11."
+        "cadence": "daily"
       },
       "qatar-subchartered-carriers": {
         "value": 9,
@@ -572,13 +569,13 @@
         "note": "No newer source-verified weekly Asia spot LNG assessment was approved on Aug 18. The Reuters July 24 assessment of 22 USD/MMBtu for September delivery remains carried without a fresh recheck of the article."
       },
       "e-ttf": {
-        "lastChecked": "2026-08-27",
+        "lastChecked": "2026-08-28",
         "status": "confirmed",
         "note": "Machine-refreshed from Yahoo Finance TTF=F.",
         "title": "Yahoo Finance chart API - Dutch TTF",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
-        "publishedAt": "2026-08-26"
+        "publishedAt": "2026-08-27"
       },
       "e-jera-qatarenergy": {
         "lastChecked": "2026-07-29",
@@ -597,52 +594,52 @@
         "status": "confirmed"
       },
       "e-brent": {
-        "lastChecked": "2026-08-27",
+        "lastChecked": "2026-08-28",
         "status": "confirmed",
-        "note": "Machine-refreshed from Yahoo Finance BZ=F.",
-        "title": "Yahoo Finance chart API - Brent Crude",
-        "publisher": "Yahoo Finance",
-        "url": "https://query2.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=1d&range=5d",
-        "publishedAt": "2026-08-27"
+        "note": "Switched to Trading Economics after Yahoo Finance's chartPreviousClose baseline produced a spurious daily percent change against an accurately priced quote.",
+        "title": "Brent Crude Oil - Price",
+        "publisher": "Trading Economics",
+        "url": "https://tradingeconomics.com/commodity/brent-crude-oil",
+        "publishedAt": "2026-08-28"
       },
       "e-wti": {
-        "lastChecked": "2026-08-27",
+        "lastChecked": "2026-08-28",
         "status": "confirmed",
-        "note": "Machine-refreshed from Yahoo Finance CL=F.",
-        "title": "Yahoo Finance chart API - WTI Crude",
-        "publisher": "Yahoo Finance",
-        "url": "https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=5d",
-        "publishedAt": "2026-08-27"
+        "note": "Switched to Trading Economics after Yahoo Finance's chartPreviousClose baseline produced a spurious daily percent change against an accurately priced quote.",
+        "title": "Crude Oil WTI - Price",
+        "publisher": "Trading Economics",
+        "url": "https://tradingeconomics.com/commodity/crude-oil",
+        "publishedAt": "2026-08-28"
       },
       "e-eurusd": {
-        "lastChecked": "2026-08-27",
+        "lastChecked": "2026-08-28",
         "status": "confirmed",
         "note": "Machine-refreshed from Yahoo Finance EURUSD=X.",
         "title": "Yahoo Finance chart API - EUR/USD",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?interval=1d&range=5d",
-        "publishedAt": "2026-08-27"
+        "publishedAt": "2026-08-28"
       },
       "e-sofr": {
-        "lastChecked": "2026-08-27",
+        "lastChecked": "2026-08-28",
         "status": "confirmed",
         "note": "Machine-refreshed from Federal Reserve Bank of New York.",
-        "publishedAt": "2026-08-25"
+        "publishedAt": "2026-08-26"
       },
       "e-jkm-cfd": {
-        "lastChecked": "2026-08-18",
-        "status": "carried",
-        "note": "No newer source-verified JKM-linked CFD observation was approved on Aug 18; the Aug 14 reference at 21.22 USD/MMBtu remains carried and contextual, excluded from commercial calculations.",
-        "publishedAt": "2026-08-14"
+        "lastChecked": "2026-08-28",
+        "status": "confirmed",
+        "note": "Trading Economics posted a fresh JKM-linked CFD reference of 23.41 USD/MMBtu on Aug 27, up 2.03% from the prior print; no longer carried.",
+        "publishedAt": "2026-08-27"
       },
       "e-hormuz-total-transits": {
-        "lastChecked": "2026-08-18",
-        "status": "carried",
-        "note": "AP reported limited traffic but did not provide a comparable current five-day average; no newer source-verified Kpler daily/5-day-average figure was approved on Aug 18. Retain the Aug 13 Kpler-sourced figure of 13/day through Aug 11.",
-        "title": "Ship traffic through Strait of Hormuz near three-month low",
-        "publisher": "Investing.com (via Yahoo Finance UK, citing Kpler)",
-        "url": "https://uk.finance.yahoo.com/news/ship-traffic-strait-hormuz-near-180011589.html",
-        "publishedAt": "2026-08-13"
+        "lastChecked": "2026-08-28",
+        "status": "confirmed",
+        "note": "Foreign Policy Journal reported Kpler data showing 121 Hormuz crossings for the week of Aug 17-23, up marginally from 118 the prior week; no longer carried.",
+        "title": "Strait of Hormuz Traffic Holds Steady as Route Uncertainty Persists, Kpler Data Shows",
+        "publisher": "Foreign Policy Journal (Kpler data)",
+        "url": "https://www.foreignpolicyjournal.com/2026/08/27/strait-of-hormuz-traffic-holds-steady-as-route-uncertainty-persists-kpler-data-shows/",
+        "publishedAt": "2026-08-27"
       },
       "e-ap-hormuz-20260818": {
         "lastChecked": "2026-08-26",
@@ -662,9 +659,9 @@
     }
   },
   "volatilityDay": {
-    "day": "D176",
-    "date": "2026-08-27",
-    "note": "Thu - Iran and Oman advance a temporary corridor and mine-clearance framework after a tanker was disabled off Oman; Brent $86.45; WTI $81.66; TTF 66.17; tail 30%.",
+    "day": "D177",
+    "date": "2026-08-28",
+    "note": "Fri - Iran and Oman convert the temporary Hormuz corridor into a revenue-sharing arrangement; Qatar's PM joins mediation; Brent $88.14; WTI $83.02; TTF 68.80; tail 30%.",
     "ovx": 58,
     "ovxConfirmed": false,
     "vxeem": 22,
@@ -723,12 +720,12 @@
       "status": "carried"
     },
     "naphtha": {
-      "current": 747.24,
-      "change1d": "+4.2%",
-      "zscore": 0.49,
+      "current": 745.45,
+      "change1d": "+0.1%",
+      "zscore": 0.47,
       "signal": "green",
       "source": "Trading Economics",
-      "sourceDate": "2026-08-10",
+      "sourceDate": "2026-08-27",
       "status": "confirmed"
     },
     "ethylene": {
@@ -777,12 +774,12 @@
       "status": "carried"
     },
     "bdi": {
-      "current": 3083,
-      "change1d": "-0.2%",
-      "zscore": 3.05,
+      "current": 3107,
+      "change1d": "+1.7%",
+      "zscore": 3.11,
       "signal": "red",
       "source": "Trading Economics",
-      "sourceDate": "2026-08-10",
+      "sourceDate": "2026-08-27",
       "status": "confirmed"
     },
     "vlcc": {
@@ -805,17 +802,17 @@
     }
   },
   "priceNarratives": {
-    "Brent": "Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $86.45 (Aug 27, Yahoo Finance BZ=F; -8.41%) as Iran-Oman corridor talks remained provisional after a tanker was disabled off Oman. Working range $75-85 base (signed workable deal); $78-95 stress (conditional routing); $105-135+ tail (renewed closure).",
-    "JKM LNG": "Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $21.22/MMBtu (Trading Economics, Aug 14), carried on Aug 27. Qatar force majeure is carried through mid-September from the Reuters Jul 23 notice; the reported mid-October extension remains unconfirmed.",
-    "TTF Gas": "Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 66.17 EUR/MWh (Aug 26, Yahoo Finance TTF=F; +0.47%) as Iran-Oman corridor talks remained provisional and Qatar LNG force majeure persisted. The marker remains elevated versus the pre-crisis baseline while route and supply risks remain unresolved.",
-    "Credit": "iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 60%, tail 30% after progress on a temporary Iran-Oman corridor was offset by a tanker attack and continued sanctions pressure."
+    "Brent": "Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $88.14 (Aug 28, Trading Economics; -0.43%) as Iran and Oman converted the temporary Hormuz corridor into a revenue-sharing arrangement. Working range $75-85 base (signed workable deal); $78-95 stress (conditional routing); $105-135+ tail (renewed closure).",
+    "JKM LNG": "Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $23.41/MMBtu (Trading Economics, Aug 27), up 2.0%. Qatar force majeure is carried through mid-September from the Reuters Jul 23 notice; the reported mid-October extension remains unconfirmed.",
+    "TTF Gas": "Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 68.80 EUR/MWh (Aug 27, Yahoo Finance TTF=F; +0.7%) as Iran-Oman corridor diplomacy advanced and Qatar LNG force majeure persisted. The marker remains elevated versus the pre-crisis baseline while route and supply risks remain unresolved.",
+    "Credit": "iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 60%, tail 30% after Iran and Oman converted the temporary Hormuz corridor into a revenue-sharing arrangement while Iran's blockade-lift and sanctions demands remained unmet."
   },
   "runbookState": {
-    "brent": "$86.45 (2026-08-27, Yahoo Finance BZ=F; -8.41%)",
-    "jkm": "$22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $21.22/MMBtu, Trading Economics, Aug 14; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation)",
-    "ttf": "66.17 EUR/MWh (2026-08-26, Yahoo Finance TTF=F; +0.5%)"
+    "brent": "$88.14 (2026-08-28, Trading Economics; -0.43%)",
+    "jkm": "$22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $23.41/MMBtu, Trading Economics, Aug 27; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation)",
+    "ttf": "68.80 EUR/MWh (2026-08-27, Yahoo Finance TTF=F; +0.7%)"
   },
-  "timelineEntry": "- **D176**: Aug 27 - Iran-Oman corridor framework remains provisional after a tanker is disabled off Oman; Brent $86.45, WTI $81.66 and TTF 66.17.",
+  "timelineEntry": "- **D177**: Aug 28 - Iran and Oman convert the temporary Hormuz corridor into a revenue-sharing arrangement; Qatar PM joins mediation; Brent $88.14, WTI $83.02, TTF 68.80.",
   "commercialInputs": {
     "lng-origin-value": {
       "label": "Qatar origin value",
@@ -861,28 +858,28 @@
       "maxAgeDays": 3,
       "cadence": "daily",
       "observationKind": "flow",
-      "periodStart": "2026-08-26",
-      "periodEnd": "2026-08-26",
+      "periodStart": "2026-08-27",
+      "periodEnd": "2026-08-27",
       "coverageStatus": "direct-observation",
       "sourceAgeDays": 1,
       "machineEvidenceIds": [
-        "machine-evidence:energy-snapshot:src-yahoo-ttf:638fc791a55ccef1"
+        "machine-evidence:energy-snapshot:src-yahoo-ttf:bb9aaad48861cc33"
       ],
-      "value": 66.17,
+      "value": 68.8,
       "source": "Yahoo Finance TTF=F",
-      "sourceDate": "2026-08-26",
-      "observedAt": "2026-08-26T15:53:33.000Z"
+      "sourceDate": "2026-08-27",
+      "observedAt": "2026-08-27T15:54:29.000Z"
     },
     "fx-eurusd": {
       "label": "EUR/USD",
       "commodity": "lng",
       "role": "fx",
-      "value": 1.166,
+      "value": 1.1651,
       "unit": "USD/EUR",
       "status": "confirmed",
       "source": "Yahoo Finance EURUSD=X",
-      "sourceDate": "2026-08-27",
-      "observedAt": "2026-08-27T02:22:05.000Z",
+      "sourceDate": "2026-08-28",
+      "observedAt": "2026-08-28T04:20:05.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
@@ -922,35 +919,35 @@
       "label": "Brent",
       "commodity": "crude-oil",
       "role": "destination-value",
-      "value": 86.45,
+      "value": 88.14,
       "unit": "USD/bbl",
       "status": "confirmed",
-      "source": "Yahoo Finance BZ=F",
-      "sourceDate": "2026-08-27",
+      "source": "Trading Economics",
+      "sourceDate": "2026-08-28",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
         "e-brent"
       ],
       "requiredForCalculation": false,
-      "observedAt": "2026-08-27T02:11:31.000Z"
+      "observedAt": "2026-08-28T00:00:00Z"
     },
     "oil-wti": {
       "label": "WTI",
       "commodity": "crude-oil",
       "role": "origin-value",
-      "value": 81.66,
+      "value": 83.02,
       "unit": "USD/bbl",
       "status": "confirmed",
-      "source": "Yahoo Finance CL=F",
-      "sourceDate": "2026-08-27",
+      "source": "Trading Economics",
+      "sourceDate": "2026-08-28",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
         "e-wti"
       ],
       "requiredForCalculation": true,
-      "observedAt": "2026-08-27T02:12:15.000Z"
+      "observedAt": "2026-08-28T00:00:00Z"
     },
     "oil-dubai-oman": {
       "label": "Dubai/Oman destination reference",
@@ -1001,18 +998,18 @@
       "label": "SOFR",
       "commodity": "crude-oil",
       "role": "financing",
-      "value": 3.66,
+      "value": 3.64,
       "unit": "%",
       "status": "confirmed",
       "source": "Federal Reserve Bank of New York",
-      "sourceDate": "2026-08-25",
+      "sourceDate": "2026-08-26",
       "maxAgeDays": 7,
       "cadence": "daily",
       "evidenceIds": [
         "e-sofr"
       ],
       "requiredForCalculation": false,
-      "observedAt": "2026-08-25T00:00:00Z"
+      "observedAt": "2026-08-26T00:00:00Z"
     }
   }
 }
