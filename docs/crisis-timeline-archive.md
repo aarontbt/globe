@@ -145,3 +145,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D174**: Aug 25 - US unveils 'greatest financial offensive' sanctions; Iran approves Hormuz transit fees; PGSA threatens vessel seizure; Oman FM in Tehran.
 - **D175**: Aug 26 - Iran and Oman advance a temporary Hormuz corridor and mine-clearance framework after a tanker is disabled off Oman; Brent falls 8.5%.
 - **D176**: Aug 27 - Iran-Oman corridor framework remains provisional after a tanker is disabled off Oman; Brent $86.45, WTI $81.66 and TTF 66.17.
+- **D179**: Aug 30 - Previously reviewed Iran-Oman corridor framework remains provisional after a tanker was disabled off Oman; Brent $88.10, WTI $83.40 and TTF 66.98.

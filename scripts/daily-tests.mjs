@@ -328,6 +328,12 @@ for (const input of Object.values(energyFixtureState.commercialInputs ?? {})) {
     if (input.observedAt) input.observedAt = `${energyFixtureDate}T00:00:00.000Z`;
   }
 }
+for (const input of Object.values(energyFixtureState.traceInputs?.metrics ?? {})) {
+  if (input.sourceDate && input.sourceDate > energyFixtureDate) {
+    input.sourceDate = energyFixtureDate;
+    if (input.observedAt) input.observedAt = `${energyFixtureDate}T00:00:00.000Z`;
+  }
+}
 energyFixtureExposure.asOf = energyFixtureAsOf;
 energyFixtureExposure.day = "D175";
 for (const update of Object.values(energyFixtureState.traceInputs?.evidenceUpdates ?? {})) {
