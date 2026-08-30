@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "asOf": "2026-08-30T00:00:00Z",
-  "reviewedAt": "2026-08-30T09:03:00Z",
+  "reviewedAt": "2026-08-30T10:06:00Z",
   "reviewer": "ox-alpha with direct machine-source review; Firecrawl connector unavailable",
   "entries": [
     {
@@ -124,7 +124,7 @@
       "title": "Yahoo Finance chart API - Dutch TTF",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-08-28",
-      "checkedAt": "2026-08-30T09:02:00Z",
+      "checkedAt": "2026-08-30T10:05:00Z",
       "claimSummary": "Yahoo Finance's chart API returned Dutch TTF at 66.98 EUR/MWh on Aug 28.",
       "extractedFacts": [
         "Yahoo Finance returned regularMarketPrice 66.98 for symbol TTF=F on August 28, 2026.",
@@ -299,8 +299,8 @@
       "title": "Yahoo Finance chart API - Brent Crude",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-08-28",
-      "checkedAt": "2026-08-30T09:02:00Z",
-      "claimSummary": "Yahoo Finance's chart API returned Brent crude at 88.10 USD/bbl on Aug 28.",
+      "checkedAt": "2026-08-30T10:05:00Z",
+      "claimSummary": "Yahoo Finance's chart API returned Brent crude at 88.10 USD/bbl on Aug 28, down 0.47% from the prior close.",
       "extractedFacts": [
         "Yahoo Finance returned regularMarketPrice 88.10 for symbol BZ=F on August 28, 2026.",
         "The local machine-refresh response timestamp was 2026-08-28T20:59:45.000Z.",
@@ -320,9 +320,9 @@
           "value": 88.1,
           "unit": "USD/bbl",
           "sourceDate": "2026-08-28",
-          "observedAt": "2026-08-28T20:59:45.000Z",
           "instrument": "BZ=F Brent crude futures",
-          "provider": "Yahoo Finance"
+          "provider": "Yahoo Finance",
+          "observedAt": "2026-08-28T20:59:45.000Z"
         }
       ]
     },
@@ -337,8 +337,8 @@
       "title": "Yahoo Finance chart API - WTI Crude",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-08-28",
-      "checkedAt": "2026-08-30T09:02:00Z",
-      "claimSummary": "Yahoo Finance's chart API returned WTI crude at 83.40 USD/bbl on Aug 28.",
+      "checkedAt": "2026-08-30T10:05:00Z",
+      "claimSummary": "Yahoo Finance's chart API returned WTI crude at 83.40 USD/bbl on Aug 28, down 0.16% from the prior close.",
       "extractedFacts": [
         "Yahoo Finance returned regularMarketPrice 83.40 for symbol CL=F on August 28, 2026.",
         "The local machine-refresh response timestamp was 2026-08-28T20:59:58.000Z.",
@@ -358,9 +358,9 @@
           "value": 83.4,
           "unit": "USD/bbl",
           "sourceDate": "2026-08-28",
-          "observedAt": "2026-08-28T20:59:58.000Z",
           "instrument": "CL=F WTI crude futures",
-          "provider": "Yahoo Finance"
+          "provider": "Yahoo Finance",
+          "observedAt": "2026-08-28T20:59:58.000Z"
         }
       ]
     },
@@ -375,7 +375,7 @@
       "title": "Yahoo Finance chart API - EUR/USD",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-08-28",
-      "checkedAt": "2026-08-30T09:02:00Z",
+      "checkedAt": "2026-08-30T10:05:00Z",
       "claimSummary": "Yahoo Finance's chart API returned EUR/USD at 1.1587 on Aug 28.",
       "extractedFacts": [
         "Yahoo Finance returned regularMarketPrice 1.1587 for symbol EURUSD=X on August 28, 2026.",
@@ -412,8 +412,8 @@
       "reviewStatus": "approved",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
-      "publishedAt": "2026-08-25",
-      "checkedAt": "2026-08-30T09:02:00Z",
+      "publishedAt": "2026-08-27",
+      "checkedAt": "2026-08-30T10:05:00Z",
       "claimSummary": "The New York Fed API reports SOFR at 3.64% effective August 27, 2026.",
       "extractedFacts": [
         "SOFR percent rate was 3.64 with effective date 2026-08-27.",
@@ -448,11 +448,12 @@
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-08-14",
-      "checkedAt": "2026-08-18T16:35:00Z",
-      "claimSummary": "Trading Economics posted a newer JKM-linked CFD reference of 21.22 USD/MMBtu dated Aug 14, down 0.1% from the prior 21.24 print.",
+      "publishedAt": "2026-08-27",
+      "checkedAt": "2026-08-28T04:20:00Z",
+      "claimSummary": "Trading Economics posted a fresh JKM-linked CFD reference of 23.41 USD/MMBtu on Aug 27, up 2.03% from the prior print.",
       "extractedFacts": [
-        "The displayed LNG Japan Korea reference was 21.22 USD/MMBtu on August 14, 2026, essentially flat from the previous 21.24 print (Aug 12).",
+        "The displayed LNG Japan Korea reference was 23.41 USD/MMBtu on August 27, 2026.",
+        "The page reported a daily change of +2.03% ($0.47).",
         "Trading Economics states that the value is a CFD-derived general market reference and not an official benchmark assessment."
       ],
       "supportedHopIds": [
@@ -465,36 +466,34 @@
       "observations": [
         {
           "inputId": "jkm-cfd-reference",
-          "value": 21.22,
+          "value": 23.41,
           "unit": "USD/MMBtu",
-          "sourceDate": "2026-08-14",
+          "sourceDate": "2026-08-27",
           "instrument": "LNG Japan Korea CFD market reference",
           "provider": "Trading Economics"
         }
       ],
       "supportedCommercialInputIds": [],
-      "supportedDerivedMetricIds": [],
-      "carryReason": "No newer source-verified JKM-linked CFD observation was approved on Aug 18; retain the Aug 14 reference at 21.22 USD/MMBtu."
+      "supportedDerivedMetricIds": []
     },
     {
       "evidenceId": "e-hormuz-total-transits",
-      "url": "https://uk.finance.yahoo.com/news/ship-traffic-strait-hormuz-near-180011589.html",
-      "canonicalUrl": "https://uk.finance.yahoo.com/news/ship-traffic-strait-hormuz-near-180011589.html",
+      "url": "https://www.foreignpolicyjournal.com/2026/08/27/strait-of-hormuz-traffic-holds-steady-as-route-uncertainty-persists-kpler-data-shows/",
+      "canonicalUrl": "https://www.foreignpolicyjournal.com/2026/08/27/strait-of-hormuz-traffic-holds-steady-as-route-uncertainty-persists-kpler-data-shows/",
       "httpStatus": 200,
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Ship traffic through Strait of Hormuz near three-month low",
-      "publisher": "Investing.com (via Yahoo Finance UK, citing Kpler)",
-      "publishedAt": "2026-08-13",
-      "checkedAt": "2026-08-18T16:35:00Z",
-      "claimSummary": "An Investing.com report carried by Yahoo Finance UK on Aug 13, citing Kpler data, said Hormuz vessel transits averaged 13/day over the five days to Aug 11, about 90% below the pre-war 130/day baseline and approaching the lowest level since May 12.",
+      "title": "Strait of Hormuz Traffic Holds Steady as Route Uncertainty Persists, Kpler Data Shows",
+      "publisher": "Foreign Policy Journal (Kpler data)",
+      "publishedAt": "2026-08-27",
+      "checkedAt": "2026-08-30T10:05:00Z",
+      "claimSummary": "Foreign Policy Journal reported Kpler data showing 121 Hormuz vessel crossings during Aug 17-23, up marginally from 118 the prior week, with sanctioned-vessel and shadow-fleet transits rising.",
+      "carryReason": "No newer source-verified Kpler transit observation was approved for the Aug 30 run; retain the Aug 27 observation with its original date.",
       "extractedFacts": [
-        "Kpler data showed vessel transits through the Strait of Hormuz averaging approximately 13 ships per day over the five-day period ending Tuesday, Aug 11.",
-        "Current traffic levels are approximately 90% below the daily average of 130 ships that passed through Hormuz before the U.S. and Israel attacked Iran on Feb. 28.",
-        "The current 7-day average oil export volume was approximately 9 million barrels per day, versus a pre-conflict volume of approximately 20 million barrels per day.",
-        "Iran's Persian Gulf Strait Authority posted on X that claims the strait has reopened 'do not change the reality: the Strait of Hormuz remains blocked and will not be reopened until Iran's conditions are accepted.'",
-        "US Energy Secretary Chris Wright said private businesses undercount the number of ships leaving the Strait of Hormuz due to ships moving covertly through the waterway."
+        "121 total crossings were recorded during the week of Aug 17-23, 2026, up from 118 the prior week.",
+        "62 crossings were classified as Route Undetermined and 56 transited under Iran's Unilateral Scheme.",
+        "16 crossings involved sanctioned vessels, up from 9 the prior week, and 28 involved shadow-fleet activity."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal"
@@ -506,16 +505,15 @@
       "observations": [
         {
           "inputId": "hormuz-total-transits",
-          "value": 13,
-          "unit": "vessels/day (5-day avg through 2026-08-11)",
-          "sourceDate": "2026-08-13",
+          "value": 121,
+          "unit": "vessel crossings/week (Aug 17-23, vs 118 prior week)",
+          "sourceDate": "2026-08-27",
           "instrument": "Hormuz total vessel transits (Kpler data)",
-          "provider": "Kpler (via Investing.com/Yahoo Finance UK)"
+          "provider": "Kpler via Foreign Policy Journal"
         }
       ],
       "supportedCommercialInputIds": [],
-      "supportedDerivedMetricIds": [],
-      "carryReason": "AP reported limited traffic but did not provide a comparable current five-day average; no newer source-verified Kpler daily/5-day-average figure was approved on Aug 18. Retain the Aug 13 Kpler-sourced figure of 13/day through Aug 11."
+      "supportedDerivedMetricIds": []
     },
     {
       "evidenceId": "e-ap-hormuz-20260818",

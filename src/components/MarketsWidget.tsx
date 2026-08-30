@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 30: Iran-Oman corridor remains provisional after tanker disabled off Oman; Brent $88.10; TTF 66.98; tail 30%";
+const TOP_ALERT = "AUG 30: Iran-Oman revenue-sharing deal remains conditional; Qatar PM mediates; Brent $88.10; TTF 66.98; tail 30%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

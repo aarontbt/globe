@@ -387,6 +387,38 @@ const fixtureTtfUpdate = energyFixtureState.traceInputs.evidenceUpdates["e-ttf"]
 if (fixtureTtfEvidence) fixtureTtfEvidence.publishedAt = "2026-08-25";
 if (fixtureTtfAudit) fixtureTtfAudit.publishedAt = "2026-08-25";
 if (fixtureTtfUpdate) fixtureTtfUpdate.publishedAt = "2026-08-25";
+// TTF's own value/date (not just its evidence pin above) also feeds runEnergyRefresh's live
+// candidate regeneration directly, so clamp it too or a same-day-late refresh (TTF often
+// posts a day behind Brent/WTI) trips "observationDate cannot be after asOf" independent of
+// anything else in this fixture.
+if (energyFixtureState.commercialInputs["lng-ttf"]?.sourceDate > "2026-08-25") {
+  energyFixtureState.commercialInputs["lng-ttf"].sourceDate = "2026-08-25";
+  energyFixtureState.commercialInputs["lng-ttf"].observedAt = "2026-08-25T15:53:33.000Z";
+}
+if (energyFixtureState.traceInputs.metrics.ttf?.sourceDate > "2026-08-25") {
+  energyFixtureState.traceInputs.metrics.ttf.sourceDate = "2026-08-25";
+  energyFixtureState.traceInputs.metrics.ttf.observedAt = "2026-08-25T15:53:33.000Z";
+}
+// Clamp any other daily-cadence metrics (and their linked evidence) whose real-world
+// sourceDate has moved past this fixture's fixed asOf (2026-08-26) - otherwise
+// validateStateShape's "sourceDate cannot be after asOf" check and validateEvidenceAudit's
+// cross-checks fail as production data advances, independent of this fixture's logic.
+const fixtureClampedMetrics = { "jkm-cfd-reference": "e-jkm-cfd", "hormuz-total-transits": "e-hormuz-total-transits" };
+for (const [metricId, evidenceId] of Object.entries(fixtureClampedMetrics)) {
+  const metric = energyFixtureState.traceInputs.metrics[metricId];
+  if (metric && metric.sourceDate > "2026-08-25") metric.sourceDate = "2026-08-25";
+  const evidenceUpdate = energyFixtureState.traceInputs.evidenceUpdates[evidenceId];
+  if (evidenceUpdate && evidenceUpdate.publishedAt > "2026-08-25") evidenceUpdate.publishedAt = "2026-08-25";
+  const evidenceEntry = energyFixtureExposure.evidence.find((item) => item.id === evidenceId);
+  if (evidenceEntry && evidenceEntry.publishedAt > "2026-08-25") evidenceEntry.publishedAt = "2026-08-25";
+  const auditEntry = energyFixtureAudit.entries.find((item) => item.evidenceId === evidenceId);
+  if (auditEntry) {
+    if (auditEntry.publishedAt > "2026-08-25") auditEntry.publishedAt = "2026-08-25";
+    for (const observation of auditEntry.observations ?? []) {
+      if (observation.sourceDate > "2026-08-25") observation.sourceDate = "2026-08-25";
+    }
+  }
+}
 
 const energyFixtureOptions = {
   state: energyFixtureState,

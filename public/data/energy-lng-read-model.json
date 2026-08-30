@@ -4,7 +4,7 @@
   "canonicalModelVersion": "energy-lng-domain-v1",
   "asOf": "2026-08-30T00:00:00Z",
   "day": "D179",
-  "headline": "AP reported Iran and Oman discussed a joint temporary navigational corridor and mine-clearance project after a tanker was disabled off Oman; Reuters said talks restarted under US sanctions pressure. Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable.",
+  "headline": "Al Jazeera reported Iran and Oman agreed each side's share of Strait of Hormuz waters and corridor revenues, converting the temporary navigation-corridor framework into a revenue-sharing arrangement; Qatar's PM joined mediation efforts in Tehran. Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable.",
   "entities": [
     {
       "id": "qatarenergy",
@@ -330,7 +330,7 @@
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
       "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
-      "publishedAt": "2026-08-25",
+      "publishedAt": "2026-08-27",
       "lastChecked": "2026-08-30",
       "kind": "market-observation",
       "cadence": "daily",
@@ -343,26 +343,26 @@
       "title": "Liquefied Natural Gas Japan Korea - Price",
       "publisher": "Trading Economics",
       "url": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
-      "publishedAt": "2026-08-14",
-      "lastChecked": "2026-08-18",
+      "publishedAt": "2026-08-27",
+      "lastChecked": "2026-08-28",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
-      "status": "carried",
-      "note": "No newer source-verified JKM-linked CFD observation was approved on Aug 18; the Aug 14 reference at 21.22 USD/MMBtu remains carried and contextual, excluded from commercial calculations."
+      "status": "confirmed",
+      "note": "Trading Economics posted a fresh JKM-linked CFD reference of 23.41 USD/MMBtu on Aug 27, up 2.03% from the prior print; no longer carried."
     },
     {
       "id": "e-hormuz-total-transits",
-      "title": "Ship traffic through Strait of Hormuz near three-month low",
-      "publisher": "Investing.com (via Yahoo Finance UK, citing Kpler)",
-      "url": "https://uk.finance.yahoo.com/news/ship-traffic-strait-hormuz-near-180011589.html",
-      "publishedAt": "2026-08-13",
-      "lastChecked": "2026-08-18",
+      "title": "Strait of Hormuz Traffic Holds Steady as Route Uncertainty Persists, Kpler Data Shows",
+      "publisher": "Foreign Policy Journal (Kpler data)",
+      "url": "https://www.foreignpolicyjournal.com/2026/08/27/strait-of-hormuz-traffic-holds-steady-as-route-uncertainty-persists-kpler-data-shows/",
+      "publishedAt": "2026-08-27",
+      "lastChecked": "2026-08-30",
       "kind": "event",
       "cadence": "daily",
       "maxAgeDays": 1,
       "status": "carried",
-      "note": "AP reported limited traffic but did not provide a comparable current five-day average; no newer source-verified Kpler daily/5-day-average figure was approved on Aug 18. Retain the Aug 13 Kpler-sourced figure of 13/day through Aug 11."
+      "note": "No newer source-verified Kpler transit observation was approved for the Aug 30 run; retain the Foreign Policy Journal Aug 27 report of 121 Hormuz crossings for Aug 17-23 with its original observation date."
     },
     {
       "id": "e-ap-hormuz-20260818",
@@ -398,7 +398,7 @@
       "provider": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
       "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:8d70f27ddbe854b0",
-      "retrievedAt": "2026-08-30T09:06:26.328Z",
+      "retrievedAt": "2026-08-30T10:15:53.711Z",
       "observedAt": "2026-08-28T15:29:55.000Z",
       "contentHash": "8d70f27ddbe854b0d12497f921176bfc4b061d9d553c59e654fce16c880c522c",
       "parserVersion": "yahoo-chart-v1",
@@ -429,14 +429,14 @@
       "status": "validated"
     },
     {
-      "id": "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:68ad26765e993a48",
+      "id": "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:6516989d80ed3166",
       "sourceId": "src-comtrade-japan-lng-demand",
       "provider": "UN Comtrade",
       "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?subscription_key=%REDACTED%&typeCode=C&freqCode=M&clCode=HS&reporterCode=392&cmdCode=271111&flowCode=M&partnerCode=0&includeDesc=true",
-      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:68ad26765e993a48",
-      "retrievedAt": "2026-08-30T09:06:26.328Z",
+      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:6516989d80ed3166",
+      "retrievedAt": "2026-08-30T10:15:53.711Z",
       "observedAt": null,
-      "contentHash": "68ad26765e993a4886ca74556989ee568c4e1fb474ca3706027e2242639e919b",
+      "contentHash": "6516989d80ed3166aa90b907666a0e1a494cfb957895c5ca8f5f0c9f5b11854d",
       "parserVersion": "comtrade-trade-v1",
       "recordKeys": [
         "15c09e44774c6283af5a99edc46d8affa8eb7334b166005d932f066baacb4ce7"
@@ -464,14 +464,14 @@
       "status": "validated"
     },
     {
-      "id": "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:5040429dc61569ba",
+      "id": "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:845abc5ff99c58de",
       "sourceId": "src-comtrade-korea-lng-demand",
       "provider": "UN Comtrade",
       "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?subscription_key=%REDACTED%&typeCode=C&freqCode=M&clCode=HS&period=202512&reporterCode=410&cmdCode=271111&flowCode=M&partnerCode=0&includeDesc=true",
-      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:5040429dc61569ba",
-      "retrievedAt": "2026-08-30T09:06:26.328Z",
+      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:845abc5ff99c58de",
+      "retrievedAt": "2026-08-30T10:15:53.711Z",
       "observedAt": null,
-      "contentHash": "5040429dc61569badbae0084cc2b33b8e15ea0d14c4956ffbae22fc240d74f00",
+      "contentHash": "845abc5ff99c58dee58f3e02791b957659dd3d0e0546d4c94533311843a39890",
       "parserVersion": "comtrade-trade-v1",
       "recordKeys": [
         "7fac8a62f6fd7ea53da2f39857ccf1708f3252a4bf5d9297af62da91cd0d3e8f"
@@ -934,19 +934,18 @@
             {
               "inputId": "jkm-cfd-reference",
               "label": "JKM-linked market reference",
-              "value": 21.22,
+              "value": 23.41,
               "unit": "USD/MMBtu",
-              "status": "carried",
+              "status": "confirmed",
               "source": "Trading Economics",
-              "sourceDate": "2026-08-14",
+              "sourceDate": "2026-08-27",
               "maxAgeDays": 3,
               "cadence": "daily",
-              "carryReason": "No newer source-verified JKM-linked CFD observation was approved on Aug 18; retain the Trading Economics Aug 14 reference at 21.22 USD/MMBtu.",
               "observationKind": "flow",
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 16
+              "sourceAgeDays": 3
             },
             {
               "inputId": "japan-lng-demand",
@@ -960,7 +959,7 @@
               "maxAgeDays": 62,
               "cadence": "monthly",
               "machineEvidenceIds": [
-                "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:68ad26765e993a48"
+                "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:6516989d80ed3166"
               ],
               "observationKind": "trade-demand",
               "periodStart": "2026-06-01",
@@ -981,7 +980,7 @@
               "maxAgeDays": 260,
               "cadence": "monthly",
               "machineEvidenceIds": [
-                "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:5040429dc61569ba"
+                "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:845abc5ff99c58de"
               ],
               "observationKind": "trade-demand",
               "periodStart": "2025-12-01",
@@ -1195,10 +1194,10 @@
       },
       "flowPressure": {
         "modelVersion": "flow-pressure-v1",
-        "score": 62,
+        "score": 63,
         "status": "provisional",
         "confidence": "unknown",
-        "calculatedAt": "2026-08-30T09:06:26.328Z",
+        "calculatedAt": "2026-08-30T10:15:53.711Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -1257,10 +1256,10 @@
             "id": "destination-dependency",
             "label": "Destination dependency",
             "weight": 0.15,
-            "score": 61,
-            "status": "partially-observed",
-            "confidence": "medium",
-            "rationale": "Destination dependency is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+            "score": 63,
+            "status": "observed",
+            "confidence": "high",
+            "rationale": "Destination dependency is scored from the direction of the relevant trace hop(s); supported by the reviewed observations.",
             "observationIds": [
               "observation:qatar-supply:jkm-cfd-reference",
               "observation:qatar-supply:japan-lng-demand",
@@ -1844,7 +1843,7 @@
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
-              "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:68ad26765e993a48"
+              "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:6516989d80ed3166"
             ]
           },
           {
@@ -1869,7 +1868,7 @@
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
-              "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:5040429dc61569ba"
+              "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:845abc5ff99c58de"
             ]
           }
         ],
@@ -2042,19 +2041,19 @@
             {
               "inputId": "hormuz-total-transits",
               "label": "Last reviewed total traffic",
-              "value": 13,
-              "unit": "vessels/day (5-day avg through 2026-08-11)",
+              "value": 121,
+              "unit": "vessel crossings/week (Aug 17-23, vs 118 prior week)",
               "status": "carried",
-              "source": "Kpler via Investing.com/Yahoo Finance",
-              "sourceDate": "2026-08-13",
+              "source": "Foreign Policy Journal (Kpler data)",
+              "sourceDate": "2026-08-27",
               "maxAgeDays": 1,
               "cadence": "daily",
-              "carryReason": "AP reported limited traffic but did not provide a comparable current five-day average; no newer source-verified Kpler daily/5-day-average figure was approved on Aug 18. Retain the Aug 13 Kpler figure of 13/day through Aug 11.",
+              "carryReason": "No newer source-verified Kpler transit observation was approved for the Aug 30 run; retain the Aug 27 observation with its original date.",
               "observationKind": "flow",
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 17
+              "sourceAgeDays": 3
             }
           ],
           "evidenceIds": [
@@ -2401,7 +2400,7 @@
         "score": 64,
         "status": "provisional",
         "confidence": "low",
-        "calculatedAt": "2026-08-30T09:06:26.328Z",
+        "calculatedAt": "2026-08-30T10:15:53.711Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -3037,6 +3036,30 @@
             "machineEvidenceIds": [
               "machine-evidence:energy-snapshot:src-yahoo-ttf:8d70f27ddbe854b0"
             ]
+          },
+          {
+            "id": "energy-observation:src-yahoo-ttf:ttf-lng-ttf:2026-08-27:2026-08-27",
+            "label": "Dutch TTF",
+            "entityIds": [
+              "ttf"
+            ],
+            "observationKind": "flow",
+            "periodStart": "2026-08-27",
+            "periodEnd": "2026-08-27",
+            "value": 68.8,
+            "unit": "EUR/MWh",
+            "status": "confirmed",
+            "coverageStatus": "direct-observation",
+            "source": "Yahoo Finance TTF=F",
+            "sourceAgeDays": 3,
+            "cadence": "daily",
+            "confidence": "high",
+            "evidenceIds": [
+              "e-ttf"
+            ],
+            "machineEvidenceIds": [
+              "machine-evidence:energy-snapshot:src-yahoo-ttf:bb9aaad48861cc33"
+            ]
           }
         ],
         "coverage": [
@@ -3541,7 +3564,7 @@
         "score": 58,
         "status": "provisional",
         "confidence": "unknown",
-        "calculatedAt": "2026-08-30T09:06:26.328Z",
+        "calculatedAt": "2026-08-30T10:15:53.711Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -4451,7 +4474,7 @@
         "confidence": "high",
         "evidenceIds": [],
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:68ad26765e993a48"
+          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:6516989d80ed3166"
         ]
       },
       {
@@ -4476,7 +4499,7 @@
         "confidence": "high",
         "evidenceIds": [],
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:5040429dc61569ba"
+          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:845abc5ff99c58de"
         ]
       },
       {
@@ -4572,6 +4595,30 @@
         ],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-yahoo-ttf:8d70f27ddbe854b0"
+        ]
+      },
+      {
+        "id": "energy-observation:src-yahoo-ttf:ttf-lng-ttf:2026-08-27:2026-08-27",
+        "label": "Dutch TTF",
+        "entityIds": [
+          "ttf"
+        ],
+        "observationKind": "flow",
+        "periodStart": "2026-08-27",
+        "periodEnd": "2026-08-27",
+        "value": 68.8,
+        "unit": "EUR/MWh",
+        "status": "confirmed",
+        "coverageStatus": "direct-observation",
+        "source": "Yahoo Finance TTF=F",
+        "sourceAgeDays": 3,
+        "cadence": "daily",
+        "confidence": "high",
+        "evidenceIds": [
+          "e-ttf"
+        ],
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-yahoo-ttf:bb9aaad48861cc33"
         ]
       }
     ],
