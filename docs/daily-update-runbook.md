@@ -12,12 +12,12 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-08-30 (D179) |
-| **Crisis level** | 4 - High (Aug 30: Iran and Oman agreed each side's share of Strait of Hormuz waters and corridor revenues, converting the temporary navigation-corridor framework into a revenue-sharing arrangement (Al Jazeera, Aug 27); Qatar's PM joined mediation efforts in Tehran the same day. Iran's reopening conditions - lifting the naval blockade, unfreezing assets, and removing oil sanctions - remain unmet. Brent is $88.10 (-0.47%, Yahoo Finance, Aug 28) and TTF is 66.98 EUR/MWh (-1.89%, Yahoo Finance, Aug 28). Crisis level remains 4 (High); base 10%, stress 60%, tail 30%.) |
-| **Brent** | $88.10 (2026-08-28, Yahoo Finance BZ=F; -0.47%) |
-| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $23.41/MMBtu, Trading Economics, Aug 27; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation) |
-| **TTF** | 66.98 EUR/MWh (2026-08-28, Yahoo Finance TTF=F; -1.9%) |
-| **Exposure trace** | Al Jazeera reported Iran and Oman agreed each side's share of Strait of Hormuz waters and corridor revenues, converting the temporary navigation-corridor framework into a revenue-sharing arrangement; Qatar's PM joined mediation efforts in Tehran. Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable. |
+| **Last updated** | 2026-08-31 (D180) |
+| **Crisis level** | 4 - High (Aug 31: The Aug 25 Oman-Iran statement keeps a proposed temporary navigational corridor and mine-clearance project in technical negotiation; Aug 27 reporting described a revenue-sharing arrangement, but Iran's reopening conditions - lifting the naval blockade, unfreezing assets, and removing oil sanctions - remain unmet. Qatar's PM joined mediation efforts in Tehran on Aug 27. Brent is $88.91 (+3.24%, Yahoo Finance, Aug 31), WTI is $86.64 (+3.89%, Yahoo Finance, Aug 31), and TTF is 66.56 EUR/MWh (-0.63%, Yahoo Finance, Aug 28). Crisis level remains 4 (High); base 10%, stress 60%, tail 30%.) |
+| **Brent** | $88.91 (2026-08-31, Yahoo Finance BZ=F; +3.24%) |
+| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $23.18/MMBtu, Trading Economics, Aug 28; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation) |
+| **TTF** | 66.56 EUR/MWh (2026-08-28, Yahoo Finance TTF=F; -0.6%) |
+| **Exposure trace** | The Aug 25 Oman-Iran statement keeps a proposed temporary Hormuz corridor and mine-clearance project in technical negotiation; Aug 27 reporting described a revenue-sharing arrangement, but Iran's reopening conditions remain unmet. Qatar's PM joined mediation in Tehran; Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable. |
 | **Evidence audit** | 16 checked · 11 verified · 5 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
@@ -544,10 +544,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $88.10 (Aug 28, Yahoo Finance BZ=F; -0.47%) as Iran and Oman converted the temporary Hormuz corridor into a revenue-sharing arrangement. Working range $75-85 base (signed workable deal); $78-95 stress (conditional routing); $105-135+ tail (renewed closure).
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $23.41/MMBtu (Trading Economics, Aug 27), up 2.0%. Qatar force majeure is carried through mid-September from the Reuters Jul 23 notice; the reported mid-October extension remains unconfirmed.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 66.98 EUR/MWh (Aug 28, Yahoo Finance TTF=F; -1.89%) as Iran-Oman corridor diplomacy advanced and Qatar LNG force majeure persisted. The marker remains elevated versus the pre-crisis baseline while route and supply risks remain unresolved.
-- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 60%, tail 30% after Iran and Oman converted the temporary Hormuz corridor into a revenue-sharing arrangement while Iran's blockade-lift and sanctions demands remained unmet.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $88.91 (Aug 31, Yahoo Finance BZ=F; +3.24%) as the conditional Iran-Oman corridor framework met continued reopening and sanctions uncertainty. Working range $75-85 base (signed workable deal); $78-95 stress (conditional routing); $105-135+ tail (renewed closure).
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $23.18/MMBtu (Trading Economics, Aug 28), down 1.0%. Qatar force majeure is carried through mid-September from the Reuters Jul 23 notice; the reported mid-October extension remains unconfirmed.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 66.56 EUR/MWh (Aug 28, Yahoo Finance TTF=F; -0.63%) as Iran-Oman corridor diplomacy remained conditional and Qatar LNG force majeure persisted. The marker remains elevated versus the pre-crisis baseline while route and supply risks remain unresolved.
+- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 60%, tail 30% after the Iran-Oman corridor framework advanced without a signed reopening and Iran's blockade-lift and sanctions demands remained unmet.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

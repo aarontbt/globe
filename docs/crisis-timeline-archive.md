@@ -147,3 +147,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D176**: Aug 27 - Iran-Oman corridor framework remains provisional after a tanker is disabled off Oman; Brent $86.45, WTI $81.66 and TTF 66.17.
 - **D177**: Aug 28 - Iran and Oman convert the temporary Hormuz corridor into a revenue-sharing arrangement; Qatar PM joins mediation; Brent $88.14, WTI $83.02, TTF 68.80.
 - **D179**: Aug 30 - Iran and Oman convert the temporary Hormuz corridor into a revenue-sharing arrangement; Qatar PM joins mediation; reopening conditions remain unmet; Brent $88.10, WTI $83.40, TTF 66.98.
+- **D180**: Aug 31 - Iran-Oman corridor framework remains conditional; reopening conditions remain unmet; Brent $88.91, WTI $86.64, TTF 66.56.
