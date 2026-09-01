@@ -28,7 +28,8 @@
       "signal": "red",
       "source": "Yahoo Finance TTF=F",
       "sourceDate": "2026-08-28",
-      "status": "confirmed"
+      "status": "carried",
+      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Stooq fallback not configured"
     },
     "lng-ja": {
       "current": 23.18,
@@ -159,7 +160,7 @@
   },
   "fallbackCommentLines": [
     "Static fallback - generated from src/data/daily-state.json (2026-08-31; D180)",
-    "Brent Crude 88.91 (Yahoo Finance BZ=F 2026-08-31, confirmed); WTI Crude 86.64 (Yahoo Finance CL=F 2026-08-31, confirmed)"
+    "Brent Crude 88.91 (Yahoo Finance BZ=F 2026-08-31, carried); WTI Crude 86.64 (Yahoo Finance CL=F 2026-08-31, carried)"
   ],
   "fallbackQuotes": [
     {
@@ -173,7 +174,7 @@
       "lastUpdated": "2026-08-31T11:43:08.000Z",
       "source": "Yahoo Finance BZ=F",
       "sourceDate": "2026-08-31",
-      "status": "confirmed"
+      "status": "carried"
     },
     {
       "symbol": "CL=F",
@@ -186,7 +187,7 @@
       "lastUpdated": "2026-08-31T11:43:17.000Z",
       "source": "Yahoo Finance CL=F",
       "sourceDate": "2026-08-31",
-      "status": "confirmed"
+      "status": "carried"
     }
   ],
   "todaysEvents": [
@@ -293,7 +294,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA 400. No approved observation is available."
+        "missingReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?. No approved observation is available."
       },
       "qatar-production-baseline": {
         "unit": "MTPA",
@@ -307,7 +308,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA 404. No approved observation is available."
+        "missingReason": "Machine refresh failed: Was there a typo in the url or port?. No approved observation is available."
       },
       "qatar-export-baseline": {
         "unit": "MTPA",
@@ -321,7 +322,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA 404. No approved observation is available."
+        "missingReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?. No approved observation is available."
       },
       "ras-laffan-capacity": {
         "unit": "MTPA",
@@ -396,21 +397,19 @@
       },
       "ttf": {
         "unit": "EUR/MWh",
-        "status": "confirmed",
+        "status": "carried",
         "maxAgeDays": 3,
         "cadence": "daily",
         "observationKind": "flow",
         "periodStart": "2026-08-28",
         "periodEnd": "2026-08-28",
-        "coverageStatus": "direct-observation",
+        "coverageStatus": "unavailable",
         "sourceAgeDays": 3,
-        "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-yahoo-ttf:99dc3414199605f8"
-        ],
         "value": 66.56,
         "source": "Yahoo Finance TTF=F",
         "sourceDate": "2026-08-28",
-        "observedAt": "2026-08-28T15:29:55.000Z"
+        "observedAt": "2026-08-28T15:29:55.000Z",
+        "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Stooq fallback not configured"
       },
       "hormuz-total-oil-flow": {
         "value": 20.9,
@@ -486,41 +485,33 @@
       },
       "japan-lng-demand": {
         "unit": "USD",
-        "status": "confirmed",
+        "status": "unavailable",
         "maxAgeDays": 62,
         "cadence": "monthly",
         "observationKind": "trade-demand",
-        "periodStart": "2026-06-01",
-        "periodEnd": "2026-06-30",
-        "coverageStatus": "public-proxy",
+        "periodStart": null,
+        "periodEnd": null,
+        "coverageStatus": "unavailable",
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
-        "sourceAgeDays": 62,
-        "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:1b3fac7687f2f6b6"
-        ],
-        "value": 5407806363.239,
-        "source": "UN Comtrade",
-        "sourceDate": "2026-06-30",
-        "observedAt": "2026-06-30T00:00:00.000Z"
+        "sourceAgeDays": null,
+        "source": "",
+        "sourceDate": "",
+        "missingReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?. No approved observation is available."
       },
       "korea-lng-demand": {
         "unit": "USD",
-        "status": "confirmed",
+        "status": "unavailable",
         "maxAgeDays": 260,
         "cadence": "monthly",
         "observationKind": "trade-demand",
-        "periodStart": "2025-12-01",
-        "periodEnd": "2025-12-31",
-        "coverageStatus": "public-proxy",
+        "periodStart": null,
+        "periodEnd": null,
+        "coverageStatus": "unavailable",
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
-        "sourceAgeDays": 243,
-        "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:c77849cae44f3b34"
-        ],
-        "value": 2535174222,
-        "source": "UN Comtrade",
-        "sourceDate": "2025-12-31",
-        "observedAt": "2025-12-31T00:00:00.000Z"
+        "sourceAgeDays": null,
+        "source": "",
+        "sourceDate": "",
+        "missingReason": "Machine refresh failed: Was there a typo in the url or port?. No approved observation is available."
       },
       "hormuz-total-transits": {
         "value": 121,
@@ -811,7 +802,7 @@
   "runbookState": {
     "brent": "$88.91 (2026-08-31, Yahoo Finance BZ=F; +3.24%)",
     "jkm": "$22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $23.18/MMBtu, Trading Economics, Aug 28; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation)",
-    "ttf": "66.56 EUR/MWh (2026-08-28, Yahoo Finance TTF=F; -0.6%)"
+    "ttf": "66.56 EUR/MWh (2026-08-28, Yahoo Finance TTF=F; -0.6%); carried after machine refresh failure"
   },
   "timelineEntry": "- **D180**: Aug 31 - Iran-Oman corridor framework remains conditional; reopening conditions remain unmet; Brent $88.91, WTI $86.64, TTF 66.56.",
   "commercialInputs": {
@@ -855,21 +846,19 @@
       ],
       "requiredForCalculation": false,
       "unit": "EUR/MWh",
-      "status": "confirmed",
+      "status": "carried",
       "maxAgeDays": 3,
       "cadence": "daily",
       "observationKind": "flow",
       "periodStart": "2026-08-28",
       "periodEnd": "2026-08-28",
-      "coverageStatus": "direct-observation",
+      "coverageStatus": "unavailable",
       "sourceAgeDays": 3,
-      "machineEvidenceIds": [
-        "machine-evidence:energy-snapshot:src-yahoo-ttf:99dc3414199605f8"
-      ],
       "value": 66.56,
       "source": "Yahoo Finance TTF=F",
       "sourceDate": "2026-08-28",
-      "observedAt": "2026-08-28T15:29:55.000Z"
+      "observedAt": "2026-08-28T15:29:55.000Z",
+      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Stooq fallback not configured"
     },
     "fx-eurusd": {
       "label": "EUR/USD",
@@ -877,7 +866,7 @@
       "role": "fx",
       "value": 1.1604,
       "unit": "USD/EUR",
-      "status": "confirmed",
+      "status": "carried",
       "source": "Yahoo Finance EURUSD=X",
       "sourceDate": "2026-08-31",
       "observedAt": "2026-08-31T11:52:49.000Z",
@@ -886,7 +875,8 @@
       "evidenceIds": [
         "e-eurusd"
       ],
-      "requiredForCalculation": false
+      "requiredForCalculation": false,
+      "carryReason": "Machine refresh failed: Was there a typo in the url or port?; Unable to connect. Is the computer able to access the url?"
     },
     "lng-freight": {
       "label": "LNG freight",
@@ -922,7 +912,7 @@
       "role": "destination-value",
       "value": 88.91,
       "unit": "USD/bbl",
-      "status": "confirmed",
+      "status": "carried",
       "source": "Yahoo Finance BZ=F",
       "sourceDate": "2026-08-31",
       "maxAgeDays": 3,
@@ -931,7 +921,8 @@
         "e-brent"
       ],
       "requiredForCalculation": false,
-      "observedAt": "2026-08-31T11:43:08.000Z"
+      "observedAt": "2026-08-31T11:43:08.000Z",
+      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Unable to connect. Is the computer able to access the url?"
     },
     "oil-wti": {
       "label": "WTI",
@@ -939,7 +930,7 @@
       "role": "origin-value",
       "value": 86.64,
       "unit": "USD/bbl",
-      "status": "confirmed",
+      "status": "carried",
       "source": "Yahoo Finance CL=F",
       "sourceDate": "2026-08-31",
       "maxAgeDays": 3,
@@ -948,7 +939,8 @@
         "e-wti"
       ],
       "requiredForCalculation": true,
-      "observedAt": "2026-08-31T11:43:17.000Z"
+      "observedAt": "2026-08-31T11:43:17.000Z",
+      "carryReason": "Machine refresh failed: Was there a typo in the url or port?; Was there a typo in the url or port?"
     },
     "oil-dubai-oman": {
       "label": "Dubai/Oman destination reference",
@@ -1001,7 +993,7 @@
       "role": "financing",
       "value": 3.64,
       "unit": "%",
-      "status": "confirmed",
+      "status": "carried",
       "source": "Federal Reserve Bank of New York",
       "sourceDate": "2026-08-27",
       "maxAgeDays": 7,
@@ -1010,7 +1002,8 @@
         "e-sofr"
       ],
       "requiredForCalculation": false,
-      "observedAt": "2026-08-27T00:00:00Z"
+      "observedAt": "2026-08-27T00:00:00Z",
+      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?"
     }
   }
 }

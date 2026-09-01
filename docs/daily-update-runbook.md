@@ -16,10 +16,10 @@
 | **Crisis level** | 4 - High (Aug 31: The Aug 25 Oman-Iran statement keeps a proposed temporary navigational corridor and mine-clearance project in technical negotiation; Aug 27 reporting described a revenue-sharing arrangement, but Iran's reopening conditions - lifting the naval blockade, unfreezing assets, and removing oil sanctions - remain unmet. Qatar's PM joined mediation efforts in Tehran on Aug 27. Brent is $88.91 (+3.24%, Yahoo Finance, Aug 31), WTI is $86.64 (+3.89%, Yahoo Finance, Aug 31), and TTF is 66.56 EUR/MWh (-0.63%, Yahoo Finance, Aug 28). Crisis level remains 4 (High); base 10%, stress 60%, tail 30%.) |
 | **Brent** | $88.91 (2026-08-31, Yahoo Finance BZ=F; +3.24%) |
 | **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $23.18/MMBtu, Trading Economics, Aug 28; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation) |
-| **TTF** | 66.56 EUR/MWh (2026-08-28, Yahoo Finance TTF=F; -0.6%) |
+| **TTF** | 66.56 EUR/MWh (2026-08-28, Yahoo Finance TTF=F; -0.6%); carried after machine refresh failure |
 | **Exposure trace** | The Aug 25 Oman-Iran statement keeps a proposed temporary Hormuz corridor and mine-clearance project in technical negotiation; Aug 27 reporting described a revenue-sharing arrangement, but Iran's reopening conditions remain unmet. Qatar's PM joined mediation in Tehran; Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable. |
 | **Evidence audit** | 16 checked · 11 verified · 5 carried · 0 unsupported · PASS |
-| **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
+| **Commercial evaluation** | Qatar supply disruption: unavailable (insufficient verified data); Hormuz delivery constraint: unavailable (insufficient verified data); Hormuz crude-export constraint: unavailable (insufficient verified data) |
 
 ---
 
