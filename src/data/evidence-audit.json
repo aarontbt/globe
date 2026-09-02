@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-08-31T00:00:00Z",
-  "reviewedAt": "2026-08-31T11:56:00Z",
-  "reviewer": "ox-alpha with direct machine-source review; Firecrawl connector unavailable",
+  "asOf": "2026-09-02T00:00:00Z",
+  "reviewedAt": "2026-09-02T01:22:00Z",
+  "reviewer": "ox-alpha with direct web-source review; Firecrawl connector unavailable",
   "entries": [
     {
       "evidenceId": "e-qatar-force-majeure",
@@ -37,6 +37,37 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": []
+    },
+    {
+      "evidenceId": "e-qatar-force-majeure-latest",
+      "url": "https://www.lngindustry.com/lng-shipping/01092026/edison-qatarenergy-extends-force-majeure/amp/",
+      "canonicalUrl": "https://www.lngindustry.com/lng-shipping/01092026/edison-qatarenergy-extends-force-majeure/amp/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Edison: QatarEnergy extends force majeure",
+      "publisher": "LNG Industry",
+      "publishedAt": "2026-09-01",
+      "checkedAt": "2026-09-02T01:22:00Z",
+      "claimSummary": "LNG Industry reported that Edison received a further QatarEnergy force-majeure notice covering five additional LNG cargoes and extending the overall period into early November.",
+      "extractedFacts": [
+        "Edison received a further force-majeure notice from QatarEnergy covering five additional LNG cargoes.",
+        "The reported total reached 29 affected cargoes, with 21 replaced as of August 28.",
+        "The overall force-majeure period was reported to extend into early November 2026."
+      ],
+      "supportedHopIds": [
+        "qatar-supply:qatar-signal",
+        "qatar-supply:qatar-supply-hop",
+        "hormuz-delivery:delivery-supply"
+      ],
+      "supportedMetricIds": [
+        "qatar-output-status"
+      ],
+      "supportedRelationshipIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "carryReason": "Manual-reviewed event evidence is carried because the approved QatarEnergy connector is manual-only; the report is used to update the reviewed force-majeure status without treating it as an automated observation."
     },
     {
       "evidenceId": "e-hormuz-transit",
@@ -290,21 +321,21 @@
     },
     {
       "evidenceId": "e-brent",
-      "url": "https://query2.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=1d&range=5d",
-      "canonicalUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=1d&range=5d",
+      "url": "https://au.marketscreener.com/news/oil-prices-settle-up-more-than-4-a-barrel-on-renewed-us-iran-fighting-ce7858d2d881f62d",
+      "canonicalUrl": "https://au.marketscreener.com/news/oil-prices-settle-up-more-than-4-a-barrel-on-renewed-us-iran-fighting-ce7858d2d881f62d",
       "httpStatus": 200,
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - Brent Crude",
-      "publisher": "Yahoo Finance",
-      "publishedAt": "2026-08-31",
-      "checkedAt": "2026-08-31T11:55:00Z",
-      "claimSummary": "Yahoo Finance's chart API returned Brent crude at 88.91 USD/bbl on Aug 31, up 3.24% from the prior close.",
+      "title": "Oil prices settle up more than $4 a barrel on renewed US-Iran fighting",
+      "publisher": "Reuters (via MarketScreener)",
+      "publishedAt": "2026-09-01",
+      "checkedAt": "2026-09-02T01:22:00Z",
+      "claimSummary": "Reuters reported Brent crude settled at 94.65 USD/bbl on Sep 1, up 4.6% from the prior close.",
       "extractedFacts": [
-        "Yahoo Finance returned regularMarketPrice 88.91 for symbol BZ=F on August 31, 2026.",
-        "The local machine-refresh response timestamp was 2026-08-31T11:43:08.000Z.",
-        "The front-month contract was up about 3.24 percent from the previous close.",
+        "Brent settled at 94.65 USD/bbl on September 1, 2026.",
+        "The settlement was 4.16 USD or 4.6 percent above the prior settlement.",
+        "The report said the close was the highest since July 24 amid renewed US-Iran fighting and tanker incident reports.",
         "The observation is recorded as Brent crude in USD per barrel."
       ],
       "supportedHopIds": [],
@@ -317,32 +348,31 @@
       "observations": [
         {
           "inputId": "oil-brent",
-          "value": 88.91,
+          "value": 94.65,
           "unit": "USD/bbl",
-          "sourceDate": "2026-08-31",
-          "instrument": "BZ=F Brent crude futures",
-          "provider": "Yahoo Finance",
-          "observedAt": "2026-08-31T11:43:08.000Z"
+          "sourceDate": "2026-09-01",
+          "instrument": "Brent crude futures",
+          "provider": "Reuters (via MarketScreener)"
         }
       ]
     },
     {
       "evidenceId": "e-wti",
-      "url": "https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=5d",
-      "canonicalUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=5d",
+      "url": "https://au.marketscreener.com/news/oil-prices-settle-up-more-than-4-a-barrel-on-renewed-us-iran-fighting-ce7858d2d881f62d",
+      "canonicalUrl": "https://au.marketscreener.com/news/oil-prices-settle-up-more-than-4-a-barrel-on-renewed-us-iran-fighting-ce7858d2d881f62d",
       "httpStatus": 200,
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - WTI Crude",
-      "publisher": "Yahoo Finance",
-      "publishedAt": "2026-08-31",
-      "checkedAt": "2026-08-31T11:55:00Z",
-      "claimSummary": "Yahoo Finance's chart API returned WTI crude at 86.64 USD/bbl on Aug 31, up 3.89% from the prior close.",
+      "title": "Oil prices settle up more than $4 a barrel on renewed US-Iran fighting",
+      "publisher": "Reuters (via MarketScreener)",
+      "publishedAt": "2026-09-01",
+      "checkedAt": "2026-09-02T01:22:00Z",
+      "claimSummary": "Reuters reported WTI crude settled at 90.22 USD/bbl on Sep 1, up 5.2% from the prior close.",
       "extractedFacts": [
-        "Yahoo Finance returned regularMarketPrice 86.64 for symbol CL=F on August 31, 2026.",
-        "The local machine-refresh response timestamp was 2026-08-31T11:43:17.000Z.",
-        "The front-month contract was up about 3.89 percent from the previous close.",
+        "WTI settled at 90.22 USD/bbl on September 1, 2026.",
+        "The settlement was 4.46 USD or 5.2 percent above the prior settlement.",
+        "The report said the close was the highest since July 23 amid renewed US-Iran fighting and tanker incident reports.",
         "The observation is recorded as WTI crude in USD per barrel."
       ],
       "supportedHopIds": [],
@@ -355,12 +385,11 @@
       "observations": [
         {
           "inputId": "oil-wti",
-          "value": 86.64,
+          "value": 90.22,
           "unit": "USD/bbl",
-          "sourceDate": "2026-08-31",
-          "instrument": "CL=F WTI crude futures",
-          "provider": "Yahoo Finance",
-          "observedAt": "2026-08-31T11:43:17.000Z"
+          "sourceDate": "2026-09-01",
+          "instrument": "WTI crude futures",
+          "provider": "Reuters (via MarketScreener)"
         }
       ]
     },
@@ -448,12 +477,12 @@
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-08-28",
-      "checkedAt": "2026-08-31T11:55:00Z",
-      "claimSummary": "Trading Economics reports a JKM-linked CFD reference of 23.18 USD/MMBtu on Aug 28, down 1.00% from the prior print.",
+      "publishedAt": "2026-09-01",
+      "checkedAt": "2026-09-02T01:22:00Z",
+      "claimSummary": "Trading Economics reports a JKM-linked CFD reference of 23.62 USD/MMBtu on Sep 1, up 4.01% from the prior print.",
       "extractedFacts": [
-        "The displayed LNG Japan Korea reference was 23.18 USD/MMBtu on August 28, 2026.",
-        "The page reported a daily change of -1.00% ($0.24).",
+        "The displayed LNG Japan Korea reference was 23.62 USD/MMBtu on September 1, 2026.",
+        "The page reported a daily change of +4.01%.",
         "Trading Economics states that the value is a CFD-derived general market reference and not an official benchmark assessment."
       ],
       "supportedHopIds": [
@@ -466,9 +495,9 @@
       "observations": [
         {
           "inputId": "jkm-cfd-reference",
-          "value": 23.18,
+          "value": 23.62,
           "unit": "USD/MMBtu",
-          "sourceDate": "2026-08-28",
+          "sourceDate": "2026-09-01",
           "instrument": "LNG Japan Korea CFD market reference",
           "provider": "Trading Economics"
         }
@@ -517,22 +546,22 @@
     },
     {
       "evidenceId": "e-ap-hormuz-20260818",
-      "url": "https://apnews.com/article/1a4fa2e3812c458a25a561b38dc89f09",
-      "canonicalUrl": "https://apnews.com/article/1a4fa2e3812c458a25a561b38dc89f09",
+      "url": "https://apnews.com/article/b7dea048552afc5a1e91c6a6b8adef65",
+      "canonicalUrl": "https://apnews.com/article/b7dea048552afc5a1e91c6a6b8adef65",
       "httpStatus": 200,
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Iran and Oman hold talks on managing the Strait of Hormuz",
+      "title": "Iran war latest: US military says it's striking targets in Iran",
       "publisher": "Associated Press",
-      "publishedAt": "2026-08-25",
-      "checkedAt": "2026-08-26T00:43:00Z",
-      "claimSummary": "AP reported Iran and Oman discussed a framework for managing the Strait of Hormuz, including a joint temporary navigational corridor and mine clearance, after a tanker was disabled in an attack off Oman.",
+      "publishedAt": "2026-09-01",
+      "checkedAt": "2026-09-02T01:22:00Z",
+      "claimSummary": "AP reported renewed US-Iran strikes and UKMTO reports of two tanker incidents in and around the Strait of Hormuz on Sep 1.",
       "extractedFacts": [
-        "Oman's foreign minister met Iran's foreign minister in Tehran to discuss a framework for managing ship traffic through the Strait of Hormuz.",
-        "The proposed framework includes a joint temporary navigational corridor and a joint project to clear mines from the strait.",
-        "The talks took place while the waterway remained largely shut nearly six months after the Iran war began.",
-        "An oil tanker was disabled in an attack off the coast of Oman, underscoring the ongoing risks to commercial shipping."
+        "AP reported the US military was striking targets in Iran and Tehran responded with missiles and drones.",
+        "AP reported UKMTO received a report of an attack on a tanker transiting east of Oman and a second nearby tanker incident.",
+        "No casualties were immediately reported in the tanker incidents.",
+        "The Iran-Oman traffic-management discussions remain conditional and no signed commercial reopening is verified."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal"

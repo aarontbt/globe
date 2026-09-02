@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "AUG 31: Iran-Oman corridor deal remains conditional; Brent $88.91; WTI $86.64; TTF 66.56; tail 30%";
+const TOP_ALERT = "SEP 2: US-Iran strikes renew Hormuz risk; Brent $94.65; WTI $90.22; tail 40%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

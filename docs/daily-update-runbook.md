@@ -12,14 +12,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-08-31 (D180) |
-| **Crisis level** | 4 - High (Aug 31: The Aug 25 Oman-Iran statement keeps a proposed temporary navigational corridor and mine-clearance project in technical negotiation; Aug 27 reporting described a revenue-sharing arrangement, but Iran's reopening conditions - lifting the naval blockade, unfreezing assets, and removing oil sanctions - remain unmet. Qatar's PM joined mediation efforts in Tehran on Aug 27. Brent is $88.91 (+3.24%, Yahoo Finance, Aug 31), WTI is $86.64 (+3.89%, Yahoo Finance, Aug 31), and TTF is 66.56 EUR/MWh (-0.63%, Yahoo Finance, Aug 28). Crisis level remains 4 (High); base 10%, stress 60%, tail 30%.) |
-| **Brent** | $88.91 (2026-08-31, Yahoo Finance BZ=F; +3.24%) |
-| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $23.18/MMBtu, Trading Economics, Aug 28; Qatar force majeure carried to mid-September, further extension to mid-October reportedly in preparation) |
+| **Last updated** | 2026-09-02 (D182) |
+| **Crisis level** | 4 - High (Sep 2: AP reported renewed US-Iran strikes on Sep 1 and two UKMTO-reported tanker incidents in and around Hormuz; the Iran-Oman traffic plan remains conditional. Brent settled at $94.65 (+4.6%) and WTI at $90.22 (+5.2%) on Sep 1 (Reuters via MarketScreener); JKM CFD is $23.62 (+4.01%) on Sep 1 (Trading Economics), while TTF remains carried at 66.56 EUR/MWh from Aug 28. QatarEnergy force majeure now extends into early November. Crisis level remains 4 (High); base 5%, stress 55%, tail 40%.) |
+| **Brent** | $94.65 (2026-09-01, Reuters via MarketScreener; +4.6%) |
+| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $23.62/MMBtu, Trading Economics, Sep 1; QatarEnergy force majeure now reported through early November) |
 | **TTF** | 66.56 EUR/MWh (2026-08-28, Yahoo Finance TTF=F; -0.6%); carried after machine refresh failure |
-| **Exposure trace** | The Aug 25 Oman-Iran statement keeps a proposed temporary Hormuz corridor and mine-clearance project in technical negotiation; Aug 27 reporting described a revenue-sharing arrangement, but Iran's reopening conditions remain unmet. Qatar's PM joined mediation in Tehran; Qatar force majeure remains carried through mid-September; route-normalised freight and war-risk costs remain unavailable. |
-| **Evidence audit** | 16 checked · 11 verified · 5 carried · 0 unsupported · PASS |
-| **Commercial evaluation** | Qatar supply disruption: unavailable (insufficient verified data); Hormuz delivery constraint: unavailable (insufficient verified data); Hormuz crude-export constraint: unavailable (insufficient verified data) |
+| **Exposure trace** | AP reported renewed US-Iran strikes and two tanker incidents around Hormuz on Sep 1; the Iran-Oman traffic plan remains conditional. QatarEnergy force majeure now extends into early November; route-normalised freight and war-risk costs remain unavailable. |
+| **Evidence audit** | 17 checked · 11 verified · 6 carried · 0 unsupported · PASS |
+| **Commercial evaluation** | Qatar supply disruption: unavailable (insufficient verified data); Hormuz delivery constraint: unavailable (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
 ---
 
@@ -544,10 +544,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $88.91 (Aug 31, Yahoo Finance BZ=F; +3.24%) as the conditional Iran-Oman corridor framework met continued reopening and sanctions uncertainty. Working range $75-85 base (signed workable deal); $78-95 stress (conditional routing); $105-135+ tail (renewed closure).
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $23.18/MMBtu (Trading Economics, Aug 28), down 1.0%. Qatar force majeure is carried through mid-September from the Reuters Jul 23 notice; the reported mid-October extension remains unconfirmed.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $94.65 (Sep 1, Reuters via MarketScreener; +4.6%) as renewed US-Iran fighting and tanker incidents reversed the prior relief. Working range $75-85 base (signed workable deal); $85-105 stress (conditional routing); $105-135+ tail (renewed closure).
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $23.62/MMBtu (Trading Economics, Sep 1), up 4.01%. QatarEnergy force majeure now extends into early November after a further five-cargo notice reported by LNG Industry; 21 of 29 affected cargoes were reported replaced as of Aug 28.
 - **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 66.56 EUR/MWh (Aug 28, Yahoo Finance TTF=F; -0.63%) as Iran-Oman corridor diplomacy remained conditional and Qatar LNG force majeure persisted. The marker remains elevated versus the pre-crisis baseline while route and supply risks remain unresolved.
-- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 60%, tail 30% after the Iran-Oman corridor framework advanced without a signed reopening and Iran's blockade-lift and sanctions demands remained unmet.
+- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 5%, stress 55%, tail 40% after renewed US-Iran strikes and tanker incidents while the Iran-Oman traffic plan remains conditional.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
