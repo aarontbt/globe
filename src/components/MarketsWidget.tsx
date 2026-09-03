@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 2: US-Iran strikes renew Hormuz risk; Brent $94.65; WTI $90.22; tail 40%";
+const TOP_ALERT = "SEP 2-3: Iran hits Jordan, Bahrain, Kuwait, Erbil after US strikes kill ~12 in Iran; Brent $95.45; WTI $90.97; tail 45%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

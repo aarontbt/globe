@@ -149,3 +149,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D179**: Aug 30 - Iran and Oman convert the temporary Hormuz corridor into a revenue-sharing arrangement; Qatar PM joins mediation; reopening conditions remain unmet; Brent $88.10, WTI $83.40, TTF 66.98.
 - **D180**: Aug 31 - Iran-Oman corridor framework remains conditional; reopening conditions remain unmet; Brent $88.91, WTI $86.64, TTF 66.56.
 - **D182**: Sep 2 - Renewed US-Iran strikes and tanker incidents harden Hormuz risk; QatarEnergy force majeure now extends into early November.
+- **D183**: Sep 2-3 - Iran retaliates against US bases in Jordan, Bahrain, Kuwait and Erbil after US strikes kill ~12 in Iran (Sep 1); QatarEnergy force majeure extends into early November.
