@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-09-03T00:00:00Z",
-  "reviewedAt": "2026-09-03T02:15:00Z",
+  "asOf": "2026-09-04T00:00:00Z",
+  "reviewedAt": "2026-09-04T00:10:00Z",
   "reviewer": "ox-alpha with direct web-source review; Firecrawl connector unavailable",
   "entries": [
     {
@@ -154,13 +154,13 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Dutch TTF",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-09-02",
-      "checkedAt": "2026-09-03T02:15:00Z",
-      "claimSummary": "Yahoo Finance's chart API returned Dutch TTF at 73.36 EUR/MWh on Sep 2, replacing the prior carried Aug 28 observation.",
+      "publishedAt": "2026-09-03",
+      "checkedAt": "2026-09-04T00:10:00Z",
+      "claimSummary": "Yahoo Finance's chart API returned Dutch TTF at 71.15 EUR/MWh on Sep 3, replacing the prior confirmed Sep 2 observation.",
       "extractedFacts": [
-        "Yahoo Finance returned regularMarketPrice 73.36 for symbol TTF=F on September 2, 2026.",
-        "The local machine-refresh response timestamp was 2026-09-02T13:36:55.000Z.",
-        "The front-month contract moved about 0.36 percent below the prior close.",
+        "Yahoo Finance returned regularMarketPrice 71.15 for symbol TTF=F on September 3, 2026.",
+        "The local machine-refresh response timestamp was 2026-09-03T15:50:45.000Z.",
+        "The front-month contract moved about 0.92 percent below the prior close.",
         "The observation is recorded as Dutch TTF in EUR/MWh and is used for the daily cross-asset and trace values."
       ],
       "supportedHopIds": [
@@ -173,19 +173,19 @@
       "observations": [
         {
           "inputId": "ttf",
-          "value": 73.36,
+          "value": 71.15,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-09-02",
-          "observedAt": "2026-09-02T13:36:55.000Z",
+          "sourceDate": "2026-09-03",
+          "observedAt": "2026-09-03T15:50:45.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         },
         {
           "inputId": "lng-ttf",
-          "value": 73.36,
+          "value": 71.15,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-09-02",
-          "observedAt": "2026-09-02T13:36:55.000Z",
+          "sourceDate": "2026-09-03",
+          "observedAt": "2026-09-03T15:50:45.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         }
@@ -330,11 +330,11 @@
       "title": "Brent oil - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
       "publishedAt": "2026-09-03",
-      "checkedAt": "2026-09-03T02:15:00Z",
-      "claimSummary": "Trading Economics quoted Brent crude at 95.45 USD/bbl intraday on Sep 3, down 0.19% from the prior close.",
+      "checkedAt": "2026-09-04T00:10:00Z",
+      "claimSummary": "Trading Economics quoted Brent crude at 95.81 USD/bbl on Sep 3, down 0.12% from the prior close.",
       "extractedFacts": [
-        "Trading Economics quoted Brent at 95.45 USD/bbl on September 3, 2026, down 0.18 USD or 0.19 percent.",
-        "Yahoo Finance's machine-refreshed BZ=F change field (changePct 0.03% against a change of 6.35) was internally inconsistent this run, so Trading Economics was used instead per the recurring Yahoo baseline-staleness issue.",
+        "Trading Economics quoted Brent at 95.81 USD/bbl on September 3, 2026, down 0.11 USD or 0.12 percent.",
+        "Yahoo Finance's machine-refreshed BZ=F change field (change of 5.42 against changePct 0.41%) was internally inconsistent this run, so Trading Economics was used instead per the recurring Yahoo baseline-staleness issue.",
         "The observation is recorded as Brent crude in USD per barrel as a dynamic intraday quote, not a settled close."
       ],
       "supportedHopIds": [],
@@ -347,10 +347,10 @@
       "observations": [
         {
           "inputId": "oil-brent",
-          "value": 95.45,
+          "value": 95.81,
           "unit": "USD/bbl",
           "sourceDate": "2026-09-03",
-          "observedAt": "2026-09-03T02:15:00.000Z",
+          "observedAt": "2026-09-03T00:00:00.000Z",
           "instrument": "Brent crude futures",
           "provider": "Trading Economics"
         }
@@ -367,11 +367,11 @@
       "title": "Crude Oil - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
       "publishedAt": "2026-09-03",
-      "checkedAt": "2026-09-03T02:15:00Z",
-      "claimSummary": "Trading Economics quoted WTI crude at 90.97 USD/bbl intraday on Sep 3, down 0.05% from the prior close.",
+      "checkedAt": "2026-09-04T00:10:00Z",
+      "claimSummary": "Trading Economics quoted WTI crude at 91.82 USD/bbl on Sep 3, up 0.32% from the prior close.",
       "extractedFacts": [
-        "Trading Economics quoted WTI at 90.97 USD/bbl on September 3, 2026, down 0.04 USD or 0.05 percent.",
-        "The page noted crude held above $90/bbl for a third consecutive session amid Middle East tension and US inventory data.",
+        "Trading Economics quoted WTI at 91.82 USD/bbl on September 3, 2026, up 0.29 USD or 0.32 percent.",
+        "Yahoo Finance's machine-refreshed CL=F change field (change of 6.04 against changePct 0.55%) was internally inconsistent this run, so Trading Economics was used instead.",
         "The observation is recorded as WTI crude in USD per barrel as a dynamic intraday quote, not a settled close."
       ],
       "supportedHopIds": [],
@@ -384,10 +384,10 @@
       "observations": [
         {
           "inputId": "oil-wti",
-          "value": 90.97,
+          "value": 91.82,
           "unit": "USD/bbl",
           "sourceDate": "2026-09-03",
-          "observedAt": "2026-09-03T02:15:00.000Z",
+          "observedAt": "2026-09-03T00:00:00.000Z",
           "instrument": "WTI crude futures",
           "provider": "Trading Economics"
         }
@@ -403,13 +403,13 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - EUR/USD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-09-03",
-      "checkedAt": "2026-09-03T02:20:00Z",
-      "claimSummary": "Yahoo Finance's chart API returned EUR/USD at 1.159 on Sep 3, down 0.01% from the prior close.",
+      "publishedAt": "2026-09-04",
+      "checkedAt": "2026-09-04T00:10:00Z",
+      "claimSummary": "Yahoo Finance's chart API returned EUR/USD at 1.1632 on Sep 4, up 0.01% from the prior close.",
       "extractedFacts": [
-        "Yahoo Finance returned regularMarketPrice 1.159 for symbol EURUSD=X on September 3, 2026.",
-        "The local machine-refresh response timestamp was 2026-09-03T02:20:52.000Z.",
-        "The spot rate moved about 0.01 percent below the previous close.",
+        "Yahoo Finance returned regularMarketPrice 1.1632 for symbol EURUSD=X on September 4, 2026.",
+        "The local machine-refresh response timestamp was 2026-09-04T00:01:54.000Z.",
+        "The spot rate moved about 0.01 percent above the previous close.",
         "The observation is recorded as the EUR/USD spot exchange rate in USD/EUR."
       ],
       "supportedHopIds": [],
@@ -422,10 +422,10 @@
       "observations": [
         {
           "inputId": "fx-eurusd",
-          "value": 1.159,
+          "value": 1.1632,
           "unit": "USD/EUR",
-          "sourceDate": "2026-09-03",
-          "observedAt": "2026-09-03T02:20:52.000Z",
+          "sourceDate": "2026-09-04",
+          "observedAt": "2026-09-04T00:01:54.000Z",
           "instrument": "EURUSD=X spot exchange rate",
           "provider": "Yahoo Finance"
         }
@@ -441,12 +441,12 @@
       "reviewStatus": "approved",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
-      "publishedAt": "2026-09-01",
-      "checkedAt": "2026-09-03T02:20:00Z",
-      "claimSummary": "The New York Fed API reports SOFR at 3.66% effective September 1, 2026.",
+      "publishedAt": "2026-09-02",
+      "checkedAt": "2026-09-04T00:10:00Z",
+      "claimSummary": "The New York Fed API reports SOFR at 3.65% effective September 2, 2026.",
       "extractedFacts": [
-        "SOFR percent rate was 3.66 with effective date 2026-09-01.",
-        "The response was returned by the New York Fed secured overnight financing rate endpoint during the Sep 3 refresh."
+        "SOFR percent rate was 3.65 with effective date 2026-09-02.",
+        "The response was returned by the New York Fed secured overnight financing rate endpoint during the Sep 4 refresh."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -458,10 +458,10 @@
       "observations": [
         {
           "inputId": "usd-sofr",
-          "value": 3.66,
+          "value": 3.65,
           "unit": "%",
-          "sourceDate": "2026-09-01",
-          "observedAt": "2026-09-01T00:00:00Z",
+          "sourceDate": "2026-09-02",
+          "observedAt": "2026-09-02T00:00:00Z",
           "instrument": "SOFR",
           "provider": "Federal Reserve Bank of New York"
         }
@@ -477,12 +477,12 @@
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-09-02",
-      "checkedAt": "2026-09-03T02:15:00Z",
-      "claimSummary": "Trading Economics reports a JKM-linked CFD reference of 23.76 USD/MMBtu on Sep 2, up 0.61% from the prior print.",
+      "publishedAt": "2026-09-03",
+      "checkedAt": "2026-09-04T00:10:00Z",
+      "claimSummary": "Trading Economics reports a JKM-linked CFD reference of 24.09 USD/MMBtu on Sep 3, up 1.39% from the prior print.",
       "extractedFacts": [
-        "The displayed LNG Japan Korea reference was 23.76 USD/MMBtu on September 2, 2026.",
-        "The page reported a daily change of +0.61%.",
+        "The displayed LNG Japan Korea reference was 24.09 USD/MMBtu on September 3, 2026.",
+        "The page reported a daily change of +1.39%.",
         "Trading Economics states that the value is a CFD-derived general market reference and not an official benchmark assessment."
       ],
       "supportedHopIds": [
@@ -495,9 +495,9 @@
       "observations": [
         {
           "inputId": "jkm-cfd-reference",
-          "value": 23.76,
+          "value": 24.09,
           "unit": "USD/MMBtu",
-          "sourceDate": "2026-09-02",
+          "sourceDate": "2026-09-03",
           "instrument": "LNG Japan Korea CFD market reference",
           "provider": "Trading Economics"
         }
@@ -507,22 +507,21 @@
     },
     {
       "evidenceId": "e-hormuz-total-transits",
-      "url": "https://www.foreignpolicyjournal.com/2026/08/27/strait-of-hormuz-traffic-holds-steady-as-route-uncertainty-persists-kpler-data-shows/",
-      "canonicalUrl": "https://www.foreignpolicyjournal.com/2026/08/27/strait-of-hormuz-traffic-holds-steady-as-route-uncertainty-persists-kpler-data-shows/",
+      "url": "https://www.brecorder.com/news/40437384/strait-of-hormuz-commodity-vessel-transits-stay-in-single-digits-data-shows",
+      "canonicalUrl": "https://www.brecorder.com/news/40437384/strait-of-hormuz-commodity-vessel-transits-stay-in-single-digits-data-shows",
       "httpStatus": 200,
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Strait of Hormuz Traffic Holds Steady as Route Uncertainty Persists, Kpler Data Shows",
-      "publisher": "Foreign Policy Journal (Kpler data)",
-      "publishedAt": "2026-08-27",
-      "checkedAt": "2026-08-31T11:55:00Z",
-      "claimSummary": "Foreign Policy Journal reported Kpler data showing 121 Hormuz vessel crossings during Aug 17-23, up marginally from 118 the prior week, with sanctioned-vessel and shadow-fleet transits rising.",
-      "carryReason": "No newer source-verified Kpler transit observation was approved for the Aug 31 run; retain the Aug 27 observation with its original date.",
+      "title": "Strait of Hormuz commodity vessel transits stay in single digits, data shows",
+      "publisher": "Business Recorder (Kpler data)",
+      "publishedAt": "2026-09-01",
+      "checkedAt": "2026-09-04T00:10:00Z",
+      "claimSummary": "Business Recorder reported Kpler data showing just 5 vessels transited the Strait of Hormuz on Monday, Sep 1, versus a 10-day average of about 14, with no liquid tankers among them.",
       "extractedFacts": [
-        "121 total crossings were recorded during the week of Aug 17-23, 2026, up from 118 the prior week.",
-        "62 crossings were classified as Route Undetermined and 56 transited under Iran's Unilateral Scheme.",
-        "16 crossings involved sanctioned vessels, up from 9 the prior week, and 28 involved shadow-fleet activity."
+        "Five vessels sailed through the Strait of Hormuz on Sep 1, below the 10-day average of about 14; four entered and one exited.",
+        "None of the Sep 1 transits were liquid tankers: one was an empty handy-sized gas tanker via the Iranian route and three were laden dry bulk carriers.",
+        "Vessels that sail with transponders turned off are not included in the Kpler count."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal"
@@ -534,11 +533,11 @@
       "observations": [
         {
           "inputId": "hormuz-total-transits",
-          "value": 121,
-          "unit": "vessel crossings/week (Aug 17-23, vs 118 prior week)",
-          "sourceDate": "2026-08-27",
+          "value": 5,
+          "unit": "vessel transits (Sep 1, vs 10-day average of ~14)",
+          "sourceDate": "2026-09-01",
           "instrument": "Hormuz total vessel transits (Kpler data)",
-          "provider": "Kpler via Foreign Policy Journal"
+          "provider": "Kpler via Business Recorder"
         }
       ],
       "supportedCommercialInputIds": [],
@@ -546,22 +545,22 @@
     },
     {
       "evidenceId": "e-ap-hormuz-20260818",
-      "url": "https://www.aljazeera.com/news/2026/9/1/us-military-says-launching-new-attacks-on-iran",
-      "canonicalUrl": "https://www.aljazeera.com/news/2026/9/1/us-military-says-launching-new-attacks-on-iran",
+      "url": "https://time.com/article/2026/09/03/vance-iran-war-press-briefing/",
+      "canonicalUrl": "https://time.com/article/2026/09/03/vance-iran-war-press-briefing/",
       "httpStatus": 200,
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "US military says launching new attacks on Iran",
-      "publisher": "Al Jazeera",
-      "publishedAt": "2026-09-01",
-      "checkedAt": "2026-09-03T02:15:00Z",
-      "claimSummary": "Al Jazeera reported CENTCOM strikes on Iranian sites Sep 1 killed roughly 12, and Iran retaliated early Sep 2 with missile/drone attacks on US-linked bases in Jordan, Bahrain, Kuwait and Iraq's Erbil, the heaviest exchange in over a month.",
+      "title": "'I Wouldn't Call it a War': Vance Downplays Conflict With Iran, Even as Strikes Continue",
+      "publisher": "Time",
+      "publishedAt": "2026-09-03",
+      "checkedAt": "2026-09-04T00:10:00Z",
+      "claimSummary": "Time reported VP Vance told a Sep 3 White House press briefing that Iran's Hormuz control is 'effectively gone,' ruling out talks unless Tehran halts shipping attacks, and voiced 'extreme skepticism' of Iran's account of the Sep 1 Sirik wedding strike.",
       "extractedFacts": [
-        "CENTCOM struck Iranian sites at Sirik, Konarak, Bandar Abbas, Jask, Asaluyeh, Ahvaz and Qeshm Island on Sep 1.",
-        "A residential strike in Kuhestak during a wedding killed at least five including a child, with roughly 12 dead across the strikes.",
-        "Iran fired 13 missiles at Jordan's Camp Titin and Prince Hassan airbase (10 intercepted), drones at Bahrain's Sheikh Isa airbase, and drones/missiles at Kuwait, all intercepted; the IRGC claimed a combined attack destroyed a repair centre and warehouses in Erbil, Iraq.",
-        "The article characterizes this as the heaviest exchange of fire between the US and Iran in more than a month; no US casualties were reported."
+        "Vance said Iran's control over Hormuz was 'effectively gone' and a 'diminishing asset,' claiming traffic was approaching pre-conflict levels.",
+        "Vance said he wouldn't call the conflict a war and that there was 'no active shooting' at the time of the briefing.",
+        "On reports that a Sep 1 US strike killed at least five at a Kuhestak wedding, Vance expressed 'extreme skepticism' of Iranian state media accounts while acknowledging an investigation was underway.",
+        "Vance declined to commit to ending the conflict before the midterms and said the administration would rely on economic and covert pressure rather than negotiations."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal"
