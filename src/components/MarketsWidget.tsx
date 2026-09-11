@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 7: Iran plans Hormuz 'exclusion zone' after direct US-Iran tanker war (3 tankers hit each side, missiles fired at a US carrier); Oman talks reach 'final stage'; Brent $97.10, 6-week high; tail 50%";
+const TOP_ALERT = "SEP 11: Brent $108.22 as tanker-war and exclusion-zone risk keep Hormuz disruption elevated; tail 50%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

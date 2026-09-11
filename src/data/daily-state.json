@@ -28,7 +28,8 @@
       "signal": "red",
       "source": "Yahoo Finance TTF=F",
       "sourceDate": "2026-09-10",
-      "status": "confirmed"
+      "status": "carried",
+      "carryReason": "Machine refresh failed; carry the current value from the Sep 10 reviewed Yahoo Finance observation."
     },
     "lng-ja": {
       "current": 24.82,
@@ -247,7 +248,7 @@
         "periodStart": "2026-09-01",
         "periodEnd": "2026-09-01",
         "coverageStatus": "unavailable",
-        "sourceAgeDays": 7,
+        "sourceAgeDays": 10,
         "value": "Edison reported a further QatarEnergy force-majeure notice covering five additional LNG cargoes; 29 cargoes are affected in total and the period extends into early November, with 21 replaced as of Aug 28",
         "source": "LNG Industry",
         "sourceDate": "2026-09-01",
@@ -293,7 +294,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available."
+        "missingReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?. No approved observation is available."
       },
       "qatar-production-baseline": {
         "unit": "MTPA",
@@ -307,7 +308,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available."
+        "missingReason": "Machine refresh failed: Was there a typo in the url or port?. No approved observation is available."
       },
       "qatar-export-baseline": {
         "unit": "MTPA",
@@ -321,7 +322,7 @@
         "sourceAgeDays": null,
         "source": "",
         "sourceDate": "",
-        "missingReason": "Machine refresh failed: EIA_API_KEY or EIA_DATA_URL is required for the EIA connector. No approved observation is available."
+        "missingReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?. No approved observation is available."
       },
       "ras-laffan-capacity": {
         "unit": "MTPA",
@@ -343,14 +344,14 @@
         "maxAgeDays": 7,
         "cadence": "daily",
         "observationKind": "transit",
-      "periodStart": "2026-07-27",
-      "periodEnd": "2026-08-02",
-      "coverageStatus": "direct-observation",
-      "sourceAgeDays": 40,
-      "value": 3,
-      "source": "Kpler via Foreign Policy Journal",
-      "sourceDate": "2026-08-02",
-      "carryReason": "Reviewed Sep 11; no newer verified weekly Kpler LNG-transit breakdown is approved, so retain the Aug 3 count of 3 LNG transits for the week of Jul 27-Aug 2."
+        "periodStart": "2026-08-02",
+        "periodEnd": "2026-08-02",
+        "coverageStatus": "unavailable",
+        "sourceAgeDays": 40,
+        "value": 3,
+        "source": "Kpler via Foreign Policy Journal",
+        "sourceDate": "2026-08-02",
+        "carryReason": "Reviewed Sep 11; no newer verified weekly Kpler LNG-transit breakdown is approved, so retain the Aug 3 count of 3 LNG transits for the week of Jul 27-Aug 2."
       },
       "hormuz-route-pressure": {
         "unit": "%",
@@ -401,7 +402,7 @@
         "observationKind": "flow",
         "periodStart": "2026-09-10",
         "periodEnd": "2026-09-10",
-        "coverageStatus": "direct-observation",
+        "coverageStatus": "unavailable",
         "sourceAgeDays": 1,
         "value": 81.97,
         "source": "Yahoo Finance TTF=F",
@@ -473,52 +474,44 @@
         "missingReason": "No named company-level buyer relationship is verified by the approved oil-flow sources."
       },
       "jkm-cfd-reference": {
-        "value": 24.03,
+        "value": 24.82,
         "unit": "USD/MMBtu",
-        "status": "carried",
+        "status": "confirmed",
         "source": "Trading Economics",
-        "sourceDate": "2026-09-04",
+        "sourceDate": "2026-09-10",
         "maxAgeDays": 3,
         "cadence": "daily",
-        "carryReason": "Trading Economics' JKM-linked CFD reference had not moved past its Sep 4 read of 24.03 USD/MMBtu as of the Sep 8 review; carried since it exceeds the 3-day freshness window pending a fresher print."
+        "carryReason": "Trading Economics reports a JKM-linked CFD reference of 24.82 USD/MMBtu on Sep 10, up 0.53%; it remains contextual and is not the official JKM assessment."
       },
       "japan-lng-demand": {
         "unit": "USD",
-        "status": "confirmed",
+        "status": "unavailable",
         "maxAgeDays": 90,
         "cadence": "monthly",
         "observationKind": "trade-demand",
-        "periodStart": "2026-06-01",
-        "periodEnd": "2026-06-30",
-        "coverageStatus": "public-proxy",
+        "periodStart": null,
+        "periodEnd": null,
+        "coverageStatus": "unavailable",
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
-        "sourceAgeDays": 70,
-        "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:ee1694ed60220e08"
-        ],
-        "value": 5407806363.239,
-        "source": "UN Comtrade",
-        "sourceDate": "2026-06-30",
-        "observedAt": "2026-06-30T00:00:00.000Z"
+        "sourceAgeDays": null,
+        "source": "",
+        "sourceDate": "",
+        "missingReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?. No approved observation is available."
       },
       "korea-lng-demand": {
         "unit": "USD",
-        "status": "confirmed",
+        "status": "unavailable",
         "maxAgeDays": 260,
         "cadence": "monthly",
         "observationKind": "trade-demand",
-        "periodStart": "2025-12-01",
-        "periodEnd": "2025-12-31",
-        "coverageStatus": "public-proxy",
+        "periodStart": null,
+        "periodEnd": null,
+        "coverageStatus": "unavailable",
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
-        "sourceAgeDays": 251,
-        "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:b7ef80e5f6921fc9"
-        ],
-        "value": 2535174222,
-        "source": "UN Comtrade",
-        "sourceDate": "2025-12-31",
-        "observedAt": "2025-12-31T00:00:00.000Z"
+        "sourceAgeDays": null,
+        "source": "",
+        "sourceDate": "",
+        "missingReason": "Machine refresh failed: Was there a typo in the url or port?. No approved observation is available."
       },
       "hormuz-total-transits": {
         "value": 13,
@@ -865,13 +858,13 @@
       ],
       "requiredForCalculation": false,
       "unit": "EUR/MWh",
-      "status": "confirmed",
+      "status": "carried",
       "maxAgeDays": 3,
       "cadence": "daily",
       "observationKind": "flow",
       "periodStart": "2026-09-10",
       "periodEnd": "2026-09-10",
-      "coverageStatus": "direct-observation",
+      "coverageStatus": "unavailable",
       "sourceAgeDays": 1,
       "value": 81.97,
       "source": "Yahoo Finance TTF=F",
