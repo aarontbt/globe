@@ -403,7 +403,11 @@ if (energyFixtureState.traceInputs.metrics.ttf?.sourceDate > "2026-08-25") {
 // sourceDate has moved past this fixture's fixed asOf (2026-08-26) - otherwise
 // validateStateShape's "sourceDate cannot be after asOf" check and validateEvidenceAudit's
 // cross-checks fail as production data advances, independent of this fixture's logic.
-const fixtureClampedMetrics = { "jkm-cfd-reference": "e-jkm-cfd", "hormuz-total-transits": "e-hormuz-total-transits" };
+const fixtureClampedMetrics = {
+  "jkm-cfd-reference": "e-jkm-cfd",
+  "hormuz-total-transits": "e-hormuz-total-transits",
+  "oman-marker": "e-gme-oman",
+};
 for (const [metricId, evidenceId] of Object.entries(fixtureClampedMetrics)) {
   const metric = energyFixtureState.traceInputs.metrics[metricId];
   if (metric && metric.sourceDate > "2026-08-25") metric.sourceDate = "2026-08-25";
@@ -418,6 +422,11 @@ for (const [metricId, evidenceId] of Object.entries(fixtureClampedMetrics)) {
       if (observation.sourceDate > "2026-08-25") observation.sourceDate = "2026-08-25";
     }
   }
+}
+const fixtureOmanCommercial = energyFixtureState.commercialInputs["oil-dubai-oman"];
+if (fixtureOmanCommercial?.sourceDate > "2026-08-25") {
+  fixtureOmanCommercial.sourceDate = "2026-08-25";
+  if (fixtureOmanCommercial.observedAt) fixtureOmanCommercial.observedAt = "2026-08-25T00:00:00.000Z";
 }
 
 const energyFixtureOptions = {

@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 11: Brent $108.22 as tanker-war and exclusion-zone risk keep Hormuz disruption elevated; tail 50%";
+const TOP_ALERT = "SEP 13: Brent $107.33 as tanker-war and exclusion-zone risk keep Hormuz disruption elevated; tail 50%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

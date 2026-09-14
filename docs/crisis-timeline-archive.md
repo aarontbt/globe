@@ -153,3 +153,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D184**: Sep 3-4 - Vance calls Iran's Hormuz control 'effectively gone,' rules out talks; Kpler shows just ~5 transits Sep 1 vs 14 avg; Sirik wedding toll confirmed at 4-5 dead.
 - **D188**: Sep 5-7 - US-Iran direct tanker war (3 tankers hit each side, missiles fired at a US carrier); Iran plans a Hormuz 'exclusion zone'; Iran-Oman talks reach 'final stage'; 2 Filipino sailors killed Aug 31 tanker strike.
 - **D191**: Sep 11 - Brent reaches $108.22 and JKM CFD $24.82 as tanker-war and exclusion-zone risk persist; QatarEnergy force majeure remains reported into early November.
+- **D193**: Sep 13 - Brent is $107.33 and JKM CFD is $24.89 as tanker-war and exclusion-zone risk persist; QatarEnergy force majeure remains reported into early November.

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-09-11T00:00:00Z",
-  "reviewedAt": "2026-09-11T05:02:00Z",
+  "asOf": "2026-09-13T00:00:00Z",
+  "reviewedAt": "2026-09-13T23:59:00Z",
   "reviewer": "ox-alpha with direct Firecrawl source review",
   "entries": [
     {
@@ -80,7 +80,7 @@
       "title": "Strait of Hormuz Crossings Rise 8% Week-on-Week, But Dark AIS Activity Remains Elevated",
       "publisher": "Foreign Policy Journal (Kpler data)",
       "publishedAt": "2026-08-03",
-      "checkedAt": "2026-09-11T04:47:00Z",
+      "checkedAt": "2026-09-13T23:58:00Z",
       "claimSummary": "Kpler vessel-type data reported via Foreign Policy Journal shows 3 LNG tanker transits among 106 total Hormuz crossings during Jul 27-Aug 2, the first LNG-specific movement since the carried July 18 zero-transit observation.",
       "extractedFacts": [
         "The week of Jul 27-Aug 2 recorded 106 total crossings by 96 distinct vessels, up 8% from 98 crossings the prior week.",
@@ -106,7 +106,7 @@
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Reviewed Sep 11; no newer source-verified weekly Kpler LNG-transit breakdown is approved, so retain the Aug 3 count of 3 LNG transits for the week of Jul 27-Aug 2."
+      "carryReason": "Reviewed Sep 13; no newer source-verified weekly Kpler LNG-transit breakdown is approved, so retain the Aug 3 count of 3 LNG transits for the week of Jul 27-Aug 2."
     },
     {
       "evidenceId": "e-jkm",
@@ -119,7 +119,7 @@
       "title": "Asia LNG hits four-month high on fears of wider Mideast shipping disruption",
       "publisher": "Reuters",
       "publishedAt": "2026-07-24",
-      "checkedAt": "2026-09-11T04:47:00Z",
+      "checkedAt": "2026-09-13T23:58:00Z",
       "claimSummary": "Reuters reported the average price for September delivery into Northeast Asia at 22 USD/MMBtu on July 24.",
       "extractedFacts": [
         "The average price for September delivery into Northeast Asia was estimated at 22 USD/MMBtu.",
@@ -138,7 +138,7 @@
           "provider": "Reuters / industry sources"
         }
       ],
-      "carryReason": "Reviewed Sep 11; no newer source-verified weekly Asia spot LNG assessment is approved. Carry the Reuters July 24 September-delivery assessment at 22 USD/MMBtu with its original date.",
+      "carryReason": "Reviewed Sep 13; no newer source-verified weekly Asia spot LNG assessment is approved. Carry the Reuters July 24 September-delivery assessment at 22 USD/MMBtu with its original date.",
       "supportedCommercialInputIds": [
         "lng-jkm"
       ],
@@ -155,12 +155,12 @@
       "title": "Yahoo Finance chart API - Dutch TTF",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-09-10",
-      "checkedAt": "2026-09-11T04:47:00Z",
-      "claimSummary": "Yahoo Finance's chart API returned Dutch TTF regularMarketPrice 81.965 EUR/MWh at 2026-09-10T16:19:20Z, rounded to 81.97 for the reviewed daily state.",
+      "checkedAt": "2026-09-13T23:58:00Z",
+      "claimSummary": "Yahoo Finance's chart API returned Dutch TTF regularMarketPrice 79.52 EUR/MWh at 2026-09-11T13:12:17Z for the reviewed daily state.",
       "extractedFacts": [
-        "Yahoo Finance returned regularMarketPrice 81.965 for symbol TTF=F on September 10, 2026.",
-        "The source response timestamp was 2026-09-10T16:19:20.000Z.",
-        "The front-month contract moved about 0.1 percent below the prior close.",
+        "Yahoo Finance returned regularMarketPrice 79.52 for symbol TTF=F on September 11, 2026.",
+        "The source response timestamp was 2026-09-11T13:12:17.000Z.",
+        "The front-month contract moved 3.08 percent below the prior close.",
         "The observation is recorded as Dutch TTF in EUR/MWh and is used for the daily cross-asset and trace values."
       ],
       "supportedHopIds": [
@@ -173,19 +173,19 @@
       "observations": [
         {
           "inputId": "ttf",
-          "value": 81.97,
+          "value": 79.52,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-09-10",
-          "observedAt": "2026-09-10T16:19:20.000Z",
+          "sourceDate": "2026-09-11",
+          "observedAt": "2026-09-11T13:12:17.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         },
         {
           "inputId": "lng-ttf",
-          "value": 81.97,
+          "value": 79.52,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-09-10",
-          "observedAt": "2026-09-10T16:19:20.000Z",
+          "sourceDate": "2026-09-11",
+          "observedAt": "2026-09-11T13:12:17.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         }
@@ -321,21 +321,21 @@
     },
     {
       "evidenceId": "e-brent",
-      "url": "https://tradingeconomics.com/commodity/brent-crude-oil",
-      "canonicalUrl": "https://tradingeconomics.com/commodity/brent-crude-oil",
+      "url": "https://query2.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=1d&range=5d",
+      "canonicalUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=1d&range=5d",
       "httpStatus": 200,
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Brent oil - Price - Chart - Historical Data - News",
-      "publisher": "Trading Economics",
-      "publishedAt": "2026-09-11",
-      "checkedAt": "2026-09-11T04:47:00Z",
-      "claimSummary": "Trading Economics displayed Brent actual 108.2169 USD/bbl on Sep 11 with a +0.55% daily change; the reviewed state rounds the price to 108.22.",
+      "title": "Yahoo Finance chart API - Brent Crude",
+      "publisher": "Yahoo Finance",
+      "publishedAt": "2026-09-13",
+      "checkedAt": "2026-09-13T23:58:00Z",
+      "claimSummary": "Yahoo Finance's chart API returned BZ=F regularMarketPrice 107.33 USD/bbl at 2026-09-13T23:47:20Z with a +2.60% daily change.",
       "extractedFacts": [
-        "Trading Economics displayed Brent actual 108.2169 USD/bbl on September 11, 2026, up 0.5869 USD or 0.55 percent.",
-        "The source page also reported Brent at 108.18 USD/bbl in its same-day statistics; the reviewed observation uses the displayed actual quote and rounds it to 108.22.",
-        "The observation is recorded as Brent crude in USD per barrel as a dynamic intraday quote, not a settled close."
+        "Yahoo Finance returned regularMarketPrice 107.33 for symbol BZ=F on September 13, 2026.",
+        "The source response timestamp was 2026-09-13T23:47:20.000Z.",
+        "The observation is recorded as Brent crude in USD per barrel as a dynamic intraday futures quote, not a settled close."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -347,32 +347,32 @@
       "observations": [
         {
           "inputId": "oil-brent",
-          "value": 108.22,
+          "value": 107.33,
           "unit": "USD/bbl",
-          "sourceDate": "2026-09-11",
-          "observedAt": "2026-09-11T00:00:00.000Z",
-          "instrument": "Brent crude futures",
-          "provider": "Trading Economics"
+          "sourceDate": "2026-09-13",
+          "observedAt": "2026-09-13T23:47:20.000Z",
+          "instrument": "BZ=F Brent crude futures",
+          "provider": "Yahoo Finance"
         }
       ]
     },
     {
       "evidenceId": "e-wti",
-      "url": "https://tradingeconomics.com/commodity/crude-oil",
-      "canonicalUrl": "https://tradingeconomics.com/commodity/crude-oil",
+      "url": "https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=5d",
+      "canonicalUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=5d",
       "httpStatus": 200,
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Crude Oil - Price - Chart - Historical Data - News",
-      "publisher": "Trading Economics",
-      "publishedAt": "2026-09-11",
-      "checkedAt": "2026-09-11T04:47:00Z",
-      "claimSummary": "Trading Economics displayed Crude Oil/WTI actual 102.3235 USD/bbl on Sep 11 with a -0.15% daily change; the reviewed state rounds the price to 102.32.",
+      "title": "Yahoo Finance chart API - WTI Crude",
+      "publisher": "Yahoo Finance",
+      "publishedAt": "2026-09-13",
+      "checkedAt": "2026-09-13T23:58:00Z",
+      "claimSummary": "Yahoo Finance's chart API returned CL=F regularMarketPrice 102.23 USD/bbl at 2026-09-13T23:47:23Z with a +2.18% daily change.",
       "extractedFacts": [
-        "Trading Economics displayed Crude Oil/WTI actual 102.3235 USD/bbl on September 11, 2026, down 0.1565 USD or 0.15 percent.",
-        "The source page described the quote as Crude Oil and its table linked the instrument to the benchmark Crude Oil contract used here as WTI.",
-        "The observation is recorded as WTI crude in USD per barrel as a dynamic intraday quote, not a settled close."
+        "Yahoo Finance returned regularMarketPrice 102.23 for symbol CL=F on September 13, 2026.",
+        "The source response timestamp was 2026-09-13T23:47:23.000Z.",
+        "The observation is recorded as WTI crude in USD per barrel as a dynamic intraday futures quote, not a settled close."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -384,12 +384,12 @@
       "observations": [
         {
           "inputId": "oil-wti",
-          "value": 102.32,
+          "value": 102.23,
           "unit": "USD/bbl",
-          "sourceDate": "2026-09-11",
-          "observedAt": "2026-09-11T00:22:00.000Z",
-          "instrument": "WTI crude futures",
-          "provider": "Trading Economics"
+          "sourceDate": "2026-09-13",
+          "observedAt": "2026-09-13T23:47:23.000Z",
+          "instrument": "CL=F WTI crude futures",
+          "provider": "Yahoo Finance"
         }
       ]
     },
@@ -403,12 +403,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - EUR/USD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-09-11",
-      "checkedAt": "2026-09-11T04:47:00Z",
-      "claimSummary": "Yahoo Finance's chart API returned EUR/USD at 1.1609 at 2026-09-11T04:45:32Z.",
+      "publishedAt": "2026-09-13",
+      "checkedAt": "2026-09-13T23:58:00Z",
+      "claimSummary": "Yahoo Finance's chart API returned EUR/USD at 1.1597 at 2026-09-13T23:56:57Z.",
       "extractedFacts": [
-        "Yahoo Finance returned regularMarketPrice 1.1609 for symbol EURUSD=X on September 11, 2026.",
-        "The source response timestamp was 2026-09-11T04:45:32.000Z.",
+        "Yahoo Finance returned regularMarketPrice 1.1597 for symbol EURUSD=X on September 13, 2026.",
+        "The source response timestamp was 2026-09-13T23:56:57.000Z.",
         "The spot rate moved about 0.03 percent below the previous close.",
         "The observation is recorded as the EUR/USD spot exchange rate in USD/EUR."
       ],
@@ -422,10 +422,10 @@
       "observations": [
         {
           "inputId": "fx-eurusd",
-          "value": 1.1609,
+          "value": 1.1597,
           "unit": "USD/EUR",
-          "sourceDate": "2026-09-11",
-          "observedAt": "2026-09-11T04:45:32.000Z",
+          "sourceDate": "2026-09-13",
+          "observedAt": "2026-09-13T23:56:57.000Z",
           "instrument": "EURUSD=X spot exchange rate",
           "provider": "Yahoo Finance"
         }
@@ -441,12 +441,12 @@
       "reviewStatus": "approved",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
-      "publishedAt": "2026-09-08",
-      "checkedAt": "2026-09-11T04:47:00Z",
-      "claimSummary": "The New York Fed API reports SOFR at 3.64% effective September 8, 2026.",
+      "publishedAt": "2026-09-10",
+      "checkedAt": "2026-09-13T23:58:00Z",
+      "claimSummary": "The New York Fed API reports SOFR at 3.62% effective September 10, 2026.",
       "extractedFacts": [
-        "SOFR percent rate was 3.64 with effective date 2026-09-08.",
-        "The response was returned by the New York Fed secured overnight financing rate endpoint during the Sep 11 review."
+        "SOFR percent rate was 3.62 with effective date 2026-09-10.",
+        "The response was returned by the New York Fed secured overnight financing rate endpoint during the Sep 13 review."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -458,10 +458,10 @@
       "observations": [
         {
           "inputId": "usd-sofr",
-          "value": 3.64,
+          "value": 3.62,
           "unit": "%",
-          "sourceDate": "2026-09-08",
-          "observedAt": "2026-09-08T00:00:00Z",
+          "sourceDate": "2026-09-10",
+          "observedAt": "2026-09-10T00:00:00Z",
           "instrument": "SOFR",
           "provider": "Federal Reserve Bank of New York"
         }
@@ -477,12 +477,12 @@
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-09-10",
-      "checkedAt": "2026-09-11T04:47:00Z",
-      "claimSummary": "Trading Economics reports a JKM-linked CFD reference of 24.82 USD/MMBtu on Sep 10, up 0.53% from the prior print.",
+      "publishedAt": "2026-09-11",
+      "checkedAt": "2026-09-13T23:58:00Z",
+      "claimSummary": "Trading Economics reports a JKM-linked CFD reference of 24.89 USD/MMBtu on Sep 11, up 0.28% from the prior print.",
       "extractedFacts": [
-        "The displayed LNG Japan Korea reference was 24.82 USD/MMBtu on September 10, 2026.",
-        "The page reported a daily change of +0.53%.",
+        "The displayed LNG Japan Korea reference was 24.89 USD/MMBtu on September 11, 2026.",
+        "The page reported a daily change of +0.28%.",
         "Trading Economics states that the value is a CFD-derived general market reference and not an official benchmark assessment."
       ],
       "supportedHopIds": [
@@ -495,9 +495,9 @@
       "observations": [
         {
           "inputId": "jkm-cfd-reference",
-          "value": 24.82,
+          "value": 24.89,
           "unit": "USD/MMBtu",
-          "sourceDate": "2026-09-10",
+          "sourceDate": "2026-09-11",
           "instrument": "LNG Japan Korea CFD market reference",
           "provider": "Trading Economics"
         }
@@ -516,9 +516,9 @@
       "title": "US, Iran engaged in tanker war: Where is the months-long conflict headed?",
       "publisher": "Al Jazeera (Kpler data)",
       "publishedAt": "2026-09-06",
-      "checkedAt": "2026-09-11T04:47:00Z",
+      "checkedAt": "2026-09-13T23:58:00Z",
       "claimSummary": "Al Jazeera reported Kpler data showing Hormuz daily vessel transits ranging from 5 to 11 this week against a 10-day average of about 13, still well below pre-crisis norms.",
-      "carryReason": "Reviewed Sep 11; no newer approved Kpler transit observation is available after the Sep 6 report, so carry the 10-day average of about 13 with its original date.",
+      "carryReason": "Reviewed Sep 13; no newer approved Kpler transit observation is available after the Sep 6 report, so carry the 10-day average of about 13 with its original date.",
       "extractedFacts": [
         "Kpler data showed daily Hormuz transit counts of 6, 11 and 5 vessels on the three most recent days reported.",
         "The 10-day average was reported at about 13 vessels per day.",
@@ -555,7 +555,7 @@
       "title": "US, Iran engaged in tanker war: Where is the months-long conflict headed?",
       "publisher": "Al Jazeera",
       "publishedAt": "2026-09-06",
-      "checkedAt": "2026-09-11T04:47:00Z",
+      "checkedAt": "2026-09-13T23:58:00Z",
       "claimSummary": "Al Jazeera reported the US and Iran fought a direct tanker war Sep 5-6: CENTCOM struck three Iranian oil tankers while Iran fired missiles at a US carrier and destroyer and hit three tankers plus three US-linked vessels.",
       "extractedFacts": [
         "CENTCOM struck three Iranian oil tankers near Kharg Island, near Jask, and an unladen vessel in the Gulf of Oman after crew evacuation, with no US personnel injured.",
@@ -570,7 +570,7 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Reviewed Sep 11; this remains the latest approved direct security report in the record. No newer approved event source confirms a signed commercial reopening or verified Hormuz route clearance, so the event is carried with its original date."
+      "carryReason": "Reviewed Sep 13; this remains the latest approved direct security report in the record. No newer approved event source confirms a signed commercial reopening or verified Hormuz route clearance, so the event is carried with its original date."
     },
     {
       "evidenceId": "e-gme-oman",
@@ -578,16 +578,16 @@
       "canonicalUrl": "https://www.gulfmerc.com/",
       "httpStatus": 200,
       "pageType": "market-data",
-      "contentStatus": "stale",
+      "contentStatus": "verified",
       "reviewStatus": "approved",
       "title": "OQD Daily Marker Price",
       "publisher": "Gulf Mercantile Exchange",
-      "publishedAt": "2026-08-14",
-      "checkedAt": "2026-09-11T04:47:00Z",
-      "claimSummary": "The dated GME OQD observation of 86.83 USD/bbl from Aug 14 remains the approved reference; the Sep 11 landing page value was not accepted because it lacked a dated observation snapshot.",
+      "publishedAt": "2026-09-11",
+      "checkedAt": "2026-09-13T23:58:00Z",
+      "claimSummary": "The GME page reports a dated OQD Daily Marker Price of 121.89 USD/bbl for Sep 11, 2026.",
       "extractedFacts": [
-        "The approved OQD marker price was 86.83 USD/bbl on August 14, 2026.",
-        "The Sep 11 page displayed 119.3 but supplied no dated observation snapshot.",
+        "The OQD Daily Marker Price was 121.89 USD/bbl on September 11, 2026.",
+        "The page labels the displayed value with the Sep 11, 2026 observation date.",
         "The GME OQD contract specification quotes prices in U.S. dollars and cents per barrel."
       ],
       "supportedHopIds": [
@@ -600,17 +600,17 @@
       "observations": [
         {
           "inputId": "oman-marker",
-          "value": 86.83,
+          "value": 121.89,
           "unit": "USD/bbl",
-          "sourceDate": "2026-08-14",
+          "sourceDate": "2026-09-11",
           "instrument": "GME Oman Crude Oil Futures OQD Daily Marker",
           "provider": "Gulf Mercantile Exchange"
         },
         {
           "inputId": "oil-dubai-oman",
-          "value": 86.83,
+          "value": 121.89,
           "unit": "USD/bbl",
-          "sourceDate": "2026-08-14",
+          "sourceDate": "2026-09-11",
           "instrument": "GME Oman Crude Oil Futures OQD Daily Marker",
           "provider": "Gulf Mercantile Exchange"
         }
@@ -618,8 +618,7 @@
       "supportedCommercialInputIds": [
         "oil-dubai-oman"
       ],
-      "supportedDerivedMetricIds": [],
-      "carryReason": "The Sep 11 GME landing page displayed 119.3 but supplied no dated observation snapshot; broad landing-page content is not approved as a current market observation. Retain the dated Aug 14 value of 86.83 USD/bbl."
+      "supportedDerivedMetricIds": []
     }
   ]
 }
