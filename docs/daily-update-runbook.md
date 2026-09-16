@@ -12,11 +12,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-09-13 (D193) |
-| **Crisis level** | 4 - High (Sep 13: the latest approved direct security evidence remains Al Jazeera's Sep 6 account of the US-Iran tanker war and Sep 7 reporting of Iran's threatened Hormuz exclusion zone, while reduced traffic and an unsigned Oman framework leave reopening unverified. Reviewed liquid markers are Brent at $107.33 (+2.60%) and WTI at $102.23 (+2.18%) on Sep 13; JKM CFD is $24.89 (+0.28%) on Sep 11 and TTF is 79.52 EUR/MWh on Sep 11. QatarEnergy force majeure remains reported into early November. Crisis level remains 4 (High); probabilities remain base 10%, stress 40%, tail 50%.) |
-| **Brent** | $107.33 (2026-09-13, Yahoo Finance BZ=F; +2.60%) |
-| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $24.89/MMBtu, Trading Economics, Sep 11; QatarEnergy force majeure reported through early November) |
-| **TTF** | 79.52 EUR/MWh (2026-09-11, Yahoo Finance TTF=F; -3.1%) |
+| **Last updated** | 2026-09-16 (D196) |
+| **Crisis level** | 4 - High (Sep 16: the latest approved direct security evidence remains Al Jazeera's Sep 6 account of the US-Iran tanker war, while depressed traffic and an unsigned Oman framework leave reopening unverified. Reviewed liquid markers are Brent at $108.14 (-0.56%) and WTI at $104.80 (-0.97%) on Sep 16; JKM CFD is $25.06 (+0.70%) on Sep 14 and TTF is 79.45 EUR/MWh on Sep 15. QatarEnergy force majeure remains reported into early November. Crisis level remains 4 (High); probabilities remain base 10%, stress 40%, tail 50%.) |
+| **Brent** | $108.14 (2026-09-16, Yahoo Finance BZ=F; -0.56%) |
+| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $25.06/MMBtu, Trading Economics, Sep 14; QatarEnergy force majeure reported through early November) |
+| **TTF** | 79.45 EUR/MWh (2026-09-15, Yahoo Finance TTF=F; -0.8%) |
 | **Exposure trace** | The latest approved security evidence remains Al Jazeera's Sep 6 report of a direct US-Iran tanker war and Iran's Sep 7 threatened Hormuz exclusion zone, with Kpler traffic still depressed and no signed commercial reopening. QatarEnergy force majeure remains reported into early November; route-normalised freight and war-risk costs remain unavailable. |
 | **Evidence audit** | 17 checked · 11 verified · 6 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
@@ -544,10 +544,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $107.33 (Sep 13, Yahoo Finance BZ=F; +2.60%) as tanker-war and exclusion-zone risk keep supply disruption elevated. Working range $75-85 base (signed workable deal); $85-105 stress (conditional routing); $105-135+ tail (renewed closure or exclusion zone).
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $24.89/MMBtu (Trading Economics, Sep 11), up 0.28%. QatarEnergy force majeure remains reported into early November after a further five-cargo notice; 21 of 29 affected cargoes were reported replaced as of Aug 28.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 79.52 EUR/MWh (Sep 11, Yahoo Finance TTF=F; -3.08%) as renewed Middle East supply and routing risk keep the marker elevated. No verified commercial Hormuz reopening is approved.
-- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 40%, tail 50% after the direct US-Iran tanker war and threatened Hormuz exclusion zone remain unresolved.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $108.14 (Sep 16, Yahoo Finance BZ=F; -0.56%) as tanker-war and exclusion-zone risk keep supply disruption elevated. Working range $75-85 base (signed workable deal); $85-105 stress (conditional routing); $105-135+ tail (renewed closure or exclusion zone).
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $25.06/MMBtu (Trading Economics, Sep 14), up 0.70%. QatarEnergy force majeure remains reported into early November after a further five-cargo notice; 21 of 29 affected cargoes were reported replaced as of Aug 28.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 79.45 EUR/MWh (Sep 15, Yahoo Finance TTF=F; -0.76%) as renewed Middle East supply and routing risk keep the marker elevated. No verified commercial Hormuz reopening is approved.
+- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 40%, tail 50% as the direct US-Iran tanker war and threatened Hormuz exclusion zone remain unresolved.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
