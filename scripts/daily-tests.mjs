@@ -363,6 +363,7 @@ const fixtureMarketInputs = {
   "e-wti": "oil-wti",
   "e-eurusd": "fx-eurusd",
   "e-sofr": "usd-sofr",
+  "e-vlcc-freight": "oil-vlcc-freight",
 };
 for (const [evidenceId, inputId] of Object.entries(fixtureMarketInputs)) {
   const input = energyFixtureState.commercialInputs[inputId];

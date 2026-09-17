@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 16: Brent $108.14 as live quotes soften while Hormuz disruption remains elevated; tail 50%";
+const TOP_ALERT = "SEP 17: JKM CFD $27.23 (+8.0%) as Iran-Gulf talks stay shelved; tail 50%";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

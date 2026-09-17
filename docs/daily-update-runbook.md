@@ -12,13 +12,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-09-16 (D196) |
-| **Crisis level** | 4 - High (Sep 16: the latest approved direct security evidence remains Al Jazeera's Sep 6 account of the US-Iran tanker war, while depressed traffic and an unsigned Oman framework leave reopening unverified. Reviewed liquid markers are Brent at $108.14 (-0.56%) and WTI at $104.80 (-0.97%) on Sep 16; JKM CFD is $25.06 (+0.70%) on Sep 14 and TTF is 79.45 EUR/MWh on Sep 15. QatarEnergy force majeure remains reported into early November. Crisis level remains 4 (High); probabilities remain base 10%, stress 40%, tail 50%.) |
-| **Brent** | $108.14 (2026-09-16, Yahoo Finance BZ=F; -0.56%) |
-| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $25.06/MMBtu, Trading Economics, Sep 14; QatarEnergy force majeure reported through early November) |
-| **TTF** | 79.45 EUR/MWh (2026-09-15, Yahoo Finance TTF=F; -0.8%) |
-| **Exposure trace** | The latest approved security evidence remains Al Jazeera's Sep 6 report of a direct US-Iran tanker war and Iran's Sep 7 threatened Hormuz exclusion zone, with Kpler traffic still depressed and no signed commercial reopening. QatarEnergy force majeure remains reported into early November; route-normalised freight and war-risk costs remain unavailable. |
-| **Evidence audit** | 17 checked · 11 verified · 6 carried · 0 unsupported · PASS |
+| **Last updated** | 2026-09-17 (D197) |
+| **Crisis level** | 4 - High (Sep 17: the latest approved direct security evidence remains Al Jazeera's Sep 6 account of the US-Iran tanker war; The National reported on Sep 14 that Iran-Gulf talks were shelved because conditions were not right, leaving reopening unverified. Reviewed Brent is $105.12 (-0.67%) and WTI is $101.55 (-0.86%) on Sep 17; JKM CFD is $27.23 (+8.00%) on Sep 16 and TTF is 77.58 EUR/MWh (-0.58%) on Sep 16. QatarEnergy force majeure remains reported into November, and Reuters says it is seeking replacement US LNG. Crisis level remains 4 (High); probabilities remain base 10%, stress 40%, tail 50%.) |
+| **Brent** | $105.12 (2026-09-17, Yahoo Finance BZ=F; -0.67%) |
+| **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $27.23/MMBtu, Trading Economics, Sep 16; QatarEnergy force majeure reported through November) |
+| **TTF** | 77.58 EUR/MWh (2026-09-16, Yahoo Finance TTF=F; -0.6%) |
+| **Exposure trace** | The latest approved security evidence remains Al Jazeera's Sep 6 report of a direct US-Iran tanker war; The National reported Sep 14 that Iran-Gulf talks were shelved and weekend traffic was four vessels out and 10 in against a 14-vessel 10-day average. QatarEnergy force majeure remains reported through November and Reuters says it is seeking replacement US LNG; route-normalised war-risk costs remain unavailable. |
+| **Evidence audit** | 19 checked · 12 verified · 7 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
 ---
@@ -544,10 +544,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $108.14 (Sep 16, Yahoo Finance BZ=F; -0.56%) as tanker-war and exclusion-zone risk keep supply disruption elevated. Working range $75-85 base (signed workable deal); $85-105 stress (conditional routing); $105-135+ tail (renewed closure or exclusion zone).
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $25.06/MMBtu (Trading Economics, Sep 14), up 0.70%. QatarEnergy force majeure remains reported into early November after a further five-cargo notice; 21 of 29 affected cargoes were reported replaced as of Aug 28.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 79.45 EUR/MWh (Sep 15, Yahoo Finance TTF=F; -0.76%) as renewed Middle East supply and routing risk keep the marker elevated. No verified commercial Hormuz reopening is approved.
-- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 40%, tail 50% as the direct US-Iran tanker war and threatened Hormuz exclusion zone remain unresolved.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $105.12 (Sep 17, Yahoo Finance BZ=F; -0.67%) as tanker-war risk and shelved Iran-Gulf talks keep supply disruption elevated. Working range $75-85 base (signed workable deal); $85-105 stress (conditional routing); $105-135+ tail (renewed closure or exclusion zone).
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $27.23/MMBtu (Trading Economics, Sep 16), up 8.00%. Reuters reports QatarEnergy is seeking 2-3 MTPA of US LNG through 2031 while force majeure remains through November.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 77.58 EUR/MWh (Sep 16, Yahoo Finance TTF=F; -0.58%) as renewed Middle East supply and routing risk keep the marker elevated. No verified commercial Hormuz reopening is approved.
+- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 40%, tail 50% as the direct US-Iran tanker war continues and Iran-Gulf talks remain shelved.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
