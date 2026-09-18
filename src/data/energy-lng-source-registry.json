@@ -10,9 +10,20 @@
       "automation": "automated",
       "cadence": "event-driven",
       "maxAgeDays": 730,
-      "allowedUnits": ["MTPA", "million b/d", "%", "billion cubic feet"],
-      "entityIds": ["qatarenergy", "ras-laffan", "hormuz"],
-      "targetInputIds": ["qatar-volume-at-risk"],
+      "allowedUnits": [
+        "MTPA",
+        "million b/d",
+        "%",
+        "billion cubic feet"
+      ],
+      "entityIds": [
+        "qatarenergy",
+        "ras-laffan",
+        "hormuz"
+      ],
+      "targetInputIds": [
+        "qatar-volume-at-risk"
+      ],
       "targetCommercialInputIds": [],
       "evidenceIds": [],
       "fallback": "unavailable",
@@ -29,8 +40,13 @@
         "qatar-volume-at-risk": {
           "cadence": "daily",
           "maxAgeDays": 1,
-          "allowedUnits": ["MTPA"],
-          "entityIds": ["qatarenergy", "ras-laffan"]
+          "allowedUnits": [
+            "MTPA"
+          ],
+          "entityIds": [
+            "qatarenergy",
+            "ras-laffan"
+          ]
         }
       },
       "note": "The connector requires EIA_API_KEY or EIA_DATA_URL plus EIA_SERIES_ID. It never converts an oil-flow baseline into a Qatar LNG volume."
@@ -44,11 +60,22 @@
       "automation": "automated",
       "cadence": "daily",
       "maxAgeDays": 7,
-      "allowedUnits": ["LNG transits", "vessels/day", "%", "index"],
-      "entityIds": ["hormuz"],
-      "targetInputIds": ["hormuz-transits"],
+      "allowedUnits": [
+        "LNG transits",
+        "vessels/day",
+        "%",
+        "index"
+      ],
+      "entityIds": [
+        "hormuz"
+      ],
+      "targetInputIds": [
+        "hormuz-transits"
+      ],
       "targetCommercialInputIds": [],
-      "evidenceIds": ["e-hormuz-transit"],
+      "evidenceIds": [
+        "e-hormuz-transit"
+      ],
       "fallback": "carry",
       "parserVersion": "portwatch-route-v1",
       "enabled": true,
@@ -64,8 +91,15 @@
         "hormuz-transits": {
           "cadence": "daily",
           "maxAgeDays": 7,
-          "allowedUnits": ["LNG transits", "vessels/day", "%", "index"],
-          "entityIds": ["hormuz"],
+          "allowedUnits": [
+            "LNG transits",
+            "vessels/day",
+            "%",
+            "index"
+          ],
+          "entityIds": [
+            "hormuz"
+          ],
           "observationKind": "transit"
         }
       },
@@ -81,11 +115,21 @@
       "automation": "automated",
       "cadence": "daily",
       "maxAgeDays": 3,
-      "allowedUnits": ["EUR/MWh"],
-      "entityIds": ["ttf"],
-      "targetInputIds": ["ttf"],
-      "targetCommercialInputIds": ["lng-ttf"],
-      "evidenceIds": ["e-ttf"],
+      "allowedUnits": [
+        "EUR/MWh"
+      ],
+      "entityIds": [
+        "ttf"
+      ],
+      "targetInputIds": [
+        "ttf"
+      ],
+      "targetCommercialInputIds": [
+        "lng-ttf"
+      ],
+      "evidenceIds": [
+        "e-ttf"
+      ],
       "fallback": "carry",
       "parserVersion": "yahoo-chart-v1",
       "enabled": true,
@@ -99,14 +143,22 @@
         "ttf": {
           "cadence": "daily",
           "maxAgeDays": 3,
-          "allowedUnits": ["EUR/MWh"],
-          "entityIds": ["ttf"]
+          "allowedUnits": [
+            "EUR/MWh"
+          ],
+          "entityIds": [
+            "ttf"
+          ]
         },
         "lng-ttf": {
           "cadence": "daily",
           "maxAgeDays": 3,
-          "allowedUnits": ["EUR/MWh"],
-          "entityIds": ["ttf"]
+          "allowedUnits": [
+            "EUR/MWh"
+          ],
+          "entityIds": [
+            "ttf"
+          ]
         }
       },
       "note": "TTF is market context only. It does not establish cargo availability, freight, insurance or executable substitution."
@@ -120,11 +172,21 @@
       "automation": "manual-only",
       "cadence": "event-driven",
       "maxAgeDays": 14,
-      "allowedUnits": [""],
-      "entityIds": ["qatarenergy", "ras-laffan"],
-      "targetInputIds": ["qatar-output-status"],
+      "allowedUnits": [
+        ""
+      ],
+      "entityIds": [
+        "qatarenergy",
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "qatar-output-status"
+      ],
       "targetCommercialInputIds": [],
-      "evidenceIds": ["e-qatar-force-majeure", "e-qatar-force-majeure-latest"],
+      "evidenceIds": [
+        "e-qatar-force-majeure",
+        "e-qatar-force-majeure-latest"
+      ],
       "fallback": "preserve-reviewed",
       "parserVersion": "manual-reviewed-v1",
       "enabled": true,
@@ -137,8 +199,13 @@
         "qatar-output-status": {
           "cadence": "event-driven",
           "maxAgeDays": 14,
-          "allowedUnits": [""],
-          "entityIds": ["qatarenergy", "ras-laffan"]
+          "allowedUnits": [
+            ""
+          ],
+          "entityIds": [
+            "qatarenergy",
+            "ras-laffan"
+          ]
         }
       },
       "note": "Automation may carry this reviewed claim but cannot fetch, reinterpret, or replace the approved event evidence."
@@ -152,9 +219,17 @@
       "automation": "automated",
       "cadence": "annual",
       "maxAgeDays": 730,
-      "allowedUnits": ["MTPA", "billion cubic feet"],
-      "entityIds": ["qatarenergy", "ras-laffan"],
-      "targetInputIds": ["qatar-production-baseline"],
+      "allowedUnits": [
+        "MTPA",
+        "billion cubic feet"
+      ],
+      "entityIds": [
+        "qatarenergy",
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "qatar-production-baseline"
+      ],
       "targetCommercialInputIds": [],
       "evidenceIds": [],
       "fallback": "unavailable",
@@ -162,7 +237,7 @@
       "enabled": true,
       "observationKind": "flow",
       "selection": {
-      "type": "eia-series",
+        "type": "eia-series",
         "seriesId": "QATAR_LNG_PRODUCTION",
         "seriesIdEnv": "EIA_QATAR_PRODUCTION_SERIES_ID",
         "entityId": "qatarenergy",
@@ -172,8 +247,14 @@
         "qatar-production-baseline": {
           "cadence": "annual",
           "maxAgeDays": 730,
-          "allowedUnits": ["MTPA", "billion cubic feet"],
-          "entityIds": ["qatarenergy", "ras-laffan"],
+          "allowedUnits": [
+            "MTPA",
+            "billion cubic feet"
+          ],
+          "entityIds": [
+            "qatarenergy",
+            "ras-laffan"
+          ],
           "observationKind": "flow",
           "coverageStatus": "direct-observation"
         }
@@ -189,9 +270,17 @@
       "automation": "automated",
       "cadence": "annual",
       "maxAgeDays": 730,
-      "allowedUnits": ["MTPA", "billion cubic feet"],
-      "entityIds": ["qatarenergy", "ras-laffan"],
-      "targetInputIds": ["qatar-export-baseline"],
+      "allowedUnits": [
+        "MTPA",
+        "billion cubic feet"
+      ],
+      "entityIds": [
+        "qatarenergy",
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "qatar-export-baseline"
+      ],
       "targetCommercialInputIds": [],
       "evidenceIds": [],
       "fallback": "unavailable",
@@ -199,7 +288,7 @@
       "enabled": true,
       "observationKind": "flow",
       "selection": {
-      "type": "eia-series",
+        "type": "eia-series",
         "seriesId": "QATAR_LNG_EXPORTS",
         "seriesIdEnv": "EIA_QATAR_EXPORT_SERIES_ID",
         "entityId": "qatarenergy",
@@ -209,8 +298,14 @@
         "qatar-export-baseline": {
           "cadence": "annual",
           "maxAgeDays": 730,
-          "allowedUnits": ["MTPA", "billion cubic feet"],
-          "entityIds": ["qatarenergy", "ras-laffan"],
+          "allowedUnits": [
+            "MTPA",
+            "billion cubic feet"
+          ],
+          "entityIds": [
+            "qatarenergy",
+            "ras-laffan"
+          ],
           "observationKind": "flow",
           "coverageStatus": "direct-observation"
         }
@@ -226,9 +321,15 @@
       "automation": "automated",
       "cadence": "annual",
       "maxAgeDays": 730,
-      "allowedUnits": ["MTPA"],
-      "entityIds": ["ras-laffan"],
-      "targetInputIds": ["ras-laffan-capacity"],
+      "allowedUnits": [
+        "MTPA"
+      ],
+      "entityIds": [
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "ras-laffan-capacity"
+      ],
       "targetCommercialInputIds": [],
       "evidenceIds": [],
       "fallback": "unavailable",
@@ -247,8 +348,12 @@
         "ras-laffan-capacity": {
           "cadence": "annual",
           "maxAgeDays": 730,
-          "allowedUnits": ["MTPA"],
-          "entityIds": ["ras-laffan"],
+          "allowedUnits": [
+            "MTPA"
+          ],
+          "entityIds": [
+            "ras-laffan"
+          ],
           "observationKind": "capacity",
           "coverageStatus": "direct-observation"
         }
@@ -264,9 +369,15 @@
       "automation": "automated",
       "cadence": "annual",
       "maxAgeDays": 730,
-      "allowedUnits": [""],
-      "entityIds": ["ras-laffan"],
-      "targetInputIds": ["ras-laffan-asset-status"],
+      "allowedUnits": [
+        ""
+      ],
+      "entityIds": [
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "ras-laffan-asset-status"
+      ],
       "targetCommercialInputIds": [],
       "evidenceIds": [],
       "fallback": "unavailable",
@@ -285,8 +396,12 @@
         "ras-laffan-asset-status": {
           "cadence": "annual",
           "maxAgeDays": 730,
-          "allowedUnits": [""],
-          "entityIds": ["ras-laffan"],
+          "allowedUnits": [
+            ""
+          ],
+          "entityIds": [
+            "ras-laffan"
+          ],
           "observationKind": "asset-status",
           "coverageStatus": "direct-observation"
         }
@@ -302,9 +417,15 @@
       "automation": "automated",
       "cadence": "annual",
       "maxAgeDays": 730,
-      "allowedUnits": [""],
-      "entityIds": ["ras-laffan-port"],
-      "targetInputIds": ["ras-laffan-port-identity"],
+      "allowedUnits": [
+        ""
+      ],
+      "entityIds": [
+        "ras-laffan-port"
+      ],
+      "targetInputIds": [
+        "ras-laffan-port-identity"
+      ],
       "targetCommercialInputIds": [],
       "evidenceIds": [],
       "fallback": "unavailable",
@@ -323,8 +444,12 @@
         "ras-laffan-port-identity": {
           "cadence": "annual",
           "maxAgeDays": 730,
-          "allowedUnits": [""],
-          "entityIds": ["ras-laffan-port"],
+          "allowedUnits": [
+            ""
+          ],
+          "entityIds": [
+            "ras-laffan-port"
+          ],
           "observationKind": "asset-status",
           "coverageStatus": "direct-observation"
         }
@@ -340,9 +465,17 @@
       "automation": "automated",
       "cadence": "daily",
       "maxAgeDays": 14,
-      "allowedUnits": ["%", "index", "vessels/day"],
-      "entityIds": ["hormuz"],
-      "targetInputIds": ["hormuz-route-pressure"],
+      "allowedUnits": [
+        "%",
+        "index",
+        "vessels/day"
+      ],
+      "entityIds": [
+        "hormuz"
+      ],
+      "targetInputIds": [
+        "hormuz-route-pressure"
+      ],
       "targetCommercialInputIds": [],
       "evidenceIds": [],
       "fallback": "unavailable",
@@ -361,8 +494,14 @@
         "hormuz-route-pressure": {
           "cadence": "daily",
           "maxAgeDays": 14,
-          "allowedUnits": ["%", "index", "vessels/day"],
-          "entityIds": ["hormuz"],
+          "allowedUnits": [
+            "%",
+            "index",
+            "vessels/day"
+          ],
+          "entityIds": [
+            "hormuz"
+          ],
           "observationKind": "transit",
           "coverageStatus": "direct-observation"
         }
@@ -378,9 +517,17 @@
       "automation": "automated",
       "cadence": "monthly",
       "maxAgeDays": 90,
-      "allowedUnits": ["USD", "kg", "1000 USD"],
-      "entityIds": ["japan-lng-demand"],
-      "targetInputIds": ["japan-lng-demand"],
+      "allowedUnits": [
+        "USD",
+        "kg",
+        "1000 USD"
+      ],
+      "entityIds": [
+        "japan-lng-demand"
+      ],
+      "targetInputIds": [
+        "japan-lng-demand"
+      ],
       "targetCommercialInputIds": [],
       "evidenceIds": [],
       "fallback": "unavailable",
@@ -402,8 +549,14 @@
         "japan-lng-demand": {
           "cadence": "monthly",
           "maxAgeDays": 90,
-          "allowedUnits": ["USD", "kg", "1000 USD"],
-          "entityIds": ["japan-lng-demand"],
+          "allowedUnits": [
+            "USD",
+            "kg",
+            "1000 USD"
+          ],
+          "entityIds": [
+            "japan-lng-demand"
+          ],
           "observationKind": "trade-demand",
           "coverageStatus": "public-proxy"
         }
@@ -418,10 +571,18 @@
       "category": "trade-demand",
       "automation": "automated",
       "cadence": "monthly",
-      "maxAgeDays": 260,
-      "allowedUnits": ["USD", "kg", "1000 USD"],
-      "entityIds": ["korea-lng-demand"],
-      "targetInputIds": ["korea-lng-demand"],
+      "maxAgeDays": 300,
+      "allowedUnits": [
+        "USD",
+        "kg",
+        "1000 USD"
+      ],
+      "entityIds": [
+        "korea-lng-demand"
+      ],
+      "targetInputIds": [
+        "korea-lng-demand"
+      ],
       "targetCommercialInputIds": [],
       "evidenceIds": [],
       "fallback": "unavailable",
@@ -442,14 +603,20 @@
       "targetPolicies": {
         "korea-lng-demand": {
           "cadence": "monthly",
-          "maxAgeDays": 260,
-          "allowedUnits": ["USD", "kg", "1000 USD"],
-          "entityIds": ["korea-lng-demand"],
+          "maxAgeDays": 300,
+          "allowedUnits": [
+            "USD",
+            "kg",
+            "1000 USD"
+          ],
+          "entityIds": [
+            "korea-lng-demand"
+          ],
           "observationKind": "trade-demand",
           "coverageStatus": "public-proxy"
         }
       },
-      "note": "Monthly customs trade context is explicitly labeled as demand context, never as live cargo movement. Korea's Comtrade monthly series publishes with roughly an eight-month lag; the freshness window matches that reality (newest verified month: 2025-12 as of 2026-08)."
+      "note": "Monthly customs trade context is explicitly labeled as demand context, never as live cargo movement. Korea's Comtrade monthly series publishes with a longer lag than initially assumed; recalibrated to a 300-day (~10-month) freshness window on 2026-09-18 after the newest verified month (2025-12) remained the latest available release past the prior 260-day window, with no newer month published upstream."
     }
   ]
 }

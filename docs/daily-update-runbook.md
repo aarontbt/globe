@@ -12,13 +12,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-09-17 (D197) |
-| **Crisis level** | 4 - High (Sep 17: the latest approved direct security evidence remains Al Jazeera's Sep 6 account of the US-Iran tanker war; The National reported on Sep 14 that Iran-Gulf talks were shelved because conditions were not right, leaving reopening unverified. Reviewed Brent is $105.12 (-0.67%) and WTI is $101.55 (-0.86%) on Sep 17; JKM CFD is $27.23 (+8.00%) on Sep 16 and TTF is 77.58 EUR/MWh (-0.58%) on Sep 16. QatarEnergy force majeure remains reported into November, and Reuters says it is seeking replacement US LNG. Crisis level remains 4 (High); probabilities remain base 10%, stress 40%, tail 50%.) |
-| **Brent** | $105.12 (2026-09-17, Yahoo Finance BZ=F; -0.67%) |
+| **Last updated** | 2026-09-18 (D198) |
+| **Crisis level** | 4 - High (Sep 18: Reuters reported Sep 16 that Saudi Aramco is offering more crude via ship-to-ship transfer off Oman's Sohar port after a Sep 11 drone strike shut its East-West pipeline to Yanbu, doubling loadings at Ras Tanura/Juaymah; Reuters separately reported Sep 17 that Hormuz tanker crossings remain in single digits (LSEG data) amid a record VLCC ordering wave. The latest approved direct security evidence remains Al Jazeera's Sep 6 account of the US-Iran tanker war; Iran-Gulf talks remain shelved per The National's Sep 14 report. Reviewed Brent is $103.84 (-0.93%) and WTI is $100.88 (-1.01%) on Sep 18; JKM CFD is unchanged at $27.23 (Trading Economics, Sep 16) and TTF is 77.02 EUR/MWh (+0.87%) on Sep 17. QatarEnergy force majeure remains reported into November. Crisis level remains 4 (High); probabilities remain base 10%, stress 40%, tail 50%.) |
+| **Brent** | $103.84 (2026-09-18, Yahoo Finance BZ=F; -0.93%) |
 | **JKM** | $22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $27.23/MMBtu, Trading Economics, Sep 16; QatarEnergy force majeure reported through November) |
-| **TTF** | 77.58 EUR/MWh (2026-09-16, Yahoo Finance TTF=F; -0.6%) |
-| **Exposure trace** | The latest approved security evidence remains Al Jazeera's Sep 6 report of a direct US-Iran tanker war; The National reported Sep 14 that Iran-Gulf talks were shelved and weekend traffic was four vessels out and 10 in against a 14-vessel 10-day average. QatarEnergy force majeure remains reported through November and Reuters says it is seeking replacement US LNG; route-normalised war-risk costs remain unavailable. |
-| **Evidence audit** | 19 checked · 12 verified · 7 carried · 0 unsupported · PASS |
+| **TTF** | 77.02 EUR/MWh (2026-09-17, Yahoo Finance TTF=F; +0.9%) |
+| **Exposure trace** | Reuters reported Sep 16 that Saudi Aramco is rerouting crude via ship-to-ship transfer off Oman's Sohar port after a Sep 11 drone strike shut its East-West pipeline to Yanbu, and Sep 17 that Hormuz tanker crossings remain in single digits (LSEG data) amid a record VLCC ordering wave. The latest approved direct security evidence remains Al Jazeera's Sep 6 report of the US-Iran tanker war; The National reported Sep 14 that Iran-Gulf talks were shelved. QatarEnergy force majeure remains reported through November and Reuters says it is seeking replacement US LNG; route-normalised war-risk costs remain unavailable. |
+| **Evidence audit** | 21 checked · 14 verified · 7 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
 ---
@@ -544,10 +544,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $105.12 (Sep 17, Yahoo Finance BZ=F; -0.67%) as tanker-war risk and shelved Iran-Gulf talks keep supply disruption elevated. Working range $75-85 base (signed workable deal); $85-105 stress (conditional routing); $105-135+ tail (renewed closure or exclusion zone).
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $27.23/MMBtu (Trading Economics, Sep 16), up 8.00%. Reuters reports QatarEnergy is seeking 2-3 MTPA of US LNG through 2031 while force majeure remains through November.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 77.58 EUR/MWh (Sep 16, Yahoo Finance TTF=F; -0.58%) as renewed Middle East supply and routing risk keep the marker elevated. No verified commercial Hormuz reopening is approved.
-- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 40%, tail 50% as the direct US-Iran tanker war continues and Iran-Gulf talks remain shelved.
+- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $103.84 (Sep 18, Yahoo Finance BZ=F; -0.93%) as Saudi's pipeline-driven Hormuz reroute and single-digit tanker crossings keep supply disruption elevated. Working range $75-85 base (signed workable deal); $85-105 stress (conditional routing); $105-135+ tail (renewed closure or exclusion zone).
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> $22.00/MMBtu (Jul 24, Reuters September-delivery assessment) as sustained Hormuz disruption tightened Asian LNG balances; carried at $22.00 pending a newer weekly assessment. Contextual CFD reference $27.23/MMBtu (Trading Economics, Sep 16, rechecked Sep 18), up 8.00%. Reuters reports QatarEnergy is seeking 2-3 MTPA of US LNG through 2031 while force majeure remains through November.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 77.02 EUR/MWh (Sep 17, Yahoo Finance TTF=F; +0.87%) as Saudi's pipeline outage and continued Hormuz routing risk keep the marker elevated. No verified commercial Hormuz reopening is approved.
+- **Credit**: iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split is base 10%, stress 40%, tail 50% as the direct US-Iran tanker war continues and Saudi's pipeline outage forces a further Hormuz reroute.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 

@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 17: JKM CFD $27.23 (+8.0%) as Iran-Gulf talks stay shelved; tail 50%";
+const TOP_ALERT = "SEP 18: Saudi reroutes crude via Sohar after pipeline strike; Hormuz crossings stay single-digit";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
