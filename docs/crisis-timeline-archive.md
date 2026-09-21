@@ -157,3 +157,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D196**: Sep 16 - Brent is $108.14 and JKM CFD is $25.06 as tanker-war and exclusion-zone risk persist; QatarEnergy force majeure remains reported into early November.
 - **D197**: Sep 17 - JKM CFD reaches $27.23 (+8.0%) as Iran-Gulf talks remain shelved; QatarEnergy pursues US LNG to replace damaged capacity.
 - **D198**: Sep 18 - Saudi reroutes crude via Sohar after pipeline drone strike; Hormuz crossings remain in single digits amid record VLCC orders.
+- **D201**: Sep 21 - Saudi exports recover above 4m bpd, but Houthi attacks and the US-Iran stalemate keep Hormuz risk elevated.

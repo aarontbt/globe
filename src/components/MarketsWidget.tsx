@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 18: Saudi reroutes crude via Sohar after pipeline strike; Hormuz crossings stay single-digit";
+const TOP_ALERT = "SEP 21: Saudi exports recover; Houthi attacks keep Hormuz risk elevated";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
