@@ -188,6 +188,31 @@ Notable proxied paths:
 - `/api/gdelt`
 - `/api/reddit`
 
+### Optional TypeSafe semantic layer
+
+The TypeSafe layer is advisory and fail-closed. The globe keeps its existing
+keyword filtering, deterministic evidence gate, Flow Pressure calculation and
+alternative ranking when TypeSafe is not enabled or unavailable.
+
+To enable it in a server environment, export `TYPESAFE_API_KEY`. Set
+`TYPESAFE_ENABLED=false` to disable it explicitly. The browser only calls the
+same-origin `/api/typesafe` boundary; the API key is never exposed to the
+client. Vite development automatically enables the local proxy when the key is
+exported. Set `VITE_TYPESAFE_ENABLED=false` to override that behavior.
+
+When enabled, live social events receive optional semantic triage labels and a
+triage sort option. The review utility checks audited evidence claims and
+alternative feasibility without mutating the source data:
+
+```bash
+bun run typesafe:review -- --dry-run
+bun run typesafe:review
+bun run typesafe:review -- --out tmp/typesafe-review.json
+```
+
+If the key or capability is absent, the command reports `skipped` and exits
+successfully; the existing deterministic workflow remains authoritative.
+
 ## Key Implementation Notes
 
 - `_GlobeView` is used directly from `@deck.gl/core` and instantiated once for the scene

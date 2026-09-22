@@ -244,8 +244,8 @@
       "title": "Yahoo Finance chart API - Dutch TTF",
       "publisher": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
-      "publishedAt": "2026-09-18",
-      "lastChecked": "2026-09-21",
+      "publishedAt": "2026-09-21",
+      "lastChecked": "2026-09-22",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
@@ -344,8 +344,8 @@
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
       "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
-      "publishedAt": "2026-09-17",
-      "lastChecked": "2026-09-21",
+      "publishedAt": "2026-09-18",
+      "lastChecked": "2026-09-22",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 7,
@@ -459,17 +459,17 @@
   ],
   "machineEvidence": [
     {
-      "id": "machine-evidence:energy-snapshot:src-yahoo-ttf:505378f35a515a0d",
+      "id": "machine-evidence:energy-snapshot:src-yahoo-ttf:91b1b2860928f8e3",
       "sourceId": "src-yahoo-ttf",
       "provider": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
-      "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:505378f35a515a0d",
-      "retrievedAt": "2026-09-21T02:37:26.092Z",
-      "observedAt": "2026-09-18T14:22:43.000Z",
-      "contentHash": "505378f35a515a0d73f3057fb77a06f08a265e5470754641d6fbf483a464bb5a",
+      "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:91b1b2860928f8e3",
+      "retrievedAt": "2026-09-22T00:33:03.906Z",
+      "observedAt": "2026-09-21T15:50:45.000Z",
+      "contentHash": "91b1b2860928f8e3409f5bf27b7300fd35d58104e0d58dd02ee83d66d78bef87",
       "parserVersion": "yahoo-chart-v1",
       "recordKeys": [
-        "c0f165e222d606a6225d2b8678132257a1ed959f197f11fcf934d2ad11f49d68"
+        "8e995f65361829f1ffcc3543dd1f422e033caca82bf8ce85cc34c9cb8033a8a4"
       ],
       "targetInputIds": [
         "ttf"
@@ -481,13 +481,13 @@
       "coverage": {
         "status": "direct-observation",
         "sourcePeriod": {
-          "start": "2026-09-18",
-          "end": "2026-09-18"
+          "start": "2026-09-21",
+          "end": "2026-09-21"
         },
         "expectedCadence": "daily",
         "observedPeriod": {
-          "start": "2026-09-18",
-          "end": "2026-09-18"
+          "start": "2026-09-21",
+          "end": "2026-09-21"
         },
         "missingPeriods": [],
         "sourceStatus": "fetched"
@@ -495,14 +495,14 @@
       "status": "validated"
     },
     {
-      "id": "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:88612c342297bb37",
+      "id": "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:22e5d9059b00a6e1",
       "sourceId": "src-comtrade-japan-lng-demand",
       "provider": "UN Comtrade",
       "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?subscription_key=%REDACTED%&typeCode=C&freqCode=M&clCode=HS&reporterCode=392&cmdCode=271111&flowCode=M&partnerCode=0&includeDesc=true",
-      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:88612c342297bb37",
-      "retrievedAt": "2026-09-21T02:37:26.092Z",
+      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:22e5d9059b00a6e1",
+      "retrievedAt": "2026-09-22T00:33:03.906Z",
       "observedAt": null,
-      "contentHash": "88612c342297bb37d5591f7ed93e916d023aea4a35c2078157455c26f9e32e33",
+      "contentHash": "22e5d9059b00a6e105c81008e114348820dbadaa281ce5fbf44a6c619d40c8b6",
       "parserVersion": "comtrade-trade-v1",
       "recordKeys": [
         "bedd8a86c32a90a545882b919b634c2e81d0a509b8680c24c0fe7b197cc5b24e"
@@ -530,14 +530,14 @@
       "status": "validated"
     },
     {
-      "id": "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:7acbc6ddddc32474",
+      "id": "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:faebd4310097cc51",
       "sourceId": "src-comtrade-korea-lng-demand",
       "provider": "UN Comtrade",
       "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?subscription_key=%REDACTED%&typeCode=C&freqCode=M&clCode=HS&period=202512&reporterCode=410&cmdCode=271111&flowCode=M&partnerCode=0&includeDesc=true",
-      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:7acbc6ddddc32474",
-      "retrievedAt": "2026-09-21T02:37:26.092Z",
+      "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:faebd4310097cc51",
+      "retrievedAt": "2026-09-22T00:33:03.906Z",
       "observedAt": null,
-      "contentHash": "7acbc6ddddc324740e39c8f835b2fbed68e254eb40779e70fa9bbd9678582168",
+      "contentHash": "faebd4310097cc5119755de3fd7bdd25107b06e3cd9d559553d96cb1550dd437",
       "parserVersion": "comtrade-trade-v1",
       "recordKeys": [
         "7fac8a62f6fd7ea53da2f39857ccf1708f3252a4bf5d9297af62da91cd0d3e8f"
@@ -602,22 +602,22 @@
     {
       "inputId": "lng-ttf",
       "label": "Dutch TTF",
-      "value": 79.52,
+      "value": 73.9,
       "unit": "EUR/MWh",
       "status": "confirmed",
       "source": "Yahoo Finance TTF=F",
-      "sourceDate": "2026-09-18",
-      "observedAt": "2026-09-18T14:22:43.000Z",
+      "sourceDate": "2026-09-21",
+      "observedAt": "2026-09-21T15:50:45.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "machineEvidenceIds": [
-        "machine-evidence:energy-snapshot:src-yahoo-ttf:505378f35a515a0d"
+        "machine-evidence:energy-snapshot:src-yahoo-ttf:91b1b2860928f8e3"
       ],
       "observationKind": "flow",
-      "periodStart": "2026-09-18",
-      "periodEnd": "2026-09-18",
+      "periodStart": "2026-09-21",
+      "periodEnd": "2026-09-21",
       "coverageStatus": "direct-observation",
-      "sourceAgeDays": 3,
+      "sourceAgeDays": 0,
       "commodity": "lng",
       "role": "destination-value",
       "evidenceIds": [
@@ -772,8 +772,8 @@
       "unit": "%",
       "status": "confirmed",
       "source": "Federal Reserve Bank of New York",
-      "sourceDate": "2026-09-17",
-      "observedAt": "2026-09-17T00:00:00Z",
+      "sourceDate": "2026-09-18",
+      "observedAt": "2026-09-18T00:00:00Z",
       "maxAgeDays": 7,
       "cadence": "daily",
       "commodity": "crude-oil",
@@ -1035,7 +1035,7 @@
               "maxAgeDays": 90,
               "cadence": "monthly",
               "machineEvidenceIds": [
-                "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:88612c342297bb37"
+                "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:22e5d9059b00a6e1"
               ],
               "observationKind": "trade-demand",
               "periodStart": "2026-07-01",
@@ -1056,7 +1056,7 @@
               "maxAgeDays": 300,
               "cadence": "monthly",
               "machineEvidenceIds": [
-                "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:7acbc6ddddc32474"
+                "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:faebd4310097cc51"
               ],
               "observationKind": "trade-demand",
               "periodStart": "2025-12-01",
@@ -1274,7 +1274,7 @@
         "score": 63,
         "status": "provisional",
         "confidence": "unknown",
-        "calculatedAt": "2026-09-21T02:37:26.092Z",
+        "calculatedAt": "2026-09-22T00:33:03.906Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -1691,7 +1691,7 @@
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
-              "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:88612c342297bb37"
+              "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:22e5d9059b00a6e1"
             ]
           },
           {
@@ -1943,7 +1943,7 @@
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
-              "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:7acbc6ddddc32474"
+              "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:faebd4310097cc51"
             ]
           },
           {
@@ -2046,13 +2046,13 @@
           {
             "sourceId": "src-yahoo-ttf",
             "sourcePeriod": {
-              "start": "2026-09-18",
-              "end": "2026-09-18"
+              "start": "2026-09-21",
+              "end": "2026-09-21"
             },
             "expectedCadence": "daily",
             "observedPeriod": {
-              "start": "2026-09-18",
-              "end": "2026-09-18"
+              "start": "2026-09-21",
+              "end": "2026-09-21"
             },
             "missingPeriods": [],
             "status": "direct-observation",
@@ -2321,22 +2321,22 @@
             {
               "inputId": "ttf",
               "label": "Dutch TTF",
-              "value": 79.52,
+              "value": 73.9,
               "unit": "EUR/MWh",
               "status": "confirmed",
               "source": "Yahoo Finance TTF=F",
-              "sourceDate": "2026-09-18",
-              "observedAt": "2026-09-18T14:22:43.000Z",
+              "sourceDate": "2026-09-21",
+              "observedAt": "2026-09-21T15:50:45.000Z",
               "maxAgeDays": 3,
               "cadence": "daily",
               "machineEvidenceIds": [
-                "machine-evidence:energy-snapshot:src-yahoo-ttf:505378f35a515a0d"
+                "machine-evidence:energy-snapshot:src-yahoo-ttf:91b1b2860928f8e3"
               ],
               "observationKind": "flow",
-              "periodStart": "2026-09-18",
-              "periodEnd": "2026-09-18",
+              "periodStart": "2026-09-21",
+              "periodEnd": "2026-09-21",
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 3
+              "sourceAgeDays": 0
             }
           ],
           "evidenceIds": [
@@ -2548,7 +2548,7 @@
         "score": 64,
         "status": "provisional",
         "confidence": "low",
-        "calculatedAt": "2026-09-21T02:37:26.092Z",
+        "calculatedAt": "2026-09-22T00:33:03.906Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -3478,8 +3478,6 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceId": "src-yahoo-ttf",
-            "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
             "sourceAgeDays": 3,
             "cadence": "daily",
             "confidence": "high",
@@ -3488,6 +3486,32 @@
             ],
             "machineEvidenceIds": [
               "machine-evidence:energy-snapshot:src-yahoo-ttf:505378f35a515a0d"
+            ]
+          },
+          {
+            "id": "energy-observation:src-yahoo-ttf:ttf-lng-ttf:2026-09-21:2026-09-21",
+            "label": "Dutch TTF",
+            "entityIds": [
+              "ttf"
+            ],
+            "observationKind": "flow",
+            "periodStart": "2026-09-21",
+            "periodEnd": "2026-09-21",
+            "value": 73.9,
+            "unit": "EUR/MWh",
+            "status": "confirmed",
+            "coverageStatus": "direct-observation",
+            "source": "Yahoo Finance TTF=F",
+            "sourceId": "src-yahoo-ttf",
+            "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+            "sourceAgeDays": 0,
+            "cadence": "daily",
+            "confidence": "high",
+            "evidenceIds": [
+              "e-ttf"
+            ],
+            "machineEvidenceIds": [
+              "machine-evidence:energy-snapshot:src-yahoo-ttf:91b1b2860928f8e3"
             ]
           }
         ],
@@ -3519,13 +3543,13 @@
           {
             "sourceId": "src-yahoo-ttf",
             "sourcePeriod": {
-              "start": "2026-09-18",
-              "end": "2026-09-18"
+              "start": "2026-09-21",
+              "end": "2026-09-21"
             },
             "expectedCadence": "daily",
             "observedPeriod": {
-              "start": "2026-09-18",
-              "end": "2026-09-18"
+              "start": "2026-09-21",
+              "end": "2026-09-21"
             },
             "missingPeriods": [],
             "status": "direct-observation",
@@ -3998,7 +4022,7 @@
         "score": 65,
         "status": "provisional",
         "confidence": "unknown",
-        "calculatedAt": "2026-09-21T02:37:26.092Z",
+        "calculatedAt": "2026-09-22T00:33:03.906Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -4279,13 +4303,13 @@
           {
             "sourceId": "src-yahoo-ttf",
             "sourcePeriod": {
-              "start": "2026-09-18",
-              "end": "2026-09-18"
+              "start": "2026-09-21",
+              "end": "2026-09-21"
             },
             "expectedCadence": "daily",
             "observedPeriod": {
-              "start": "2026-09-18",
-              "end": "2026-09-18"
+              "start": "2026-09-21",
+              "end": "2026-09-21"
             },
             "missingPeriods": [],
             "status": "direct-observation",
@@ -4687,7 +4711,7 @@
         "confidence": "high",
         "evidenceIds": [],
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:88612c342297bb37"
+          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:22e5d9059b00a6e1"
         ]
       },
       {
@@ -4960,7 +4984,7 @@
         "confidence": "high",
         "evidenceIds": [],
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:7acbc6ddddc32474"
+          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:faebd4310097cc51"
         ]
       },
       {
@@ -5351,8 +5375,6 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceId": "src-yahoo-ttf",
-        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
         "sourceAgeDays": 3,
         "cadence": "daily",
         "confidence": "high",
@@ -5361,6 +5383,32 @@
         ],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-yahoo-ttf:505378f35a515a0d"
+        ]
+      },
+      {
+        "id": "energy-observation:src-yahoo-ttf:ttf-lng-ttf:2026-09-21:2026-09-21",
+        "label": "Dutch TTF",
+        "entityIds": [
+          "ttf"
+        ],
+        "observationKind": "flow",
+        "periodStart": "2026-09-21",
+        "periodEnd": "2026-09-21",
+        "value": 73.9,
+        "unit": "EUR/MWh",
+        "status": "confirmed",
+        "coverageStatus": "direct-observation",
+        "source": "Yahoo Finance TTF=F",
+        "sourceId": "src-yahoo-ttf",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+        "sourceAgeDays": 0,
+        "cadence": "daily",
+        "confidence": "high",
+        "evidenceIds": [
+          "e-ttf"
+        ],
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-yahoo-ttf:91b1b2860928f8e3"
         ]
       }
     ],
@@ -5392,13 +5440,13 @@
       {
         "sourceId": "src-yahoo-ttf",
         "sourcePeriod": {
-          "start": "2026-09-18",
-          "end": "2026-09-18"
+          "start": "2026-09-21",
+          "end": "2026-09-21"
         },
         "expectedCadence": "daily",
         "observedPeriod": {
-          "start": "2026-09-18",
-          "end": "2026-09-18"
+          "start": "2026-09-21",
+          "end": "2026-09-21"
         },
         "missingPeriods": [],
         "status": "direct-observation",

@@ -71,6 +71,27 @@ export interface PolymarketData {
   slug: string;         // polymarket.com/event/{slug}
 }
 
+export type TypeSafeSemanticClass =
+  | "direct-flow"
+  | "decision-context"
+  | "indirect-exposure"
+  | "irrelevant"
+  | "insufficient";
+
+/**
+ * Advisory semantic triage. It never changes the deterministic event category,
+ * impact, probability, or evidence status used by the application.
+ */
+export interface TypeSafeEventTriage {
+  semanticClass: TypeSafeSemanticClass;
+  semanticConfidence: number;
+  priorityScore: number;
+  priorityConfidence: number;
+  updateEligible: number;
+  model: string;
+  evaluatedAt: string;
+}
+
 export interface MarketQuote {
   symbol: string;
   name: string;
@@ -469,4 +490,5 @@ export interface GlobeEvent {
   tags: string[];
   polymarket?: PolymarketData;
   social?: SocialSignal;
+  semanticTriage?: TypeSafeEventTriage;
 }

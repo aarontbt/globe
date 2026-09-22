@@ -1,7 +1,8 @@
-import { useMemo } from "react";
-import type { GlobeEvent } from "../types";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { GlobeEvent, TypeSafeEventTriage } from "../types";
 import { useGdeltEvents } from "./useGdeltEvents";
 import { useBlueskySignals } from "./useBlueskySignals";
+import { triageEvents } from "../services/typesafeTriage";
 
 const TOP_N = 30;
 
@@ -42,6 +43,8 @@ function titleDistance(a: string, b: string): number {
 export function useSocialSignals(): Result {
   const gdelt  = useGdeltEvents();
   const bsky   = useBlueskySignals();
+  const [triageById, setTriageById] = useState<Record<string, TypeSafeEventTriage>>({});
+  const requestedIdsRef = useRef<Set<string>>(new Set());
 
   const events = useMemo<GlobeEvent[]>(() => {
     const all = [
@@ -63,10 +66,45 @@ export function useSocialSignals(): Result {
       .slice(0, TOP_N);
   }, [gdelt.events, bsky.events]);
 
+  useEffect(() => {
+    const candidates = events
+      .filter((event) => Boolean(event.social))
+      .slice(0, 10);
+    const pending = candidates.filter((event) => !requestedIdsRef.current.has(event.id));
+    if (pending.length === 0) return;
+
+    pending.forEach((event) => requestedIdsRef.current.add(event.id));
+    let cancelled = false;
+
+    void triageEvents(pending)
+      .then((results) => {
+        if (cancelled || results.size === 0) return;
+        setTriageById((previous) => {
+          const next = { ...previous };
+          results.forEach((triage, id) => { next[id] = triage; });
+          return next;
+        });
+      })
+      .catch(() => {
+        // TypeSafe is advisory. Keep the live feed available when it is absent
+        // or unavailable, and do not retry every render for the same events.
+      });
+
+    return () => { cancelled = true; };
+  }, [events]);
+
+  const enrichedEvents = useMemo(
+    () => events.map((event) => {
+      const semanticTriage = triageById[event.id];
+      return semanticTriage ? { ...event, semanticTriage } : event;
+    }),
+    [events, triageById],
+  );
+
   const status: SocialStatus = {
     gdelt:  { loading: gdelt.loading,  error: gdelt.error },
     bsky:   { loading: bsky.loading,   error: bsky.error },
   };
 
-  return { events, status };
+  return { events: enrichedEvents, status };
 }

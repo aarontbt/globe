@@ -1,11 +1,24 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  server: {
-    proxy: {
+export default defineConfig(({ mode }) => {
+  const env = {
+    ...loadEnv(mode, process.cwd(), ""),
+    ...process.env,
+  };
+  const typesafeEnabled = env.TYPESAFE_ENABLED !== "false" && Boolean(env.TYPESAFE_API_KEY);
+  const clientTypesafeEnabled = env.VITE_TYPESAFE_ENABLED ?? (typesafeEnabled ? "true" : "false");
+
+  return {
+    define: {
+      // Expose only a capability bit to the browser; the API key remains in
+      // the Vite process and is injected only into the local server proxy.
+      "import.meta.env.VITE_TYPESAFE_ENABLED": JSON.stringify(clientTypesafeEnabled),
+    },
+    plugins: [react(), tailwindcss()],
+    server: {
+      proxy: {
       "/api/polymarket": {
         target: "https://gamma-api.polymarket.com",
         changeOrigin: true,
@@ -70,6 +83,19 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api\/gdelt/, "/api/v2/doc/doc"),
       },
+        ...(typesafeEnabled ? {
+          "/api/typesafe": {
+            target: "https://api.typesafe.ai",
+            changeOrigin: true,
+            secure: true,
+            rewrite: path => path.replace(/^\/api\/typesafe/, "/v1/systemone"),
+            headers: {
+              Authorization: `Bearer ${env.TYPESAFE_API_KEY}`,
+              Accept: "application/json",
+            },
+          },
+        } : {}),
+      },
     },
-  },
+  };
 });

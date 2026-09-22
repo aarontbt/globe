@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "asOf": "2026-09-21T00:00:00Z",
-  "reviewedAt": "2026-09-21T02:22:00Z",
+  "reviewedAt": "2026-09-22T00:30:47Z",
   "reviewer": "ox-alpha with direct Firecrawl source review",
   "entries": [
     {
@@ -154,14 +154,13 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Dutch TTF",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-09-18",
-      "checkedAt": "2026-09-21T01:43:00Z",
-      "claimSummary": "Yahoo Finance's chart API returned Dutch TTF regularMarketPrice 79.518 EUR/MWh at 2026-09-18T14:22:43Z with a +4.147% daily change.",
-      "carryReason": "Reviewed Sep 21; the latest approved Yahoo Finance TTF=F observation remains Sep 18 at 79.52 EUR/MWh, and the machine refresh found no newer published session.",
+      "publishedAt": "2026-09-21",
+      "checkedAt": "2026-09-22T00:30:47Z",
+      "claimSummary": "Yahoo Finance's chart API returned Dutch TTF regularMarketPrice 73.90 EUR/MWh at 2026-09-21T15:50:45Z with a +0.883% daily change. The review used a cache-busted request after Firecrawl returned a stale cached response for the canonical URL.",
       "extractedFacts": [
-        "Yahoo Finance returned regularMarketPrice 79.518 for symbol TTF=F on September 18, 2026.",
-        "The source response timestamp was 2026-09-18T14:22:43.000Z.",
-        "The front-month contract moved 4.147 percent above the prior close.",
+        "Yahoo Finance returned regularMarketPrice 73.90 for symbol TTF=F on September 21, 2026.",
+        "The source response timestamp was 2026-09-21T15:50:45.000Z.",
+        "The front-month contract moved 0.883 percent above the prior close.",
         "The observation is recorded as Dutch TTF in EUR/MWh and is used for the daily cross-asset and trace values."
       ],
       "supportedHopIds": [
@@ -174,19 +173,19 @@
       "observations": [
         {
           "inputId": "ttf",
-          "value": 79.52,
+          "value": 73.9,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-09-18",
-          "observedAt": "2026-09-18T14:22:43.000Z",
+          "sourceDate": "2026-09-21",
+          "observedAt": "2026-09-21T15:50:45.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         },
         {
           "inputId": "lng-ttf",
-          "value": 79.52,
+          "value": 73.9,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-09-18",
-          "observedAt": "2026-09-18T14:22:43.000Z",
+          "sourceDate": "2026-09-21",
+          "observedAt": "2026-09-21T15:50:45.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         }
@@ -441,13 +440,12 @@
       "reviewStatus": "approved",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
-      "publishedAt": "2026-09-17",
-      "checkedAt": "2026-09-21T01:35:30Z",
-      "claimSummary": "The New York Fed API reports SOFR at 3.85% effective September 17, 2026.",
-      "carryReason": "Reviewed Sep 21; the NY Fed endpoint's latest effective SOFR observation remains Sep 17 at 3.85%, so retain that published rate with its original date.",
+      "publishedAt": "2026-09-18",
+      "checkedAt": "2026-09-22T00:30:47Z",
+      "claimSummary": "The New York Fed API reports SOFR at 3.85% effective September 18, 2026.",
       "extractedFacts": [
-        "SOFR percent rate was 3.85 with effective date 2026-09-17.",
-        "The response was returned by the New York Fed secured overnight financing rate endpoint during the Sep 21 review."
+        "SOFR percent rate was 3.85 with effective date 2026-09-18.",
+        "The response was returned by the New York Fed secured overnight financing rate endpoint during the Sep 22 review."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -461,8 +459,8 @@
           "inputId": "usd-sofr",
           "value": 3.85,
           "unit": "%",
-          "sourceDate": "2026-09-17",
-          "observedAt": "2026-09-17T00:00:00Z",
+          "sourceDate": "2026-09-18",
+          "observedAt": "2026-09-18T00:00:00Z",
           "instrument": "SOFR",
           "provider": "Federal Reserve Bank of New York"
         }

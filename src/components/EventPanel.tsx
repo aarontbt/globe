@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { GlobeEvent, EventCategory, SocialPlatform } from "../types";
+import type { GlobeEvent, EventCategory, SocialPlatform, TypeSafeSemanticClass } from "../types";
 import { CATEGORY_COLORS } from "../layers/globeEvents";
 import { FONT_SANS } from "../styles/fonts";
 
@@ -31,6 +31,22 @@ const IMPACT_BADGE: Record<string, { label: string; color: string }> = {
   high:   { label: "HIGH IMPACT",   color: "#ef4444" },
   medium: { label: "MED IMPACT",    color: "#f59e0b" },
   low:    { label: "LOW IMPACT",    color: "#6b7280" },
+};
+
+const SEMANTIC_LABELS: Record<TypeSafeSemanticClass, string> = {
+  "direct-flow": "FLOW",
+  "decision-context": "CONTEXT",
+  "indirect-exposure": "INDIRECT",
+  irrelevant: "IRRELEVANT",
+  insufficient: "REVIEW",
+};
+
+const SEMANTIC_COLORS: Record<TypeSafeSemanticClass, string> = {
+  "direct-flow": "#22d3ee",
+  "decision-context": "#facc15",
+  "indirect-exposure": "#a78bfa",
+  irrelevant: "#94a3b8",
+  insufficient: "#fb7185",
 };
 
 function toRgba(rgb: [number, number, number], a = 1) {
@@ -175,6 +191,22 @@ function EventCard({ event, isSelected, onClick }: EventCardProps) {
         <span style={{ fontSize: 10, color: "rgba(255,255,255,0.4)" }}>
           {event.country}
         </span>
+        {event.semanticTriage && (
+          <span
+            title={`Semantic triage: ${SEMANTIC_LABELS[event.semanticTriage.semanticClass]} · ${Math.round(event.semanticTriage.updateEligible * 100)}% update eligible`}
+            style={{
+              fontSize: 9,
+              padding: "2px 6px",
+              borderRadius: 20,
+              border: `1px solid ${SEMANTIC_COLORS[event.semanticTriage.semanticClass]}55`,
+              color: SEMANTIC_COLORS[event.semanticTriage.semanticClass],
+              fontWeight: 700,
+              letterSpacing: "0.04em",
+            }}
+          >
+            {SEMANTIC_LABELS[event.semanticTriage.semanticClass]}
+          </span>
+        )}
       </div>
 
       {event.probability !== undefined && <ProbabilityBar value={event.probability} color={color} />}
@@ -189,6 +221,12 @@ function EventCard({ event, isSelected, onClick }: EventCardProps) {
           paddingTop: 10,
         }}>
           {event.description}
+
+          {event.semanticTriage && (
+            <div style={{ marginTop: 8, color: "rgba(255,255,255,0.42)", fontSize: 10, lineHeight: 1.45 }}>
+              Semantic review · priority {event.semanticTriage.priorityScore.toFixed(1)}/3 · {Math.round(event.semanticTriage.priorityConfidence * 100)}% confidence
+            </div>
+          )}
 
           {event.social && <SocialStrip event={event} />}
 
@@ -281,10 +319,10 @@ export default function EventPanel({
   onToggleCategory,
 }: EventPanelProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [sortMode, setSortMode] = useState<"probability" | "date">(() => {
+  const [sortMode, setSortMode] = useState<"probability" | "date" | "semantic">(() => {
     try {
       const saved = localStorage.getItem("gb:eventSort");
-      return saved === "date" ? "date" : "probability";
+      return saved === "date" || saved === "semantic" ? saved : "probability";
     } catch { return "probability"; }
   });
 
@@ -293,6 +331,7 @@ export default function EventPanel({
   });
 
   const PRICED_IN_THRESHOLD = 85;
+  const hasSemanticTriage = events.some((event) => Boolean(event.semanticTriage));
 
   useEffect(() => {
     if (!selectedId) return;
@@ -319,7 +358,9 @@ export default function EventPanel({
         .sort((a, b) =>
           sortMode === "date"
             ? b.date.localeCompare(a.date)
-            : (b.probability ?? -1) - (a.probability ?? -1)
+            : sortMode === "semantic"
+              ? (b.semanticTriage?.priorityScore ?? -1) - (a.semanticTriage?.priorityScore ?? -1)
+              : (b.probability ?? -1) - (a.probability ?? -1)
         ),
     [events, activeCategories, sortMode, hidePriced]
   );
@@ -396,7 +437,7 @@ export default function EventPanel({
             padding: 2,
             gap: 2,
           }}>
-            {(["probability", "date"] as const).map(mode => (
+            {(["probability", "date", ...(hasSemanticTriage ? ["semantic" as const] : [])] as const).map(mode => (
               <button
                 key={mode}
                 onClick={() => {
@@ -416,7 +457,7 @@ export default function EventPanel({
                   transition: "all 0.15s",
                 }}
               >
-                {mode === "probability" ? "Prob ↓" : "Date ↓"}
+                {mode === "probability" ? "Prob ↓" : mode === "date" ? "Date ↓" : "Triage ↓"}
               </button>
             ))}
           </div>

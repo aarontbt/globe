@@ -12,6 +12,7 @@
 4. **Audit evidence** - use Firecrawl to scrape every due or changed URL in `src/data/exposure-traces.json`, then update the reviewed results in `src/data/evidence-audit.json`.
    - Verify the canonical URL, HTTP status, page type, title, publisher, publication date, extracted facts, and direct claim support.
    - For market observations, record the exact value, unit, instrument, provider, source date, and observation timestamp when available.
+   - For Yahoo Finance and New York Fed API endpoints, add a one-time `cachebust=<UTC-run-id>` query parameter to the Firecrawl request when its canonical response is stale. Retain the canonical source URL in the audit record and note the cache-busted review in the claim summary.
    - Mark unsupported, unreachable, landing-page, or ambiguous content for review; never approve it automatically.
    - Run `bun run daily:evidence`. Resolve every failure before continuing.
 5. **Complete verified physical inputs** - edit `src/data/daily-state.json`:

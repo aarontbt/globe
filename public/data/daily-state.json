@@ -22,12 +22,12 @@
       "status": "confirmed"
     },
     "ttf": {
-      "current": 79.52,
-      "change1d": "+4.2%",
-      "zscore": 8.16,
+      "current": 73.9,
+      "change1d": "+0.9%",
+      "zscore": 7.04,
       "signal": "red",
       "source": "Yahoo Finance TTF=F",
-      "sourceDate": "2026-09-18",
+      "sourceDate": "2026-09-21",
       "status": "confirmed"
     },
     "lng-ja": {
@@ -401,17 +401,17 @@
         "maxAgeDays": 3,
         "cadence": "daily",
         "observationKind": "flow",
-        "periodStart": "2026-09-18",
-        "periodEnd": "2026-09-18",
+        "periodStart": "2026-09-21",
+        "periodEnd": "2026-09-21",
         "coverageStatus": "direct-observation",
-        "sourceAgeDays": 3,
+        "sourceAgeDays": 0,
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-yahoo-ttf:505378f35a515a0d"
+          "machine-evidence:energy-snapshot:src-yahoo-ttf:91b1b2860928f8e3"
         ],
-        "value": 79.52,
+        "value": 73.9,
         "source": "Yahoo Finance TTF=F",
-        "sourceDate": "2026-09-18",
-        "observedAt": "2026-09-18T14:22:43.000Z"
+        "sourceDate": "2026-09-21",
+        "observedAt": "2026-09-21T15:50:45.000Z"
       },
       "hormuz-total-oil-flow": {
         "value": 20.9,
@@ -504,7 +504,7 @@
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
         "sourceAgeDays": 52,
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:88612c342297bb37"
+          "machine-evidence:energy-snapshot:src-comtrade-japan-lng-demand:22e5d9059b00a6e1"
         ],
         "value": 3370692919.916,
         "source": "UN Comtrade",
@@ -523,7 +523,7 @@
         "coverageNote": "Monthly or annual customs trade context is not cargo-level movement.",
         "sourceAgeDays": 264,
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:7acbc6ddddc32474"
+          "machine-evidence:energy-snapshot:src-comtrade-korea-lng-demand:faebd4310097cc51"
         ],
         "value": 2535174222,
         "source": "UN Comtrade",
@@ -592,13 +592,13 @@
         "note": "Reviewed Sep 21; no newer source-verified weekly Asia spot LNG assessment is approved. Carry the Reuters July 24 September-delivery assessment at 22 USD/MMBtu with its original date."
       },
       "e-ttf": {
-        "lastChecked": "2026-09-21",
+        "lastChecked": "2026-09-22",
         "status": "confirmed",
         "note": "Machine-refreshed from Yahoo Finance TTF=F.",
         "title": "Yahoo Finance chart API - Dutch TTF",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
-        "publishedAt": "2026-09-18"
+        "publishedAt": "2026-09-21"
       },
       "e-saudi-pipeline": {
         "lastChecked": "2026-09-21",
@@ -662,10 +662,10 @@
         "publishedAt": "2026-09-21"
       },
       "e-sofr": {
-        "lastChecked": "2026-09-21",
+        "lastChecked": "2026-09-22",
         "status": "confirmed",
         "note": "Machine-refreshed from Federal Reserve Bank of New York.",
-        "publishedAt": "2026-09-17"
+        "publishedAt": "2026-09-18"
       },
       "e-jkm-cfd": {
         "lastChecked": "2026-09-21",
@@ -872,7 +872,7 @@
   "runbookState": {
     "brent": "$97.49 (2026-09-21, Yahoo Finance BZ=F; -1.81%)",
     "jkm": "$22.00/MMBtu (Jul 24, Reuters Sept-delivery assessment, carried; CFD reference $27.51/MMBtu, Trading Economics, Sep 18, +2.84%; QatarEnergy force majeure reported through November)",
-    "ttf": "79.52 EUR/MWh (2026-09-18, Yahoo Finance TTF=F; +4.2%)"
+    "ttf": "73.90 EUR/MWh (2026-09-21, Yahoo Finance TTF=F; +0.9%)"
   },
   "timelineEntry": "- **D201**: Sep 21 - Saudi exports recover above 4m bpd, but Houthi attacks and the US-Iran stalemate keep Hormuz risk elevated.",
   "commercialInputs": {
@@ -920,17 +920,17 @@
       "maxAgeDays": 3,
       "cadence": "daily",
       "observationKind": "flow",
-      "periodStart": "2026-09-18",
-      "periodEnd": "2026-09-18",
+      "periodStart": "2026-09-21",
+      "periodEnd": "2026-09-21",
       "coverageStatus": "direct-observation",
-      "sourceAgeDays": 3,
+      "sourceAgeDays": 0,
       "machineEvidenceIds": [
-        "machine-evidence:energy-snapshot:src-yahoo-ttf:505378f35a515a0d"
+        "machine-evidence:energy-snapshot:src-yahoo-ttf:91b1b2860928f8e3"
       ],
-      "value": 79.52,
+      "value": 73.9,
       "source": "Yahoo Finance TTF=F",
-      "sourceDate": "2026-09-18",
-      "observedAt": "2026-09-18T14:22:43.000Z"
+      "sourceDate": "2026-09-21",
+      "observedAt": "2026-09-21T15:50:45.000Z"
     },
     "fx-eurusd": {
       "label": "EUR/USD",
@@ -1072,14 +1072,14 @@
       "unit": "%",
       "status": "confirmed",
       "source": "Federal Reserve Bank of New York",
-      "sourceDate": "2026-09-17",
+      "sourceDate": "2026-09-18",
       "maxAgeDays": 7,
       "cadence": "daily",
       "evidenceIds": [
         "e-sofr"
       ],
       "requiredForCalculation": false,
-      "observedAt": "2026-09-17T00:00:00Z"
+      "observedAt": "2026-09-18T00:00:00Z"
     }
   }
 }
