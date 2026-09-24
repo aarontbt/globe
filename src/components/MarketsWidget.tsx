@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 21: Saudi exports recover; Houthi attacks keep Hormuz risk elevated";
+const TOP_ALERT = "SEP 24: Hormuz reopening talks remain conditional";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

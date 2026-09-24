@@ -5,21 +5,21 @@
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "Saudi oil exports recover via Hormuz",
-      "delta": "Reuters reported Sep 21 that Saudi exports recovered to just over 4 million bpd in September from 2.4 million bpd in August; Saudi oil through Hormuz averaged 2.9 million bpd over the past six days versus 700,000 in August.",
-      "direction": "neutral"
+      "summary": "Saudi East-West pipeline resumes",
+      "delta": "Reuters reported Sep 23 that operations on the East-West pipeline to the Red Sea resumed after a Sep 11 attack halted Yanbu loadings. Saudi Arabia also offered Asian refiners more barrels from locations outside Hormuz.",
+      "direction": "down"
     },
     {
       "id": "e2",
-      "summary": "Houthi attacks widen Saudi route risk",
-      "delta": "Reuters reported Sep 21 that Houthi attacks hit sensitive sites in Riyadh and an Aramco facility in Yanbu. AP reported Sep 20 that the Houthis warned against countries joining Saudi Arabia in Yemen.",
-      "direction": "up"
+      "summary": "Hormuz reopening talks remain conditional",
+      "delta": "Reuters reported Sep 23 that indirect talks discussed reopening Hormuz and lifting the US naval blockade. Tehran was reviewing Washington's response to an end-hostilities proposal; no signed reopening is approved.",
+      "direction": "down"
     },
     {
       "id": "e3",
-      "summary": "US-Iran stalemate leaves Hormuz unresolved",
-      "delta": "Reuters reported Sep 21 that the US and Iran remain in a stalemate. No verified signed reopening is approved; QatarEnergy force majeure remains through November and the latest LNG transit observation remains carried.",
-      "direction": "neutral"
+      "summary": "Iran ties reopening to its conditions",
+      "delta": "Reuters reported Sep 23 that an Iranian official said Hormuz could reopen within seven days if Washington eased military pressure and lifted its blockade; Iran's security chief said reopening depends on Tehran's conditions.",
+      "direction": "up"
     }
   ],
   "scenarios": [
@@ -27,7 +27,7 @@
       "id": "base",
       "label": "Base",
       "probability": 15,
-      "description": "After the shelved talks resume, the Oman framework is signed and monitored; a restored, verified reopening lowers Brent toward $75-85, while Qatar's force majeure keeps LNG availability constrained into early November.",
+      "description": "Indirect talks produce a signed, monitored reopening and verified shipping returns toward normal; Brent eases toward $75-85, while Qatar's force majeure keeps LNG availability constrained into early November.",
       "oilImpact": "-$10/bbl",
       "lngImpact": "-25%"
     },
@@ -35,7 +35,7 @@
       "id": "stress",
       "label": "Stress",
       "probability": 45,
-      "description": "Talks remain shelved or resume without regional consensus; traffic stays selective under Iranian fees and sanctions pressure; Brent holds $85-105 and JKM stays elevated while QatarEnergy seeks replacement LNG.",
+      "description": "Talks continue without an agreed reopening; Hormuz traffic remains selective under sanctions and security pressure; Brent holds $85-105 and JKM stays elevated while QatarEnergy seeks replacement LNG.",
       "oilImpact": "+$8/bbl",
       "lngImpact": "+15%"
     },
@@ -43,7 +43,7 @@
       "id": "tail",
       "label": "Tail",
       "probability": 40,
-      "description": "Iran enforces its threatened Hormuz exclusion zone, talks fail, or the tanker war widens into a broader multi-front exchange; Brent returns to $105-135+/bbl and JKM moves above $30/MMBtu.",
+      "description": "Conditional talks fail, Iran enforces its threatened Hormuz exclusion zone, or the tanker war widens into a broader multi-front exchange; Brent returns to $105-135+/bbl and JKM moves above $30/MMBtu.",
       "oilImpact": "+$50/bbl",
       "lngImpact": "+110%"
     }

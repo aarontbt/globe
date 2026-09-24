@@ -60,10 +60,12 @@ assert(
   "landing-page evidence should be rejected",
 );
 
+const confirmedEvidence = exposure.evidence.find((entry) => entry.status === "confirmed" && entry.maxAgeDays < 60);
+assert(confirmedEvidence, "test fixture should include short-lived confirmed evidence");
 const staleExposure = structuredClone(exposure);
 const staleEvidenceAudit = structuredClone(evidenceAudit);
-staleExposure.evidence.find((entry) => entry.id === "e-ttf").lastChecked = "2026-07-20";
-staleEvidenceAudit.entries.find((entry) => entry.evidenceId === "e-ttf").checkedAt = "2026-07-20T00:00:00Z";
+staleExposure.evidence.find((entry) => entry.id === confirmedEvidence.id).lastChecked = "2026-07-20";
+staleEvidenceAudit.entries.find((entry) => entry.evidenceId === confirmedEvidence.id).checkedAt = "2026-07-20T00:00:00Z";
 assert(
   validateEvidenceAudit(baseline, staleExposure, staleEvidenceAudit).some((error) => error.includes("above maxAgeDays")),
   "stale approved evidence should be rejected",

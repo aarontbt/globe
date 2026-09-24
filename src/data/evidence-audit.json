@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-09-21T00:00:00Z",
-  "reviewedAt": "2026-09-22T00:30:47Z",
-  "reviewer": "ox-alpha with direct Firecrawl source review",
+  "asOf": "2026-09-24T00:00:00Z",
+  "reviewedAt": "2026-09-24T04:31:00Z",
+  "reviewer": "Codex with direct web source review; Firecrawl CLI unavailable (DNS EAI_AGAIN)",
   "entries": [
     {
       "evidenceId": "e-qatar-force-majeure",
@@ -150,13 +150,14 @@
       "canonicalUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
       "httpStatus": 200,
       "pageType": "market-data",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Dutch TTF",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-09-21",
       "checkedAt": "2026-09-22T00:30:47Z",
       "claimSummary": "Yahoo Finance's chart API returned Dutch TTF regularMarketPrice 73.90 EUR/MWh at 2026-09-21T15:50:45Z with a +0.883% daily change. The review used a cache-busted request after Firecrawl returned a stale cached response for the canonical URL.",
+      "carryReason": "Reviewed Sep 24; Firecrawl and local Yahoo/Stooq refreshes were unavailable. Carry the last audited TTF=F value of 73.90 EUR/MWh from Sep 21 with its original observation time.",
       "extractedFacts": [
         "Yahoo Finance returned regularMarketPrice 73.90 for symbol TTF=F on September 21, 2026.",
         "The source response timestamp was 2026-09-21T15:50:45.000Z.",
@@ -325,13 +326,14 @@
       "canonicalUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=1d&range=5d",
       "httpStatus": 200,
       "pageType": "market-data",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Brent Crude",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-09-21",
       "checkedAt": "2026-09-21T02:07:13Z",
       "claimSummary": "Yahoo Finance's chart API returned BZ=F regularMarketPrice 97.49 USD/bbl on Sep 21, 2026, down 1.81% on the session.",
+      "carryReason": "Reviewed Sep 24; live Yahoo and Stooq refreshes were unavailable, and Reuters' Sep 23 settlement could not be reconciled to the last approved Yahoo BZ=F observation. Carry the Sep 21 value pending a same-instrument quote.",
       "extractedFacts": [
         "Yahoo Finance returned regularMarketPrice 97.49 for symbol BZ=F on September 21, 2026.",
         "The source response timestamp was 2026-09-21T02:07:13.000Z.",
@@ -362,13 +364,14 @@
       "canonicalUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=5d",
       "httpStatus": 200,
       "pageType": "market-data",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - WTI Crude",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-09-21",
       "checkedAt": "2026-09-21T02:08:59Z",
       "claimSummary": "Yahoo Finance's chart API returned CL=F regularMarketPrice 94.04 USD/bbl on Sep 21, 2026, down 2.12% on the session.",
+      "carryReason": "Reviewed Sep 24; live Yahoo and Stooq refreshes were unavailable. Carry the last audited CL=F observation from Sep 21.",
       "extractedFacts": [
         "Yahoo Finance returned regularMarketPrice 94.04 for symbol CL=F on September 21, 2026.",
         "The source response timestamp was 2026-09-21T02:08:59.000Z.",
@@ -399,13 +402,14 @@
       "canonicalUrl": "https://query2.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?interval=1d&range=5d",
       "httpStatus": 200,
       "pageType": "market-data",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - EUR/USD",
       "publisher": "Yahoo Finance",
       "publishedAt": "2026-09-21",
       "checkedAt": "2026-09-21T02:19:07Z",
       "claimSummary": "Yahoo Finance's chart API returned EUR/USD at 1.1485 USD/EUR on Sep 21, 2026.",
+      "carryReason": "Reviewed Sep 24; live Yahoo and Stooq refreshes were unavailable. Carry the last audited EURUSD=X observation from Sep 21.",
       "extractedFacts": [
         "Yahoo Finance returned regularMarketPrice 1.1485 for symbol EURUSD=X on September 21, 2026.",
         "The source response timestamp was 2026-09-21T02:19:07.000Z.",
@@ -436,13 +440,14 @@
       "canonicalUrl": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
       "httpStatus": 200,
       "pageType": "market-data",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
       "publishedAt": "2026-09-18",
       "checkedAt": "2026-09-22T00:30:47Z",
       "claimSummary": "The New York Fed API reports SOFR at 3.85% effective September 18, 2026.",
+      "carryReason": "Reviewed Sep 24; the New York Fed API refresh was unavailable. Carry the last audited SOFR observation effective Sep 18.",
       "extractedFacts": [
         "SOFR percent rate was 3.85 with effective date 2026-09-18.",
         "The response was returned by the New York Fed secured overnight financing rate endpoint during the Sep 22 review."
@@ -472,14 +477,14 @@
       "canonicalUrl": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
       "httpStatus": 200,
       "pageType": "market-data",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
       "publishedAt": "2026-09-19",
       "checkedAt": "2026-09-21T01:36:00Z",
       "claimSummary": "Trading Economics recheck on Sep 21 confirms the JKM-linked CFD reference at 27.51 USD/MMBtu for Sep 18, up 2.84% from the prior print; it remains contextual rather than an official benchmark assessment.",
-      "carryReason": "Trading Economics was rechecked Sep 21 and still reports the latest JKM-linked CFD reference at 27.51 USD/MMBtu on Sep 18; it remains contextual and is not the official JKM assessment.",
+      "carryReason": "Reviewed Sep 24; the accessible Trading Economics snapshot did not provide a newer dependable dated observation. Carry the Sep 18 JKM-linked CFD value at 27.51 USD/MMBtu; it is contextual, not the official JKM assessment.",
       "extractedFacts": [
         "The displayed LNG Japan Korea reference was 27.51 USD/MMBtu for September 18, 2026 on Sep 21 review.",
         "The page reported a daily change of +2.84%.",
@@ -656,7 +661,8 @@
         }
       ],
       "supportedCommercialInputIds": [],
-      "supportedDerivedMetricIds": []
+      "supportedDerivedMetricIds": [],
+      "carryReason": "Carried Sep 24 as the source for the dated Sep 14 transit observation; newer Reuters diplomacy reporting does not replace its 14-vessel transit count."
     },
     {
       "evidenceId": "e-vlcc-freight",
@@ -701,32 +707,54 @@
     },
     {
       "evidenceId": "e-saudi-pipeline",
-      "url": "https://www.marketscreener.com/news/oil-slips-as-investors-assess-saudi-export-recovery-ce785adad08df727",
-      "canonicalUrl": "https://www.marketscreener.com/news/oil-slips-as-investors-assess-saudi-export-recovery-ce785adad08df727",
+      "url": "https://uk.marketscreener.com/news/oil-settles-up-around-4-as-iran-s-president-vows-to-never-surrender-ce785ad9db88f522",
+      "canonicalUrl": "https://uk.marketscreener.com/news/oil-settles-up-around-4-as-iran-s-president-vows-to-never-surrender-ce785ad9db88f522",
       "httpStatus": 200,
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Oil slips as investors assess Saudi export recovery",
+      "title": "Oil settles up around 4% as Iran's president vows to never surrender",
       "publisher": "Reuters",
-      "publishedAt": "2026-09-21",
-      "checkedAt": "2026-09-21T01:28:00Z",
-      "claimSummary": "Reuters reported Sep 21 that Saudi exports recovered to just over 4 million bpd in September from 2.4 million bpd in August, while Saudi oil through Hormuz averaged 2.9 million bpd over the past six days versus 700,000 bpd in August.",
+      "publishedAt": "2026-09-23",
+      "checkedAt": "2026-09-24T04:30:00Z",
+      "claimSummary": "Reuters reported Sep 23 that Saudi Arabia restarted its East-West pipeline to the Red Sea, while indirect US-Iran talks discussed reopening Hormuz and lifting the US naval blockade. Iran's position on reopening remained conditional.",
       "extractedFacts": [
-        "Saudi exports were just over 4 million barrels per day in September, up from 2.4 million barrels per day in August.",
-        "Saudi oil through the Strait of Hormuz averaged 2.9 million barrels per day over the past six days, versus 700,000 barrels per day in August.",
-        "The report described a recovery in Saudi export flows while the broader Hormuz disruption remained unresolved."
+        "Brent crude futures settled at 103.08 USD/bbl on Sep 23, up 3.86%; WTI futures settled at 92.16 USD/bbl, up 1.81%.",
+        "Saudi Arabia restarted East-West pipeline operations to the Red Sea on Sep 22 after a Sep 11 drone attack halted crude loadings at Yanbu.",
+        "Saudi Arabia offered Asian refiners additional barrels from locations outside the Strait of Hormuz.",
+        "Indirect talks on Sep 22 discussed reopening the Strait of Hormuz and lifting the US naval blockade on Iranian ports.",
+        "A senior Iranian official said Hormuz could reopen within seven days if the United States eased military pressure and lifted its blockade.",
+        "Iran's security chief said the Strait would not reopen until Iran's conditions were met."
       ],
       "supportedHopIds": [
-        "hormuz-crude-export:oil-constraint-supply"
+        "hormuz-crude-export:oil-constraint-supply",
+        "hormuz-delivery:delivery-signal"
       ],
       "supportedMetricIds": [],
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
-      "supportedDerivedMetricIds": []
+      "supportedDerivedMetricIds": [],
+      "observations": [
+        {
+          "inputId": "reported-brent-settlement",
+          "value": 103.08,
+          "unit": "USD/bbl",
+          "sourceDate": "2026-09-23",
+          "instrument": "Brent crude futures settlement",
+          "provider": "Reuters"
+        },
+        {
+          "inputId": "reported-wti-settlement",
+          "value": 92.16,
+          "unit": "USD/bbl",
+          "sourceDate": "2026-09-23",
+          "instrument": "WTI crude futures settlement",
+          "provider": "Reuters"
+        }
+      ]
     },
     {
-      "evidenceId": "e-hormuz-single-digit-crossings",
+  "evidenceId": "e-hormuz-single-digit-crossings",
       "url": "https://www.reuters.com/business/energy/us-iran-conflict-helps-drive-wave-supertanker-orders-2026-09-17/",
       "canonicalUrl": "https://www.reuters.com/business/energy/us-iran-conflict-helps-drive-wave-supertanker-orders-2026-09-17/",
       "httpStatus": 200,
