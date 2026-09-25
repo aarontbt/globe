@@ -1,46 +1,45 @@
 {
   "schemaVersion": 3,
-  "asOf": "2026-09-24T00:00:00Z",
-  "day": "D204",
+  "asOf": "2026-09-25T00:00:00Z",
+  "day": "D205",
   "crisis": {
     "level": 4,
     "label": "High",
-    "detail": "Sep 24: Reuters reported Sep 23 that Saudi Arabia restarted its East-West pipeline to the Red Sea after the Sep 11 attack halted Yanbu loadings. Reuters also said indirect US-Iran talks discussed reopening Hormuz and lifting the US naval blockade; Iran's security chief said reopening depends on Tehran's conditions. No signed commercial reopening is verified. Brent and WTI remain carried at Sep 21 values after the live quote refresh failed and public Sep 23 Brent observations conflicted; TTF, EUR/USD and SOFR are also carried at their last source dates. The latest official JKM assessment remains $22/MMBtu from Jul 24; the CFD reference remains $27.51 on Sep 18. QatarEnergy force majeure remains reported through November. Crisis level remains 4 (High); probabilities are base 15%, stress 45%, tail 40%."
+    "detail": "Sep 25: Reuters reported that commodity-vessel transits fell to nine on Sep 24 from 14 the day before, while the 10-day average was 18. Kpler put crude exports at 33.7 million barrels week-to-date. Saudi crude exports through Hormuz are rebounding, but Gulf of Oman ship-to-ship transfer capacity is at its limit. US-Iran talks remain conditional; Reuters said Saudi Yanbu tanker loadings have yet to resume. Brent remains carried at its last accepted Sep 21 quote because current Yahoo and Reuters marks conflict. QatarEnergy force majeure remains reported through November. Crisis level remains 4 (High); probabilities are base 15%, stress 45%, tail 40%."
   },
   "deltaVsYesterday": 0,
-  "topAlert": "SEP 24: Hormuz reopening talks remain conditional",
-  "commodityScenario": "Sep 24: Reuters reported Saudi Arabia resumed East-West pipeline operations and discussed possible Hormuz reopening remains conditional on US-Iran negotiations. No signed reopening is verified. Brent $97.49 and WTI $94.04 are carried from Sep 21 after refresh failure and conflicting Sep 23 Brent observations; TTF $73.90 is carried from Sep 21. The official JKM assessment remains $22.00/MMBtu from Jul 24, carried; the JKM-linked CFD reference remains $27.51 from Sep 18, carried. QatarEnergy force majeure remains reported through November. Current commodity inputs remain carried at their source dates; crisis level 4 (High), base 15%, stress 45%, tail 40%.",
-  "marketContext": "Reuters reported Sep 23 that Saudi Arabia restarted its East-West pipeline to the Red Sea and that indirect US-Iran talks discussed Hormuz reopening and lifting the US naval blockade. An Iranian official described reopening within seven days as conditional on US concessions; Iran's security chief said Hormuz would remain closed until Iran's conditions are met. No signed commercial reopening is verified. Liquid-market refreshes failed: Brent $97.49, WTI $94.04 and TTF $73.90 remain carried from Sep 21; EUR/USD is carried from Sep 21 and SOFR from Sep 18. Public Sep 23 Brent sources conflict, so no new Brent mark is accepted. JKM CFD $27.51 (Sep 18) and official JKM $22.00 (Jul 24) remain carried. QatarEnergy force majeure remains reported through November; base 15%, stress 45%, tail 40%.",
+  "topAlert": "SEP 25: Oil slides on US-Iran truce hopes despite Houthi attacks; Reuters reports Hormuz traffic fell to nine vessels.",
+  "commodityScenario": "Sep 25: Reuters reported nine commodity-vessel transits on Sep 24 and 33.7 million barrels of crude exports week-to-date; Saudi exports via Hormuz are on track for 3.6 million bpd while Gulf of Oman ship-to-ship capacity is at its limit. Brent $97.49 is carried from Sep 21 pending quote reconciliation; WTI $93.64 is confirmed Sep 25; TTF $75.27 is carried from Sep 24 after the automated refresh failed. Official JKM remains $22.00/MMBtu from Jul 24, carried; the JKM-linked CFD reference is $26.38 from Sep 24. QatarEnergy force majeure remains reported through November. Crisis level 4 (High); base 15%, stress 45%, tail 40%.",
+  "marketContext": "Reuters reported Sep 25 that Hormuz commodity-vessel traffic fell to nine on Sep 24 from 14, and Saudi crude exports via Hormuz are on track for 3.6 million bpd as Gulf of Oman ship-to-ship transfer capacity reaches its limit. Brent remains carried at $97.49 from Sep 21 because the Yahoo BZ=F quote conflicts with its own reported range and Reuters reported $105.11 at 05:41 GMT. WTI is $93.64 (Yahoo Finance, Sep 25); TTF is $75.27, carried at its Sep 24 source date after the automated refresh failed (Yahoo Finance); EUR/USD is 1.1396 (Yahoo Finance, Sep 25); SOFR is 3.87% effective Sep 23 (New York Fed). Official JKM remains $22.00/MMBtu (Reuters, Jul 24, carried); the JKM-linked CFD reference is $26.38 (Trading Economics, Sep 24). EM rates, credit spreads and regional equity indices remain estimates last sourced Aug 5. No signed commercial Hormuz reopening is verified.",
   "crossAsset": {
     "brent": {
       "current": 97.49,
-      "change1d": "-1.8%",
+      "change1d": "-1.81%",
       "zscore": 3.79,
       "signal": "red",
       "source": "Yahoo Finance BZ=F",
       "sourceDate": "2026-09-21",
       "status": "carried",
-      "carryReason": "Daily market refresh failed; retain the last audited Yahoo Finance observation from Sep 21. A Reuters Sep 23 settlement report and Yahoo historical page show conflicting Brent values, so no replacement mark is approved."
+      "carryReason": "Reviewed Sep 25; Yahoo BZ=F returned $99.40 while its own reported daily range was $104.91-$106.75, and Reuters reported $105.11 at 05:41 GMT. The marks remain unreconciled, so carry the last accepted $97.49 observation from Sep 21."
     },
     "ttf": {
-      "current": 73.9,
-      "change1d": "+0.9%",
-      "zscore": 7.04,
+      "current": 75.27,
+      "change1d": "+0.2%",
+      "zscore": 7.31,
       "signal": "red",
       "source": "Yahoo Finance TTF=F",
-      "sourceDate": "2026-09-21",
+      "sourceDate": "2026-09-24",
       "status": "carried",
-      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Stooq fallback not configured"
+      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Stooq fallback not configured. Previous approved observation carried with its original observation date."
     },
     "lng-ja": {
-      "current": 27.51,
-      "change1d": "+2.8%",
-      "zscore": 4.92,
+      "current": 26.38,
+      "change1d": "+2.55%",
+      "zscore": 4.56,
       "signal": "red",
-      "source": "Trading Economics",
-      "sourceDate": "2026-09-18",
-      "status": "carried",
-      "carryReason": "Trading Economics was rechecked Sep 21 and still reports the latest JKM CFD observation on Sep 18; the official JKM assessment remains carried separately."
+      "source": "Trading Economics JKM-linked CFD",
+      "sourceDate": "2026-09-24",
+      "status": "confirmed"
     },
     "id10y": {
       "current": 6.77,
@@ -88,49 +87,49 @@
       "status": "estimated"
     },
     "sgd": {
-      "current": 1.2755,
-      "change1d": "-0.01%",
-      "zscore": -0.63,
+      "current": 1.2781,
+      "change1d": "-0.03%",
+      "zscore": -0.44,
       "signal": "green",
-      "source": "Yahoo Finance SGD=X (est.)",
-      "sourceDate": "2026-09-21",
-      "status": "estimated"
+      "source": "Yahoo Finance SGD=X",
+      "sourceDate": "2026-09-25",
+      "status": "confirmed"
     },
     "idr": {
-      "current": 17740,
-      "change1d": "+0.0%",
-      "zscore": 11.37,
+      "current": 17890,
+      "change1d": "-0.02%",
+      "zscore": 12.4,
       "signal": "red",
-      "source": "Yahoo Finance IDR=X (est.)",
-      "sourceDate": "2026-09-21",
-      "status": "estimated"
+      "source": "Yahoo Finance IDR=X",
+      "sourceDate": "2026-09-25",
+      "status": "confirmed"
     },
     "myr": {
-      "current": 4.074,
-      "change1d": "-0.05%",
-      "zscore": 0.05,
+      "current": 4.07,
+      "change1d": "-0.34%",
+      "zscore": 0,
       "signal": "green",
-      "source": "Yahoo Finance MYR=X (est.)",
-      "sourceDate": "2026-09-21",
-      "status": "estimated"
+      "source": "Yahoo Finance MYR=X",
+      "sourceDate": "2026-09-25",
+      "status": "confirmed"
     },
     "thb": {
-      "current": 33.25,
-      "change1d": "-0.12%",
-      "zscore": 0.1,
+      "current": 33.36,
+      "change1d": "-0.21%",
+      "zscore": 0.2,
       "signal": "green",
-      "source": "Yahoo Finance THB=X (est.)",
-      "sourceDate": "2026-09-21",
-      "status": "estimated"
+      "source": "Yahoo Finance THB=X",
+      "sourceDate": "2026-09-25",
+      "status": "confirmed"
     },
     "php": {
-      "current": 62.741,
-      "change1d": "-0.14%",
-      "zscore": 3.25,
+      "current": 62.41,
+      "change1d": "-0.47%",
+      "zscore": 3.01,
       "signal": "red",
-      "source": "Yahoo Finance PHP=X (est.)",
-      "sourceDate": "2026-09-21",
-      "status": "estimated"
+      "source": "Yahoo Finance PHP=X",
+      "sourceDate": "2026-09-25",
+      "status": "confirmed"
     },
     "energy-eq": {
       "current": 116,
@@ -161,8 +160,8 @@
     }
   },
   "fallbackCommentLines": [
-    "Static fallback - generated from src/data/daily-state.json (2026-09-24; D204)",
-    "Brent Crude 97.49 (Yahoo Finance BZ=F 2026-09-21, carried); WTI Crude 94.04 (Yahoo Finance CL=F 2026-09-21, carried)"
+    "Static fallback - generated from src/data/daily-state.json (2026-09-25; D205)",
+    "Brent Crude 97.49 (Yahoo Finance BZ=F 2026-09-21, carried pending quote reconciliation); WTI Crude 93.64 (Yahoo Finance CL=F 2026-09-25, confirmed)"
   ],
   "fallbackQuotes": [
     {
@@ -181,35 +180,35 @@
     {
       "symbol": "CL=F",
       "name": "WTI Crude",
-      "price": 94.04,
-      "change": -11.79,
-      "changePct": -2.12,
+      "price": 93.64,
+      "change": -0.97,
+      "changePct": -1.025,
       "currency": "USD",
       "unit": "/barrel",
-      "lastUpdated": "2026-09-21T02:08:59.000Z",
+      "lastUpdated": "2026-09-25T08:07:47.000Z",
       "source": "Yahoo Finance CL=F",
-      "sourceDate": "2026-09-21",
-      "status": "carried"
+      "sourceDate": "2026-09-25",
+      "status": "confirmed"
     }
   ],
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "Saudi East-West pipeline resumes",
-      "delta": "Reuters reported Sep 23 that operations on the East-West pipeline to the Red Sea resumed after a Sep 11 attack halted Yanbu loadings. Saudi Arabia also offered Asian refiners more barrels from locations outside Hormuz.",
-      "direction": "down"
+      "summary": "Hormuz traffic falls to nine vessels",
+      "delta": "Reuters reported Sep 25 from Kpler data that commodity-vessel transits fell to nine on Sep 24 from 14; the 10-day average was 18. Crude exports were 33.7 million barrels week-to-date, with 19 tankers including 17 VLCCs.",
+      "direction": "up"
     },
     {
       "id": "e2",
-      "summary": "Hormuz reopening talks remain conditional",
-      "delta": "Reuters reported Sep 23 that indirect talks discussed reopening Hormuz and lifting the US naval blockade. Tehran was reviewing Washington's response to an end-hostilities proposal; no signed reopening is approved.",
-      "direction": "down"
+      "summary": "Saudi crude exports rebound through Hormuz",
+      "delta": "Reuters said Saudi crude exports via Hormuz are on track for 3.6 million bpd in September, up from about 0.9 million bpd in August. Gulf of Oman ship-to-ship transfer capacity has reached its limit, raising tanker and delay pressure.",
+      "direction": "neutral"
     },
     {
       "id": "e3",
-      "summary": "Iran ties reopening to its conditions",
-      "delta": "Reuters reported Sep 23 that an Iranian official said Hormuz could reopen within seven days if Washington eased military pressure and lifted its blockade; Iran's security chief said reopening depends on Tehran's conditions.",
-      "direction": "up"
+      "summary": "Truce hopes offset Houthi attacks",
+      "delta": "Reuters reported Brent at $105.11 and WTI at $92.61 at 0541 GMT as negotiators explored a phased deal. Saudi Arabia said it intercepted six Houthi missiles aimed at Taif and the Yanbu area; no signed Hormuz reopening is verified.",
+      "direction": "neutral"
     }
   ],
   "scenarios": [
@@ -217,7 +216,7 @@
       "id": "base",
       "label": "Base",
       "probability": 15,
-      "description": "Indirect talks produce a signed, monitored reopening and verified shipping returns toward normal; Brent eases toward $75-85, while Qatar's force majeure keeps LNG availability constrained into early November.",
+      "description": "Indirect talks produce a signed, monitored reopening and verified shipping normalisation. Saudi East-West pumping is building, but Reuters says Yanbu tanker loadings have yet to resume; QatarEnergy force majeure remains reported through November.",
       "oilImpact": "-$10/bbl",
       "lngImpact": "-25%"
     },
@@ -225,7 +224,7 @@
       "id": "stress",
       "label": "Stress",
       "probability": 45,
-      "description": "Talks continue without an agreed reopening; Hormuz traffic remains selective under sanctions and security pressure; Brent holds $85-105 and JKM stays elevated while QatarEnergy seeks replacement LNG.",
+      "description": "Talks continue without an agreed reopening; Sep 24 commodity-vessel transits fall to nine, Saudi exports require heavy Hormuz tanker and ship-to-ship activity, and Qatar replacement LNG remains constrained.",
       "oilImpact": "+$8/bbl",
       "lngImpact": "+15%"
     },
@@ -233,13 +232,13 @@
       "id": "tail",
       "label": "Tail",
       "probability": 40,
-      "description": "Conditional talks fail, Iran enforces its threatened Hormuz exclusion zone, or the tanker war widens into a broader multi-front exchange; Brent returns to $105-135+/bbl and JKM moves above $30/MMBtu.",
+      "description": "Conditional talks fail or Houthi and Iran-linked attacks widen, keeping Hormuz traffic selective and Gulf ship-to-ship operations congested; Qatar output and route costs remain unverified.",
       "oilImpact": "+$50/bbl",
       "lngImpact": "+110%"
     }
   ],
   "traceInputs": {
-    "headline": "Reuters reported Sep 23 that Saudi Arabia restarted its East-West pipeline to the Red Sea after the Sep 11 attack halted Yanbu loadings. Reuters said Tehran was reviewing Washington's response to an end-hostilities proposal; indirect talks discussed Hormuz reopening and lifting the US naval blockade. An Iranian official said reopening could occur within seven days if the US eases military pressure and lifts the blockade, while Iran's security chief said reopening depends on Tehran's conditions. No signed commercial reopening is verified. QatarEnergy force majeure remains reported through November; LNG-specific transit, route-normalised freight and cargo-normalised war-risk data remain carried or unavailable.",
+    "headline": "Reuters reported Sep 25 that commodity-vessel transits fell to nine on Sep 24 from 14, with a 10-day average of 18, while Kpler crude exports were 33.7 million barrels week-to-date. Saudi flows and ship-to-ship demand have surged; talks remain conditional and no verified commercial reopening exists.",
     "metrics": {
       "qatar-output-status": {
         "unit": "",
@@ -250,11 +249,11 @@
         "periodStart": "2026-09-11",
         "periodEnd": "2026-09-11",
         "coverageStatus": "unavailable",
-        "sourceAgeDays": 13,
+        "sourceAgeDays": 14,
         "value": "Reuters reported that QatarEnergy renewed force-majeure notices through November after Iranian strikes damaged two of 14 Ras Laffan LNG trains; it is seeking 2-3 MTPA of US LNG through 2031",
         "source": "Reuters",
         "sourceDate": "2026-09-11",
-        "carryReason": "Reviewed Sep 21; Reuters' Sep 11 report remains the latest approved QatarEnergy output and force-majeure update; no newer source-approved replacement was found. The manual source is carried because no automated QatarEnergy endpoint is approved."
+        "carryReason": "Reviewed Sep 25; Reuters Sep 11 remains the latest approved QatarEnergy force-majeure and replacement-supply disclosure. No newer source-approved Qatar output update was found; retain the original date and carry this manually reviewed event."
       },
       "ras-laffan-asset-status": {
         "unit": "",
@@ -349,11 +348,11 @@
         "periodStart": "2026-08-02",
         "periodEnd": "2026-08-02",
         "coverageStatus": "unavailable",
-        "sourceAgeDays": 53,
+        "sourceAgeDays": 54,
         "value": 3,
         "source": "Kpler via Foreign Policy Journal",
         "sourceDate": "2026-08-02",
-        "carryReason": "Reviewed Sep 21; no newer verified weekly Kpler LNG-transit breakdown is approved, so retain the Aug 3 count of 3 LNG transits for the week of Jul 27-Aug 2."
+        "carryReason": "Reviewed Sep 25; no newer source-verified LNG-specific weekly transit breakdown was found. Retain the Kpler via Foreign Policy Journal count of three LNG transits for the week ending Aug 2 with its original observation date."
       },
       "hormuz-route-pressure": {
         "unit": "%",
@@ -377,7 +376,7 @@
         "sourceDate": "2026-02-03",
         "maxAgeDays": 365,
         "cadence": "contract-driven",
-        "carryReason": "Reviewed Sep 21; the JERA-QatarEnergy agreement remains the latest approved public contract-volume disclosure at 3 MTPA beginning in 2028."
+        "carryReason": "Reviewed Sep 25; JERA’s Feb 3 public disclosure of 3 MTPA beginning in 2028 remains the latest approved contract-volume disclosure."
       },
       "nakilat-charter-vessels": {
         "value": 25,
@@ -403,15 +402,15 @@
         "maxAgeDays": 3,
         "cadence": "daily",
         "observationKind": "flow",
-        "periodStart": "2026-09-21",
-        "periodEnd": "2026-09-21",
+        "periodStart": "2026-09-24",
+        "periodEnd": "2026-09-24",
         "coverageStatus": "unavailable",
-        "sourceAgeDays": 3,
-        "value": 73.9,
+        "sourceAgeDays": 1,
+        "value": 75.27,
         "source": "Yahoo Finance TTF=F",
-        "sourceDate": "2026-09-21",
-        "observedAt": "2026-09-21T15:50:45.000Z",
-        "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Stooq fallback not configured"
+        "sourceDate": "2026-09-24",
+        "observedAt": "2026-09-24T17:44:59.000Z",
+        "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Stooq fallback not configured. Previous approved observation carried with its original observation date."
       },
       "hormuz-total-oil-flow": {
         "value": 20.9,
@@ -466,12 +465,12 @@
         "periodStart": "2026-09-11",
         "periodEnd": "2026-09-11",
         "coverageStatus": "direct-observation",
-        "sourceAgeDays": 13,
+        "sourceAgeDays": 14,
         "source": "Baltic Exchange via Reuters",
         "sourceDate": "2026-09-11",
         "maxAgeDays": 1,
         "cadence": "daily",
-        "carryReason": "Reviewed Sep 21; Reuters reported the Gulf of Oman-to-China VLCC rate around Worldscale 450, roughly $11.50/bbl, on Sep 11. Reuters separately reported Sep 17 that VLCC spot rates industry-wide have climbed above $500,000/day (Allied Shipbroking) since the Sep 11 Saudi pipeline attack, but no newer route-specific Gulf of Oman-to-China close is approved, so this assessment is carried."
+        "carryReason": "Reviewed Sep 25; the latest same-unit Gulf of Oman-to-China VLCC observation remains the Sep 11 Baltic Exchange assessment near Worldscale 450, roughly $11.50/bbl. Reuters Sep 25 reports a Middle East-to-China time-charter rate of $1.27 million/day on Sep 21, but that different unit is not converted into a route-normalised per-barrel freight value."
       },
       "oil-counterparty-relationship": {
         "unit": "",
@@ -483,14 +482,14 @@
         "missingReason": "No named company-level buyer relationship is verified by the approved oil-flow sources."
       },
       "jkm-cfd-reference": {
-        "value": 27.51,
+        "value": 26.38,
         "unit": "USD/MMBtu",
-        "status": "carried",
+        "status": "confirmed",
         "source": "Trading Economics",
-        "sourceDate": "2026-09-18",
+        "sourceDate": "2026-09-24",
         "maxAgeDays": 3,
         "cadence": "daily",
-        "carryReason": "Reviewed Sep 24; the Firecrawl request and local market refresh were unavailable, and the Trading Economics page did not expose a dependable newer dated observation. Retain the Sep 18 JKM-linked CFD reference at 27.51 USD/MMBtu; it is contextual, not the official JKM assessment."
+        "sourceAgeDays": 1
       },
       "japan-lng-demand": {
         "unit": "USD",
@@ -523,20 +522,20 @@
         "missingReason": "Machine refresh failed: Was there a typo in the url or port?. No approved observation is available."
       },
       "hormuz-total-transits": {
-        "value": 14,
-        "unit": "commodity vessel transits/day, 10-day average (4 exited and 10 entered on the weekend)",
-        "status": "carried",
+        "value": 9,
+        "unit": "commodity vessels/day",
+        "status": "confirmed",
         "observationKind": "transit",
-        "periodStart": "2026-09-14",
-        "periodEnd": "2026-09-14",
+        "periodStart": "2026-09-24",
+        "periodEnd": "2026-09-24",
         "coverageStatus": "direct-observation",
-        "sourceAgeDays": 10,
-        "source": "The National",
-        "sourceDate": "2026-09-14",
+        "sourceAgeDays": 1,
+        "source": "Kpler via Reuters",
+        "sourceDate": "2026-09-24",
         "maxAgeDays": 7,
         "cadence": "daily",
-        "carryReason": "Reviewed Sep 24; The National's Sep 14 observation remains the latest approved comparable transit count. AIS counts exclude vessels that may have switched off transponders; retain this dated value until a newer source-supported count is available.",
-        "note": "Carried Sep 24: The National's Sep 14 observation remains the latest approved 14-vessel 10-day average and weekend count of four vessels out and 10 in. AIS counts exclude vessels that may have switched off transponders; no newer comparable count was approved."
+        "note": "Carried Sep 24: The National's Sep 14 observation remains the latest approved 14-vessel 10-day average and weekend count of four vessels out and 10 in. AIS counts exclude vessels that may have switched off transponders; no newer comparable count was approved.",
+        "coverageNote": "Kpler count reported by Reuters; transponders switched off by some ships may cause undercounting."
       },
       "qatar-subchartered-carriers": {
         "value": 9,
@@ -546,17 +545,17 @@
         "sourceDate": "2026-07-23",
         "maxAgeDays": 14,
         "cadence": "event-driven",
-        "carryReason": "No newer source-verified QatarEnergy sub-charter count was approved in the Aug 18 review; retain the Reuters July 23 minimum of nine carriers with its original date."
+        "carryReason": "Reviewed Sep 25; the Reuters July 23 minimum of nine sub-chartered carriers remains the latest approved count. No newer source-verified QatarEnergy sub-charter count was found."
       },
       "oman-marker": {
-        "value": 132.09,
+        "value": 117.23,
         "unit": "USD/bbl",
-        "status": "carried",
+        "status": "confirmed",
         "source": "Gulf Mercantile Exchange",
-        "sourceDate": "2026-09-16",
+        "sourceDate": "2026-09-24",
         "maxAgeDays": 3,
         "cadence": "daily",
-        "carryReason": "Reviewed Sep 20; the public GME landing page did not expose a newer dated OQD marker, so carry the Sep 16 marker at 132.09 USD/bbl."
+        "sourceAgeDays": 1
       }
     },
     "evidenceUpdates": {
@@ -575,23 +574,23 @@
         "publishedAt": "2026-09-11"
       },
       "e-hormuz-transit": {
-        "lastChecked": "2026-09-21",
+        "lastChecked": "2026-09-25",
         "status": "carried",
-        "note": "Reviewed Sep 21; no newer source-verified weekly Kpler LNG-transit breakdown is approved, so retain the Aug 3 Foreign Policy Journal count of 3 LNG transits for the week of Jul 27-Aug 2."
+        "note": "Reviewed Sep 25; no newer source-verified weekly LNG-specific transit count was found. Retain the Aug 2 count of three LNG transits with its original date."
       },
       "e-jkm": {
-        "lastChecked": "2026-09-21",
+        "lastChecked": "2026-09-25",
         "status": "carried",
-        "note": "Reviewed Sep 21; no newer source-verified weekly Asia spot LNG assessment is approved. Carry the Reuters July 24 September-delivery assessment at 22 USD/MMBtu with its original date."
+        "note": "Reviewed Sep 25; Reuters’ July 24 report remains the latest approved official Asian spot LNG assessment at $22/MMBtu for September delivery. No newer dated official JKM assessment was found; the newer Trading Economics CFD remains separate context."
       },
       "e-ttf": {
-        "lastChecked": "2026-09-22",
-        "status": "carried",
-        "note": "Reviewed Sep 24; Yahoo Finance and Stooq refreshes failed, so carry the last audited TTF=F observation at 73.90 EUR/MWh from Sep 21.",
+        "lastChecked": "2026-09-25",
+        "status": "confirmed",
+        "note": "Reviewed Sep 25; a cache-busted Yahoo Finance TTF=F response returned 75.27 EUR/MWh at 2026-09-24T17:44:59Z, up 0.218% from the prior quote.",
         "title": "Yahoo Finance chart API - Dutch TTF",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
-        "publishedAt": "2026-09-21"
+        "publishedAt": "2026-09-24"
       },
       "e-saudi-pipeline": {
         "lastChecked": "2026-09-24",
@@ -628,46 +627,49 @@
         "status": "confirmed"
       },
       "e-brent": {
-        "lastChecked": "2026-09-21",
+        "lastChecked": "2026-09-25",
         "status": "carried",
-        "note": "Reviewed Sep 24; the live Yahoo refresh failed and the Sep 23 Reuters and Yahoo history Brent marks conflict. Carry the last audited Yahoo BZ=F value from Sep 21 pending instrument reconciliation.",
+        "note": "Reviewed Sep 25; the cache-busted Yahoo BZ=F response returned $99.40 against its own $104.91-$106.75 daily range, while Reuters reported $105.11 at 05:41 GMT. Retain the last accepted Sep 21 observation pending instrument reconciliation.",
         "title": "Yahoo Finance chart API - Brent Crude",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=1d&range=5d",
         "publishedAt": "2026-09-21"
       },
       "e-wti": {
-        "lastChecked": "2026-09-21",
-        "status": "carried",
-        "note": "Reviewed Sep 24; the live Yahoo and Stooq refreshes failed. Carry the last audited Yahoo CL=F value from Sep 21.",
+        "lastChecked": "2026-09-25",
+        "status": "confirmed",
+        "note": "Reviewed Sep 25; a cache-busted Yahoo Finance CL=F response returned 93.64 USD/bbl at 2026-09-25T08:07:47Z, down 1.025% on the session.",
         "title": "Yahoo Finance chart API - WTI Crude",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=5d",
-        "publishedAt": "2026-09-21"
+        "publishedAt": "2026-09-25"
       },
       "e-eurusd": {
-        "lastChecked": "2026-09-21",
-        "status": "carried",
-        "note": "Reviewed Sep 24; the live Yahoo and Stooq refreshes failed. Carry the last audited EURUSD=X observation from Sep 21.",
+        "lastChecked": "2026-09-25",
+        "status": "confirmed",
+        "note": "Reviewed Sep 25; a cache-busted Yahoo Finance EURUSD=X response returned 1.1396 USD/EUR at 2026-09-25T08:17:06Z.",
         "title": "Yahoo Finance chart API - EUR/USD",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?interval=1d&range=5d",
-        "publishedAt": "2026-09-21"
+        "publishedAt": "2026-09-25"
       },
       "e-sofr": {
-        "lastChecked": "2026-09-22",
-        "status": "carried",
-        "note": "Reviewed Sep 24; the New York Fed API refresh failed. Carry the last audited SOFR observation, effective Sep 18.",
-        "publishedAt": "2026-09-18"
+        "lastChecked": "2026-09-25",
+        "status": "confirmed",
+        "note": "Reviewed Sep 25; the New York Fed API reports SOFR at 3.87% effective September 23, 2026. The response was retrieved with a one-time cachebust parameter.",
+        "publishedAt": "2026-09-23",
+        "title": "Secured Overnight Financing Rate",
+        "publisher": "Federal Reserve Bank of New York",
+        "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json"
       },
       "e-jkm-cfd": {
-        "lastChecked": "2026-09-21",
-        "status": "carried",
-        "note": "Reviewed Sep 24; the accessible Trading Economics snapshot still exposes the Sep 18 JKM-linked CFD reference at 27.51 USD/MMBtu, up 2.84%. No dependable newer dated observation was available; this is contextual, not the official JKM assessment.",
+        "lastChecked": "2026-09-25",
+        "status": "confirmed",
+        "note": "Reviewed Sep 25; Trading Economics displayed the JKM-linked CFD reference at 26.38 USD/MMBtu dated Sep 24, up 2.55%. This is contextual and not the official JKM assessment.",
         "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
         "publisher": "Trading Economics",
         "url": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
-        "publishedAt": "2026-09-19"
+        "publishedAt": "2026-09-24"
       },
       "e-hormuz-total-transits": {
         "lastChecked": "2026-09-21",
@@ -688,10 +690,13 @@
         "publishedAt": "2026-09-06"
       },
       "e-gme-oman": {
-        "lastChecked": "2026-09-21",
-        "status": "carried",
-        "note": "Reviewed Sep 21; the public GME landing page did not expose a newer dated OQD marker, so carry the Sep 16 marker at 132.09 USD/bbl.",
-        "publishedAt": "2026-09-16"
+        "lastChecked": "2026-09-25",
+        "status": "confirmed",
+        "note": "Reviewed Sep 25; the GME market summary displayed OQD Daily Marker Price at 117.23 USD/bbl dated Sep 24.",
+        "publishedAt": "2026-09-24",
+        "title": "Gulf Mercantile Exchange OQD Daily Marker Price",
+        "publisher": "Gulf Mercantile Exchange",
+        "url": "https://www.gulfmerc.com/"
       },
       "e-hormuz-talks": {
         "lastChecked": "2026-09-21",
@@ -703,20 +708,47 @@
         "publishedAt": "2026-09-14"
       },
       "e-vlcc-freight": {
-        "lastChecked": "2026-09-21",
+        "lastChecked": "2026-09-25",
         "status": "carried",
-        "note": "Reviewed Sep 21; Reuters' Sep 11 Baltic Exchange assessment of around Worldscale 450, roughly $11.50/bbl, for Gulf of Oman-to-China VLCC freight is the latest approved route-specific observation and is carried pending a newer close. Reuters' Sep 17 report notes industry-wide VLCC spot rates above $500,000/day since the Sep 11 Saudi pipeline attack, but gives no new route-specific close.",
+        "note": "Reviewed Sep 25; the latest same-unit Gulf of Oman-to-China VLCC observation remains the Sep 11 Baltic Exchange assessment near Worldscale 450, roughly $11.50/bbl. Reuters Sep 25 reports a Middle East-to-China time-charter rate of $1.27 million/day on Sep 21, but that different unit is not converted into a route-normalised per-barrel freight value.",
         "title": "Oil tanker rates hit record highs following Iran, US shipping attacks",
         "publisher": "Reuters",
         "url": "https://www.reuters.com/business/energy/oil-tanker-rates-hit-record-highs-following-iran-us-shipping-attacks-2026-09-11/",
         "publishedAt": "2026-09-11"
+      },
+      "e-hormuz-kpler-0925": {
+        "lastChecked": "2026-09-25",
+        "status": "confirmed",
+        "note": "Reuters reported current Kpler commodity-vessel transits and crude flows on Sep 25; the transit metric is not LNG-specific.",
+        "title": "Crude oil exports via Hormuz at 33.7 million barrels this week, data shows",
+        "publisher": "Reuters",
+        "url": "https://www.reuters.com/world/middle-east/hormuz-commodity-ship-transits-fall-single-digits-shiptracking-data-shows-2026-09-25/",
+        "publishedAt": "2026-09-25"
+      },
+      "e-reuters-oil-0925": {
+        "lastChecked": "2026-09-25",
+        "status": "confirmed",
+        "note": "Reuters reported Sep 25 market prices, conditional US-Iran talks, six Houthi missiles intercepted by Saudi Arabia, and that Yanbu loadings had yet to resume.",
+        "title": "Oil slides as US-Iran truce hopes outweigh Houthi attacks on Saudi Arabia",
+        "publisher": "Reuters",
+        "url": "https://www.reuters.com/business/energy/oil-prices-fall-markets-look-iran-truce-remain-wary-attacks-oil-facilities-2026-09-25/",
+        "publishedAt": "2026-09-25"
+      },
+      "e-reuters-saudi-sts-0925": {
+        "lastChecked": "2026-09-25",
+        "status": "confirmed",
+        "note": "Reuters reported Saudi Hormuz exports, Gulf of Oman ship-to-ship transfer congestion, and a Middle East-to-China VLCC time-charter rate on Sep 25.",
+        "title": "Gulf of Oman ship-to-ship oil transfers reach limit as Saudi exports surge",
+        "publisher": "Reuters",
+        "url": "https://www.reuters.com/business/energy/gulf-oman-ship-to-ship-oil-transfers-reach-limit-saudi-exports-surge-2026-09-25/",
+        "publishedAt": "2026-09-25"
       }
     }
   },
   "volatilityDay": {
-    "day": "D204",
-    "date": "2026-09-24",
-    "note": "Thu - Saudi East-West pipeline resumed; conditional Hormuz talks continue; liquid quotes remain carried; tail 40%.",
+    "day": "D205",
+    "date": "2026-09-25",
+    "note": "Fri - Hormuz traffic fell to nine vessels on Sep 24; Saudi exports and ship-to-ship demand rise; truce talks remain unsigned; tail 40%.",
     "ovx": 58,
     "ovxConfirmed": false,
     "vxeem": 22,
@@ -730,31 +762,31 @@
   },
   "commodities": {
     "wheat": {
-      "current": 726.5,
-      "change1d": "+1.7%",
-      "zscore": 2.54,
-      "signal": "red",
+      "current": 690.5,
+      "change1d": "-2.3%",
+      "zscore": 1.91,
+      "signal": "amber",
       "source": "Yahoo Finance ZW=F (CME)",
-      "sourceDate": "2026-09-21",
-      "status": "carried"
+      "sourceDate": "2026-09-25",
+      "status": "confirmed"
     },
     "corn": {
-      "current": 533.25,
-      "change1d": "+1.1%",
-      "zscore": 1.49,
+      "current": 517.75,
+      "change1d": "-1.8%",
+      "zscore": 1.15,
       "signal": "amber",
       "source": "Yahoo Finance ZC=F (CME)",
-      "sourceDate": "2026-09-21",
-      "status": "carried"
+      "sourceDate": "2026-09-25",
+      "status": "confirmed"
     },
     "soybeans": {
-      "current": 1310.75,
-      "change1d": "+0.6%",
-      "zscore": 2.31,
+      "current": 1303.5,
+      "change1d": "-1.1%",
+      "zscore": 2.24,
       "signal": "red",
       "source": "Yahoo Finance ZS=F (CME)",
-      "sourceDate": "2026-09-21",
-      "status": "carried"
+      "sourceDate": "2026-09-25",
+      "status": "confirmed"
     },
     "palm-oil": {
       "current": 4936,
@@ -775,12 +807,12 @@
       "status": "carried"
     },
     "naphtha": {
-      "current": 839.26,
-      "change1d": "+0.2%",
+      "current": 838.56,
+      "change1d": "+0.60%",
       "zscore": 0.99,
       "signal": "green",
-      "source": "Trading Economics",
-      "sourceDate": "2026-09-21",
+      "source": "Trading Economics Naphtha CFD reference",
+      "sourceDate": "2026-09-24",
       "status": "estimated"
     },
     "ethylene": {
@@ -829,13 +861,13 @@
       "status": "carried"
     },
     "bdi": {
-      "current": 3107,
-      "change1d": "+1.7%",
-      "zscore": 3.11,
+      "current": 3473,
+      "change1d": "+1.25%",
+      "zscore": 3.8,
       "signal": "red",
-      "source": "Trading Economics",
-      "sourceDate": "2026-08-27",
-      "status": "carried"
+      "source": "Trading Economics / Baltic Exchange Dry Index",
+      "sourceDate": "2026-09-24",
+      "status": "confirmed"
     },
     "vlcc": {
       "current": 105,
@@ -857,17 +889,17 @@
     }
   },
   "priceNarratives": {
-    "Brent": "Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> last accepted $97.49 (Sep 21, Yahoo Finance BZ=F; carried). Reuters reported a Sep 23 settlement at $103.08, while Yahoo's historical page showed $98.36 for Sep 23; the mismatch is unresolved, so retain the last audited quote pending instrument reconciliation. Working range $75-85 base; $85-105 stress; $105-135+ tail.",
-    "JKM LNG": "Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> official $22.00/MMBtu (Jul 24, Reuters September-delivery assessment, carried). The last approved JKM-linked CFD reference is $27.51/MMBtu (Trading Economics, Sep 18, +2.84%), also carried. Reuters' Sep 11 report says QatarEnergy is seeking 2-3 MTPA of US LNG through 2031 while force majeure remains through November.",
-    "TTF Gas": "Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 73.90 EUR/MWh (Sep 21, Yahoo Finance TTF=F; +0.9%), carried after the live refresh failed. Saudi pipeline restoration and conditional US-Iran talks ease immediate supply concerns, but no verified commercial Hormuz reopening is approved.",
-    "Credit": "iTraxx Asia IG est. ~138bp (Aug 5, -2bp); ASEAN HY est. ~475bp (-8bp), both carried pending fresher EM credit data. The scenario split remains base 15%, stress 45%, tail 40% as conditional talks have not produced a signed reopening."
+    "Brent": "Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> last accepted $97.49 (Sep 21, Yahoo Finance BZ=F; carried). Reuters reported Brent at $105.11 at 05:41 GMT on Sep 25; cache-busted Yahoo returned $99.40 while reporting a $104.91-$106.75 daily range. The discrepancy remains unresolved, so retain the Sep 21 mark pending instrument reconciliation. Working range $75-85 base; $85-105 stress; $105-135+ tail.",
+    "JKM LNG": "Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> official $22.00/MMBtu (Jul 24, Reuters September-delivery assessment, carried; no newer official assessment found). The JKM-linked CFD reference is $26.38/MMBtu (Trading Economics, Sep 24, +2.55%), contextual and not the official assessment. Reuters Sep 11 reported QatarEnergy is seeking 2-3 MTPA of US LNG through 2031 while force majeure remains reported through November.",
+    "TTF Gas": "Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 75.27 EUR/MWh (Sep 24, Yahoo Finance TTF=F; +0.22%), latest dated quote. Saudi exports through Hormuz are rebounding but tanker and transfer congestion remain; no verified commercial reopening is approved.",
+    "Credit": "iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both carried as estimates pending fresher EM credit data. No current daily source-approved credit marks are available. The scenario split remains base 15%, stress 45%, tail 40% while no signed reopening has been verified."
   },
   "runbookState": {
-    "brent": "$97.49 (2026-09-21, Yahoo Finance BZ=F; carried; Sep 23 Reuters and Yahoo historical Brent marks conflict)",
-    "jkm": "$22.00/MMBtu (Jul 24, Reuters September-delivery assessment, carried; CFD reference $27.51/MMBtu, Trading Economics, Sep 18, carried; QatarEnergy force majeure reported through November)",
-    "ttf": "73.90 EUR/MWh (2026-09-21, Yahoo Finance TTF=F; +0.9%, carried); carried after machine refresh failure"
+    "brent": "$97.49 (2026-09-21, Yahoo Finance BZ=F; carried because the Sep 25 Yahoo quote conflicts with its own daily range and Reuters reported $105.11 at 05:41 GMT; instrument reconciliation pending)",
+    "jkm": "$22.00/MMBtu (Jul 24, Reuters September-delivery assessment, carried; no newer official assessment approved); JKM-linked CFD $26.38/MMBtu (Trading Economics, Sep 24, +2.55%, market-context reference); QatarEnergy force majeure remains reported through November",
+    "ttf": "75.27 EUR/MWh (2026-09-24, Yahoo Finance TTF=F, +0.22%; latest dated quote); carried after machine refresh failure"
   },
-  "timelineEntry": "- **D204**: Sep 24 - Saudi's East-West pipeline resumes; Iran ties any Hormuz reopening to US concessions and Tehran's conditions.",
+  "timelineEntry": "- **D205**: Sep 25 - Reuters reports nine Hormuz commodity transits and rising Saudi exports; truce talks remain unsigned as Houthis target Taif and Yanbu.",
   "commercialInputs": {
     "lng-origin-value": {
       "label": "Qatar origin value",
@@ -898,7 +930,7 @@
       "sourceDate": "2026-07-24",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "carryReason": "Reuters reported the latest approved Asian spot LNG assessment at 22 USD/MMBtu for September delivery on 2026-07-24."
+      "carryReason": "Reviewed Sep 25; Reuters’ July 24 assessment of $22/MMBtu for September delivery remains the latest approved official Asian spot LNG assessment. Trading Economics’ newer $26.38 value is a JKM-linked CFD reference, not the official assessment."
     },
     "lng-ttf": {
       "label": "Dutch TTF",
@@ -913,33 +945,32 @@
       "maxAgeDays": 3,
       "cadence": "daily",
       "observationKind": "flow",
-      "periodStart": "2026-09-21",
-      "periodEnd": "2026-09-21",
+      "periodStart": "2026-09-24",
+      "periodEnd": "2026-09-24",
       "coverageStatus": "unavailable",
-      "sourceAgeDays": 3,
-      "value": 73.9,
+      "sourceAgeDays": 1,
+      "value": 75.27,
       "source": "Yahoo Finance TTF=F",
-      "sourceDate": "2026-09-21",
-      "observedAt": "2026-09-21T15:50:45.000Z",
-      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Stooq fallback not configured"
+      "sourceDate": "2026-09-24",
+      "observedAt": "2026-09-24T17:44:59.000Z",
+      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Stooq fallback not configured. Previous approved observation carried with its original observation date."
     },
     "fx-eurusd": {
       "label": "EUR/USD",
       "commodity": "lng",
       "role": "fx",
-      "value": 1.1485,
+      "value": 1.1396,
       "unit": "USD/EUR",
-      "status": "carried",
+      "status": "confirmed",
       "source": "Yahoo Finance EURUSD=X",
-      "sourceDate": "2026-09-21",
-      "observedAt": "2026-09-21T02:19:07.000Z",
+      "sourceDate": "2026-09-25",
+      "observedAt": "2026-09-25T08:17:06.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
         "e-eurusd"
       ],
-      "requiredForCalculation": false,
-      "carryReason": "Machine refresh failed: Was there a typo in the url or port?; Unable to connect. Is the computer able to access the url?"
+      "requiredForCalculation": false
     },
     "lng-freight": {
       "label": "LNG freight",
@@ -985,25 +1016,24 @@
       ],
       "requiredForCalculation": false,
       "observedAt": "2026-09-21T02:07:13.000Z",
-      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Unable to connect. Is the computer able to access the url?"
+      "carryReason": "Reviewed Sep 25; Yahoo BZ=F returned $99.40 while its own reported daily range was $104.91-$106.75, and Reuters reported $105.11 at 05:41 GMT. The marks remain unreconciled, so carry the last accepted $97.49 observation from Sep 21."
     },
     "oil-wti": {
       "label": "WTI",
       "commodity": "crude-oil",
       "role": "origin-value",
-      "value": 94.04,
+      "value": 93.64,
       "unit": "USD/bbl",
-      "status": "carried",
+      "status": "confirmed",
       "source": "Yahoo Finance CL=F",
-      "sourceDate": "2026-09-21",
+      "sourceDate": "2026-09-25",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
         "e-wti"
       ],
       "requiredForCalculation": true,
-      "observedAt": "2026-09-21T02:08:59.000Z",
-      "carryReason": "Machine refresh failed: Was there a typo in the url or port?; Was there a typo in the url or port?"
+      "observedAt": "2026-09-25T08:07:47.000Z"
     },
     "oil-dubai-oman": {
       "label": "Dubai/Oman destination reference",
@@ -1013,14 +1043,13 @@
         "e-gme-oman"
       ],
       "requiredForCalculation": true,
-      "value": 132.09,
+      "value": 117.23,
       "unit": "USD/bbl",
-      "status": "carried",
+      "status": "confirmed",
       "source": "Gulf Mercantile Exchange",
-      "sourceDate": "2026-09-16",
+      "sourceDate": "2026-09-24",
       "maxAgeDays": 3,
-      "cadence": "daily",
-      "carryReason": "Reviewed Sep 21; the public GME landing page did not expose a newer dated OQD marker, so carry the Sep 16 marker at 132.09 USD/bbl."
+      "cadence": "daily"
     },
     "oil-vlcc-freight": {
       "label": "VLCC freight",
@@ -1037,12 +1066,12 @@
       "periodStart": "2026-09-11",
       "periodEnd": "2026-09-11",
       "coverageStatus": "direct-observation",
-      "sourceAgeDays": 13,
+      "sourceAgeDays": 14,
       "source": "Baltic Exchange via Reuters",
       "sourceDate": "2026-09-11",
       "maxAgeDays": 1,
       "cadence": "daily",
-      "carryReason": "Reviewed Sep 21; Reuters reported the Gulf of Oman-to-China VLCC rate around Worldscale 450, roughly $11.50/bbl, on Sep 11. Reuters separately reported Sep 17 that VLCC spot rates industry-wide have climbed above $500,000/day (Allied Shipbroking) since the Sep 11 Saudi pipeline attack, but no newer route-specific Gulf of Oman-to-China close is approved, so this assessment is carried."
+      "carryReason": "Reviewed Sep 25; the latest same-unit Gulf of Oman-to-China VLCC observation remains the Sep 11 Baltic Exchange assessment near Worldscale 450, roughly $11.50/bbl. Reuters Sep 25 reports a Middle East-to-China time-charter rate of $1.27 million/day on Sep 21, but that different unit is not converted into a route-normalised per-barrel freight value."
     },
     "oil-war-risk": {
       "label": "Crude war-risk insurance",
@@ -1062,19 +1091,18 @@
       "label": "SOFR",
       "commodity": "crude-oil",
       "role": "financing",
-      "value": 3.85,
+      "value": 3.87,
       "unit": "%",
-      "status": "carried",
+      "status": "confirmed",
       "source": "Federal Reserve Bank of New York",
-      "sourceDate": "2026-09-18",
+      "sourceDate": "2026-09-23",
       "maxAgeDays": 7,
       "cadence": "daily",
       "evidenceIds": [
         "e-sofr"
       ],
       "requiredForCalculation": false,
-      "observedAt": "2026-09-18T00:00:00Z",
-      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?"
+      "observedAt": "2026-09-23T00:00:00Z"
     }
   }
 }

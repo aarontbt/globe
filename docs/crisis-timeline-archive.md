@@ -159,3 +159,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D198**: Sep 18 - Saudi reroutes crude via Sohar after pipeline drone strike; Hormuz crossings remain in single digits amid record VLCC orders.
 - **D201**: Sep 21 - Saudi exports recover above 4m bpd, but Houthi attacks and the US-Iran stalemate keep Hormuz risk elevated.
 - **D204**: Sep 24 - Saudi's East-West pipeline resumes; Iran ties any Hormuz reopening to US concessions and Tehran's conditions.
+- **D205**: Sep 25 - Reuters reports nine Hormuz commodity transits and rising Saudi exports; truce talks remain unsigned as Houthis target Taif and Yanbu.

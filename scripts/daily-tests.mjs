@@ -406,24 +406,26 @@ if (energyFixtureState.traceInputs.metrics.ttf?.sourceDate > "2026-08-25") {
 // sourceDate has moved past this fixture's fixed asOf (2026-08-26) - otherwise
 // validateStateShape's "sourceDate cannot be after asOf" check and validateEvidenceAudit's
 // cross-checks fail as production data advances, independent of this fixture's logic.
-const fixtureClampedMetrics = {
-  "jkm-cfd-reference": "e-jkm-cfd",
-  "hormuz-total-transits": "e-hormuz-total-transits",
-  "oman-marker": "e-gme-oman",
-};
-for (const [metricId, evidenceId] of Object.entries(fixtureClampedMetrics)) {
-  const metric = energyFixtureState.traceInputs.metrics[metricId];
+const fixtureClampedInputIds = new Set(["jkm-cfd-reference", "hormuz-total-transits", "oman-marker", "oil-dubai-oman"]);
+for (const inputId of fixtureClampedInputIds) {
+  const metric = energyFixtureState.traceInputs.metrics[inputId];
   if (metric && metric.sourceDate > "2026-08-25") metric.sourceDate = "2026-08-25";
-  const evidenceUpdate = energyFixtureState.traceInputs.evidenceUpdates[evidenceId];
-  if (evidenceUpdate && evidenceUpdate.publishedAt > "2026-08-25") evidenceUpdate.publishedAt = "2026-08-25";
-  const evidenceEntry = energyFixtureExposure.evidence.find((item) => item.id === evidenceId);
+}
+for (const auditEntry of energyFixtureAudit.entries ?? []) {
+  const matchingInputIds = [
+    ...(auditEntry.supportedMetricIds ?? []),
+    ...(auditEntry.supportedCommercialInputIds ?? []),
+  ].filter((inputId) => fixtureClampedInputIds.has(inputId));
+  if (!matchingInputIds.length) continue;
+  if (auditEntry.publishedAt > "2026-08-25") auditEntry.publishedAt = "2026-08-25";
+  const evidenceEntry = energyFixtureExposure.evidence.find((item) => item.id === auditEntry.evidenceId);
   if (evidenceEntry && evidenceEntry.publishedAt > "2026-08-25") evidenceEntry.publishedAt = "2026-08-25";
-  const auditEntry = energyFixtureAudit.entries.find((item) => item.evidenceId === evidenceId);
-  if (auditEntry) {
-    if (auditEntry.publishedAt > "2026-08-25") auditEntry.publishedAt = "2026-08-25";
-    for (const observation of auditEntry.observations ?? []) {
-      if (observation.sourceDate > "2026-08-25") observation.sourceDate = "2026-08-25";
-    }
+  const evidenceUpdate = energyFixtureState.traceInputs.evidenceUpdates[auditEntry.evidenceId];
+  if (evidenceUpdate && evidenceUpdate.publishedAt > "2026-08-25") evidenceUpdate.publishedAt = "2026-08-25";
+  for (const observation of auditEntry.observations ?? []) {
+    if (!matchingInputIds.includes(observation.inputId)) continue;
+    if (observation.sourceDate > "2026-08-25") observation.sourceDate = "2026-08-25";
+    if (observation.observedAt?.slice(0, 10) > "2026-08-25") observation.observedAt = "2026-08-25T00:00:00.000Z";
   }
 }
 const fixtureOmanCommercial = energyFixtureState.commercialInputs["oil-dubai-oman"];

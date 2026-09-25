@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 24: Hormuz reopening talks remain conditional";
+const TOP_ALERT = "SEP 25: Oil slides on US-Iran truce hopes despite Houthi attacks; Reuters reports Hormuz traffic fell to nine vessels.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
