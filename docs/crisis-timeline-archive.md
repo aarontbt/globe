@@ -160,3 +160,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D201**: Sep 21 - Saudi exports recover above 4m bpd, but Houthi attacks and the US-Iran stalemate keep Hormuz risk elevated.
 - **D204**: Sep 24 - Saudi's East-West pipeline resumes; Iran ties any Hormuz reopening to US concessions and Tehran's conditions.
 - **D205**: Sep 25 - Reuters reports nine Hormuz commodity transits and rising Saudi exports; truce talks remain unsigned as Houthis target Taif and Yanbu.
+- **D206**: Sep 26 - Weekend carries Friday data: nine Hormuz transits, 33.7m barrels crude week-to-date, Saudi ship-to-ship transfers at capacity, no signed reopening.

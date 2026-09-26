@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 25: Oil slides on US-Iran truce hopes despite Houthi attacks; Reuters reports Hormuz traffic fell to nine vessels.";
+const TOP_ALERT = "SEP 25 CLOSE: Brent settled at $104.32, down 2.1%, while selective Hormuz traffic and full Gulf of Oman transfer capacity keep supply risk elevated.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

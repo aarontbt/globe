@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { MarketQuote } from "../types";
 import { fetchAllQuotes } from "../services/marketsService";
 
-// Static fallback - generated from src/data/daily-state.json (2026-09-25; D205)
-// Brent Crude 97.49 (Yahoo Finance BZ=F 2026-09-21, carried pending quote reconciliation); WTI Crude 93.64 (Yahoo Finance CL=F 2026-09-25, confirmed)
+// Static fallback - generated from src/data/daily-state.json (2026-09-26; D206)
+// Brent Crude 97.49 (Yahoo Finance BZ=F 2026-09-21, carried pending reconciliation); WTI Crude 92.44 (Yahoo Finance CL=F 2026-09-25, confirmed)
 const FALLBACK_QUOTES: MarketQuote[] = [
   { symbol: "BZ=F", name: "Brent Crude", price: 97.49, change: -11.26, changePct: -1.81, currency: "USD", unit: "/barrel", lastUpdated: "2026-09-21T02:07:13.000Z" },
-  { symbol: "CL=F", name: "WTI Crude", price: 93.64, change: -0.97, changePct: -1.025, currency: "USD", unit: "/barrel", lastUpdated: "2026-09-25T08:07:47.000Z" },
+  { symbol: "CL=F", name: "WTI Crude", price: 92.44, change: -2.17, changePct: -2.294, currency: "USD", unit: "/barrel", lastUpdated: "2026-09-25T20:59:58.000Z" },
 ];
 
 interface UseMarketsResult {
