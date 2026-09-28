@@ -1,48 +1,48 @@
 {
-  "asOf": "2026-09-26T00:00:00Z",
-  "day": "D206",
-  "scenario": "Sep 25 close: Reuters/Kpler counted nine Hormuz commodity-vessel transits on Sep 24 and 33.7 million barrels of crude exports week-to-date; Saudi exports via Hormuz were on track for 3.6 million bpd while Gulf of Oman ship-to-ship transfers reached capacity. Brent $97.49 remains carried from Sep 21 pending reconciliation against Reuters $104.32 settlement and Yahoo $97.47; WTI $92.44, TTF 72.08 EUR/MWh, EUR/USD 1.1392, and GME Oman $111.58 are confirmed from Sep 25 observations. Official JKM remains $22.00/MMBtu from Jul 24, carried; the separate JKM-linked CFD reference is $25.82 from Sep 25. Crisis level 4 (High); base 15%, stress 45%, tail 40%.",
+  "asOf": "2026-09-28T00:00:00Z",
+  "day": "D207",
+  "scenario": "Sep 28 update: Reuters/Kpler reported regional crude exports at 12.8 million bpd in September, including about 7.4 million bpd through Hormuz; Saudi exports are estimated at 5.4 million bpd and Ras Tanura at 3.6 million bpd. Al Jazeera reported Iran's temporary approved-route and fee instructions, with full reopening conditional on lifting the US blockade. Brent is $98.49 (Yahoo Finance BZ=F, Sep 28); WTI is $93.46 (Yahoo Finance CL=F, Sep 28); TTF is 72.071 EUR/MWh (Yahoo Finance, Sep 25, carried); JKM remains $22/MMBtu (Reuters, Jul 24, carried), with a separate $25.82 CFD reference (Trading Economics, Sep 25, carried). Crisis level 4 (High); base 15%, stress 45%, tail 40%.",
   "categories": [
     {
       "id": "food",
       "label": "Food & Agriculture",
-      "supplyChainImpact": "Reuters/Kpler reported nine commodity-vessel transits through Hormuz on Sep 24 against an 18-vessel 10-day average, with 33.7 million barrels of crude exports week-to-date. QatarEnergy force majeure remains reported through November. Fuel, fertilizer and freight exposure remains relevant to ASEAN importers; the reported vessel count is not a food-cargo measure.",
+      "supplyChainImpact": "Iran's Sep 27 temporary route and fee instructions add commercial conditions to Hormuz transit; full reopening remains tied to ending the US blockade. Reuters/Kpler's latest reviewed count was nine commodity vessels on Sep 24. Fuel, fertilizer and freight exposure remains relevant to ASEAN importers; that vessel count is not a food-cargo measure.",
       "assets": [
         {
           "id": "wheat",
           "name": "Wheat",
-          "current": 704,
+          "current": 698.25,
           "unit": "¢/bu",
-          "change1d": "-0.42%",
+          "change1d": "-0.71%",
           "baseline30d": 620,
           "baseline90d": 582,
-          "zscore": 2.15,
+          "zscore": 2.05,
           "signal": "red",
-          "narrative": "Yahoo Finance ZW=F returned 690.5 cents/bu on Sep 25 (-2.33%), a CME futures quote rather than a physical export assessment. Fertilizer, fuel and freight exposure remains relevant while Hormuz traffic stays selective; the market move is not attributed to the route event."
+          "narrative": "Yahoo Finance ZW=F returned 698.25 cents/bu on Sep 28 (-0.71% versus the prior session), a CME futures quote rather than a physical export assessment. Fertilizer, fuel and freight exposure remains relevant; the market move is not attributed to the route event."
         },
         {
           "id": "corn",
           "name": "Corn",
-          "current": 528.75,
+          "current": 524.25,
           "unit": "¢/bu",
-          "change1d": "+0.24%",
+          "change1d": "-0.76%",
           "baseline30d": 494,
           "baseline90d": 466,
-          "zscore": 1.39,
+          "zscore": 1.29,
           "signal": "amber",
-          "narrative": "Yahoo Finance ZC=F returned 517.75 cents/bu on Sep 25 (-1.85%), a CME futures quote rather than a physical export assessment. Gulf fuel and fertilizer cost transmission remains a supply-chain risk; the market move is not attributed to the route event."
+          "narrative": "Yahoo Finance ZC=F returned 524.25 cents/bu on Sep 28 (-0.76% versus the prior session), a CME futures quote rather than a physical export assessment. Gulf fuel and fertilizer cost transmission remains a supply-chain risk; the market move is not attributed to the route event."
         },
         {
           "id": "soybeans",
           "name": "Soybeans",
-          "current": 1320,
+          "current": 1312.25,
           "unit": "¢/bu",
-          "change1d": "+0.19%",
+          "change1d": "-0.51%",
           "baseline30d": 1102,
           "baseline90d": 1054,
-          "zscore": 2.39,
+          "zscore": 2.32,
           "signal": "red",
-          "narrative": "Yahoo Finance ZS=F returned 1,303.5 cents/bu on Sep 25 (-1.06%), a CME futures quote rather than a physical export assessment. Marine-fuel, fertilizer and vessel availability remain relevant risks for ASEAN importers."
+          "narrative": "Yahoo Finance ZS=F returned 1,312.25 cents/bu on Sep 28 (-0.51% versus the prior session), a CME futures quote rather than a physical export assessment. Marine fuel, fertilizer and vessel availability remain relevant risks for ASEAN importers."
         },
         {
           "id": "palm-oil",
@@ -54,7 +54,7 @@
           "baseline90d": 4010,
           "zscore": 1.25,
           "signal": "amber",
-          "narrative": "Bursa Malaysia market overview showed FCPO Dec-2026 futures at MYR4,673/mt on Sep 25, up one point. This is a futures marker, not a physical CPO assessment; Gulf fuel and freight remain broader supply-chain context."
+          "narrative": "MyBURSA reported FCPO Dec-2026 futures at MYR4,673/mt on Sep 28 at 11:00 a.m. Kuala Lumpur time, up one point (0.02%). This is a futures marker, not a physical CPO assessment; Gulf fuel and freight remain broader supply-chain context."
         },
         {
           "id": "rice",
@@ -66,14 +66,14 @@
           "baseline90d": 552,
           "zscore": -1.6,
           "signal": "amber",
-          "narrative": "The latest approved Thai Rice Exporters Association quote remains $463/mt for Thai 25% FOB on Sep 16; no newer dated quote was retrieved. Carry the original value and date; do not interpret its last recorded daily move as current."
+          "narrative": "The latest approved Thai Rice Exporters Association quote remains $463/mt for Thai 25% FOB on Sep 16; no newer dated quote was reviewed. Carry the original value and date; the prior daily change is not current."
         }
       ]
     },
     {
       "id": "chemicals",
       "label": "Petrochemicals & Plastics",
-      "supplyChainImpact": "Reuters reported Sep 25 that Gulf of Oman ship-to-ship transfers for Middle East oil reached capacity while Saudi crude exports through Hormuz rebounded. QatarEnergy force majeure remains reported through November. Gulf feedstock and shipping exposure remains relevant to SABIC, QAPCO and Southeast Asian crackers; no current route-normalised chemical freight quote is approved.",
+      "supplyChainImpact": "Reuters reported Sep 25 that Gulf of Oman ship-to-ship transfers for Middle East oil reached capacity while Saudi crude exports through Hormuz rebounded. Iran's Sep 27 temporary route and fee instructions add transit conditions; no signed commercial reopening or route-normalised chemical freight quote is approved.",
       "assets": [
         {
           "id": "naphtha",
@@ -85,7 +85,7 @@
           "baseline90d": 660,
           "zscore": 0.84,
           "signal": "green",
-          "narrative": "Trading Economics displayed a naphtha CFD reference of $811.83/mt on Sep 25 (-3.19%). It is not a physical CFR Japan close. Gulf feedstock and route risks remain elevated while Hormuz reopening is unverified."
+          "narrative": "Trading Economics' latest Naphtha CFD reference is $811.83/mt on Sep 25 (-3.19% then). Carry that dated reference; it is not a physical CFR Japan close."
         },
         {
           "id": "ethylene",
@@ -97,7 +97,7 @@
           "baseline90d": 948,
           "zscore": 0.63,
           "signal": "green",
-          "narrative": "The latest approved ethylene observation remains $1,045/mt (CFR Northeast Asia, Jul 24). No newer approved assessment was retrieved; carry it at its original date. Gulf feedstock and shipping constraints remain relevant context."
+          "narrative": "The latest approved ethylene observation remains $1,045/mt (CFR Northeast Asia, Jul 24). No newer approved assessment was available; carry its original date and do not treat the prior daily move as current."
         },
         {
           "id": "methanol",
@@ -109,14 +109,14 @@
           "baseline90d": 312,
           "zscore": -0.06,
           "signal": "green",
-          "narrative": "The latest approved methanol observation remains $308/mt (CFR China, Jul 24). No newer approved assessment was retrieved; carry it at its original date and do not treat the prior daily move as current."
+          "narrative": "The latest approved methanol observation remains $308/mt (CFR China, Jul 24). No newer approved assessment was available; carry its original date and do not treat the prior daily move as current."
         }
       ]
     },
     {
       "id": "fertilizers",
       "label": "Fertilizers",
-      "supplyChainImpact": "The Strait of Hormuz remains a key route for Middle East fertilizer supply. Reuters/Kpler counted nine commodity-vessel transits on Sep 24 against an 18-vessel 10-day average, while Reuters reported Gulf of Oman ship-to-ship transfers at capacity. QatarEnergy force majeure remains reported through November; no signed commercial reopening is verified.",
+      "supplyChainImpact": "Iran's Sep 27 temporary approved-route and fee instructions leave commercial reopening conditional on ending the US blockade. QatarEnergy force majeure remains reported through November. Gulf fuel, freight and ammonia supply exposure remains relevant; no current source-approved fertilizer freight or insurance cost is available.",
       "assets": [
         {
           "id": "urea",
@@ -128,7 +128,7 @@
           "baseline90d": 318,
           "zscore": 1.6,
           "signal": "amber",
-          "narrative": "CommodityScope’s latest reviewed Middle East urea indication remains $462.50/mt from Sep 17 (+3.9% then); this is an estimate, not an official Argus or DTN settlement. QatarEnergy force majeure and constrained Gulf shipping remain supply risks."
+          "narrative": "CommodityScope's latest reviewed Middle East urea indication remains $462.50/mt from Sep 17 (+3.9% then); this is an estimate, not an official Argus or DTN settlement. No newer dated indication was reviewed."
         },
         {
           "id": "dap",
@@ -140,7 +140,7 @@
           "baseline90d": 588,
           "zscore": 1.56,
           "signal": "amber",
-          "narrative": "The latest approved DAP observation remains $710/mt (FOB US Gulf, Jul 24). No newer approved Argus assessment was retrieved; carry it at its original date. This benchmark does not establish current Gulf freight or insurance costs."
+          "narrative": "The latest approved DAP observation remains $710/mt (FOB US Gulf, Jul 24). No newer approved Argus assessment was available; carry the original date. This does not establish current Gulf freight or insurance costs."
         },
         {
           "id": "potash",
@@ -152,14 +152,14 @@
           "baseline90d": 382,
           "zscore": 0.67,
           "signal": "green",
-          "narrative": "The latest approved potash observation remains $418/mt (CFR Southeast Asia, Jul 24). No newer approved Argus/CRU assessment was retrieved; carry it at its original date."
+          "narrative": "The latest approved potash observation remains $418/mt (CFR Southeast Asia, Jul 24). No newer approved Argus/CRU assessment was available; carry its original date and prior daily move."
         }
       ]
     },
     {
       "id": "shipping",
       "label": "Shipping & Freight",
-      "supplyChainImpact": "Reuters/Kpler reported nine commodity-vessel transits through Hormuz on Sep 24, with Saudi crude exports rebounding and Gulf of Oman ship-to-ship transfer capacity full. Reuters’ Sep 25 $1.27 million/day Middle East-to-China VLCC time-charter quote is not comparable to the carried Sep 11 route-specific Gulf of Oman-to-China assessment near $11.50/bbl. Current LNG freight and war-risk costs remain unavailable.",
+      "supplyChainImpact": "Reuters/Kpler's latest reviewed daily count was nine commodity vessels on Sep 24, with crude exports of 33.7 million barrels week-to-date. Reuters reported Sep 28 that regional crude exports rebounded and Hormuz exports are set for about 7.4 million bpd. Iran's Sep 27 approved-route and fee instructions do not establish a signed commercial reopening.",
       "assets": [
         {
           "id": "bdi",
@@ -171,7 +171,7 @@
           "baseline90d": 1452,
           "zscore": 3.71,
           "signal": "red",
-          "narrative": "Trading Economics reported the Baltic Dry Index at 3,426 points on Sep 25 (-1.35%). This broad dry-bulk indicator does not measure route-normalised Hormuz freight."
+          "narrative": "Trading Economics' latest reviewed Baltic Dry Index was 3,426 points on Sep 25 (-1.35% then). Carry that dated broad dry-bulk indicator; it does not measure route-normalised Hormuz freight."
         },
         {
           "id": "vlcc",
@@ -183,7 +183,7 @@
           "baseline90d": 68,
           "zscore": 1.12,
           "signal": "amber",
-          "narrative": "The WS105 level remains an estimate from Jul 24 and is not used in commercial evaluation. Reuters reported a Middle East-to-China VLCC time-charter rate of $1.27 million/day on Sep 21; that different unit is not converted into a route-normalised per-barrel freight quote."
+          "narrative": "The WS105 Gulf-Asia level remains a Jul 24 estimate and is not used in commercial evaluation. Reuters' Sep 11 Gulf of Oman-to-China assessment of about WS450 or $11.50/bbl is a different dated route observation; it is carried."
         },
         {
           "id": "scfi",
@@ -195,10 +195,10 @@
           "baseline90d": 1210,
           "zscore": 8.62,
           "signal": "red",
-          "narrative": "The Shanghai Shipping Exchange reported the SCFI at 3,686.62 on Sep 24 versus 3,687.83 on Sep 18, down 1.21 points or 0.03% week-on-week. This container freight index does not establish current Gulf war-risk costs."
+          "narrative": "The Shanghai Shipping Exchange reported the SCFI at 3,686.62 on Sep 24 versus 3,687.83 on Sep 18, down 1.21 points or 0.03% week-on-week. This weekly index does not establish current Gulf war-risk costs."
         }
       ]
     }
   ],
-  "marketContext": "Reuters/Kpler reported nine Hormuz commodity-vessel transits on Sep 24 versus 14 on Sep 23, an 18-vessel 10-day average, and 33.7 million barrels of crude exports week-to-date. Reuters said Saudi crude exports via Hormuz were on track for 3.6 million bpd in September versus 0.9 million bpd in August; Gulf of Oman ship-to-ship transfers are at capacity. Brent remains carried at $97.49 from Sep 21 because cache-busted Yahoo returned $97.47 (range $96.39-$100.26) while Reuters reported a $104.32 Sep 25 settlement. WTI is $92.44 (Yahoo Finance, Sep 25); TTF is 72.08 EUR/MWh (Yahoo Finance, Sep 25); EUR/USD is 1.1392 (Yahoo Finance, Sep 25); SOFR is 3.88% effective Sep 24 (New York Fed); GME Oman OQD is $111.58/bbl (Sep 25). Official JKM remains $22.00/MMBtu (Reuters, Jul 24, carried); the JKM-linked CFD reference is $25.82 (Trading Economics, Sep 25) and is not the official assessment. EM rates, credit spreads and regional equity indices remain estimates last sourced Aug 5. No signed commercial Hormuz reopening is verified."
+  "marketContext": "Al Jazeera reported Sep 27 that Tehran instructed shipping companies to use a temporary approved Hormuz route and pay fees; Iran says full reopening depends on ending the US blockade. Reports of explosions near Qeshm were attributed to Iranian media and had not been confirmed by Iranian authorities. Reuters/Kpler's latest exact daily count remains nine commodity vessels on Sep 24, with 33.7 million barrels of crude exports week-to-date reported Sep 25. Reuters reported Sep 28 that regional crude exports reached 12.8 million bpd in September, Hormuz exports are set for about 7.4 million bpd, Saudi exports for 5.4 million bpd, and Ras Tanura shipments for 3.6 million bpd. Brent is $98.49 on Yahoo Finance at 02:37 UTC Sep 28, down 5.59% from Friday's $104.32 close, which matches Reuters' Sep 25 settlement; WTI is $93.46, up 1.14%. TTF is 72.071 EUR/MWh from Sep 25, carried; EUR/USD is 1.1391 on Sep 28; SOFR is 3.88% effective Sep 24, carried. Official JKM remains $22/MMBtu from Jul 24, carried; the separate JKM-linked CFD is $25.82/MMBtu from Sep 25, carried. GME OQD is $111.58/bbl from Sep 25, carried. No signed commercial Hormuz reopening is verified."
 }

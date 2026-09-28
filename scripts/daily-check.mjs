@@ -133,6 +133,9 @@ for (const category of crossAsset.categories) {
     if (asset.change1d !== expected.change1d) fail(`crossAsset.${asset.id}.change1d is out of sync`);
     if (!sameNumber(asset.zscore, expected.zscore)) fail(`crossAsset.${asset.id}.zscore is out of sync`);
     if (asset.signal !== expected.signal) fail(`crossAsset.${asset.id}.signal is out of sync`);
+    for (const key of ["source", "sourceDate", "observedAt", "evidenceId", "status"]) {
+      if (expected[key] !== undefined && asset[key] !== expected[key]) fail(`crossAsset.${asset.id}.${key} is out of sync`);
+    }
   }
 }
 

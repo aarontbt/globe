@@ -73,7 +73,7 @@ function mirrorPublicJson(sourceFile) {
   writeText(publicFile, after);
 }
 
-function patchAssetCollections(collections, values) {
+function patchAssetCollections(collections, values, { includeProvenance = false } = {}) {
   for (const category of collections) {
     for (const asset of category.assets) {
       const update = values[asset.id];
@@ -82,6 +82,12 @@ function patchAssetCollections(collections, values) {
       asset.change1d = update.change1d;
       asset.zscore = update.zscore;
       asset.signal = update.signal;
+      if (includeProvenance) {
+        for (const key of ["source", "sourceDate", "observedAt", "evidenceId", "status"]) {
+          if (update[key] === undefined) delete asset[key];
+          else asset[key] = update[key];
+        }
+      }
     }
   }
 }
@@ -90,7 +96,7 @@ function applyCrossAsset() {
   const before = readText(PATHS.crossAsset);
   const data = JSON.parse(before);
   data.asOf = state.asOf;
-  patchAssetCollections(data.categories, state.crossAsset);
+  patchAssetCollections(data.categories, state.crossAsset, { includeProvenance: true });
   const after = `${JSON.stringify(data, null, 2)}\n`;
   mark(PATHS.crossAsset, before, after);
   writeText(PATHS.crossAsset, after, dryRun);
@@ -405,6 +411,11 @@ function validateStagedBundle() {
       if (!expected) continue;
       for (const key of ["current", "change1d", "zscore", "signal"]) {
         if (String(asset[key]) !== String(expected[key])) errors.push(`staged crossAsset.${asset.id}.${key} is out of sync`);
+      }
+      for (const key of ["source", "sourceDate", "observedAt", "evidenceId", "status"]) {
+        if (expected[key] !== undefined && String(asset[key]) !== String(expected[key])) {
+          errors.push(`staged crossAsset.${asset.id}.${key} is out of sync`);
+        }
       }
     }
   }

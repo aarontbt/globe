@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 25 CLOSE: Brent settled at $104.32, down 2.1%, while selective Hormuz traffic and full Gulf of Oman transfer capacity keep supply risk elevated.";
+const TOP_ALERT = "SEP 27 ROUTE RULES: Tehran requires vessels to use an Iran-approved temporary route and pay fees; full reopening remains conditional on ending the US port blockade.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

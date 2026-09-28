@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-09-26T00:00:00Z",
+  "asOf": "2026-09-28T00:00:00Z",
   "categories": [
     {
       "id": "energy",
@@ -8,24 +8,30 @@
         {
           "id": "brent",
           "name": "Brent Crude",
-          "current": 97.49,
+          "current": 98.49,
           "unit": "$/bbl",
-          "change1d": "-1.81%",
+          "change1d": "-5.59%",
           "baseline30d": 88,
           "baseline90d": 79.8,
-          "zscore": 3.79,
-          "signal": "red"
+          "zscore": 4,
+          "signal": "red",
+          "source": "Yahoo Finance BZ=F",
+          "sourceDate": "2026-09-28",
+          "status": "confirmed"
         },
         {
           "id": "ttf",
           "name": "TTF Gas",
-          "current": 72.08,
+          "current": 72.07,
           "unit": "€/MWh",
-          "change1d": "-4.03%",
+          "change1d": "-4.04%",
           "baseline30d": 44,
           "baseline90d": 38.4,
           "zscore": 6.68,
-          "signal": "red"
+          "signal": "red",
+          "source": "Yahoo Finance TTF=F",
+          "sourceDate": "2026-09-25",
+          "status": "carried"
         },
         {
           "id": "lng-ja",
@@ -36,7 +42,10 @@
           "baseline30d": 18,
           "baseline90d": 12.1,
           "zscore": 4.39,
-          "signal": "red"
+          "signal": "red",
+          "source": "Trading Economics JKM-linked CFD reference",
+          "sourceDate": "2026-09-25",
+          "status": "carried"
         }
       ]
     },
@@ -53,7 +62,10 @@
           "baseline30d": 6.75,
           "baseline90d": 6.88,
           "zscore": -0.49,
-          "signal": "green"
+          "signal": "green",
+          "source": "Investing.com (est.)",
+          "sourceDate": "2026-08-05",
+          "status": "estimated"
         },
         {
           "id": "ph10y",
@@ -64,7 +76,10 @@
           "baseline30d": 6.4,
           "baseline90d": 6.38,
           "zscore": 0.18,
-          "signal": "green"
+          "signal": "green",
+          "source": "Investing.com (est.)",
+          "sourceDate": "2026-08-05",
+          "status": "estimated"
         },
         {
           "id": "th10y",
@@ -75,7 +90,10 @@
           "baseline30d": 1.9,
           "baseline90d": 1.97,
           "zscore": -0.15,
-          "signal": "green"
+          "signal": "green",
+          "source": "Investing.com (est.)",
+          "sourceDate": "2026-08-05",
+          "status": "estimated"
         }
       ]
     },
@@ -92,7 +110,10 @@
           "baseline30d": 118,
           "baseline90d": 106,
           "zscore": 1.84,
-          "signal": "amber"
+          "signal": "amber",
+          "source": "Bloomberg/Markit (est.)",
+          "sourceDate": "2026-08-05",
+          "status": "estimated"
         },
         {
           "id": "asean-hy",
@@ -103,7 +124,10 @@
           "baseline30d": 390,
           "baseline90d": 372,
           "zscore": 2.83,
-          "signal": "red"
+          "signal": "red",
+          "source": "JPMorgan CEMBI/BAML (est.)",
+          "sourceDate": "2026-08-05",
+          "status": "estimated"
         }
       ]
     },
@@ -114,57 +138,82 @@
         {
           "id": "sgd",
           "name": "USD/SGD",
-          "current": 1.2772,
+          "current": 1.2779,
           "unit": "",
-          "change1d": "-0.10%",
+          "change1d": "+0.05%",
           "baseline30d": 1.245,
           "baseline90d": 1.284,
-          "zscore": -0.51,
-          "signal": "green"
+          "zscore": -0.45,
+          "signal": "green",
+          "source": "Yahoo Finance SGD=X",
+          "sourceDate": "2026-09-28",
+          "observedAt": "2026-09-28T05:13:27.000Z",
+          "evidenceId": "e-fx-sgd",
+          "status": "confirmed"
         },
         {
           "id": "idr",
           "name": "USD/IDR",
-          "current": 17912,
+          "current": 17945,
           "unit": "",
-          "change1d": "+0.11%",
+          "change1d": "+0.18%",
           "baseline30d": 16200,
           "baseline90d": 16080,
-          "zscore": 12.55,
-          "signal": "red"
+          "zscore": 12.78,
+          "signal": "red",
+          "source": "Yahoo Finance IDR=X",
+          "sourceDate": "2026-09-28",
+          "observedAt": "2026-09-28T04:58:19.000Z",
+          "evidenceId": "e-fx-idr",
+          "status": "confirmed"
         },
         {
           "id": "myr",
           "name": "USD/MYR",
-          "current": 4.07,
+          "current": 4.08,
           "unit": "",
-          "change1d": "-0.34%",
+          "change1d": "+0.25%",
           "baseline30d": 3.85,
           "baseline90d": 4.07,
           "zscore": 0,
-          "signal": "green"
+          "signal": "green",
+          "source": "Yahoo Finance MYR=X",
+          "sourceDate": "2026-09-28",
+          "observedAt": "2026-09-28T05:10:48.000Z",
+          "evidenceId": "e-fx-myr",
+          "status": "confirmed"
         },
         {
           "id": "thb",
           "name": "USD/THB",
-          "current": 33.37,
+          "current": 33.56,
           "unit": "",
-          "change1d": "-0.18%",
+          "change1d": "+0.57%",
           "baseline30d": 33,
           "baseline90d": 33.14,
-          "zscore": 0.21,
-          "signal": "green"
+          "zscore": 0.39,
+          "signal": "green",
+          "source": "Yahoo Finance THB=X",
+          "sourceDate": "2026-09-28",
+          "observedAt": "2026-09-28T05:13:48.000Z",
+          "evidenceId": "e-fx-thb",
+          "status": "confirmed"
         },
         {
           "id": "php",
           "name": "USD/PHP",
-          "current": 62.458,
+          "current": 62.398,
           "unit": "",
-          "change1d": "-0.39%",
+          "change1d": "-0.10%",
           "baseline30d": 58,
           "baseline90d": 58.32,
-          "zscore": 3.04,
-          "signal": "red"
+          "zscore": 3,
+          "signal": "red",
+          "source": "Yahoo Finance PHP=X",
+          "sourceDate": "2026-09-28",
+          "observedAt": "2026-09-28T05:12:32.000Z",
+          "evidenceId": "e-fx-php",
+          "status": "confirmed"
         }
       ]
     },
@@ -181,7 +230,10 @@
           "baseline30d": 130,
           "baseline90d": 136.6,
           "zscore": -2.35,
-          "signal": "red"
+          "signal": "red",
+          "source": "MSCI ASEAN/SGX (est.)",
+          "sourceDate": "2026-08-05",
+          "status": "estimated"
         },
         {
           "id": "shipping-eq",
@@ -192,7 +244,10 @@
           "baseline30d": 94,
           "baseline90d": 95,
           "zscore": -2.67,
-          "signal": "red"
+          "signal": "red",
+          "source": "SGX shipping sub-index (est.)",
+          "sourceDate": "2026-08-05",
+          "status": "estimated"
         },
         {
           "id": "banks-eq",
@@ -203,7 +258,10 @@
           "baseline30d": 208,
           "baseline90d": 205.8,
           "zscore": 0.26,
-          "signal": "green"
+          "signal": "green",
+          "source": "MSCI ASEAN Banks (est.)",
+          "sourceDate": "2026-08-05",
+          "status": "estimated"
         }
       ]
     }
