@@ -12,13 +12,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-09-28 (D207) |
-| **Crisis level** | 4 - High (Sep 27: Al Jazeera reported Tehran instructed vessels to use a temporary Iran-approved Hormuz route and pay fees; full reopening remains conditional on ending the US port blockade. Iranian media reported explosions near Qeshm, but Iranian authorities had not confirmed an attack. Reuters/Kpler's latest commodity-vessel count remains nine on Sep 24, below the 18-vessel 10-day average. Reuters reported Sep 28 that regional crude exports rebounded to 12.8 million bpd and Hormuz exports are set for about 7.4 million bpd this month, still roughly 6 million bpd below February. Crisis level remains 4 (High); probabilities remain base 15%, stress 45%, tail 40%; no signed commercial reopening is verified.) |
-| **Brent** | $98.49 (2026-09-28 02:37 UTC, Yahoo Finance BZ=F; -5.59% vs Sep 25 close $104.32, matching Reuters' settlement) |
-| **JKM** | $22.00/MMBtu (Jul 24, Reuters September-delivery assessment, carried; no newer official JKM assessment approved); JKM-linked CFD $25.82/MMBtu (Trading Economics, Sep 25, market-context reference, carried) |
-| **TTF** | 72.071 EUR/MWh (2026-09-25, Yahoo Finance TTF=F, -4.04%; latest dated quote, carried); carried after machine refresh failure |
-| **Exposure trace** | Al Jazeera reported Sep 27 that Tehran instructed vessels to use an approved temporary Hormuz route and pay fees, while full reopening depends on ending the US blockade. Iranian media reported explosions near Qeshm, which authorities had not confirmed. Reuters/Kpler's latest confirmed count remains nine commodity vessels on Sep 24. Reuters reported Sep 28 that Hormuz crude exports are set for about 7.4 million bpd this month and Saudi exports have rebounded, but no signed commercial reopening is verified. |
-| **Evidence audit** | 31 checked · 17 verified · 14 carried · 0 unsupported · PASS |
+| **Last updated** | 2026-09-30 (D209) |
+| **Crisis level** | 4 - High (Reuters reported Sep 29 that Qatar is mediating between the US and Iran, while Trump denied offering sanctions relief and no Hormuz reopening deal was reached. Saudi Arabia resumed Yanbu loadings after restarting the East-West Pipeline. Revised Sep 28 Kpler estimates put regional exports at 16.328 million bpd and Hormuz exports at 9.719 million bpd; the latest reviewed daily vessel count remains nine on Sep 24. Crisis level remains 4 (High); base 15%, stress 45%, tail 40%.) |
+| **Brent** | $95.99 (Yahoo Finance BZ=F, Sep 30 snapshot; distinct from Reuters Sep 29 settlement $102.59) |
+| **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $26.08/MMBtu (Trading Economics, Sep 28, carried) |
+| **TTF** | 68.14 EUR/MWh (2026-09-29, Yahoo Finance TTF=F; -1.9%) |
+| **Exposure trace** | Reuters reported Sep 29 that Qatar is mediating between the US and Iran, while Trump denied offering sanctions relief and no Hormuz reopening deal was reached. Saudi Arabia resumed Yanbu loadings after restarting the East-West Pipeline. Revised Sep 28 Kpler estimates put regional exports at 16.328 million bpd and Hormuz exports at 9.719 million bpd; the latest reviewed daily vessel count remains nine on Sep 24. |
+| **Evidence audit** | 33 checked · 21 verified · 12 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
 ---
@@ -547,9 +547,9 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime high intraday (Day 59, Apr 30, CNBC/CNN) -> $98.49 (Yahoo Finance BZ=F, Sep 28 02:37 UTC, down 5.59% from Friday's $104.32 close). Yahoo's Sep 25 close matches Reuters' $104.32 settlement; the prior instrument mismatch is resolved. Working range $75-85 base; $85-105 stress; $105-135+ tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Day 20, Reuters/Platts) -> official $22.00/MMBtu (Jul 24, Reuters September-delivery assessment, carried; no newer source-approved official JKM assessment). The separate JKM-linked CFD reference is $25.82/MMBtu (Trading Economics, Sep 25, -2.14%, carried).
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 72.071 EUR/MWh (Sep 25, Yahoo Finance TTF=F, -4.04%; latest dated quote, carried). Iran's Sep 27 transit rules do not establish a commercial reopening.
+- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $95.99 (Yahoo Finance BZ=F, Sep 30 snapshot). Reuters reported Sep 29 Brent settlement at $102.59; this differs from the Yahoo instrument snapshot and is not treated as the same contract. Working range $75-85 base; $85-105 stress; $105-135+ tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD $26.08/MMBtu (Trading Economics, Sep 28, +1.03%, carried); forecast figures excluded.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 68.14 EUR/MWh (Sep 29, Yahoo Finance TTF=F, -1.92%). Qatar mediation and resumed Yanbu loadings do not establish a commercial Hormuz reopening.
 - **Credit**: iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both carried as estimates pending fresher EM credit data. No source-approved daily credit marks are available. Scenario split remains base 15%, stress 45%, tail 40%.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)

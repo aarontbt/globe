@@ -162,3 +162,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D205**: Sep 25 - Reuters reports nine Hormuz commodity transits and rising Saudi exports; truce talks remain unsigned as Houthis target Taif and Yanbu.
 - **D206**: Sep 26 - Weekend carries Friday data: nine Hormuz transits, 33.7m barrels crude week-to-date, Saudi ship-to-ship transfers at capacity, no signed reopening.
 - **D207**: Sep 28 - Iran mandates an approved Hormuz route and fees; reported explosions remain unconfirmed; oil exports rebound but remain below February.
+- **D209**: Sep 30 - Qatar mediation continues without reopening agreement; Yanbu loadings resume; Reuters revises regional exports to 16.328 million bpd.

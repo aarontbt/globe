@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "SEP 27 ROUTE RULES: Tehran requires vessels to use an Iran-approved temporary route and pay fees; full reopening remains conditional on ending the US port blockade.";
+const TOP_ALERT = "QATAR MEDIATION: US-Iran messages continue without a reopening deal; Saudi Arabia resumes Yanbu loadings after restarting the East-West Pipeline.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
