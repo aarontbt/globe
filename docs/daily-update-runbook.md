@@ -12,13 +12,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-09-30 (D209) |
-| **Crisis level** | 4 - High (Reuters reported Sep 29 that Qatar is mediating between the US and Iran, while Trump denied offering sanctions relief and no Hormuz reopening deal was reached. Saudi Arabia resumed Yanbu loadings after restarting the East-West Pipeline. Revised Sep 28 Kpler estimates put regional exports at 16.328 million bpd and Hormuz exports at 9.719 million bpd; the latest reviewed daily vessel count remains nine on Sep 24. Crisis level remains 4 (High); base 15%, stress 45%, tail 40%.) |
-| **Brent** | $95.99 (Yahoo Finance BZ=F, Sep 30 snapshot; distinct from Reuters Sep 29 settlement $102.59) |
-| **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $26.08/MMBtu (Trading Economics, Sep 28, carried) |
-| **TTF** | 68.14 EUR/MWh (2026-09-29, Yahoo Finance TTF=F; -1.9%) |
-| **Exposure trace** | Reuters reported Sep 29 that Qatar is mediating between the US and Iran, while Trump denied offering sanctions relief and no Hormuz reopening deal was reached. Saudi Arabia resumed Yanbu loadings after restarting the East-West Pipeline. Revised Sep 28 Kpler estimates put regional exports at 16.328 million bpd and Hormuz exports at 9.719 million bpd; the latest reviewed daily vessel count remains nine on Sep 24. |
-| **Evidence audit** | 33 checked · 21 verified · 12 carried · 0 unsupported · PASS |
+| **Last updated** | 2026-10-02 (D211) |
+| **Crisis level** | 4 - High (Reuters reported Oct 1, citing Marisks, that three oil tankers were struck by unknown projectiles in Hormuz on Sep 29. Iran received a US response to its proposal, but sequencing disagreements remain and no reopening agreement is verified. Reuters Sep 28 documents selective Qatar-linked LNG passages, without a complete weekly transit count. Reuters reported Oct 1 that Chinese refiners suspended fuel exports beyond Hong Kong and Macau, citing four sources; December Brent settled at $102.31 (+4.37%). Crisis level remains 4 (High); base 15%, stress 45%, tail 40%.) |
+| **Brent** | $102.41 (Yahoo Finance BZ=F, Oct 1 snapshot) |
+| **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $25.79/MMBtu (Trading Economics, Oct 1) |
+| **TTF** | 73.02 EUR/MWh (2026-10-01, Yahoo Finance TTF=F; -1.2%) |
+| **Exposure trace** | Reuters reported Oct 1, citing Marisks, that three oil tankers were struck by unknown projectiles in Hormuz on Sep 29. Iran received a US response to its proposal, but sequencing disagreements remain and no reopening agreement is verified. Reuters Sep 28 documents selective Qatar-linked LNG passages, without a complete weekly transit count. Reuters reported Oct 1 that Chinese refiners suspended fuel exports beyond Hong Kong and Macau, citing four sources; December Brent settled at $102.31 (+4.37%). |
+| **Evidence audit** | 37 checked · 26 verified · 11 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
 ---
@@ -547,9 +547,9 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $95.99 (Yahoo Finance BZ=F, Sep 30 snapshot). Reuters reported Sep 29 Brent settlement at $102.59; this differs from the Yahoo instrument snapshot and is not treated as the same contract. Working range $75-85 base; $85-105 stress; $105-135+ tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD $26.08/MMBtu (Trading Economics, Sep 28, +1.03%, carried); forecast figures excluded.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 68.14 EUR/MWh (Sep 29, Yahoo Finance TTF=F, -1.92%). Qatar mediation and resumed Yanbu loadings do not establish a commercial Hormuz reopening.
+- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $102.41 (Yahoo Finance BZ=F, Oct 1 snapshot). Working range $75-85 base; $85-105 stress; $105-135+ tail. Reuters Oct 1 December-contract settlement: $102.31 (+4.37%), distinct from the Yahoo snapshot.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD $25.79/MMBtu (Trading Economics, Oct 1, +0.17%); forecast figures excluded.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 73.02 EUR/MWh (Oct 1, Yahoo Finance TTF=F, -1.25%). Selective LNG passages do not establish unrestricted Hormuz access.
 - **Credit**: iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both carried as estimates pending fresher EM credit data. No source-approved daily credit marks are available. Scenario split remains base 15%, stress 45%, tail 40%.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)

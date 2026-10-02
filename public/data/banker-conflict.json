@@ -5,21 +5,21 @@
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "Qatar mediates without reopening deal",
-      "delta": "Reuters reported Sep 29 that Qatar was exchanging US-Iran messages. Trump denied offering sanctions relief or frozen funds; talks had not produced a Hormuz reopening agreement.",
-      "direction": "neutral"
+      "summary": "Three Hormuz tankers reportedly struck",
+      "delta": "Reuters reported Oct 1, citing Marisks, that three Liberian-flagged oil tankers were hit by unknown projectiles during Sep 29 Hormuz transits with AIS switched off.",
+      "direction": "up"
     },
     {
       "id": "e2",
-      "summary": "Yanbu oil loadings resume",
-      "delta": "Reuters reported Sep 29 that Saudi Arabia resumed Yanbu tanker loadings after restarting the East-West Pipeline. Revised Sep 28 Kpler estimates put regional exports at 16.328 million bpd and Hormuz exports at 9.719 million bpd.",
-      "direction": "down"
+      "summary": "Iran receives US proposal response",
+      "delta": "Reuters reported Sep 30 that Iran received a US response through Qatari mediators. An official said the parties disagree on sequencing; no signed reopening agreement was reported.",
+      "direction": "neutral"
     },
     {
       "id": "e3",
-      "summary": "Shipping recovery remains selective",
-      "delta": "The latest reviewed Reuters/Kpler daily count remains nine commodity vessels on Sep 24, versus an 18-vessel 10-day average. No current LNG-specific transit count or route-normalised LNG freight observation was approved.",
-      "direction": "neutral"
+      "summary": "China fuel exports reportedly suspended",
+      "delta": "Reuters Oct 1, citing four sources, reports Chinese refiners halted oil-product exports beyond Hong Kong and Macau. December Brent settled at $102.31 (+4.37%); Yahoo BZ=F is a separate observation.",
+      "direction": "up"
     }
   ],
   "scenarios": [
@@ -27,7 +27,7 @@
       "id": "base",
       "label": "Base",
       "probability": 15,
-      "description": "Qatar is mediating, but a signed, monitored reopening and verified shipping normalisation are still required. Trump denied offering sanctions relief; no Hormuz reopening agreement is verified.",
+      "description": "Qatari mediation produces agreed sequencing and a monitored reopening. A US response has been received, but a signed agreement and durable shipping normalisation remain unverified.",
       "oilImpact": "-$10/bbl",
       "lngImpact": "-25%"
     },
@@ -35,7 +35,7 @@
       "id": "stress",
       "label": "Stress",
       "probability": 45,
-      "description": "Selective Hormuz transits persist while Saudi Arabia resumes Yanbu loadings after restarting its East-West Pipeline. Revised September export estimates show recovery, but LNG transit and replacement supply data remain incomplete.",
+      "description": "Selective Qatar-linked LNG passages and recovered oil exports coexist with tanker attacks and restricted Hormuz access. Current replacement supply, freight and cargo cost observations remain incomplete.",
       "oilImpact": "+$8/bbl",
       "lngImpact": "+15%"
     },
@@ -43,7 +43,7 @@
       "id": "tail",
       "label": "Tail",
       "probability": 40,
-      "description": "Negotiations fail or verified attacks disrupt Hormuz and alternative export routes. Iran retains its approved-route and fee conditions; current replacement LNG, route-normalised freight and cargo-normalised war-risk costs remain unverified.",
+      "description": "Sequencing disagreements persist or attacks further disrupt Hormuz and alternative export routes. Marisks reported three tankers struck on Sep 29; insurance and replacement LNG costs remain unverified.",
       "oilImpact": "+$50/bbl",
       "lngImpact": "+110%"
     }

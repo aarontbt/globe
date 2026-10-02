@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "QATAR MEDIATION: US-Iran messages continue without a reopening deal; Saudi Arabia resumes Yanbu loadings after restarting the East-West Pipeline.";
+const TOP_ALERT = "FUEL EXPORT CURBS: Reuters reports Chinese refiners suspend exports beyond Hong Kong/Macau; December Brent settles +4.37%; three Hormuz tanker hits reported.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

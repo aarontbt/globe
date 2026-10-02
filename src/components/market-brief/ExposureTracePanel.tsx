@@ -172,9 +172,16 @@ function alternativeFeasibilityLabel(feasibility: EnergyAlternative["feasibility
 
 function PhysicalFlowTimeline({ trace }: { trace: ExposureTrace }) {
   const observations = latestSignals(trace.physicalFlow?.observations ?? []);
+  const currentMetrics = trace.hops.flatMap((hop) => hop.metrics);
   const direct = observations.filter((item) => (
     item.coverageStatus === "direct-observation"
       && item.status === "confirmed"
+      && currentMetrics.some((metric) => (
+        metric.status === "confirmed"
+          && metric.source === item.source
+          && metric.value === item.value
+          && metric.sourceDate === (item.periodEnd ?? item.periodStart)
+      ))
       && item.sourceId !== "src-unlocode-ras-laffan"
       && !(item.observationKind === "asset-status" && item.value === item.label)
   ));
