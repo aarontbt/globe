@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-02T00:00:00Z",
-  "reviewedAt": "2026-10-02T00:10:56Z",
-  "reviewer": "Codex; Firecrawl CLI exact-page review",
+  "asOf": "2026-10-07T00:00:00Z",
+  "reviewedAt": "2026-10-07T01:31:31Z",
+  "reviewer": "Codex; Firecrawl MCP exact-page review",
   "entries": [
     {
       "evidenceId": "e-qatar-force-majeure",
@@ -82,12 +82,12 @@
       "title": "Strait of Hormuz Crossings Rise 8% Week-on-Week, But Dark AIS Activity Remains Elevated",
       "publisher": "Foreign Policy Journal (Kpler data)",
       "publishedAt": "2026-08-03",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Re-scraped the exact Aug 3 Foreign Policy Journal article. It reports three LNG tanker transits for Jul 27-Aug 2; newer commodity-vessel counts do not replace that LNG-specific observation.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "The exact Aug 3 Kpler report remains the latest reviewed LNG-only weekly count: three LNG-carrier crossings for Jul 27-Aug 2. Newer export-flow reporting is not a comparable LNG-transit count.",
       "extractedFacts": [
-        "The article reports 106 total crossings by 96 distinct vessels during Jul 27-Aug 2, up 8% week-on-week.",
-        "The vessel-type breakdown includes three LNG tankers, 40 liquid tankers and 24 bulk carriers.",
-        "The source attributes the data to Kpler; the LNG count is dated to the week ending Aug 2."
+        "Kpler recorded 106 total crossings by 96 distinct vessels in the week of Jul 27-Aug 2, up 8% week on week.",
+        "The vessel-type breakdown included three LNG tankers, 40 liquid tankers and 24 bulk carriers.",
+        "The article warns that a substantial share of transits had AIS transponders switched off or routes undetermined."
       ],
       "supportedHopIds": [
         "qatar-supply:qatar-transport"
@@ -108,25 +108,25 @@
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Reviewed Oct 2: retain the Jul 27-Aug 2 count of three as historical weekly context. Reuters Sep 28 documents newer Qatar-linked vessel sightings but provides no complete directly comparable weekly LNG-transit count.",
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-hormuz-transit.json"
+      "carryReason": "Reviewed Oct 7: the exact Aug 3 Kpler report still gives three LNG transits for Jul 27-Aug 2. No newer directly comparable LNG-only weekly count was found; retain it as dated historical context.",
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-hormuz-transit.json"
     },
     {
       "evidenceId": "e-jkm",
       "url": "https://www.reuters.com/business/energy/asia-lng-hits-four-month-high-fears-wider-mideast-shipping-disruption-2026-07-24/",
       "canonicalUrl": "https://www.reuters.com/business/energy/asia-lng-hits-four-month-high-fears-wider-mideast-shipping-disruption-2026-07-24/",
       "httpStatus": 200,
-      "pageType": "article",
+      "pageType": "market-data",
       "contentStatus": "stale",
       "reviewStatus": "approved",
       "title": "Asia LNG hits four-month high on fears of wider Mideast shipping disruption",
       "publisher": "Reuters",
       "publishedAt": "2026-07-24",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Reuters’ July 24 observation remains the latest approved official Northeast Asia spot LNG assessment at $22/MMBtu for September delivery; the Sep 25 Trading Economics value is a separate CFD reference.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Reuters’ July 24 observation remains the latest approved official Northeast Asia September-delivery spot LNG assessment at $22/MMBtu; no newer official JKM assessment was found. Trading Economics is a separate CFD reference.",
       "extractedFacts": [
-        "The average price for September delivery into Northeast Asia was estimated at 22 USD/MMBtu.",
-        "The previous weekly observation was 20.10 USD/MMBtu."
+        "Reuters reported an average September-delivery Northeast Asia spot LNG price of $22/MMBtu on July 24.",
+        "The exact Reuters article was reviewed again on October 7; the separate JKM-linked CFD does not replace the official assessment."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -141,12 +141,12 @@
           "provider": "Reuters / industry sources"
         }
       ],
-      "carryReason": "Reviewed Oct 2; no newer source-approved official JKM assessment was found. Carry the July 24 Reuters value at $22/MMBtu with its original date; the CFD remains separate context.",
+      "carryReason": "Reviewed Oct 7: the exact Reuters Jul 24 report remains the latest source-approved official Northeast Asia spot LNG assessment at $22/MMBtu for September delivery. The Trading Economics CFD remains separate.",
       "supportedCommercialInputIds": [
         "lng-jkm"
       ],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-jkm.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-jkm.json"
     },
     {
       "evidenceId": "e-ttf",
@@ -158,12 +158,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Dutch TTF",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-01",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Firecrawl cache-busted exact Yahoo chart API snapshot: TTF=F 73.02 at 2026-10-01T15:50:49.000Z; canonical URL retained.",
+      "publishedAt": "2026-10-06",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Firecrawl cache-busted Yahoo Finance chart snapshot: TTF=F 75.485 EUR/MWh at 2026-10-06T15:50:45.000Z; canonical URL retained.",
       "extractedFacts": [
-        "Firecrawl cache-busted exact Yahoo chart API snapshot: TTF=F 73.02 at 2026-10-01T15:50:49.000Z; canonical URL retained.",
-        "Yahoo daily movement: -1.2480%."
+        "TTF=F Dutch TTF futures were 75.485 EUR/MWh at 2026-10-06T15:50:45.000Z.",
+        "Yahoo Finance reports a daily change of -0.206 EUR/MWh (-0.272%)."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-demand"
@@ -175,19 +175,19 @@
       "observations": [
         {
           "inputId": "ttf",
-          "value": 73.02,
+          "value": 75.485,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-10-01",
-          "observedAt": "2026-10-01T15:50:49.000Z",
+          "sourceDate": "2026-10-06",
+          "observedAt": "2026-10-06T15:50:45.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         },
         {
           "inputId": "lng-ttf",
-          "value": 73.02,
+          "value": 75.485,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-10-01",
-          "observedAt": "2026-10-01T15:50:49.000Z",
+          "sourceDate": "2026-10-06",
+          "observedAt": "2026-10-06T15:50:45.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         }
@@ -196,7 +196,7 @@
         "lng-ttf"
       ],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-ttf.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-ttf.json"
     },
     {
       "evidenceId": "e-jera-qatarenergy",
@@ -336,12 +336,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Brent Crude",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-01",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Firecrawl cache-busted exact Yahoo chart API snapshot: BZ=F 102.41 at 2026-10-01T23:51:33.000Z; canonical URL retained.",
+      "publishedAt": "2026-10-07",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Firecrawl cache-busted Yahoo Finance chart snapshot: BZ=F 101.3 at 2026-10-07T00:56:51.000Z; daily change 0.716%.",
       "extractedFacts": [
-        "Firecrawl cache-busted exact Yahoo chart API snapshot: BZ=F 102.41 at 2026-10-01T23:51:33.000Z; canonical URL retained.",
-        "Yahoo daily movement: +0.0980%."
+        "BZ=F Brent crude futures were 101.3 USD/bbl at 2026-10-07T00:56:51.000Z.",
+        "Yahoo Finance reports a daily change of 0.72 USD (0.716%)."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -353,15 +353,15 @@
       "observations": [
         {
           "inputId": "oil-brent",
-          "value": 102.41,
+          "value": 101.3,
           "unit": "USD/bbl",
-          "sourceDate": "2026-10-01",
-          "observedAt": "2026-10-01T23:51:33.000Z",
+          "sourceDate": "2026-10-07",
+          "observedAt": "2026-10-07T00:56:51.000Z",
           "instrument": "BZ=F Brent crude futures",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-brent.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-brent.json"
     },
     {
       "evidenceId": "e-wti",
@@ -373,12 +373,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - WTI Crude",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-01",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Firecrawl cache-busted exact Yahoo chart API snapshot: CL=F 92.93 at 2026-10-01T23:53:23.000Z; canonical URL retained.",
+      "publishedAt": "2026-10-07",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Firecrawl cache-busted Yahoo Finance chart snapshot: CL=F 90.09 at 2026-10-07T00:59:17.000Z; daily change 0.727%.",
       "extractedFacts": [
-        "Firecrawl cache-busted exact Yahoo chart API snapshot: CL=F 92.93 at 2026-10-01T23:53:23.000Z; canonical URL retained.",
-        "Yahoo daily movement: +0.0650%."
+        "CL=F WTI crude futures were 90.09 USD/bbl at 2026-10-07T00:59:17.000Z.",
+        "Yahoo Finance reports a daily change of 0.65 USD (0.727%)."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -390,15 +390,15 @@
       "observations": [
         {
           "inputId": "oil-wti",
-          "value": 92.93,
+          "value": 90.09,
           "unit": "USD/bbl",
-          "sourceDate": "2026-10-01",
-          "observedAt": "2026-10-01T23:53:23.000Z",
+          "sourceDate": "2026-10-07",
+          "observedAt": "2026-10-07T00:59:17.000Z",
           "instrument": "CL=F WTI crude futures",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-wti.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-wti.json"
     },
     {
       "evidenceId": "e-eurusd",
@@ -410,12 +410,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - EUR/USD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-02",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Firecrawl cache-busted exact Yahoo chart API snapshot: EURUSD=X 1.1251 at 2026-10-02T00:02:58.000Z; canonical URL retained.",
+      "publishedAt": "2026-10-07",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Cache-busted Yahoo Finance chart API review: EURUSD=X 1.1249 at 2026-10-07T01:08:47.000Z.",
       "extractedFacts": [
-        "Firecrawl cache-busted exact Yahoo chart API snapshot: EURUSD=X 1.1251 at 2026-10-02T00:02:58.000Z; canonical URL retained.",
-        "Yahoo daily movement: +0.0563%."
+        "EURUSD=X was 1.1249 USD per EUR at 2026-10-07T01:08:47.000Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -427,15 +426,15 @@
       "observations": [
         {
           "inputId": "fx-eurusd",
-          "value": 1.1251,
+          "value": 1.1249,
           "unit": "USD/EUR",
-          "sourceDate": "2026-10-02",
-          "observedAt": "2026-10-02T00:02:58.000Z",
+          "sourceDate": "2026-10-07",
+          "observedAt": "2026-10-07T01:08:47.000Z",
           "instrument": "EURUSD=X spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-eurusd.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-eurusd.json"
     },
     {
       "evidenceId": "e-sofr",
@@ -447,11 +446,11 @@
       "reviewStatus": "approved",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
-      "publishedAt": "2026-09-30",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Cache-busted New York Fed API returned SOFR 3.9% effective 2026-09-30.",
+      "publishedAt": "2026-10-05",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Cache-busted New York Fed API returned SOFR 3.89% effective 2026-10-05.",
       "extractedFacts": [
-        "Cache-busted New York Fed API returned SOFR 3.9% effective 2026-09-30."
+        "The New York Fed API reports a SOFR rate of 3.89% effective 2026-10-05."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -463,15 +462,15 @@
       "observations": [
         {
           "inputId": "usd-sofr",
-          "value": 3.9,
+          "value": 3.89,
           "unit": "%",
-          "sourceDate": "2026-09-30",
-          "observedAt": "2026-09-30T00:00:00Z",
+          "sourceDate": "2026-10-05",
+          "observedAt": "2026-10-05T00:00:00Z",
           "instrument": "SOFR",
           "provider": "Federal Reserve Bank of New York"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-sofr.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-sofr.json"
     },
     {
       "evidenceId": "e-jkm-cfd",
@@ -483,11 +482,12 @@
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-10-01",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Trading Economics dated Oct 1 CFD reference is $25.79/MMBtu, +0.17%; forecasts are excluded.",
+      "publishedAt": "2026-10-06",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Trading Economics displayed a JKM-linked CFD reference at $25.88/MMBtu on Oct 6, up $0.17 (0.64%); this is not the official Platts JKM assessment.",
       "extractedFacts": [
-        "Trading Economics dated Oct 1 CFD reference is $25.79/MMBtu, +0.17%; forecasts are excluded."
+        "Trading Economics displayed an LNG Japan-Korea CFD reference of $25.88/MMBtu, daily change +$0.17 (+0.64%), dated Oct 6.",
+        "The CFD is kept separate from Reuters’ carried official September-delivery assessment of $22/MMBtu."
       ],
       "supportedHopIds": [
         "qatar-supply:qatar-demand"
@@ -499,16 +499,16 @@
       "observations": [
         {
           "inputId": "jkm-cfd-reference",
-          "value": 25.79,
+          "value": 25.88,
           "unit": "USD/MMBtu",
-          "sourceDate": "2026-10-01",
+          "sourceDate": "2026-10-06",
           "instrument": "LNG Japan Korea CFD market reference",
           "provider": "Trading Economics"
         }
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-jkm-cfd.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-jkm-cfd.json"
     },
     {
       "evidenceId": "e-hormuz-total-transits",
@@ -516,25 +516,21 @@
       "canonicalUrl": "https://www.aljazeera.com/news/2026/9/6/us-iran-engaged-in-tanker-war-where-is-the-months-long-conflict-headed",
       "httpStatus": 200,
       "pageType": "article",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
-      "title": "US, Iran engaged in tanker war: Where is the months-long conflict headed?",
+      "title": "US, Iran engaged in tanker war: Where is the months-long conflict headed? | US-Israel war on Iran News | Al Jazeera",
       "publisher": "Al Jazeera (Kpler data)",
       "publishedAt": "2026-09-06",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Al Jazeera reported Kpler data showing Hormuz daily vessel transits ranging from 5 to 11 this week against a 10-day average of about 13, still well below pre-crisis norms.",
-      "carryReason": "Reviewed Oct 2; The National's Sep 14 report remains the newer approved 14-vessel 10-day average. A Sep 17 Reuters report (LSEG data) corroborates continued single-digit tanker crossings on a different vessel scope but does not give a directly comparable dated count for this metric.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "The exact Sep 6 Al Jazeera article was reviewed again; its 5-11 daily crossings and 10-day average are dated historical observations, not a current transit count.",
+      "carryReason": "Reviewed Oct 7: the exact Sep 6 Al Jazeera/Kpler report remains an older vessel-transit observation and is not a current count. Carry its dated figures as context.",
       "extractedFacts": [
-        "Kpler data showed daily Hormuz transit counts of 6, 11 and 5 vessels on the three most recent days reported.",
-        "The 10-day average was reported at about 13 vessels per day.",
-        "Kpler flagged that vessels sailing with AIS transponders spoofed or turned off are not captured in the count."
+        "Kpler reported daily Hormuz transit counts of 6, 11 and 5 vessels on the three most recent days available to the Sep 6 article.",
+        "Its reported 10-day average was about 13 vessels per day.",
+        "The article notes AIS-dark or spoofed vessels may not be included."
       ],
-      "supportedHopIds": [
-        "hormuz-delivery:delivery-signal"
-      ],
-      "supportedMetricIds": [
-        "hormuz-total-transits"
-      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
       "supportedRelationshipIds": [],
       "observations": [
         {
@@ -548,7 +544,7 @@
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-hormuz-total-transits.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-hormuz-total-transits.json"
     },
     {
       "evidenceId": "e-ap-hormuz-20260818",
@@ -556,18 +552,17 @@
       "canonicalUrl": "https://www.aljazeera.com/news/2026/9/6/us-iran-engaged-in-tanker-war-where-is-the-months-long-conflict-headed",
       "httpStatus": 200,
       "pageType": "article",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
-      "title": "US, Iran engaged in tanker war: Where is the months-long conflict headed?",
+      "title": "US, Iran engaged in tanker war: Where is the months-long conflict headed? | US-Israel war on Iran News | Al Jazeera",
       "publisher": "Al Jazeera",
       "publishedAt": "2026-09-06",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Al Jazeera reported the US and Iran fought a direct tanker war Sep 5-6: CENTCOM struck three Iranian oil tankers while Iran fired missiles at a US carrier and destroyer and hit three tankers plus three US-linked vessels.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "The exact Sep 6 Al Jazeera article remains historical security context; later dated tanker incidents are covered by the Oct 5 Reuters and Oct 6 Al Jazeera reports.",
       "extractedFacts": [
-        "CENTCOM struck three Iranian oil tankers near Kharg Island, near Jask, and an unladen vessel in the Gulf of Oman after crew evacuation, with no US personnel injured.",
-        "Iran launched ballistic missiles at a US aircraft carrier and destroyer, both of which evaded the missiles.",
-        "Iran targeted three oil tankers in the Strait and three US-linked vessels elsewhere, and separately claimed to have struck an unmanned US vessel.",
-        "CENTCOM commander Adm. Brad Cooper warned of an even higher economic cost for further attacks, while Iran's IRGC warned vessels not to transit unauthorised waterways."
+        "The article reports US strikes on three Iranian oil tankers after their crews were evacuated.",
+        "It reports Iran launched missiles at US naval vessels and attacked oil tankers and US-linked vessels.",
+        "The source describes events on Sep 5-6 and is retained as historical context."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal"
@@ -576,8 +571,8 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Reviewed Oct 2; current AP and Reuters reporting still provides no verified signed commercial reopening or verified Hormuz clearance. Al Jazeera's Sep 6 report remains the latest approved direct security evidence of the tanker war in this record.",
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-ap-hormuz-20260818.json"
+      "carryReason": "Reviewed Oct 7: the exact Sep 6 Al Jazeera article remains a historical security report; later dated attacks are covered by the Oct 5 Reuters and Oct 6 Al Jazeera sources.",
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-hormuz-total-transits.json"
     },
     {
       "evidenceId": "e-gme-oman",
@@ -590,12 +585,12 @@
       "title": "GME Exchange Products Daily Information Bulletin - Sep 25, 2026",
       "publisher": "Gulf Mercantile Exchange",
       "publishedAt": "2026-09-25",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Reviewed the exact Sep 25 GME/CME Daily Information Bulletin PDF. OQD NOV26 reports a marker price of $111.58/bbl; no newer bulletin was available.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "The latest exact GME daily bulletin located remains Sep 25 and reports an OQD NOV26 marker of $111.58/bbl; no newer bulletin was available.",
       "extractedFacts": [
         "The official GME Exchange Products Daily Information Bulletin is dated Friday, Sep 25, 2026.",
         "The OQD GME Oman Crude Oil NOV26 contract reports a $111.58/bbl marker price.",
-        "The bulletin states GME marker prices and end-of-day settlements are available on a T+1 basis."
+        "The exact bulletin was reviewed again on Oct 7; the marker is carried with its original date."
       ],
       "supportedHopIds": [
         "hormuz-crude-export:oil-constraint-demand"
@@ -626,8 +621,8 @@
         "oil-dubai-oman"
       ],
       "supportedDerivedMetricIds": [],
-      "carryReason": "The latest exact GME Daily Information Bulletin is dated Sep 25; its OQD NOV26 marker is $111.58/bbl. Carry that dated marker.",
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-gme-oman.json"
+      "carryReason": "Reviewed Oct 7: the latest exact GME daily bulletin located remains dated Sep 25 and reports an OQD NOV26 marker of $111.58/bbl; keep its original date.",
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-gme-oman.json"
     },
     {
       "evidenceId": "e-hormuz-talks",
@@ -635,23 +630,19 @@
       "canonicalUrl": "https://www.thenationalnews.com/news/gulf/2026/09/14/iran-gulf-talks-shelved-as-oman-says-conditions-not-right/",
       "httpStatus": 200,
       "pageType": "article",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
-      "title": "Iran-Gulf talks shelved as Oman says conditions not right",
+      "title": "Iran-Gulf talks shelved as Oman says conditions not right | The National",
       "publisher": "The National",
       "publishedAt": "2026-09-14",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Re-scraped The National's Sep 14 article. It records Oman's postponement of the proposed Iran-Gulf meeting; its traffic figures remain dated historical context.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "The exact Sep 14 National article still records Oman postponing the proposed Iran-Gulf meeting; this is historical context rather than proof of current talks or transit levels.",
       "extractedFacts": [
         "Oman said conditions were not in place for a meeting between Iran and Gulf states and plans were put on hold.",
-        "The article's cited traffic observation is dated Sep 14 and is not a current daily count."
+        "The page’s traffic observations are dated Sep 14 and do not give a current daily count."
       ],
-      "supportedHopIds": [
-        "hormuz-delivery:delivery-signal"
-      ],
-      "supportedMetricIds": [
-        "hormuz-total-transits"
-      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
       "supportedRelationshipIds": [],
       "observations": [
         {
@@ -665,26 +656,26 @@
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Reviewed Oct 2: The National's Sep 14 report remains a historical source for the 14-vessel 10-day average and the Sep 14 weekend count of four vessels out and 10 in. It is not a current daily count.",
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-hormuz-talks.json"
+      "carryReason": "Reviewed Oct 7: The National’s Sep 14 report still documents the proposed meeting being shelved; it is historical context, not evidence of current talks or a current transit count.",
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-hormuz-talks.json"
     },
     {
       "evidenceId": "e-vlcc-freight",
       "url": "https://www.reuters.com/business/energy/oil-tanker-rates-hit-record-highs-following-iran-us-shipping-attacks-2026-09-11/",
       "canonicalUrl": "https://www.reuters.com/business/energy/oil-tanker-rates-hit-record-highs-following-iran-us-shipping-attacks-2026-09-11/",
       "httpStatus": 200,
-      "pageType": "article",
+      "pageType": "market-data",
       "contentStatus": "stale",
       "reviewStatus": "approved",
       "title": "Oil tanker rates hit record highs following Iran, US shipping attacks",
       "publisher": "Reuters",
       "publishedAt": "2026-09-11",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Re-scraped the exact Reuters Sep 11 article. The latest reviewed same-unit Gulf of Oman-to-China VLCC observation remains Worldscale 450, approximately $11.50/bbl.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "The Sep 11 Reuters/Baltic Exchange Gulf of Oman-to-China assessment remains the latest reviewed same-unit observation at Worldscale 450, approximately $11.50/bbl.",
       "extractedFacts": [
         "Reuters reported a Baltic Exchange Gulf of Oman-to-China VLCC rate near Worldscale 450.",
         "Reuters translated that route-specific rate to about $11.50/bbl.",
-        "The Sep 25 $1.27 million/day Middle East-to-China time-charter quote is a different unit and was not converted."
+        "The Sep 25 $1.27 million/day Middle East-to-China time-charter quote is a different unit and is not converted."
       ],
       "supportedHopIds": [
         "hormuz-crude-export:oil-constraint-transport"
@@ -707,8 +698,8 @@
         "oil-vlcc-freight"
       ],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Reviewed Oct 2: retain the Sep 11 Gulf of Oman-to-China Baltic assessment near WS450 or $11.50/bbl. The newer Sep 25 Reuters $1.27 million/day time-charter quote is not unit-compatible and is not converted.",
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-vlcc-freight.json"
+      "carryReason": "Reviewed Oct 7: the exact Reuters Sep 11 report remains the latest reviewed same-unit Gulf of Oman-to-China assessment near WS450 or $11.50/bbl. The Sep 25 time-charter quote is not converted.",
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-vlcc-freight.json"
     },
     {
       "evidenceId": "e-saudi-pipeline",
@@ -765,20 +756,18 @@
       "canonicalUrl": "https://www.reuters.com/business/energy/us-iran-conflict-helps-drive-wave-supertanker-orders-2026-09-17/",
       "httpStatus": 200,
       "pageType": "article",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
-      "title": "US-Iran conflict helps drive wave of supertanker orders",
+      "title": "US-Iran conflict helps drive wave of supertanker orders | Reuters",
       "publisher": "Reuters",
       "publishedAt": "2026-09-17",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Reuters reported Sep 17 that Strait of Hormuz tanker crossings remain in single digits (LSEG data) as shipowners order a record wave of VLCCs to serve longer Atlantic-to-Asia routes.",
-      "carryReason": "Reviewed Oct 2; Reuters' Sep 17 LSEG single-digit tanker-crossing observation remains the latest approved vessel-scope datapoint. The newer Reuters report confirms Saudi oil flows are recovering but does not replace the single-digit crossing count.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Reuters’ Sep 17 article records LSEG tanker crossings in single digits at that time. It remains historical vessel-scope evidence and is not a current transit count.",
+      "carryReason": "Reviewed Oct 7: the Sep 17 Reuters/LSEG crossing observation is historical. Newer export-flow reports do not provide a directly comparable vessel-crossing count.",
       "extractedFacts": [
-        "Shipowners ordered 217 Very Large Crude Carriers in 2026 so far, versus 93 in all of 2025, a buying spree worth over $20 billion, per Signal Group data.",
-        "Allied Shipbroking recorded 164 VLCC orders in 2026, up from 83 in 2025.",
-        "An LSEG chart of Strait of Hormuz tanker traffic (vessels above 10,000 deadweight tonnes) showed crossings remaining in single digits, with the article headline noting crossings remain in single digits.",
-        "VLCC spot prices have climbed above $500,000 per day, up from about $132,000 in February before the war, per Allied Shipbroking.",
-        "Gulf producers are increasingly shuttling oil out of the Gulf through Hormuz to reload onto larger tankers waiting in the Gulf of Oman, tying up vessels and adding to VLCC demand."
+        "An LSEG chart of Strait of Hormuz tanker traffic for vessels above 10,000 deadweight tonnes showed crossings in single digits.",
+        "The article described sharply higher VLCC orders and longer route patterns.",
+        "The transit observation is dated to the Sep 17 Reuters report."
       ],
       "supportedHopIds": [
         "hormuz-crude-export:oil-constraint-transport"
@@ -787,7 +776,7 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-hormuz-single-digit-crossings.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-hormuz-single-digit-crossings.json"
     },
     {
       "evidenceId": "e-hormuz-kpler-0925",
@@ -795,18 +784,17 @@
       "canonicalUrl": "https://www.reuters.com/world/middle-east/hormuz-commodity-ship-transits-fall-single-digits-shiptracking-data-shows-2026-09-25/",
       "httpStatus": 200,
       "pageType": "article",
-      "contentStatus": "verified",
+      "contentStatus": "stale",
       "reviewStatus": "approved",
-      "title": "Crude oil exports via Hormuz at 33.7 million barrels this week, data shows",
+      "title": "Crude oil exports via Hormuz at 33.7 million barrels this week, data shows | Reuters",
       "publisher": "Reuters",
       "publishedAt": "2026-09-25",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Re-scraped the exact Reuters Sep 25 article. Kpler reported nine commodity-vessel transits on Sep 24, 33.7 million barrels of crude exports week-to-date, and 19 tankers including 17 VLCCs.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "The exact Reuters page reports nine commodity-vessel transits on Sep 24, down from 14 the day before; keep that dated observation. Newer export-volume reports do not replace a daily vessel count.",
       "extractedFacts": [
-        "Kpler data showed 33.7 million barrels of crude oil exited Hormuz during the week beginning Sep 20 as of Sep 25.",
-        "Kpler counted nine commodity vessels transiting on Sep 24, down from 14 on Sep 23.",
-        "The nine-vessel count was below an 18-vessel 10-day average.",
-        "The export tally comprised 19 tankers, including 17 VLCCs."
+        "Kpler data showed nine commodity vessels transited Hormuz on Sep 24, down from 14 the day before; eight of the nine exited.",
+        "Kpler’s 10-day average was 18 transits per day, and AIS-dark vessels may not be counted.",
+        "The same Reuters page reported 33.7 million barrels of crude flows in the week starting Sep 20; this is a separate flow measure."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal",
@@ -829,8 +817,8 @@
           "provider": "Kpler via Reuters"
         }
       ],
-      "carryReason": "Reviewed Oct 2: Reuters/Kpler's latest exact daily count is nine commodity vessels on Sep 24, with 33.7 million barrels of crude exports week-to-date reported Sep 25. No Sep 28 daily count was found; carry the dated Sep 24 count.",
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-hormuz-kpler-0925.json"
+      "carryReason": "Reviewed Oct 7: the exact Sep 25 Reuters page supports nine commodity-vessel transits on Sep 24. Carry that dated count; newer reports do not give a comparable daily transit count.",
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-hormuz-kpler-0925.json"
     },
     {
       "evidenceId": "e-reuters-oil-0925",
@@ -840,17 +828,15 @@
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Oil slides as US-Iran truce hopes outweigh Houthi attacks on Saudi Arabia",
+      "title": "Oil prices slide about 2% as US, Iran explore path out of war | Reuters",
       "publisher": "Reuters",
       "publishedAt": "2026-09-25",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Reuters reported Brent settled at 104.32 USD/bbl on Sep 25, down 2.1%, as truce hopes outweighed attack risk. The article also reported Brent at 105.11 at 05:41 GMT, six Houthi missiles intercepted near Taif/Yanbu, and no resumption of Yanbu tanker loadings.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "The exact Sep 25 Reuters report remains a dated account of oil prices, truce discussions, Houthi attacks and the then-current Yanbu pipeline/loadings situation.",
       "extractedFacts": [
-        "Brent futures settled at 104.32 USD/bbl on September 25, down 2.28 USD or 2.1 percent.",
-        "At 05:41 GMT on September 25, Brent was 105.11 USD/bbl and WTI was 92.61 USD/bbl.",
-        "US and Iranian negotiators were exploring a phased path that would involve reopening Hormuz and Washington lifting its economic blockade of Iran.",
-        "Saudi Arabia said it intercepted six ballistic missiles fired by Houthis toward Taif and the Yanbu area.",
-        "East-West pipeline pumping volumes were building, but crude tanker loadings at Yanbu had yet to resume."
+        "Brent settled at $104.32/bbl on Sep 25, down 2.1%; the Reuters page separately gave Brent and WTI intraday prices.",
+        "The report described US-Iran negotiators exploring a phased path and Saudi reports of six missiles intercepted near Taif and Yanbu.",
+        "At publication, East-West pipeline pumping was building but crude tanker loadings at Yanbu had not resumed."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal",
@@ -861,7 +847,7 @@
       "supportedDerivedMetricIds": [],
       "supportedRelationshipIds": [],
       "observations": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-reuters-oil-0925.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-reuters-oil-0925.json"
     },
     {
       "evidenceId": "e-reuters-saudi-sts-0925",
@@ -871,16 +857,15 @@
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Gulf of Oman ship-to-ship oil transfers reach limit as Saudi exports surge",
+      "title": "Gulf of Oman ship-to-ship oil transfers reach limit as Saudi exports surge | Reuters",
       "publisher": "Reuters",
       "publishedAt": "2026-09-25",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Reuters reported September Saudi crude exports via Hormuz on track for 3.6 million bpd, while Gulf of Oman ship-to-ship operations reached capacity. A $1.27 million/day Middle East-to-China VLCC time-charter quote was reported for Sep 21.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "The exact Reuters Sep 25 article reports Saudi crude shipments via Hormuz, constrained Gulf of Oman ship-to-ship transfers and a daily charter quote that is not route-normalised freight.",
       "extractedFacts": [
-        "Kpler data put Saudi crude exports through Hormuz on track for 3.6 million bpd in September, up from about 0.9 million bpd in August.",
-        "Gulf of Oman ship-to-ship transfers for Middle East oil reached their limits, with queues for tugboats and labour.",
-        "Reuters reported a $1.27 million/day Middle East-to-China VLCC time-charter rate on Monday, September 21.",
-        "The charter rate is not a route-normalised per-barrel freight assessment and does not replace the carried $11.50/bbl quote."
+        "Kpler put Saudi crude exports through Hormuz on track for 3.6 million bpd in September, up from about 0.9 million bpd in August.",
+        "Gulf of Oman ship-to-ship transfers for Middle East oil were reaching their limit with tugboat and labour queues.",
+        "A $1.27 million/day Middle East-to-China VLCC charter rate is a time-charter quote, not a route-normalised per-barrel freight assessment."
       ],
       "supportedHopIds": [
         "hormuz-crude-export:oil-constraint-supply",
@@ -891,7 +876,7 @@
       "supportedDerivedMetricIds": [],
       "supportedRelationshipIds": [],
       "observations": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-reuters-saudi-sts-0925.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-reuters-saudi-sts-0925.json"
     },
     {
       "evidenceId": "e-hormuz-route-policy-0927",
@@ -929,15 +914,15 @@
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Mideast oil exports rebound in September as Saudi Arabia boosts shipments",
+      "title": "Mideast oil exports rebound in September as Saudi Arabia boosts shipments | Reuters",
       "publisher": "Reuters",
       "publishedAt": "2026-09-28",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Re-reviewed Sep 30: Reuters updated Sep 28 preliminary Kpler estimates to regional exports 16.328 million bpd, Hormuz 9.719 million bpd, and Ras Tanura 3.25 million bpd.",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "The exact Reuters Sep 28 article reports preliminary September export data, including Saudi shipments, as a dated flow snapshot.",
       "extractedFacts": [
-        "Regional crude exports were estimated at 16.328 million bpd in September, 3.2 million bpd below February's 19.513 million bpd.",
-        "Hormuz exports were set for 9.719 million bpd; Saudi exports about 5.4 million bpd; Ras Tanura about 3.25 million bpd.",
-        "19 Saudi VLCCs carrying 2 million barrels each exited Hormuz last week; vessels with transponders off are excluded."
+        "Regional crude exports were estimated at 16.328 million bpd in September, below February’s 19.513 million bpd.",
+        "The article reported Hormuz exports on track for 9.719 million bpd and Saudi exports around 5.4 million bpd.",
+        "It reported 19 Saudi VLCCs carrying about two million barrels each exited Hormuz in the prior week; vessels with transponders off were excluded."
       ],
       "supportedHopIds": [
         "hormuz-crude-export:oil-constraint-supply"
@@ -946,7 +931,7 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-reuters-saudi-0928.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-reuters-saudi-0928.json"
     },
     {
       "evidenceId": "e-fx-sgd",
@@ -958,11 +943,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/SGD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-02",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Cache-busted Firecrawl Yahoo API review: SGD=X 1.2805 at 2026-10-02T00:07:07.000Z.",
+      "publishedAt": "2026-10-07",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Cache-busted Yahoo Finance API snapshot: SGD=X 1.2782 at 2026-10-07T01:01:57.000Z.",
       "extractedFacts": [
-        "Cache-busted Firecrawl Yahoo API review: SGD=X 1.2805 at 2026-10-02T00:07:07.000Z."
+        "SGD=X (USD/SGD) was 1.2782 SGD per USD at 2026-10-07T01:01:57.000Z.",
+        "Yahoo Finance reports a daily change of 0.0011 (0.0853%)."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -972,15 +958,15 @@
       "observations": [
         {
           "inputId": "crossAsset.sgd",
-          "value": 1.2805,
+          "value": 1.2782,
           "unit": "SGD per USD",
-          "sourceDate": "2026-10-02",
-          "observedAt": "2026-10-02T00:07:07.000Z",
+          "sourceDate": "2026-10-07",
+          "observedAt": "2026-10-07T01:01:57.000Z",
           "instrument": "SGD=X USD/SGD spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-fx-sgd.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-fx-sgd.json"
     },
     {
       "evidenceId": "e-fx-idr",
@@ -992,11 +978,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/IDR",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-01",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Cache-busted Firecrawl Yahoo API review: IDR=X 17940.0 at 2026-10-01T20:42:30.000Z.",
+      "publishedAt": "2026-10-07",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Cache-busted Yahoo Finance API snapshot: IDR=X 17905 at 2026-10-07T00:34:08.000Z.",
       "extractedFacts": [
-        "Cache-busted Firecrawl Yahoo API review: IDR=X 17940.0 at 2026-10-01T20:42:30.000Z."
+        "IDR=X (USD/IDR) was 17905 IDR per USD at 2026-10-07T00:34:08.000Z.",
+        "Yahoo Finance reports a daily change of 0 (0%)."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1006,15 +993,15 @@
       "observations": [
         {
           "inputId": "crossAsset.idr",
-          "value": 17940.0,
+          "value": 17905,
           "unit": "IDR per USD",
-          "sourceDate": "2026-10-01",
-          "observedAt": "2026-10-01T20:42:30.000Z",
+          "sourceDate": "2026-10-07",
+          "observedAt": "2026-10-07T00:34:08.000Z",
           "instrument": "IDR=X USD/IDR spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-fx-idr.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-fx-idr.json"
     },
     {
       "evidenceId": "e-fx-myr",
@@ -1026,11 +1013,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/MYR",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-02",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Cache-busted Firecrawl Yahoo API review: MYR=X 4.082 at 2026-10-02T00:06:23.000Z.",
+      "publishedAt": "2026-10-07",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Cache-busted Yahoo Finance API snapshot: MYR=X 4.0835 at 2026-10-07T00:50:30.000Z.",
       "extractedFacts": [
-        "Cache-busted Firecrawl Yahoo API review: MYR=X 4.082 at 2026-10-02T00:06:23.000Z."
+        "MYR=X (USD/MYR) was 4.0835 MYR per USD at 2026-10-07T00:50:30.000Z.",
+        "Yahoo Finance reports a daily change of 0.0015 (0.0367%)."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1040,15 +1028,15 @@
       "observations": [
         {
           "inputId": "crossAsset.myr",
-          "value": 4.082,
+          "value": 4.0835,
           "unit": "MYR per USD",
-          "sourceDate": "2026-10-02",
-          "observedAt": "2026-10-02T00:06:23.000Z",
+          "sourceDate": "2026-10-07",
+          "observedAt": "2026-10-07T00:50:30.000Z",
           "instrument": "MYR=X USD/MYR spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-fx-myr.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-fx-myr.json"
     },
     {
       "evidenceId": "e-fx-thb",
@@ -1060,11 +1048,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/THB",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-02",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Cache-busted Firecrawl Yahoo API review: THB=X 33.64 at 2026-10-02T00:07:28.000Z.",
+      "publishedAt": "2026-10-07",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Cache-busted Yahoo Finance API snapshot: THB=X 33.61 at 2026-10-07T01:01:36.000Z.",
       "extractedFacts": [
-        "Cache-busted Firecrawl Yahoo API review: THB=X 33.64 at 2026-10-02T00:07:28.000Z."
+        "THB=X (USD/THB) was 33.61 THB per USD at 2026-10-07T01:01:36.000Z.",
+        "Yahoo Finance reports a daily change of 0.06 (0.1788%)."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1074,15 +1063,15 @@
       "observations": [
         {
           "inputId": "crossAsset.thb",
-          "value": 33.64,
+          "value": 33.61,
           "unit": "THB per USD",
-          "sourceDate": "2026-10-02",
-          "observedAt": "2026-10-02T00:07:28.000Z",
+          "sourceDate": "2026-10-07",
+          "observedAt": "2026-10-07T01:01:36.000Z",
           "instrument": "THB=X USD/THB spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-fx-thb.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-fx-thb.json"
     },
     {
       "evidenceId": "e-fx-php",
@@ -1094,11 +1083,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/PHP",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-01",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Cache-busted Firecrawl Yahoo API review: PHP=X 62.53 at 2026-10-01T18:50:57.000Z.",
+      "publishedAt": "2026-10-06",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Cache-busted Yahoo Finance API snapshot: PHP=X 62.72 at 2026-10-06T22:30:31.000Z.",
       "extractedFacts": [
-        "Cache-busted Firecrawl Yahoo API review: PHP=X 62.53 at 2026-10-01T18:50:57.000Z."
+        "PHP=X (USD/PHP) was 62.72 PHP per USD at 2026-10-06T22:30:31.000Z.",
+        "Yahoo Finance reports a daily change of 0.14 (0.2237%)."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1108,15 +1098,15 @@
       "observations": [
         {
           "inputId": "crossAsset.php",
-          "value": 62.53,
+          "value": 62.72,
           "unit": "PHP per USD",
-          "sourceDate": "2026-10-01",
-          "observedAt": "2026-10-01T18:50:57.000Z",
+          "sourceDate": "2026-10-06",
+          "observedAt": "2026-10-06T22:30:31.000Z",
           "instrument": "PHP=X USD/PHP spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-fx-php.json"
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-fx-php.json"
     },
     {
       "evidenceId": "e-reuters-policy-0929",
@@ -1283,6 +1273,91 @@
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
       "retrievalArtifact": ".firecrawl/daily-20261002/new-oil.json"
+    },
+    {
+      "evidenceId": "e-reuters-oil-1005",
+      "url": "https://www.reuters.com/business/energy/middle-east-crude-oil-exports-exceed-pre-war-levels-tanker-attacks-increase-2026-10-05/",
+      "canonicalUrl": "https://www.reuters.com/business/energy/middle-east-crude-oil-exports-exceed-pre-war-levels-tanker-attacks-increase-2026-10-05/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Middle East oil exports top pre-war levels for part of September but tanker attacks increase",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-05",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Reuters reports Kpler’s seven-day Middle East crude-export average reached 18.3 million bpd on Sep 30 and exceeded pre-war levels on 14 September days; Marisks reported at least seven tanker incidents in the prior week.",
+      "extractedFacts": [
+        "Kpler provisional data put the region’s seven-day crude-export average at 18.3 million bpd on Sep 30; exports topped pre-war levels on 14 days in September.",
+        "Marisks reported at least seven tanker incidents in the prior week, including Kazimah III struck on Oct 1 and Liberian-flagged Aframax Lipsi struck on Oct 4.",
+        "Reuters said the export increase includes Gulf oil sent through Hormuz, via the Red Sea and from Gulf of Oman terminals and ship-to-ship transfers."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-signal",
+        "hormuz-crude-export:oil-constraint-signal",
+        "hormuz-crude-export:oil-constraint-supply",
+        "hormuz-crude-export:oil-constraint-transport"
+      ],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-reuters-oil-1005.json"
+    },
+    {
+      "evidenceId": "e-aljazeera-hormuz-1006",
+      "url": "https://www.aljazeera.com/news/2026/10/6/hormuz-ship-attacks-surge-are-increased-oil-exports-sustainable",
+      "canonicalUrl": "https://www.aljazeera.com/news/2026/10/6/hormuz-ship-attacks-surge-are-increased-oil-exports-sustainable",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Hormuz ship attacks surge: Are increased oil exports sustainable?",
+      "publisher": "Al Jazeera",
+      "publishedAt": "2026-10-06",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Al Jazeera reports tanker attacks continued as Gulf exports recovered and says India’s foreign ministry reported 12 crew were injured by an unknown projectile aboard a Panama-flagged tanker in Hormuz.",
+      "extractedFacts": [
+        "India’s Ministry of External Affairs said 12 crew members were injured in an unknown-projectile attack while a Panama-flagged tanker crossed Hormuz.",
+        "Marisks reported at least seven tanker incidents in the past week; the article describes the Oct 1 Kazimah III and Oct 4 Lipsi incidents.",
+        "The article reports Kpler data showing wider Middle East crude exports exceeded pre-war levels on 14 September days."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-signal",
+        "hormuz-crude-export:oil-constraint-signal",
+        "hormuz-crude-export:oil-constraint-supply",
+        "hormuz-crude-export:oil-constraint-transport"
+      ],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-aljazeera-hormuz-1006.json"
+    },
+    {
+      "evidenceId": "e-reuters-oil-1007",
+      "url": "https://www.reuters.com/business/energy/oil-prices-rise-storms-air-strikes-threaten-supply-2026-10-07/",
+      "canonicalUrl": "https://www.reuters.com/business/energy/oil-prices-rise-storms-air-strikes-threaten-supply-2026-10-07/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Oil prices rise as storms and air strikes threaten supply",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-07",
+      "checkedAt": "2026-10-07T01:31:31Z",
+      "claimSummary": "Reuters reports oil rose as markets weighed a Gulf of Mexico storm and Houthi attacks on Saudi Arabia against higher Middle East supply; its Brent and WTI prices are a distinct 00:22 GMT snapshot.",
+      "extractedFacts": [
+        "Reuters reported Brent futures at $101.51/bbl and WTI at $90.25/bbl at 00:22 GMT on Oct 7.",
+        "The report cited a storm that could affect US Gulf oil and gas facilities and Houthi attacks on Saudi Arabia as supply risks.",
+        "Reuters also cited higher Middle East exports, including about 12 million bpd of crude and 2 million bpd of refined products leaving in the last 7-10 days, according to Vitol’s CEO."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "retrievalArtifact": ".firecrawl/daily-20261007/e-reuters-oil-1007.json"
     }
   ]
 }

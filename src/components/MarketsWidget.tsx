@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "FUEL EXPORT CURBS: Reuters reports Chinese refiners suspend exports beyond Hong Kong/Macau; December Brent settles +4.37%; three Hormuz tanker hits reported.";
+const TOP_ALERT = "Reuters reports US storm risk and Houthi attacks on Saudi Arabia adding supply concerns as Middle East crude exports recover.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
