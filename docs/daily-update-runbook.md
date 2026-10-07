@@ -17,8 +17,8 @@
 | **Brent** | $101.30 (Yahoo Finance BZ=F, Oct 7 snapshot; +0.72%) |
 | **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $25.88/MMBtu (Trading Economics, Oct 6, +0.64%) |
 | **TTF** | 75.485 EUR/MWh (2026-10-06, Yahoo Finance TTF=F; -0.27%); carried after machine refresh failure |
-| **Exposure trace** | Reuters/Kpler put Middle East crude exports at 18.3 million bpd on Sep 30, near pre-war levels, while Marisks reported at least seven tanker incidents in a week; Al Jazeera reports 12 crew injured in a Hormuz strike. No verified reopening agreement appears in the checked reporting. |
-| **Evidence audit** | 40 checked · 29 verified · 11 carried · 0 unsupported · PASS |
+| **Exposure trace** | Reuters reports Kpler total September oil exports at 18.6 million bpd; its separate seven-country crude and condensate series rose to 14.7 million bpd from 10.8 in August. Kpler counted 21 LNG cargoes exiting Hormuz in September, followed by four Qatar-loaded vessels reappearing outside on Oct 2-3. Dark AIS may omit passages; no verified reopening agreement was found. |
+| **Evidence audit** | 44 checked · 33 verified · 11 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
 ---
@@ -218,6 +218,10 @@ Alternative candidates must remain explicitly classified:
 - `commercially-executable` additionally requires verified cost, contract flexibility, sanctions/insurance, and availability evidence.
 
 Daily operators should update the underlying metrics, directions, evidence links, freshness, and alternative records. Do not write or hand-tune a Flow Pressure score. After publishing, switch through all traces in **SIGNAL → EXPOSURE** and confirm the score, component statuses, confidence, evidence count, and alternative wording are consistent with the reviewed inputs. A `provisional` or `insufficient verified data` result is expected when required observations are carried or unavailable.
+
+### Key Signals display rule
+
+Key Signals shows the latest observation for each source and unit when it has a value, source, observed period, evidence reference, and a `confirmed` or `carried` status. Direct observations and source-backed `partial-coverage` observations are eligible; partial coverage must be visibly labeled and its caveat retained. A skipped fetch for a manual-only source does not erase coverage verified from its audited observation; connector health remains reported separately. Key Signals does not need to duplicate a trace-hop metric exactly; that cross-model equality check hid valid dated observations. Carried values must remain visibly marked historical with their original dates. Proxy-only, unavailable, identity-only, and placeholder asset-status records remain excluded. A Key Signals display does not promote an observation into a hop metric or commercial calculation; the evidence audit and commercial calculation gates remain unchanged.
 
 ### Freshness and carry-forward
 

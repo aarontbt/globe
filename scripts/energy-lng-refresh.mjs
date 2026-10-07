@@ -503,6 +503,10 @@ function carryCandidate(source, snapshot, state, exposure, reason) {
     low: existing.low,
     high: existing.high,
     unit: existing.unit ?? source.allowedUnits?.[0] ?? null,
+    periodStart: existing.periodStart,
+    periodEnd: existing.periodEnd,
+    coverageStatus: existing.coverageStatus,
+    coverageNote: existing.coverageNote,
     observationDate: existing.sourceDate || null,
     observedAt: existing.observedAt,
     cadence: existing.cadence || source.cadence,
@@ -1588,7 +1592,10 @@ export async function runEnergyRefresh({
     const sourceCoverage = buildSourceCoverage(source, snapshots, deduped.candidates, { from, to });
     coverage[source.id] = sourceCoverage;
     for (const candidate of deduped.candidates.filter((item) => item.sourceId === source.id)) {
-      candidate.coverage = { ...candidate.coverage, ...sourceCoverage };
+      // Keep record-level evidence coverage separate from connector health. A
+      // manual-only reviewed source is intentionally skipped by automation, but
+      // that must not erase the audited observation's direct/partial coverage.
+      candidate.coverage = { ...candidate.coverage, sourceStatus: sourceCoverage.sourceStatus };
     }
     const snapshot = snapshots.find((item) => item.sourceId === source.id);
     if (snapshot) Object.assign(snapshot, {

@@ -165,9 +165,9 @@
     },
     {
       "id": "src-reviewed-qatar-force-majeure",
-      "provider": "LNG Industry",
-      "title": "Edison: QatarEnergy extends force majeure",
-      "url": "https://www.lngindustry.com/lng-shipping/01092026/edison-qatarenergy-extends-force-majeure/amp/",
+      "provider": "Reuters via The Business Standard",
+      "title": "Reuters QatarEnergy force-majeure update",
+      "url": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
       "category": "reviewed-event",
       "automation": "manual-only",
       "cadence": "event-driven",
@@ -184,8 +184,7 @@
       ],
       "targetCommercialInputIds": [],
       "evidenceIds": [
-        "e-qatar-force-majeure",
-        "e-qatar-force-majeure-latest"
+        "e-reuters-qatar-force-majeure-0928"
       ],
       "fallback": "preserve-reviewed",
       "parserVersion": "manual-reviewed-v1",
@@ -208,7 +207,7 @@
           ]
         }
       },
-      "note": "Automation may carry this reviewed claim but cannot fetch, reinterpret, or replace the approved event evidence."
+      "note": "Manual reviewed source. Automation carries the dated Reuters report and does not infer total Qatar output loss from selected buyer notices."
     },
     {
       "id": "src-eia-qatar-production",
@@ -617,6 +616,102 @@
         }
       },
       "note": "Monthly customs trade context is explicitly labeled as demand context, never as live cargo movement. Korea's Comtrade monthly series publishes with a longer lag than initially assumed; recalibrated to a 300-day (~10-month) freshness window on 2026-09-18 after the newest verified month (2025-12) remained the latest available release past the prior 260-day window, with no newer month published upstream."
+    },
+    {
+      "id": "src-reviewed-hormuz-lng-september",
+      "provider": "Kpler via Reuters",
+      "title": "Kpler September LNG cargo exits via Hormuz",
+      "url": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
+      "category": "reviewed-event",
+      "automation": "manual-only",
+      "cadence": "monthly",
+      "maxAgeDays": 45,
+      "allowedUnits": [
+        "LNG cargoes"
+      ],
+      "entityIds": [
+        "hormuz"
+      ],
+      "targetInputIds": [
+        "hormuz-lng-september-exits"
+      ],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [
+        "e-reuters-lng-sep26"
+      ],
+      "fallback": "preserve-reviewed",
+      "parserVersion": "manual-reviewed-v1",
+      "enabled": true,
+      "selection": {
+        "type": "reviewed-event",
+        "entityId": "hormuz",
+        "metric": "monthly LNG cargo exits"
+      },
+      "targetPolicies": {
+        "hormuz-lng-september-exits": {
+          "cadence": "monthly",
+          "maxAgeDays": 45,
+          "allowedUnits": [
+            "LNG cargoes"
+          ],
+          "entityIds": [
+            "hormuz"
+          ],
+          "observationKind": "transit",
+          "coverageStatus": "partial-coverage"
+        }
+      },
+      "observationKind": "transit",
+      "note": "Manual reviewed source. Automation preserves the dated, source-audited observation and does not infer unseen transits or convert it into a complete route total."
+    },
+    {
+      "id": "src-reviewed-hormuz-qatar-vessels-oct03",
+      "provider": "Kpler/LSEG via Reuters",
+      "title": "Qatar-loaded LNG vessel sightings Oct 2-3",
+      "url": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
+      "category": "reviewed-event",
+      "automation": "manual-only",
+      "cadence": "event-driven",
+      "maxAgeDays": 14,
+      "allowedUnits": [
+        "LNG vessels"
+      ],
+      "entityIds": [
+        "qatarenergy",
+        "hormuz"
+      ],
+      "targetInputIds": [
+        "hormuz-qatar-vessels-oct03"
+      ],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [
+        "e-reuters-lng-oct05"
+      ],
+      "fallback": "preserve-reviewed",
+      "parserVersion": "manual-reviewed-v1",
+      "enabled": true,
+      "selection": {
+        "type": "reviewed-event",
+        "entityId": "qatarenergy",
+        "metric": "Qatar-loaded LNG vessels reappearing outside Hormuz"
+      },
+      "targetPolicies": {
+        "hormuz-qatar-vessels-oct03": {
+          "cadence": "event-driven",
+          "maxAgeDays": 14,
+          "allowedUnits": [
+            "LNG vessels"
+          ],
+          "entityIds": [
+            "qatarenergy",
+            "hormuz"
+          ],
+          "observationKind": "transit",
+          "coverageStatus": "partial-coverage"
+        }
+      },
+      "observationKind": "transit",
+      "note": "Manual reviewed source. Automation preserves the dated, source-audited observation and does not infer unseen transits or convert it into a complete route total."
     }
   ]
 }

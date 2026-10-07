@@ -128,7 +128,7 @@ function metricValue(metric: TraceMetric) {
 }
 
 function statusLabel(metric: TraceMetric) {
-  if (metric.status === "carried") return "historical";
+  if (metric.status === "carried") return metric.sourceDate ? `historical · ${metric.sourceDate}` : "historical";
   if (metric.status === "unavailable") return "not currently verified";
   return "verified";
 }
@@ -172,22 +172,21 @@ function alternativeFeasibilityLabel(feasibility: EnergyAlternative["feasibility
 
 function PhysicalFlowTimeline({ trace }: { trace: ExposureTrace }) {
   const observations = latestSignals(trace.physicalFlow?.observations ?? []);
-  const currentMetrics = trace.hops.flatMap((hop) => hop.metrics);
   const direct = observations.filter((item) => (
-    item.coverageStatus === "direct-observation"
-      && item.status === "confirmed"
-      && currentMetrics.some((metric) => (
-        metric.status === "confirmed"
-          && metric.source === item.source
-          && metric.value === item.value
-          && metric.sourceDate === (item.periodEnd ?? item.periodStart)
-      ))
+    (item.coverageStatus === "direct-observation" || item.coverageStatus === "partial-coverage")
+      && item.status !== "unavailable"
+      && item.value !== undefined
+      && Boolean(item.source.trim())
+      && Boolean(item.periodEnd ?? item.periodStart)
+      && (item.evidenceIds.length > 0 || (item.machineEvidenceIds?.length ?? 0) > 0)
       && item.sourceId !== "src-unlocode-ras-laffan"
       && !(item.observationKind === "asset-status" && item.value === item.label)
   ));
   const groups = [
     { label: "Key physical signals", items: direct, color: "#34d399" },
   ].filter((group) => group.items.length > 0);
+
+  if (groups.length === 0) return null;
 
   return (
     <div style={{ ...sectionCard, padding: 14 }}>
@@ -197,8 +196,22 @@ function PhysicalFlowTimeline({ trace }: { trace: ExposureTrace }) {
         <div key={group.label} style={{ marginTop: 13 }}>
           <div style={{ color: group.color, fontSize: 12, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 5 }}>{group.label}</div>
           {group.items.map((observation) => (
-            <div key={observation.id} style={{ display: "grid", gridTemplateColumns: "1.8fr 1fr", gap: 10, padding: "8px 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.86)", fontWeight: 700 }}>{signalLabel(observation)}</div>
+          <div key={observation.id} style={{ display: "grid", gridTemplateColumns: "1.8fr 1fr", gap: 10, padding: "8px 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+              <div>
+                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.86)", fontWeight: 700 }}>{signalLabel(observation)}</div>
+                <div style={{ fontSize: 10, color: "rgba(255,255,255,0.42)", marginTop: 3 }}>
+                  {observation.source} · {observation.periodStart && observation.periodEnd && observation.periodStart !== observation.periodEnd
+                    ? `${observation.periodStart}–${observation.periodEnd}`
+                    : observation.periodEnd ?? observation.periodStart}
+                  {observation.coverageStatus === "partial-coverage" ? " · partial coverage" : " · direct observation"}
+                  {observation.status === "carried" ? " · historical" : ""}
+                </div>
+                {observation.coverageStatus === "partial-coverage" && observation.coverageNote && (
+                  <div style={{ fontSize: 10, lineHeight: 1.35, color: "rgba(255,255,255,0.36)", marginTop: 3 }}>
+                    {observation.coverageNote}
+                  </div>
+                )}
+              </div>
               <div style={{ fontSize: 12, color: group.color, fontWeight: 750 }}>{displayValue(observation.value, observation.unit)}</div>
             </div>
           ))}
@@ -217,7 +230,7 @@ function FlowPressureCard({
   alternatives?: EnergyAlternative[];
   evidence: EvidenceReference[];
 }) {
-  if (!assessment) return null;
+  if (!assessment || assessment.status === "insufficient-verified-data") return null;
   const color = pressureColor(assessment.score);
   return (
     <div style={{ ...sectionCard, padding: 14 }}>
@@ -356,6 +369,7 @@ export default function ExposureTracePanel({ data, activeTraceId, onTraceChange 
           const selected = selectedHop.id === hop.id;
           const namedEntities = hop.entityIds.map((id) => entities.get(id)?.shortName).filter(Boolean).join(" · ");
           const evidence = data.evidence.find((item) => hop.evidenceIds.includes(item.id));
+          const visibleMetrics = hop.metrics.filter((metric) => metric.status !== "unavailable");
           return (
             <button
               key={hop.id}
@@ -391,23 +405,25 @@ export default function ExposureTracePanel({ data, activeTraceId, onTraceChange 
               <div style={{ fontSize: 15, fontWeight: 750, lineHeight: 1.2, marginBottom: 5 }}>{hop.label}</div>
               <div style={{ fontSize: 12, color: "rgba(255,255,255,0.38)", marginBottom: 9 }}>{namedEntities}</div>
               <div style={{ fontSize: 12, color: "rgba(255,255,255,0.54)", lineHeight: 1.45 }}>{hop.summary}</div>
-              <div style={{ marginTop: 10 }}>
-                {hop.metrics.map((metric) => (
-                  <div key={`${hop.id}-${metric.inputId}`} style={{ marginTop: 6 }}>
-                    <div style={{ fontSize: 12, color: "rgba(255,255,255,0.30)", textTransform: "uppercase" }}>{metric.label}</div>
-                    {evidence && metric.status !== "unavailable" ? (
-                      <a href={evidence.url} target="_blank" rel="noreferrer" style={{ display: "block", fontSize: 14, fontWeight: 750, color, textDecoration: "none" }}>
-                        {metricValue(metric)} ↗
-                      </a>
-                    ) : (
-                      <div style={{ fontSize: 14, fontWeight: 750, color: metric.status === "unavailable" ? "rgba(255,255,255,0.32)" : color }}>
-                        {metricValue(metric)}
-                      </div>
-                    )}
-                    <div style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", marginTop: 1 }}>{statusLabel(metric)}</div>
-                  </div>
-                ))}
-              </div>
+              {visibleMetrics.length > 0 && (
+                <div style={{ marginTop: 10 }}>
+                  {visibleMetrics.map((metric) => (
+                    <div key={`${hop.id}-${metric.inputId}`} style={{ marginTop: 6 }}>
+                      <div style={{ fontSize: 12, color: "rgba(255,255,255,0.30)", textTransform: "uppercase" }}>{metric.label}</div>
+                      {evidence && metric.status !== "unavailable" ? (
+                        <a href={evidence.url} target="_blank" rel="noreferrer" style={{ display: "block", fontSize: 14, fontWeight: 750, color, textDecoration: "none" }}>
+                          {metricValue(metric)} ↗
+                        </a>
+                      ) : (
+                        <div style={{ fontSize: 14, fontWeight: 750, color: metric.status === "unavailable" ? "rgba(255,255,255,0.32)" : color }}>
+                          {metricValue(metric)}
+                        </div>
+                      )}
+                      <div style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", marginTop: 1 }}>{statusLabel(metric)}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </button>
           );
         })}

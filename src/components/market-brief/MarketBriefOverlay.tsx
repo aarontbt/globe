@@ -43,9 +43,15 @@ export default function MarketBriefOverlay({
   const [open, setOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<TabId>("trace");
   const [hoveredTab, setHoveredTab] = useState<TabId | null>(null);
+  const activeTrace = data.traces.find((trace) => trace.id === activeTraceId) ?? data.traces[0];
+  const hasVerifiedCommercialResult = Boolean(
+    activeTrace && activeTrace.commercialEvaluation.residualStatus !== "insufficient-verified-data",
+  );
+  const visibleTabs = PRIMARY_TABS.filter((tab) => tab.id !== "commercial" || hasVerifiedCommercialResult);
+  const visibleActiveTab = visibleTabs.some((tab) => tab.id === activeTab) ? activeTab : "trace";
 
   const renderTab = (tab: { id: TabId; label: string }) => {
-    const active = tab.id === activeTab;
+    const active = tab.id === visibleActiveTab;
     return (
       <button
         key={tab.id}
@@ -145,7 +151,7 @@ export default function MarketBriefOverlay({
             </span>
 
             <div style={{ display: "flex", flex: 1, overflowX: "auto" }}>
-              {PRIMARY_TABS.map(renderTab)}
+              {visibleTabs.map(renderTab)}
             </div>
 
             <button
@@ -178,21 +184,21 @@ export default function MarketBriefOverlay({
               scrollbarColor: "rgba(255,255,255,0.12) transparent",
             }}
           >
-            {activeTab === "trace" && (
+            {visibleActiveTab === "trace" && (
               <ExposureTracePanel data={data} activeTraceId={activeTraceId} onTraceChange={onTraceChange} />
             )}
-            {activeTab === "signals" && <ConflictStatusPanel />}
-            {activeTab === "transmission" && <CrossAssetDashboard />}
-            {activeTab === "commercial" && (
+            {visibleActiveTab === "signals" && <ConflictStatusPanel />}
+            {visibleActiveTab === "transmission" && <CrossAssetDashboard />}
+            {visibleActiveTab === "commercial" && (
               <CommercialEvaluationPanel data={data} activeTraceId={activeTraceId} onTraceChange={onTraceChange} />
             )}
-            {activeTab === "counterparties" && (
+            {visibleActiveTab === "counterparties" && (
               <TraceCounterpartiesPanel data={data} activeTraceId={activeTraceId} onTraceChange={onTraceChange} />
             )}
-            {activeTab === "actions" && (
+            {visibleActiveTab === "actions" && (
               <TraceActionsPanel data={data} activeTraceId={activeTraceId} onTraceChange={onTraceChange} />
             )}
-            {activeTab === "evidence" && (
+            {visibleActiveTab === "evidence" && (
               <TraceEvidencePanel data={data} activeTraceId={activeTraceId} onTraceChange={onTraceChange} />
             )}
           </div>

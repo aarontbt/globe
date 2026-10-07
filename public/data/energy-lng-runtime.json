@@ -1,15 +1,15 @@
 {
   "schemaVersion": "energy-lng-runtime-v1",
   "promotionStatus": "promoted",
-  "promotedAt": "2026-10-07T01:43:16.560Z",
-  "assessmentVersion": "energy-runtime:8e0d030da04469cff60e97ab",
-  "sourceRunId": "energy-refresh:c0c109b090c964b23e1a2f8e",
-  "baseFingerprint": "f5fa38335ffe642137da522575be020654f84534e5ed7d892916184d72c34781",
+  "promotedAt": "2026-10-07T02:36:44.247Z",
+  "assessmentVersion": "energy-runtime:a051f490dd90671a3ccfd169",
+  "sourceRunId": "energy-refresh:97f5525d67a4dc430f50ab1e",
+  "baseFingerprint": "748f16e6289675f04714dd04fb2718cffff885c6317e079ef9cc0962403e488a",
   "promotedRecordIds": [
     "energy-observation:src-eia-lng-baseline:qatar-volume-at-risk:unavailable:unavailable",
     "energy-observation:src-imf-portwatch-hormuz:hormuz-transits:2026-08-02:2026-08-02",
     "energy-observation:src-yahoo-ttf:ttf-lng-ttf:2026-10-06:2026-10-06",
-    "energy-observation:src-reviewed-qatar-force-majeure:qatar-output-status:2026-09-11:2026-09-11",
+    "energy-observation:src-reviewed-qatar-force-majeure:qatar-output-status:2026-09-28:2026-09-28",
     "energy-observation:src-eia-qatar-production:qatar-production-baseline:unavailable:unavailable",
     "energy-observation:src-eia-qatar-exports:qatar-export-baseline:unavailable:unavailable",
     "energy-observation:src-gem-ras-laffan-capacity:ras-laffan-capacity:unavailable:unavailable",
@@ -17,14 +17,16 @@
     "energy-observation:src-unlocode-ras-laffan:ras-laffan-port-identity:unavailable:unavailable",
     "energy-observation:src-imf-portwatch-hormuz-pressure:hormuz-route-pressure:unavailable:unavailable",
     "energy-observation:src-comtrade-japan-lng-demand:japan-lng-demand:unavailable:unavailable",
-    "energy-observation:src-comtrade-korea-lng-demand:korea-lng-demand:unavailable:unavailable"
+    "energy-observation:src-comtrade-korea-lng-demand:korea-lng-demand:unavailable:unavailable",
+    "energy-observation:src-reviewed-hormuz-lng-september:hormuz-lng-september-exits:2026-09-01:2026-09-30",
+    "energy-observation:src-reviewed-hormuz-qatar-vessels-oct03:hormuz-qatar-vessels-oct03:2026-10-02:2026-10-03"
   ],
   "domain": {
     "schemaVersion": "energy-lng-domain-v1",
     "readModelVersion": "energy-lng-read-model-v1",
     "asOf": "2026-10-07T00:00:00Z",
     "day": "D216",
-    "headline": "Reuters/Kpler put Middle East crude exports at 18.3 million bpd on Sep 30, near pre-war levels, while Marisks reported at least seven tanker incidents in a week; Al Jazeera reports 12 crew injured in a Hormuz strike. No verified reopening agreement appears in the checked reporting.",
+    "headline": "Reuters reports Kpler total September oil exports at 18.6 million bpd; its separate seven-country crude and condensate series rose to 14.7 million bpd from 10.8 in August. Kpler counted 21 LNG cargoes exiting Hormuz in September, followed by four Qatar-loaded vessels reappearing outside on Oct 2-3. Dark AIS may omit passages; no verified reopening agreement was found.",
     "sources": [
       {
         "id": "e-qatar-force-majeure",
@@ -582,6 +584,62 @@
         "maxAgeDays": 14,
         "status": "confirmed",
         "provider": "Reuters"
+      },
+      {
+        "id": "e-reuters-qatar-force-majeure-0928",
+        "title": "Qatar extends force majeure notices on LNG supply to Edison, Asian clients including Bangladesh",
+        "publisher": "Reuters via The Business Standard",
+        "url": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
+        "publishedAt": "2026-09-28",
+        "retrievedAt": "2026-10-07T00:00:00Z",
+        "kind": "event",
+        "cadence": "event-driven",
+        "maxAgeDays": 14,
+        "status": "confirmed",
+        "note": "Reuters reports Edison expects no QatarEnergy LNG cargoes until early December and some Asian clients were notified through November; buyer notices are not a measured total output loss.",
+        "provider": "Reuters via The Business Standard"
+      },
+      {
+        "id": "e-reuters-lng-sep26",
+        "title": "September LNG shipments through Hormuz hit highest since start of US-Iran war",
+        "publisher": "Reuters",
+        "url": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
+        "publishedAt": "2026-10-02",
+        "retrievedAt": "2026-10-07T00:00:00Z",
+        "kind": "event",
+        "cadence": "event-driven",
+        "maxAgeDays": 45,
+        "status": "confirmed",
+        "note": "Kpler counted 21 LNG cargoes exiting Hormuz in September, up from 15 in June. Dark AIS transits may not be captured, so this is a tracked count rather than complete traffic.",
+        "provider": "Reuters"
+      },
+      {
+        "id": "e-reuters-lng-oct05",
+        "title": "More Qatari LNG cargoes transit Strait of Hormuz despite ongoing risks",
+        "publisher": "Reuters",
+        "url": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
+        "publishedAt": "2026-10-05",
+        "retrievedAt": "2026-10-07T00:00:00Z",
+        "kind": "event",
+        "cadence": "event-driven",
+        "maxAgeDays": 14,
+        "status": "confirmed",
+        "note": "Kpler/LSEG tracked four Qatar-loaded LNG vessels reappearing outside the strait on Oct 2-3. This is a dated sighting set, not four additional monthly transits; dark AIS means counts are incomplete.",
+        "provider": "Reuters"
+      },
+      {
+        "id": "e-reuters-oil-1006",
+        "title": "Gulf oil flows rise to average 81% of pre-war rate in September, data shows",
+        "publisher": "Reuters",
+        "url": "https://www.reuters.com/business/energy/gulf-oil-flows-rise-average-81-pre-war-rate-september-data-shows-2026-10-06/",
+        "publishedAt": "2026-10-06",
+        "retrievedAt": "2026-10-07T00:00:00Z",
+        "kind": "event",
+        "cadence": "event-driven",
+        "maxAgeDays": 14,
+        "status": "confirmed",
+        "note": "Reuters distinguishes Vortexa crude, condensate and refined fuels including LPG (19.2 million bpd) from Kpler total September oil exports (18.6 million bpd) and Kpler combined crude plus condensate exports for seven Gulf states (14.7 million bpd). These are regional exports, not a Hormuz transit count.",
+        "provider": "Reuters"
       }
     ],
     "machineEvidence": [],
@@ -625,13 +683,13 @@
       "src-reviewed-qatar-force-majeure": {
         "status": "unavailable",
         "sourcePeriod": {
-          "start": "2026-09-11",
-          "end": "2026-09-11"
+          "start": "2026-09-28",
+          "end": "2026-09-28"
         },
         "expectedCadence": "event-driven",
         "observedPeriod": {
-          "start": "2026-09-11",
-          "end": "2026-09-11"
+          "start": "2026-09-28",
+          "end": "2026-09-28"
         },
         "missingPeriods": [],
         "sourceStatus": "skipped"
@@ -701,6 +759,37 @@
         "missingPeriods": [],
         "sourceStatus": "failed",
         "note": "Monthly or annual customs trade context is not cargo-level movement."
+      },
+      "src-reviewed-hormuz-lng-september": {
+        "status": "unavailable",
+        "sourcePeriod": {
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "expectedCadence": "monthly",
+        "observedPeriod": {
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "skipped"
+      },
+      "src-reviewed-hormuz-qatar-vessels-oct03": {
+        "status": "unavailable",
+        "sourcePeriod": {
+          "start": "2026-10-02",
+          "end": "2026-10-03"
+        },
+        "expectedCadence": "event-driven",
+        "observedPeriod": {
+          "start": "2026-10-02",
+          "end": "2026-10-03"
+        },
+        "missingPeriods": [
+          "2026-10-02/2026-10-02",
+          "2026-10-03/2026-10-03"
+        ],
+        "sourceStatus": "skipped"
       }
     },
     "entities": [
@@ -723,6 +812,7 @@
           "sourceIds": [
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928",
             "e-jera-qatarenergy"
           ],
           "status": "confirmed",
@@ -755,10 +845,11 @@
           "unit": null,
           "sourceIds": [
             "e-qatar-force-majeure",
-            "e-qatar-force-majeure-latest"
+            "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928"
           ],
-          "status": "carried",
-          "confidence": "medium"
+          "status": "confirmed",
+          "confidence": "high"
         }
       },
       {
@@ -809,6 +900,8 @@
           "sourceIds": [
             "e-hormuz-transit",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-ap-hormuz-20260818",
             "e-saudi-pipeline",
             "e-hormuz-kpler-0925",
@@ -824,6 +917,7 @@
             "e-nakilat-charters",
             "e-qatar-force-majeure",
             "e-eia-hormuz",
+            "e-reuters-oil-1006",
             "e-vlcc-freight",
             "e-hormuz-single-digit-crossings",
             "e-reuters-saudi-sts-0925"
@@ -852,6 +946,8 @@
             "e-nakilat-charters",
             "e-qatar-force-majeure",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-jera-qatarenergy"
           ],
           "status": "confirmed",
@@ -1020,7 +1116,8 @@
             "e-reuters-saudi-0928",
             "e-reuters-oil-1001",
             "e-reuters-oil-1005",
-            "e-aljazeera-hormuz-1006"
+            "e-aljazeera-hormuz-1006",
+            "e-reuters-oil-1006"
           ],
           "status": "confirmed",
           "confidence": "high"
@@ -1060,8 +1157,11 @@
         "evidenceIds": [
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest",
+          "e-reuters-qatar-force-majeure-0928",
           "e-hormuz-transit",
           "e-reuters-lng-0928",
+          "e-reuters-lng-sep26",
+          "e-reuters-lng-oct05",
           "e-jkm-cfd",
           "e-jera-qatarenergy"
         ],
@@ -1074,8 +1174,11 @@
           "sourceIds": [
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928",
             "e-hormuz-transit",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-jkm-cfd",
             "e-jera-qatarenergy"
           ],
@@ -1091,8 +1194,11 @@
         "evidenceIds": [
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest",
+          "e-reuters-qatar-force-majeure-0928",
           "e-hormuz-transit",
           "e-reuters-lng-0928",
+          "e-reuters-lng-sep26",
+          "e-reuters-lng-oct05",
           "e-jkm-cfd",
           "e-jera-qatarenergy"
         ],
@@ -1105,8 +1211,11 @@
           "sourceIds": [
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928",
             "e-hormuz-transit",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-jkm-cfd",
             "e-jera-qatarenergy"
           ],
@@ -1122,8 +1231,11 @@
         "evidenceIds": [
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest",
+          "e-reuters-qatar-force-majeure-0928",
           "e-hormuz-transit",
           "e-reuters-lng-0928",
+          "e-reuters-lng-sep26",
+          "e-reuters-lng-oct05",
           "e-jkm-cfd",
           "e-jera-qatarenergy"
         ],
@@ -1136,8 +1248,11 @@
           "sourceIds": [
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928",
             "e-hormuz-transit",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-jkm-cfd",
             "e-jera-qatarenergy"
           ],
@@ -1153,8 +1268,11 @@
         "evidenceIds": [
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest",
+          "e-reuters-qatar-force-majeure-0928",
           "e-hormuz-transit",
           "e-reuters-lng-0928",
+          "e-reuters-lng-sep26",
+          "e-reuters-lng-oct05",
           "e-jkm-cfd",
           "e-jera-qatarenergy"
         ],
@@ -1167,8 +1285,11 @@
           "sourceIds": [
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928",
             "e-hormuz-transit",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-jkm-cfd",
             "e-jera-qatarenergy"
           ],
@@ -1183,7 +1304,8 @@
         "toEntityId": "ras-laffan",
         "evidenceIds": [
           "e-qatar-force-majeure",
-          "e-qatar-force-majeure-latest"
+          "e-qatar-force-majeure-latest",
+          "e-reuters-qatar-force-majeure-0928"
         ],
         "note": "Operational relationship inferred from the source-backed trace hop.",
         "record": {
@@ -1193,7 +1315,8 @@
           "unit": null,
           "sourceIds": [
             "e-qatar-force-majeure",
-            "e-qatar-force-majeure-latest"
+            "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928"
           ],
           "status": "inferred",
           "confidence": "low"
@@ -1240,8 +1363,11 @@
           "e-aljazeera-hormuz-1006",
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest",
+          "e-reuters-qatar-force-majeure-0928",
           "e-nakilat-charters",
           "e-reuters-lng-0928",
+          "e-reuters-lng-sep26",
+          "e-reuters-lng-oct05",
           "e-ttf",
           "e-jera-qatarenergy"
         ],
@@ -1266,8 +1392,11 @@
             "e-aljazeera-hormuz-1006",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928",
             "e-nakilat-charters",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-ttf",
             "e-jera-qatarenergy"
           ],
@@ -1295,8 +1424,11 @@
           "e-aljazeera-hormuz-1006",
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest",
+          "e-reuters-qatar-force-majeure-0928",
           "e-nakilat-charters",
           "e-reuters-lng-0928",
+          "e-reuters-lng-sep26",
+          "e-reuters-lng-oct05",
           "e-ttf",
           "e-jera-qatarenergy"
         ],
@@ -1321,8 +1453,11 @@
             "e-aljazeera-hormuz-1006",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928",
             "e-nakilat-charters",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-ttf",
             "e-jera-qatarenergy"
           ],
@@ -1350,8 +1485,11 @@
           "e-aljazeera-hormuz-1006",
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest",
+          "e-reuters-qatar-force-majeure-0928",
           "e-nakilat-charters",
           "e-reuters-lng-0928",
+          "e-reuters-lng-sep26",
+          "e-reuters-lng-oct05",
           "e-ttf",
           "e-jera-qatarenergy"
         ],
@@ -1376,8 +1514,11 @@
             "e-aljazeera-hormuz-1006",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928",
             "e-nakilat-charters",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-ttf",
             "e-jera-qatarenergy"
           ],
@@ -1422,6 +1563,7 @@
           "e-reuters-oil-1001",
           "e-reuters-oil-1005",
           "e-aljazeera-hormuz-1006",
+          "e-reuters-oil-1006",
           "e-eia-saudi",
           "e-saudi-pipeline",
           "e-hormuz-kpler-0925",
@@ -1447,6 +1589,7 @@
             "e-reuters-oil-1001",
             "e-reuters-oil-1005",
             "e-aljazeera-hormuz-1006",
+            "e-reuters-oil-1006",
             "e-eia-saudi",
             "e-saudi-pipeline",
             "e-hormuz-kpler-0925",
@@ -1475,6 +1618,7 @@
           "e-reuters-oil-1001",
           "e-reuters-oil-1005",
           "e-aljazeera-hormuz-1006",
+          "e-reuters-oil-1006",
           "e-eia-saudi",
           "e-saudi-pipeline",
           "e-hormuz-kpler-0925",
@@ -1500,6 +1644,7 @@
             "e-reuters-oil-1001",
             "e-reuters-oil-1005",
             "e-aljazeera-hormuz-1006",
+            "e-reuters-oil-1006",
             "e-eia-saudi",
             "e-saudi-pipeline",
             "e-hormuz-kpler-0925",
@@ -1523,61 +1668,60 @@
           "ras-laffan",
           "qatarenergy"
         ],
-        "value": "Reuters reported that QatarEnergy renewed force-majeure notices through November after Iranian strikes damaged two of 14 Ras Laffan LNG trains; it is seeking 2-3 MTPA of US LNG through 2031",
+        "value": "Reuters reported Sep 28 that Edison expects no QatarEnergy LNG cargoes until early December and some Asian clients were notified that force majeure runs through November; Edison cited 35 undelivered cargoes total and 23 replaced to date",
         "unit": "",
         "observationKind": "flow",
-        "periodStart": "2026-09-11",
-        "periodEnd": "2026-09-11",
+        "periodStart": "2026-09-28",
+        "periodEnd": "2026-09-28",
         "coverage": {
-          "status": "unavailable",
+          "status": "partial-coverage",
           "sourcePeriod": {
-            "start": "2026-09-11",
-            "end": "2026-09-11"
+            "start": "2026-09-28",
+            "end": "2026-09-28"
           },
           "expectedCadence": "event-driven",
           "observedPeriod": {
-            "start": "2026-09-11",
-            "end": "2026-09-11"
+            "start": "2026-09-28",
+            "end": "2026-09-28"
           },
           "missingPeriods": [],
-          "sourceStatus": "skipped"
+          "sourceStatus": "skipped",
+          "note": "Reports Edison and selected Asian buyer notices, not a measured total Qatar LNG output loss."
         },
-        "sourceName": "Reuters",
-        "sourceDate": "2026-09-11",
+        "sourceName": "Reuters via The Business Standard",
+        "sourceDate": "2026-09-28",
+        "observedAt": "2026-09-28T00:00:00.000Z",
         "cadence": "event-driven",
         "freshnessWindowDays": 14,
-        "carryReason": "Reviewed Oct 2: the Sep 11 Reuters report remains the latest source-approved QatarEnergy force-majeure and replacement-supply disclosure. No newer dated Qatar update was found; retain the original date and carry the event.",
+        "carryReason": "Reviewed Oct 7: retain the Sep 28 report date; it describes buyer delivery notices through November and Edison deliveries resuming in early December.",
         "evidenceIds": [
-          "e-qatar-force-majeure",
-          "e-qatar-force-majeure-latest"
+          "e-reuters-qatar-force-majeure-0928"
         ],
         "machineEvidenceIds": [],
         "record": {
           "asOf": "2026-10-07T00:00:00Z",
-          "validFrom": "2026-09-11T00:00:00Z",
+          "validFrom": "2026-09-28T00:00:00Z",
           "validTo": null,
           "unit": "",
           "sourceIds": [
             "src-reviewed-qatar-force-majeure",
-            "e-qatar-force-majeure",
-            "e-qatar-force-majeure-latest"
+            "e-reuters-qatar-force-majeure-0928"
           ],
           "status": "carried",
           "confidence": "medium"
         },
         "lineage": {
           "sourceId": "src-reviewed-qatar-force-majeure",
-          "sourceUrl": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
-          "provider": "Reuters",
-          "observationAt": "2026-09-11T00:00:00.000Z",
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
+          "provider": "Reuters via The Business Standard",
+          "observationAt": "2026-09-28T00:00:00.000Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:f4c3eb3ca5feeb61",
           "parserVersion": "manual-reviewed-v1",
-          "recordKey": "73b6ff057d28de0b268c020e3414d9b0c4fd0cdecb7a97c84205f5a59d478510",
+          "recordKey": "63d52d54e78186e2ea9e359232919773c226b9ff38c0e80a113418327aad79e4",
           "derivedFrom": [
-            "e-qatar-force-majeure",
-            "e-qatar-force-majeure-latest"
+            "e-reuters-qatar-force-majeure-0928"
           ]
         }
       },
@@ -1621,7 +1765,7 @@
           "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
           "provider": "Global Energy Monitor",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-gem-ras-laffan-status:0129843fd54c7b61",
           "parserVersion": "gem-asset-v1",
@@ -1669,7 +1813,7 @@
           "sourceUrl": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
           "provider": "UN/LOCODE",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-unlocode-ras-laffan:535413af6be16a3b",
           "parserVersion": "unlocode-asset-v1",
@@ -1691,7 +1835,7 @@
         "coverage": {
           "status": "unavailable",
           "sourcePeriod": null,
-          "expectedCadence": "event-driven",
+          "expectedCadence": "daily",
           "observedPeriod": null,
           "missingPeriods": [],
           "sourceStatus": "failed"
@@ -1717,7 +1861,7 @@
           "sourceUrl": "https://api.eia.gov/v2/international/data/",
           "provider": "U.S. EIA",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-eia-lng-baseline:7c0f81bd0d29cbab",
           "parserVersion": "eia-international-v1",
@@ -1765,7 +1909,7 @@
           "sourceUrl": "https://api.eia.gov/v2/seriesid/",
           "provider": "U.S. EIA",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:25a4acd72f9731f4",
           "parserVersion": "eia-series-v2",
@@ -1813,7 +1957,7 @@
           "sourceUrl": "https://api.eia.gov/v2/seriesid/",
           "provider": "U.S. EIA",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:7c70abc9cde4b90a",
           "parserVersion": "eia-series-v2",
@@ -1861,7 +2005,7 @@
           "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
           "provider": "Global Energy Monitor",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-gem-ras-laffan-capacity:88a49e895ce16326",
           "parserVersion": "gem-asset-v1",
@@ -1881,7 +2025,7 @@
         "periodStart": "2026-08-02",
         "periodEnd": "2026-08-02",
         "coverage": {
-          "status": "unavailable",
+          "status": "partial-coverage",
           "sourcePeriod": {
             "start": "2026-08-02",
             "end": "2026-08-02"
@@ -1892,10 +2036,12 @@
             "end": "2026-08-02"
           },
           "missingPeriods": [],
-          "sourceStatus": "failed"
+          "sourceStatus": "failed",
+          "note": "Kpler weekly reported count for Jul 27-Aug 2; AIS-dark transits may be unobserved. This is historical weekly context, not a September monthly total."
         },
         "sourceName": "Kpler via Foreign Policy Journal",
         "sourceDate": "2026-08-02",
+        "observedAt": "2026-08-02T00:00:00.000Z",
         "cadence": "daily",
         "freshnessWindowDays": 7,
         "carryReason": "Reviewed Oct 7: the exact Foreign Policy Journal/Kpler page still reports three LNG transits for Jul 27-Aug 2. The checked October reporting does not provide a newer directly comparable LNG-only weekly count; keep this as historical context.",
@@ -1920,7 +2066,7 @@
           "sourceUrl": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
           "provider": "Kpler via Foreign Policy Journal",
           "observationAt": "2026-08-02T00:00:00.000Z",
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:eae468a1d1d93c93",
           "parserVersion": "portwatch-route-v1",
@@ -1969,12 +2115,138 @@
           "sourceUrl": "https://portwatch.imf.org/pages/data-and-methodology",
           "provider": "IMF PortWatch",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz-pressure:1c7ab7fc8d5588ed",
           "parserVersion": "portwatch-route-v2",
           "recordKey": "a788f76acb8e7541ccc5b32beeb8fd2708b2db185125e37be0ff6724ec177ff1",
           "derivedFrom": []
+        }
+      },
+      {
+        "id": "observation:qatar-supply:hormuz-lng-september-exits",
+        "label": "September LNG cargo exits",
+        "entityIds": [
+          "hormuz"
+        ],
+        "value": 21,
+        "unit": "LNG cargoes",
+        "observationKind": "transit",
+        "periodStart": "2026-09-01",
+        "periodEnd": "2026-09-30",
+        "coverage": {
+          "status": "partial-coverage",
+          "sourcePeriod": {
+            "start": "2026-09-01",
+            "end": "2026-09-30"
+          },
+          "expectedCadence": "monthly",
+          "observedPeriod": {
+            "start": "2026-09-01",
+            "end": "2026-09-30"
+          },
+          "missingPeriods": [],
+          "sourceStatus": "skipped",
+          "note": "Kpler tracked count; AIS-dark transits may be omitted, so the tally may not capture every passage."
+        },
+        "sourceName": "Kpler via Reuters",
+        "sourceDate": "2026-09-30",
+        "observedAt": "2026-09-30T00:00:00.000Z",
+        "cadence": "monthly",
+        "freshnessWindowDays": 45,
+        "carryReason": "Reviewed Oct 7: the September monthly count is the latest reported LNG-only total; keep the Sep 1-30 observation period visible.",
+        "evidenceIds": [
+          "e-reuters-lng-sep26"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-10-07T00:00:00Z",
+          "validFrom": "2026-09-30T00:00:00Z",
+          "validTo": null,
+          "unit": "LNG cargoes",
+          "sourceIds": [
+            "src-reviewed-hormuz-lng-september",
+            "e-reuters-lng-sep26"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        },
+        "lineage": {
+          "sourceId": "src-reviewed-hormuz-lng-september",
+          "sourceUrl": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
+          "provider": "Kpler via Reuters",
+          "observationAt": "2026-09-30T00:00:00.000Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-reviewed-hormuz-lng-september:5ca0d4f9d556142f",
+          "parserVersion": "manual-reviewed-v1",
+          "recordKey": "cf7d6a72c42822dc63487698edb45fdce525b92899d95e606d8d48de49ea66d6",
+          "derivedFrom": [
+            "e-reuters-lng-sep26"
+          ]
+        }
+      },
+      {
+        "id": "observation:qatar-supply:hormuz-qatar-vessels-oct03",
+        "label": "Qatari LNG vessels reappeared outside",
+        "entityIds": [
+          "hormuz"
+        ],
+        "value": 4,
+        "unit": "LNG vessels",
+        "observationKind": "transit",
+        "periodStart": "2026-10-02",
+        "periodEnd": "2026-10-03",
+        "coverage": {
+          "status": "partial-coverage",
+          "sourcePeriod": {
+            "start": "2026-10-02",
+            "end": "2026-10-03"
+          },
+          "expectedCadence": "event-driven",
+          "observedPeriod": {
+            "start": "2026-10-02",
+            "end": "2026-10-03"
+          },
+          "missingPeriods": [],
+          "sourceStatus": "skipped",
+          "note": "Four tracked Qatar-loaded vessels reappeared outside; this sighting set is not additive to the September monthly count, and dark AIS may hide other passages."
+        },
+        "sourceName": "Kpler/LSEG via Reuters",
+        "sourceDate": "2026-10-03",
+        "observedAt": "2026-10-03T00:00:00.000Z",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 14,
+        "carryReason": "Reviewed Oct 7: retain the Oct 2-3 sighting period; the four vessels are a separate observation and may overlap with the September tally.",
+        "evidenceIds": [
+          "e-reuters-lng-oct05"
+        ],
+        "machineEvidenceIds": [],
+        "record": {
+          "asOf": "2026-10-07T00:00:00Z",
+          "validFrom": "2026-10-03T00:00:00Z",
+          "validTo": null,
+          "unit": "LNG vessels",
+          "sourceIds": [
+            "src-reviewed-hormuz-qatar-vessels-oct03",
+            "e-reuters-lng-oct05"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        },
+        "lineage": {
+          "sourceId": "src-reviewed-hormuz-qatar-vessels-oct03",
+          "sourceUrl": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
+          "provider": "Kpler/LSEG via Reuters",
+          "observationAt": "2026-10-03T00:00:00.000Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-reviewed-hormuz-qatar-vessels-oct03:ee9701bfde38e715",
+          "parserVersion": "manual-reviewed-v1",
+          "recordKey": "3bed0c8035e3e779ec4356c68393cd57d3ed10dbc96008cffb1ffa35c55802d8",
+          "derivedFrom": [
+            "e-reuters-lng-oct05"
+          ]
         }
       },
       {
@@ -2042,8 +2314,7 @@
           "expectedCadence": "monthly",
           "observedPeriod": null,
           "missingPeriods": [],
-          "sourceStatus": "failed",
-          "note": "Monthly or annual customs trade context is not cargo-level movement."
+          "sourceStatus": "failed"
         },
         "cadence": "monthly",
         "freshnessWindowDays": 90,
@@ -2066,7 +2337,7 @@
           "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
           "provider": "UN Comtrade",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:5f4279b4a2fce235",
           "parserVersion": "comtrade-trade-v1",
@@ -2092,8 +2363,7 @@
           "expectedCadence": "monthly",
           "observedPeriod": null,
           "missingPeriods": [],
-          "sourceStatus": "failed",
-          "note": "Monthly or annual customs trade context is not cargo-level movement."
+          "sourceStatus": "failed"
         },
         "cadence": "monthly",
         "freshnessWindowDays": 300,
@@ -2116,7 +2386,7 @@
           "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
           "provider": "UN Comtrade",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:fa1bd261b3bc09a4",
           "parserVersion": "comtrade-trade-v1",
@@ -2247,61 +2517,60 @@
           "ras-laffan",
           "qatarenergy"
         ],
-        "value": "Reuters reported that QatarEnergy renewed force-majeure notices through November after Iranian strikes damaged two of 14 Ras Laffan LNG trains; it is seeking 2-3 MTPA of US LNG through 2031",
+        "value": "Reuters reported Sep 28 that Edison expects no QatarEnergy LNG cargoes until early December and some Asian clients were notified that force majeure runs through November; Edison cited 35 undelivered cargoes total and 23 replaced to date",
         "unit": "",
         "observationKind": "flow",
-        "periodStart": "2026-09-11",
-        "periodEnd": "2026-09-11",
+        "periodStart": "2026-09-28",
+        "periodEnd": "2026-09-28",
         "coverage": {
-          "status": "unavailable",
+          "status": "partial-coverage",
           "sourcePeriod": {
-            "start": "2026-09-11",
-            "end": "2026-09-11"
+            "start": "2026-09-28",
+            "end": "2026-09-28"
           },
           "expectedCadence": "event-driven",
           "observedPeriod": {
-            "start": "2026-09-11",
-            "end": "2026-09-11"
+            "start": "2026-09-28",
+            "end": "2026-09-28"
           },
           "missingPeriods": [],
-          "sourceStatus": "skipped"
+          "sourceStatus": "skipped",
+          "note": "Reports Edison and selected Asian buyer notices, not a measured total Qatar LNG output loss."
         },
-        "sourceName": "Reuters",
-        "sourceDate": "2026-09-11",
+        "sourceName": "Reuters via The Business Standard",
+        "sourceDate": "2026-09-28",
+        "observedAt": "2026-09-28T00:00:00.000Z",
         "cadence": "event-driven",
         "freshnessWindowDays": 14,
-        "carryReason": "Reviewed Oct 2: the Sep 11 Reuters report remains the latest source-approved QatarEnergy force-majeure and replacement-supply disclosure. No newer dated Qatar update was found; retain the original date and carry the event.",
+        "carryReason": "Reviewed Oct 7: retain the Sep 28 report date; it describes buyer delivery notices through November and Edison deliveries resuming in early December.",
         "evidenceIds": [
-          "e-qatar-force-majeure",
-          "e-qatar-force-majeure-latest"
+          "e-reuters-qatar-force-majeure-0928"
         ],
         "machineEvidenceIds": [],
         "record": {
           "asOf": "2026-10-07T00:00:00Z",
-          "validFrom": "2026-09-11T00:00:00Z",
+          "validFrom": "2026-09-28T00:00:00Z",
           "validTo": null,
           "unit": "",
           "sourceIds": [
             "src-reviewed-qatar-force-majeure",
-            "e-qatar-force-majeure",
-            "e-qatar-force-majeure-latest"
+            "e-reuters-qatar-force-majeure-0928"
           ],
           "status": "carried",
           "confidence": "medium"
         },
         "lineage": {
           "sourceId": "src-reviewed-qatar-force-majeure",
-          "sourceUrl": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
-          "provider": "Reuters",
-          "observationAt": "2026-09-11T00:00:00.000Z",
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
+          "provider": "Reuters via The Business Standard",
+          "observationAt": "2026-09-28T00:00:00.000Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:f4c3eb3ca5feeb61",
           "parserVersion": "manual-reviewed-v1",
-          "recordKey": "73b6ff057d28de0b268c020e3414d9b0c4fd0cdecb7a97c84205f5a59d478510",
+          "recordKey": "63d52d54e78186e2ea9e359232919773c226b9ff38c0e80a113418327aad79e4",
           "derivedFrom": [
-            "e-qatar-force-majeure",
-            "e-qatar-force-majeure-latest"
+            "e-reuters-qatar-force-majeure-0928"
           ]
         }
       },
@@ -2338,7 +2607,9 @@
         "evidenceIds": [
           "e-nakilat-charters",
           "e-qatar-force-majeure",
-          "e-reuters-lng-0928"
+          "e-reuters-lng-0928",
+          "e-reuters-lng-sep26",
+          "e-reuters-lng-oct05"
         ],
         "machineEvidenceIds": [],
         "record": {
@@ -2349,7 +2620,9 @@
           "sourceIds": [
             "e-nakilat-charters",
             "e-qatar-force-majeure",
-            "e-reuters-lng-0928"
+            "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05"
           ],
           "status": "confirmed",
           "confidence": "high"
@@ -2389,7 +2662,9 @@
         "evidenceIds": [
           "e-nakilat-charters",
           "e-qatar-force-majeure",
-          "e-reuters-lng-0928"
+          "e-reuters-lng-0928",
+          "e-reuters-lng-sep26",
+          "e-reuters-lng-oct05"
         ],
         "machineEvidenceIds": [],
         "record": {
@@ -2400,7 +2675,9 @@
           "sourceIds": [
             "e-nakilat-charters",
             "e-qatar-force-majeure",
-            "e-reuters-lng-0928"
+            "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05"
           ],
           "status": "carried",
           "confidence": "medium"
@@ -2431,7 +2708,9 @@
         "evidenceIds": [
           "e-nakilat-charters",
           "e-qatar-force-majeure",
-          "e-reuters-lng-0928"
+          "e-reuters-lng-0928",
+          "e-reuters-lng-sep26",
+          "e-reuters-lng-oct05"
         ],
         "machineEvidenceIds": [],
         "record": {
@@ -2442,7 +2721,9 @@
           "sourceIds": [
             "e-nakilat-charters",
             "e-qatar-force-majeure",
-            "e-reuters-lng-0928"
+            "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05"
           ],
           "status": "unavailable",
           "confidence": "unknown"
@@ -2461,7 +2742,7 @@
         "periodStart": "2026-10-06",
         "periodEnd": "2026-10-06",
         "coverage": {
-          "status": "unavailable",
+          "status": "direct-observation",
           "sourcePeriod": {
             "start": "2026-10-06",
             "end": "2026-10-06"
@@ -2472,7 +2753,8 @@
             "end": "2026-10-06"
           },
           "missingPeriods": [],
-          "sourceStatus": "failed"
+          "sourceStatus": "failed",
+          "note": "Yahoo Finance TTF=F daily quote last observed Oct 6; retained as a dated market reference after the latest fetch failed."
         },
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-10-06",
@@ -2501,7 +2783,7 @@
           "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
           "provider": "Yahoo Finance TTF=F",
           "observationAt": "2026-10-06T15:50:45.000Z",
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:456cca93f9904634",
           "parserVersion": "yahoo-chart-v1",
@@ -2597,7 +2879,8 @@
           "e-reuters-talks-0930",
           "e-reuters-oil-1001",
           "e-reuters-oil-1005",
-          "e-aljazeera-hormuz-1006"
+          "e-aljazeera-hormuz-1006",
+          "e-reuters-oil-1006"
         ],
         "machineEvidenceIds": [],
         "record": {
@@ -2613,7 +2896,8 @@
             "e-reuters-talks-0930",
             "e-reuters-oil-1001",
             "e-reuters-oil-1005",
-            "e-aljazeera-hormuz-1006"
+            "e-aljazeera-hormuz-1006",
+            "e-reuters-oil-1006"
           ],
           "status": "confirmed",
           "confidence": "high"
@@ -2658,7 +2942,8 @@
           "e-reuters-saudi-0928",
           "e-reuters-oil-1001",
           "e-reuters-oil-1005",
-          "e-aljazeera-hormuz-1006"
+          "e-aljazeera-hormuz-1006",
+          "e-reuters-oil-1006"
         ],
         "machineEvidenceIds": [],
         "record": {
@@ -2676,7 +2961,8 @@
             "e-reuters-saudi-0928",
             "e-reuters-oil-1001",
             "e-reuters-oil-1005",
-            "e-aljazeera-hormuz-1006"
+            "e-aljazeera-hormuz-1006",
+            "e-reuters-oil-1006"
           ],
           "status": "confirmed",
           "confidence": "high"
@@ -2721,7 +3007,8 @@
           "e-reuters-saudi-0928",
           "e-reuters-oil-1001",
           "e-reuters-oil-1005",
-          "e-aljazeera-hormuz-1006"
+          "e-aljazeera-hormuz-1006",
+          "e-reuters-oil-1006"
         ],
         "machineEvidenceIds": [],
         "record": {
@@ -2739,7 +3026,8 @@
             "e-reuters-saudi-0928",
             "e-reuters-oil-1001",
             "e-reuters-oil-1005",
-            "e-aljazeera-hormuz-1006"
+            "e-aljazeera-hormuz-1006",
+            "e-reuters-oil-1006"
           ],
           "status": "confirmed",
           "confidence": "high"
@@ -3067,7 +3355,7 @@
         "periodStart": "2026-10-06",
         "periodEnd": "2026-10-06",
         "coverage": {
-          "status": "unavailable",
+          "status": "direct-observation",
           "sourcePeriod": {
             "start": "2026-10-06",
             "end": "2026-10-06"
@@ -3078,7 +3366,8 @@
             "end": "2026-10-06"
           },
           "missingPeriods": [],
-          "sourceStatus": "failed"
+          "sourceStatus": "failed",
+          "note": "Yahoo Finance TTF=F daily quote last observed Oct 6; retained as a dated market reference after the latest fetch failed."
         },
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-10-06",
@@ -3107,7 +3396,7 @@
           "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
           "provider": "Yahoo Finance TTF=F",
           "observationAt": "2026-10-06T15:50:45.000Z",
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:456cca93f9904634",
           "parserVersion": "yahoo-chart-v1",
@@ -4106,7 +4395,7 @@
         "coverage": {
           "status": "unavailable",
           "sourcePeriod": null,
-          "expectedCadence": "event-driven",
+          "expectedCadence": "daily",
           "observedPeriod": null,
           "missingPeriods": [],
           "sourceStatus": "failed"
@@ -4121,7 +4410,7 @@
           "sourceUrl": "https://api.eia.gov/v2/international/data/",
           "provider": "U.S. EIA",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-eia-lng-baseline:7c0f81bd0d29cbab",
           "parserVersion": "eia-international-v1",
@@ -4214,7 +4503,7 @@
           "sourceUrl": "https://api.eia.gov/v2/seriesid/",
           "provider": "U.S. EIA",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:25a4acd72f9731f4",
           "parserVersion": "eia-series-v2",
@@ -4262,7 +4551,7 @@
           "sourceUrl": "https://api.eia.gov/v2/seriesid/",
           "provider": "U.S. EIA",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:7c70abc9cde4b90a",
           "parserVersion": "eia-series-v2",
@@ -4309,7 +4598,7 @@
           "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
           "provider": "Global Energy Monitor",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-gem-ras-laffan-capacity:88a49e895ce16326",
           "parserVersion": "gem-asset-v1",
@@ -4356,7 +4645,7 @@
           "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
           "provider": "Global Energy Monitor",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-gem-ras-laffan-status:0129843fd54c7b61",
           "parserVersion": "gem-asset-v1",
@@ -4403,7 +4692,7 @@
           "sourceUrl": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
           "provider": "UN/LOCODE",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-unlocode-ras-laffan:535413af6be16a3b",
           "parserVersion": "unlocode-asset-v1",
@@ -4450,7 +4739,7 @@
           "sourceUrl": "https://portwatch.imf.org/pages/data-and-methodology",
           "provider": "IMF PortWatch",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz-pressure:1c7ab7fc8d5588ed",
           "parserVersion": "portwatch-route-v2",
@@ -4485,8 +4774,7 @@
           "expectedCadence": "monthly",
           "observedPeriod": null,
           "missingPeriods": [],
-          "sourceStatus": "failed",
-          "note": "Monthly or annual customs trade context is not cargo-level movement."
+          "sourceStatus": "failed"
         },
         "cadence": "monthly",
         "freshnessWindowDays": 90,
@@ -4498,7 +4786,7 @@
           "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
           "provider": "UN Comtrade",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-comtrade-japan-lng-demand:5f4279b4a2fce235",
           "parserVersion": "comtrade-trade-v1",
@@ -4533,8 +4821,7 @@
           "expectedCadence": "monthly",
           "observedPeriod": null,
           "missingPeriods": [],
-          "sourceStatus": "failed",
-          "note": "Monthly or annual customs trade context is not cargo-level movement."
+          "sourceStatus": "failed"
         },
         "cadence": "monthly",
         "freshnessWindowDays": 300,
@@ -4546,7 +4833,7 @@
           "sourceUrl": "https://comtradeapi.un.org/public/v1/preview/C/M/HS",
           "provider": "UN Comtrade",
           "observationAt": null,
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-comtrade-korea-lng-demand:fa1bd261b3bc09a4",
           "parserVersion": "comtrade-trade-v1",
@@ -5085,7 +5372,7 @@
         "periodStart": "2026-08-02",
         "periodEnd": "2026-08-02",
         "coverage": {
-          "status": "unavailable",
+          "status": "partial-coverage",
           "sourcePeriod": {
             "start": "2026-08-02",
             "end": "2026-08-02"
@@ -5096,10 +5383,12 @@
             "end": "2026-08-02"
           },
           "missingPeriods": [],
-          "sourceStatus": "failed"
+          "sourceStatus": "failed",
+          "note": "Kpler weekly reported count for Jul 27-Aug 2; AIS-dark transits may be unobserved. This is historical weekly context, not a September monthly total."
         },
         "sourceName": "Kpler via Foreign Policy Journal",
         "sourceDate": "2026-08-02",
+        "observedAt": "2026-08-02T00:00:00.000Z",
         "cadence": "daily",
         "freshnessWindowDays": 7,
         "carryReason": "Reviewed Oct 7: the exact Foreign Policy Journal/Kpler page still reports three LNG transits for Jul 27-Aug 2. The checked October reporting does not provide a newer directly comparable LNG-only weekly count; keep this as historical context.",
@@ -5112,7 +5401,7 @@
           "sourceUrl": "https://www.foreignpolicyjournal.com/2026/08/03/strait-of-hormuz-crossings-rise-8-week-on-week-but-dark-ais-activity-remains-elevated/",
           "provider": "Kpler via Foreign Policy Journal",
           "observationAt": "2026-08-02T00:00:00.000Z",
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:eae468a1d1d93c93",
           "parserVersion": "portwatch-route-v1",
@@ -5338,7 +5627,7 @@
             "start": "2026-09-11",
             "end": "2026-09-11"
           },
-          "expectedCadence": "event-driven",
+          "expectedCadence": "daily",
           "observedPeriod": {
             "start": "2026-09-11",
             "end": "2026-09-11"
@@ -5348,36 +5637,19 @@
         },
         "sourceName": "Reuters",
         "sourceDate": "2026-09-11",
-        "cadence": "event-driven",
-        "freshnessWindowDays": 14,
-        "carryReason": "Reviewed Oct 2: the Sep 11 Reuters report remains the latest source-approved QatarEnergy force-majeure and replacement-supply disclosure. No newer dated Qatar update was found; retain the original date and carry the event.",
+        "cadence": "daily",
+        "freshnessWindowDays": 26,
         "evidenceIds": [
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest"
         ],
         "machineEvidenceIds": [],
-        "lineage": {
-          "sourceId": "src-reviewed-qatar-force-majeure",
-          "sourceUrl": "https://www.reuters.com/business/energy/qatarenergy-extends-lng-force-majeure-charters-out-tankers-into-october-sources-2026-07-23/",
-          "provider": "Reuters",
-          "observationAt": "2026-09-11T00:00:00.000Z",
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
-          "snapshotHash": null,
-          "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:f4c3eb3ca5feeb61",
-          "parserVersion": "manual-reviewed-v1",
-          "recordKey": "73b6ff057d28de0b268c020e3414d9b0c4fd0cdecb7a97c84205f5a59d478510",
-          "derivedFrom": [
-            "e-qatar-force-majeure",
-            "e-qatar-force-majeure-latest"
-          ]
-        },
         "record": {
           "asOf": "2026-10-07T00:00:00Z",
           "validFrom": "2026-09-11T00:00:00Z",
           "validTo": null,
           "unit": "",
           "sourceIds": [
-            "src-reviewed-qatar-force-majeure",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest"
           ],
@@ -5720,7 +5992,7 @@
         "periodStart": "2026-10-06",
         "periodEnd": "2026-10-06",
         "coverage": {
-          "status": "unavailable",
+          "status": "direct-observation",
           "sourcePeriod": {
             "start": "2026-10-06",
             "end": "2026-10-06"
@@ -5731,7 +6003,8 @@
             "end": "2026-10-06"
           },
           "missingPeriods": [],
-          "sourceStatus": "failed"
+          "sourceStatus": "failed",
+          "note": "Yahoo Finance TTF=F daily quote last observed Oct 6; retained as a dated market reference after the latest fetch failed."
         },
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-10-06",
@@ -5748,7 +6021,7 @@
           "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
           "provider": "Yahoo Finance TTF=F",
           "observationAt": "2026-10-06T15:50:45.000Z",
-          "retrievedAt": "2026-10-07T01:43:16.560Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-yahoo-ttf:456cca93f9904634",
           "parserVersion": "yahoo-chart-v1",
@@ -5765,6 +6038,197 @@
           "sourceIds": [
             "src-yahoo-ttf",
             "e-ttf"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        }
+      },
+      {
+        "id": "energy-observation:src-reviewed-qatar-force-majeure:qatar-output-status:2026-09-28:2026-09-28",
+        "label": "Reuters QatarEnergy force-majeure update",
+        "entityIds": [
+          "qatarenergy",
+          "ras-laffan"
+        ],
+        "value": "Reuters reported Sep 28 that Edison expects no QatarEnergy LNG cargoes until early December and some Asian clients were notified that force majeure runs through November; Edison cited 35 undelivered cargoes total and 23 replaced to date",
+        "unit": "",
+        "observationKind": "flow",
+        "periodStart": "2026-09-28",
+        "periodEnd": "2026-09-28",
+        "coverage": {
+          "status": "partial-coverage",
+          "sourcePeriod": {
+            "start": "2026-09-28",
+            "end": "2026-09-28"
+          },
+          "expectedCadence": "event-driven",
+          "observedPeriod": {
+            "start": "2026-09-28",
+            "end": "2026-09-28"
+          },
+          "missingPeriods": [],
+          "sourceStatus": "skipped",
+          "note": "Reports Edison and selected Asian buyer notices, not a measured total Qatar LNG output loss."
+        },
+        "sourceName": "Reuters via The Business Standard",
+        "sourceDate": "2026-09-28",
+        "observedAt": "2026-09-28T00:00:00.000Z",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 14,
+        "carryReason": "Reviewed Oct 7: retain the Sep 28 report date; it describes buyer delivery notices through November and Edison deliveries resuming in early December.",
+        "evidenceIds": [
+          "e-reuters-qatar-force-majeure-0928"
+        ],
+        "machineEvidenceIds": [],
+        "lineage": {
+          "sourceId": "src-reviewed-qatar-force-majeure",
+          "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
+          "provider": "Reuters via The Business Standard",
+          "observationAt": "2026-09-28T00:00:00.000Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:f4c3eb3ca5feeb61",
+          "parserVersion": "manual-reviewed-v1",
+          "recordKey": "63d52d54e78186e2ea9e359232919773c226b9ff38c0e80a113418327aad79e4",
+          "derivedFrom": [
+            "e-reuters-qatar-force-majeure-0928"
+          ]
+        },
+        "record": {
+          "asOf": "2026-10-07T00:00:00Z",
+          "validFrom": "2026-09-28T00:00:00Z",
+          "validTo": null,
+          "unit": "",
+          "sourceIds": [
+            "src-reviewed-qatar-force-majeure",
+            "e-reuters-qatar-force-majeure-0928"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        }
+      },
+      {
+        "id": "energy-observation:src-reviewed-hormuz-lng-september:hormuz-lng-september-exits:2026-09-01:2026-09-30",
+        "label": "September LNG cargo exits",
+        "entityIds": [
+          "hormuz"
+        ],
+        "value": 21,
+        "unit": "LNG cargoes",
+        "observationKind": "transit",
+        "periodStart": "2026-09-01",
+        "periodEnd": "2026-09-30",
+        "coverage": {
+          "status": "partial-coverage",
+          "sourcePeriod": {
+            "start": "2026-09-01",
+            "end": "2026-09-30"
+          },
+          "expectedCadence": "monthly",
+          "observedPeriod": {
+            "start": "2026-09-01",
+            "end": "2026-09-30"
+          },
+          "missingPeriods": [],
+          "sourceStatus": "skipped",
+          "note": "Kpler tracked count; AIS-dark transits may be omitted, so the tally may not capture every passage."
+        },
+        "sourceName": "Kpler via Reuters",
+        "sourceDate": "2026-09-30",
+        "observedAt": "2026-09-30T00:00:00.000Z",
+        "cadence": "monthly",
+        "freshnessWindowDays": 45,
+        "carryReason": "Reviewed Oct 7: the September monthly count is the latest reported LNG-only total; keep the Sep 1-30 observation period visible.",
+        "evidenceIds": [
+          "e-reuters-lng-sep26"
+        ],
+        "machineEvidenceIds": [],
+        "lineage": {
+          "sourceId": "src-reviewed-hormuz-lng-september",
+          "sourceUrl": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
+          "provider": "Kpler via Reuters",
+          "observationAt": "2026-09-30T00:00:00.000Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-reviewed-hormuz-lng-september:5ca0d4f9d556142f",
+          "parserVersion": "manual-reviewed-v1",
+          "recordKey": "cf7d6a72c42822dc63487698edb45fdce525b92899d95e606d8d48de49ea66d6",
+          "derivedFrom": [
+            "e-reuters-lng-sep26"
+          ]
+        },
+        "record": {
+          "asOf": "2026-10-07T00:00:00Z",
+          "validFrom": "2026-09-01T00:00:00Z",
+          "validTo": null,
+          "unit": "LNG cargoes",
+          "sourceIds": [
+            "src-reviewed-hormuz-lng-september",
+            "e-reuters-lng-sep26"
+          ],
+          "status": "carried",
+          "confidence": "medium"
+        }
+      },
+      {
+        "id": "energy-observation:src-reviewed-hormuz-qatar-vessels-oct03:hormuz-qatar-vessels-oct03:2026-10-02:2026-10-03",
+        "label": "Qatari LNG vessels reappeared outside",
+        "entityIds": [
+          "qatarenergy",
+          "hormuz"
+        ],
+        "value": 4,
+        "unit": "LNG vessels",
+        "observationKind": "transit",
+        "periodStart": "2026-10-02",
+        "periodEnd": "2026-10-03",
+        "coverage": {
+          "status": "partial-coverage",
+          "sourcePeriod": {
+            "start": "2026-10-02",
+            "end": "2026-10-03"
+          },
+          "expectedCadence": "event-driven",
+          "observedPeriod": {
+            "start": "2026-10-02",
+            "end": "2026-10-03"
+          },
+          "missingPeriods": [],
+          "sourceStatus": "skipped",
+          "note": "Four tracked Qatar-loaded vessels reappeared outside; this sighting set is not additive to the September monthly count, and dark AIS may hide other passages."
+        },
+        "sourceName": "Kpler/LSEG via Reuters",
+        "sourceDate": "2026-10-03",
+        "observedAt": "2026-10-03T00:00:00.000Z",
+        "cadence": "event-driven",
+        "freshnessWindowDays": 14,
+        "carryReason": "Reviewed Oct 7: retain the Oct 2-3 sighting period; the four vessels are a separate observation and may overlap with the September tally.",
+        "evidenceIds": [
+          "e-reuters-lng-oct05"
+        ],
+        "machineEvidenceIds": [],
+        "lineage": {
+          "sourceId": "src-reviewed-hormuz-qatar-vessels-oct03",
+          "sourceUrl": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
+          "provider": "Kpler/LSEG via Reuters",
+          "observationAt": "2026-10-03T00:00:00.000Z",
+          "retrievedAt": "2026-10-07T02:36:44.247Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-reviewed-hormuz-qatar-vessels-oct03:ee9701bfde38e715",
+          "parserVersion": "manual-reviewed-v1",
+          "recordKey": "3bed0c8035e3e779ec4356c68393cd57d3ed10dbc96008cffb1ffa35c55802d8",
+          "derivedFrom": [
+            "e-reuters-lng-oct05"
+          ]
+        },
+        "record": {
+          "asOf": "2026-10-07T00:00:00Z",
+          "validFrom": "2026-10-02T00:00:00Z",
+          "validTo": null,
+          "unit": "LNG vessels",
+          "sourceIds": [
+            "src-reviewed-hormuz-qatar-vessels-oct03",
+            "e-reuters-lng-oct05"
           ],
           "status": "carried",
           "confidence": "medium"
@@ -5890,7 +6354,7 @@
             "id": "qatar-signal",
             "stage": "signal",
             "label": "Ras Laffan status",
-            "summary": "The latest approved force-majeure disclosure is the physical trigger.",
+            "summary": "Reuters reports Edison expects no QatarEnergy LNG cargoes until early December and some Asian buyer notices run through November.",
             "direction": "negative",
             "entityIds": [
               "ras-laffan",
@@ -5903,16 +6367,18 @@
             ],
             "evidenceIds": [
               "e-qatar-force-majeure",
-              "e-qatar-force-majeure-latest"
+              "e-qatar-force-majeure-latest",
+              "e-reuters-qatar-force-majeure-0928"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
                 "e-qatar-force-majeure",
-                "e-qatar-force-majeure-latest"
+                "e-qatar-force-majeure-latest",
+                "e-reuters-qatar-force-majeure-0928"
               ],
               "status": "carried",
               "confidence": "medium"
@@ -5939,8 +6405,8 @@
               "e-qatar-force-majeure-latest"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -5955,27 +6421,33 @@
             "id": "qatar-transport",
             "stage": "transport",
             "label": "Hormuz passage",
-            "summary": "Reuters Sep 28 documents selective Qatar-linked LNG passages. The carried three-transit observation is historical Jul 27-Aug 2 context; no comparable complete weekly count is available.",
+            "summary": "Reuters/Kpler counted 21 LNG exits in September. Reuters/LSEG separately tracked four Qatar-loaded vessels reappearing outside Oct 2-3; the sightings are not additive, and dark AIS may be missed.",
             "direction": "negative",
             "entityIds": [
               "hormuz"
             ],
             "observationIds": [
               "observation:qatar-supply:hormuz-transits",
-              "observation:qatar-supply:hormuz-route-pressure"
+              "observation:qatar-supply:hormuz-route-pressure",
+              "observation:qatar-supply:hormuz-lng-september-exits",
+              "observation:qatar-supply:hormuz-qatar-vessels-oct03"
             ],
             "evidenceIds": [
               "e-hormuz-transit",
-              "e-reuters-lng-0928"
+              "e-reuters-lng-0928",
+              "e-reuters-lng-sep26",
+              "e-reuters-lng-oct05"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
                 "e-hormuz-transit",
-                "e-reuters-lng-0928"
+                "e-reuters-lng-0928",
+                "e-reuters-lng-sep26",
+                "e-reuters-lng-oct05"
               ],
               "status": "carried",
               "confidence": "medium"
@@ -5985,7 +6457,7 @@
             "id": "qatar-demand",
             "stage": "demand",
             "label": "Asian market observation",
-            "summary": "JKM-linked CFD is $25.79/MMBtu on Oct 1; the distinct official assessment remains carried at $22/MMBtu from Jul 24.",
+            "summary": "JKM-linked CFD reference is $25.88/MMBtu on Oct 6; the distinct official assessment remains carried at $22/MMBtu from Jul 24.",
             "direction": "negative",
             "entityIds": [
               "jkm",
@@ -6001,8 +6473,8 @@
               "e-jkm-cfd"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -6029,8 +6501,8 @@
               "e-jera-qatarenergy"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -6266,7 +6738,7 @@
           "score": 62,
           "status": "provisional",
           "confidence": "unknown",
-          "calculatedAt": "2026-10-07T01:43:16.560Z",
+          "calculatedAt": "2026-10-07T02:36:44.247Z",
           "components": [
             {
               "id": "supply-interruption",
@@ -6286,6 +6758,7 @@
                 "observation:qatar-supply:ras-laffan-capacity"
               ],
               "evidenceIds": [
+                "e-reuters-qatar-force-majeure-0928",
                 "e-qatar-force-majeure",
                 "e-qatar-force-majeure-latest"
               ]
@@ -6300,10 +6773,14 @@
               "rationale": "Route / chokepoint pressure is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
               "observationIds": [
                 "observation:qatar-supply:hormuz-transits",
-                "observation:qatar-supply:hormuz-route-pressure"
+                "observation:qatar-supply:hormuz-route-pressure",
+                "observation:qatar-supply:hormuz-lng-september-exits",
+                "observation:qatar-supply:hormuz-qatar-vessels-oct03"
               ],
               "evidenceIds": [
                 "e-hormuz-transit",
+                "e-reuters-lng-sep26",
+                "e-reuters-lng-oct05",
                 "e-reuters-lng-0928"
               ]
             },
@@ -6317,10 +6794,14 @@
               "rationale": "Vessel / port disruption is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
               "observationIds": [
                 "observation:qatar-supply:hormuz-transits",
-                "observation:qatar-supply:hormuz-route-pressure"
+                "observation:qatar-supply:hormuz-route-pressure",
+                "observation:qatar-supply:hormuz-lng-september-exits",
+                "observation:qatar-supply:hormuz-qatar-vessels-oct03"
               ],
               "evidenceIds": [
                 "e-hormuz-transit",
+                "e-reuters-lng-sep26",
+                "e-reuters-lng-oct05",
                 "e-reuters-lng-0928"
               ]
             },
@@ -6375,9 +6856,12 @@
             }
           ],
           "evidenceIds": [
+            "e-reuters-qatar-force-majeure-0928",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
             "e-hormuz-transit",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-reuters-lng-0928",
             "e-jkm-cfd",
             "e-jera-qatarenergy",
@@ -6386,15 +6870,18 @@
           "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
         },
         "record": {
-          "asOf": "2026-10-07T01:43:16.560Z",
-          "validFrom": "2026-10-07T01:43:16.560Z",
+          "asOf": "2026-10-07T02:36:44.247Z",
+          "validFrom": "2026-10-07T02:36:44.247Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928",
             "e-hormuz-transit",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-jkm-cfd",
             "e-jera-qatarenergy",
             "e-ttf"
@@ -6444,8 +6931,8 @@
               "e-aljazeera-hormuz-1006"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -6470,7 +6957,7 @@
             "id": "delivery-supply",
             "stage": "supply",
             "label": "Loaded cargo availability",
-            "summary": "The approved force-majeure disclosure confirms the supply constraint.",
+            "summary": "The latest Reuters report says Edison expects no QatarEnergy cargoes until early December and selected Asian notices extend through November.",
             "direction": "negative",
             "entityIds": [
               "ras-laffan",
@@ -6481,16 +6968,18 @@
             ],
             "evidenceIds": [
               "e-qatar-force-majeure",
-              "e-qatar-force-majeure-latest"
+              "e-qatar-force-majeure-latest",
+              "e-reuters-qatar-force-majeure-0928"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
                 "e-qatar-force-majeure",
-                "e-qatar-force-majeure-latest"
+                "e-qatar-force-majeure-latest",
+                "e-reuters-qatar-force-majeure-0928"
               ],
               "status": "carried",
               "confidence": "medium"
@@ -6500,7 +6989,7 @@
             "id": "delivery-transport",
             "stage": "transport",
             "label": "LNG shipping capacity",
-            "summary": "The public Nakilat charter relationship is verified. Reuters documents selective Qatar-linked passages; current route delay and normalised freight remain unavailable.",
+            "summary": "Reuters/Kpler counted 21 LNG exits in September; Reuters/LSEG tracked four Qatar-loaded vessels reappearing outside Oct 2-3. These are separate observations and AIS-dark passages may be missed.",
             "direction": "negative",
             "entityIds": [
               "nakilat",
@@ -6514,17 +7003,21 @@
             "evidenceIds": [
               "e-nakilat-charters",
               "e-qatar-force-majeure",
-              "e-reuters-lng-0928"
+              "e-reuters-lng-0928",
+              "e-reuters-lng-sep26",
+              "e-reuters-lng-oct05"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
                 "e-nakilat-charters",
                 "e-qatar-force-majeure",
-                "e-reuters-lng-0928"
+                "e-reuters-lng-0928",
+                "e-reuters-lng-sep26",
+                "e-reuters-lng-oct05"
               ],
               "status": "confirmed",
               "confidence": "high"
@@ -6534,7 +7027,7 @@
             "id": "delivery-demand",
             "stage": "demand",
             "label": "Competing market observation",
-            "summary": "Yahoo TTF=F is 73.02 EUR/MWh on Oct 1; market context does not establish delivered LNG cargo economics.",
+            "summary": "Yahoo TTF=F is 75.485 EUR/MWh on Oct 6; market context does not establish delivered LNG cargo economics.",
             "direction": "mixed",
             "entityIds": [
               "ttf",
@@ -6547,8 +7040,8 @@
               "e-ttf"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -6576,8 +7069,8 @@
               "e-jera-qatarenergy"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -6814,7 +7307,7 @@
           "score": 64,
           "status": "provisional",
           "confidence": "low",
-          "calculatedAt": "2026-10-07T01:43:16.560Z",
+          "calculatedAt": "2026-10-07T02:36:44.247Z",
           "components": [
             {
               "id": "supply-interruption",
@@ -6841,6 +7334,7 @@
                 "e-reuters-oil-1001",
                 "e-reuters-oil-1005",
                 "e-aljazeera-hormuz-1006",
+                "e-reuters-qatar-force-majeure-0928",
                 "e-qatar-force-majeure",
                 "e-qatar-force-majeure-latest"
               ]
@@ -6861,7 +7355,9 @@
               "evidenceIds": [
                 "e-nakilat-charters",
                 "e-qatar-force-majeure",
-                "e-reuters-lng-0928"
+                "e-reuters-lng-0928",
+                "e-reuters-lng-sep26",
+                "e-reuters-lng-oct05"
               ]
             },
             {
@@ -6880,7 +7376,9 @@
               "evidenceIds": [
                 "e-nakilat-charters",
                 "e-qatar-force-majeure",
-                "e-reuters-lng-0928"
+                "e-reuters-lng-0928",
+                "e-reuters-lng-sep26",
+                "e-reuters-lng-oct05"
               ]
             },
             {
@@ -6943,18 +7441,21 @@
             "e-reuters-oil-1001",
             "e-reuters-oil-1005",
             "e-aljazeera-hormuz-1006",
+            "e-reuters-qatar-force-majeure-0928",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
             "e-nakilat-charters",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-ttf",
             "e-jera-qatarenergy"
           ],
           "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
         },
         "record": {
-          "asOf": "2026-10-07T01:43:16.560Z",
-          "validFrom": "2026-10-07T01:43:16.560Z",
+          "asOf": "2026-10-07T02:36:44.247Z",
+          "validFrom": "2026-10-07T02:36:44.247Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -6972,8 +7473,11 @@
             "e-aljazeera-hormuz-1006",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
+            "e-reuters-qatar-force-majeure-0928",
             "e-nakilat-charters",
             "e-reuters-lng-0928",
+            "e-reuters-lng-sep26",
+            "e-reuters-lng-oct05",
             "e-ttf",
             "e-jera-qatarenergy"
           ],
@@ -6998,7 +7502,7 @@
             "id": "oil-constraint-signal",
             "stage": "signal",
             "label": "Hormuz oil-flow baseline",
-            "summary": "EIA first-half 2025 oil-flow baselines remain historical context. Reuters/Marisks report three tankers struck during Sep 29 Hormuz passages.",
+            "summary": "EIA first-half 2025 oil-flow baselines remain historical. Reuters reports September Gulf export recovery, while route-specific Hormuz transit volume remains unresolved.",
             "direction": "negative",
             "entityIds": [
               "hormuz"
@@ -7014,11 +7518,12 @@
               "e-reuters-talks-0930",
               "e-reuters-oil-1001",
               "e-reuters-oil-1005",
-              "e-aljazeera-hormuz-1006"
+              "e-aljazeera-hormuz-1006",
+              "e-reuters-oil-1006"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7029,7 +7534,8 @@
                 "e-reuters-talks-0930",
                 "e-reuters-oil-1001",
                 "e-reuters-oil-1005",
-                "e-aljazeera-hormuz-1006"
+                "e-aljazeera-hormuz-1006",
+                "e-reuters-oil-1006"
               ],
               "status": "confirmed",
               "confidence": "high"
@@ -7039,7 +7545,7 @@
             "id": "oil-constraint-supply",
             "stage": "supply",
             "label": "Crude export baseline",
-            "summary": "EIA oil-flow baselines remain historical. Reuters Sep 29 reports resumed Yanbu loadings after restarting the East-West Pipeline.",
+            "summary": "Reuters reports Kpler total September oil exports of 18.6 million bpd. A separate seven-country crude-and-condensate series was 14.7 million bpd, up from 10.8 in August; these regional export figures do not isolate Hormuz transits.",
             "direction": "negative",
             "entityIds": [
               "saudi-crude"
@@ -7058,11 +7564,12 @@
               "e-reuters-saudi-0928",
               "e-reuters-oil-1001",
               "e-reuters-oil-1005",
-              "e-aljazeera-hormuz-1006"
+              "e-aljazeera-hormuz-1006",
+              "e-reuters-oil-1006"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7075,7 +7582,8 @@
                 "e-reuters-saudi-0928",
                 "e-reuters-oil-1001",
                 "e-reuters-oil-1005",
-                "e-aljazeera-hormuz-1006"
+                "e-aljazeera-hormuz-1006",
+                "e-reuters-oil-1006"
               ],
               "status": "confirmed",
               "confidence": "high"
@@ -7103,8 +7611,8 @@
               "e-aljazeera-hormuz-1006"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7139,8 +7647,8 @@
               "e-gme-oman"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7167,8 +7675,8 @@
               "e-eia-hormuz"
             ],
             "record": {
-              "asOf": "2026-10-07T01:43:16.560Z",
-              "validFrom": "2026-10-07T01:43:16.560Z",
+              "asOf": "2026-10-07T02:36:44.247Z",
+              "validFrom": "2026-10-07T02:36:44.247Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7329,7 +7837,7 @@
           "score": 65,
           "status": "provisional",
           "confidence": "unknown",
-          "calculatedAt": "2026-10-07T01:43:16.560Z",
+          "calculatedAt": "2026-10-07T02:36:44.247Z",
           "components": [
             {
               "id": "supply-interruption",
@@ -7353,6 +7861,7 @@
                 "e-reuters-oil-1001",
                 "e-reuters-oil-1005",
                 "e-aljazeera-hormuz-1006",
+                "e-reuters-oil-1006",
                 "e-eia-saudi",
                 "e-saudi-pipeline",
                 "e-hormuz-kpler-0925",
@@ -7461,6 +7970,7 @@
             "e-reuters-oil-1001",
             "e-reuters-oil-1005",
             "e-aljazeera-hormuz-1006",
+            "e-reuters-oil-1006",
             "e-eia-saudi",
             "e-saudi-pipeline",
             "e-hormuz-kpler-0925",
@@ -7474,8 +7984,8 @@
           "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
         },
         "record": {
-          "asOf": "2026-10-07T01:43:16.560Z",
-          "validFrom": "2026-10-07T01:43:16.560Z",
+          "asOf": "2026-10-07T02:36:44.247Z",
+          "validFrom": "2026-10-07T02:36:44.247Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -7487,6 +7997,7 @@
             "e-reuters-oil-1001",
             "e-reuters-oil-1005",
             "e-aljazeera-hormuz-1006",
+            "e-reuters-oil-1006",
             "e-eia-saudi",
             "e-saudi-pipeline",
             "e-hormuz-kpler-0925",
