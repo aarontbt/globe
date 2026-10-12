@@ -1,8 +1,8 @@
 {
   "_sources": {
-    "ovx": "CBOE CDN OVX_History.csv - D0 uses Feb 27 close (Feb 28 = Saturday); D7/D8 carry D6 (weekend, market closed); D10 live via /api/cboe",
-    "vxeem": "CBOE CDN VXEEM_History.csv - all D0-D9 confirmed from live data; D7/D8 carry D6 (weekend); D10 live via /api/cboe",
-    "scenarios": "D10-D12 confirmed from banker-conflict.json; all prior days estimated from narrative context"
+    "ovx": "CBOE OVX_History.csv via /api/cboe - live chart plots the latest 14 calendar days through the latest published close; non-trading days carry the prior close; days[].ovx is fallback",
+    "vxeem": "CBOE VXEEM_History.csv via /api/cboe - live chart plots the latest 14 calendar days through the latest published close; non-trading days carry the prior close; days[].vxeem is fallback",
+    "scenarios": "Daily analyst-updated probability snapshots; each row matches banker-conflict.json for its date"
   },
   "days": [
     {

@@ -145,8 +145,8 @@ If Firecrawl cannot retrieve dependable content, do not mark the evidence verifi
 | iTraxx Asia ex-Japan IG | Bloomberg, Markit | Bloomberg `ITRXAXIG5Y Index` |
 | ASEAN HY | BAML ASEAN HY indices, JPMorgan CEMBI | Bloomberg CEMBI |
 | Equity Sectors | MSCI ASEAN, SGX | MSCI ASEAN Energy, SGX shipping sub-index, MSCI ASEAN Banks |
-| OVX | CBOE CDN (`OVX_History.csv`) — fetched live on page load | charts-volatility.json fallback |
-| VXEEM | CBOE CDN (`VXEEM_History.csv`) — fetched live on page load | charts-volatility.json fallback |
+| OVX | CBOE daily-history CSV (`OVX_History.csv`) — fetched live on page load; chart shows the trailing 14 calendar days ending at the latest published close | `charts-volatility.json` fallback |
+| VXEEM | CBOE daily-history CSV (`VXEEM_History.csv`) — fetched live on page load; chart shows the trailing 14 calendar days ending at the latest published close | `charts-volatility.json` fallback |
 | Geopolitical events | Reuters, AP, Al Jazeera, Long War Journal, Axios, FT | PBS NewsHour, Washington Post |
 
 ---
@@ -499,8 +499,8 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 - [ ] **Intel events — retirement check**: Flag any event with probability <15% or a resolved thesis; confirm before deleting
 - [ ] **Trade ideas — retirement check**: Remove any idea whose stop-loss was hit or thesis has reversed; do not archive, just delete
 - [ ] **Supply chain commodities**: In `src/data/commodities-impact.json`, update `asOf`, `current`, `change1d`, and recalculate `zscore`/`signal` for all 14 assets. Update `narrative` only if the supply chain mechanism has materially changed. Update `scenario` field if the primary disruption vector has shifted.
-- [ ] **BottomChartsPanel — Scenarios only**: In `src/data/charts-volatility.json`, append one entry to `days` with the new `scenarios` array (must sum to 100 and match `banker-conflict.json`). **OVX and VXEEM are fetched live from CBOE on page load — no manual update needed.**
-- [ ] **BottomChartsPanel — rolling window check**: No script gates this, so check it manually every run: `python3 -c "import json;d=json.load(open('src/data/charts-volatility.json'));print(len(d['days']),d['days'][0]['day'],d['days'][-1]['day'])"`. If the array exceeds ~12 entries, trim to the latest ~10 (oldest first), then re-run `bun run daily:apply` to re-mirror. It grew unbounded from D107 to D159 (28 entries) before being caught on the Aug 10 update — don't rely on memory to catch this.
+- [ ] **BottomChartsPanel — Scenarios only**: In `src/data/charts-volatility.json`, append one entry to `days` with the new `scenarios` array (must sum to 100 and match `banker-conflict.json`). **OVX and VXEEM load CBOE daily closes live and render a rolling 14-calendar-day window; weekends and exchange holidays carry the preceding close forward.**
+- [ ] **BottomChartsPanel — scenario history check**: The `days` array supplies scenario history and fallback values; it does not control the live CBOE chart window. Check it manually each run: `python3 -c "import json;d=json.load(open('src/data/charts-volatility.json'));print(len(d['days']),d['days'][0]['day'],d['days'][-1]['day'])"`. Keep the latest ~10 entries (trim oldest entries if it exceeds ~12), then re-run `bun run daily:apply` to re-mirror. This cap applies to the scenario history/fallback only; CBOE supplies the rolling 14-day charts.
 - [ ] **Runbook Price Narratives**: Update Brent, JKM, TTF, credit baseline lines to match today's cross-asset data
 - [ ] **Crisis timeline archive**: Append today's headline in `docs/crisis-timeline-archive.md`; keep entries to ≤25 words each
 - [ ] **Sanctions**: Check for overnight OFAC/EU announcements; update `s0` description if MAS/SGX actions occurred
@@ -558,9 +558,9 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
 
-**OVX and VXEEM are fetched live from CBOE CDN on page load** — no manual update needed for these.
+**OVX and VXEEM are fetched live from CBOE CDN on page load** — no manual daily values are needed. Each chart shows 14 calendar days, ending on the latest date in its CBOE history CSV. Missing dates, including weekends and exchange holidays, carry forward the most recent prior close and appear as hollow points. The chart axis labels show dates. If the fetch fails, the existing `ovx` / `vxeem` values in `charts-volatility.json` remain the fallback.
 
-Only the `scenarios` array requires a manual daily entry. Append one object to the `days` array:
+Only the `scenarios` array requires a manual daily entry. Append one object to the `days` array; this array also retains the fallback volatility values:
 
 ```json
 {
@@ -577,6 +577,6 @@ Only the `scenarios` array requires a manual daily entry. Append one object to t
 
 **Rules:**
 - `scenarios` must sum to **100** and match `banker-conflict.json` scenario probabilities exactly.
-- Set `ovx` / `vxeem` to the previous day's close as a fallback (used if CBOE fetch fails); set `Confirmed: false` so the dashed line renders correctly until live data loads.
-- Update `DAYS` label (`D11`, `D12`, …) in lockstep.
+- Set `ovx` / `vxeem` to the latest reviewed closes as fallback values (used if the CBOE fetch fails); set `Confirmed: false` when those values have not been checked for the update.
+- Continue the `day` label (`D11`, `D12`, …) for the scenario history rows. The live CBOE charts generate their own calendar-date labels.
 - The peak annotation (`▼ -N from peak`) auto-calculates — no manual edit needed.

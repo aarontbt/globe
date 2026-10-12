@@ -20,6 +20,7 @@ const EMPTY_VOLATILITY: VolatilityData = { days: [] };
 const CBOE_BASE = "/api/cboe/api/global/us_indices/daily_prices";
 const CBOE_OVX_URL = `${CBOE_BASE}/OVX_History.csv`;
 const CBOE_VXEEM_URL = `${CBOE_BASE}/VXEEM_History.csv`;
+const CBOE_WINDOW_DAYS = 14;
 
 interface CBOELiveData {
   history: Map<string, number>;
@@ -74,32 +75,71 @@ function useCBOELive(url: string): CBOELiveData {
   return data;
 }
 
-function mergeHistory(
-  dates: string[],
+interface CBOEChartSeries {
+  labels: string[];
+  data: number[];
+  confirmed: boolean[];
+}
+
+function formatDateLabel(isoDate: string): string {
+  const date = new Date(`${isoDate}T00:00:00Z`);
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+}
+
+function buildCBOEChartSeries(
+  history: Map<string, number>,
+  fallbackDates: string[],
+  fallbackDays: string[],
   base: number[],
   baseConfirmed: boolean[],
-  history: Map<string, number>,
-): { data: number[]; confirmed: boolean[] } {
-  if (history.size === 0) return { data: base, confirmed: baseConfirmed };
+): CBOEChartSeries {
+  if (history.size === 0) {
+    return { labels: fallbackDays, data: base, confirmed: baseConfirmed };
+  }
+
+  const closes = [...history.entries()].sort(([a], [b]) => a.localeCompare(b));
+  const latestDate = closes[closes.length - 1][0];
+  const endDate = new Date(`${latestDate}T00:00:00Z`);
+  if (!Number.isFinite(endDate.getTime())) {
+    return { labels: fallbackDays, data: base, confirmed: baseConfirmed };
+  }
+
+  const firstDate = new Date(endDate);
+  firstDate.setUTCDate(firstDate.getUTCDate() - (CBOE_WINDOW_DAYS - 1));
+  const dates = Array.from({ length: CBOE_WINDOW_DAYS }, (_, index) => {
+    const date = new Date(firstDate);
+    date.setUTCDate(firstDate.getUTCDate() + index);
+    return date.toISOString().slice(0, 10);
+  });
+  const fallbackByDate = new Map(fallbackDates.map((date, index) => [date, index]));
+  let lastClose = [...closes].reverse().find(([date]) => date < dates[0])?.[1] ?? null;
   const data: number[] = [];
   const confirmed: boolean[] = [];
-  let lastClose: number | null = null;
-  for (let i = 0; i < dates.length; i++) {
-    const v = history.get(dates[i]);
-    if (v !== undefined) {
-      data.push(v);
+
+  for (const date of dates) {
+    const close = history.get(date);
+    if (close !== undefined) {
+      data.push(close);
       confirmed.push(true);
-      lastClose = v;
+      lastClose = close;
     } else if (lastClose !== null) {
-      // Weekend/holiday or future date: carry forward last confirmed close
+      // Weekends and exchange holidays carry the preceding confirmed close.
       data.push(lastClose);
       confirmed.push(false);
     } else {
-      data.push(base[i]);
-      confirmed.push(baseConfirmed[i]);
+      const fallbackIndex = fallbackByDate.get(date);
+      if (fallbackIndex !== undefined) {
+        lastClose = base[fallbackIndex];
+        data.push(lastClose);
+        confirmed.push(baseConfirmed[fallbackIndex]);
+      } else {
+        data.push(base[base.length - 1] ?? 0);
+        confirmed.push(false);
+      }
     }
   }
-  return { data, confirmed };
+
+  return { labels: dates.map(formatDateLabel), data, confirmed };
 }
 
 function ChangePercent({ changePct, show }: { changePct: number | null; show: boolean }) {
@@ -178,6 +218,33 @@ function makePolyline(data: number[], minVal: number, maxVal: number): string {
   }).join(' ');
 }
 
+function makeCarriedMarkers(
+  data: number[],
+  confirmed: boolean[],
+  minVal: number,
+  maxVal: number,
+  color: string,
+): React.ReactNode[] {
+  if (data.length < 2) return [];
+  return data.flatMap((value, index) => {
+    if (confirmed[index]) return [];
+    const x = (index / (data.length - 1)) * W;
+    const y = H - ((value - minVal) / (maxVal - minVal)) * H;
+    return [
+      <circle
+        key={index}
+        cx={x}
+        cy={y}
+        r={1.8}
+        fill="rgba(6,9,26,0.95)"
+        stroke={color}
+        strokeWidth={1}
+        opacity={0.75}
+      />,
+    ];
+  });
+}
+
 function makeAreaPath(data: number[], minVal: number, maxVal: number): string {
   const pts = data.map((v, i) => {
     const x = (i / (data.length - 1)) * W;
@@ -213,9 +280,10 @@ function OVXChart({
   const minVal = 0;
   const maxVal = 130;
 
-  if (dates.length === 0) return null;
+  if (dates.length === 0 && live.history.size === 0) return null;
 
-  const { data: OVX, confirmed: OVX_CONFIRMED } = mergeHistory(dates, baseOvx, baseOvxConfirmed, live.history);
+  const series = buildCBOEChartSeries(live.history, dates, days, baseOvx, baseOvxConfirmed);
+  const { data: OVX, confirmed: OVX_CONFIRMED } = series;
   const currentVal = OVX[OVX.length - 1];
   const currentConfirmed = OVX_CONFIRMED[OVX_CONFIRMED.length - 1];
   const isLive = live.price !== null && !live.error;
@@ -229,7 +297,8 @@ function OVXChart({
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <span style={labelStyle}>^OVX Vol</span>
-          <InfoTooltip text="30-day implied volatility on crude oil options. Higher readings mean markets expect larger Brent price swings." />
+          <span style={{ ...labelStyle, fontSize: 8, color: '#fbbf24' }}>{live.history.size > 0 ? '14D' : 'fallback'}</span>
+          <InfoTooltip text="30-day implied volatility on crude oil options. Higher readings mean markets expect larger Brent price swings. With live Cboe data, the chart shows daily closes across the 14 calendar days ending with the latest published close. Hollow points mark weekends and exchange holidays carried from the preceding close." />
         </span>
         <span style={valueStyle(currentColor)}>
           {currentVal.toFixed(1)}
@@ -257,6 +326,7 @@ function OVXChart({
           points={makePolyline(OVX.slice(0, OVX_CONFIRMED.lastIndexOf(true) + 1), minVal, maxVal)}
           fill="none" stroke="#f59e0b" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round"
         />
+        {makeCarriedMarkers(OVX, OVX_CONFIRMED, minVal, maxVal, '#f59e0b')}
         <circle cx={peakX} cy={peakY} r={3} fill="#f59e0b" />
         <text x={peakX} y={peakY - 5} fontSize={8} fill="rgba(255,255,255,0.5)" textAnchor="middle">
           {OVX[peakIdx].toFixed(0)}
@@ -266,7 +336,7 @@ function OVXChart({
           return <circle cx={W} cy={finalY} r={3} fill={currentColor} opacity={currentConfirmed ? 1 : 0.6} />;
         })()}
       </svg>
-      <DayAxis days={days} />
+      <DayAxis days={series.labels} />
     </div>
   );
 }
@@ -337,9 +407,10 @@ function VXEEMChart({
   const minVal = 15;
   const maxVal = 50;
 
-  if (dates.length === 0) return null;
+  if (dates.length === 0 && live.history.size === 0) return null;
 
-  const { data: VXEEM, confirmed: VXEEM_CONFIRMED } = mergeHistory(dates, baseVxeem, baseVxeemConfirmed, live.history);
+  const series = buildCBOEChartSeries(live.history, dates, days, baseVxeem, baseVxeemConfirmed);
+  const { data: VXEEM, confirmed: VXEEM_CONFIRMED } = series;
   const currentVal = VXEEM[VXEEM.length - 1];
   const currentConfirmed = VXEEM_CONFIRMED[VXEEM_CONFIRMED.length - 1];
   const isLive = live.price !== null && !live.error;
@@ -354,7 +425,8 @@ function VXEEMChart({
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <span style={labelStyle}>VXEEM EM Vol</span>
-          <InfoTooltip text="CBOE Emerging Markets ETF Volatility Index. Spikes signal heightened fear across EM/ASEAN assets." />
+          <span style={{ ...labelStyle, fontSize: 8, color: '#c4b5fd' }}>{live.history.size > 0 ? '14D' : 'fallback'}</span>
+          <InfoTooltip text="Cboe Emerging Markets Volatility Index. Spikes signal heightened fear across EM/ASEAN assets. With live Cboe data, the chart shows daily closes across the 14 calendar days ending with the latest published close. Hollow points mark weekends and exchange holidays carried from the preceding close." />
         </span>
         <span style={valueStyle('#a78bfa')}>
           {currentVal.toFixed(1)}
@@ -382,6 +454,7 @@ function VXEEMChart({
           points={makePolyline(VXEEM.slice(0, VXEEM_CONFIRMED.lastIndexOf(true) + 1), minVal, maxVal)}
           fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round"
         />
+        {makeCarriedMarkers(VXEEM, VXEEM_CONFIRMED, minVal, maxVal, '#a78bfa')}
         <text x={0} y={9} fontSize={8} fill="#4ade80" fontFamily="monospace">▼ -{dropFromPeak} from peak</text>
         <circle cx={peakX} cy={peakY} r={3} fill="#a78bfa" />
         <text x={peakX} y={peakY - 5} fontSize={8} fill="rgba(255,255,255,0.5)" textAnchor="middle">
@@ -392,7 +465,7 @@ function VXEEMChart({
           return <circle cx={W} cy={finalY} r={3} fill="#a78bfa" opacity={currentConfirmed ? 1 : 0.6} />;
         })()}
       </svg>
-      <DayAxis days={days} />
+      <DayAxis days={series.labels} />
     </div>
   );
 }
