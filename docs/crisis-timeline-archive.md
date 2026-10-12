@@ -165,3 +165,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D209**: Sep 30 - Qatar mediation continues without reopening agreement; Yanbu loadings resume; Reuters revises regional exports to 16.328 million bpd.
 - **D211**: Oct 2 - China fuel export suspension reported; December Brent settles +4.37%; Marisks reports three Hormuz tanker hits; talks remain unresolved.
 - **D216**: Oct 7 - Reuters/Kpler reports Sep 30 exports at 18.3m bpd; Marisks reports at least seven tanker incidents and Al Jazeera reports 12 crew injured in a Hormuz strike.
+- **D221**: Oct 12 - Kpler counted seven Hormuz commodity crossings, Reuters reported a weekly high of 12 tanker attacks, and Iran said the US reply to reopening conditions was insufficient.

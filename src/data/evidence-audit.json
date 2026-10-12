@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-07T00:00:00Z",
-  "reviewedAt": "2026-10-07T02:29:20Z",
+  "asOf": "2026-10-12T00:00:00Z",
+  "reviewedAt": "2026-10-12T00:59:05.827Z",
   "reviewer": "Codex; Firecrawl MCP exact-page review",
   "entries": [
     {
@@ -82,7 +82,7 @@
       "title": "Strait of Hormuz Crossings Rise 8% Week-on-Week, But Dark AIS Activity Remains Elevated",
       "publisher": "Foreign Policy Journal (Kpler data)",
       "publishedAt": "2026-08-03",
-      "checkedAt": "2026-10-07T01:31:31Z",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
       "claimSummary": "The exact Aug 3 Kpler report remains the latest reviewed LNG-only weekly count: three LNG-carrier crossings for Jul 27-Aug 2. Newer export-flow reporting is not a comparable LNG-transit count.",
       "extractedFacts": [
         "Kpler recorded 106 total crossings by 96 distinct vessels in the week of Jul 27-Aug 2, up 8% week on week.",
@@ -108,7 +108,7 @@
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Reviewed Oct 7: the exact Aug 3 Kpler report still gives three LNG transits for Jul 27-Aug 2. No newer directly comparable LNG-only weekly count was found; retain it as dated historical context.",
+      "carryReason": "The Oct 12 review found no directly comparable LNG-only weekly count; Reuters Oct 8 names one LNG carrier among passages but does not replace the older weekly count.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-hormuz-transit.json"
     },
     {
@@ -122,7 +122,7 @@
       "title": "Asia LNG hits four-month high on fears of wider Mideast shipping disruption",
       "publisher": "Reuters",
       "publishedAt": "2026-07-24",
-      "checkedAt": "2026-10-07T01:31:31Z",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
       "claimSummary": "Reuters’ July 24 observation remains the latest approved official Northeast Asia September-delivery spot LNG assessment at $22/MMBtu; no newer official JKM assessment was found. Trading Economics is a separate CFD reference.",
       "extractedFacts": [
         "Reuters reported an average September-delivery Northeast Asia spot LNG price of $22/MMBtu on July 24.",
@@ -141,7 +141,7 @@
           "provider": "Reuters / industry sources"
         }
       ],
-      "carryReason": "Reviewed Oct 7: the exact Reuters Jul 24 report remains the latest source-approved official Northeast Asia spot LNG assessment at $22/MMBtu for September delivery. The Trading Economics CFD remains separate.",
+      "carryReason": "Reviewed Oct 12: the Jul 24 Reuters September-delivery assessment remains the latest source-approved official JKM quote; the separate Oct 9 CFD is not an official assessment.",
       "supportedCommercialInputIds": [
         "lng-jkm"
       ],
@@ -158,12 +158,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Dutch TTF",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-06",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Firecrawl cache-busted Yahoo Finance chart snapshot: TTF=F 75.485 EUR/MWh at 2026-10-06T15:50:45.000Z; canonical URL retained.",
+      "publishedAt": "2026-10-09",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Cache-busted Yahoo Finance chart API snapshot: TTF=F was 81.434 EUR/MWh at 2026-10-09T15:03:21.000Z (+3.278%).",
       "extractedFacts": [
-        "TTF=F Dutch TTF futures were 75.485 EUR/MWh at 2026-10-06T15:50:45.000Z.",
-        "Yahoo Finance reports a daily change of -0.206 EUR/MWh (-0.272%)."
+        "TTF=F Dutch TTF futures were 81.434 EUR/MWh at 2026-10-09T15:03:21.000Z.",
+        "Yahoo Finance reports a daily change of 2.585 EUR/MWh (+3.278%)."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-demand"
@@ -175,19 +175,19 @@
       "observations": [
         {
           "inputId": "ttf",
-          "value": 75.485,
+          "value": 81.434,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-10-06",
-          "observedAt": "2026-10-06T15:50:45.000Z",
+          "sourceDate": "2026-10-09",
+          "observedAt": "2026-10-09T15:03:21.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         },
         {
           "inputId": "lng-ttf",
-          "value": 75.485,
+          "value": 81.434,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-10-06",
-          "observedAt": "2026-10-06T15:50:45.000Z",
+          "sourceDate": "2026-10-09",
+          "observedAt": "2026-10-09T15:03:21.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         }
@@ -196,7 +196,7 @@
         "lng-ttf"
       ],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-ttf.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-ttf.json"
     },
     {
       "evidenceId": "e-jera-qatarenergy",
@@ -336,12 +336,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Brent Crude",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-07",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Firecrawl cache-busted Yahoo Finance chart snapshot: BZ=F 101.3 at 2026-10-07T00:56:51.000Z; daily change 0.716%.",
+      "publishedAt": "2026-10-12",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Cache-busted Yahoo Finance chart API snapshot: BZ=F was $103.38/bbl at 2026-10-12T00:35:58.000Z (-1.28%).",
       "extractedFacts": [
-        "BZ=F Brent crude futures were 101.3 USD/bbl at 2026-10-07T00:56:51.000Z.",
-        "Yahoo Finance reports a daily change of 0.72 USD (0.716%)."
+        "BZ=F Brent crude futures were $103.38/bbl at 2026-10-12T00:35:58.000Z.",
+        "Yahoo Finance reports a daily change of -$1.34 (-1.28%)."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -353,15 +353,15 @@
       "observations": [
         {
           "inputId": "oil-brent",
-          "value": 101.3,
+          "value": 103.38,
           "unit": "USD/bbl",
-          "sourceDate": "2026-10-07",
-          "observedAt": "2026-10-07T00:56:51.000Z",
+          "sourceDate": "2026-10-12",
+          "observedAt": "2026-10-12T00:35:58.000Z",
           "instrument": "BZ=F Brent crude futures",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-brent.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-brent.json"
     },
     {
       "evidenceId": "e-wti",
@@ -373,12 +373,12 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - WTI Crude",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-07",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Firecrawl cache-busted Yahoo Finance chart snapshot: CL=F 90.09 at 2026-10-07T00:59:17.000Z; daily change 0.727%.",
+      "publishedAt": "2026-10-12",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Cache-busted Yahoo Finance chart API snapshot: CL=F was $90.58/bbl at 2026-10-12T00:36:25.000Z (-1.383%).",
       "extractedFacts": [
-        "CL=F WTI crude futures were 90.09 USD/bbl at 2026-10-07T00:59:17.000Z.",
-        "Yahoo Finance reports a daily change of 0.65 USD (0.727%)."
+        "CL=F WTI crude futures were $90.58/bbl at 2026-10-12T00:36:25.000Z.",
+        "Yahoo Finance reports a daily change of -$1.27 (-1.383%)."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -390,15 +390,15 @@
       "observations": [
         {
           "inputId": "oil-wti",
-          "value": 90.09,
+          "value": 90.58,
           "unit": "USD/bbl",
-          "sourceDate": "2026-10-07",
-          "observedAt": "2026-10-07T00:59:17.000Z",
+          "sourceDate": "2026-10-12",
+          "observedAt": "2026-10-12T00:36:25.000Z",
           "instrument": "CL=F WTI crude futures",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-wti.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-wti.json"
     },
     {
       "evidenceId": "e-eurusd",
@@ -410,11 +410,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - EUR/USD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-07",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Cache-busted Yahoo Finance chart API review: EURUSD=X 1.1249 at 2026-10-07T01:08:47.000Z.",
+      "publishedAt": "2026-10-12",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Cache-busted Yahoo Finance chart API snapshot: EURUSD=X was 1.1216 USD/EUR at 2026-10-12T00:46:29.000Z.",
       "extractedFacts": [
-        "EURUSD=X was 1.1249 USD per EUR at 2026-10-07T01:08:47.000Z."
+        "EURUSD=X was 1.1216 USD/EUR at 2026-10-12T00:46:29.000Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -426,15 +426,15 @@
       "observations": [
         {
           "inputId": "fx-eurusd",
-          "value": 1.1249,
+          "value": 1.1216,
           "unit": "USD/EUR",
-          "sourceDate": "2026-10-07",
-          "observedAt": "2026-10-07T01:08:47.000Z",
-          "instrument": "EURUSD=X spot exchange rate",
+          "sourceDate": "2026-10-12",
+          "observedAt": "2026-10-12T00:46:29.000Z",
+          "instrument": "EURUSD=X EUR/USD spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-eurusd.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-eurusd.json"
     },
     {
       "evidenceId": "e-sofr",
@@ -446,11 +446,11 @@
       "reviewStatus": "approved",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
-      "publishedAt": "2026-10-05",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Cache-busted New York Fed API returned SOFR 3.89% effective 2026-10-05.",
+      "publishedAt": "2026-10-08",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "New York Fed API reports SOFR at 3.87%, effective 2026-10-08.",
       "extractedFacts": [
-        "The New York Fed API reports a SOFR rate of 3.89% effective 2026-10-05."
+        "The New York Fed API reports a SOFR rate of 3.87% effective 2026-10-08."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -462,15 +462,15 @@
       "observations": [
         {
           "inputId": "usd-sofr",
-          "value": 3.89,
+          "value": 3.87,
           "unit": "%",
-          "sourceDate": "2026-10-05",
-          "observedAt": "2026-10-05T00:00:00Z",
+          "sourceDate": "2026-10-08",
+          "observedAt": "2026-10-08T00:00:00Z",
           "instrument": "SOFR",
           "provider": "Federal Reserve Bank of New York"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-sofr.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-sofr.json"
     },
     {
       "evidenceId": "e-jkm-cfd",
@@ -482,12 +482,12 @@
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-10-06",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Trading Economics displayed a JKM-linked CFD reference at $25.88/MMBtu on Oct 6, up $0.17 (0.64%); this is not the official Platts JKM assessment.",
+      "publishedAt": "2026-10-09",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Trading Economics showed the LNG Japan-Korea CFD at $25.98/MMBtu on Oct 9 (+0.10%); this is distinct from official JKM.",
       "extractedFacts": [
-        "Trading Economics displayed an LNG Japan-Korea CFD reference of $25.88/MMBtu, daily change +$0.17 (+0.64%), dated Oct 6.",
-        "The CFD is kept separate from Reuters’ carried official September-delivery assessment of $22/MMBtu."
+        "Trading Economics displayed an LNG Japan-Korea CFD reference of $25.98/MMBtu dated Oct 9.",
+        "The page reports a 0.10% daily change; this CFD is not the official Platts JKM assessment."
       ],
       "supportedHopIds": [
         "qatar-supply:qatar-demand"
@@ -499,16 +499,16 @@
       "observations": [
         {
           "inputId": "jkm-cfd-reference",
-          "value": 25.88,
+          "value": 25.98,
           "unit": "USD/MMBtu",
-          "sourceDate": "2026-10-06",
+          "sourceDate": "2026-10-09",
           "instrument": "LNG Japan Korea CFD market reference",
           "provider": "Trading Economics"
         }
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-jkm-cfd.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-jkm-cfd.json"
     },
     {
       "evidenceId": "e-hormuz-total-transits",
@@ -521,9 +521,9 @@
       "title": "US, Iran engaged in tanker war: Where is the months-long conflict headed? | US-Israel war on Iran News | Al Jazeera",
       "publisher": "Al Jazeera (Kpler data)",
       "publishedAt": "2026-09-06",
-      "checkedAt": "2026-10-07T01:31:31Z",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
       "claimSummary": "The exact Sep 6 Al Jazeera article was reviewed again; its 5-11 daily crossings and 10-day average are dated historical observations, not a current transit count.",
-      "carryReason": "Reviewed Oct 7: the exact Sep 6 Al Jazeera/Kpler report remains an older vessel-transit observation and is not a current count. Carry its dated figures as context.",
+      "carryReason": "The Sep 24 nine-vessel count is historical; a newer Oct 6 count is supported by Reuters/Kpler evidence e-reuters-oct8-transits.",
       "extractedFacts": [
         "Kpler reported daily Hormuz transit counts of 6, 11 and 5 vessels on the three most recent days available to the Sep 6 article.",
         "Its reported 10-day average was about 13 vessels per day.",
@@ -801,9 +801,7 @@
         "hormuz-crude-export:oil-constraint-supply",
         "hormuz-crude-export:oil-constraint-transport"
       ],
-      "supportedMetricIds": [
-        "hormuz-total-transits"
-      ],
+      "supportedMetricIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
       "supportedRelationshipIds": [],
@@ -886,16 +884,15 @@
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Strait of Hormuz tensions linger as Iran and US move further from a deal",
+      "title": "Strait of Hormuz tensions linger as Iran and US move further from a deal | US-Israel war on Iran News | Al Jazeera",
       "publisher": "Al Jazeera",
       "publishedAt": "2026-09-27",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Al Jazeera reported Sep 27 that Tehran instructed shipping companies to use a temporary Iran-approved Hormuz route and pay fees; full reopening remains conditional on ending the US blockade. Reports of explosions were attributed to Iranian media and were not confirmed by Iranian authorities.",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Al Jazeera reports Iran required a temporary approved route and fees, while full reopening remained conditional on ending the US blockade.",
       "extractedFacts": [
-        "Al Jazeera reported Tehran instructed shipping companies transiting Hormuz to use a temporary route approved by Iranian authorities and pay relevant fees.",
+        "Iran instructed shipping companies to use an authority-approved temporary route and pay relevant fees.",
         "Iran said the strait would not fully reopen until the US blockade on Iranian ports ends.",
-        "Iranian media reported explosions near Qeshm Island; the article said Iranian authorities had not confirmed attacks that day.",
-        "Trump rejected Iran's seven-day proposal; Iran's foreign minister said Tehran would await an official response through mediators."
+        "The article says Iranian authorities did not confirm reports of explosions."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal"
@@ -904,7 +901,7 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-hormuz-route-policy-0927.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-hormuz-route-policy-0927.json"
     },
     {
       "evidenceId": "e-reuters-saudi-0928",
@@ -943,12 +940,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/SGD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-07",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Cache-busted Yahoo Finance API snapshot: SGD=X 1.2782 at 2026-10-07T01:01:57.000Z.",
+      "publishedAt": "2026-10-12",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Cache-busted Yahoo Finance chart API snapshot: USD/SGD 1.2797 at 2026-10-12T00:48:17.000Z.",
       "extractedFacts": [
-        "SGD=X (USD/SGD) was 1.2782 SGD per USD at 2026-10-07T01:01:57.000Z.",
-        "Yahoo Finance reports a daily change of 0.0011 (0.0853%)."
+        "USD/SGD 1.2797 at 2026-10-12T00:48:17.000Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -958,15 +954,15 @@
       "observations": [
         {
           "inputId": "crossAsset.sgd",
-          "value": 1.2782,
+          "value": 1.2797,
           "unit": "SGD per USD",
-          "sourceDate": "2026-10-07",
-          "observedAt": "2026-10-07T01:01:57.000Z",
+          "sourceDate": "2026-10-12",
+          "observedAt": "2026-10-12T00:48:17.000Z",
           "instrument": "SGD=X USD/SGD spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-fx-sgd.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-fx-sgd.json"
     },
     {
       "evidenceId": "e-fx-idr",
@@ -978,12 +974,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/IDR",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-07",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Cache-busted Yahoo Finance API snapshot: IDR=X 17905 at 2026-10-07T00:34:08.000Z.",
+      "publishedAt": "2026-10-11",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Cache-busted Yahoo Finance chart API snapshot: USD/IDR 17,879 at 2026-10-11T14:08:48.000Z.",
       "extractedFacts": [
-        "IDR=X (USD/IDR) was 17905 IDR per USD at 2026-10-07T00:34:08.000Z.",
-        "Yahoo Finance reports a daily change of 0 (0%)."
+        "USD/IDR 17,879 at 2026-10-11T14:08:48.000Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -993,15 +988,15 @@
       "observations": [
         {
           "inputId": "crossAsset.idr",
-          "value": 17905,
+          "value": 17879,
           "unit": "IDR per USD",
-          "sourceDate": "2026-10-07",
-          "observedAt": "2026-10-07T00:34:08.000Z",
+          "sourceDate": "2026-10-11",
+          "observedAt": "2026-10-11T14:08:48.000Z",
           "instrument": "IDR=X USD/IDR spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-fx-idr.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-fx-idr.json"
     },
     {
       "evidenceId": "e-fx-myr",
@@ -1013,12 +1008,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/MYR",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-07",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Cache-busted Yahoo Finance API snapshot: MYR=X 4.0835 at 2026-10-07T00:50:30.000Z.",
+      "publishedAt": "2026-10-12",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Cache-busted Yahoo Finance chart API snapshot: USD/MYR 4.082 at 2026-10-12T00:37:34.000Z.",
       "extractedFacts": [
-        "MYR=X (USD/MYR) was 4.0835 MYR per USD at 2026-10-07T00:50:30.000Z.",
-        "Yahoo Finance reports a daily change of 0.0015 (0.0367%)."
+        "USD/MYR 4.082 at 2026-10-12T00:37:34.000Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1028,15 +1022,15 @@
       "observations": [
         {
           "inputId": "crossAsset.myr",
-          "value": 4.0835,
+          "value": 4.082,
           "unit": "MYR per USD",
-          "sourceDate": "2026-10-07",
-          "observedAt": "2026-10-07T00:50:30.000Z",
+          "sourceDate": "2026-10-12",
+          "observedAt": "2026-10-12T00:37:34.000Z",
           "instrument": "MYR=X USD/MYR spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-fx-myr.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-fx-myr.json"
     },
     {
       "evidenceId": "e-fx-thb",
@@ -1048,12 +1042,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/THB",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-07",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Cache-busted Yahoo Finance API snapshot: THB=X 33.61 at 2026-10-07T01:01:36.000Z.",
+      "publishedAt": "2026-10-12",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Cache-busted Yahoo Finance chart API snapshot: USD/THB 33.48 at 2026-10-12T00:48:14.000Z.",
       "extractedFacts": [
-        "THB=X (USD/THB) was 33.61 THB per USD at 2026-10-07T01:01:36.000Z.",
-        "Yahoo Finance reports a daily change of 0.06 (0.1788%)."
+        "USD/THB 33.48 at 2026-10-12T00:48:14.000Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1063,15 +1056,15 @@
       "observations": [
         {
           "inputId": "crossAsset.thb",
-          "value": 33.61,
+          "value": 33.48,
           "unit": "THB per USD",
-          "sourceDate": "2026-10-07",
-          "observedAt": "2026-10-07T01:01:36.000Z",
+          "sourceDate": "2026-10-12",
+          "observedAt": "2026-10-12T00:48:14.000Z",
           "instrument": "THB=X USD/THB spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-fx-thb.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-fx-thb.json"
     },
     {
       "evidenceId": "e-fx-php",
@@ -1083,12 +1076,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/PHP",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-06",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "Cache-busted Yahoo Finance API snapshot: PHP=X 62.72 at 2026-10-06T22:30:31.000Z.",
+      "publishedAt": "2026-10-12",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Cache-busted Yahoo Finance chart API snapshot: USD/PHP 62.755 at 2026-10-12T00:09:22.000Z.",
       "extractedFacts": [
-        "PHP=X (USD/PHP) was 62.72 PHP per USD at 2026-10-06T22:30:31.000Z.",
-        "Yahoo Finance reports a daily change of 0.14 (0.2237%)."
+        "USD/PHP 62.755 at 2026-10-12T00:09:22.000Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1098,15 +1090,15 @@
       "observations": [
         {
           "inputId": "crossAsset.php",
-          "value": 62.72,
+          "value": 62.755,
           "unit": "PHP per USD",
-          "sourceDate": "2026-10-06",
-          "observedAt": "2026-10-06T22:30:31.000Z",
+          "sourceDate": "2026-10-12",
+          "observedAt": "2026-10-12T00:09:22.000Z",
           "instrument": "PHP=X USD/PHP spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261007/e-fx-php.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-fx-php.json"
     },
     {
       "evidenceId": "e-reuters-policy-0929",
@@ -1116,14 +1108,14 @@
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Qatari mediators press peace deal between US and Iran",
+      "title": "Trump denies offering Iran sanctions relief, Tehran says ready for talks",
       "publisher": "Reuters",
       "publishedAt": "2026-09-29",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Qatar said it was exchanging messages between the US and Iran to establish common ground. Trump denied offering sanctions relief or release of frozen funds; negotiations had not produced a Hormuz reopening agreement.",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Reuters reports no agreement had emerged to reopen Hormuz; the US had rejected Iran’s proposal and messages continued through mediators.",
       "extractedFacts": [
-        "Qatar said it was exchanging messages between the US and Iran to establish common ground.",
-        "Trump denied offering sanctions relief or release of frozen funds; negotiations had not produced a Hormuz reopening agreement."
+        "Iran said its plan could open Hormuz within seven days if conditions were met.",
+        "Trump rejected the plan; Iran said no agreement to reopen Hormuz had been reached."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal",
@@ -1133,7 +1125,7 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-reuters-policy-0929.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-reuters-policy-0929.json"
     },
     {
       "evidenceId": "e-reuters-oil-0929",
@@ -1143,14 +1135,14 @@
       "pageType": "article",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Oil prices settle down 2.5% on signs Middle East exports recovering",
+      "title": "Oil prices settle down 2.5% on signs Middle East exports recovering | Reuters",
       "publisher": "Reuters",
       "publishedAt": "2026-09-29",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Reuters reported Saudi Arabia resumed Yanbu tanker loadings after restarting East-West Pipeline operations. Reuters reported Sep 29 Brent settlement at $102.59/bbl and WTI at $89.38/bbl; these are separate settlement observations from Yahoo snapshots.",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Reuters reports Saudi Arabia resumed Yanbu tanker loadings after East-West Pipeline operations restarted; this is historical export context.",
       "extractedFacts": [
-        "Reuters reported Saudi Arabia resumed Yanbu tanker loadings after restarting East-West Pipeline operations.",
-        "Reuters reported Sep 29 Brent settlement at $102.59/bbl and WTI at $89.38/bbl; these are separate settlement observations from Yahoo snapshots."
+        "Saudi Arabia resumed tanker loadings at Yanbu after restarting East-West Pipeline operations.",
+        "Reuters reports Sep 29 oil settlement values; these are historical settlement marks, not current quotes."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal",
@@ -1160,7 +1152,7 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-reuters-oil-0929.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-reuters-oil-0929.json"
     },
     {
       "evidenceId": "e-reuters-attacks-1001",
@@ -1247,8 +1239,8 @@
     },
     {
       "evidenceId": "e-reuters-oil-1001",
-      "url": "https://www.reuters.com/business/energy/oil-prices-barely-changed-investors-assess-us-iran-peace-talks-gulf-exports-2026-10-01/",
-      "canonicalUrl": "https://www.reuters.com/business/energy/oil-prices-barely-changed-investors-assess-us-iran-peace-talks-gulf-exports-2026-10-01/",
+      "url": "https://live.euronext.com/en/financial-news/oil-jumps-4-reports-china-halts-fuel-exports-us-troops-head-middle-east",
+      "canonicalUrl": "https://live.euronext.com/en/financial-news/oil-jumps-4-reports-china-halts-fuel-exports-us-troops-head-middle-east",
       "httpStatus": 200,
       "pageType": "article",
       "contentStatus": "verified",
@@ -1256,12 +1248,12 @@
       "title": "Oil jumps 4% on reports China halts fuel exports, US troops head to Middle East",
       "publisher": "Reuters",
       "publishedAt": "2026-10-01",
-      "checkedAt": "2026-10-02T00:10:56Z",
-      "claimSummary": "Reuters reports Chinese refiners suspended oil-product exports beyond Hong Kong and Macau, citing four sources. The new front-month December Brent contract settled at $102.31, +4.37%; WTI settled at $92.87, +2.71%, on Oct 1. Reuters cites a Wall Street Journal report that the US is sending a third aircraft carrier and up to 10,000 additional troops; these deployments are reported plans.",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Reuters syndicated on Euronext reports China suspended refined-product exports beyond Hong Kong and Macau; Oct 1 oil settlement values are historical.",
       "extractedFacts": [
-        "Reuters reports Chinese refiners suspended oil-product exports beyond Hong Kong and Macau, citing four sources.",
-        "The new front-month December Brent contract settled at $102.31, +4.37%; WTI settled at $92.87, +2.71%, on Oct 1.",
-        "Reuters cites a Wall Street Journal report that the US is sending a third aircraft carrier and up to 10,000 additional troops; these deployments are reported plans."
+        "Chinese refiners suspended oil-product exports beyond Hong Kong and Macau, according to four sources cited by Reuters.",
+        "WTI settled at $92.87/bbl (+2.71%) on Oct 1; front-month December Brent settled at $102.31 (+4.37%).",
+        "The article describes reported US troop and carrier plans."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-signal",
@@ -1272,7 +1264,7 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/new-oil.json"
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-reuters-oil-1001.json"
     },
     {
       "evidenceId": "e-reuters-oil-1005",
@@ -1476,6 +1468,121 @@
       "supportedDerivedMetricIds": [],
       "supportedRelationshipIds": [],
       "retrievalArtifact": ".firecrawl/exposure-reuters-crude-oct6.json"
+    },
+    {
+      "evidenceId": "e-reuters-oct8-transits",
+      "url": "https://www.reuters.com/business/energy/hormuz-transits-lowest-over-two-months-after-attacks-data-shows-2026-10-08/",
+      "canonicalUrl": "https://www.reuters.com/business/energy/hormuz-transits-lowest-over-two-months-after-attacks-data-shows-2026-10-08/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Hormuz transits at lowest in over two months after attacks, data shows",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-08",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Reuters reports Kpler counted seven commodity vessels through Hormuz on Oct 6, the lowest since Jul 23; the count may exclude AIS-dark vessels.",
+      "extractedFacts": [
+        "Kpler counted seven commodity vessels crossing Hormuz on Oct 6, the lowest since Jul 23.",
+        "Crude crossings fell 27% to at least 10.1 million bpd.",
+        "LSEG counted eight vessels on Oct 6 and ten on Oct 7; AIS-dark transits may be excluded.",
+        "A Qatar-loaded LNG carrier Al Mafyar was among vessels crossing."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-signal",
+        "hormuz-delivery:delivery-transport",
+        "hormuz-crude-export:oil-constraint-signal",
+        "hormuz-crude-export:oil-constraint-transport"
+      ],
+      "supportedMetricIds": [
+        "hormuz-total-transits"
+      ],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-reuters-oct8-transits.json"
+    },
+    {
+      "evidenceId": "e-reuters-attacks-1007",
+      "url": "https://www.reuters.com/world/middle-east/attacks-tankers-hormuz-hit-highest-any-week-since-start-iran-war-sources-say-2026-10-07/",
+      "canonicalUrl": "https://www.reuters.com/world/middle-east/attacks-tankers-hormuz-hit-highest-any-week-since-start-iran-war-sources-say-2026-10-07/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Attacks on tankers in Hormuz hit highest of any week since start of Iran war, sources say",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-07",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Reuters reports at least 12 oil, LNG and LPG tanker attacks during Sep 28-Oct 5, the highest weekly total since the war began.",
+      "extractedFacts": [
+        "Three maritime security sources counted at least 12 tanker attacks during Sep 28-Oct 5.",
+        "IMO data separately showed nine incidents in the same week.",
+        "Logistical constraints and attacks cloud the outlook for sustained higher Gulf export flows."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-signal",
+        "hormuz-crude-export:oil-constraint-signal",
+        "hormuz-crude-export:oil-constraint-transport"
+      ],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-reuters-attacks-1007.json"
+    },
+    {
+      "evidenceId": "e-reuters-reopen-1011",
+      "url": "https://www.reuters.com/world/middle-east/iran-says-us-response-its-proposal-reopen-hormuz-was-insufficient-2026-10-11/",
+      "canonicalUrl": "https://www.reuters.com/world/middle-east/iran-says-us-response-its-proposal-reopen-hormuz-was-insufficient-2026-10-11/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Iran says US response to its proposal to reopen Hormuz was insufficient",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-11",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Iran said the US response to seven conditions for reopening Hormuz was insufficient; the article reports no agreement or reopening.",
+      "extractedFacts": [
+        "Iran’s security chief said the US response to its seven conditions was insufficient.",
+        "The proposal linked normal passage within seven days to meeting the conditions.",
+        "Qatar and other mediators continue transmitting messages; the article reports no agreement."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-signal",
+        "hormuz-crude-export:oil-constraint-signal"
+      ],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-reuters-reopen-1011.json"
+    },
+    {
+      "evidenceId": "e-reuters-riyadh-airport-1010",
+      "url": "https://www.reuters.com/world/middle-east/loud-blast-heard-riyadh-airport-airlines-cancel-more-flights-2026-10-10/",
+      "canonicalUrl": "https://www.reuters.com/world/middle-east/loud-blast-heard-riyadh-airport-airlines-cancel-more-flights-2026-10-10/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Houthi strike on Saudi airport kills 12, worst attack on kingdom in a decade",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-10",
+      "checkedAt": "2026-10-12T00:59:05.827Z",
+      "claimSummary": "Reuters reports at least 12 people were killed and 309 wounded at Riyadh airport on Oct 10; the article says the Houthis had not claimed responsibility.",
+      "extractedFacts": [
+        "The Saudi civil aviation authority reported at least 12 killed and 309 wounded.",
+        "Airport operations were suspended and flights diverted.",
+        "The article states the Houthis had not claimed responsibility at publication."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "retrievalArtifact": ".firecrawl/daily-20261012/e-reuters-riyadh-airport-1010.json"
     }
   ]
 }

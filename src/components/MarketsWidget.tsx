@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "Reuters reports US storm risk and Houthi attacks on Saudi Arabia adding supply concerns as Middle East crude exports recover.";
+const TOP_ALERT = "At least 12 tanker attacks hit a weekly high as Hormuz traffic fell to seven crossings; a Riyadh airport attack killed 12.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
