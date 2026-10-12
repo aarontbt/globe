@@ -43,22 +43,24 @@ function useCBOELive(url: string): CBOELiveData {
         const res = await fetch(url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
-        const lines = text.trim().split("\n").filter(l => l && !l.startsWith("DATE"));
-        if (lines.length < 2) throw new Error("insufficient data");
+        const lines = text
+          .replace(/^\uFEFF/, "")
+          .split(/\r?\n/)
+          .map(line => line.trim())
+          .filter(line => line && !/^DATE(?:,|$)/i.test(line));
         const history = new Map<string, number>();
         for (const line of lines) {
           const parts = line.split(",");
-          const dm = parts[0].match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+          const dm = parts[0].trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
           if (!dm) continue;
           const iso = `${dm[3]}-${dm[1].padStart(2, "0")}-${dm[2].padStart(2, "0")}`;
-          const close = parseFloat(parts[parts.length - 1]);
-          if (!isNaN(close)) history.set(iso, close);
+          const close = Number.parseFloat(parts[parts.length - 1].trim());
+          if (Number.isFinite(close)) history.set(iso, close);
         }
-        const lastLine = lines[lines.length - 1].split(",");
-        const prevLine = lines[lines.length - 2].split(",");
-        const price = parseFloat(lastLine[lastLine.length - 1]);
-        const prev = parseFloat(prevLine[prevLine.length - 1]);
-        const changePct = +((price - prev) / prev * 100).toFixed(2);
+        if (history.size < 2) throw new Error("insufficient valid CSV rows");
+        const closes = [...history.entries()].sort(([a], [b]) => a.localeCompare(b));
+        const [price, prev] = [closes[closes.length - 1][1], closes[closes.length - 2][1]];
+        const changePct = prev > 0 ? +((price - prev) / prev * 100).toFixed(2) : null;
         if (!cancelled) setData({ history, price, changePct, loading: false, error: false });
       } catch (err) {
         console.error(`[useCBOELive] fetch failed for ${url}:`, err);

@@ -61,7 +61,9 @@ export default defineConfig(({ mode }) => {
         },
       },
       "/api/cboe": {
-        target: "https://cdn.cboe.com",
+        // cdn.cboe.com now redirects to cdn-api.cboe.com. Proxy directly to
+        // the final host so browser fetches stay same-origin.
+        target: "https://cdn-api.cboe.com",
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api\/cboe/, ""),
         headers: {
