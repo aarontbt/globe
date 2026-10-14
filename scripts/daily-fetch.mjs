@@ -48,10 +48,14 @@ export async function fetchYahoo(symbol) {
   if (!Number.isFinite(price) || price <= 0) throw new Error(`Yahoo ${symbol}: invalid price`);
   const change = Number.isFinite(Number(meta.regularMarketChange))
     ? Number(meta.regularMarketChange)
-    : price - prevClose;
+    : Number.isFinite(Number(meta.fulldayChange))
+      ? Number(meta.fulldayChange)
+      : price - prevClose;
   const changePct = Number.isFinite(Number(meta.regularMarketChangePercent))
     ? Number(meta.regularMarketChangePercent)
-    : ((price - prevClose) / prevClose) * 100;
+    : Number.isFinite(Number(meta.fulldayChangePercent))
+      ? Number(meta.fulldayChangePercent)
+      : ((change / prevClose) * 100);
   return {
     price,
     change,

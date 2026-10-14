@@ -12,13 +12,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-10-12 (D221) |
+| **Last updated** | 2026-10-13 (D222) |
 | **Crisis level** | 4 - High (Reuters/Kpler counted seven commodity vessels through Hormuz on Oct 6, the lowest since Jul 23; Reuters reported at least 12 tanker attacks during Sep 28-Oct 5, the highest week since the war began. A Riyadh airport attack on Oct 10 killed at least 12 and wounded 309. Iran said the US reply to its seven reopening conditions was insufficient on Oct 11. No verified reopening agreement or normalised passage is reported; probabilities remain base 15%, stress 45%, tail 40%.) |
-| **Brent** | $103.38 (Yahoo Finance BZ=F, Oct 12 snapshot; -1.28%) |
-| **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $25.98/MMBtu (Trading Economics, Oct 9, +0.39%) |
-| **TTF** | 81.434 EUR/MWh (2026-10-09, Yahoo Finance TTF=F; +3.28%); carried after machine refresh failure |
+| **Brent** | $105.04 (2026-10-13, Yahoo Finance BZ=F; -1.51%) |
+| **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $25.98/MMBtu (Trading Economics, Oct 9, carried; not an official assessment) |
+| **TTF** | 86.65 EUR/MWh (2026-10-13, Yahoo Finance TTF=F; +2.73%); carried after machine refresh failure |
 | **Exposure trace** | Reuters/Kpler counted seven commodity vessels crossing Hormuz on Oct 6, the lowest since Jul 23; crude crossings were at least 10.1 million bpd, down 27%. Reuters reported 12 tanker attacks for Sep 28-Oct 5, a weekly high since the war began; a Qatar-loaded LNG vessel was among Oct 6 passages. Iran said Oct 11 the US reply to its seven reopening conditions was insufficient. No verified reopening agreement; AIS-dark vessels may be excluded. |
-| **Evidence audit** | 48 checked · 37 verified · 11 carried · 0 unsupported · PASS |
+| **Evidence audit** | 48 checked · 36 verified · 12 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
 ---
@@ -551,9 +551,9 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $103.38 (Yahoo Finance BZ=F, Oct 12 snapshot, -1.28%). Working range $75-85 base; $85-105 stress; $105-135+ tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD $25.98/MMBtu (Trading Economics, Oct 9, +0.39%); forecast figures excluded.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 81.434 EUR/MWh (Oct 9, Yahoo Finance TTF=F, +3.28%). Selective LNG passages do not establish unrestricted Hormuz access.
+- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $105.04 (Yahoo Finance BZ=F, Oct 13 snapshot, -1.51%). Working range $75-85 base; $85-105 stress; $105-135+ tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD latest available $25.98/MMBtu (Trading Economics, Oct 9, carried); forecast figures excluded.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 86.65 EUR/MWh (Oct 13, Yahoo Finance TTF=F, +2.73%). Selective LNG passages do not establish unrestricted Hormuz access.
 - **Credit**: iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both carried as estimates pending fresher EM credit data. No source-approved daily credit marks are available. Scenario split remains base 15%, stress 45%, tail 40%.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
