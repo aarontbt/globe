@@ -329,7 +329,7 @@
       "evidenceIds": [],
       "fallback": "unavailable",
       "parserVersion": "gem-asset-v1",
-      "enabled": true,
+      "enabled": false,
       "observationKind": "capacity",
       "selection": {
         "type": "asset-registry",
@@ -353,7 +353,7 @@
           "coverageStatus": "direct-observation"
         }
       },
-      "note": "GEM asset metadata identifies public terminal capacity; it does not prove current loading or operating utilization."
+      "note": "GEM asset metadata identifies public terminal capacity; it does not prove current loading or operating utilization. Retired 2026-10-15: no GEM download access; GEM wiki content is CC BY-NC-SA and its static status lags crisis events."
     },
     {
       "id": "src-gem-ras-laffan-status",
@@ -377,7 +377,7 @@
       "evidenceIds": [],
       "fallback": "unavailable",
       "parserVersion": "gem-asset-v1",
-      "enabled": true,
+      "enabled": false,
       "observationKind": "asset-status",
       "selection": {
         "type": "asset-registry",
@@ -401,7 +401,101 @@
           "coverageStatus": "direct-observation"
         }
       },
-      "note": "Asset status is a public registry relationship, not independent proof of current physical flow."
+      "note": "Asset status is a public registry relationship, not independent proof of current physical flow. Retired 2026-10-15: no GEM download access; GEM wiki content is CC BY-NC-SA and its static status lags crisis events."
+    },
+    {
+      "id": "src-qatarenergy-ras-laffan-capacity",
+      "provider": "QatarEnergy LNG",
+      "title": "QatarEnergy LNG Ras Laffan train capacity",
+      "url": "https://www.qatarenergylng.qa/Operations/LNG-trains",
+      "category": "asset-registry",
+      "automation": "automated",
+      "cadence": "annual",
+      "maxAgeDays": 730,
+      "allowedUnits": [
+        "MTPA"
+      ],
+      "entityIds": [
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "ras-laffan-capacity"
+      ],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "qatarenergy-asset-v1",
+      "enabled": true,
+      "observationKind": "capacity",
+      "selection": {
+        "type": "asset-registry",
+        "assetNamespace": "QatarEnergy LNG",
+        "assetCode": "ras-laffan",
+        "entityId": "ras-laffan",
+        "assetField": "capacity",
+        "localDataFile": "src/data/source-artifacts/qatarenergy-ras-laffan-capacity.json"
+      },
+      "targetPolicies": {
+        "ras-laffan-capacity": {
+          "cadence": "annual",
+          "maxAgeDays": 730,
+          "allowedUnits": [
+            "MTPA"
+          ],
+          "entityIds": [
+            "ras-laffan"
+          ],
+          "observationKind": "capacity",
+          "coverageStatus": "direct-observation"
+        }
+      },
+      "note": "Reviewed local snapshot of the operator's published per-train nameplate capacities (sum 77.5 MTPA). Refresh annually or when a North Field expansion train starts up. Nameplate capacity does not prove current output."
+    },
+    {
+      "id": "src-reviewed-ras-laffan-status",
+      "provider": "Reuters via The Business Standard",
+      "title": "Reviewed Ras Laffan operating status",
+      "url": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
+      "category": "reviewed-event",
+      "automation": "manual-only",
+      "cadence": "event-driven",
+      "maxAgeDays": 14,
+      "allowedUnits": [
+        ""
+      ],
+      "entityIds": [
+        "ras-laffan"
+      ],
+      "targetInputIds": [
+        "ras-laffan-asset-status"
+      ],
+      "targetCommercialInputIds": [],
+      "evidenceIds": [
+        "e-reuters-qatar-force-majeure-0928"
+      ],
+      "fallback": "preserve-reviewed",
+      "parserVersion": "manual-reviewed-v1",
+      "enabled": true,
+      "selection": {
+        "type": "reviewed-event",
+        "entityId": "ras-laffan",
+        "metric": "operating status"
+      },
+      "targetPolicies": {
+        "ras-laffan-asset-status": {
+          "cadence": "event-driven",
+          "maxAgeDays": 14,
+          "allowedUnits": [
+            ""
+          ],
+          "entityIds": [
+            "ras-laffan"
+          ],
+          "observationKind": "asset-status",
+          "coverageStatus": "partial-coverage"
+        }
+      },
+      "note": "Operating status comes from dated reviewed reporting (force majeure, outages, restarts), not a static asset registry. Update with the same review as qatar-output-status."
     },
     {
       "id": "src-unlocode-ras-laffan",

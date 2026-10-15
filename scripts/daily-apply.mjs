@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
+  collectStaleObservations,
   computeCommercialEvaluation,
   PATHS,
   formatDateOnly,
@@ -132,6 +133,8 @@ function applyCharts() {
   } else {
     data.days.push(state.volatilityDay);
   }
+  // Scenario history and fallback only; the live CBOE charts supply their own 14-day window.
+  data.days = data.days.slice(-12);
   const after = `${JSON.stringify(data, null, 2)}\n`;
   mark(PATHS.charts, before, after);
   writeText(PATHS.charts, after, dryRun);
@@ -314,6 +317,15 @@ function applyRunbook() {
     /\| \*\*Commercial evaluation\*\* \| .* \|/,
     `| **Commercial evaluation** | ${commercialSummary} |`,
   );
+
+  const stale = collectStaleObservations(state, state.asOf);
+  const longCarried = stale.filter((item) => item.long);
+  const staleSummary = longCarried.length
+    ? `${stale.length} carried/estimated; ${longCarried.length} need a replacement source: ${longCarried
+        .map((item) => `${item.scope} ${item.id} (${item.sourceDate}, ${item.age}d)`)
+        .join(", ")}`
+    : `${stale.length} carried/estimated; none past their cadence`;
+  after = after.replace(/\| \*\*Stale \/ carried\*\* \| .* \|/, `| **Stale / carried** | ${staleSummary} |`);
 
   for (const [label, text] of Object.entries(state.priceNarratives)) {
     const pattern = new RegExp(`- \\*\\*${label}\\*\\*: .*`);

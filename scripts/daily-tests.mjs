@@ -251,6 +251,9 @@ assert.equal(evidenceCheck.status, 0, evidenceCheck.stderr || evidenceCheck.stdo
 assert(evidenceCheck.stdout.includes("PASS"), "daily:evidence should print a passing gate summary");
 
 const energyRegistry = loadSourceRegistry();
+// The live capacity artifact postdates the fixture asOf; tests read a back-dated copy.
+const qatarEnergyCapacitySource = energyRegistry.sources.find((source) => source.id === "src-qatarenergy-ras-laffan-capacity");
+qatarEnergyCapacitySource.selection.localDataFile = "scripts/fixtures/energy-lng/qatarenergy-capacity-artifact.json";
 const eiaProductionSource = energyRegistry.sources.find((source) => source.id === "src-eia-qatar-production");
 const eiaMultiPeriod = parseEiaRecords({
   data: [
@@ -616,7 +619,7 @@ const scopedPromotion = prepareEnergyPromotion({
 assert(scopedPromotion.promoted, `machine-evidenced EIA/PortWatch candidates should promote: ${scopedPromotion.errors.join("; ")}`);
 const scopedAuditErrors = validateEvidenceAudit(scopedPromotion.state, scopedPromotion.exposure, energyFixtureAudit);
 assert.equal(scopedAuditErrors.length, 0, `machine snapshot evidence should support an automated trace metric: ${scopedAuditErrors.join("; ")}`);
-assert.equal(scopedPromotion.readModel.machineEvidence.length, 3, "promoted read model should expose machine snapshot evidence");
+assert.equal(scopedPromotion.readModel.machineEvidence.length, 4, "promoted read model should expose machine snapshot evidence (EIA, PortWatch, UN/LOCODE and QatarEnergy capacity)");
 
 const scopedRepeat = await runEnergyRefresh({ ...energyFixtureOptions, fixtureName: "eia-portwatch-valid" });
 assert.equal(scopedRepeat.runId, scopedEnergy.runId, "scoped repeated refreshes should be idempotent");

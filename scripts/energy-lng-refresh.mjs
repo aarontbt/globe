@@ -901,7 +901,9 @@ function eiaRequestConfirmsSeries(url, seriesId) {
 
 function approvedPortWatchEndpoint(source, selection) {
   const envKey = selection.endpointEnv || source.approvedEndpointEnv || "PORTWATCH_DATA_URL";
-  const endpoint = process.env[envKey];
+  // The registry URL is the official keyless ArcGIS layer; the env var only overrides it.
+  const registryQuery = /\/FeatureServer\/\d+\/?$/i.test(source.url || "") ? `${source.url.replace(/\/$/, "")}/query` : "";
+  const endpoint = process.env[envKey] || registryQuery;
   if (!endpoint) throw new Error(`${source.id}: ${envKey} is required for the approved machine-readable PortWatch connector`);
   if (!/^https:\/\//.test(endpoint) || /\/pages\//i.test(endpoint) || /methodology/i.test(endpoint)) {
     throw new Error(`${source.id}: PortWatch endpoint must be an approved HTTPS machine-readable endpoint, not a methodology page`);
@@ -1286,9 +1288,10 @@ export function computeEnergyRefreshFingerprint({ state, exposure, registry }) {
       routeId: source.selection?.routeIdEnv ? process.env[source.selection.routeIdEnv] ?? null : undefined,
     },
   }));
+  // Only the state the refresh reads; narrative, events and alerts can change without a refetch.
   return sha256({
     asOf: state?.asOf,
-    state,
+    state: { traceInputs: state?.traceInputs, commercialInputs: state?.commercialInputs },
     exposure: refreshFingerprintExposure(exposure),
     registry: {
       schemaVersion: registry?.schemaVersion,

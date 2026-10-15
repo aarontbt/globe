@@ -2,7 +2,7 @@
 
 **Purpose**: Reference manual for the Energy/LNG Signal-to-Exposure workflow. Routine updates start in `src/data/daily-state.json`; reviewed state is distributed with `bun run daily:apply`.
 
-> **Daily execution**: Load `docs/daily-agent-prompt.md` instead — it is the lean, token-efficient daily prompt. This file is the reference manual for schemas, conventions, and rare operations.
+> **Daily execution**: Load `docs/daily-agent-prompt.md` instead. It holds the 6-step daily flow and its conditional steps. This file is a reference manual for schemas, conventions and rare operations, **not a checklist**. Panel files are generated from `daily-state.json` by `daily:apply`, so the per-file sections below describe fields, not manual edits.
 >
 > **Energy/LNG ingestion**: See [`energy-lng-data-ingestion.md`](energy-lng-data-ingestion.md) for the active Phase 2 staged connector, provenance and promotion contract. `bun run energy:refresh` produces a fingerprinted candidate/report pair with raw snapshot artifacts and coverage metadata; `bun run daily:update` promotes only a complete, validated same-as-of report whose fingerprint still matches current inputs. `daily:update` is promotion-only and never fetches or recrawls.
 >
@@ -20,6 +20,7 @@
 | **Exposure trace** | Reuters reported at least five shipping incidents in the 48 hours before Oct 14, including the GFS Pride sinking; the latest comparable Hormuz count remains seven commodity vessels on Oct 6, and AIS-dark traffic may be omitted. |
 | **Evidence audit** | 51 checked · 40 verified · 11 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
+| **Stale / carried** | 23 carried/estimated; 13 need a replacement source: trace qatar-subchartered-carriers (2026-07-23, 84d), commercial lng-jkm (2026-07-24, 83d), trace hormuz-transits (2026-08-02, 74d), cross-asset id10y (2026-08-05, 71d), cross-asset ph10y (2026-08-05, 71d), cross-asset th10y (2026-08-05, 71d), cross-asset asean-ig (2026-08-05, 71d), cross-asset asean-hy (2026-08-05, 71d), cross-asset energy-eq (2026-08-05, 71d), cross-asset shipping-eq (2026-08-05, 71d), cross-asset banks-eq (2026-08-05, 71d), trace oil-vlcc-freight (2026-09-11, 34d), commercial oil-vlcc-freight (2026-09-11, 34d) |
 
 ---
 
@@ -54,7 +55,7 @@
 
 **The running app fetches every JSON dataset from `public/data/*.json` at runtime (`useStaticJson`), not from `src/data/`.** `bun run daily:apply` auto-mirrors `daily-state.json`, `exposure-traces.json`, the Energy/LNG runtime/read model, the climate read model, `iran-intel-events.json`, `banker-cross-asset.json`, `banker-conflict.json`, `charts-volatility.json`, and `commodities-impact.json`. `bun run daily:check` rejects drift for all of these.
 
-The remaining archive datasets are manually mirrored:
+The archived datasets (not rendered, never part of the daily run) are mirrored by hand only on explicit archive maintenance:
 
 ```bash
 cp src/data/banker-trade-ideas.json public/data/banker-trade-ideas.json
@@ -62,7 +63,6 @@ cp src/data/banker-sanctions.json public/data/banker-sanctions.json
 cp src/data/banker-clients.json public/data/banker-clients.json
 ```
 
-Always diff `src/data/` vs `public/data/` for the three manually mirrored archive files as part of E2E verification.
 
 ---
 
@@ -94,7 +94,7 @@ Always diff `src/data/` vs `public/data/` for the three manually mirrored archiv
    - Do not claim precision beyond the last confirmed close
    - Flag with `(est.)` in internal notes if no source is available
 
-5. **Before committing**: Run `bun run daily:evidence`. Every confirmed exposure or commercial metric must have directly supporting audited evidence. Assumed or estimated inputs are rejected from the published trace dataset.
+5. **Before committing**: `bun run daily:update` runs the evidence gate. Every confirmed exposure or commercial metric must have directly supporting audited evidence. Assumed or estimated inputs are rejected from the published trace dataset.
 
 ### Reviewed Evidence Gate
 
@@ -107,7 +107,7 @@ For every due or changed evidence URL:
 3. Map the evidence explicitly to every supported trace hop, confirmed metric, commercial input, derived metric, and counterparty relationship.
 4. For a market observation, record its exact value, unit, instrument, provider, source date, and observation timestamp when available.
 5. Set `contentStatus` to `verified`, `unsupported`, `stale`, `unreachable`, or `manual-review`, then record the analyst decision in `reviewStatus`.
-6. Run `bun run daily:evidence`; resolve every failure before `daily:apply`.
+6. Run `bun run daily:update` (its apply step runs this gate). Run `bun run daily:evidence` on its own only to iterate on audit fixes quickly.
 
 `daily:evidence` and `daily:check` reject:
 
@@ -124,7 +124,7 @@ For every due or changed evidence URL:
 
 If Firecrawl cannot retrieve dependable content, do not mark the evidence verified. Carry the prior reviewed observation with its original date and a precise reason, or downgrade the affected metric until a replacement source is approved.
 
-**Switching an evidence source (e.g. Yahoo Finance to Trading Economics) requires a pre-sync step.** `bun run daily:evidence` (and the gate inside `daily:apply`) validates `evidence-audit.json` against the **currently committed** `src/data/exposure-traces.json` `evidence[]` array, not the post-apply one — `daily:apply` only regenerates `evidence[]` *after* the gate passes. So when a source's `url`/`publisher`/`publishedAt` changes, hand-edit `src/data/exposure-traces.json`'s `evidence[]` entry to match the new evidence-audit entry (and the `traceInputs.evidenceUpdates` block in `daily-state.json`) *before* running `daily:evidence`, otherwise it fails on url/publisher/publishedAt/checkedAt mismatches even though the values are internally consistent everywhere else.
+**Switching an evidence source (e.g. Yahoo Finance to Trading Economics) requires a pre-sync step.** The evidence gate (inside `daily:apply`, or standalone `daily:evidence`) validates `evidence-audit.json` against the **currently committed** `src/data/exposure-traces.json` `evidence[]` array, not the post-apply one — `daily:apply` only regenerates `evidence[]` *after* the gate passes. So when a source's `url`/`publisher`/`publishedAt` changes, hand-edit `src/data/exposure-traces.json`'s `evidence[]` entry to match the new evidence-audit entry (and the `traceInputs.evidenceUpdates` block in `daily-state.json`) *before* running `daily:evidence`, otherwise the gate fails on url/publisher/publishedAt/checkedAt mismatches even though the values are internally consistent everywhere else.
 
 **`reviewedAt` and each entry's `checkedAt` must be at or before the real wall clock** (`Date.now() + 5min`), not a rounded-up placeholder — this demo's system clock tracks the in-story date, so a timestamp like `T05:00:00Z` written before checking the actual current time can land in the future and fail with "reviewedAt cannot be in the future." Run `date -u` first and pick a timestamp a few minutes behind it.
 
@@ -217,7 +217,7 @@ Alternative candidates must remain explicitly classified:
 - `physically-feasible` requires evidence for demonstrated capacity, infrastructure compatibility, and route/lead-time constraints;
 - `commercially-executable` additionally requires verified cost, contract flexibility, sanctions/insurance, and availability evidence.
 
-Daily operators should update the underlying metrics, directions, evidence links, freshness, and alternative records. Do not write or hand-tune a Flow Pressure score. After publishing, switch through all traces in **SIGNAL → EXPOSURE** and confirm the score, component statuses, confidence, evidence count, and alternative wording are consistent with the reviewed inputs. A `provisional` or `insufficient verified data` result is expected when required observations are carried or unavailable.
+Daily operators should update the underlying metrics, directions, evidence links, freshness, and alternative records. Do not write or hand-tune a Flow Pressure score. When `daily:status` reports a trace trigger (and in the weekly review), switch through all traces in **SIGNAL → EXPOSURE** and confirm the score, component statuses, confidence, evidence count, and alternative wording are consistent with the reviewed inputs. A `provisional` or `insufficient verified data` result is expected when required observations are carried or unavailable.
 
 ### Key Signals display rule
 
@@ -238,7 +238,7 @@ If a dependable source is unavailable:
 3. Otherwise use `unavailable`, remove value/range/source fields, and add `missingReason`.
 4. Never create a midpoint, scenario range, inferred cost, or replacement-volume estimate.
 
-### Three-trace review
+### Three-trace review (when `daily:status` reports a trace trigger, and weekly)
 
 - **Qatar supply disruption**: verify force-majeure status, latest JKM observation, public buyer relationship, and missing current volume/cost data.
 - **Hormuz delivery constraint**: verify the latest LNG-specific transit observation, Nakilat relationship, TTF, and current freight-data availability.
@@ -258,7 +258,7 @@ Mechanical residual statuses are `positive residual`, `crosses zero`, `negative 
 
 ---
 
-## 2. Cross-Asset Data (`banker-cross-asset.json`)
+## 2. Cross-Asset Data (`banker-cross-asset.json`, generated from `daily-state.json` `crossAsset`)
 
 ### Field Guidance
 
@@ -275,7 +275,7 @@ Mechanical residual statuses are `positive residual`, `crosses zero`, `negative 
 | `observedAt` | Exact market observation timestamp when the source provides one |
 | `evidenceId` | ID linking the row to its evidence reference and audit record |
 
-### Categories to Update Daily
+### Categories
 
 1. **Energy** — Brent, TTF Gas, JKM LNG
 2. **EM Rates** — Indonesia 10Y, Philippines 10Y, Thailand 10Y
@@ -285,47 +285,19 @@ Mechanical residual statuses are `positive residual`, `crosses zero`, `negative 
 
 ---
 
-## 2. Market Fallback Quotes (`src/hooks/useMarkets.ts`)
+## 2.5 Ticker Fallback and Red Alert (generated)
 
-Update the `FALLBACK_QUOTES` array near the top of the file:
-
-```typescript
-// Static fallback — reflects intel report baseline (YYYY-MM-DD)
-const FALLBACK_QUOTES: MarketQuote[] = [
-  { symbol: "BZ=F", name: "Brent Crude", price: 80.2,   change: 8.2,  changePct: 11.4, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-03T00:00:00Z" },
-  { symbol: "CL=F", name: "WTI Crude",   price: 76.9,   change: 7.6,  changePct: 11.0, currency: "USD", unit: "/barrel", lastUpdated: "2026-03-03T00:00:00Z" },
-];
-```
-
-- `change` = absolute price move from prior close
-- `changePct` = percentage move (positive = up)
-- `lastUpdated` = today's date at `T00:00:00Z`
+`src/hooks/useMarkets.ts` `FALLBACK_QUOTES` is generated from `daily-state.json` `fallbackQuotes`, and its comment comes from `fallbackCommentLines`. `daily:refresh` updates the machine-fetched quotes. `src/components/MarketsWidget.tsx` `TOP_ALERT` is generated from `topAlert`: replace it daily with the single most market-significant event, concise enough for the market panel. Never edit either `.tsx`/`.ts` file directly.
 
 ---
 
-## 2.5 MarketsWidget Red Alert (`src/components/MarketsWidget.tsx`)
+## 3. Archived Datasets (not rendered; never part of the daily run)
 
-The expanded Red Alert is controlled by one constant and must be updated alongside cross-asset data:
-
-```typescript
-const TOP_ALERT = "..."; // rolling news alert; rewrite with today's top event
-```
-
-The alert is always rendered in full. Replace it daily with the single most market-significant event; keep it concise enough for the market panel.
+`banker-clients.json`, `banker-trade-ideas.json` and `banker-sanctions.json` are legacy datasets that no panel renders. Do not update prices, dates, talking points, cfTriggers, retirement checks or sanctions entries during the daily run. Edit them only on an explicit archive-maintenance request, following the existing file schema, and then mirror each one to `public/data/` by hand (see "Runtime Data Source").
 
 ---
 
-## 3. Client Roster (`banker-clients.json`)
-
-Fields: `id` (permanent lowercase slug), `name`, `sector` (specific, e.g. `"Upstream Oil & Gas"`), `country` (HQ), `exposure` (4 scores), `scenarioImpacts` (base/stress/tail), `talkingPoints` (3, each starting with a data point).
-
-**Exposure scores 1-10**: `energyCosts` (1-3 = producer benefits from spike; 7-10 = major importer, energy >20% cost base) | `shipping` (1-3 = no fleet; 7-10 = large owned/chartered fleet, route-dependent) | `sanctions` (1-3 = no Iran/Russia exposure; 7-10 = direct designation risk) | `refinancing` (1-3 = strong balance sheet; 7-10 = high leverage, near-term maturity)
-
-*Rare ops (adding/removing clients): follow schema in the actual file; keep `cfTriggers` in sync.*
-
----
-
-## 4. Conflict Status (`banker-conflict.json`)
+## 4. Conflict Status (`banker-conflict.json`, generated from `crisis`, `deltaVsYesterday`, `todaysEvents`, `scenarios`)
 
 **Escalation levels 1-5**: Normal (no escalation) → Elevated (diplomatic tension) → Heightened (military positioning + sanctions) → High (active strikes/closures, material market impact) → Severe (full theatre conflict, systemic disruption)
 
@@ -345,45 +317,7 @@ Fields: `id` (permanent lowercase slug), `name`, `sector` (specific, e.g. `"Upst
 
 ---
 
-## 5. Trade Ideas (`banker-trade-ideas.json`)
-
-### Daily Update Process
-
-1. Update price references in `rationale` to match current cross-asset data
-2. Change date references (`Mar 2` → `Mar 3`) where specific dates appear
-3. Update `cfTriggers` client names if client roster changes (must match `name` field in `banker-clients.json`)
-4. Adjust `conviction` level if scenario probability shifts materially
-5. Do **not** change `id` fields — these are stable identifiers
-
-**cfTrigger urgency**: `critical` ≤72h window | `high` ≤2 weeks | `medium` no immediate pressure | `low` monitor only
-
----
-
-## 6. Sanctions Tracker (`banker-sanctions.json`)
-
-### When to Update
-
-- **New OFAC/EU/UN designation**: Add new entry at top of `sanctionsEntries` array with new `id` (s0, s1…), increment existing IDs
-- **Status change**: Update `"status"` from `"pending"` to `"active"` when confirmed
-- **Date references in descriptions**: Update `s0` description to reflect latest developments (e.g., MAS actions, SGX suspensions)
-- **Do not remove entries** — sanctions are historical record; only add or update status
-
-### Adding a New Sanctions Entry
-
-```json
-{
-  "id": "s0",
-  "date": "2026-03-03",
-  "authority": "OFAC | EU | UN | US State Dept | FinCEN | MAS",
-  "description": "Detailed description of the designation/action...",
-  "status": "active | pending",
-  "affectedEntities": ["Entity 1", "Entity 2"]
-}
-```
-
----
-
-## 7. Supply Chain Impact (`commodities-impact.json`)
+## 7. Supply Chain Impact (`commodities-impact.json`, generated from `commodities`, `commodityScenario`, `marketContext`)
 
 ### Purpose
 
@@ -455,89 +389,51 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 **Do not** delete `energy-001` through `supply-004` purely because they are old — they represent structural risks still on the board. Only retire if explicitly resolved.
 
-### Trade Ideas (`banker-trade-ideas.json`)
-
-**When to retire a trade idea:**
-- The position has been closed or stop-loss hit
-- The underlying thesis has fundamentally reversed (e.g., Hormuz fully reopens)
-- Conviction drops to `low` AND the scenario driving it falls below 20% probability
-
-**When to update (not retire):**
-- Conviction changes from `high` → `medium` or vice versa: update field only; keep rationale
-- Price targets shift materially: update rationale price references; do not add a new entry
-
-**Do not create a new trade idea** for an update to an existing theme — edit the existing entry's `rationale` instead.
-
 ### Runbook Self-Maintenance
 
-- **Crisis timeline archive** (`docs/crisis-timeline-archive.md`): Add each new day's headline event on the day it occurs. Remove day entries only if they contain factually incorrect information (see Source Validation Policy).
-- **Price Narratives section**: Update Brent, JKM, TTF, and credit baseline narrative **daily** when updating cross-asset data. Keep it synchronized with `banker-cross-asset.json`.
+- **Crisis timeline archive** (`docs/crisis-timeline-archive.md`): generated from `timelineEntry`, one line per day of 25 words or fewer. Fix past lines only when they are factually incorrect.
+- **Current State and Price Narratives**: generated from `runbookState`, `priceNarratives` and the evidence and stale summaries. Never edit them directly.
 
 ---
 
-## Daily Update Checklist
+## Daily Field Map
 
-### Morning Update (Pre-Market Open, ~08:00 SGT)
+The daily flow lives in `docs/daily-agent-prompt.md`. This table maps each panel to the hand-edited input that drives it.
 
-- [ ] **Preview without mutation**: Run `bun run daily:fetch -- --dry-run`; verify Brent and WTI results. TTF is not part of the automated market preview. Confirm `git diff -- src/data/daily-state.json` shows no change from this command.
-- [ ] **Persist machine refresh**: Run `bun run daily:refresh`. This writes successful liquid values to daily state only; it does not publish.
-- [ ] **Stage Energy/LNG refresh**: Run `bun run energy:refresh` after the liquid refresh and after any state, exposure, evidence, or registry edit. For event-driven changes use `bun run energy:refresh -- --event`; for bounded history use `bun run energy:refresh -- --source <source-id> --from YYYY-MM-DD --to YYYY-MM-DD`. Review raw snapshot hashes/artifacts, period coverage, source age, machine evidence, reconciliation outcomes, carry/unavailable states, and the fingerprinted candidate/report pair. Configure live endpoints through environment variables; commit no secrets.
-- [ ] **Firecrawl evidence review**: Scrape every changed or due evidence URL and update `src/data/evidence-audit.json` with the reviewed content result and claim mappings.
-- [ ] **Evidence gate**: Run `bun run daily:evidence`. Do not continue with unsupported, unreachable, pending, rejected, landing-page, or observation-mismatch failures.
-- [ ] **Complete analyst inputs**: Review JKM, Qatar output/force majeure, Hormuz condition and AIS count, LNG freight/delay ranges, evidence updates, and the trace headline. Carry unavailable observations with original dates and reasons.
-- [ ] **Review three traces**: Read every five-hop chain, confirmed/carried/unavailable metric, named public relationship, and portfolio action before publishing.
-- [ ] **Review Flow Pressure**: In **SIGNAL → EXPOSURE → Exposure Trace**, verify each trace's score, six component weights/statuses, confidence, evidence count, and alternative feasibility. Do not treat a potential alternative as executable capacity.
-- [ ] **Source check first**: For each price you plan to enter, confirm a named source exists (see Source Validation Policy above). Do not enter a number if the only answer to "where did this come from?" is "I estimated it" — use last confirmed level instead and note the date.
-- [ ] **Cross-asset**: Update `asOf` date, refresh all `current` prices and `change1d` values
-- [ ] **useMarkets.ts**: Update `FALLBACK_QUOTES` prices, changes, and `lastUpdated` dates
-- [ ] **MarketsWidget.tsx**: Update the expanded `TOP_ALERT` with the single most market-significant event
-- [ ] **Conflict**: Replace `todaysEvents` with 3 new events; update `deltaVsYesterday`; verify scenario probabilities sum to 100
-- [ ] **Trade ideas**: Update date references (e.g., "Mar N"); refresh price citations in rationale
-- [ ] **Intel events — refresh prices**: In `iran-intel-events.json`, update stale Brent/JKM/TTF price references in `energy-003`, `trade-001`, `trade-003`, and any event citing a specific price level
-- [ ] **Intel events — rewrite daily entries**: Rewrite (do not prepend) `ship-001`, `sec-005`, `supply-001` descriptions with today's data. Max 150 words each. Remove any "Day N update:" prefix.
-- [ ] **Intel events — title hygiene**: Replace `sec-005` title with today's single top security event (≤8 words); do not accumulate prior event names in the title
-- [ ] **Intel events — retirement check**: Flag any event with probability <15% or a resolved thesis; confirm before deleting
-- [ ] **Trade ideas — retirement check**: Remove any idea whose stop-loss was hit or thesis has reversed; do not archive, just delete
-- [ ] **Supply chain commodities**: In `src/data/commodities-impact.json`, update `asOf`, `current`, `change1d`, and recalculate `zscore`/`signal` for all 14 assets. Update `narrative` only if the supply chain mechanism has materially changed. Update `scenario` field if the primary disruption vector has shifted.
-- [ ] **BottomChartsPanel — Scenarios only**: In `src/data/charts-volatility.json`, append one entry to `days` with the new `scenarios` array (must sum to 100 and match `banker-conflict.json`). **OVX and VXEEM load CBOE daily closes live and render a rolling 14-calendar-day window; weekends and exchange holidays carry the preceding close forward.**
-- [ ] **BottomChartsPanel — scenario history check**: The `days` array supplies scenario history and fallback values; it does not control the live CBOE chart window. Check it manually each run: `python3 -c "import json;d=json.load(open('src/data/charts-volatility.json'));print(len(d['days']),d['days'][0]['day'],d['days'][-1]['day'])"`. Keep the latest ~10 entries (trim oldest entries if it exceeds ~12), then re-run `bun run daily:apply` to re-mirror. This cap applies to the scenario history/fallback only; CBOE supplies the rolling 14-day charts.
-- [ ] **Runbook Price Narratives**: Update Brent, JKM, TTF, credit baseline lines to match today's cross-asset data
-- [ ] **Crisis timeline archive**: Append today's headline in `docs/crisis-timeline-archive.md`; keep entries to ≤25 words each
-- [ ] **Sanctions**: Check for overnight OFAC/EU announcements; update `s0` description if MAS/SGX actions occurred
-- [ ] **Validate JSON**: Run `node -e "JSON.parse(require('fs').readFileSync('./src/data/<file>.json','utf8'))"` for each modified file — including `commodities-impact.json`
-- [ ] **Apply and validate reviewed state**: Run `bun run daily:apply -- --dry-run`, inspect the file list, then run `bun run daily:update`. This command must not refetch or recrawl.
-- [ ] **Sync manually-mirrored archive files to `public/data/`**: If you edited `banker-trade-ideas.json`, `banker-sanctions.json`, or `banker-clients.json`, copy each to `public/data/` - see "Runtime Data Source" above.
-- [ ] **Build check**: Run `bun run build` — verify TypeScript compiles with no errors
+| Panel / file | Edit this | Notes |
+|--------------|-----------|-------|
+| Ticker bar (`useMarkets.ts`) | `fallbackQuotes`, `fallbackCommentLines` | Machine quotes come from `daily:refresh` |
+| Red alert (`MarketsWidget.tsx`) | `topAlert` | Single top event |
+| Cross-asset | `crossAsset` | Only rows with a new sourced value; others stay carried or estimated |
+| Conflict, Market Brief | `crisis`, `deltaVsYesterday`, `todaysEvents`, `scenarios` | Scenarios sum to 100 |
+| Bottom charts | `volatilityDay` | Scenarios must match `scenarios`; history is auto-trimmed to the last 12 days |
+| Supply chain | `commodities`, `commodityScenario`, `marketContext` | Narratives only when the mechanism changes |
+| Signal → Exposure, globe, Key Signals | `traceInputs`, `commercialInputs` | Evidence in `evidence-audit.json` |
+| Events | `src/data/iran-intel-events.json` (hand-edited, auto-mirrored) | See §8 |
+| Runbook state, timeline | `runbookState`, `priceNarratives`, `timelineEntry` | — |
 
 ### Weekly Review
 
-- [ ] **Client talking points**: Refresh to reflect current week's market levels
-- [ ] **Scenario probabilities**: Recalibrate Base/Stress/Tail based on geopolitical trajectory
-- [ ] **Baseline30d**: Update rolling 30-day averages in cross-asset
-- [ ] **cfTriggers**: Review urgency levels — escalate or de-escalate as market windows shift
-
-### Client Roster Change (Ad Hoc)
-
-- [ ] Update `banker-clients.json` — new client with full schema
-- [ ] Update `cfTriggers` in `banker-trade-ideas.json` if client is a CF target
-- [ ] Verify client `id` slug matches `cfTrigger.client` display name convention (name field, not id slug)
+- [ ] **Scenario probabilities**: recalibrate Base/Stress/Tail based on the geopolitical trajectory
+- [ ] **Baseline30d**: update the rolling 30-day averages in `crossAsset` and `commodities`
+- [ ] **Long-carried items**: work through every `!` item in `daily:status`. Find a replacement source, or downgrade it to `unavailable` when the carried value no longer helps
+- [ ] **Browser review**: three traces, Flow Pressure, and the E2E recipe below
+- [ ] **Climate**: run `bun run climate:refresh`
 
 ---
 
-## E2E Verification Recipe
+## E2E Verification Recipe (weekly, or after UI or script changes)
 
 1. `bun run dev` → open `http://localhost:5173`
-2. Open **SIGNAL → EXPOSURE**, switch all three traces, and verify the five-hop chain, Flow Pressure score/components/confidence, verified-data statuses, evidence, commercial evaluation, and portfolio action update together
+2. Open **SIGNAL → EXPOSURE**, switch through all three traces, and verify that the five-hop chain, Flow Pressure score/components/confidence, verified-data statuses, evidence, commercial evaluation and portfolio action update together
 3. Close the overlay and verify the globe shows only the selected trace route, with LNG production/carrier/terminal/demand nodes and no stale route from the previous selection
-4. Open **Counterparties**, **Actions**, and **Evidence**; copy the decision brief and confirm named relationships and evidence resolve correctly
-5. Right panel — **EVENTS**: intel events visible, no `pm-` events, filters work
-6. Right panel — **SUPPLY CHAIN**: all 4 categories present; `asOf` matches today; asset rows expand
-7. Browser console — no errors
-8. Ticker bar — fallback prices match `useMarkets.ts`
-9. Verify at 1280×720 and 1440×900; no clipped chain cards, tabs, or action controls
-10. `diff src/data/exposure-traces.json public/data/exposure-traces.json` must be empty
-11. If manually mirrored files were edited, their source/runtime diffs must also be empty
-12. `bun run daily:evidence` must report zero unsupported and zero pending evidence
+4. Open **Counterparties**, **Actions** and **Evidence**; copy the decision brief and confirm that named relationships and evidence resolve correctly
+5. Right panel, **EVENTS**: intel events are visible, there are no `pm-` events, and the filters work
+6. Right panel, **SUPPLY CHAIN**: all 4 categories are present, `asOf` matches today, and asset rows expand
+7. Browser console: no errors
+8. Verify at 1280×720 and 1440×900: no clipped chain cards, tabs or action controls
+
+Source/runtime mirror drift and the evidence gate are enforced by `bun run daily:update`, so they need no manual diff.
 
 ---
 
@@ -547,20 +443,20 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.md`. Daily updates append one line to that archive only; this runbook should keep current-state and schema guidance, not the full historical log.
 
-### Price Narratives (update daily — keep synchronized with `banker-cross-asset.json`)
+### Price Narratives (generated from `daily-state.json` `priceNarratives`)
 
-> **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
+> Edit `priceNarratives` in daily state, not this section. Replace the prior-day levels, and keep no more than the 3 most significant historical inflection points.
 
 - **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $103.78 (Yahoo Finance BZ=F, Oct 15 snapshot, -2.15%). Working range $75-85 base; $85-105 stress; $105-135+ tail.
 - **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD was $26.39/MMBtu (Trading Economics, Oct 14); not an official assessment.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 87.315 EUR/MWh (Oct 14, Yahoo Finance TTF=F, +0.20%). Selective LNG passages do not establish unrestricted Hormuz access.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 87.315 EUR/MWh (Oct 14, last reviewed Yahoo TTF=F observation; carried, automated source retired Oct 15; manual ICE Endex review pending). Selective LNG passages do not establish unrestricted Hormuz access.
 - **Credit**: iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both carried as estimates pending fresher EM credit data. No source-approved daily credit marks are available. Scenario split remains base 15%, stress 45%, tail 40%.
 
-### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)
+### BottomChartsPanel (`src/data/charts-volatility.json`, generated from `volatilityDay`)
 
-**OVX and VXEEM are fetched live from CBOE CDN on page load** — no manual daily values are needed. Each chart shows 14 calendar days, ending on the latest date in its CBOE history CSV. Missing dates, including weekends and exchange holidays, carry forward the most recent prior close and appear as hollow points. The chart axis labels show dates. If the fetch fails, the existing `ovx` / `vxeem` values in `charts-volatility.json` remain the fallback.
+**OVX and VXEEM are fetched live from the CBOE CDN on page load**, so no manual daily values are needed. Each chart shows 14 calendar days, ending on the latest date in its CBOE history CSV. Missing dates, including weekends and exchange holidays, carry forward the most recent prior close and appear as hollow points. If the fetch fails, the existing `ovx` / `vxeem` values remain the fallback.
 
-Only the `scenarios` array requires a manual daily entry. Append one object to the `days` array; this array also retains the fallback volatility values:
+Set `volatilityDay` in daily state. `daily:apply` upserts it into `days` and keeps the last 12 entries:
 
 ```json
 {

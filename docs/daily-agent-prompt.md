@@ -1,77 +1,57 @@
 # Daily Agent Prompt - Signal to Exposure
 
-> Routine daily updates start from `src/data/daily-state.json` (schema version 3).
-> Consult `docs/daily-update-runbook.md` for field definitions, freshness policy, carry rules, or rare operations.
-> The active Energy/LNG ingestion layer is specified in [`energy-lng-data-ingestion.md`](energy-lng-data-ingestion.md); it produces staged candidates and must not bypass the promotion gates.
+> The daily update has three inputs you edit by hand: `src/data/daily-state.json` (schema version 3), `src/data/evidence-audit.json` (reviewed evidence) and `src/data/iran-intel-events.json` (Events panel). Every other panel file is generated from them by `bun run daily:apply`.
+> Use `docs/daily-update-runbook.md` only to look up field definitions, freshness and carry rules, or rare operations. Do not follow it as a checklist.
+> Energy/LNG ingestion contract: [`energy-lng-data-ingestion.md`](energy-lng-data-ingestion.md).
 
-## Daily Workflow
+## Daily Workflow (6 steps)
 
-1. **Preview** - run `bun run daily:fetch -- --dry-run`. Confirm the preview includes Brent, WTI, EUR/USD, and SOFR. Review TTF manually against the [ICE Endex Dutch TTF page](https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data); record the contract and displayed time, and keep its delayed `Last` quote distinct from settlement. This command must not change files.
-2. **Refresh** - run `bun run daily:refresh`. This persists successfully fetched liquid values to daily state but does not publish them.
-3. **Refresh Energy/LNG candidates** - run `bun run energy:refresh`; use `bun run energy:refresh -- --event` after a material disruption change. Review source snapshots, raw artifact hashes, machine evidence, period coverage, carried/unavailable outcomes, reconciliations, and the promotion report. For a bounded backfill use `bun run energy:refresh -- --source <source-id> --from YYYY-MM-DD --to YYYY-MM-DD`. This command does not change promoted runtime data. EIA series selectors are configured in the registry and require `EIA_API_KEY`; configure the official machine-readable `PORTWATCH_DATA_URL` and `GEM_DATA_URL` outside the repository. UN/LOCODE uses the reviewed local snapshot in `src/data/source-artifacts/`. Yahoo TTF and UN Comtrade are retired from automated refresh; their old snapshots remain historical provenance only.
-4. **Audit evidence** - use Firecrawl to scrape every due or changed URL in `src/data/exposure-traces.json`, then update the reviewed results in `src/data/evidence-audit.json`.
-   - Verify the canonical URL, HTTP status, page type, title, publisher, publication date, extracted facts, and direct claim support.
-   - For market observations, record the exact value, unit, instrument, provider, source date, and observation timestamp when available.
-   - For Yahoo Finance and New York Fed API endpoints, add a one-time `cachebust=<UTC-run-id>` query parameter to the Firecrawl request when its canonical response is stale. Retain the canonical source URL in the audit record and note the cache-busted review in the claim summary.
-   - Mark unsupported, unreachable, landing-page, or ambiguous content for review; never approve it automatically.
-   - Run `bun run daily:evidence`. Resolve every failure before continuing.
-5. **Complete verified physical inputs** - edit `src/data/daily-state.json`:
-   - Update `asOf`, `day`, crisis fields, alerts, scenarios, and `timelineEntry`.
-   - Under `traceInputs.metrics`, review JKM, Hormuz transit condition/count, route pressure, Qatar output/force-majeure status, EIA production/export baselines, Ras Laffan capacity/status/UN/LOCODE identity, Japan/Korea demand availability, EIA oil-flow baselines, and the trace headline.
-   - Japan/Korea demand remains unavailable while UN Comtrade is retired. Keep vessel-specific observations unavailable unless independently supported by dated public evidence.
-   - Under `commercialInputs`, review Dubai/Oman, LNG and VLCC freight, war-risk costs, current origin/destination values, EUR/USD, and SOFR.
-   - Every published value needs exact evidence, `source`, and `sourceDate`. Do not enter analyst estimates, assumed ranges, or placeholder values.
-   - If a prior observation is still useful, keep its original date and mark it `carried`; it will display but cannot enter a calculation.
-   - If no dependable value exists, set `status: "unavailable"`, remove value/range/source fields, and add `missingReason`.
-6. **Rerun after edits** - if evidence, state, exposure, or source configuration changes after the Energy/LNG refresh, rerun `bun run energy:refresh`. The report fingerprint is intentionally stale until refreshed.
-7. **Review all three traces** - check Qatar supply disruption, Hormuz delivery constraint, and Hormuz crude-export constraint. Oil counterparty stages remain unnamed unless company-level evidence is approved.
-8. **Review Flow Pressure** - the score is generated from the reviewed trace directions, observations, freshness, evidence, and alternative candidates; do not manually edit or tune the score. In **SIGNAL → EXPOSURE**, check all six component statuses and weights, confidence, evidence count, and ensure `potential` alternatives are not described as executable.
-9. **Review commercial evaluation** - residual calculations must remain unavailable unless every required input is current, verified, unit-compatible, and directly audited.
-10. **Publish** - run `bun run daily:apply -- --dry-run`, review the proposed files, then run `bun run daily:update`. The apply gate promotes only a complete, validated candidate/report pair with the current `asOf` and refresh fingerprint; it stages and validates the full output bundle before writing.
+1. **Refresh liquid markets**: run `bun run daily:refresh`. It fetches Brent, WTI, EUR/USD and SOFR into daily state and does not publish. `git diff src/data/daily-state.json` is the preview, so there is no separate dry run. A failed fetch carries the prior value with its original date.
+2. **Plan the run**: run `bun run daily:status`. It prints:
+   - **Evidence to scrape**: items that are overdue, expire before the next run, have a changed URL, or whose `lastChecked` no longer matches the audit (for example, machine-refreshed by step 1). This list is the complete scrape scope.
+   - **Stale / carried / estimated**: every held observation with its age. Items marked `!` are past their cadence. Make one targeted search for a replacement source; if none is found, keep the item carried with an updated reason.
+   - **Review triggers**: whether a trace or commercial review is needed (see Conditional Steps).
+3. **Audit evidence**: run Firecrawl on **only** the listed URLs, plus the exact articles behind today's new events. Update `src/data/evidence-audit.json`:
+   - Record the canonical URL, HTTP status, page type, title, publisher, publication date, extracted facts and direct claim support. For market observations, also record the exact value, unit, instrument, provider, source date and observation timestamp.
+   - For Yahoo Finance and New York Fed API endpoints, add a one-time `cachebust=<UTC-run-id>` query parameter when the canonical response is stale. Keep the canonical URL in the record.
+   - Never approve unsupported, unreachable, landing-page or ambiguous content.
+   - Run `date -u` first. `reviewedAt` and each `checkedAt` must not be in the future.
+   - When switching an evidence source, hand-sync the matching `exposure-traces.json` `evidence[]` entry first. See the runbook section "Reviewed Evidence Gate".
+4. **Edit `daily-state.json`**: set `asOf`, `day`, `crisis`, `deltaVsYesterday`, `topAlert`, `todaysEvents`, `scenarios`, `volatilityDay`, `priceNarratives`, `runbookState`, `timelineEntry`, `traceInputs` (headline, metrics, evidenceUpdates) and `commercialInputs`.
+   - Every published value needs exact audited evidence, a `source` and a `sourceDate`. Never enter estimates, assumed ranges or placeholders.
+   - Keep a still-useful prior observation `carried`, with its original date and a `carryReason`. If no dependable value exists, mark it `unavailable` with a `missingReason`.
+   - Set `commodities`, `commodityScenario`, `marketContext`, `crossAsset` and `fallbackQuotes` only for values that changed today.
+   - **Intel events** (`src/data/iran-intel-events.json`): rewrite `ship-001`, `sec-005` (title of 8 words or fewer) and `supply-001`, and update the Brent figure in `energy-003`, `trade-001` and `trade-003`. Each description is 150 words or fewer, with no "Day N update:" prefixes. `daily:apply` mirrors the file.
+   - Do **not** edit generated files: cross-asset, conflict, charts, commodities, `useMarkets.ts`, `MarketsWidget.tsx`, the runbook state rows, the timeline, the trace or energy runtime files, or `public/data/`.
+5. **Stage Energy/LNG once**: run `bun run energy:refresh` after **all** state and evidence edits. Add `-- --event` after a material disruption change. If you edit state or evidence again afterwards, rerun it, because the fingerprint must match.
+6. **Publish**: run `bun run daily:update`. This single gate runs apply (including the evidence gate, energy and climate promotion, and staged bundle validation), then check, then build. Fix any failure and rerun. Review `git diff --stat`, then commit.
 
-`daily:update` first enforces the reviewed evidence gate, then applies state, mirrors runtime data, validates, and builds. It never refetches or recrawls after review.
+## Conditional Steps (only when triggered)
+
+| Step | Trigger |
+|------|---------|
+| `bun run daily:test` | Anything under `scripts/` or `scripts/fixtures/` changed |
+| Browser review of SIGNAL → EXPOSURE (Flow Pressure, five-hop chain, counterparties, alternatives) | `daily:status` lists a trace trigger, or the weekly review |
+| Commercial evaluation review | `daily:status` reports that a commercial input became usable. While Dubai/Oman, freight and war-risk inputs are unavailable or carried, all three traces stay `insufficient verified data`, and `daily:check` already proves the result is reproducible. |
+| Manual TTF review on the [ICE Endex page](https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data) | `ttf` is due or carried in `daily:status`. Record the contract and displayed time, and keep the delayed `Last` quote distinct from settlement. |
+| `bun run climate:refresh` | Weekly, or when a GDACS cyclone or flood event is active near a traced asset |
+| Full E2E recipe (runbook) | Weekly, or after UI or script changes |
+| Archived datasets (clients, trade ideas, sanctions) | Never in the daily run; they are not rendered |
 
 ## Cadence and Source Rules
 
-- **Daily**: Brent, WTI, TTF, EUR/USD, SOFR, JKM, Dubai/Oman, Hormuz transit status, route-normalised freight, war-risk cost, and trace headline.
-- **Daily**: IMF PortWatch Hormuz vessel counts from the official chokepoint layer; route-pressure score remains unavailable unless directly sourced.
-- **Annual**: EIA Qatar production/export baselines, GEM terminal capacity/status, and UN/LOCODE identity snapshots.
-- **Event-driven**: Qatar production, force majeure, attacks, reopening, and routing changes.
+- **Daily**: Brent, WTI, EUR/USD and SOFR (machine); TTF, JKM, Dubai/Oman, Hormuz transit status, route-normalised freight, war-risk cost and the trace headline (manual, only when due or newly reported).
+- **Daily**: IMF PortWatch Hormuz vessel counts come from the official chokepoint layer. The route-pressure score stays unavailable unless it is directly sourced.
+- **Annual**: EIA Qatar production and export baselines, GEM terminal capacity and status, and UN/LOCODE identity snapshots.
+- **Event-driven**: Qatar production, force majeure, attacks, reopening and routing changes.
 - **Contract-driven**: named counterparties and public supply agreements.
-- Yahoo Finance with Stooq fallback is allowed for selected liquid instruments. Dutch TTF and UN Comtrade are retired from automatic refresh. Use ICE Endex for manual TTF review; evaluate Trading Economics' subscribed historical API only after matching its EU Gas series to the ICE front-month series.
-- JKM, Dubai/Oman, LNG/VLCC freight, AIS/transit counts, Qatar output, force majeure, and war-risk costs remain manually verified unless a dependable machine-readable source is approved.
+- Yahoo Finance with a Stooq fallback is allowed for selected liquid instruments. Dutch TTF and UN Comtrade are retired from automatic refresh.
 - Missing data is published as unavailable. Carried or stale values never enter commercial calculations.
-- `bun run daily:update` is promotion-only: it must not fetch, recrawl, or create scheduler infrastructure.
-- Relationships must be typed as `public-contract`, `operational-dependency`, or `market-sensitivity`.
-- Broad landing pages are not valid evidence. Dynamic quote pages require a dated observation snapshot before they can support a historical metric.
+- `bun run daily:update` is promotion-only: it must not fetch, recrawl or create scheduler infrastructure.
+- Relationships must be typed as `public-contract`, `operational-dependency` or `market-sensitivity`.
+- Broad landing pages are not valid evidence. Dynamic quote pages need a dated observation snapshot before they can support a historical metric.
+- EIA series require `EIA_API_KEY` in `.env`. PortWatch uses the keyless ArcGIS layer in the source registry (`PORTWATCH_DATA_URL` only overrides it). Ras Laffan capacity comes from the reviewed QatarEnergy LNG snapshot, which is refreshed annually. Ras Laffan status is a reviewed value: update `ras-laffan-asset-status` whenever you update `qatar-output-status`.
 
-## Generated Outputs
+## Generated Outputs (never hand-edit)
 
-`bun run daily:apply` distributes reviewed state into:
-
-- `src/data/daily-state.json` and `public/data/daily-state.json`
-- `src/data/exposure-traces.json` and `public/data/exposure-traces.json`
-- `src/data/energy-lng-candidates.json` and `src/data/energy-lng-refresh-report.json` (staged inputs)
-- `src/data/energy-lng-snapshot-manifest.json` and `src/data/energy-lng-snapshots/` (raw snapshot lineage; generated by `energy:refresh`)
-- `src/data/energy-lng-runtime.json`, `src/data/energy-lng-read-model.json`, and their `public/data/` mirrors
-- `src/data/iran-intel-events.json` and `public/data/iran-intel-events.json`
-- `src/data/banker-cross-asset.json`
-- `src/data/banker-conflict.json`
-- `src/data/charts-volatility.json`
-- `src/data/commodities-impact.json`
-- `src/hooks/useMarkets.ts`
-- `src/components/MarketsWidget.tsx`
-- `docs/daily-update-runbook.md`
-- `docs/crisis-timeline-archive.md`
-
-Do not edit generated daily fields directly.
-`src/data/evidence-audit.json` is a reviewed input, not a generated output.
-
-## Required Validation
-
-- `bun run daily:evidence`
-- `bun run daily:test`
-- `bun run daily:check`
-- `bun run build`
-
-All three are included in `bun run daily:update`.
+`bun run daily:apply` writes `daily-state.json`, `exposure-traces.json`, the energy runtime and read model, the climate read model, `banker-cross-asset.json`, `banker-conflict.json`, `charts-volatility.json` (keeping the last 12 scenario days), `commodities-impact.json` and their `public/data/` mirrors, including `iran-intel-events.json`. It also writes `src/hooks/useMarkets.ts`, `src/components/MarketsWidget.tsx`, the Current State and Price Narratives in `docs/daily-update-runbook.md`, and `docs/crisis-timeline-archive.md`. `energy:refresh` writes the energy candidates, refresh report, snapshot manifest and snapshots.

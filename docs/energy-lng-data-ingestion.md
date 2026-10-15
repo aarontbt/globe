@@ -83,7 +83,7 @@ fallback.
 | --- | --- | --- | --- | --- |
 | Gas balances, production, storage and prices | [EIA Open Data](https://www.eia.gov/opendata/), [JODI-Gas](https://www.jodidata.org/gas/database/data-downloads.aspx) | Production, imports/exports, storage, prices, balances | EIA connector requires `EIA_API_KEY` or `EIA_DATA_URL`; no oil baseline is converted into LNG volume | Active physical connector |
 | Trade flows and concentration | [UN Comtrade](https://comtradeplus.un.org/TradeFlow) | Reporter, partner, HS commodity, value, quantity and direction | Retired from automated refresh 2026-10-15; Japan/Korea demand inputs remain unavailable; historical snapshots retained | Retired |
-| Terminals, pipelines and other assets | [Global Energy Monitor GGIT](https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/), [UN/LOCODE](https://unece.org/trade/cefact/unlocode-code-list-country-and-territory) | Asset identity, location, status, capacity and place identifiers | UN/LOCODE Ras Laffan identity is read from the reviewed local snapshot; identity/capacity metadata does not prove current loading | Active Phase 2 asset registry |
+| Terminals, pipelines and other assets | [QatarEnergy LNG trains](https://www.qatarenergylng.qa/Operations/LNG-trains), [UN/LOCODE](https://unece.org/trade/cefact/unlocode-code-list-country-and-territory); reviewed Reuters force-majeure reporting for status | Asset identity, nameplate capacity, operating status and place identifiers | Capacity (77.5 MTPA operator nameplate) and UN/LOCODE identity are read from reviewed local snapshots; status is a manual-only reviewed event source because static registries lag crisis outages. GEM GGIT is retired (no download access; wiki is CC BY-NC-SA). Capacity does not prove current loading | Active Phase 2 asset registry |
 | Ports, chokepoints and maritime pressure | [IMF PortWatch Daily Chokepoints layer](https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0) | Dated daily total vessel counts by chokepoint | `chokepoint6` is Strait of Hormuz; total AIS counts are not LNG-only counts and do not supply a route-pressure score | Active transit-count connector |
 | European gas system | [AGSI+](https://agsi.gie.eu/), [ENTSOG Transparency](https://transparency.entsog.eu/) | Storage, nominations, flows, network and facility observations | Coverage is strongest in Europe and depends on the source's reporting rules | Future |
 | Historical LNG vessel and terminal baseline | [LNG-T3](https://zenodo.org/records/19571058) | Historical vessel voyages, terminals, throughput and country flows | Historical dataset; useful for backtesting and priors, not live status | Future |
@@ -98,10 +98,15 @@ inputs before they can support a stronger exposure claim.
 
 ### Active Phase 2 contract
 
-`bun run energy:refresh` fetches the configured EIA, IMF PortWatch, GEM, and
-UN/LOCODE sources. It reads the reviewed UN/LOCODE snapshot from
-`src/data/source-artifacts/unlocode-ras-laffan.json`; it does not require a
-remote endpoint. UN Comtrade and Yahoo TTF are retired and are not fetched. ICE Endex is the manual TTF reference; do not promote its public delayed `Last` quote as an official settlement price. Trading Economics API access requires a subscription and its EU Gas history must be reconciled to the ICE front-month contract before it can replace the manual review.
+`bun run energy:refresh` fetches the configured EIA and IMF PortWatch sources
+(PortWatch uses the keyless ArcGIS layer in the registry; `PORTWATCH_DATA_URL`
+only overrides it). It reads reviewed local snapshots from
+`src/data/source-artifacts/unlocode-ras-laffan.json` (port identity) and
+`src/data/source-artifacts/qatarenergy-ras-laffan-capacity.json` (operator
+nameplate capacity, refreshed annually or when a North Field expansion train
+starts). Ras Laffan operating status is the manual-only
+`src-reviewed-ras-laffan-status` source, updated in `daily-state.json` alongside
+`qatar-output-status`. UN Comtrade and Yahoo TTF are retired and are not fetched. ICE Endex is the manual TTF reference; do not promote its public delayed `Last` quote as an official settlement price. Trading Economics API access requires a subscription and its EU Gas history must be reconciled to the ICE front-month contract before it can replace the manual review.
 `--event` changes only the trigger
 recorded in the report. `--source`, `--from` and `--to` constrain a
 deterministic backfill. The command writes candidate observations, a

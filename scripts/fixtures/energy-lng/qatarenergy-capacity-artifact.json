@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "qatarenergy-ras-laffan-capacity-artifact-v1",
+  "provider": "QatarEnergy LNG",
+  "sourceUrl": "https://www.qatarenergylng.qa/Operations/LNG-trains",
+  "retrievedAt": "2026-08-01",
+  "retrievalMethod": "Firecrawl scrape of the operator's LNG trains page (HTTP 200)",
+  "trainCapacitiesMTPA": [
+    {
+      "venture": "QatarEnergy LNG N(1)",
+      "trains": "T1-3",
+      "capacity": 10,
+      "quote": "consists of three trains, which, after a debottlenecking project in 2005, now produce approximately 10 million tonnes per annum (MTPA) of LNG"
+    },
+    {
+      "venture": "QatarEnergy LNG N(2)",
+      "trains": "T4-5",
+      "capacity": 15.6,
+      "quote": "two world class LNG mega trains (Train 4 and Train 5) each with a capacity of 7.8 MTPA"
+    },
+    {
+      "venture": "QatarEnergy LNG N(3)",
+      "trains": "T6",
+      "capacity": 7.8,
+      "quote": "a new LNG mega train (Train 6) with a capacity of 7.8 MTPA"
+    },
+    {
+      "venture": "QatarEnergy LNG N(4)",
+      "trains": "T7",
+      "capacity": 7.8,
+      "quote": "a new LNG mega train (Train 7) ... with a production capacity of 7.8 MTPA"
+    },
+    {
+      "venture": "QatarEnergy LNG S(1)",
+      "trains": "T1-2",
+      "capacity": 6.6,
+      "quote": "In addition to a combined production of 6.6 MTPA of LNG"
+    },
+    {
+      "venture": "QatarEnergy LNG S(2)",
+      "trains": "T3-5",
+      "capacity": 14.1,
+      "quote": "consists of three trains, Train 3, 4 and 5 each with a production capacity of 4.7 MTPA"
+    },
+    {
+      "venture": "QatarEnergy LNG S(3)",
+      "trains": "T6-7",
+      "capacity": 15.6,
+      "quote": "As well as generating 15.6 MTPA of LNG"
+    }
+  ],
+  "assets": [
+    {
+      "namespace": "QatarEnergy LNG",
+      "code": "ras-laffan",
+      "stableEntityId": "ras-laffan",
+      "name": "Ras Laffan LNG trains (14 trains, operator nameplate)",
+      "capacity": 77.5,
+      "unit": "MTPA",
+      "observationDate": "2026-08-01",
+      "sourceUrl": "https://www.qatarenergylng.qa/Operations/LNG-trains",
+      "coverageNote": "Sum of the operator's published per-venture nameplate capacities; N(1) is stated as approximately 10 MTPA. Nameplate capacity only - it does not establish current production, which is curtailed under force majeure."
+    }
+  ],
+  "fixtureNote": "Test copy of the reviewed artifact, dated before the 2026-08-26 fixture asOf."
+}

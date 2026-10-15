@@ -797,3 +797,29 @@ export function parseArgs(argv = process.argv.slice(2)) {
     checkOnly: argv.includes("--check"),
   };
 }
+
+export const LONG_CARRIED_DAYS = 30;
+
+// Carried and estimated observations with their age; `long` marks values held well past
+// their own cadence that need a replacement source search.
+export function collectStaleObservations(state, asOf) {
+  const stale = [];
+  const add = (scope, id, record) => {
+    if (!["carried", "estimated"].includes(record?.status)) return;
+    const age = record.sourceDate ? ageInDays(asOf, record.sourceDate) : Number.NaN;
+    const threshold = Math.max(LONG_CARRIED_DAYS, Number(record.maxAgeDays) || 0);
+    stale.push({
+      scope,
+      id,
+      label: record.label ?? id,
+      status: record.status,
+      sourceDate: record.sourceDate ?? "-",
+      age,
+      long: Number.isFinite(age) && age > threshold,
+    });
+  };
+  for (const [id, metric] of Object.entries(state.traceInputs?.metrics ?? {})) add("trace", id, metric);
+  for (const [id, input] of Object.entries(state.commercialInputs ?? {})) add("commercial", id, input);
+  for (const [id, row] of Object.entries(state.crossAsset ?? {})) add("cross-asset", id, row);
+  return stale.sort((a, b) => (b.age || 0) - (a.age || 0));
+}

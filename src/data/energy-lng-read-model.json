@@ -31,7 +31,8 @@
       "description": "Qatar's principal LNG production and export complex.",
       "aliases": [
         "ras-laffan",
-        "Ras Laffan LNG Complex"
+        "Ras Laffan LNG Complex",
+        "Ras Laffan LNG trains (14 trains, operator nameplate)"
       ],
       "identitySources": [
         "Global Energy Monitor",
@@ -845,7 +846,7 @@
       "provider": "IMF PortWatch",
       "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=portid%3D%27chokepoint6%27+AND+date+%3E%3D+DATE+%272026-10-09%27+AND+date+%3C%3D+DATE+%272026-10-15%27&outFields=date%2Cportid%2Cportname%2Cn_total%2Cn_tanker%2Cn_cargo%2Ccapacity&returnGeometry=false&orderByFields=date+DESC&resultRecordCount=1000&f=json",
       "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:5c822b4c2ef20fca",
-      "retrievedAt": "2026-10-15T07:41:14.254Z",
+      "retrievedAt": "2026-10-15T11:22:37.749Z",
       "observedAt": null,
       "contentHash": "5c822b4c2ef20fca859c8b04677edfe05027d007bc243b4065aefd3c5a78924c",
       "parserVersion": "portwatch-arcgis-route-v1",
@@ -882,7 +883,7 @@
       "provider": "U.S. EIA",
       "url": "https://api.eia.gov/v2/seriesid/INTL.26-1-QAT-BCF.A?api_key=%REDACTED%",
       "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
-      "retrievedAt": "2026-10-15T07:41:14.254Z",
+      "retrievedAt": "2026-10-15T11:22:37.749Z",
       "observedAt": null,
       "contentHash": "a7a9454f67798ea75c768e7e6ed4fa745b13e29586232c899eb8d0c7c93fb520",
       "parserVersion": "eia-series-v2",
@@ -916,7 +917,7 @@
       "provider": "U.S. EIA",
       "url": "https://api.eia.gov/v2/seriesid/INTL.26-4-QAT-BCF.A?api_key=%REDACTED%",
       "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
-      "retrievedAt": "2026-10-15T07:41:14.254Z",
+      "retrievedAt": "2026-10-15T11:22:37.749Z",
       "observedAt": null,
       "contentHash": "bb68bc4bb67d7fde8718930bc83a6b9f9ebb0bbe0de03364bd8a0598dfa7e362",
       "parserVersion": "eia-series-v2",
@@ -945,12 +946,46 @@
       "status": "validated"
     },
     {
+      "id": "machine-evidence:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c",
+      "sourceId": "src-qatarenergy-ras-laffan-capacity",
+      "provider": "QatarEnergy LNG",
+      "url": "https://www.qatarenergylng.qa/Operations/LNG-trains",
+      "snapshotRef": "snapshot:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c",
+      "retrievedAt": "2026-10-15T11:22:37.749Z",
+      "observedAt": "2026-10-15T00:00:00.000Z",
+      "contentHash": "d9683a5efa80136caa2282129050d394ec366d390ee5e774205fe8dab26011ca",
+      "parserVersion": "qatarenergy-asset-v1",
+      "recordKeys": [
+        "734a89864a714e3224bdafa47c0f4828983c8990e529c4b6444284c1fa61f6f0"
+      ],
+      "targetInputIds": [
+        "ras-laffan-capacity"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "capacity",
+      "coverage": {
+        "status": "direct-observation",
+        "sourcePeriod": {
+          "start": "2026-01-01",
+          "end": "2026-12-31"
+        },
+        "expectedCadence": "annual",
+        "observedPeriod": {
+          "start": "2026-01-01",
+          "end": "2026-12-31"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched"
+      },
+      "status": "validated"
+    },
+    {
       "id": "machine-evidence:energy-snapshot:src-unlocode-ras-laffan:09f64b83ca9baf00",
       "sourceId": "src-unlocode-ras-laffan",
       "provider": "UN/LOCODE",
       "url": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
       "snapshotRef": "snapshot:energy-snapshot:src-unlocode-ras-laffan:09f64b83ca9baf00",
-      "retrievedAt": "2026-10-15T07:41:14.254Z",
+      "retrievedAt": "2026-10-15T11:22:37.749Z",
       "observedAt": "2026-05-09T00:00:00.000Z",
       "contentHash": "09f64b83ca9baf004b8703e142cfd3e0a9fa25ce79c50874c3539fd2fdcf612b",
       "parserVersion": "unlocode-asset-v1",
@@ -1244,19 +1279,22 @@
             },
             {
               "inputId": "ras-laffan-asset-status",
-              "label": "Terminal registry status",
+              "label": "Ras Laffan operating status",
+              "value": "QatarEnergy LNG force majeure in effect; selected Asian buyers notified it runs through November, Edison expects no cargoes until early December",
               "unit": "",
-              "status": "unavailable",
-              "source": "",
-              "sourceDate": "",
-              "maxAgeDays": 730,
-              "cadence": "annual",
-              "missingReason": "Machine refresh failed: src-gem-ras-laffan-status: GEM_DATA_URL is required for the asset registry connector. No approved observation is available.",
+              "status": "carried",
+              "source": "Reuters via The Business Standard",
+              "sourceDate": "2026-09-28",
+              "observedAt": "2026-09-28T00:00:00.000Z",
+              "maxAgeDays": 14,
+              "cadence": "event-driven",
+              "carryReason": "Reviewed Oct 15: the Sep 28 Reuters force-majeure report remains the latest dated public statement on Ras Laffan LNG operations; no restart has been reported.",
               "observationKind": "asset-status",
-              "periodStart": null,
-              "periodEnd": null,
-              "coverageStatus": "unavailable",
-              "sourceAgeDays": null
+              "periodStart": "2026-09-28",
+              "periodEnd": "2026-09-28",
+              "coverageStatus": "partial-coverage",
+              "coverageNote": "Status inferred from QatarEnergy LNG force-majeure notices to buyers, not a train-by-train operating report.",
+              "sourceAgeDays": 17
             },
             {
               "inputId": "ras-laffan-port-identity",
@@ -1354,18 +1392,21 @@
             {
               "inputId": "ras-laffan-capacity",
               "label": "Ras Laffan public capacity",
+              "value": 77.5,
               "unit": "MTPA",
-              "status": "unavailable",
-              "source": "",
-              "sourceDate": "",
+              "status": "confirmed",
+              "source": "QatarEnergy LNG",
+              "sourceDate": "2026-10-15",
               "maxAgeDays": 730,
               "cadence": "annual",
-              "missingReason": "Machine refresh failed: src-gem-ras-laffan-capacity: GEM_DATA_URL is required for the asset registry connector. No approved observation is available.",
+              "machineEvidenceIds": [
+                "machine-evidence:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c"
+              ],
               "observationKind": "capacity",
-              "periodStart": null,
-              "periodEnd": null,
-              "coverageStatus": "unavailable",
-              "sourceAgeDays": null
+              "periodStart": "2026-01-01",
+              "periodEnd": "2026-12-31",
+              "coverageStatus": "direct-observation",
+              "sourceAgeDays": 0
             }
           ],
           "evidenceIds": [
@@ -1733,13 +1774,13 @@
         "score": 64,
         "status": "provisional",
         "confidence": "low",
-        "calculatedAt": "2026-10-15T07:41:14.254Z",
+        "calculatedAt": "2026-10-15T11:22:37.749Z",
         "components": [
           {
             "id": "supply-interruption",
             "label": "Supply interruption",
             "weight": 0.25,
-            "score": 68,
+            "score": 69,
             "status": "partially-observed",
             "confidence": "low",
             "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
@@ -2213,10 +2254,8 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "Global Energy Monitor",
-            "sourceId": "src-gem-ras-laffan-capacity",
-            "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
             "sourceAgeDays": null,
-            "cadence": "annual",
+            "cadence": "daily",
             "confidence": "unknown",
             "evidenceIds": []
           },
@@ -2233,10 +2272,8 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "Global Energy Monitor",
-            "sourceId": "src-gem-ras-laffan-status",
-            "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
             "sourceAgeDays": null,
-            "cadence": "annual",
+            "cadence": "daily",
             "confidence": "unknown",
             "evidenceIds": []
           },
@@ -2566,6 +2603,72 @@
             "machineEvidenceIds": [
               "machine-evidence:energy-snapshot:src-unlocode-ras-laffan:09f64b83ca9baf00"
             ]
+          },
+          {
+            "id": "energy-observation:src-imf-portwatch-hormuz:hormuz-total-transits:unavailable:unavailable",
+            "label": "PortWatch route and chokepoint context",
+            "entityIds": [
+              "hormuz"
+            ],
+            "observationKind": "transit",
+            "periodStart": null,
+            "periodEnd": null,
+            "unit": "vessels/day",
+            "status": "unavailable",
+            "coverageStatus": "unavailable",
+            "source": "IMF PortWatch",
+            "sourceAgeDays": null,
+            "cadence": "daily",
+            "confidence": "unknown",
+            "evidenceIds": []
+          },
+          {
+            "id": "energy-observation:src-qatarenergy-ras-laffan-capacity:ras-laffan-capacity:2026-01-01:2026-12-31",
+            "label": "Ras Laffan LNG trains (14 trains, operator nameplate)",
+            "entityIds": [
+              "ras-laffan"
+            ],
+            "observationKind": "capacity",
+            "periodStart": "2026-01-01",
+            "periodEnd": "2026-12-31",
+            "value": 77.5,
+            "unit": "MTPA",
+            "status": "confirmed",
+            "coverageStatus": "direct-observation",
+            "source": "QatarEnergy LNG",
+            "sourceId": "src-qatarenergy-ras-laffan-capacity",
+            "sourceUrl": "https://www.qatarenergylng.qa/Operations/LNG-trains",
+            "sourceAgeDays": 0,
+            "cadence": "annual",
+            "confidence": "high",
+            "evidenceIds": [],
+            "machineEvidenceIds": [
+              "machine-evidence:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c"
+            ]
+          },
+          {
+            "id": "energy-observation:src-reviewed-ras-laffan-status:ras-laffan-asset-status:2026-09-28:2026-09-28",
+            "label": "Reviewed Ras Laffan operating status",
+            "entityIds": [
+              "ras-laffan"
+            ],
+            "observationKind": "asset-status",
+            "periodStart": "2026-09-28",
+            "periodEnd": "2026-09-28",
+            "value": "QatarEnergy LNG force majeure in effect; selected Asian buyers notified it runs through November, Edison expects no cargoes until early December",
+            "unit": "",
+            "status": "carried",
+            "coverageStatus": "partial-coverage",
+            "coverageNote": "Status inferred from QatarEnergy LNG force-majeure notices to buyers, not a train-by-train operating report.",
+            "source": "Reuters via The Business Standard",
+            "sourceId": "src-reviewed-ras-laffan-status",
+            "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
+            "sourceAgeDays": 17,
+            "cadence": "event-driven",
+            "confidence": "medium",
+            "evidenceIds": [
+              "e-reuters-qatar-force-majeure-0928"
+            ]
           }
         ],
         "coverage": [
@@ -2630,22 +2733,34 @@
             "sourceStatus": "fetched"
           },
           {
-            "sourceId": "src-gem-ras-laffan-capacity",
-            "sourcePeriod": null,
+            "sourceId": "src-qatarenergy-ras-laffan-capacity",
+            "sourcePeriod": {
+              "start": "2026-01-01",
+              "end": "2026-12-31"
+            },
             "expectedCadence": "annual",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2026-01-01",
+              "end": "2026-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
-            "sourceId": "src-gem-ras-laffan-status",
-            "sourcePeriod": null,
-            "expectedCadence": "annual",
-            "observedPeriod": null,
+            "sourceId": "src-reviewed-ras-laffan-status",
+            "sourcePeriod": {
+              "start": "2026-09-28",
+              "end": "2026-09-28"
+            },
+            "expectedCadence": "event-driven",
+            "observedPeriod": {
+              "start": "2026-09-28",
+              "end": "2026-09-28"
+            },
             "missingPeriods": [],
             "status": "unavailable",
-            "sourceStatus": "failed"
+            "sourceStatus": "skipped"
           },
           {
             "sourceId": "src-unlocode-ras-laffan",
@@ -3111,7 +3226,7 @@
         "score": 64,
         "status": "provisional",
         "confidence": "low",
-        "calculatedAt": "2026-10-15T07:41:14.254Z",
+        "calculatedAt": "2026-10-15T11:22:37.749Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -3641,10 +3756,8 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "Global Energy Monitor",
-            "sourceId": "src-gem-ras-laffan-capacity",
-            "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
             "sourceAgeDays": null,
-            "cadence": "annual",
+            "cadence": "daily",
             "confidence": "unknown",
             "evidenceIds": []
           },
@@ -3661,10 +3774,8 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "Global Energy Monitor",
-            "sourceId": "src-gem-ras-laffan-status",
-            "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
             "sourceAgeDays": null,
-            "cadence": "annual",
+            "cadence": "daily",
             "confidence": "unknown",
             "evidenceIds": []
           },
@@ -4478,6 +4589,72 @@
             "machineEvidenceIds": [
               "machine-evidence:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde"
             ]
+          },
+          {
+            "id": "energy-observation:src-imf-portwatch-hormuz:hormuz-total-transits:unavailable:unavailable",
+            "label": "PortWatch route and chokepoint context",
+            "entityIds": [
+              "hormuz"
+            ],
+            "observationKind": "transit",
+            "periodStart": null,
+            "periodEnd": null,
+            "unit": "vessels/day",
+            "status": "unavailable",
+            "coverageStatus": "unavailable",
+            "source": "IMF PortWatch",
+            "sourceAgeDays": null,
+            "cadence": "daily",
+            "confidence": "unknown",
+            "evidenceIds": []
+          },
+          {
+            "id": "energy-observation:src-qatarenergy-ras-laffan-capacity:ras-laffan-capacity:2026-01-01:2026-12-31",
+            "label": "Ras Laffan LNG trains (14 trains, operator nameplate)",
+            "entityIds": [
+              "ras-laffan"
+            ],
+            "observationKind": "capacity",
+            "periodStart": "2026-01-01",
+            "periodEnd": "2026-12-31",
+            "value": 77.5,
+            "unit": "MTPA",
+            "status": "confirmed",
+            "coverageStatus": "direct-observation",
+            "source": "QatarEnergy LNG",
+            "sourceId": "src-qatarenergy-ras-laffan-capacity",
+            "sourceUrl": "https://www.qatarenergylng.qa/Operations/LNG-trains",
+            "sourceAgeDays": 0,
+            "cadence": "annual",
+            "confidence": "high",
+            "evidenceIds": [],
+            "machineEvidenceIds": [
+              "machine-evidence:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c"
+            ]
+          },
+          {
+            "id": "energy-observation:src-reviewed-ras-laffan-status:ras-laffan-asset-status:2026-09-28:2026-09-28",
+            "label": "Reviewed Ras Laffan operating status",
+            "entityIds": [
+              "ras-laffan"
+            ],
+            "observationKind": "asset-status",
+            "periodStart": "2026-09-28",
+            "periodEnd": "2026-09-28",
+            "value": "QatarEnergy LNG force majeure in effect; selected Asian buyers notified it runs through November, Edison expects no cargoes until early December",
+            "unit": "",
+            "status": "carried",
+            "coverageStatus": "partial-coverage",
+            "coverageNote": "Status inferred from QatarEnergy LNG force-majeure notices to buyers, not a train-by-train operating report.",
+            "source": "Reuters via The Business Standard",
+            "sourceId": "src-reviewed-ras-laffan-status",
+            "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
+            "sourceAgeDays": 17,
+            "cadence": "event-driven",
+            "confidence": "medium",
+            "evidenceIds": [
+              "e-reuters-qatar-force-majeure-0928"
+            ]
           }
         ],
         "coverage": [
@@ -4542,22 +4719,34 @@
             "sourceStatus": "fetched"
           },
           {
-            "sourceId": "src-gem-ras-laffan-capacity",
-            "sourcePeriod": null,
+            "sourceId": "src-qatarenergy-ras-laffan-capacity",
+            "sourcePeriod": {
+              "start": "2026-01-01",
+              "end": "2026-12-31"
+            },
             "expectedCadence": "annual",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2026-01-01",
+              "end": "2026-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
-            "sourceId": "src-gem-ras-laffan-status",
-            "sourcePeriod": null,
-            "expectedCadence": "annual",
-            "observedPeriod": null,
+            "sourceId": "src-reviewed-ras-laffan-status",
+            "sourcePeriod": {
+              "start": "2026-09-28",
+              "end": "2026-09-28"
+            },
+            "expectedCadence": "event-driven",
+            "observedPeriod": {
+              "start": "2026-09-28",
+              "end": "2026-09-28"
+            },
             "missingPeriods": [],
             "status": "unavailable",
-            "sourceStatus": "failed"
+            "sourceStatus": "skipped"
           },
           {
             "sourceId": "src-unlocode-ras-laffan",
@@ -5004,7 +5193,7 @@
         "score": 65,
         "status": "provisional",
         "confidence": "unknown",
-        "calculatedAt": "2026-10-15T07:41:14.254Z",
+        "calculatedAt": "2026-10-15T11:22:37.749Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -5426,6 +5615,24 @@
             "machineEvidenceIds": [
               "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:5c822b4c2ef20fca"
             ]
+          },
+          {
+            "id": "energy-observation:src-imf-portwatch-hormuz:hormuz-total-transits:unavailable:unavailable",
+            "label": "PortWatch route and chokepoint context",
+            "entityIds": [
+              "hormuz"
+            ],
+            "observationKind": "transit",
+            "periodStart": null,
+            "periodEnd": null,
+            "unit": "vessels/day",
+            "status": "unavailable",
+            "coverageStatus": "unavailable",
+            "source": "IMF PortWatch",
+            "sourceAgeDays": null,
+            "cadence": "daily",
+            "confidence": "unknown",
+            "evidenceIds": []
           }
         ],
         "coverage": [
@@ -5490,22 +5697,34 @@
             "sourceStatus": "fetched"
           },
           {
-            "sourceId": "src-gem-ras-laffan-capacity",
-            "sourcePeriod": null,
+            "sourceId": "src-qatarenergy-ras-laffan-capacity",
+            "sourcePeriod": {
+              "start": "2026-01-01",
+              "end": "2026-12-31"
+            },
             "expectedCadence": "annual",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2026-01-01",
+              "end": "2026-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
-            "sourceId": "src-gem-ras-laffan-status",
-            "sourcePeriod": null,
-            "expectedCadence": "annual",
-            "observedPeriod": null,
+            "sourceId": "src-reviewed-ras-laffan-status",
+            "sourcePeriod": {
+              "start": "2026-09-28",
+              "end": "2026-09-28"
+            },
+            "expectedCadence": "event-driven",
+            "observedPeriod": {
+              "start": "2026-09-28",
+              "end": "2026-09-28"
+            },
             "missingPeriods": [],
             "status": "unavailable",
-            "sourceStatus": "failed"
+            "sourceStatus": "skipped"
           },
           {
             "sourceId": "src-unlocode-ras-laffan",
@@ -5921,10 +6140,8 @@
         "status": "unavailable",
         "coverageStatus": "unavailable",
         "source": "Global Energy Monitor",
-        "sourceId": "src-gem-ras-laffan-capacity",
-        "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
         "sourceAgeDays": null,
-        "cadence": "annual",
+        "cadence": "daily",
         "confidence": "unknown",
         "evidenceIds": []
       },
@@ -5941,10 +6158,8 @@
         "status": "unavailable",
         "coverageStatus": "unavailable",
         "source": "Global Energy Monitor",
-        "sourceId": "src-gem-ras-laffan-status",
-        "sourceUrl": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker",
         "sourceAgeDays": null,
-        "cadence": "annual",
+        "cadence": "daily",
         "confidence": "unknown",
         "evidenceIds": []
       },
@@ -6800,6 +7015,72 @@
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-unlocode-ras-laffan:09f64b83ca9baf00"
         ]
+      },
+      {
+        "id": "energy-observation:src-imf-portwatch-hormuz:hormuz-total-transits:unavailable:unavailable",
+        "label": "PortWatch route and chokepoint context",
+        "entityIds": [
+          "hormuz"
+        ],
+        "observationKind": "transit",
+        "periodStart": null,
+        "periodEnd": null,
+        "unit": "vessels/day",
+        "status": "unavailable",
+        "coverageStatus": "unavailable",
+        "source": "IMF PortWatch",
+        "sourceAgeDays": null,
+        "cadence": "daily",
+        "confidence": "unknown",
+        "evidenceIds": []
+      },
+      {
+        "id": "energy-observation:src-qatarenergy-ras-laffan-capacity:ras-laffan-capacity:2026-01-01:2026-12-31",
+        "label": "Ras Laffan LNG trains (14 trains, operator nameplate)",
+        "entityIds": [
+          "ras-laffan"
+        ],
+        "observationKind": "capacity",
+        "periodStart": "2026-01-01",
+        "periodEnd": "2026-12-31",
+        "value": 77.5,
+        "unit": "MTPA",
+        "status": "confirmed",
+        "coverageStatus": "direct-observation",
+        "source": "QatarEnergy LNG",
+        "sourceId": "src-qatarenergy-ras-laffan-capacity",
+        "sourceUrl": "https://www.qatarenergylng.qa/Operations/LNG-trains",
+        "sourceAgeDays": 0,
+        "cadence": "annual",
+        "confidence": "high",
+        "evidenceIds": [],
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c"
+        ]
+      },
+      {
+        "id": "energy-observation:src-reviewed-ras-laffan-status:ras-laffan-asset-status:2026-09-28:2026-09-28",
+        "label": "Reviewed Ras Laffan operating status",
+        "entityIds": [
+          "ras-laffan"
+        ],
+        "observationKind": "asset-status",
+        "periodStart": "2026-09-28",
+        "periodEnd": "2026-09-28",
+        "value": "QatarEnergy LNG force majeure in effect; selected Asian buyers notified it runs through November, Edison expects no cargoes until early December",
+        "unit": "",
+        "status": "carried",
+        "coverageStatus": "partial-coverage",
+        "coverageNote": "Status inferred from QatarEnergy LNG force-majeure notices to buyers, not a train-by-train operating report.",
+        "source": "Reuters via The Business Standard",
+        "sourceId": "src-reviewed-ras-laffan-status",
+        "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
+        "sourceAgeDays": 17,
+        "cadence": "event-driven",
+        "confidence": "medium",
+        "evidenceIds": [
+          "e-reuters-qatar-force-majeure-0928"
+        ]
       }
     ],
     "coverage": [
@@ -6864,22 +7145,34 @@
         "sourceStatus": "fetched"
       },
       {
-        "sourceId": "src-gem-ras-laffan-capacity",
-        "sourcePeriod": null,
+        "sourceId": "src-qatarenergy-ras-laffan-capacity",
+        "sourcePeriod": {
+          "start": "2026-01-01",
+          "end": "2026-12-31"
+        },
         "expectedCadence": "annual",
-        "observedPeriod": null,
+        "observedPeriod": {
+          "start": "2026-01-01",
+          "end": "2026-12-31"
+        },
         "missingPeriods": [],
-        "status": "unavailable",
-        "sourceStatus": "failed"
+        "status": "direct-observation",
+        "sourceStatus": "fetched"
       },
       {
-        "sourceId": "src-gem-ras-laffan-status",
-        "sourcePeriod": null,
-        "expectedCadence": "annual",
-        "observedPeriod": null,
+        "sourceId": "src-reviewed-ras-laffan-status",
+        "sourcePeriod": {
+          "start": "2026-09-28",
+          "end": "2026-09-28"
+        },
+        "expectedCadence": "event-driven",
+        "observedPeriod": {
+          "start": "2026-09-28",
+          "end": "2026-09-28"
+        },
         "missingPeriods": [],
         "status": "unavailable",
-        "sourceStatus": "failed"
+        "sourceStatus": "skipped"
       },
       {
         "sourceId": "src-unlocode-ras-laffan",

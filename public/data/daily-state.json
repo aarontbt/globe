@@ -274,17 +274,20 @@
       },
       "ras-laffan-asset-status": {
         "unit": "",
-        "status": "unavailable",
-        "maxAgeDays": 730,
-        "cadence": "annual",
+        "status": "carried",
+        "maxAgeDays": 14,
+        "cadence": "event-driven",
         "observationKind": "asset-status",
-        "periodStart": null,
-        "periodEnd": null,
-        "coverageStatus": "unavailable",
-        "sourceAgeDays": null,
-        "source": "",
-        "sourceDate": "",
-        "missingReason": "Machine refresh failed: src-gem-ras-laffan-status: GEM_DATA_URL is required for the asset registry connector. No approved observation is available."
+        "periodStart": "2026-09-28",
+        "periodEnd": "2026-09-28",
+        "coverageStatus": "partial-coverage",
+        "coverageNote": "Status inferred from QatarEnergy LNG force-majeure notices to buyers, not a train-by-train operating report.",
+        "sourceAgeDays": 17,
+        "value": "QatarEnergy LNG force majeure in effect; selected Asian buyers notified it runs through November, Edison expects no cargoes until early December",
+        "source": "Reuters via The Business Standard",
+        "sourceDate": "2026-09-28",
+        "observedAt": "2026-09-28T00:00:00.000Z",
+        "carryReason": "Reviewed Oct 15: the Sep 28 Reuters force-majeure report remains the latest dated public statement on Ras Laffan LNG operations; no restart has been reported."
       },
       "ras-laffan-port-identity": {
         "unit": "",
@@ -355,17 +358,20 @@
       },
       "ras-laffan-capacity": {
         "unit": "MTPA",
-        "status": "unavailable",
+        "status": "confirmed",
         "maxAgeDays": 730,
         "cadence": "annual",
         "observationKind": "capacity",
-        "periodStart": null,
-        "periodEnd": null,
-        "coverageStatus": "unavailable",
-        "sourceAgeDays": null,
-        "source": "",
-        "sourceDate": "",
-        "missingReason": "Machine refresh failed: src-gem-ras-laffan-capacity: GEM_DATA_URL is required for the asset registry connector. No approved observation is available."
+        "periodStart": "2026-01-01",
+        "periodEnd": "2026-12-31",
+        "coverageStatus": "direct-observation",
+        "sourceAgeDays": 0,
+        "machineEvidenceIds": [
+          "machine-evidence:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c"
+        ],
+        "value": 77.5,
+        "source": "QatarEnergy LNG",
+        "sourceDate": "2026-10-15"
       },
       "hormuz-transits": {
         "unit": "LNG transits",
@@ -1358,7 +1364,7 @@
   "priceNarratives": {
     "Brent": "Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $103.78 (Yahoo Finance BZ=F, Oct 15 snapshot, -2.15%). Working range $75-85 base; $85-105 stress; $105-135+ tail.",
     "JKM LNG": "Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD was $26.39/MMBtu (Trading Economics, Oct 14); not an official assessment.",
-    "TTF Gas": "Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 87.315 EUR/MWh (Oct 14, Yahoo Finance TTF=F, +0.20%). Selective LNG passages do not establish unrestricted Hormuz access.",
+    "TTF Gas": "Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 87.315 EUR/MWh (Oct 14, last reviewed Yahoo TTF=F observation; carried, automated source retired Oct 15; manual ICE Endex review pending). Selective LNG passages do not establish unrestricted Hormuz access.",
     "Credit": "iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both carried as estimates pending fresher EM credit data. No source-approved daily credit marks are available. Scenario split remains base 15%, stress 45%, tail 40%."
   },
   "runbookState": {

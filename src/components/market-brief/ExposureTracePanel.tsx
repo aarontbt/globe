@@ -93,8 +93,10 @@ function displayValue(value: number | string | undefined, unit?: string | null) 
 function signalLabel(observation: NonNullable<NonNullable<ExposureTrace["physicalFlow"]>["observations"]>[number]) {
   switch (observation.sourceId) {
     case "src-gem-ras-laffan-capacity":
+    case "src-qatarenergy-ras-laffan-capacity":
       return "Ras Laffan capacity";
     case "src-gem-ras-laffan-status":
+    case "src-reviewed-ras-laffan-status":
       return "Ras Laffan status";
     default:
       return observation.label;
