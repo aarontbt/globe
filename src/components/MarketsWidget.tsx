@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "At least 12 tanker attacks hit a weekly high as Hormuz traffic fell to seven crossings; a Riyadh airport attack killed 12.";
+const TOP_ALERT = "Reuters reports at least five shipping incidents in 48 hours; two vessels have sunk near Hormuz, while no comparable current transit count is available.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

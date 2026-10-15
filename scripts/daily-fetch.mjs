@@ -14,7 +14,6 @@ const state = loadState();
 export const LIQUID_QUOTES = [
   { symbol: "BZ=F", stooq: "bz.f", crossAssetId: "brent", commercialInputId: "oil-brent", evidenceId: "e-brent", name: "Brent Crude", unit: "/barrel" },
   { symbol: "CL=F", stooq: "cl.f", commercialInputId: "oil-wti", evidenceId: "e-wti", name: "WTI Crude", unit: "/barrel" },
-  { symbol: "TTF=F", stooq: null, crossAssetId: "ttf", traceInputId: "ttf", commercialInputId: "lng-ttf", evidenceId: "e-ttf", name: "Dutch TTF", unit: "EUR/MWh" },
   { symbol: "EURUSD=X", stooq: "eurusd", commercialInputId: "fx-eurusd", evidenceId: "e-eurusd", name: "EUR/USD", unit: "USD/EUR" },
 ];
 
@@ -117,6 +116,7 @@ function updateCrossAssetFromQuote(nextState, config, quote) {
     signal: signalForZscore(zscore),
     source: quote.source,
     sourceDate: quote.sourceDate,
+    observedAt: quote.observedAt,
     status: "confirmed",
   };
 }
@@ -171,9 +171,6 @@ function updateRunbookQuote(nextState, config, quote) {
   const signedChange = `${changePct > 0 ? "+" : ""}${changePct}%`;
   if (config.symbol === "BZ=F") {
     nextState.runbookState.brent = `$${price} (${quote.sourceDate}, ${quote.source}; ${signedChange})`;
-  }
-  if (config.symbol === "TTF=F") {
-    nextState.runbookState.ttf = `${price} EUR/MWh (${quote.sourceDate}, ${quote.source}; ${signedChange})`;
   }
 }
 

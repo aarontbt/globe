@@ -614,47 +614,82 @@ export function parseEiaRecords(payload, source, options = {}) {
     if (!explicitSeriesIds.includes(seriesId)) throw new Error(`${source.id}: response contains the wrong EIA series; expected ${seriesId}`);
   } else if (!explicitSeriesIds.length && responseSeriesId && responseSeriesId !== seriesId) {
     throw new Error(`${source.id}: response series ${responseSeriesId} does not match configured EIA series ${seriesId}`);
-  } else if (!explicitSeriesIds.length && !responseSeriesId && rows.length) {
+  } else if (!explicitSeriesIds.length && !responseSeriesId && rows.length && options.seriesIdConfirmed !== seriesId) {
     throw new Error(`${source.id}: EIA response does not identify configured series ${seriesId}`);
   }
-  const selected = rows.filter((row) => keepSelectedRow(row, selection, { idKey: "seriesId", idValue: seriesId, requireId: explicitSeriesIds.length > 0 }));
+  const selected = rows.filter((row) => keepSelectedRow(row, { ...selection, metric: null }, {
+    idKey: "seriesId",
+    idValue: explicitSeriesIds.length > 0 ? seriesId : null,
+    requireId: explicitSeriesIds.length > 0,
+  }) && ["productId", "activityId", "countryRegionId"].every((field) => (
+    selection[field] === undefined || row[field] === undefined || String(row[field]) === String(selection[field])
+  )) && (!rowMetric(row) || rowMetric(row) === selection.metric));
   if (!selected.length) throw new Error(`${source.id}: response contains no selected series/entity rows`);
   const ranged = filterPeriodRows(selected, source, options);
   if (!ranged.length) throw new Error(`${source.id}: selected EIA series has no observations in the requested period`);
-  return ranged.map((row) => ({
-    label: row.seriesDescription || row.description || selection.metric || "EIA energy observation",
-    entityIds: rowEntityIds(row).length ? rowEntityIds(row) : policyForSource(source).entityIds,
-    value: Number(eiaValue(row, selection)),
-    unit: row.unit || row.unitOfMeasure || row[`${selection.metric || "value"}-units`] || "",
-    period: row.period || row.date,
-    observedAt: row.observedAt || row.period,
-    metric: rowMetric(row),
-    observationKind: source.observationKind || policyForSource(source).observationKind || "flow",
-  }));
+  const numericRows = ranged.filter((row) => {
+    const value = eiaValue(row, selection);
+    return value !== undefined && value !== null && value !== "" && Number.isFinite(Number(value));
+  });
+  if (!numericRows.length) throw new Error(`${source.id}: selected EIA series has no numeric observations in the requested period`);
+  const outputRows = selection.latestOnly && !options.includeHistory && !options.from && !options.to
+    ? [numericRows.reduce((latest, row) => {
+      const rowPeriod = observationPeriod(row, source).end || observationPeriod(row, source).start || "";
+      const latestPeriod = observationPeriod(latest, source).end || observationPeriod(latest, source).start || "";
+      return rowPeriod > latestPeriod ? row : latest;
+    }, numericRows[0])]
+    : numericRows;
+  return outputRows.map((row) => {
+    const period = String(row.period || row.date || "");
+    const bounds = periodBounds(period, source.cadence);
+    return {
+      label: row.seriesDescription || row.description || selection.metric || "EIA energy observation",
+      entityIds: rowEntityIds(row).length ? rowEntityIds(row) : policyForSource(source).entityIds,
+      value: Number(eiaValue(row, selection)),
+      unit: row.unitName || row.unitOfMeasure || row.unit || row[`${selection.metric || "value"}-units`] || "",
+      observationDate: bounds.end || period,
+      periodStart: bounds.start,
+      periodEnd: bounds.end,
+      observedAt: row.observedAt || bounds.end || period,
+      metric: rowMetric(row) || selection.metric,
+      observationKind: source.observationKind || policyForSource(source).observationKind || "flow",
+    };
+  });
 }
 
 export function parseRouteRecords(payload, source, options = {}) {
-  const rows = payload?.data || payload?.observations || payload?.records || payload;
+  const rows = payload?.features?.map((feature) => feature?.attributes || feature)
+    || payload?.data || payload?.observations || payload?.records || payload;
   if (!Array.isArray(rows)) throw new Error("route response records must be an array");
   const selection = sourceSelection(source);
   const routeId = selectorValue(selection, "routeId", "routeIdEnv");
-  if (!routeId) throw new Error(`${source.id}: PortWatch route selector is not configured`);
+  const portId = selection.portId || selectorValue(selection, "portId", "portIdEnv");
+  if (!routeId && !portId) throw new Error(`${source.id}: PortWatch route selector is not configured`);
   const responseRouteId = payload?.routeId || payload?.route_id || payload?.route;
-  if (responseRouteId && responseRouteId !== routeId) throw new Error(`${source.id}: response route ${responseRouteId} does not match configured route ${routeId}`);
-  const selected = rows.filter((row) => keepSelectedRow(row, selection, { idKey: "routeId", idValue: routeId, requireId: true }));
+  if (responseRouteId && routeId && responseRouteId !== routeId) throw new Error(`${source.id}: response route ${responseRouteId} does not match configured route ${routeId}`);
+  const selected = rows.filter((row) => {
+    if (portId && String(row.portid || row.portId || "") !== String(portId)) return false;
+    if (!portId && !keepSelectedRow(row, selection, { idKey: "routeId", idValue: routeId, requireId: true })) return false;
+    const entityIds = rowEntityIds(row);
+    if (selection.entityId && entityIds.length && !entityIds.includes(selection.entityId)) return false;
+    const metric = rowMetric(row);
+    if (selection.metric && metric && metric !== selection.metric) return false;
+    return true;
+  });
   if (!selected.length) throw new Error(`${source.id}: response contains no selected route/entity rows`);
   const ranged = filterPeriodRows(selected, source, options);
   if (!ranged.length) throw new Error(`${source.id}: selected PortWatch route has no observations in the requested period`);
   return ranged.map((row) => ({
-    label: row.label || row.name || selection.metric || "Hormuz route observation",
+    label: row.label || row.name || row.portname || selection.metric || "Hormuz route observation",
     entityIds: rowEntityIds(row).length ? rowEntityIds(row) : [selection.entityId],
-    value: row.value ?? row.transits ?? row.count,
+    value: row.value ?? row.transits ?? row.count ?? (selection.valueField ? row[selection.valueField] : undefined) ?? row.n_total,
     low: row.low,
     high: row.high,
-    unit: row.unit || "LNG transits",
+    unit: row.unit || selection.unit || (row.n_total !== undefined ? "vessels/day" : "LNG transits"),
     observationDate: row.observationDate || row.date || row.period,
     observedAt: row.observedAt || row.date,
-    metric: rowMetric(row),
+    metric: rowMetric(row) || selection.metric,
+    ...(portId ? { coverageNote: "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed." } : {}),
     observationKind: source.observationKind || "transit",
   }));
 }
@@ -857,6 +892,13 @@ function eiaEndpoint(source, selection, { from = null, to = null } = {}) {
   });
 }
 
+function eiaRequestConfirmsSeries(url, seriesId) {
+  const parsed = new URL(url);
+  const pathMatch = parsed.pathname.match(/\/seriesid\/([^/]+)\/?$/i);
+  if (pathMatch && decodeURIComponent(pathMatch[1]) === seriesId) return true;
+  return parsed.searchParams.get("series_id") === seriesId;
+}
+
 function approvedPortWatchEndpoint(source, selection) {
   const envKey = selection.endpointEnv || source.approvedEndpointEnv || "PORTWATCH_DATA_URL";
   const endpoint = process.env[envKey];
@@ -867,8 +909,24 @@ function approvedPortWatchEndpoint(source, selection) {
   return endpoint;
 }
 
-function portWatchEndpoint(source, selection, { from = null, to = null } = {}) {
-  return addQuery(approvedPortWatchEndpoint(source, selection), {
+function portWatchEndpoint(source, selection, { from = null, to = null, asOf = null } = {}) {
+  const endpoint = approvedPortWatchEndpoint(source, selection);
+  if (/\/FeatureServer\/0\/query\/?$/i.test(endpoint)) {
+    const end = to || String(asOf || new Date().toISOString()).slice(0, 10);
+    const start = from || new Date(Date.parse(`${end}T00:00:00Z`) - (Number(source.maxAgeDays || 7) - 1) * 86_400_000)
+      .toISOString().slice(0, 10);
+    const portId = selection.portId || selectorValue(selection, "portId", "portIdEnv");
+    if (!portId) throw new Error(`${source.id}: ArcGIS PortWatch connector requires a portId`);
+    return addQuery(endpoint, {
+      where: `portid='${String(portId).replace(/'/g, "''")}' AND date >= DATE '${start}' AND date <= DATE '${end}'`,
+      outFields: "date,portid,portname,n_total,n_tanker,n_cargo,capacity",
+      returnGeometry: "false",
+      orderByFields: "date DESC",
+      resultRecordCount: "1000",
+      f: "json",
+    });
+  }
+  return addQuery(endpoint, {
     routeId: selectorValue(selection, "routeId", "routeIdEnv"),
     metric: selection.metric,
     from,
@@ -913,6 +971,7 @@ async function fetchAutomatedSource(source, {
   fixture,
   from = null,
   to = null,
+  asOf = null,
   dryRun = false,
 }) {
   const fixtureRows = fixture?.sources?.[source.id];
@@ -935,6 +994,24 @@ async function fetchAutomatedSource(source, {
     }, dryRun);
     return { snapshot, records };
   }
+  const selection = sourceSelection(source);
+  if (selection.type === "asset-registry" && selection.localDataFile) {
+    const file = path.resolve(ROOT, selection.localDataFile);
+    if (!file.startsWith(`${ROOT}${path.sep}`)) throw new Error(`${source.id}: local asset data file must remain inside the repository`);
+    if (!fs.existsSync(file)) throw new Error(`${source.id}: local asset data file does not exist`);
+    const content = fs.readFileSync(file, "utf8");
+    const payload = parseJsonOrThrow(content, source);
+    const snapshot = snapshotFor(source, retrievedAt, {
+      status: "fetched",
+      contentType: "application/json",
+      content,
+      observedAt: payload?.assets?.[0]?.observationDate || payload?.data?.[0]?.observationDate,
+      url: source.url,
+    });
+    const records = parseSnapshotRecords(source, snapshot, content, () => parseAssetRegistryRecords(payload, source), dryRun);
+    return { snapshot, records };
+  }
+
   if (offline) {
     return {
       snapshot: snapshotFor(source, retrievedAt, { error: "Offline refresh requested" }),
@@ -969,7 +1046,6 @@ async function fetchAutomatedSource(source, {
     return { snapshot, records: [raw] };
   }
 
-  const selection = sourceSelection(source);
   if (selection.type === "eia-series") {
     if (!process.env.EIA_API_KEY && !process.env.EIA_DATA_URL) throw new Error("EIA_API_KEY or EIA_DATA_URL is required for the EIA connector");
     const url = eiaEndpoint(source, selection, { from, to });
@@ -982,12 +1058,18 @@ async function fetchAutomatedSource(source, {
         content: text,
         url,
       });
-    const records = parseSnapshotRecords(source, snapshot, text, () => parseEiaRecords(parseJsonOrThrow(text, source), source, { from, to }), dryRun);
+    const records = parseSnapshotRecords(source, snapshot, text, () => parseEiaRecords(parseJsonOrThrow(text, source), source, {
+      from,
+      to,
+      seriesIdConfirmed: eiaRequestConfirmsSeries(url, selectorValue(selection, "seriesId", "seriesIdEnv"))
+        ? selectorValue(selection, "seriesId", "seriesIdEnv")
+        : null,
+    }), dryRun);
     return { snapshot, records };
   }
 
   if (selection.type === "portwatch-route") {
-    const url = portWatchEndpoint(source, selection, { from, to });
+    const url = portWatchEndpoint(source, selection, { from, to, asOf });
     const { response, text } = await fetchText(url, fetchImpl);
     if (!response.ok) throw new Error(`PortWatch ${response.status}`);
     const snapshot = snapshotFor(source, retrievedAt, {
@@ -1567,7 +1649,7 @@ export async function runEnergyRefresh({
     }
 
     try {
-      const fetched = await fetchAutomatedSource(source, { fetchImpl, retrievedAt, offline, fixture, from, to, dryRun });
+      const fetched = await fetchAutomatedSource(source, { fetchImpl, retrievedAt, offline, fixture, from, to, asOf, dryRun });
       snapshots.push(fetched.snapshot);
       if (!fetched.records.length) {
         observations.push(...fallbackForSource(source, fetched.snapshot, state, exposure));

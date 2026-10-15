@@ -28,7 +28,7 @@
       "evidenceIds": [],
       "fallback": "unavailable",
       "parserVersion": "eia-international-v1",
-      "enabled": true,
+      "enabled": false,
       "selection": {
         "type": "eia-series",
         "seriesId": "QATAR_LNG_VOLUME",
@@ -49,53 +49,47 @@
           ]
         }
       },
-      "note": "The connector requires EIA_API_KEY or EIA_DATA_URL plus EIA_SERIES_ID. It never converts an oil-flow baseline into a Qatar LNG volume."
+      "note": "Disabled: the EIA international dataset does not identify a Qatar LNG volume-at-risk series. Dry natural gas production/export baselines are kept as separate annual context and are not converted into LNG or current cargo volumes."
     },
     {
       "id": "src-imf-portwatch-hormuz",
       "provider": "IMF PortWatch",
       "title": "PortWatch route and chokepoint context",
-      "url": "https://portwatch.imf.org/pages/data-and-methodology",
+      "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
       "category": "route-context",
       "automation": "automated",
       "cadence": "daily",
       "maxAgeDays": 7,
       "allowedUnits": [
-        "LNG transits",
-        "vessels/day",
-        "%",
-        "index"
+        "vessels/day"
       ],
       "entityIds": [
         "hormuz"
       ],
       "targetInputIds": [
-        "hormuz-transits"
+        "hormuz-total-transits"
       ],
       "targetCommercialInputIds": [],
-      "evidenceIds": [
-        "e-hormuz-transit"
-      ],
-      "fallback": "carry",
-      "parserVersion": "portwatch-route-v1",
+      "evidenceIds": [],
+      "fallback": "unavailable",
+      "parserVersion": "portwatch-arcgis-route-v1",
       "enabled": true,
       "selection": {
         "type": "portwatch-route",
         "routeId": "hormuz",
-        "routeIdEnv": "PORTWATCH_ROUTE_ID",
         "endpointEnv": "PORTWATCH_DATA_URL",
         "entityId": "hormuz",
-        "metric": "LNG transits"
+        "metric": "n_total",
+        "portId": "chokepoint6",
+        "valueField": "n_total",
+        "unit": "vessels/day"
       },
       "targetPolicies": {
-        "hormuz-transits": {
+        "hormuz-total-transits": {
           "cadence": "daily",
           "maxAgeDays": 7,
           "allowedUnits": [
-            "LNG transits",
-            "vessels/day",
-            "%",
-            "index"
+            "vessels/day"
           ],
           "entityIds": [
             "hormuz"
@@ -104,7 +98,7 @@
         }
       },
       "observationKind": "transit",
-      "note": "PORTWATCH_DATA_URL must be an approved HTTPS machine-readable endpoint. The methodology page is not parsed as an observation; the reviewed Kpler route observation is carried when no machine-readable route response is available."
+      "note": "Uses the official Daily_Chokepoints_Data layer (PortWatch dataset item 3da2b9ca97684916b75c4013f95d18ab), portid chokepoint6. n_total is an AIS-based all-vessel daily transit count; it is not an LNG-only count or a derived route-pressure score. If unavailable, do not carry forward the differently scoped Kpler commodity-vessel series."
     },
     {
       "id": "src-yahoo-ttf",
@@ -132,7 +126,7 @@
       ],
       "fallback": "carry",
       "parserVersion": "yahoo-chart-v1",
-      "enabled": true,
+      "enabled": false,
       "selection": {
         "type": "yahoo-symbol",
         "symbol": "TTF=F",
@@ -161,7 +155,7 @@
           ]
         }
       },
-      "note": "TTF is market context only. It does not establish cargo availability, freight, insurance or executable substitution."
+      "note": "Retired from automatic refresh on 2026-10-15. Previously reviewed TTF observations remain dated historical records; do not promote new values from this connector."
     },
     {
       "id": "src-reviewed-qatar-force-majeure",
@@ -212,14 +206,13 @@
     {
       "id": "src-eia-qatar-production",
       "provider": "U.S. EIA",
-      "title": "EIA Qatar LNG production series",
+      "title": "EIA Qatar dry natural gas production baseline",
       "url": "https://api.eia.gov/v2/seriesid/",
       "category": "physical-flow",
       "automation": "automated",
       "cadence": "annual",
       "maxAgeDays": 730,
       "allowedUnits": [
-        "MTPA",
         "billion cubic feet"
       ],
       "entityIds": [
@@ -237,17 +230,19 @@
       "observationKind": "flow",
       "selection": {
         "type": "eia-series",
-        "seriesId": "QATAR_LNG_PRODUCTION",
-        "seriesIdEnv": "EIA_QATAR_PRODUCTION_SERIES_ID",
+        "seriesId": "INTL.26-1-QAT-BCF.A",
         "entityId": "qatarenergy",
-        "metric": "qatar-lng-production"
+        "productId": 26,
+        "activityId": 1,
+        "countryRegionId": "QAT",
+        "latestOnly": true,
+        "metric": "dry-natural-gas-production"
       },
       "targetPolicies": {
         "qatar-production-baseline": {
           "cadence": "annual",
           "maxAgeDays": 730,
           "allowedUnits": [
-            "MTPA",
             "billion cubic feet"
           ],
           "entityIds": [
@@ -258,19 +253,18 @@
           "coverageStatus": "direct-observation"
         }
       },
-      "note": "The configured EIA series ID is mandatory; the connector rejects a response that does not identify that exact series."
+      "note": "Annual EIA dry natural gas production for Qatar. This is structural gas context, not LNG output, terminal throughput, or current cargo availability."
     },
     {
       "id": "src-eia-qatar-exports",
       "provider": "U.S. EIA",
-      "title": "EIA Qatar LNG export series",
+      "title": "EIA Qatar dry natural gas export baseline",
       "url": "https://api.eia.gov/v2/seriesid/",
       "category": "physical-flow",
       "automation": "automated",
       "cadence": "annual",
       "maxAgeDays": 730,
       "allowedUnits": [
-        "MTPA",
         "billion cubic feet"
       ],
       "entityIds": [
@@ -288,17 +282,19 @@
       "observationKind": "flow",
       "selection": {
         "type": "eia-series",
-        "seriesId": "QATAR_LNG_EXPORTS",
-        "seriesIdEnv": "EIA_QATAR_EXPORT_SERIES_ID",
+        "seriesId": "INTL.26-4-QAT-BCF.A",
         "entityId": "qatarenergy",
-        "metric": "qatar-lng-exports"
+        "productId": 26,
+        "activityId": 4,
+        "countryRegionId": "QAT",
+        "latestOnly": true,
+        "metric": "dry-natural-gas-exports"
       },
       "targetPolicies": {
         "qatar-export-baseline": {
           "cadence": "annual",
           "maxAgeDays": 730,
           "allowedUnits": [
-            "MTPA",
             "billion cubic feet"
           ],
           "entityIds": [
@@ -309,7 +305,7 @@
           "coverageStatus": "direct-observation"
         }
       },
-      "note": "An EIA production/export baseline is structural capacity context, not a current cargo or vessel observation."
+      "note": "Annual EIA dry natural gas exports for Qatar, including both LNG and pipeline gas. This is structural export context, not LNG-only export or current cargo movement."
     },
     {
       "id": "src-gem-ras-laffan-capacity",
@@ -433,11 +429,11 @@
       "observationKind": "asset-status",
       "selection": {
         "type": "asset-registry",
-        "endpointEnv": "UNLOCODE_DATA_URL",
         "assetNamespace": "UN/LOCODE",
         "assetCode": "QARLF",
         "entityId": "ras-laffan-port",
-        "assetField": "identity"
+        "assetField": "identity",
+        "localDataFile": "src/data/source-artifacts/unlocode-ras-laffan.json"
       },
       "targetPolicies": {
         "ras-laffan-port-identity": {
@@ -453,7 +449,7 @@
           "coverageStatus": "direct-observation"
         }
       },
-      "note": "UN/LOCODE supplies a stable place identifier and does not establish terminal throughput or cargo movement."
+      "note": "Local identity snapshot imported from the user-provided artifacts.zip UN/LOCODE CSV. It supplies the stable port identifier only; archive timestamp is retained as the snapshot date, not the row last-change code. It does not establish throughput or cargo movement."
     },
     {
       "id": "src-imf-portwatch-hormuz-pressure",
@@ -479,7 +475,7 @@
       "evidenceIds": [],
       "fallback": "unavailable",
       "parserVersion": "portwatch-route-v2",
-      "enabled": true,
+      "enabled": false,
       "observationKind": "transit",
       "selection": {
         "type": "portwatch-route",
@@ -505,7 +501,7 @@
           "coverageStatus": "direct-observation"
         }
       },
-      "note": "The endpoint must return the exact Hormuz route and route-pressure metric; unrelated route observations are rejected."
+      "note": "Disabled: the configured PortWatch Daily_Chokepoints_Data source supplies observed vessel counts, not a route-pressure index. No derived score is promoted from this source."
     },
     {
       "id": "src-comtrade-japan-lng-demand",
@@ -531,7 +527,7 @@
       "evidenceIds": [],
       "fallback": "unavailable",
       "parserVersion": "comtrade-trade-v1",
-      "enabled": true,
+      "enabled": false,
       "observationKind": "trade-demand",
       "coverageStatus": "public-proxy",
       "selection": {
@@ -560,7 +556,7 @@
           "coverageStatus": "public-proxy"
         }
       },
-      "note": "Monthly customs trade context is explicitly labeled as demand context, never as live cargo movement."
+      "note": "Retired from automatic refresh on 2026-10-15 per source configuration. Japan/Korea demand remains unavailable; archived snapshots are retained for provenance and are never treated as live cargo movement."
     },
     {
       "id": "src-comtrade-korea-lng-demand",
@@ -586,7 +582,7 @@
       "evidenceIds": [],
       "fallback": "unavailable",
       "parserVersion": "comtrade-trade-v1",
-      "enabled": true,
+      "enabled": false,
       "observationKind": "trade-demand",
       "coverageStatus": "public-proxy",
       "selection": {
@@ -615,7 +611,7 @@
           "coverageStatus": "public-proxy"
         }
       },
-      "note": "Monthly customs trade context is explicitly labeled as demand context, never as live cargo movement. Korea's Comtrade monthly series publishes with a longer lag than initially assumed; recalibrated to a 300-day (~10-month) freshness window on 2026-09-18 after the newest verified month (2025-12) remained the latest available release past the prior 260-day window, with no newer month published upstream."
+      "note": "Retired from automatic refresh on 2026-10-15 per source configuration. Japan/Korea demand remains unavailable; archived snapshots are retained for provenance and are never treated as live cargo movement."
     },
     {
       "id": "src-reviewed-hormuz-lng-september",

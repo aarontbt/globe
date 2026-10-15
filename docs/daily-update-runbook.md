@@ -12,13 +12,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-10-13 (D222) |
-| **Crisis level** | 4 - High (Reuters/Kpler counted seven commodity vessels through Hormuz on Oct 6, the lowest since Jul 23; Reuters reported at least 12 tanker attacks during Sep 28-Oct 5, the highest week since the war began. A Riyadh airport attack on Oct 10 killed at least 12 and wounded 309. Iran said the US reply to its seven reopening conditions was insufficient on Oct 11. No verified reopening agreement or normalised passage is reported; probabilities remain base 15%, stress 45%, tail 40%.) |
-| **Brent** | $105.04 (2026-10-13, Yahoo Finance BZ=F; -1.51%) |
-| **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $25.98/MMBtu (Trading Economics, Oct 9, carried; not an official assessment) |
-| **TTF** | 86.65 EUR/MWh (2026-10-13, Yahoo Finance TTF=F; +2.73%); carried after machine refresh failure |
-| **Exposure trace** | Reuters/Kpler counted seven commodity vessels crossing Hormuz on Oct 6, the lowest since Jul 23; crude crossings were at least 10.1 million bpd, down 27%. Reuters reported 12 tanker attacks for Sep 28-Oct 5, a weekly high since the war began; a Qatar-loaded LNG vessel was among Oct 6 passages. Iran said Oct 11 the US reply to its seven reopening conditions was insufficient. No verified reopening agreement; AIS-dark vessels may be excluded. |
-| **Evidence audit** | 48 checked · 36 verified · 12 carried · 0 unsupported · PASS |
+| **Last updated** | 2026-10-15 (D224) |
+| **Crisis level** | 4 - High (Reuters reported at least five shipping incidents in the 48 hours before Oct 14, including the GFS Pride sinking after projectile damage; a separate vessel, Cape Dao, hit Sep 23, later sank. The Oct 6 count of seven commodity vessels remains the latest comparable transit count, with AIS-dark traffic potentially omitted. No verified reopening agreement or normalised passage is reported; scenario probabilities remain base 15%, stress 45%, tail 40%.) |
+| **Brent** | $103.78 (2026-10-15, Yahoo Finance BZ=F; -2.15%) |
+| **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $26.39/MMBtu (Trading Economics, Oct 14; not an official assessment) |
+| **TTF** | 87.315 EUR/MWh (2026-10-14, last reviewed observation; carried; automated source retired 2026-10-15) |
+| **Exposure trace** | Reuters reported at least five shipping incidents in the 48 hours before Oct 14, including the GFS Pride sinking; the latest comparable Hormuz count remains seven commodity vessels on Oct 6, and AIS-dark traffic may be omitted. |
+| **Evidence audit** | 51 checked · 40 verified · 11 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
 
 ---
@@ -135,7 +135,7 @@ If Firecrawl cannot retrieve dependable content, do not mark the evidence verifi
 | Brent crude | Qatar News Agency, Reuters, EIA | Bloomberg `CO1 Comdty`; TradingView `UKOIL` |
 | WTI crude | Qatar News Agency, Reuters, EIA | Bloomberg `CL1 Comdty`; TradingView `USOIL`; FRED |
 | Dubai/Oman crude | Exact dated Platts, Argus, DME, Reuters or approved equivalent | Manual until a dependable feed is approved |
-| TTF Gas | Yahoo Finance machine refresh; ICE or Trading Economics analyst cross-check | Yahoo `TTF=F`; Bloomberg `TTFMBASE Index`; ICE TTF front-month |
+| TTF Gas | [ICE Endex Dutch TTF futures page](https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data), manual review | Record the contract and displayed time; the public page labels the quote `Last` and is delayed at least 15 minutes, so do not relabel it as settlement. Yahoo `TTF=F` is retired. Trading Economics documents a historical markets API, but requires subscribed API access and its EU Gas series must be reconciled to ICE before automation. |
 | JKM LNG | Reuters (Platts assessment), globallnghub.com | Bloomberg `JKMNEDAN Index`; CME JKM futures |
 | EUR/USD | Yahoo Finance machine refresh; ECB cross-check | Yahoo `EURUSD=X`; ECB reference rates |
 | SOFR | Federal Reserve Bank of New York API | `markets.newyorkfed.org` |
@@ -479,7 +479,7 @@ Feeds the **SUPPLY CHAIN** tab on the right panel of the globe. Tracks how the H
 
 ### Morning Update (Pre-Market Open, ~08:00 SGT)
 
-- [ ] **Preview without mutation**: Run `bun run daily:fetch -- --dry-run`; verify Brent, WTI, and `TTF=F` results. Confirm `git diff -- src/data/daily-state.json` shows no change from this command.
+- [ ] **Preview without mutation**: Run `bun run daily:fetch -- --dry-run`; verify Brent and WTI results. TTF is not part of the automated market preview. Confirm `git diff -- src/data/daily-state.json` shows no change from this command.
 - [ ] **Persist machine refresh**: Run `bun run daily:refresh`. This writes successful liquid values to daily state only; it does not publish.
 - [ ] **Stage Energy/LNG refresh**: Run `bun run energy:refresh` after the liquid refresh and after any state, exposure, evidence, or registry edit. For event-driven changes use `bun run energy:refresh -- --event`; for bounded history use `bun run energy:refresh -- --source <source-id> --from YYYY-MM-DD --to YYYY-MM-DD`. Review raw snapshot hashes/artifacts, period coverage, source age, machine evidence, reconciliation outcomes, carry/unavailable states, and the fingerprinted candidate/report pair. Configure live endpoints through environment variables; commit no secrets.
 - [ ] **Firecrawl evidence review**: Scrape every changed or due evidence URL and update `src/data/evidence-audit.json` with the reviewed content result and claim mappings.
@@ -551,9 +551,9 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > **Update this section every morning** alongside cross-asset data. Replace the prior-day levels; do not accumulate historical milestones beyond the 3 most significant inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $105.04 (Yahoo Finance BZ=F, Oct 13 snapshot, -1.51%). Working range $75-85 base; $85-105 stress; $105-135+ tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD latest available $25.98/MMBtu (Trading Economics, Oct 9, carried); forecast figures excluded.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 86.65 EUR/MWh (Oct 13, Yahoo Finance TTF=F, +2.73%). Selective LNG passages do not establish unrestricted Hormuz access.
+- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $103.78 (Yahoo Finance BZ=F, Oct 15 snapshot, -2.15%). Working range $75-85 base; $85-105 stress; $105-135+ tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD was $26.39/MMBtu (Trading Economics, Oct 14); not an official assessment.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 87.315 EUR/MWh (Oct 14, Yahoo Finance TTF=F, +0.20%). Selective LNG passages do not establish unrestricted Hormuz access.
 - **Credit**: iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both carried as estimates pending fresher EM credit data. No source-approved daily credit marks are available. Scenario split remains base 15%, stress 45%, tail 40%.
 
 ### BottomChartsPanel — Daily Update (`src/data/charts-volatility.json`)

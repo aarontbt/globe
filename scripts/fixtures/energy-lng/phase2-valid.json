@@ -1,62 +1,66 @@
 {
   "sources": {
-    "src-eia-lng-baseline": [
-      {
-        "seriesId": "QATAR_LNG_VOLUME",
-        "entityIds": ["qatarenergy", "ras-laffan"],
-        "metric": "qatar-lng-volume",
-        "seriesDescription": "Qatar LNG export baseline",
-        "value": 77.5,
-        "unit": "MTPA",
-        "period": "2026-08-25",
-        "observedAt": "2026-08-25T12:00:00.000Z"
-      }
-    ],
     "src-imf-portwatch-hormuz": [
       {
-        "routeId": "hormuz",
-        "entityIds": ["hormuz"],
-        "metric": "LNG transits",
-        "label": "Hormuz LNG transits",
-        "value": 4,
-        "unit": "LNG transits",
-        "date": "2026-08-19",
-        "observedAt": "2026-08-19T12:00:00.000Z"
-      }
-    ],
-    "src-yahoo-ttf": [
+        "portid": "chokepoint6",
+        "portname": "Strait of Hormuz",
+        "entityIds": [
+          "hormuz"
+        ],
+        "metric": "n_total",
+        "n_total": 5,
+        "date": "2026-08-24",
+        "observedAt": "2026-08-24T12:00:00.000Z"
+      },
       {
-        "label": "Dutch TTF",
-        "entityIds": ["ttf"],
-        "value": 66.13,
-        "change": 0.83,
-        "changePct": 1.2711539934145006,
-        "unit": "EUR/MWh",
-        "observationDate": "2026-08-25",
-        "observedAt": "2026-08-25T15:50:09.000Z",
-        "provider": "Yahoo Finance TTF=F"
+        "portid": "chokepoint6",
+        "portname": "Strait of Hormuz",
+        "entityIds": [
+          "hormuz"
+        ],
+        "metric": "n_total",
+        "n_total": 6,
+        "date": "2026-08-25",
+        "observedAt": "2026-08-25T12:00:00.000Z"
+      },
+      {
+        "portid": "chokepoint6",
+        "portname": "Strait of Hormuz",
+        "entityIds": [
+          "hormuz"
+        ],
+        "metric": "n_total",
+        "n_total": 7,
+        "date": "2026-08-26",
+        "observedAt": "2026-08-26T12:00:00.000Z"
       }
     ],
     "src-eia-qatar-production": [
       {
-        "seriesId": "QATAR_LNG_PRODUCTION",
-        "entityIds": ["qatarenergy", "ras-laffan"],
-        "metric": "qatar-lng-production",
-        "seriesDescription": "Qatar LNG production",
-        "value": 77.0,
-        "unit": "MTPA",
+        "seriesId": "INTL.26-1-QAT-BCF.A",
+        "entityIds": [
+          "qatarenergy",
+          "ras-laffan"
+        ],
+        "metric": "dry-natural-gas-production",
+        "seriesDescription": "Qatar dry natural gas production",
+        "value": 5500,
+        "unit": "billion cubic feet",
         "period": "2025",
         "observedAt": "2025-12-31T00:00:00.000Z"
       }
     ],
     "src-eia-qatar-exports": [
       {
-        "seriesId": "QATAR_LNG_EXPORTS",
-        "entityIds": ["qatarenergy", "ras-laffan"],
-        "metric": "qatar-lng-exports",
-        "seriesDescription": "Qatar LNG exports",
-        "value": 77.5,
-        "unit": "MTPA",
+        "seriesId": "INTL.26-4-QAT-BCF.A",
+        "entityIds": [
+          "qatarenergy",
+          "ras-laffan"
+        ],
+        "metric": "dry-natural-gas-exports",
+        "seriesDescription": "Qatar dry natural gas exports",
+        "value": 4200,
+        "unit": "billion cubic feet",
         "period": "2025",
         "observedAt": "2025-12-31T00:00:00.000Z"
       }
@@ -95,64 +99,6 @@
         "unit": "",
         "observationDate": "2025-12-31",
         "observedAt": "2025-12-31T00:00:00.000Z"
-      }
-    ],
-    "src-imf-portwatch-hormuz-pressure": [
-      {
-        "routeId": "hormuz",
-        "entityIds": ["hormuz"],
-        "metric": "route-pressure",
-        "label": "Hormuz route pressure",
-        "value": 62,
-        "unit": "index",
-        "date": "2026-08-16",
-        "observedAt": "2026-08-16T12:00:00.000Z"
-      },
-      {
-        "routeId": "hormuz",
-        "entityIds": ["hormuz"],
-        "metric": "route-pressure",
-        "label": "Hormuz route pressure",
-        "value": 68,
-        "unit": "index",
-        "date": "2026-08-17",
-        "observedAt": "2026-08-17T12:00:00.000Z"
-      },
-      {
-        "routeId": "hormuz",
-        "entityIds": ["hormuz"],
-        "metric": "route-pressure",
-        "label": "Hormuz route pressure",
-        "value": 70,
-        "unit": "index",
-        "date": "2026-08-18",
-        "observedAt": "2026-08-18T12:00:00.000Z"
-      }
-    ],
-    "src-comtrade-japan-lng-demand": [
-      {
-        "reporterCode": "392",
-        "partnerCode": "0",
-        "flowCode": "M",
-        "cmdCode": "271111",
-        "cmdDesc": "Liquefied natural gas",
-        "period": "202607",
-        "primaryValue": 201000000,
-        "netWgt": 2800000000,
-        "netWgtUnit": "kg"
-      }
-    ],
-    "src-comtrade-korea-lng-demand": [
-      {
-        "reporterCode": "410",
-        "partnerCode": "0",
-        "flowCode": "M",
-        "cmdCode": "271111",
-        "cmdDesc": "Liquefied natural gas",
-        "period": "202607",
-        "primaryValue": 119000000,
-        "netWgt": 1700000000,
-        "netWgtUnit": "kg"
       }
     ]
   }

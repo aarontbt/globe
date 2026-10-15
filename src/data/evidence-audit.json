@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-13T00:00:00Z",
-  "reviewedAt": "2026-10-13T09:30:50.980Z",
+  "asOf": "2026-10-15T00:00:00Z",
+  "reviewedAt": "2026-10-15T07:38:51Z",
   "reviewer": "Codex; Firecrawl exact-page review",
   "entries": [
     {
@@ -158,12 +158,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Dutch TTF",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-13",
-      "checkedAt": "2026-10-13T09:15:53.610Z",
-      "claimSummary": "Cache-busted Firecrawl review of Yahoo Finance chart API: TTF=F market observation 86.65 EUR/MWh at 2026-10-13T08:31:45.000Z (daily change 2.73%).",
+      "publishedAt": "2026-10-14",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Live source review on Oct 15: Dutch TTF futures was 87.315 EUR/MWh at 2026-10-14T16:06:48Z; Yahoo Finance reports a +0.177 (+0.203%) change.",
       "extractedFacts": [
-        "TTF=F Dutch TTF futures was 86.65 EUR/MWh at 2026-10-13T08:31:45.000Z.",
-        "Yahoo Finance reports a daily change of 2.30 (2.73%)."
+        "Dutch TTF futures was 87.315 EUR/MWh at 2026-10-14T16:06:48Z; Yahoo Finance reports a +0.177 (+0.203%) change."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-demand"
@@ -175,19 +174,19 @@
       "observations": [
         {
           "inputId": "ttf",
-          "value": 86.65,
+          "value": 87.315,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T08:31:45.000Z",
+          "sourceDate": "2026-10-14",
+          "observedAt": "2026-10-14T16:06:48.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         },
         {
           "inputId": "lng-ttf",
-          "value": 86.65,
+          "value": 87.315,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T08:31:45.000Z",
+          "sourceDate": "2026-10-14",
+          "observedAt": "2026-10-14T16:06:48.000Z",
           "instrument": "TTF=F Dutch TTF futures",
           "provider": "Yahoo Finance"
         }
@@ -336,12 +335,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Brent Crude",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-13",
-      "checkedAt": "2026-10-13T09:15:44.312Z",
-      "claimSummary": "Cache-busted Firecrawl review of Yahoo Finance chart API: BZ=F market observation 105.04 USD/bbl at 2026-10-13T09:05:33.000Z (daily change -1.51%).",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-10-15T07:38:51Z",
+      "claimSummary": "Firecrawl live review on Oct 15: BZ=F was 103.78 USD/bbl at 2026-10-15T07:28:39Z; Yahoo Finance reports a -2.28 (-2.15%) change.",
       "extractedFacts": [
-        "BZ=F Brent crude futures was 105.04 USD/bbl at 2026-10-13T09:05:33.000Z.",
-        "Yahoo Finance reports a daily change of -1.61 (-1.51%)."
+        "BZ=F was 103.78 USD/bbl at 2026-10-15T07:28:39Z; Yahoo Finance reports a -2.28 (-2.15%) change."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -353,15 +351,15 @@
       "observations": [
         {
           "inputId": "oil-brent",
-          "value": 105.04,
+          "value": 103.78,
           "unit": "USD/bbl",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T09:05:33.000Z",
+          "sourceDate": "2026-10-15",
+          "observedAt": "2026-10-15T07:28:39Z",
           "instrument": "BZ=F Brent crude futures",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261013-e-brent.md"
+      "retrievalArtifact": ".firecrawl/daily-20261015/e-brent.json"
     },
     {
       "evidenceId": "e-wti",
@@ -373,12 +371,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - WTI Crude",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-13",
-      "checkedAt": "2026-10-13T09:15:50.525Z",
-      "claimSummary": "Cache-busted Firecrawl review of Yahoo Finance chart API: CL=F market observation 92.04 USD/bbl at 2026-10-13T09:05:46.000Z (daily change -1.81%).",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-10-15T07:38:51Z",
+      "claimSummary": "Firecrawl live review on Oct 15: CL=F was 93.73 USD/bbl at 2026-10-15T07:28:48Z; Yahoo Finance reports a -1.36 (-1.43%) change.",
       "extractedFacts": [
-        "CL=F WTI crude futures was 92.04 USD/bbl at 2026-10-13T09:05:46.000Z.",
-        "Yahoo Finance reports a daily change of -1.70 (-1.81%)."
+        "CL=F was 93.73 USD/bbl at 2026-10-15T07:28:48Z; Yahoo Finance reports a -1.36 (-1.43%) change."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -390,15 +387,15 @@
       "observations": [
         {
           "inputId": "oil-wti",
-          "value": 92.04,
+          "value": 93.73,
           "unit": "USD/bbl",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T09:05:46.000Z",
+          "sourceDate": "2026-10-15",
+          "observedAt": "2026-10-15T07:28:48Z",
           "instrument": "CL=F WTI crude futures",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261013-e-wti.md"
+      "retrievalArtifact": ".firecrawl/daily-20261015/e-wti.json"
     },
     {
       "evidenceId": "e-eurusd",
@@ -410,12 +407,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - EUR/USD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-13",
-      "checkedAt": "2026-10-13T09:15:56.654Z",
-      "claimSummary": "Cache-busted Firecrawl review of Yahoo Finance chart API: EURUSD=X market observation 1.1186 USD/EUR at 2026-10-13T09:15:29.000Z (daily change 0.22%).",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-10-15T07:38:51Z",
+      "claimSummary": "Firecrawl live review on Oct 15: EURUSD=X was 1.1221 USD/EUR at 2026-10-15T07:38:25Z; Yahoo Finance reports a +0.0064 (+0.5722%) change.",
       "extractedFacts": [
-        "EURUSD=X EUR/USD spot exchange rate was 1.1186 USD/EUR at 2026-10-13T09:15:29.000Z.",
-        "Yahoo Finance reports a daily change of 0.0025 (0.22%)."
+        "EURUSD=X was 1.1221 USD/EUR at 2026-10-15T07:38:25Z; Yahoo Finance reports a +0.0064 (+0.5722%) change."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -427,15 +423,15 @@
       "observations": [
         {
           "inputId": "fx-eurusd",
-          "value": 1.1186,
+          "value": 1.1221,
           "unit": "USD/EUR",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T09:15:29.000Z",
+          "sourceDate": "2026-10-15",
+          "observedAt": "2026-10-15T07:38:25Z",
           "instrument": "EURUSD=X EUR/USD spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261013-e-eurusd.md"
+      "retrievalArtifact": ".firecrawl/daily-20261015/e-eurusd.json"
     },
     {
       "evidenceId": "e-sofr",
@@ -447,11 +443,11 @@
       "reviewStatus": "approved",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
-      "publishedAt": "2026-10-08",
-      "checkedAt": "2026-10-13T09:16:00.560Z",
-      "claimSummary": "New York Fed API checked on 2026-10-13; latest SOFR remains 3.87% effective 2026-10-08.",
+      "publishedAt": "2026-10-13",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Live source review on Oct 15: The New York Fed API returned SOFR of 3.89% effective 2026-10-13; this is the latest published rate.",
       "extractedFacts": [
-        "The New York Fed API returned a SOFR rate of 3.87% effective 2026-10-08."
+        "The New York Fed API returned SOFR of 3.89% effective 2026-10-13; this is the latest published rate."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -463,10 +459,10 @@
       "observations": [
         {
           "inputId": "usd-sofr",
-          "value": 3.87,
+          "value": 3.89,
           "unit": "%",
-          "sourceDate": "2026-10-08",
-          "observedAt": "2026-10-08T00:00:00Z",
+          "sourceDate": "2026-10-13",
+          "observedAt": "2026-10-13T00:00:00Z",
           "instrument": "SOFR",
           "provider": "Federal Reserve Bank of New York"
         }
@@ -479,16 +475,16 @@
       "canonicalUrl": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
       "httpStatus": 200,
       "pageType": "market-data",
-      "contentStatus": "stale",
+      "contentStatus": "verified",
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-10-09",
-      "checkedAt": "2026-10-13T09:30:21.318Z",
-      "claimSummary": "Rechecked Oct 13: Trading Economics still reports the LNG Japan-Korea CFD at $25.98/MMBtu for Oct 9; no newer observation is shown, and this CFD is distinct from official JKM.",
+      "publishedAt": "2026-10-14",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Reviewed Oct 15: Trading Economics latest displayed LNG Japan-Korea CFD is $26.39/MMBtu dated Oct 14; this remains a CFD reference, not official JKM.",
       "extractedFacts": [
-        "Trading Economics latest displayed LNG Japan-Korea CFD observation remains $25.98/MMBtu dated Oct 9.",
-        "The source page was last updated Oct 12 and does not provide an Oct 13 observation; this is not the official Platts JKM assessment."
+        "Trading Economics latest displayed LNG Japan-Korea CFD is $26.39/MMBtu dated Oct 14.",
+        "This CFD reference is distinct from the official Platts JKM assessment."
       ],
       "supportedHopIds": [
         "qatar-supply:qatar-demand"
@@ -500,17 +496,16 @@
       "observations": [
         {
           "inputId": "jkm-cfd-reference",
-          "value": 25.98,
+          "value": 26.39,
           "unit": "USD/MMBtu",
-          "sourceDate": "2026-10-09",
+          "sourceDate": "2026-10-14",
           "instrument": "LNG Japan Korea CFD market reference",
           "provider": "Trading Economics"
         }
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261013-e-jkm-cfd.md",
-      "carryReason": "Rechecked the exact Trading Economics page on Oct 13; its latest CFD observation is still dated Oct 9, four days old. Preserve the date and do not treat this as the official JKM assessment."
+      "retrievalArtifact": ".firecrawl/daily-20261013-e-jkm-cfd.md"
     },
     {
       "evidenceId": "e-hormuz-total-transits",
@@ -587,8 +582,8 @@
       "title": "GME Exchange Products Daily Information Bulletin - Sep 25, 2026",
       "publisher": "Gulf Mercantile Exchange",
       "publishedAt": "2026-09-25",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "The latest exact GME daily bulletin located remains Sep 25 and reports an OQD NOV26 marker of $111.58/bbl; no newer bulletin was available.",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Reviewed Oct 15: the exact latest GME daily bulletin located is still dated Sep 25 and reports OQD NOV26 at $111.58/bbl; carry with the original date.",
       "extractedFacts": [
         "The official GME Exchange Products Daily Information Bulletin is dated Friday, Sep 25, 2026.",
         "The OQD GME Oman Crude Oil NOV26 contract reports a $111.58/bbl marker price.",
@@ -623,7 +618,7 @@
         "oil-dubai-oman"
       ],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Reviewed Oct 7: the latest exact GME daily bulletin located remains dated Sep 25 and reports an OQD NOV26 marker of $111.58/bbl; keep its original date.",
+      "carryReason": "Reviewed Oct 15: the exact latest GME daily bulletin located is still dated Sep 25 and reports OQD NOV26 at $111.58/bbl; carry with the original date.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-gme-oman.json"
     },
     {
@@ -672,8 +667,8 @@
       "title": "Oil tanker rates hit record highs following Iran, US shipping attacks",
       "publisher": "Reuters",
       "publishedAt": "2026-09-11",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "The Sep 11 Reuters/Baltic Exchange Gulf of Oman-to-China assessment remains the latest reviewed same-unit observation at Worldscale 450, approximately $11.50/bbl.",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Reviewed Oct 15: the exact Sep 11 Reuters page remains the latest approved same-unit Gulf of Oman-to-China VLCC assessment near WS450 ($11.50/bbl); no newer comparable per-barrel quote was verified.",
       "extractedFacts": [
         "Reuters reported a Baltic Exchange Gulf of Oman-to-China VLCC rate near Worldscale 450.",
         "Reuters translated that route-specific rate to about $11.50/bbl.",
@@ -700,7 +695,7 @@
         "oil-vlcc-freight"
       ],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Reviewed Oct 7: the exact Reuters Sep 11 report remains the latest reviewed same-unit Gulf of Oman-to-China assessment near WS450 or $11.50/bbl. The Sep 25 time-charter quote is not converted.",
+      "carryReason": "Reviewed Oct 15: the exact Sep 11 Reuters page remains the latest approved same-unit Gulf of Oman-to-China VLCC assessment near WS450 ($11.50/bbl); no newer comparable per-barrel quote was verified.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-vlcc-freight.json"
     },
     {
@@ -831,8 +826,8 @@
       "title": "Oil prices slide about 2% as US, Iran explore path out of war | Reuters",
       "publisher": "Reuters",
       "publishedAt": "2026-09-25",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "The exact Sep 25 Reuters report remains a dated account of oil prices, truce discussions, Houthi attacks and the then-current Yanbu pipeline/loadings situation.",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Rechecked Oct 15: the exact Sep 25 Reuters page remains historical context for Brent settlement, truce discussions and Saudi pipeline/loadings status.",
       "extractedFacts": [
         "Brent settled at $104.32/bbl on Sep 25, down 2.1%; the Reuters page separately gave Brent and WTI intraday prices.",
         "The report described US-Iran negotiators exploring a phased path and Saudi reports of six missiles intercepted near Taif and Yanbu.",
@@ -860,8 +855,8 @@
       "title": "Gulf of Oman ship-to-ship oil transfers reach limit as Saudi exports surge | Reuters",
       "publisher": "Reuters",
       "publishedAt": "2026-09-25",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "The exact Reuters Sep 25 article reports Saudi crude shipments via Hormuz, constrained Gulf of Oman ship-to-ship transfers and a daily charter quote that is not route-normalised freight.",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Rechecked Oct 15: the exact Sep 25 Reuters page remains the dated Kpler estimate for Saudi Hormuz shipments and constrained Gulf of Oman ship-to-ship transfers; its time-charter quote is not route-normalised freight.",
       "extractedFacts": [
         "Kpler put Saudi crude exports through Hormuz on track for 3.6 million bpd in September, up from about 0.9 million bpd in August.",
         "Gulf of Oman ship-to-ship transfers for Middle East oil were reaching their limit with tugboat and labour queues.",
@@ -916,8 +911,8 @@
       "title": "Mideast oil exports rebound in September as Saudi Arabia boosts shipments | Reuters",
       "publisher": "Reuters",
       "publishedAt": "2026-09-28",
-      "checkedAt": "2026-10-07T01:31:31Z",
-      "claimSummary": "The exact Reuters Sep 28 article reports preliminary September export data, including Saudi shipments, as a dated flow snapshot.",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Rechecked Oct 15: the exact Sep 28 Reuters page remains a dated preliminary Kpler regional-export snapshot; it is not a current transit count.",
       "extractedFacts": [
         "Regional crude exports were estimated at 16.328 million bpd in September, below February’s 19.513 million bpd.",
         "The article reported Hormuz exports on track for 9.719 million bpd and Saudi exports around 5.4 million bpd.",
@@ -942,12 +937,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/SGD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-13",
-      "checkedAt": "2026-10-13T09:22:25.083Z",
-      "claimSummary": "Cache-busted Firecrawl review of Yahoo Finance chart API: SGD=X market observation 1.28 USD/SGD at 2026-10-13T09:22:22.000Z (daily change 0.02%).",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Live source review on Oct 15: USD/SGD was 1.2822 SGD per USD at 2026-10-15T02:51:04Z; Yahoo Finance reports a -0.2016% change.",
       "extractedFacts": [
-        "SGD=X USD/SGD spot exchange rate was 1.28 USD/SGD at 2026-10-13T09:22:22.000Z.",
-        "Yahoo Finance reports a daily change of 0.0003 (0.02%)."
+        "USD/SGD was 1.2822 SGD per USD at 2026-10-15T02:51:04Z; Yahoo Finance reports a -0.2016% change."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -957,10 +951,10 @@
       "observations": [
         {
           "inputId": "crossAsset.sgd",
-          "value": 1.28,
+          "value": 1.2822,
           "unit": "SGD per USD",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T09:22:22.000Z",
+          "sourceDate": "2026-10-15",
+          "observedAt": "2026-10-15T02:51:04Z",
           "instrument": "SGD=X USD/SGD spot exchange rate",
           "provider": "Yahoo Finance"
         }
@@ -977,12 +971,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/IDR",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-13",
-      "checkedAt": "2026-10-13T09:22:27.913Z",
-      "claimSummary": "Cache-busted Firecrawl review of Yahoo Finance chart API: IDR=X market observation 17892 IDR per USD at 2026-10-13T08:54:08.000Z (daily change -0.01%).",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Live source review on Oct 15: USD/IDR was 17893 IDR per USD at 2026-10-15T02:41:37Z; Yahoo Finance reports a 0.0% change.",
       "extractedFacts": [
-        "IDR=X USD/IDR spot exchange rate was 17892 IDR per USD at 2026-10-13T08:54:08.000Z.",
-        "Yahoo Finance reports a daily change of -2 (-0.01%)."
+        "USD/IDR was 17893 IDR per USD at 2026-10-15T02:41:37Z; Yahoo Finance reports a 0.0% change."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -992,10 +985,10 @@
       "observations": [
         {
           "inputId": "crossAsset.idr",
-          "value": 17892,
+          "value": 17893,
           "unit": "IDR per USD",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T08:54:08.000Z",
+          "sourceDate": "2026-10-15",
+          "observedAt": "2026-10-15T02:41:37Z",
           "instrument": "IDR=X USD/IDR spot exchange rate",
           "provider": "Yahoo Finance"
         }
@@ -1012,12 +1005,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/MYR",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-13",
-      "checkedAt": "2026-10-13T09:22:31.342Z",
-      "claimSummary": "Cache-busted Firecrawl review of Yahoo Finance chart API: MYR=X market observation 4.084 MYR per USD at 2026-10-13T09:02:09.000Z (daily change 0.07%).",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Live source review on Oct 15: USD/MYR was 4.079 MYR per USD at 2026-10-15T02:43:15Z; Yahoo Finance reports a -0.049% change.",
       "extractedFacts": [
-        "MYR=X USD/MYR spot exchange rate was 4.084 MYR per USD at 2026-10-13T09:02:09.000Z.",
-        "Yahoo Finance reports a daily change of 0.003 (0.07%)."
+        "USD/MYR was 4.079 MYR per USD at 2026-10-15T02:43:15Z; Yahoo Finance reports a -0.049% change."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1027,10 +1019,10 @@
       "observations": [
         {
           "inputId": "crossAsset.myr",
-          "value": 4.084,
+          "value": 4.079,
           "unit": "MYR per USD",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T09:02:09.000Z",
+          "sourceDate": "2026-10-15",
+          "observedAt": "2026-10-15T02:43:15Z",
           "instrument": "MYR=X USD/MYR spot exchange rate",
           "provider": "Yahoo Finance"
         }
@@ -1047,12 +1039,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/THB",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-13",
-      "checkedAt": "2026-10-13T09:22:34.260Z",
-      "claimSummary": "Cache-busted Firecrawl review of Yahoo Finance chart API: THB=X market observation 33.52 THB per USD at 2026-10-13T09:22:26.000Z (daily change -0.24%).",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Live source review on Oct 15: USD/THB was 33.53 THB per USD at 2026-10-15T02:51:06Z; Yahoo Finance reports a -0.1784% change.",
       "extractedFacts": [
-        "THB=X USD/THB spot exchange rate was 33.52 THB per USD at 2026-10-13T09:22:26.000Z.",
-        "Yahoo Finance reports a daily change of -0.08 (-0.24%)."
+        "USD/THB was 33.53 THB per USD at 2026-10-15T02:51:06Z; Yahoo Finance reports a -0.1784% change."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1062,10 +1053,10 @@
       "observations": [
         {
           "inputId": "crossAsset.thb",
-          "value": 33.52,
+          "value": 33.53,
           "unit": "THB per USD",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T09:22:26.000Z",
+          "sourceDate": "2026-10-15",
+          "observedAt": "2026-10-15T02:51:06Z",
           "instrument": "THB=X USD/THB spot exchange rate",
           "provider": "Yahoo Finance"
         }
@@ -1082,12 +1073,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - USD/PHP",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-13",
-      "checkedAt": "2026-10-13T09:22:37.097Z",
-      "claimSummary": "Cache-busted Firecrawl review of Yahoo Finance chart API: PHP=X market observation 62.719 PHP per USD at 2026-10-13T09:21:48.000Z (daily change -0.00%).",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Live source review on Oct 15: USD/PHP was 63.034 PHP per USD at 2026-10-15T02:51:06Z; Yahoo Finance reports a +0.4862% change.",
       "extractedFacts": [
-        "PHP=X USD/PHP spot exchange rate was 62.719 PHP per USD at 2026-10-13T09:21:48.000Z.",
-        "Yahoo Finance reports a daily change of -0.002 (-0.00%)."
+        "USD/PHP was 63.034 PHP per USD at 2026-10-15T02:51:06Z; Yahoo Finance reports a +0.4862% change."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1097,10 +1087,10 @@
       "observations": [
         {
           "inputId": "crossAsset.php",
-          "value": 62.719,
+          "value": 63.034,
           "unit": "PHP per USD",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T09:21:48.000Z",
+          "sourceDate": "2026-10-15",
+          "observedAt": "2026-10-15T02:51:06Z",
           "instrument": "PHP=X USD/PHP spot exchange rate",
           "provider": "Yahoo Finance"
         }
@@ -1590,6 +1580,87 @@
       "supportedDerivedMetricIds": [],
       "supportedRelationshipIds": [],
       "retrievalArtifact": ".firecrawl/daily-20261012/e-reuters-riyadh-airport-1010.json"
+    },
+    {
+      "evidenceId": "e-reuters-tactics-1014",
+      "url": "https://www.reuters.com/world/middle-east/iran-shifting-tactics-step-up-attacks-shipping-before-us-vote-officials-say-2026-10-14/",
+      "canonicalUrl": "https://www.reuters.com/world/middle-east/iran-shifting-tactics-step-up-attacks-shipping-before-us-vote-officials-say-2026-10-14/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Iran shifting tactics to step up attacks on shipping before US vote, officials say",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-14",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Iranian officials said new tactics began about 10 days earlier; Reuters reported at least five incidents in the prior 48 hours involving tankers and commercial ships, including waters off Qatar and the UAE. This is incident reporting, not a transit count.",
+      "extractedFacts": [
+        "Reuters reported at least five shipping incidents in the 48 hours before Oct 14, including tanker and commercial-ship incidents in waters off Qatar and the UAE.",
+        "The article does not provide a comparable daily commodity-vessel transit count."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-signal",
+        "hormuz-crude-export:oil-constraint-signal"
+      ],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": []
+    },
+    {
+      "evidenceId": "e-reuters-sink-1014",
+      "url": "https://www.reuters.com/world/asia-pacific/container-ship-sinks-near-hormuz-after-being-hit-by-projectile-sources-say-2026-10-14/",
+      "canonicalUrl": "https://www.reuters.com/world/asia-pacific/container-ship-sinks-near-hormuz-after-being-hit-by-projectile-sources-say-2026-10-14/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Container ship sinks near Hormuz after being hit by projectile, sources say",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-14",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Reuters reported the Singapore-flagged GFS Pride was damaged by a projectile, caught fire and sank while transiting; all 21 crew were evacuated without injuries. Cape Dao, hit Sep 23, separately sank later, with one crew member dead.",
+      "extractedFacts": [
+        "The GFS Pride, a Singapore-flagged container vessel, sank after being hit by a projectile while transiting near Hormuz; all 21 crew were evacuated without injuries.",
+        "The Cape Dao, hit on Sep 23, separately sank later; one crew member died and the rest of its crew had previously been evacuated."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-signal",
+        "hormuz-crude-export:oil-constraint-signal"
+      ],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": []
+    },
+    {
+      "evidenceId": "e-reuters-oil-1014",
+      "url": "https://www.reuters.com/business/energy/oil-prices-climb-traders-weigh-saudi-supply-risk-russian-diesel-flow-2026-10-14/",
+      "canonicalUrl": "https://www.reuters.com/business/energy/oil-prices-climb-traders-weigh-saudi-supply-risk-russian-diesel-flow-2026-10-14/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Oil prices climb as traders weigh Saudi supply risk, Russian diesel flow",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-14",
+      "checkedAt": "2026-10-15T03:05:41Z",
+      "claimSummary": "Reuters reported Brent settled at $106.06/bbl (+0.35%) and WTI at $95.09/bbl (+1.01%) on Oct 14 as traders weighed Saudi supply and shipping risks.",
+      "extractedFacts": [
+        "Brent futures settled at $106.06/bbl on Oct 14, up $0.37 or 0.35%.",
+        "WTI futures settled at $95.09/bbl on Oct 14, up $0.95 or 1.01%.",
+        "The report described Saudi supply risk and shipping attacks as market factors."
+      ],
+      "supportedHopIds": [
+        "hormuz-crude-export:oil-constraint-signal"
+      ],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": []
     }
   ]
 }

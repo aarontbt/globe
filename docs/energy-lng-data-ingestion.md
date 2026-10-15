@@ -82,13 +82,13 @@ fallback.
 | Domain | Open source candidates | Useful observations | Cadence and limitation | Globe status |
 | --- | --- | --- | --- | --- |
 | Gas balances, production, storage and prices | [EIA Open Data](https://www.eia.gov/opendata/), [JODI-Gas](https://www.jodidata.org/gas/database/data-downloads.aspx) | Production, imports/exports, storage, prices, balances | EIA connector requires `EIA_API_KEY` or `EIA_DATA_URL`; no oil baseline is converted into LNG volume | Active physical connector |
-| Trade flows and concentration | [UN Comtrade](https://comtradeplus.un.org/TradeFlow) | Reporter, partner, HS commodity, value, quantity and direction | Monthly or annual customs data; public demand context only, never cargo-level movement or current exposure | Active Phase 2 trade-demand context |
-| Terminals, pipelines and other assets | [Global Energy Monitor GGIT](https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/), [UN/LOCODE](https://unece.org/trade/cefact/unlocode-code-list-country-and-territory) | Asset identity, location, status, capacity and place identifiers | Release-based or static snapshots; identity/capacity metadata does not prove current loading | Active Phase 2 asset registry |
-| Ports, chokepoints and maritime pressure | [IMF PortWatch](https://portwatch.imf.org/pages/data-and-methodology) | Port activity, trade proxies, chokepoint and disruption indicators | Set `PORTWATCH_DATA_URL`; methodology pages are never parsed as observations; reviewed Kpler route data may be carried | Active route connector |
+| Trade flows and concentration | [UN Comtrade](https://comtradeplus.un.org/TradeFlow) | Reporter, partner, HS commodity, value, quantity and direction | Retired from automated refresh 2026-10-15; Japan/Korea demand inputs remain unavailable; historical snapshots retained | Retired |
+| Terminals, pipelines and other assets | [Global Energy Monitor GGIT](https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/), [UN/LOCODE](https://unece.org/trade/cefact/unlocode-code-list-country-and-territory) | Asset identity, location, status, capacity and place identifiers | UN/LOCODE Ras Laffan identity is read from the reviewed local snapshot; identity/capacity metadata does not prove current loading | Active Phase 2 asset registry |
+| Ports, chokepoints and maritime pressure | [IMF PortWatch Daily Chokepoints layer](https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0) | Dated daily total vessel counts by chokepoint | `chokepoint6` is Strait of Hormuz; total AIS counts are not LNG-only counts and do not supply a route-pressure score | Active transit-count connector |
 | European gas system | [AGSI+](https://agsi.gie.eu/), [ENTSOG Transparency](https://transparency.entsog.eu/) | Storage, nominations, flows, network and facility observations | Coverage is strongest in Europe and depends on the source's reporting rules | Future |
 | Historical LNG vessel and terminal baseline | [LNG-T3](https://zenodo.org/records/19571058) | Historical vessel voyages, terminals, throughput and country flows | Historical dataset; useful for backtesting and priors, not live status | Future |
 | Events and public disclosures | Official operator, regulator and government releases; [GDELT](https://www.gdeltproject.org/) for discovery | Outages, sanctions, force majeure, policy, weather and security events | Discovery feeds require source-level review; exact pages and claims must be captured | Current review / future discovery |
-| Macro and supporting market series | [World Bank Pink Sheet](https://www.worldbank.org/en/research/commodity-markets), [NY Fed SOFR](https://www.newyorkfed.org/markets/reference-rates/sofr-averages-and-index), EIA market series | Oil, gas and macro benchmarks used as context | TTF is refreshed through the existing Yahoo market connector; JKM remains unavailable to automation | Partial current |
+| Macro and supporting market series | [World Bank Pink Sheet](https://www.worldbank.org/en/research/commodity-markets), [NY Fed SOFR](https://www.newyorkfed.org/markets/reference-rates/sofr-averages-and-index), EIA market series, [ICE Endex TTF](https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data) | Oil, gas and macro benchmarks used as context | Yahoo TTF retired 2026-10-15. Use ICE Endex for manual TTF review and preserve its contract, `Last` field, and displayed timestamp; the page is delayed. Trading Economics has a documented historical API but is not qualified until subscribed access and series mapping are checked. JKM remains unavailable to automation | Partial current |
 
 The following remain known coverage gaps rather than assumed open-data
 capabilities: live vessel identity and cargo tracking, JKM, delivered LNG
@@ -98,8 +98,11 @@ inputs before they can support a stronger exposure claim.
 
 ### Active Phase 2 contract
 
-`bun run energy:refresh` fetches the configured EIA, IMF PortWatch, GEM,
-UN/LOCODE, UN Comtrade and TTF sources. `--event` changes only the trigger
+`bun run energy:refresh` fetches the configured EIA, IMF PortWatch, GEM, and
+UN/LOCODE sources. It reads the reviewed UN/LOCODE snapshot from
+`src/data/source-artifacts/unlocode-ras-laffan.json`; it does not require a
+remote endpoint. UN Comtrade and Yahoo TTF are retired and are not fetched. ICE Endex is the manual TTF reference; do not promote its public delayed `Last` quote as an official settlement price. Trading Economics API access requires a subscription and its EU Gas history must be reconciled to the ICE front-month contract before it can replace the manual review.
+`--event` changes only the trigger
 recorded in the report. `--source`, `--from` and `--to` constrain a
 deterministic backfill. The command writes candidate observations, a
 promotion report, a snapshot manifest and durable raw artifacts under
@@ -123,8 +126,8 @@ coverage metadata: source period, expected cadence, observed period, missing
 periods and source status. Conflicting source observations preserve both
 lineages and identify the selected reconciliation basis. The read model keeps
 direct physical observations, public asset metadata, route proxies, monthly
-trade context and unavailable data visibly separate. UN Comtrade is never
-treated as live cargo movement, and unsupported vessel-specific observations
+trade context and unavailable data visibly separate. Retired Comtrade snapshots
+remain historical provenance only, and unsupported vessel-specific observations
 remain unavailable.
 
 The report and candidate file are an atomic logical pair. `daily:apply` refuses
@@ -216,9 +219,8 @@ All approved records are published through the existing `daily:apply` path.
 
 ### Phase 1 — High-value open-data connectors (complete)
 
-- Start with EIA/JODI for balances and benchmarks, UN Comtrade for trade
-  concentration, GEM/UNLOCODE for asset identity and PortWatch for
-  port/chokepoint context.
+- Start with EIA/JODI for balances and benchmarks, GEM/UN/LOCODE for asset
+  identity and PortWatch for port/chokepoint context. Comtrade remains retired.
 - Add AGSI+/ENTSOG for European gas observations where their coverage applies.
 - Produce raw snapshot metadata and normalised candidate outputs. Promotion
   is gated by the refresh report and `daily:apply`; connectors do not write
@@ -226,12 +228,13 @@ All approved records are published through the existing `daily:apply` path.
 
 ### Phase 2 — Physical-flow resolution (current)
 
-- Add deterministic multi-period EIA, PortWatch, asset-registry and Comtrade
-  normalisation with exact series, route and trade selectors.
+- Add deterministic multi-period EIA, PortWatch and asset-registry
+  normalisation with exact series, route and asset selectors.
 - Persist raw snapshot artifacts and hashes before parsing; retain normalized
   record lineage through promotion.
-- Add Qatar production/export baselines, Ras Laffan identity/status/capacity,
-  Hormuz route-pressure history and Japan/Korea monthly demand context.
+- Add Qatar dry natural gas production/export baselines, Ras Laffan identity/status/capacity,
+  and Hormuz vessel-count history. Route-pressure scores and Japan/Korea monthly
+  demand remain unavailable.
 - Expose source age, cadence, confidence, coverage and direct/proxy/unavailable
   status in the UI while keeping execution manual through the daily runbook.
 - Do not add repository scheduling, realtime streaming, licensed AIS/cargo,

@@ -254,28 +254,57 @@ const energyRegistry = loadSourceRegistry();
 const eiaProductionSource = energyRegistry.sources.find((source) => source.id === "src-eia-qatar-production");
 const eiaMultiPeriod = parseEiaRecords({
   data: [
-    { seriesId: "QATAR_LNG_PRODUCTION", entityIds: ["qatarenergy", "ras-laffan"], metric: "qatar-lng-production", value: 76, unit: "MTPA", period: "2024" },
-    { seriesId: "QATAR_LNG_PRODUCTION", entityIds: ["qatarenergy", "ras-laffan"], metric: "qatar-lng-production", value: 77, unit: "MTPA", period: "2025" },
+    { seriesId: "INTL.26-1-QAT-BCF.A", entityIds: ["qatarenergy", "ras-laffan"], metric: "dry-natural-gas-production", value: 5500, unit: "billion cubic feet", period: "2024" },
+    { seriesId: "INTL.26-1-QAT-BCF.A", entityIds: ["qatarenergy", "ras-laffan"], metric: "dry-natural-gas-production", value: 5600, unit: "billion cubic feet", period: "2025" },
+  ],
+}, eiaProductionSource, { includeHistory: true });
+assert.equal(eiaMultiPeriod.length, 2, "EIA parser should preserve multi-period series observations");
+const eiaLatestOnly = parseEiaRecords({
+  data: [
+    { seriesId: "INTL.26-1-QAT-BCF.A", entityIds: ["qatarenergy", "ras-laffan"], metric: "dry-natural-gas-production", value: 5500, unit: "billion cubic feet", period: "2024" },
+    { seriesId: "INTL.26-1-QAT-BCF.A", entityIds: ["qatarenergy", "ras-laffan"], metric: "dry-natural-gas-production", value: 5600, unit: "billion cubic feet", period: "2025" },
   ],
 }, eiaProductionSource);
-assert.equal(eiaMultiPeriod.length, 2, "EIA parser should preserve multi-period series observations");
+assert.equal(eiaLatestOnly.length, 1, "EIA annual baseline should stage only the newest valid period by default");
+assert.equal(eiaLatestOnly[0].periodEnd, "2025-12-31");
+const eiaSeriesScopedResponse = parseEiaRecords({
+  data: [
+    { productId: 26, activityId: 1, countryRegionId: "QAT", productName: "Dry natural gas", activityName: "Production", value: 5600, unit: "BCF", unitName: "billion cubic feet", period: 2025 },
+  ],
+}, eiaProductionSource, { seriesIdConfirmed: "INTL.26-1-QAT-BCF.A" });
+assert.equal(eiaSeriesScopedResponse.length, 1, "EIA parser should accept rows without series metadata when the request URL confirms the exact configured series");
+assert.equal(eiaSeriesScopedResponse[0].unit, "billion cubic feet", "EIA parser should prefer the descriptive unit name over the abbreviated unit code");
+assert.equal(eiaSeriesScopedResponse[0].metric, "dry-natural-gas-production");
+assert.equal(eiaSeriesScopedResponse[0].periodEnd, "2025-12-31");
 assert.throws(
-  () => parseEiaRecords({ data: [{ seriesId: "WRONG_SERIES", entityIds: ["qatarenergy", "ras-laffan"], metric: "qatar-lng-production", value: 77, unit: "MTPA", period: "2025" }] }, eiaProductionSource),
+  () => parseEiaRecords({ data: [{ productId: 999, activityId: 1, countryRegionId: "QAT", value: 5600, unitName: "billion cubic feet", period: 2025 }] }, eiaProductionSource, { seriesIdConfirmed: "INTL.26-1-QAT-BCF.A" }),
+  /no selected series/,
+  "EIA parser must reject rows whose schema metadata contradicts the configured series",
+);
+assert.throws(
+  () => parseEiaRecords({ data: [{ entityIds: ["qatarenergy"], metric: "dry-natural-gas-production", value: 5600, unit: "billion cubic feet", period: "2025" }] }, eiaProductionSource),
+  /does not identify configured series/,
+  "EIA parser must reject unlabelled rows unless the request confirms the selected series",
+);
+assert.throws(
+  () => parseEiaRecords({ data: [{ seriesId: "WRONG_SERIES", entityIds: ["qatarenergy", "ras-laffan"], metric: "dry-natural-gas-production", value: 5600, unit: "billion cubic feet", period: "2025" }] }, eiaProductionSource),
   /wrong EIA series|no selected series/,
   "EIA parser must reject a wrong configured series",
 );
 
-const pressureSource = energyRegistry.sources.find((source) => source.id === "src-imf-portwatch-hormuz-pressure");
-const routeRecords = parseRouteRecords([
-  { routeId: "hormuz", entityIds: ["hormuz"], metric: "route-pressure", value: 70, unit: "index", date: "2026-08-18" },
-  { routeId: "suez", entityIds: ["hormuz"], metric: "route-pressure", value: 99, unit: "index", date: "2026-08-18" },
-], pressureSource);
-assert.equal(routeRecords.length, 1, "PortWatch parser must select the configured route exactly");
+const portWatchSource = energyRegistry.sources.find((source) => source.id === "src-imf-portwatch-hormuz");
+const routeRecords = parseRouteRecords({ features: [
+  { attributes: { portid: "chokepoint6", portname: "Strait of Hormuz", n_total: 70, date: "2026-08-18" } },
+  { attributes: { portid: "suez1", portname: "Suez Canal", n_total: 99, date: "2026-08-18" } },
+] }, portWatchSource);
+assert.equal(routeRecords.length, 1, "PortWatch parser must select the configured chokepoint exactly");
 assert.equal(routeRecords[0].value, 70);
+assert.equal(routeRecords[0].unit, "vessels/day");
+assert(routeRecords[0].coverageNote.includes("across vessel classes"), "PortWatch counts must be labeled as all-vessel AIS observations");
 assert.throws(
-  () => parseRouteRecords([{ routeId: "suez", entityIds: ["hormuz"], metric: "route-pressure", value: 99, unit: "index", date: "2026-08-18" }], pressureSource),
+  () => parseRouteRecords([{ portid: "suez1", n_total: 99, date: "2026-08-18" }], portWatchSource),
   /no selected route/,
-  "PortWatch parser must reject unrelated routes",
+  "PortWatch parser must reject unrelated chokepoints",
 );
 
 const unlocodeSource = energyRegistry.sources.find((source) => source.id === "src-unlocode-ras-laffan");
@@ -353,6 +382,15 @@ for (const entry of energyFixtureAudit.entries ?? []) {
     observation.observedAt = "2026-08-25T15:50:09.000Z";
   }
 }
+for (const input of [energyFixtureState.traceInputs.metrics.ttf, energyFixtureState.commercialInputs["lng-ttf"]]) {
+  input.value = 66.13;
+  input.sourceDate = "2026-08-25";
+  input.observedAt = "2026-08-25T15:50:09.000Z";
+}
+energyFixtureState.crossAsset.ttf.current = 66.13;
+energyFixtureState.crossAsset.ttf.change1d = "+1.3%";
+energyFixtureState.crossAsset.ttf.sourceDate = "2026-08-25";
+energyFixtureState.runbookState.ttf = "66.13 EUR/MWh (2026-08-25, dated historical observation)";
 energyFixtureAudit.asOf = energyFixtureAsOf;
 energyFixtureAudit.reviewedAt = energyFixtureAsOf;
 for (const entry of energyFixtureAudit.entries ?? []) {
@@ -444,18 +482,18 @@ const energyFixtureOptions = {
   dryRun: true,
 };
 const phase2Energy = await runEnergyRefresh({ ...energyFixtureOptions, fixtureName: "phase2-valid" });
-assert.equal(phase2Energy.promotion.status, "validated", "Qatar/Hormuz Phase 2 fixture should validate");
+assert.equal(phase2Energy.promotion.status, "validated", `Qatar/Hormuz Phase 2 fixture should validate: ${phase2Energy.validation.errors.join("; ")}`);
 assert(phase2Energy.observations.some((record) => record.observationKind === "capacity"), "Phase 2 should include terminal capacity observations");
 assert(phase2Energy.observations.some((record) => record.observationKind === "asset-status"), "Phase 2 should include stable asset observations");
-assert(phase2Energy.observations.some((record) => record.observationKind === "transit" && record.targetInputIds.includes("hormuz-route-pressure")), "Phase 2 should include route-pressure history");
-assert(phase2Energy.observations.some((record) => record.observationKind === "trade-demand" && record.coverage.status === "public-proxy"), "Phase 2 should include public-proxy trade context");
+assert(phase2Energy.observations.some((record) => record.observationKind === "transit" && record.targetInputIds.includes("hormuz-total-transits") && record.unit === "vessels/day"), "Phase 2 should include daily all-vessel transit counts");
+assert(!phase2Energy.observations.some((record) => record.targetInputIds.includes("hormuz-route-pressure")), "all-vessel counts must not be promoted as a route-pressure score");
 const phase2Repeat = await runEnergyRefresh({ ...energyFixtureOptions, fixtureName: "phase2-valid" });
 assert.equal(phase2Repeat.runId, phase2Energy.runId, "Phase 2 refresh should be idempotent");
 assert.deepEqual(phase2Repeat.observations.map((record) => record.recordKey), phase2Energy.observations.map((record) => record.recordKey));
-const pressureSubset = phase2Energy.observations.filter((record) => record.targetInputIds.includes("hormuz-route-pressure") && record.periodStart !== "2026-08-17");
-const partialCoverage = buildSourceCoverage(pressureSource, [{ sourceId: pressureSource.id, status: "fetched" }], pressureSubset);
-assert.equal(partialCoverage.status, "partial-coverage", "coverage should flag missing route periods");
-assert(partialCoverage.missingPeriods.includes("2026-08-17/2026-08-17"));
+const transitSubset = phase2Energy.observations.filter((record) => record.targetInputIds.includes("hormuz-total-transits") && record.periodStart !== "2026-08-25");
+const partialCoverage = buildSourceCoverage(portWatchSource, [{ sourceId: portWatchSource.id, status: "fetched" }], transitSubset);
+assert.equal(partialCoverage.status, "partial-coverage", "coverage should flag missing transit-count periods");
+assert(partialCoverage.missingPeriods.includes("2026-08-25/2026-08-25"));
 const phase2Observation = phase2Energy.observations.find((record) => record.targetInputIds.includes("qatar-production-baseline"));
 const phase2Snapshot = phase2Energy.snapshots.find((snapshot) => snapshot.sourceId === phase2Observation.sourceId);
 assert(phase2Observation.lineage.snapshotRef.startsWith("snapshot:energy-snapshot:"));
@@ -463,7 +501,7 @@ assert.equal(phase2Observation.lineage.snapshotHash.length, 64);
 assert.equal(phase2Observation.lineage.snapshotHash, phase2Snapshot.contentHash, "normalized records should retain their raw snapshot hash");
 assert(phase2Snapshot.recordKeys.includes(phase2Observation.recordKey), "raw snapshots should list linked normalized record keys");
 assert(phase2Observation.machineEvidenceIds.length > 0, "confirmed Phase 2 observations should link machine evidence");
-const backfillOptions = { ...energyFixtureOptions, fixtureName: "phase2-valid", sourceId: "src-imf-portwatch-hormuz-pressure", from: "2026-08-16", to: "2026-08-18" };
+const backfillOptions = { ...energyFixtureOptions, fixtureName: "phase2-valid", sourceId: "src-imf-portwatch-hormuz", from: "2026-08-24", to: "2026-08-26" };
 const backfill = await runEnergyRefresh(backfillOptions);
 const backfillRepeat = await runEnergyRefresh(backfillOptions);
 assert.equal(backfill.promotion.status, "validated", "a scoped historical backfill should validate");
@@ -495,8 +533,8 @@ assert.equal(validateStateShape(phase2Promotion.state).length, 0, "promoted Phas
 assert(phase2Promotion.readModel.entities.find((entity) => entity.id === "ras-laffan-port")?.identitySources?.includes("UN/LOCODE"));
 assert(phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.routeEntityIds.includes("ras-laffan-port"));
 const phase2Flow = phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.physicalFlow;
-assert(phase2Flow?.observations.some((record) => record.observationKind === "trade-demand" && record.coverageStatus === "public-proxy"));
-assert(phase2Flow?.observations.some((record) => record.observationKind === "transit" && record.periodEnd === "2026-08-19"));
+assert(!phase2Flow?.observations.some((record) => record.observationKind === "trade-demand"), "retired UN Comtrade must not add new trade-demand observations");
+assert(phase2Flow?.observations.some((record) => record.observationKind === "transit" && record.sourceId === "src-imf-portwatch-hormuz" && record.periodEnd === "2026-08-26"));
 assert.equal(phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.flowPressure?.components.length, 6);
 assert((phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.alternatives ?? []).some((alternative) => alternative.feasibility === "potential"));
 assert((phase2Promotion.readModel.traces.find((trace) => trace.id === "qatar-supply")?.watchItems.length ?? 0) > 0, "watchlist should remain available after Phase 2 promotion");
@@ -542,24 +580,22 @@ const validEnergy = await runEnergyRefresh({ ...energyFixtureOptions, fixtureNam
 assert.equal(validEnergy.promotion.status, "validated", "valid Energy/LNG fixture should validate");
 assert(validEnergy.observations.some((record) => record.status === "carried"), "valid refresh should retain explicit carried route/event data");
 assert(validEnergy.observations.some((record) => record.status === "unavailable"), "valid refresh should retain explicit unavailable volume data");
-assert(validEnergy.observations.find((record) => record.targetInputIds.includes("hormuz-transits")).confidence !== "high", "carried route data must lower confidence");
+const validTransit = validEnergy.observations.find((record) => record.targetInputIds.includes("hormuz-total-transits"));
+assert.equal(validTransit.unit, "vessels/day");
+assert.equal(validTransit.status, "confirmed", "a fetched PortWatch count should be a direct observation");
+assert(validTransit.coverage.note.includes("across vessel classes"), "PortWatch transit counts must retain their coverage caveat");
+assert(!validEnergy.observations.some((record) => record.targetInputIds.includes("ttf")), "retired Yahoo TTF fixture data must not create automatic candidates");
 
-const previousEiaSeriesId = process.env.EIA_SERIES_ID;
-process.env.EIA_SERIES_ID = "QATAR_LNG_TEST";
 const scopedEnergy = await runEnergyRefresh({ ...energyFixtureOptions, fixtureName: "eia-portwatch-valid" });
-if (previousEiaSeriesId === undefined) delete process.env.EIA_SERIES_ID;
-else process.env.EIA_SERIES_ID = previousEiaSeriesId;
 assert.equal(scopedEnergy.promotion.status, "validated", "scoped EIA/PortWatch fixture should validate");
-const scopedVolume = scopedEnergy.observations.find((record) => record.targetInputIds.includes("qatar-volume-at-risk"));
-const scopedRoute = scopedEnergy.observations.find((record) => record.targetInputIds.includes("hormuz-transits"));
-assert.equal(scopedVolume.value, 77.5, "EIA parser should select the configured Qatar series");
-assert.deepEqual(scopedVolume.entityIds, ["qatarenergy", "ras-laffan"], "EIA parser should preserve target entity scope");
+const scopedProduction = scopedEnergy.observations.find((record) => record.targetInputIds.includes("qatar-production-baseline"));
+const scopedRoute = scopedEnergy.observations.find((record) => record.targetInputIds.includes("hormuz-total-transits"));
+assert.equal(scopedProduction.value, 5500, "EIA parser should select the configured Qatar production series");
+assert.deepEqual(scopedProduction.entityIds, ["qatarenergy", "ras-laffan"], "EIA parser should preserve target entity scope");
 assert.equal(scopedRoute.value, 4, "PortWatch parser should select the configured Hormuz route");
 assert(!scopedEnergy.observations.some((record) => record.value === 19.2 || record.value === 99), "unrelated EIA/route rows must not become candidates");
-assert(scopedEnergy.machineEvidence.some((item) => item.targetInputIds.includes("qatar-volume-at-risk")), "EIA observation should have machine snapshot evidence");
-assert(scopedVolume.machineEvidenceIds.length === 1, "confirmed EIA observation should link its snapshot evidence");
-if (previousEiaSeriesId === undefined) process.env.EIA_SERIES_ID = "QATAR_LNG_TEST";
-else process.env.EIA_SERIES_ID = previousEiaSeriesId;
+assert(scopedEnergy.machineEvidence.some((item) => item.targetInputIds.includes("qatar-production-baseline")), "EIA observation should have machine snapshot evidence");
+assert.equal(scopedProduction.machineEvidenceIds.length, 1, "confirmed EIA observation should link its snapshot evidence");
 const scopedPromotion = prepareEnergyPromotion({
   state: energyFixtureState,
   exposure: energyFixtureExposure,
@@ -577,23 +613,18 @@ const scopedPromotion = prepareEnergyPromotion({
     report: scopedEnergy,
   },
 });
-if (previousEiaSeriesId === undefined) delete process.env.EIA_SERIES_ID;
-else process.env.EIA_SERIES_ID = previousEiaSeriesId;
 assert(scopedPromotion.promoted, `machine-evidenced EIA/PortWatch candidates should promote: ${scopedPromotion.errors.join("; ")}`);
-assert.equal(validateEvidenceAudit(scopedPromotion.state, scopedPromotion.exposure, energyFixtureAudit).length, 0, "machine snapshot evidence should support an automated trace metric");
+const scopedAuditErrors = validateEvidenceAudit(scopedPromotion.state, scopedPromotion.exposure, energyFixtureAudit);
+assert.equal(scopedAuditErrors.length, 0, `machine snapshot evidence should support an automated trace metric: ${scopedAuditErrors.join("; ")}`);
 assert.equal(scopedPromotion.readModel.machineEvidence.length, 3, "promoted read model should expose machine snapshot evidence");
 
-if (previousEiaSeriesId === undefined) process.env.EIA_SERIES_ID = "QATAR_LNG_TEST";
-else process.env.EIA_SERIES_ID = previousEiaSeriesId;
 const scopedRepeat = await runEnergyRefresh({ ...energyFixtureOptions, fixtureName: "eia-portwatch-valid" });
-if (previousEiaSeriesId === undefined) delete process.env.EIA_SERIES_ID;
-else process.env.EIA_SERIES_ID = previousEiaSeriesId;
 assert.equal(scopedRepeat.runId, scopedEnergy.runId, "scoped repeated refreshes should be idempotent");
 assert.deepEqual(scopedRepeat.machineEvidence, scopedEnergy.machineEvidence, "scoped repeated refreshes should preserve snapshot evidence");
 
 const mutatedTarget = structuredClone(scopedEnergy.observations);
-const mutatedVolume = mutatedTarget.find((record) => record.targetInputIds.includes("qatar-volume-at-risk"));
-mutatedVolume.targetInputIds = ["hormuz-transits"];
+const mutatedProduction = mutatedTarget.find((record) => record.targetInputIds.includes("qatar-production-baseline"));
+mutatedProduction.targetInputIds = ["hormuz-transits"];
 const mutatedTargetPromotion = prepareEnergyPromotion({
   state: energyFixtureState,
   exposure: energyFixtureExposure,
@@ -709,68 +740,14 @@ for (const fixtureName of ["stale", "malformed", "duplicate", "unit-mismatched"]
 
 const unavailableEnergy = await runEnergyRefresh({ ...energyFixtureOptions, fixtureName: "unavailable" });
 assert.equal(unavailableEnergy.promotion.status, "validated", "unavailable fallback fixture should remain publishable as explicit unavailable data");
-const unavailableVolume = unavailableEnergy.observations.find((record) => record.targetInputIds.includes("qatar-volume-at-risk"));
-assert.equal(unavailableVolume.status, "unavailable");
-assert.equal(unavailableVolume.value, undefined, "unavailable records must not invent a value");
-const unavailableTtfState = structuredClone(baseline);
-const unavailableTtfExposure = structuredClone(exposure);
-const markTtfUnavailable = (input) => {
-  delete input.value;
-  delete input.low;
-  delete input.high;
-  delete input.source;
-  delete input.sourceDate;
-  delete input.observedAt;
-  delete input.carryReason;
-  input.status = "unavailable";
-  input.missingReason = "TTF machine observation unavailable for hardening test.";
-};
-markTtfUnavailable(unavailableTtfState.traceInputs.metrics.ttf);
-markTtfUnavailable(unavailableTtfState.commercialInputs["lng-ttf"]);
-for (const trace of unavailableTtfExposure.traces) {
-  for (const hop of trace.hops) {
-    for (const metric of hop.metrics) {
-      if (metric.inputId === "ttf") markTtfUnavailable(metric);
-    }
-  }
-}
-const unavailableTtfInput = unavailableTtfExposure.commercialInputs.find((input) => input.inputId === "lng-ttf");
-if (unavailableTtfInput) markTtfUnavailable(unavailableTtfInput);
-const unavailableTtfEnergy = await runEnergyRefresh({
-  state: unavailableTtfState,
-  exposure: unavailableTtfExposure,
-  registry: energyRegistry,
-  asOf: unavailableTtfState.asOf,
-  now: unavailableTtfState.asOf,
-  offline: true,
-  dryRun: true,
-  fixtureName: "unavailable",
-});
-const unavailablePromotion = prepareEnergyPromotion({
-  state: unavailableTtfState,
-  exposure: unavailableTtfExposure,
-  audit: evidenceAudit,
-  registry: energyRegistry,
-  candidateEnvelopeOverride: {
-    candidates: {
-      schemaVersion: "energy-lng-candidates-v1",
-      runId: unavailableTtfEnergy.runId,
-      asOf: unavailableTtfState.asOf,
-      baseFingerprint: unavailableTtfEnergy.baseFingerprint,
-      observations: unavailableTtfEnergy.observations,
-      machineEvidence: unavailableTtfEnergy.machineEvidence,
-    },
-    report: unavailableTtfEnergy,
-  },
-});
-assert(unavailablePromotion.promoted, "unavailable TTF should remain explicitly publishable");
-assert.equal(unavailablePromotion.state.crossAsset.ttf.status, "unavailable");
-assert.equal(validateStateShape(unavailablePromotion.state).length, 0, "unavailable TTF cross-asset state should remain valid");
-assert.equal(validateEvidenceAudit(unavailablePromotion.state, unavailablePromotion.exposure, evidenceAudit).length, 0, "unavailable TTF should not invent evidence or a value");
+const unavailableProduction = unavailableEnergy.observations.find((record) => record.targetInputIds.includes("qatar-production-baseline"));
+assert.equal(unavailableProduction.status, "unavailable");
+assert.equal(unavailableProduction.value, undefined, "unavailable records must not invent a value");
 
 const carriedHigh = structuredClone(unavailableEnergy.observations);
-const carriedTtf = carriedHigh.find((record) => record.targetInputIds.includes("ttf"));
-carriedTtf.confidence = "high";
+const carriedRecord = carriedHigh.find((record) => record.status === "carried");
+assert(carriedRecord, "the fixture should retain at least one reviewed carried observation");
+carriedRecord.confidence = "high";
 const carriedHighPromotion = prepareEnergyPromotion({
   state: baseline,
   exposure,
@@ -795,6 +772,9 @@ const marketExposure = structuredClone(energyFixtureExposure);
 const marketAudit = structuredClone(energyFixtureAudit);
 marketState.traceInputs.metrics.ttf.value = 77.77;
 marketState.commercialInputs["lng-ttf"].value = 77.77;
+marketState.crossAsset.ttf.current = 77.77;
+marketState.crossAsset.ttf.change1d = "+5.6%";
+marketState.runbookState.ttf = "77.77 EUR/MWh (2026-08-25, manual review fixture)";
 for (const trace of marketExposure.traces) {
   for (const hop of trace.hops) {
     for (const metric of hop.metrics) {
@@ -823,6 +803,7 @@ const updatedTtf = await runEnergyRefresh({
   dryRun: true,
   fixtureName: "ttf-updated",
 });
+assert(!updatedTtf.observations.some((record) => record.targetInputIds.includes("ttf") || record.targetCommercialInputIds.includes("lng-ttf")), "disabled Yahoo TTF source must not emit new candidates");
 const updatedTtfPromotion = prepareEnergyPromotion({
   state: marketState,
   exposure: marketExposure,
@@ -840,12 +821,12 @@ const updatedTtfPromotion = prepareEnergyPromotion({
     report: updatedTtf,
   },
 });
-assert(updatedTtfPromotion.promoted, `TTF promotion should synchronize all views: ${updatedTtfPromotion.errors.join("; ")}`);
+assert(updatedTtfPromotion.promoted, `TTF carry should remain valid after retiring the automatic source: ${updatedTtfPromotion.errors.join("; ")}`);
 assert.equal(updatedTtfPromotion.state.traceInputs.metrics.ttf.value, 77.77);
 assert.equal(updatedTtfPromotion.state.commercialInputs["lng-ttf"].value, 77.77);
-assert.equal(updatedTtfPromotion.state.crossAsset.ttf.current, 77.77, "TTF cross-asset current must follow the promoted observation");
-assert.equal(updatedTtfPromotion.state.crossAsset.ttf.change1d, "+5.6%", "TTF cross-asset change must follow the promoted observation");
-assert(updatedTtfPromotion.state.runbookState.ttf.includes("77.77"), "TTF runbook quote must follow the promoted observation");
+assert.equal(updatedTtfPromotion.state.crossAsset.ttf.current, 77.77, "retired connector must not replace the reviewed TTF value");
+assert.equal(updatedTtfPromotion.state.crossAsset.ttf.change1d, "+5.6%", "retired connector must not replace the reviewed TTF change");
+assert(updatedTtfPromotion.state.runbookState.ttf.includes("77.77"), "TTF runbook quote must remain at its reviewed value");
 
 const domain = toEnergyLngDomain(exposure);
 assert(domain.observations.some((record) => record.id === "observation:qatar-supply:qatar-output-status"), "Qatar observations must be trace scoped");

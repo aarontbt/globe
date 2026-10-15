@@ -167,3 +167,5 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D216**: Oct 7 - Reuters/Kpler reports Sep 30 exports at 18.3m bpd; Marisks reports at least seven tanker incidents and Al Jazeera reports 12 crew injured in a Hormuz strike.
 - **D221**: Oct 12 - Kpler counted seven Hormuz commodity crossings, Reuters reported a weekly high of 12 tanker attacks, and Iran said the US reply to reopening conditions was insufficient.
 - **D222**: Oct 13 - Yahoo Finance Oct 13 snapshots update Brent to $105.04, WTI to $92.04, TTF to 86.65 EUR/MWh, EUR/USD to 1.1186, and Southeast Asian FX marks. SOFR is 3.87% effective Oct 8. CBOE latest closes remain Oct 12 (OVX 48.52; VXEEM 22.33); approved Hormuz status and scenario probabilities are carried.
+- **D223**: Oct 14 - Reuters reports at least five shipping incidents in 48 hours and the GFS Pride sinking near Hormuz; no comparable daily transit count was reported.
+- **D224**: Oct 15 - Brent $103.78, WTI $93.73, TTF 87.315 EUR/MWh; Reuters reports two vessel sinkings and five incidents in 48 hours; no current comparable transit count.
