@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-15T00:00:00Z",
-  "reviewedAt": "2026-10-15T07:38:51Z",
+  "asOf": "2026-10-17T00:00:00Z",
+  "reviewedAt": "2026-10-17T01:50:22Z",
   "reviewer": "Codex; Firecrawl exact-page review",
   "entries": [
     {
@@ -150,19 +150,20 @@
     },
     {
       "evidenceId": "e-ttf",
-      "url": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
-      "canonicalUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTF%3DF?interval=1d&range=5d",
+      "url": "https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data",
+      "canonicalUrl": "https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data",
       "httpStatus": 200,
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - Dutch TTF",
-      "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-14",
-      "checkedAt": "2026-10-15T03:05:41Z",
-      "claimSummary": "Live source review on Oct 15: Dutch TTF futures was 87.315 EUR/MWh at 2026-10-14T16:06:48Z; Yahoo Finance reports a +0.177 (+0.203%) change.",
+      "title": "Dutch TTF Natural Gas Futures - Nov26 delayed Last",
+      "publisher": "ICE Endex",
+      "publishedAt": "2026-10-16",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "ICE Endex Nov26 Dutch TTF delayed Last was 87.725 EUR/MWh at Oct 16 11:23 GMT; page updated 11:33 GMT. This is not a settlement price.",
       "extractedFacts": [
-        "Dutch TTF futures was 87.315 EUR/MWh at 2026-10-14T16:06:48Z; Yahoo Finance reports a +0.177 (+0.203%) change."
+        "ICE Endex Nov26 Dutch TTF delayed Last was 87.725 EUR/MWh at Oct 16 11:23 GMT; page updated 11:33 GMT. This is not a settlement price.",
+        "ICE labels the quote Last and states market data is delayed at least 15 minutes."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-demand"
@@ -174,28 +175,28 @@
       "observations": [
         {
           "inputId": "ttf",
-          "value": 87.315,
+          "value": 87.725,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-10-14",
-          "observedAt": "2026-10-14T16:06:48.000Z",
-          "instrument": "TTF=F Dutch TTF futures",
-          "provider": "Yahoo Finance"
+          "sourceDate": "2026-10-16",
+          "observedAt": "2026-10-16T11:23:00.000Z",
+          "instrument": "ICE Endex Nov26 Dutch TTF futures delayed Last",
+          "provider": "ICE Endex"
         },
         {
           "inputId": "lng-ttf",
-          "value": 87.315,
+          "value": 87.725,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-10-14",
-          "observedAt": "2026-10-14T16:06:48.000Z",
-          "instrument": "TTF=F Dutch TTF futures",
-          "provider": "Yahoo Finance"
+          "sourceDate": "2026-10-16",
+          "observedAt": "2026-10-16T11:23:00.000Z",
+          "instrument": "ICE Endex Nov26 Dutch TTF futures delayed Last",
+          "provider": "ICE Endex"
         }
       ],
       "supportedCommercialInputIds": [
         "lng-ttf"
       ],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261013-e-ttf.md"
+      "retrievalArtifact": ".firecrawl/daily-20261017-ice-ttf.md"
     },
     {
       "evidenceId": "e-jera-qatarenergy",
@@ -335,11 +336,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - Brent Crude",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-15",
-      "checkedAt": "2026-10-15T07:38:51Z",
-      "claimSummary": "Firecrawl live review on Oct 15: BZ=F was 103.78 USD/bbl at 2026-10-15T07:28:39Z; Yahoo Finance reports a -2.28 (-2.15%) change.",
+      "publishedAt": "2026-10-16",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "Firecrawl review Oct 17 with cache-busting after the canonical response was stale: BZ=F Brent crude futures was 109.69 USD/bbl at 2026-10-16T20:59:31.000Z.",
       "extractedFacts": [
-        "BZ=F was 103.78 USD/bbl at 2026-10-15T07:28:39Z; Yahoo Finance reports a -2.28 (-2.15%) change."
+        "BZ=F Brent crude futures was 109.69 USD/bbl at 2026-10-16T20:59:31.000Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -351,15 +352,15 @@
       "observations": [
         {
           "inputId": "oil-brent",
-          "value": 103.78,
+          "value": 109.69,
           "unit": "USD/bbl",
-          "sourceDate": "2026-10-15",
-          "observedAt": "2026-10-15T07:28:39Z",
+          "sourceDate": "2026-10-16",
+          "observedAt": "2026-10-16T20:59:31.000Z",
           "instrument": "BZ=F Brent crude futures",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261015/e-brent.json"
+      "retrievalArtifact": ".firecrawl/daily-20261017/e-brent-fresh.json"
     },
     {
       "evidenceId": "e-wti",
@@ -371,11 +372,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - WTI Crude",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-15",
-      "checkedAt": "2026-10-15T07:38:51Z",
-      "claimSummary": "Firecrawl live review on Oct 15: CL=F was 93.73 USD/bbl at 2026-10-15T07:28:48Z; Yahoo Finance reports a -1.36 (-1.43%) change.",
+      "publishedAt": "2026-10-16",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "Firecrawl review Oct 17 with cache-busting after the canonical response was stale: CL=F WTI crude futures was 99.04 USD/bbl at 2026-10-16T20:59:58.000Z.",
       "extractedFacts": [
-        "CL=F was 93.73 USD/bbl at 2026-10-15T07:28:48Z; Yahoo Finance reports a -1.36 (-1.43%) change."
+        "CL=F WTI crude futures was 99.04 USD/bbl at 2026-10-16T20:59:58.000Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -387,15 +388,15 @@
       "observations": [
         {
           "inputId": "oil-wti",
-          "value": 93.73,
+          "value": 99.04,
           "unit": "USD/bbl",
-          "sourceDate": "2026-10-15",
-          "observedAt": "2026-10-15T07:28:48Z",
+          "sourceDate": "2026-10-16",
+          "observedAt": "2026-10-16T20:59:58.000Z",
           "instrument": "CL=F WTI crude futures",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261015/e-wti.json"
+      "retrievalArtifact": ".firecrawl/daily-20261017/e-wti-fresh.json"
     },
     {
       "evidenceId": "e-eurusd",
@@ -407,11 +408,11 @@
       "reviewStatus": "approved",
       "title": "Yahoo Finance chart API - EUR/USD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-15",
-      "checkedAt": "2026-10-15T07:38:51Z",
-      "claimSummary": "Firecrawl live review on Oct 15: EURUSD=X was 1.1221 USD/EUR at 2026-10-15T07:38:25Z; Yahoo Finance reports a +0.0064 (+0.5722%) change.",
+      "publishedAt": "2026-10-16",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "Firecrawl review Oct 17 with cache-busting after the canonical response was stale: EURUSD=X EUR/USD spot exchange rate was 1.1244 USD/EUR at 2026-10-16T21:29:27.000Z.",
       "extractedFacts": [
-        "EURUSD=X was 1.1221 USD/EUR at 2026-10-15T07:38:25Z; Yahoo Finance reports a +0.0064 (+0.5722%) change."
+        "EURUSD=X EUR/USD spot exchange rate was 1.1244 USD/EUR at 2026-10-16T21:29:27.000Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -423,15 +424,15 @@
       "observations": [
         {
           "inputId": "fx-eurusd",
-          "value": 1.1221,
+          "value": 1.1244,
           "unit": "USD/EUR",
-          "sourceDate": "2026-10-15",
-          "observedAt": "2026-10-15T07:38:25Z",
+          "sourceDate": "2026-10-16",
+          "observedAt": "2026-10-16T21:29:27.000Z",
           "instrument": "EURUSD=X EUR/USD spot exchange rate",
           "provider": "Yahoo Finance"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261015/e-eurusd.json"
+      "retrievalArtifact": ".firecrawl/daily-20261017/e-eurusd-fresh.json"
     },
     {
       "evidenceId": "e-sofr",
@@ -443,11 +444,11 @@
       "reviewStatus": "approved",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
-      "publishedAt": "2026-10-13",
-      "checkedAt": "2026-10-15T03:05:41Z",
-      "claimSummary": "Live source review on Oct 15: The New York Fed API returned SOFR of 3.89% effective 2026-10-13; this is the latest published rate.",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "Firecrawl review Oct 17 with cache-busting after the canonical response was stale: SOFR was 3.89 % at 2026-10-15T00:00:00Z.",
       "extractedFacts": [
-        "The New York Fed API returned SOFR of 3.89% effective 2026-10-13; this is the latest published rate."
+        "SOFR was 3.89 % at 2026-10-15T00:00:00Z."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -461,13 +462,13 @@
           "inputId": "usd-sofr",
           "value": 3.89,
           "unit": "%",
-          "sourceDate": "2026-10-13",
-          "observedAt": "2026-10-13T00:00:00Z",
+          "sourceDate": "2026-10-15",
+          "observedAt": "2026-10-15T00:00:00Z",
           "instrument": "SOFR",
           "provider": "Federal Reserve Bank of New York"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261013-e-sofr.md"
+      "retrievalArtifact": ".firecrawl/daily-20261017/e-sofr-fresh.json"
     },
     {
       "evidenceId": "e-jkm-cfd",
@@ -709,8 +710,8 @@
       "title": "Oil settles up around 4% as Iran's president vows to never surrender",
       "publisher": "Reuters",
       "publishedAt": "2026-09-23",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Reuters reported Sep 23 that Saudi Arabia restarted its East-West pipeline to the Red Sea, while indirect US-Iran talks discussed reopening Hormuz and lifting the US naval blockade. Iran's position on reopening remained conditional.",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "Re-scraped Oct 17; historical report retained with its original publication date. Reuters reported Sep 23 that Saudi Arabia restarted its East-West pipeline to the Red Sea, while indirect US-Iran talks discussed reopening Hormuz and lifting the US naval blockade. Iran's position on reopening remained conditional.",
       "extractedFacts": [
         "Brent crude futures settled at 103.08 USD/bbl on Sep 23, up 3.86%; WTI futures settled at 92.16 USD/bbl, up 1.81%.",
         "Saudi Arabia restarted East-West pipeline operations to the Red Sea on Sep 22 after a Sep 11 drone attack halted crude loadings at Yanbu.",
@@ -745,7 +746,7 @@
           "provider": "Reuters"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261002/e-saudi-pipeline.json"
+      "retrievalArtifact": ".firecrawl/daily-20261017/e-saudi-pipeline.json"
     },
     {
       "evidenceId": "e-hormuz-single-digit-crossings",
@@ -1162,8 +1163,8 @@
       "title": "Three oil tankers hit by projectiles in Hormuz strait on Tuesday, Marisks says",
       "publisher": "Reuters",
       "publishedAt": "2026-10-01",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Marisks reported three Liberian-flagged oil tankers were struck by unknown projectiles while transiting Hormuz on Sep 29. Reuters names Al Ruwais, Mersin Prosperity and Sinbad; Marisks said AIS transponders were off.",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "Re-scraped Oct 17; historical report retained with its original publication date. Marisks reported three Liberian-flagged oil tankers were struck by unknown projectiles while transiting Hormuz on Sep 29. Reuters names Al Ruwais, Mersin Prosperity and Sinbad; Marisks said AIS transponders were off.",
       "extractedFacts": [
         "Marisks reported three Liberian-flagged oil tankers were struck by unknown projectiles while transiting Hormuz on Sep 29.",
         "Reuters names Al Ruwais, Mersin Prosperity and Sinbad; Marisks said AIS transponders were off."
@@ -1177,7 +1178,7 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/new-attacks.json"
+      "retrievalArtifact": ".firecrawl/daily-20261017/e-reuters-attacks-1001.json"
     },
     {
       "evidenceId": "e-reuters-talks-0930",
@@ -1190,8 +1191,8 @@
       "title": "Iran says it receives US response to latest proposal",
       "publisher": "Reuters",
       "publishedAt": "2026-09-30",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Iran said it received a US response to its latest proposal. An official briefed on the talks said the parties disagree about the sequence of steps; no reopening agreement was reported.",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "Re-scraped Oct 17; historical report retained with its original publication date. Iran said it received a US response to its latest proposal. An official briefed on the talks said the parties disagree about the sequence of steps; no reopening agreement was reported.",
       "extractedFacts": [
         "Iran said it received a US response to its latest proposal.",
         "An official briefed on the talks said the parties disagree about the sequence of steps; no reopening agreement was reported."
@@ -1204,7 +1205,7 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/new-talks.json"
+      "retrievalArtifact": ".firecrawl/daily-20261017/e-reuters-talks-0930.json"
     },
     {
       "evidenceId": "e-reuters-lng-0928",
@@ -1217,8 +1218,8 @@
       "title": "Qatar-linked LNG traffic through Hormuz strait picks up despite conflict",
       "publisher": "Reuters",
       "publishedAt": "2026-09-28",
-      "checkedAt": "2026-10-02T00:09:35Z",
-      "claimSummary": "Reuters/LSEG/Kpler tracked GasLog Skagen off Sri Lanka Sep 27 with a Ras Laffan cargo. Al Shamal reappeared outside Hormuz around Sep 24-25; Al Ghashamiya delivered to Dahej Sep 24. The report describes individual sightings and dark AIS transits, not a complete comparable weekly LNG count.",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "Re-scraped Oct 17; historical report retained with its original publication date. Reuters/LSEG/Kpler tracked GasLog Skagen off Sri Lanka Sep 27 with a Ras Laffan cargo. Al Shamal reappeared outside Hormuz around Sep 24-25; Al Ghashamiya delivered to Dahej Sep 24. The report describes individual sightings and dark AIS transits, not a complete comparable weekly LNG count.",
       "extractedFacts": [
         "Reuters/LSEG/Kpler tracked GasLog Skagen off Sri Lanka Sep 27 with a Ras Laffan cargo.",
         "Al Shamal reappeared outside Hormuz around Sep 24-25; Al Ghashamiya delivered to Dahej Sep 24.",
@@ -1232,7 +1233,7 @@
       "supportedRelationshipIds": [],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261002/new-lng.json"
+      "retrievalArtifact": ".firecrawl/daily-20261017/e-reuters-lng-0928.json"
     },
     {
       "evidenceId": "e-reuters-oil-1001",
@@ -1662,6 +1663,118 @@
       "supportedDerivedMetricIds": [],
       "supportedRelationshipIds": [],
       "observations": []
+    },
+    {
+      "evidenceId": "e-reuters-oil-1016",
+      "url": "https://www.reuters.com/business/autos-transportation/oil-edges-down-investors-weigh-possible-us-sanctions-shadow-fleet-2026-10-16/",
+      "canonicalUrl": "https://www.reuters.com/business/autos-transportation/oil-edges-down-investors-weigh-possible-us-sanctions-shadow-fleet-2026-10-16/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Oil touches $110 a barrel for first time since May on Middle East, Russia supply fears",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-16",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "Reuters reported a Saudi-led coalition intercepted a ballistic missile toward Yanbu; initial reports indicated no infrastructure damage. Kpler expected a slower and uneven Hormuz recovery without a comprehensive political deal.",
+      "extractedFacts": [
+        "Reuters reported a Saudi-led coalition intercepted a ballistic missile toward Yanbu; initial reports indicated no infrastructure damage. Kpler expected a slower and uneven Hormuz recovery without a comprehensive political deal."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "retrievalArtifact": ".firecrawl/reuters.com-business-autos-transportation-oil-edges-down-investors-weigh-possible-us-sanctions-shadow-fleet-2026-10-16.md"
+    },
+    {
+      "evidenceId": "e-reuters-freight-1016",
+      "url": "https://www.reuters.com/business/energy/supertanker-rates-fall-record-highs-2026-10-16/",
+      "canonicalUrl": "https://www.reuters.com/business/energy/supertanker-rates-fall-record-highs-2026-10-16/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Supertanker rates fall from record highs",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-16",
+      "checkedAt": "2026-10-17T01:48:35Z",
+      "claimSummary": "Reuters cited Baltic Exchange Gulf of Oman-to-China VLCC freight near Worldscale 776, down from 841 last week. This is not a USD/bbl quote and is not converted into the commercial cost input.",
+      "extractedFacts": [
+        "Reuters cited Baltic Exchange Gulf of Oman-to-China VLCC freight near Worldscale 776, down from 841 last week. This is not a USD/bbl quote and is not converted into the commercial cost input."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "retrievalArtifact": ".firecrawl/reuters.com-business-energy-supertanker-rates-fall-record-highs-2026-10-16.md"
+    },
+    {
+      "evidenceId": "e-id10y",
+      "url": "https://www.brights.id/en/research-and-news/research-report/brids-daily-economic-fixed-income-update-friday-october-16-2026",
+      "canonicalUrl": "https://www.brights.id/en/research-and-news/research-report/brids-daily-economic-fixed-income-update-friday-october-16-2026",
+      "httpStatus": 200,
+      "pageType": "market-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "BRIDS Daily Economic & Fixed Income Update Friday, October 16, 2026",
+      "publisher": "BRI Danareksa Sekuritas",
+      "publishedAt": "2026-10-16",
+      "checkedAt": "2026-10-17T01:50:22Z",
+      "claimSummary": "Indonesia 10-year government yield was 7.245% on Oct 15, versus 7.209% a day earlier.",
+      "extractedFacts": [
+        "Indonesia 10-year government yield was 7.245% on Oct 15, versus 7.209% a day earlier."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": [
+        {
+          "inputId": "id10y",
+          "value": 7.245,
+          "unit": "%",
+          "sourceDate": "2026-10-15",
+          "instrument": "id10y 10-year government bond yield",
+          "provider": "BRI Danareksa Sekuritas"
+        }
+      ],
+      "retrievalArtifact": ".firecrawl/daily-20261017/id10y.md"
+    },
+    {
+      "evidenceId": "e-th10y",
+      "url": "https://tradingeconomics.com/thailand/government-bond-yield",
+      "canonicalUrl": "https://tradingeconomics.com/thailand/government-bond-yield",
+      "httpStatus": 200,
+      "pageType": "market-data",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Thailand 10-Year Government Bond Yield",
+      "publisher": "Trading Economics",
+      "publishedAt": "2026-10-16",
+      "checkedAt": "2026-10-17T01:50:22Z",
+      "claimSummary": "Thailand 10-year government yield held steady at 2.25% on Oct 16, according to the dated summary and bond table. The page also shows 2.253 in a separate chart header; use the dated summary precision.",
+      "extractedFacts": [
+        "Thailand 10-year government yield held steady at 2.25% on Oct 16, according to the dated summary and bond table. The page also shows 2.253 in a separate chart header; use the dated summary precision."
+      ],
+      "supportedHopIds": [],
+      "supportedMetricIds": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": [
+        {
+          "inputId": "th10y",
+          "value": 2.25,
+          "unit": "%",
+          "sourceDate": "2026-10-16",
+          "instrument": "th10y 10-year government bond yield",
+          "provider": "Trading Economics"
+        }
+      ],
+      "retrievalArtifact": ".firecrawl/daily-20261017/th10y.md"
     }
   ]
 }

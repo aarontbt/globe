@@ -12,15 +12,15 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-10-15 (D224) |
-| **Crisis level** | 4 - High (Reuters reported at least five shipping incidents in the 48 hours before Oct 14, including the GFS Pride sinking after projectile damage; a separate vessel, Cape Dao, hit Sep 23, later sank. The Oct 6 count of seven commodity vessels remains the latest comparable transit count, with AIS-dark traffic potentially omitted. No verified reopening agreement or normalised passage is reported; scenario probabilities remain base 15%, stress 45%, tail 40%.) |
-| **Brent** | $103.78 (2026-10-15, Yahoo Finance BZ=F; -2.15%) |
+| **Last updated** | 2026-10-17 (D226) |
+| **Crisis level** | 4 - High (Reuters reported Oct 16 an intercepted missile toward Yanbu, with no initial infrastructure damage reported; Hormuz shipping attacks persist and no newer comparable transit count is verified. Brent BZ=F is $109.69 (Oct 16 Yahoo snapshot). Gulf of Oman-to-China VLCC freight eased to Worldscale 776 but remains elevated; base/stress/tail probabilities remain 15/45/40.) |
+| **Brent** | $109.69 (2026-10-16, Yahoo Finance BZ=F; +3.56%) |
 | **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $26.39/MMBtu (Trading Economics, Oct 14; not an official assessment) |
-| **TTF** | 87.315 EUR/MWh (2026-10-14, last reviewed observation; carried; automated source retired 2026-10-15) |
-| **Exposure trace** | Reuters reported at least five shipping incidents in the 48 hours before Oct 14, including the GFS Pride sinking; the latest comparable Hormuz count remains seven commodity vessels on Oct 6, and AIS-dark traffic may be omitted. |
-| **Evidence audit** | 51 checked · 40 verified · 11 carried · 0 unsupported · PASS |
+| **TTF** | 87.725 EUR/MWh (ICE Endex Nov26 delayed Last, Oct 16 11:23 GMT; not settlement) |
+| **Exposure trace** | Reuters reported Oct 16 an intercepted missile toward Yanbu, with no initial infrastructure damage reported; Hormuz shipping attacks persist and no newer comparable transit count is verified. |
+| **Evidence audit** | 55 checked · 44 verified · 11 carried · 0 unsupported · PASS |
 | **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
-| **Stale / carried** | 23 carried/estimated; 13 need a replacement source: trace qatar-subchartered-carriers (2026-07-23, 84d), commercial lng-jkm (2026-07-24, 83d), trace hormuz-transits (2026-08-02, 74d), cross-asset id10y (2026-08-05, 71d), cross-asset ph10y (2026-08-05, 71d), cross-asset th10y (2026-08-05, 71d), cross-asset asean-ig (2026-08-05, 71d), cross-asset asean-hy (2026-08-05, 71d), cross-asset energy-eq (2026-08-05, 71d), cross-asset shipping-eq (2026-08-05, 71d), cross-asset banks-eq (2026-08-05, 71d), trace oil-vlcc-freight (2026-09-11, 34d), commercial oil-vlcc-freight (2026-09-11, 34d) |
+| **Stale / carried** | 18 carried/estimated; 11 need a replacement source: trace qatar-subchartered-carriers (2026-07-23, 86d), commercial lng-jkm (2026-07-24, 85d), trace hormuz-transits (2026-08-02, 76d), cross-asset ph10y (2026-08-05, 73d), cross-asset asean-ig (2026-08-05, 73d), cross-asset asean-hy (2026-08-05, 73d), cross-asset energy-eq (2026-08-05, 73d), cross-asset shipping-eq (2026-08-05, 73d), cross-asset banks-eq (2026-08-05, 73d), trace oil-vlcc-freight (2026-09-11, 36d), commercial oil-vlcc-freight (2026-09-11, 36d) |
 
 ---
 
@@ -447,9 +447,9 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > Edit `priceNarratives` in daily state, not this section. Replace the prior-day levels, and keep no more than the 3 most significant historical inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $103.78 (Yahoo Finance BZ=F, Oct 15 snapshot, -2.15%). Working range $75-85 base; $85-105 stress; $105-135+ tail.
+- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $109.69 (Yahoo Finance BZ=F, Oct 16 snapshot, +3.56%). Working range $75-85 base; $85-105 stress; $105-135+ tail.
 - **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD was $26.39/MMBtu (Trading Economics, Oct 14); not an official assessment.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 87.315 EUR/MWh (Oct 14, last reviewed Yahoo TTF=F observation; carried, automated source retired Oct 15; manual ICE Endex review pending). Selective LNG passages do not establish unrestricted Hormuz access.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 87.725 EUR/MWh (ICE Endex Nov26 delayed Last, Oct 16 11:23 GMT; not settlement). Selective LNG passages do not establish unrestricted Hormuz access.
 - **Credit**: iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both carried as estimates pending fresher EM credit data. No source-approved daily credit marks are available. Scenario split remains base 15%, stress 45%, tail 40%.
 
 ### BottomChartsPanel (`src/data/charts-volatility.json`, generated from `volatilityDay`)

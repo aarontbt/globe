@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "Reuters reports at least five shipping incidents in 48 hours; two vessels have sunk near Hormuz, while no comparable current transit count is available.";
+const TOP_ALERT = "Missile intercepted toward Yanbu; Brent BZ=F reaches $109.69 as Hormuz shipping and alternative export routes remain at risk.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
