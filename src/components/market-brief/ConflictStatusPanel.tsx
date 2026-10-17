@@ -1,350 +1,144 @@
-const ESCALATION_COLORS = ["#4ade80", "#a3e635", "#fbbf24", "#fb923c", "#ef4444"];
-const ESCALATION_LABELS = ["Low", "Guarded", "Heightened", "High", "Severe"];
-
+import { useState, type CSSProperties } from "react";
 import { FONT_SANS } from "../../styles/fonts";
 import { useStaticJson } from "../../hooks/useStaticJson";
-const MONO = FONT_SANS;
-const CONDENSED = FONT_SANS;
+import "./ConflictStatusPanel.css";
+import SignalsHistoryPanel from "./SignalsHistoryPanel";
 
-const sectionHeader: React.CSSProperties = {
-  fontSize: 9,
-  fontWeight: 700,
-  letterSpacing: "0.14em",
-  textTransform: "uppercase",
-  color: "rgba(255,255,255,0.28)",
-  margin: 0,
-  marginBottom: 10,
-  fontFamily: CONDENSED,
+const TIERS = [
+  { label: "Low", color: "#4ade80", meaning: "Normal conditions; no escalation." },
+  { label: "Guarded", color: "#a3e635", meaning: "Diplomatic tension." },
+  { label: "Heightened", color: "#fbbf24", meaning: "Military positioning and sanctions." },
+  { label: "High", color: "#fb923c", meaning: "Active strikes or closures with material market impact." },
+  { label: "Severe", color: "#ef4444", meaning: "Full theatre conflict and systemic disruption." },
+];
+const SCENARIO_COLORS: Record<string, string> = { base: "#34d399", stress: "#fbbf24", tail: "#f87171" };
+const DIRECTIONS: Record<string, { label: string; symbol: string; color: string }> = {
+  up: { label: "Worsening", symbol: "↑", color: "#f87171" },
+  down: { label: "Improving", symbol: "↓", color: "#34d399" },
+  neutral: { label: "Unchanged", symbol: "−", color: "#94a3b8" },
 };
-
-const scenarioColors: Record<string, string> = { base: "#34d399", stress: "#fbbf24", tail: "#f87171" };
-const textPrimary = "rgba(255,255,255,0.9)";
-const textSecondary = "rgba(255,255,255,0.5)";
 
 interface ConflictData {
   escalationLevel: number;
   deltaVsYesterday: number;
   todaysEvents: Array<{ id: string; summary: string; delta: string; direction: string }>;
-  scenarios: Array<{ id: string; label: string; probability: number; description: string; oilImpact: string; lngImpact: string }>;
+  scenarios: Array<{ id: string; label: string; probability: number; summary?: string; description: string; oilImpact: string; lngImpact: string }>;
 }
 
 const EMPTY_CONFLICT: ConflictData = {
-  escalationLevel: 1,
+  escalationLevel: 0,
   deltaVsYesterday: 0,
   todaysEvents: [],
   scenarios: [],
 };
 
+function accent(color: string): CSSProperties {
+  return { "--signal-accent": color } as CSSProperties;
+}
+
 export default function ConflictStatusPanel() {
-  const { data: conflictData } = useStaticJson<ConflictData>("/data/banker-conflict.json", EMPTY_CONFLICT);
-  const { escalationLevel, deltaVsYesterday, todaysEvents, scenarios } = conflictData;
-  const deltaSign = deltaVsYesterday > 0 ? "+" : "";
-  const deltaColor =
-    deltaVsYesterday > 0 ? "#f87171" : deltaVsYesterday < 0 ? "#34d399" : textSecondary;
-  const levelColor = ESCALATION_COLORS[escalationLevel - 1];
-  const levelLabel = ESCALATION_LABELS[escalationLevel - 1];
+  const [scenariosOpen, setScenariosOpen] = useState(false);
+  const { data, loading, error } = useStaticJson<ConflictData>("/data/banker-conflict.json", EMPTY_CONFLICT);
+  const { escalationLevel, deltaVsYesterday, todaysEvents, scenarios } = data;
+  const tier = Number.isInteger(escalationLevel) ? TIERS[escalationLevel - 1] : undefined;
+  const unavailable = Boolean(error) || !tier;
+  const deltaLabel = deltaVsYesterday === 0
+    ? "Level unchanged"
+    : `${deltaVsYesterday > 0 ? "↑" : "↓"} ${Math.abs(deltaVsYesterday)} ${Math.abs(deltaVsYesterday) === 1 ? "level" : "levels"} vs yesterday`;
 
   return (
-    <div
-      style={{
-        fontFamily: FONT_SANS,
-        background: "rgba(10,14,23,0.88)",
-        backdropFilter: "blur(12px)",
-        borderRadius: 12,
-        border: "1px solid rgba(255,255,255,0.07)",
-        padding: 20,
-        color: textPrimary,
-      }}
-    >
-      {/* ── Escalation gauge – full width ── */}
-      <div style={{ marginBottom: 18 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: 10,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
-            <span
-              style={{
-                fontSize: 24,
-                fontWeight: 700,
-                color: levelColor,
-                fontFamily: MONO,
-                lineHeight: 1,
-              }}
-            >
-              {escalationLevel}
-              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", fontWeight: 400 }}>
-                /5
-              </span>
-            </span>
-            <span
-              style={{
-                fontSize: 14,
-                fontWeight: 600,
-                color: levelColor,
-                fontFamily: CONDENSED,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-              }}
-            >
-              {levelLabel}
-            </span>
-          </div>
-          <span
-            style={{
-              fontSize: 11,
-              fontWeight: 500,
-              padding: "3px 8px",
-              borderRadius: 4,
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              color: deltaColor,
-              fontFamily: MONO,
-            }}
-          >
-            {deltaSign}
-            {deltaVsYesterday} vs yesterday
-          </span>
-        </div>
-
-        {/* Five-segment bar */}
-        <div style={{ display: "flex", gap: 3 }}>
-          {ESCALATION_COLORS.map((color, i) => {
-            const active = i < escalationLevel;
-            const isCurrent = i === escalationLevel - 1;
-            return (
-              <div
-                key={i}
-                style={{
-                  flex: 1,
-                  height: 5,
-                  borderRadius: 3,
-                  background: active ? color : "rgba(255,255,255,0.07)",
-                  boxShadow: isCurrent ? `0 0 4px ${color}88` : "none",
-                }}
-              />
-            );
-          })}
-        </div>
-
-        {/* Level labels below bar */}
-        <div
-          style={{
-            display: "flex",
-            marginTop: 5,
-          }}
-        >
-          {ESCALATION_LABELS.map((label, i) => (
-            <div
-              key={i}
-              style={{
-                flex: 1,
-                fontSize: 8,
-                color:
-                  i === escalationLevel - 1
-                    ? ESCALATION_COLORS[i]
-                    : "rgba(255,255,255,0.2)",
-                fontFamily: CONDENSED,
-                fontWeight: i === escalationLevel - 1 ? 700 : 400,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                textAlign: "center",
-              }}
-            >
-              {label}
+    <section className="signals-panel" aria-label="Signals" style={{ fontFamily: FONT_SANS }}>
+      {loading || unavailable ? (
+        <p className="signals-empty" role="status">{loading ? "Loading signals…" : "Signals unavailable"}</p>
+      ) : (
+        <>
+          <header className="signals-overview">
+            <div>
+              <h2 className="signals-label">Escalation</h2>
+              <div className="signals-level" style={accent(tier.color)}>
+                <strong>{escalationLevel}<small>/5</small></strong>
+                <span>{tier.label}</span>
+              </div>
+              <span className="signals-delta">{deltaLabel}</span>
             </div>
-          ))}
-        </div>
-      </div>
+            <div className="signals-scale">
+              <div className="signals-segments" aria-label={`Escalation level ${escalationLevel} of 5: ${tier.label}`}>
+                {TIERS.map((item, index) => (
+                  <span key={item.label} style={{ background: index < escalationLevel ? item.color : "rgba(255,255,255,0.08)" }} />
+                ))}
+              </div>
+              <details className="signals-tier-guide">
+                <summary>Tier guide</summary>
+                <p>Analyst-assigned severity</p>
+                <ol>
+                  {TIERS.map((item, index) => (
+                    <li key={item.label} aria-current={index + 1 === escalationLevel ? "step" : undefined}>
+                      <strong style={{ color: item.color }}>{item.label}</strong>
+                      <span>{item.meaning}</span>
+                    </li>
+                  ))}
+                </ol>
+              </details>
+            </div>
+          </header>
 
-      <div
-        style={{ height: 1, background: "rgba(255,255,255,0.06)", margin: "0 0 18px" }}
-      />
-
-      {/* ── Two-column: events left · scenarios right ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1.9fr", gap: 20 }}>
-        {/* Left — Today's Events */}
-        <div>
-          <p style={sectionHeader}>Today's Events</p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-            {todaysEvents.map((evt) => {
-              const isNeutral = evt.direction === "neutral";
-              const isUp = evt.direction === "up";
-              const arrowColor = isNeutral
-                ? "rgba(255,255,255,0.22)"
-                : isUp
-                ? "#f87171"
-                : "#34d399";
-              const arrow = isNeutral ? "—" : isUp ? "▲" : "▼";
-              return (
-                <div
-                  key={evt.id}
-                  style={{
-                    padding: "8px 10px",
-                    borderRadius: 6,
-                    background: "rgba(255,255,255,0.03)",
-                    borderLeft: `2px solid ${arrowColor}`,
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 6,
-                      marginBottom: 4,
-                    }}
-                  >
-                    <span
-                      style={{
-                        color: arrowColor,
-                        fontSize: 10,
-                        flexShrink: 0,
-                        fontFamily: MONO,
-                      }}
-                    >
-                      {arrow}
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 12,
-                        fontWeight: 700,
-                        color: textPrimary,
-                        fontFamily: CONDENSED,
-                        letterSpacing: "0.06em",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {evt.summary}
-                    </span>
-                  </div>
-                  <div
-                    style={{ fontSize: 12, color: "rgba(255,255,255,0.58)", lineHeight: 1.45 }}
-                  >
-                    {evt.delta}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Right — Scenarios as 3-column grid */}
-        <div>
-          <p style={sectionHeader}>Scenario Analysis</p>
-          <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}
-          >
-            {scenarios.map((s) => {
-              const color = scenarioColors[s.id] || "#38bdf8";
-              return (
-                <div
-                  key={s.id}
-                  style={{
-                    padding: 10,
-                    borderRadius: 8,
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.05)",
-                    borderTop: `2px solid ${color}`,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 6,
-                  }}
-                >
-                  {/* Label + probability */}
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "baseline",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: 11,
-                        fontWeight: 700,
-                        color,
-                        fontFamily: CONDENSED,
-                        letterSpacing: "0.06em",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {s.label}
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 14,
-                        fontWeight: 700,
-                        color,
-                        fontFamily: MONO,
-                        lineHeight: 1,
-                      }}
-                    >
-                      {s.probability}%
-                    </span>
-                  </div>
-
-                  {/* Description */}
-                  <div
-                    style={{
-                      fontSize: 12,
-                      color: textSecondary,
-                      lineHeight: 1.55,
-                      flex: 1,
-                    }}
-                  >
-                    {s.description}
-                  </div>
-
-                  {/* Oil / LNG impact chips */}
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: 4,
-                      paddingTop: 8,
-                      borderTop: "1px solid rgba(255,255,255,0.06)",
-                    }}
-                  >
-                    {[
-                      { label: "Oil", value: s.oilImpact },
-                      { label: "LNG", value: s.lngImpact },
-                    ].map(({ label, value }) => (
-                      <div key={label}>
-                        <div
-                          style={{
-                            fontSize: 8,
-                            color: "rgba(255,255,255,0.28)",
-                            fontFamily: CONDENSED,
-                            letterSpacing: "0.1em",
-                            textTransform: "uppercase",
-                            marginBottom: 2,
-                          }}
-                        >
-                          {label}
-                        </div>
-                        <div
-                          style={{
-                            fontSize: 11,
-                            fontWeight: 600,
-                            color: "#fb923c",
-                            fontFamily: MONO,
-                          }}
-                        >
-                          {value}
-                        </div>
+          <div className="signals-content">
+            <section aria-labelledby="signals-developments">
+              <h2 id="signals-developments" className="signals-label">Latest developments</h2>
+              <div className="signals-events">
+                {todaysEvents.length === 0 && <p className="signals-empty">No developments available.</p>}
+                {todaysEvents.map((event) => {
+                  const direction = DIRECTIONS[event.direction] ?? DIRECTIONS.neutral;
+                  return (
+                    <details key={event.id} className="signals-event" style={accent(direction.color)}>
+                      <summary>
+                        <span className="signals-direction" role="img" aria-label={direction.label} title={direction.label}>{direction.symbol}</span>
+                        <span className="signals-event-title">{event.summary}</span>
+                        <span className="signals-chevron" aria-hidden="true">⌄</span>
+                      </summary>
+                      <div className="signals-event-detail">
+                        <span className="signals-direction-label">{direction.label}</span>
+                        <p>{event.delta}</p>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+                    </details>
+                  );
+                })}
+              </div>
+            </section>
+
+            <section aria-labelledby="signals-outlook">
+              <div className="signals-section-heading">
+                <h2 id="signals-outlook" className="signals-label">Scenario outlook</h2>
+                <span>Analyst estimates</span>
+              </div>
+              <div className="signals-scenarios">
+                {scenarios.map((scenario) => (
+                  <details key={scenario.id} open={scenariosOpen} className="signals-scenario" style={accent(SCENARIO_COLORS[scenario.id] ?? "#38bdf8")}>
+                    <summary onClick={(event) => {
+                      event.preventDefault();
+                      setScenariosOpen((open) => !open);
+                    }}>
+                      <span className="signals-scenario-name">{scenario.label}<span className="signals-chevron" aria-hidden="true">⌄</span></span>
+                      <strong className="signals-probability">{scenario.probability}<small>%</small></strong>
+                      <span className="signals-probability-track" aria-hidden="true"><span style={{ width: `${Math.max(0, Math.min(100, scenario.probability))}%` }} /></span>
+                      <span className="signals-scenario-summary">{scenario.summary || scenario.description.split(/(?<=[.!?])\s/)[0]}</span>
+                    </summary>
+                    <div className="signals-scenario-detail">
+                      <p>{scenario.description}</p>
+                      <dl>
+                        <div><dt>Oil impact</dt><dd>{scenario.oilImpact}</dd></div>
+                        <div><dt>LNG impact</dt><dd>{scenario.lngImpact}</dd></div>
+                      </dl>
+                    </div>
+                  </details>
+                ))}
+              </div>
+              {scenarios.length === 0 && <p className="signals-empty">No scenarios available.</p>}
+            </section>
           </div>
-        </div>
-      </div>
-    </div>
+          <SignalsHistoryPanel />
+        </>
+      )}
+    </section>
   );
 }

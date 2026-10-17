@@ -18,7 +18,7 @@ Globe already provides:
 
 - a 3D globe with shipping lanes, ports, corridors, trade arcs, oil-supply-chain routes and selected exposure routes;
 - curated Iran/Hormuz scenarios plus live market, news, social, satellite and prediction-market signals;
-- a `SIGNAL → EXPOSURE` overlay with Exposure Trace, Signals, Market Transmission, Commercial Evaluation, Counterparties, Actions and Evidence views;
+- a `SIGNAL → EXPOSURE` overlay with Exposure Trace, Signals, Market Transmission and Evidence views, with Commercial Evaluation shown when a verified commercial result is available;
 - daily-state distribution, source freshness rules, evidence audits and validation gates.
 
 The current trace dataset is a strong demonstrator for three Hormuz LNG/crude scenarios. It is not yet a reusable Energy/LNG graph, alternatives engine or physical commodity decision system.
@@ -134,9 +134,9 @@ Rank candidates using demonstrated capacity, availability, transit time, cost, i
 
 The UI must distinguish a potential alternative from one that is physically feasible and one that is commercially executable.
 
-### 7. Actions and monitoring
+### 7. Assessment context and monitoring
 
-For each assessment, provide:
+Keep watch items and action context within the assessment; there are no standalone Counterparties or Actions tabs. For each assessment, provide:
 
 - watch items and trigger conditions;
 - source-linked actions for the selected user persona;

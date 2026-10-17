@@ -11,6 +11,7 @@ import type {
 } from "../../types";
 import type { EnergyAlternative, FlowPressureAssessment } from "../../types/energyLng";
 import { FONT_SANS } from "../../styles/fonts";
+import "./TraceSupportingPanels.css";
 
 const STAGE_COLORS: Record<TraceStage, string> = {
   signal: "#f87171",
@@ -461,47 +462,37 @@ export default function ExposureTracePanel({ data, activeTraceId, onTraceChange 
   );
 }
 
-export function TraceCounterpartiesPanel({ data, activeTraceId, onTraceChange }: TracePanelProps) {
-  const trace = getActiveTrace(data, activeTraceId);
-  const entities = useMemo(() => entityMap(data), [data]);
-  if (!trace) return null;
+function evidenceStatus(item: EvidenceReference, asOf: string) {
+  if (item.status === "carried") return { label: "Historical", tone: "carried" };
+  const age = Math.floor((Date.parse(asOf) - Date.parse(item.lastChecked)) / 86_400_000);
+  if (!Number.isFinite(age) || age < 0 || age > item.maxAgeDays) return { label: "Review due", tone: "due" };
+  return { label: "Reviewed", tone: "reviewed" };
+}
 
-  return (
-    <div style={{ fontFamily: FONT_SANS, color: "rgba(255,255,255,0.9)" }}>
-      <TraceSelector data={data} activeTraceId={trace.id} onTraceChange={onTraceChange} />
-      {trace.counterparties.length === 0 && (
-        <div style={{ ...sectionCard, padding: 18, marginTop: 14 }}>
-          <SectionLabel>Counterparty status</SectionLabel>
-          <div style={{ fontSize: 15, fontWeight: 750 }}>No named public relationship verified</div>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.48)", marginTop: 7, lineHeight: 1.5 }}>
-            Current sources support country and market exposure only. No company-level relationship is displayed.
-          </div>
-        </div>
-      )}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 10, marginTop: 14 }}>
-        {trace.counterparties.map((counterparty) => {
-          const entity = entities.get(counterparty.entityId);
-          const evidence = data.evidence.find((item) => counterparty.evidenceIds.includes(item.id));
-          return (
-            <div key={counterparty.entityId} style={{ ...sectionCard, padding: 14 }}>
-              <div style={{ fontSize: 15, fontWeight: 750 }}>{entity?.name ?? counterparty.entityId}</div>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.32)", marginTop: 3 }}>{entity?.country} · {counterparty.role}</div>
-              <div style={{ margin: "12px 0", fontSize: 12, color: "rgba(255,255,255,0.58)", lineHeight: 1.5 }}>{counterparty.summary}</div>
-              <div style={rowStyle}><span>Relationship</span><strong>{counterparty.relationship}</strong></div>
-              <div style={rowStyle}>
-                <span>Verified observation</span>
-                {evidence ? (
-                  <a href={evidence.url} target="_blank" rel="noreferrer" style={{ color: "#7dd3fc", textDecoration: "none" }}>{counterparty.publicObservation} ↗</a>
-                ) : (
-                  <strong>{counterparty.publicObservation}</strong>
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+function SupportingHeading({ title, data, children }: { title: string; data: ExposureTraceData; children?: React.ReactNode }) {
+  return <header className="trace-support-heading"><div><h2>{title}</h2><span>As of {data.asOf.slice(0, 10)}</span></div>{children}</header>;
+}
+
+function supportingEvidence(data: ExposureTraceData, trace: ExposureTrace) {
+  const traceEvidenceIds = new Set([
+    ...trace.hops.flatMap((hop) => hop.evidenceIds),
+    ...trace.counterparties.flatMap((counterparty) => counterparty.evidenceIds),
+    ...trace.commercialEvaluation.observedInputIds.flatMap((id) => data.commercialInputs.find((input) => input.inputId === id)?.evidenceIds ?? []),
+    ...(trace.flowPressure?.evidenceIds ?? []),
+    ...(trace.alternatives ?? []).flatMap((item) => item.evidenceIds),
+    ...(trace.physicalFlow?.observations ?? []).flatMap((item) => item.evidenceIds),
+  ]);
+  const evidence = data.evidence.filter((item) => traceEvidenceIds.has(item.id));
+  const traceInputIds = new Set([
+    ...trace.hops.flatMap((hop) => hop.metrics.map((metric) => metric.inputId)),
+    ...trace.commercialEvaluation.observedInputIds,
+  ]);
+  const machineIds = new Set((trace.physicalFlow?.observations ?? []).flatMap((item) => item.machineEvidenceIds ?? []));
+  const machineEvidence = (data.machineEvidence ?? []).filter((item) =>
+    machineIds.has(item.id) || item.targetInputIds.some((id) => traceInputIds.has(id))
+      || item.targetCommercialInputIds.some((id) => traceInputIds.has(id)),
   );
+  return { evidence, machineEvidence };
 }
 
 export function CommercialEvaluationPanel({ data, activeTraceId, onTraceChange }: TracePanelProps) {
@@ -589,109 +580,52 @@ export function CommercialEvaluationPanel({ data, activeTraceId, onTraceChange }
   );
 }
 
-export function TraceActionsPanel({ data, activeTraceId, onTraceChange }: TracePanelProps) {
-  const trace = getActiveTrace(data, activeTraceId);
-  const [copied, setCopied] = useState(false);
-  if (!trace) return null;
-
-  const copyBrief = async () => {
-    const chain = trace.hops.map((hop) => `${hop.stage.toUpperCase()}: ${hop.label} - ${hop.summary}`).join("\n");
-    const text = [
-      `SIGNAL TO EXPOSURE: ${trace.title}`,
-      `As of: ${data.asOf}`,
-      "",
-      chain,
-      "",
-      `COMMERCIAL DATA STATUS: ${trace.commercialEvaluation.dataStatus}`,
-      `RESIDUAL STATUS: ${residualLabel(trace.commercialEvaluation.residualStatus)}`,
-      `MISSING VERIFIED INPUTS: ${trace.commercialEvaluation.missingInputIds.join(", ") || "none"}`,
-      "",
-      `PORTFOLIO ACTION: ${trace.portfolioAction}`,
-      `WATCH: ${trace.watchItems.join("; ")}`,
-    ].join("\n");
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1800);
-  };
-
-  return (
-    <div style={{ fontFamily: FONT_SANS, color: "rgba(255,255,255,0.9)" }}>
-      <TraceSelector data={data} activeTraceId={trace.id} onTraceChange={onTraceChange} />
-      <div style={{ display: "grid", gridTemplateColumns: "1.7fr 1fr", gap: 12, marginTop: 14 }}>
-        <div style={{ ...sectionCard, borderLeft: "3px solid #38bdf8", padding: 18 }}>
-          <SectionLabel>Decision brief</SectionLabel>
-          <div style={{ fontSize: 21, fontWeight: 750, margin: "8px 0 10px" }}>{trace.title}</div>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.62)", lineHeight: 1.65 }}>{trace.portfolioAction}</div>
-          <button onClick={copyBrief} style={{ marginTop: 18, padding: "8px 14px", borderRadius: 6, border: "1px solid rgba(56,189,248,0.28)", background: "rgba(56,189,248,0.08)", color: copied ? "#34d399" : "#7dd3fc", fontFamily: FONT_SANS, fontSize: 12, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
-            {copied ? "Copied" : "Copy decision brief"}
-          </button>
-        </div>
-        <div style={{ ...sectionCard, padding: 18 }}>
-          <SectionLabel>Watch next</SectionLabel>
-          {trace.watchItems.map((item, index) => (
-            <div key={item} style={{ display: "flex", gap: 9, marginTop: 10 }}>
-              <span style={{ color: "#38bdf8", fontSize: 12, fontWeight: 800 }}>{String(index + 1).padStart(2, "0")}</span>
-              <span style={{ fontSize: 12, color: "rgba(255,255,255,0.58)" }}>{item}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function TraceEvidencePanel({ data, activeTraceId, onTraceChange }: TracePanelProps) {
   const trace = getActiveTrace(data, activeTraceId);
+  const [query, setQuery] = useState("");
   if (!trace) return null;
-  const traceEvidenceIds = new Set([
-    ...trace.hops.flatMap((hop) => hop.evidenceIds),
-    ...trace.counterparties.flatMap((counterparty) => counterparty.evidenceIds),
-    ...trace.commercialEvaluation.observedInputIds.flatMap((id) => data.commercialInputs.find((input) => input.inputId === id)?.evidenceIds ?? []),
-  ]);
-  const evidence = data.evidence.filter((item) => traceEvidenceIds.has(item.id));
-  const traceInputIds = new Set([
-    ...trace.hops.flatMap((hop) => hop.metrics.map((metric) => metric.inputId)),
-    ...trace.commercialEvaluation.observedInputIds,
-  ]);
-  const machineEvidence = (data.machineEvidence ?? []).filter((item) =>
-    item.targetInputIds.some((id) => traceInputIds.has(id))
-      || item.targetCommercialInputIds.some((id) => traceInputIds.has(id)),
-  );
+  const { evidence, machineEvidence } = supportingEvidence(data, trace);
+  const search = query.trim().toLowerCase();
+  const visibleEvidence = evidence.filter((item) => `${item.title} ${item.publisher} ${item.publishedAt} ${evidenceStatus(item, data.asOf).label}`.toLowerCase().includes(search));
+  const visibleMachine = machineEvidence.filter((item) => `${item.provider} ${item.sourceId} ${item.retrievedAt} snapshot`.toLowerCase().includes(search));
+  const historical = evidence.filter((item) => item.status === "carried").length;
 
   return (
-    <div style={{ fontFamily: FONT_SANS, color: "rgba(255,255,255,0.9)" }}>
+    <div className="trace-support" style={{ fontFamily: FONT_SANS }}>
       <TraceSelector data={data} activeTraceId={trace.id} onTraceChange={onTraceChange} />
-      <div style={{ display: "grid", gridTemplateColumns: "1.45fr 1fr", gap: 12, marginTop: 14 }}>
-        <div style={{ ...sectionCard, padding: 16 }}>
-          <SectionLabel>Verified evidence</SectionLabel>
-          {evidence.map((item) => (
-            <a key={item.id} href={item.url} target="_blank" rel="noreferrer" style={{ display: "grid", gridTemplateColumns: "110px 1fr auto", gap: 10, alignItems: "center", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.72)", textDecoration: "none" }}>
-              <span style={{ color: "#7dd3fc", fontSize: 12, fontWeight: 750 }}>{item.publisher}</span>
-              <span style={{ fontSize: 12 }}>{item.title}</span>
-              <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)" }}>{item.publishedAt} ↗</span>
-            </a>
-          ))}
-          {machineEvidence.length > 0 && (
-            <>
-              <SectionLabel>Machine snapshot evidence</SectionLabel>
-              {machineEvidence.map((item) => (
-                <a key={item.id} href={item.url} target="_blank" rel="noreferrer" style={{ display: "grid", gridTemplateColumns: "110px 1fr auto", gap: 10, alignItems: "center", padding: "10px 0", borderBottom: "1px solid rgba(103,232,249,0.12)", color: "rgba(255,255,255,0.72)", textDecoration: "none" }}>
-                  <span style={{ color: "#67e8f9", fontSize: 12, fontWeight: 750 }}>{item.provider}</span>
-                  <span style={{ fontSize: 12 }}>Validated snapshot · {item.recordKeys.length} record{item.recordKeys.length === 1 ? "" : "s"}</span>
-                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)" }}>{item.retrievedAt.slice(0, 10)} ↗</span>
-                </a>
-              ))}
-            </>
-          )}
-        </div>
-        <div style={{ ...sectionCard, padding: 16 }}>
-          <SectionLabel>Verified-data rule</SectionLabel>
-          <div style={{ fontSize: 12, fontWeight: 700 }}>No analytical inputs published</div>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.46)", lineHeight: 1.5, marginTop: 6 }}>
-            Missing, carried, or stale observations remain outside commercial calculations.
-          </div>
-        </div>
+      <SupportingHeading title="Evidence" data={data}><span>{evidence.length} sources · {historical} historical · {machineEvidence.length} snapshots</span></SupportingHeading>
+      <label className="trace-evidence-search">Find a source<input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Publisher, title or date" /></label>
+      <div className="trace-evidence-list">
+        {visibleEvidence.map((item) => {
+          const status = evidenceStatus(item, data.asOf);
+          return (
+            <details key={`${trace.id}:${item.id}`} className="trace-support-card trace-evidence-item">
+              <summary>
+                <span className="trace-evidence-publisher">{item.publisher}</span>
+                <span className="trace-evidence-title">{item.title}</span>
+                <span className={`trace-status trace-status-${status.tone}`}>{status.label}</span>
+                <span className="trace-evidence-date">{item.publishedAt}</span>
+                <span className="trace-support-chevron" aria-hidden="true">⌄</span>
+              </summary>
+              <div className="trace-support-detail">
+                <a href={item.url} target="_blank" rel="noreferrer">Open source ↗</a>
+                <p>Published {item.publishedAt} · Last checked {item.lastChecked} · {item.kind.replace(/-/g, " ")}</p>
+                {item.note && <p>{item.note}</p>}
+              </div>
+            </details>
+          );
+        })}
       </div>
+      {visibleMachine.length > 0 && <section className="trace-machine-section"><h3>Machine snapshots</h3>
+        <div className="trace-evidence-list">{visibleMachine.map((item) => (
+          <details key={`${trace.id}:${item.id}`} className="trace-support-card trace-evidence-item">
+            <summary><span className="trace-evidence-publisher">{item.provider}</span><span className="trace-evidence-title">{item.recordKeys.length} validated record{item.recordKeys.length === 1 ? "" : "s"}</span><span className="trace-status">Snapshot</span><span className="trace-evidence-date">{item.retrievedAt.slice(0, 10)}</span><span className="trace-support-chevron" aria-hidden="true">⌄</span></summary>
+            <div className="trace-support-detail"><a href={item.url} target="_blank" rel="noreferrer">Open source ↗</a><p>Observed {item.observedAt ?? "date unavailable"} · Retrieved {item.retrievedAt}</p><p>Source: {item.sourceId} · Parser: {item.parserVersion}</p><p>Validated retrieval does not establish current coverage or commercial eligibility.</p></div>
+          </details>
+        ))}</div>
+      </section>}
+      {visibleEvidence.length === 0 && visibleMachine.length === 0 && <p className="trace-support-empty" role="status">{search ? "No sources match your search." : "No supporting evidence available for this trace."}</p>}
+      <p className="trace-evidence-rule">Historical and missing observations remain outside commercial calculations. Reviewed sources do not establish current cargo availability.</p>
     </div>
   );
 }

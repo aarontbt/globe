@@ -3,8 +3,6 @@ import ConflictStatusPanel from "./ConflictStatusPanel";
 import CrossAssetDashboard from "./CrossAssetDashboard";
 import ExposureTracePanel, {
   CommercialEvaluationPanel,
-  TraceActionsPanel,
-  TraceCounterpartiesPanel,
   TraceEvidencePanel,
 } from "./ExposureTracePanel";
 import { FONT_SANS } from "../../styles/fonts";
@@ -15,8 +13,6 @@ type TabId =
   | "signals"
   | "transmission"
   | "commercial"
-  | "counterparties"
-  | "actions"
   | "evidence";
 
 const PRIMARY_TABS: Array<{ id: TabId; label: string }> = [
@@ -24,8 +20,6 @@ const PRIMARY_TABS: Array<{ id: TabId; label: string }> = [
   { id: "signals", label: "Signals" },
   { id: "transmission", label: "Market Transmission" },
   { id: "commercial", label: "Commercial Evaluation" },
-  { id: "counterparties", label: "Counterparties" },
-  { id: "actions", label: "Actions" },
   { id: "evidence", label: "Evidence" },
 ];
 
@@ -191,12 +185,6 @@ export default function MarketBriefOverlay({
             {visibleActiveTab === "transmission" && <CrossAssetDashboard />}
             {visibleActiveTab === "commercial" && (
               <CommercialEvaluationPanel data={data} activeTraceId={activeTraceId} onTraceChange={onTraceChange} />
-            )}
-            {visibleActiveTab === "counterparties" && (
-              <TraceCounterpartiesPanel data={data} activeTraceId={activeTraceId} onTraceChange={onTraceChange} />
-            )}
-            {visibleActiveTab === "actions" && (
-              <TraceActionsPanel data={data} activeTraceId={activeTraceId} onTraceChange={onTraceChange} />
             )}
             {visibleActiveTab === "evidence" && (
               <TraceEvidencePanel data={data} activeTraceId={activeTraceId} onTraceChange={onTraceChange} />

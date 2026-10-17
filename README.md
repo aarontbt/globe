@@ -12,7 +12,7 @@ Interactive deck.gl globe for tracing Iran-Hormuz disruption through LNG supply,
   - live social signal events from GDELT, Reddit, and Bluesky
 - Shows live market and news widgets alongside the globe
 - Opens a full-screen `SIGNAL → EXPOSURE` view with two LNG traces and one crude-oil trace
-- Provides primary `Signals`, `Market Transmission`, `Counterparties`, `Actions`, and `Evidence` views
+- Provides `Exposure Trace`, `Signals`, `Market Transmission`, and `Evidence` views; `Commercial Evaluation` appears when a verified commercial result is available
 - Highlights only the selected trace route across LNG production, carrier, terminal, market, and buyer nodes
 - Adds a bottom scenario/volatility panel with live CBOE overlays for `OVX` and `VXEEM`
 

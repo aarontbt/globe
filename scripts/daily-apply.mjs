@@ -134,7 +134,13 @@ function applyCharts() {
     data.days.push(state.volatilityDay);
   }
   // Scenario history and fallback only; the live CBOE charts supply their own 14-day window.
-  data.days = data.days.slice(-12);
+  // Keep observations within 30 calendar days of this update, including today.
+  const windowEnd = Date.parse(`${state.volatilityDay.date}T00:00:00Z`);
+  const windowStart = windowEnd - 29 * 86_400_000;
+  data.days = data.days.filter((entry) => {
+    const timestamp = Date.parse(`${entry.date}T00:00:00Z`);
+    return timestamp >= windowStart && timestamp <= windowEnd;
+  }).sort((a, b) => a.date.localeCompare(b.date));
   const after = `${JSON.stringify(data, null, 2)}\n`;
   mark(PATHS.charts, before, after);
   writeText(PATHS.charts, after, dryRun);

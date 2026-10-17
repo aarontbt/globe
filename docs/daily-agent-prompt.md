@@ -19,19 +19,23 @@
    - When switching an evidence source, hand-sync the matching `exposure-traces.json` `evidence[]` entry first. See the runbook section "Reviewed Evidence Gate".
 4. **Edit `daily-state.json`**: set `asOf`, `day`, `crisis`, `deltaVsYesterday`, `topAlert`, `todaysEvents`, `scenarios`, `volatilityDay`, `priceNarratives`, `runbookState`, `timelineEntry`, `traceInputs` (headline, metrics, evidenceUpdates) and `commercialInputs`.
    - Every published value needs exact audited evidence, a `source` and a `sourceDate`. Never enter estimates, assumed ranges or placeholders.
+   - Keep scenario `summary` sentences short (aim for 6-10 words), aligned with `description`; cards show at most three lines. Preserve the 30-calendar-day history and original dates in `volatilityDay`.
    - Keep a still-useful prior observation `carried`, with its original date and a `carryReason`. If no dependable value exists, mark it `unavailable` with a `missingReason`.
    - Set `commodities`, `commodityScenario`, `marketContext`, `crossAsset` and `fallbackQuotes` only for values that changed today.
    - **Intel events** (`src/data/iran-intel-events.json`): rewrite `ship-001`, `sec-005` (title of 8 words or fewer) and `supply-001`, and update the Brent figure in `energy-003`, `trade-001` and `trade-003`. Each description is 150 words or fewer, with no "Day N update:" prefixes. `daily:apply` mirrors the file.
-   - Do **not** edit generated files: cross-asset, conflict, charts, commodities, `useMarkets.ts`, `MarketsWidget.tsx`, the runbook state rows, the timeline, the trace or energy runtime files, or `public/data/`.
+   - Do **not** edit generated files: cross-asset, conflict, charts, commodities, `useMarkets.ts`, `MarketsWidget.tsx`, the runbook state rows, the timeline, the trace (except the authorized structural fields described below) or energy runtime files, or `public/data/`.
 5. **Stage Energy/LNG once**: run `bun run energy:refresh` after **all** state and evidence edits. Add `-- --event` after a material disruption change. If you edit state or evidence again afterwards, rerun it, because the fingerprint must match.
 6. **Publish**: run `bun run daily:update`. This single gate runs apply (including the evidence gate, energy and climate promotion, and staged bundle validation), then check, then build. Fix any failure and rerun. Review `git diff --stat`, then commit.
 
 ## Conditional Steps (only when triggered)
 
+- **Evidence and retained trace context**: after a material trace change, review dated public relationships, compact action/watch context within Exposure Trace, missing commercial inputs, and historical/review-due evidence labels. Standalone Counterparties and Actions tabs have been removed. Follow the runbook's "Evidence and retained trace context maintenance" section for structural edits, then rerun `energy:refresh` before publishing. Never infer current cargo supply from a future contract or refresh a historical source date merely to make it look current.
+
+
 | Step | Trigger |
 |------|---------|
 | `bun run daily:test` | Anything under `scripts/` or `scripts/fixtures/` changed |
-| Browser review of SIGNAL → EXPOSURE (Flow Pressure, five-hop chain, counterparties, alternatives) | `daily:status` lists a trace trigger, or the weekly review |
+| Browser review of SIGNAL → EXPOSURE (Flow Pressure, five-hop chain, Evidence, alternatives) | `daily:status` lists a trace trigger, or the weekly review |
 | Commercial evaluation review | `daily:status` reports that a commercial input became usable. While Dubai/Oman, freight and war-risk inputs are unavailable or carried, all three traces stay `insufficient verified data`, and `daily:check` already proves the result is reproducible. |
 | Manual TTF review on the [ICE Endex page](https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data) | `ttf` is due or carried in `daily:status`. Record the contract and displayed time, and keep the delayed `Last` quote distinct from settlement. |
 | `bun run climate:refresh` | Weekly, or when a GDACS cyclone or flood event is active near a traced asset |
@@ -54,4 +58,4 @@
 
 ## Generated Outputs (never hand-edit)
 
-`bun run daily:apply` writes `daily-state.json`, `exposure-traces.json`, the energy runtime and read model, the climate read model, `banker-cross-asset.json`, `banker-conflict.json`, `charts-volatility.json` (keeping the last 12 scenario days), `commodities-impact.json` and their `public/data/` mirrors, including `iran-intel-events.json`. It also writes `src/hooks/useMarkets.ts`, `src/components/MarketsWidget.tsx`, the Current State and Price Narratives in `docs/daily-update-runbook.md`, and `docs/crisis-timeline-archive.md`. `energy:refresh` writes the energy candidates, refresh report, snapshot manifest and snapshots.
+`bun run daily:apply` writes `daily-state.json`, `exposure-traces.json`, the energy runtime and read model, the climate read model, `banker-cross-asset.json`, `banker-conflict.json`, `charts-volatility.json` (keeping the last 30 calendar days of scenario snapshots), `commodities-impact.json` and their `public/data/` mirrors, including `iran-intel-events.json`. It also writes `src/hooks/useMarkets.ts`, `src/components/MarketsWidget.tsx`, the Current State and Price Narratives in `docs/daily-update-runbook.md`, and `docs/crisis-timeline-archive.md`. `energy:refresh` writes the energy candidates, refresh report, snapshot manifest and snapshots.

@@ -42,7 +42,7 @@ The first milestone is one complete, reproducible loop. More traces and geograph
 - deck.gl globe, current map styling and spatial interaction;
 - ports, routes, chokepoints, vessels and supply-chain layers;
 - `SIGNAL → EXPOSURE` as the core interaction pattern;
-- Evidence, Actions, Counterparties and Market Transmission panels;
+- Exposure Trace, Signals, Evidence and Market Transmission panels, plus Commercial Evaluation when a verified result is available;
 - daily-state, source-freshness, evidence-audit and validation workflows;
 - current Qatar supply, Hormuz delivery and Hormuz crude traces as fixtures and migration inputs;
 - static fallback behaviour when live sources fail.
@@ -161,7 +161,7 @@ What changed
 → Market Exposure
 → Delivered Economics
 → Alternatives
-→ Actions / Watchlist
+→ Exposure Trace context / watch items
 → Evidence
 ```
 
@@ -229,7 +229,7 @@ Add:
 
 - integrate permissioned cargo, contract, inventory, hedge, credit and operational data;
 - calculate customer-specific exposure only from verified customer records;
-- add portfolio actions, owners and deadlines.
+- add portfolio action context, owners and deadlines within the assessment rather than a standalone Actions tab.
 
 ## Guardrails
 
