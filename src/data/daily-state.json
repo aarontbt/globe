@@ -1,26 +1,26 @@
 {
   "schemaVersion": 3,
-  "asOf": "2026-10-17T00:00:00Z",
-  "day": "D226",
+  "asOf": "2026-10-18T00:00:00Z",
+  "day": "D227",
   "crisis": {
     "level": 4,
     "label": "High",
-    "detail": "Reuters reported Oct 16 an intercepted missile toward Yanbu, with no initial infrastructure damage reported; Hormuz shipping attacks persist and no newer comparable transit count is verified. Brent BZ=F is $109.69 (Oct 16 Yahoo snapshot). Gulf of Oman-to-China VLCC freight eased to Worldscale 776 but remains elevated; base/stress/tail probabilities remain 15/45/40."
+    "detail": "Latest approved Reuters security report remains the Oct 16 missile interception toward Yanbu, with no initial infrastructure damage reported. Oct 18 Yahoo snapshots: Brent $108.44 and WTI $97.91. JKM-linked CFD rose to $29.93/MMBtu on Oct 16; official JKM remains carried. Base/stress/tail remain 15/45/40."
   },
   "deltaVsYesterday": 0,
-  "topAlert": "Missile intercepted toward Yanbu; Brent BZ=F reaches $109.69 as Hormuz shipping and alternative export routes remain at risk.",
-  "commodityScenario": "Reuters reported at least five shipping incidents in the 48 hours before Oct 14 and two vessels sunk near Hormuz. Yahoo Finance Oct 15 snapshots: Brent $103.78 (-2.15%) and WTI $93.73 (-1.43%); Last reviewed TTF observation was 87.315 EUR/MWh on Oct 14; it is carried and the automated source is retired. Official JKM remains $22/MMBtu (Reuters, Jul 24, carried); a separate JKM-linked CFD was $26.39/MMBtu on Oct 14.",
-  "marketContext": "Reuters reported at least five shipping incidents in the 48 hours before Oct 14, including the GFS Pride sinking; Cape Dao, hit Sep 23, later sank. Kpler/Reuters counted seven commodity vessels on Oct 6, the latest comparable count; AIS-dark vessels may be excluded. Yahoo Finance Oct 15 snapshots: Brent $103.78 (-2.15%), WTI $93.73 (-1.43%), EUR/USD 1.1221, USD/SGD 1.2822, USD/IDR 17,893, USD/MYR 4.079, USD/THB 33.53, and USD/PHP 63.034. TTF was 87.315 EUR/MWh on Oct 14 (+0.20%); the NY Fed API latest SOFR was 3.89% effective Oct 13. Official JKM remains $22/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD was $26.39/MMBtu on Oct 14. OQD Oman $111.58/bbl (Sep 25) and same-unit VLCC freight $11.50/bbl (Sep 11) remain carried; route-normalised freight, war-risk costs and direct cargo values remain unavailable for commercial residuals. CBOE history CSV retrieval was blocked on Oct 15; Oct 12 fallback closes (OVX 48.52, VXEEM 22.33) are unverified for today.",
+  "topAlert": "Brent $108.44; JKM-linked CFD $29.93. Hormuz shipping risks persist in the latest approved reporting; official JKM remains carried.",
+  "commodityScenario": "Oct 18 Yahoo snapshots: Brent $108.44 (-1.293%), WTI $97.91 (-1.121%), EUR/USD 1.1226. ICE Endex Nov26 delayed Last remains 87.725 EUR/MWh (Oct 16 11:23 GMT; not settlement). Official JKM remains $22/MMBtu (Reuters Jul 24, carried); separate Trading Economics CFD reference $29.93/MMBtu (Oct 16, +12.79%). Reuters Oct 16 reported a missile intercepted toward Yanbu with no initial infrastructure damage; no newer comparable transit count was verified. Latest reviewed count: seven commodity vessels on Oct 6. Route-normalised freight and war-risk costs remain unavailable.",
+  "marketContext": "Oct 18 Yahoo snapshots: Brent $108.44 (-1.293%), WTI $97.91 (-1.121%), EUR/USD 1.1226. ICE Endex Nov26 delayed Last remains 87.725 EUR/MWh (Oct 16 11:23 GMT; not settlement). Official JKM remains $22/MMBtu (Reuters Jul 24, carried); separate Trading Economics CFD reference $29.93/MMBtu (Oct 16, +12.79%). Reuters Oct 16 reported a missile intercepted toward Yanbu with no initial infrastructure damage; no newer comparable transit count was verified. Latest reviewed count: seven commodity vessels on Oct 6. Route-normalised freight and war-risk costs remain unavailable. SOFR latest reviewed effective date Oct 15: 3.89%. CBOE fallback closes Oct 16 (OVX 50.74, VXEEM 27.09) were not rechecked today.",
   "crossAsset": {
     "brent": {
-      "current": 109.69,
-      "change1d": "+3.6%",
-      "zscore": 6.73,
+      "current": 108.44,
+      "change1d": "-1.29%",
+      "zscore": 6.45,
       "signal": "red",
       "source": "Yahoo Finance BZ=F",
-      "sourceDate": "2026-10-16",
+      "sourceDate": "2026-10-18",
       "status": "confirmed",
-      "observedAt": "2026-10-16T20:59:31.000Z",
+      "observedAt": "2026-10-18T23:40:05.000Z",
       "evidenceId": "e-brent"
     },
     "ttf": {
@@ -35,15 +35,14 @@
       "evidenceId": "e-ttf"
     },
     "lng-ja": {
-      "current": 26.39,
-      "change1d": "+0.44%",
-      "zscore": 4.55,
+      "current": 29.93,
+      "change1d": "+12.79%",
+      "zscore": 5.68,
       "signal": "red",
       "source": "Trading Economics JKM-linked CFD reference",
-      "sourceDate": "2026-10-14",
+      "sourceDate": "2026-10-16",
       "status": "confirmed",
-      "evidenceId": "e-jkm-cfd",
-      "carryReason": "Rechecked the exact Trading Economics page on Oct 13; its latest CFD observation is still dated Oct 9, four days old. Preserve the date and do not treat this as the official JKM assessment."
+      "evidenceId": "e-jkm-cfd"
     },
     "id10y": {
       "current": 7.245,
@@ -56,14 +55,14 @@
       "evidenceId": "e-id10y"
     },
     "ph10y": {
-      "current": 6.39,
-      "change1d": "+0bp",
-      "zscore": 0.18,
-      "signal": "green",
-      "source": "Investing.com (est.)",
-      "sourceDate": "2026-08-05",
-      "status": "estimated",
-      "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and estimate label."
+      "current": 7.98,
+      "change1d": "+4.1bp",
+      "zscore": 28.8,
+      "signal": "red",
+      "source": "Trading Economics",
+      "sourceDate": "2026-10-16",
+      "status": "confirmed",
+      "evidenceId": "e-ph10y"
     },
     "th10y": {
       "current": 2.25,
@@ -83,7 +82,7 @@
       "source": "Bloomberg/Markit (est.)",
       "sourceDate": "2026-08-05",
       "status": "estimated",
-      "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and estimate label."
+      "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
     },
     "asean-hy": {
       "current": 475,
@@ -93,61 +92,61 @@
       "source": "JPMorgan CEMBI/BAML (est.)",
       "sourceDate": "2026-08-05",
       "status": "estimated",
-      "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and estimate label."
+      "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
     },
     "sgd": {
-      "current": 1.2822,
-      "change1d": "-0.20%",
-      "zscore": -0.08,
+      "current": 1.2795,
+      "change1d": "-0.01%",
+      "zscore": -0.2,
       "signal": "green",
       "source": "Yahoo Finance SGD=X",
-      "sourceDate": "2026-10-15",
+      "sourceDate": "2026-10-18",
       "status": "confirmed",
-      "observedAt": "2026-10-15T02:51:04Z",
+      "observedAt": "2026-10-18T23:50:26.000Z",
       "evidenceId": "e-fx-sgd"
     },
     "idr": {
-      "current": 17893,
-      "change1d": "0.0%",
-      "zscore": 12.67,
+      "current": 17943,
+      "change1d": "+0.00%",
+      "zscore": 13.02,
       "signal": "red",
       "source": "Yahoo Finance IDR=X",
-      "sourceDate": "2026-10-15",
+      "sourceDate": "2026-10-18",
       "status": "confirmed",
-      "observedAt": "2026-10-15T02:41:37Z",
+      "observedAt": "2026-10-18T23:09:50.000Z",
       "evidenceId": "e-fx-idr"
     },
     "myr": {
       "current": 4.079,
-      "change1d": "-0.05%",
+      "change1d": "+0.00%",
       "zscore": 0,
       "signal": "green",
       "source": "Yahoo Finance MYR=X",
-      "sourceDate": "2026-10-15",
+      "sourceDate": "2026-10-18",
       "status": "confirmed",
-      "observedAt": "2026-10-15T02:43:15Z",
+      "observedAt": "2026-10-18T23:09:50.000Z",
       "evidenceId": "e-fx-myr"
     },
     "thb": {
-      "current": 33.53,
-      "change1d": "-0.18%",
-      "zscore": 0.38,
+      "current": 33.39,
+      "change1d": "-0.09%",
+      "zscore": 0.24,
       "signal": "green",
       "source": "Yahoo Finance THB=X",
-      "sourceDate": "2026-10-15",
+      "sourceDate": "2026-10-18",
       "status": "confirmed",
-      "observedAt": "2026-10-15T02:51:06Z",
+      "observedAt": "2026-10-18T23:50:26.000Z",
       "evidenceId": "e-fx-thb"
     },
     "php": {
-      "current": 63.034,
-      "change1d": "+0.49%",
-      "zscore": 3.31,
+      "current": 62.982,
+      "change1d": "-0.01%",
+      "zscore": 3.27,
       "signal": "red",
       "source": "Yahoo Finance PHP=X",
-      "sourceDate": "2026-10-15",
+      "sourceDate": "2026-10-18",
       "status": "confirmed",
-      "observedAt": "2026-10-15T02:51:06Z",
+      "observedAt": "2026-10-18T23:09:50.000Z",
       "evidenceId": "e-fx-php"
     },
     "energy-eq": {
@@ -158,7 +157,7 @@
       "source": "MSCI ASEAN/SGX (est.)",
       "sourceDate": "2026-08-05",
       "status": "estimated",
-      "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and estimate label."
+      "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
     },
     "shipping-eq": {
       "current": 74.5,
@@ -168,7 +167,7 @@
       "source": "SGX shipping sub-index (est.)",
       "sourceDate": "2026-08-05",
       "status": "estimated",
-      "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and estimate label."
+      "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
     },
     "banks-eq": {
       "current": 207.5,
@@ -178,59 +177,59 @@
       "source": "MSCI ASEAN Banks (est.)",
       "sourceDate": "2026-08-05",
       "status": "estimated",
-      "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and estimate label."
+      "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
     }
   },
   "fallbackCommentLines": [
-    "Static fallback - generated from src/data/daily-state.json (2026-10-17; D226)",
-    "Brent Crude 109.69 (Yahoo Finance BZ=F 2026-10-16, confirmed); WTI Crude 99.04 (Yahoo Finance CL=F 2026-10-16, confirmed)"
+    "Static fallback - generated from src/data/daily-state.json (2026-10-18; D227)",
+    "Brent Crude 108.44 (Yahoo Finance BZ=F 2026-10-18, confirmed); WTI Crude 97.91 (Yahoo Finance CL=F 2026-10-18, confirmed)"
   ],
   "fallbackQuotes": [
     {
       "symbol": "BZ=F",
       "name": "Brent Crude",
-      "price": 109.69,
-      "change": 3.77,
-      "changePct": 3.56,
+      "price": 108.44,
+      "change": -1.42,
+      "changePct": -1.293,
       "currency": "USD",
       "unit": "/barrel",
-      "lastUpdated": "2026-10-16T20:59:31.000Z",
+      "lastUpdated": "2026-10-18T23:40:05.000Z",
       "source": "Yahoo Finance BZ=F",
-      "sourceDate": "2026-10-16",
+      "sourceDate": "2026-10-18",
       "status": "confirmed"
     },
     {
       "symbol": "CL=F",
       "name": "WTI Crude",
-      "price": 99.04,
-      "change": 2.54,
-      "changePct": 2.63,
+      "price": 97.91,
+      "change": -1.11,
+      "changePct": -1.121,
       "currency": "USD",
       "unit": "/barrel",
-      "lastUpdated": "2026-10-16T20:59:58.000Z",
+      "lastUpdated": "2026-10-18T23:40:10.000Z",
       "source": "Yahoo Finance CL=F",
-      "sourceDate": "2026-10-16",
+      "sourceDate": "2026-10-18",
       "status": "confirmed"
     }
   ],
   "todaysEvents": [
     {
       "id": "e1",
-      "summary": "Missile intercepted toward Yanbu",
-      "delta": "Reuters (Oct 16): a Saudi-led coalition intercepted a missile toward Yanbu. Initial reports indicated no infrastructure damage; the port remains a key Hormuz bypass.",
-      "direction": "up"
+      "summary": "Oil eases in latest snapshots",
+      "delta": "Yahoo Finance Oct 18: Brent BZ=F $108.44 (-1.293%) and WTI CL=F $97.91 (-1.121%). These are dated instrument snapshots.",
+      "direction": "down"
     },
     {
       "id": "e2",
-      "summary": "Oil rises amid supply risks",
-      "delta": "Oct 16 Yahoo snapshots: Brent BZ=F $109.69 (+3.56%), WTI CL=F $99.04 (+2.63%). These instrument snapshots are distinct from the Reuters settlement benchmarks.",
+      "summary": "LNG reference rises sharply",
+      "delta": "Trading Economics Oct 16: Japan-Korea LNG CFD reference $29.93/MMBtu (+12.79%). This is separate from official JKM $22/MMBtu (Reuters Jul 24, carried).",
       "direction": "up"
     },
     {
       "id": "e3",
-      "summary": "VLCC freight eases from record",
-      "delta": "Reuters/Baltic (Oct 16): Gulf of Oman-to-China VLCC freight near Worldscale 776, versus 841 last week. No source-approved USD/bbl conversion is available.",
-      "direction": "down"
+      "summary": "Shipping risk remains under review",
+      "delta": "Oct 18 source search found no newer approved security update than Reuters Oct 16 Yanbu missile interception. The latest comparable reviewed Hormuz count remains seven commodity vessels on Oct 6; no current trapped-tanker count is verified.",
+      "direction": "neutral"
     }
   ],
   "scenarios": [
@@ -263,7 +262,7 @@
     }
   ],
   "traceInputs": {
-    "headline": "Reuters reported Oct 16 an intercepted missile toward Yanbu, with no initial infrastructure damage reported; Hormuz shipping attacks persist and no newer comparable transit count is verified.",
+    "headline": "Oct 18 review: latest approved security reporting remains the Oct 16 missile interception toward Yanbu; no newer comparable Hormuz transit count was verified.",
     "metrics": {
       "qatar-output-status": {
         "unit": "",
@@ -275,12 +274,12 @@
         "periodEnd": "2026-09-28",
         "coverageStatus": "partial-coverage",
         "coverageNote": "Reports Edison and selected Asian buyer notices, not a measured total Qatar LNG output loss.",
-        "sourceAgeDays": 19,
+        "sourceAgeDays": 20,
         "value": "Reuters reported Sep 28 that Edison expects no QatarEnergy LNG cargoes until early December and some Asian clients were notified that force majeure runs through November; Edison cited 35 undelivered cargoes total and 23 replaced to date",
         "source": "Reuters via The Business Standard",
         "sourceDate": "2026-09-28",
         "observedAt": "2026-09-28T00:00:00.000Z",
-        "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and historical context."
+        "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
       },
       "ras-laffan-asset-status": {
         "unit": "",
@@ -292,12 +291,12 @@
         "periodEnd": "2026-09-28",
         "coverageStatus": "partial-coverage",
         "coverageNote": "Status inferred from QatarEnergy LNG force-majeure notices to buyers, not a train-by-train operating report.",
-        "sourceAgeDays": 19,
+        "sourceAgeDays": 20,
         "value": "QatarEnergy LNG force majeure in effect; selected Asian buyers notified it runs through November, Edison expects no cargoes until early December",
         "source": "Reuters via The Business Standard",
         "sourceDate": "2026-09-28",
         "observedAt": "2026-09-28T00:00:00.000Z",
-        "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and historical context."
+        "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
       },
       "ras-laffan-port-identity": {
         "unit": "",
@@ -308,7 +307,7 @@
         "periodStart": "2026-01-01",
         "periodEnd": "2026-12-31",
         "coverageStatus": "direct-observation",
-        "sourceAgeDays": 161,
+        "sourceAgeDays": 162,
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-unlocode-ras-laffan:09f64b83ca9baf00"
         ],
@@ -339,7 +338,7 @@
         "periodStart": "2024-01-01",
         "periodEnd": "2024-12-31",
         "coverageStatus": "direct-observation",
-        "sourceAgeDays": 655,
+        "sourceAgeDays": 656,
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7"
         ],
@@ -357,7 +356,7 @@
         "periodStart": "2024-01-01",
         "periodEnd": "2024-12-31",
         "coverageStatus": "direct-observation",
-        "sourceAgeDays": 655,
+        "sourceAgeDays": 656,
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde"
         ],
@@ -375,7 +374,7 @@
         "periodStart": "2026-01-01",
         "periodEnd": "2026-12-31",
         "coverageStatus": "direct-observation",
-        "sourceAgeDays": 2,
+        "sourceAgeDays": 3,
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c"
         ],
@@ -393,12 +392,12 @@
         "periodEnd": "2026-08-02",
         "coverageStatus": "partial-coverage",
         "coverageNote": "Kpler weekly reported count for Jul 27-Aug 2; AIS-dark transits may be unobserved. This is historical weekly context, not a September monthly total.",
-        "sourceAgeDays": 76,
+        "sourceAgeDays": 77,
         "value": 3,
         "source": "Kpler via Foreign Policy Journal",
         "sourceDate": "2026-08-02",
         "observedAt": "2026-08-02T00:00:00.000Z",
-        "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and historical context."
+        "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
       },
       "hormuz-route-pressure": {
         "unit": "%",
@@ -422,8 +421,8 @@
         "sourceDate": "2026-02-03",
         "maxAgeDays": 365,
         "cadence": "contract-driven",
-        "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and historical context.",
-        "sourceAgeDays": 256
+        "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label.",
+        "sourceAgeDays": 257
       },
       "nakilat-charter-vessels": {
         "value": 25,
@@ -433,7 +432,7 @@
         "sourceDate": "2024-03-24",
         "maxAgeDays": 3650,
         "cadence": "contract-driven",
-        "sourceAgeDays": 937
+        "sourceAgeDays": 938
       },
       "lng-freight-delay": {
         "unit": "days",
@@ -454,7 +453,7 @@
         "periodEnd": "2026-10-16",
         "coverageStatus": "direct-observation",
         "coverageNote": "ICE Endex Nov26 Dutch TTF delayed Last was 87.725 EUR/MWh at Oct 16 11:23 GMT; page updated 11:33 GMT. This is not a settlement price.",
-        "sourceAgeDays": 1,
+        "sourceAgeDays": 2,
         "value": 87.725,
         "source": "ICE Endex Nov26 Dutch TTF delayed Last",
         "sourceDate": "2026-10-16",
@@ -468,7 +467,7 @@
         "sourceDate": "2026-03-03",
         "maxAgeDays": 730,
         "cadence": "event-driven",
-        "sourceAgeDays": 228
+        "sourceAgeDays": 229
       },
       "hormuz-crude-flow": {
         "value": 14.7,
@@ -478,7 +477,7 @@
         "sourceDate": "2026-03-03",
         "maxAgeDays": 730,
         "cadence": "event-driven",
-        "sourceAgeDays": 228
+        "sourceAgeDays": 229
       },
       "saudi-hormuz-crude-2024": {
         "value": 5.5,
@@ -488,7 +487,7 @@
         "sourceDate": "2025-06-16",
         "maxAgeDays": 730,
         "cadence": "event-driven",
-        "sourceAgeDays": 488
+        "sourceAgeDays": 489
       },
       "asia-crude-share": {
         "value": 89,
@@ -498,7 +497,7 @@
         "sourceDate": "2026-03-03",
         "maxAgeDays": 730,
         "cadence": "event-driven",
-        "sourceAgeDays": 228
+        "sourceAgeDays": 229
       },
       "asia-top-four-share": {
         "value": 74,
@@ -508,7 +507,7 @@
         "sourceDate": "2026-03-03",
         "maxAgeDays": 730,
         "cadence": "event-driven",
-        "sourceAgeDays": 228
+        "sourceAgeDays": 229
       },
       "oil-vlcc-freight": {
         "value": 11.5,
@@ -518,12 +517,12 @@
         "periodStart": "2026-09-11",
         "periodEnd": "2026-09-11",
         "coverageStatus": "direct-observation",
-        "sourceAgeDays": 36,
+        "sourceAgeDays": 37,
         "source": "Baltic Exchange via Reuters",
         "sourceDate": "2026-09-11",
         "maxAgeDays": 1,
         "cadence": "daily",
-        "carryReason": "Oct 17 review: Reuters Oct 16 supplies Worldscale 776 for Gulf of Oman-to-China VLCCs, without a USD/bbl assessment. Retain Sep 11 $11.50/bbl as dated historical context; do not convert Worldscale."
+        "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
       },
       "oil-counterparty-relationship": {
         "unit": "",
@@ -535,15 +534,15 @@
         "missingReason": "No named company-level buyer relationship is verified by the approved oil-flow sources."
       },
       "jkm-cfd-reference": {
-        "value": 26.39,
+        "value": 29.93,
         "unit": "USD/MMBtu",
         "status": "confirmed",
         "source": "Trading Economics JKM-linked CFD reference",
-        "sourceDate": "2026-10-14",
+        "sourceDate": "2026-10-16",
         "maxAgeDays": 3,
         "cadence": "daily",
-        "sourceAgeDays": 3,
-        "note": "Trading Economics shows a $26.39/MMBtu LNG Japan-Korea CFD observation dated Oct 14; this is a CFD reference, not the official JKM assessment."
+        "sourceAgeDays": 2,
+        "note": "Firecrawl exact-page review Oct 18: Trading Economics LNG Japan-Korea CFD reference was 29.93 USD/MMBtu on Oct 16, up 12.79%; this is not an official JKM assessment."
       },
       "japan-lng-demand": {
         "unit": "USD",
@@ -575,23 +574,18 @@
       },
       "hormuz-total-transits": {
         "unit": "vessels/day",
-        "status": "confirmed",
+        "status": "unavailable",
         "observationKind": "transit",
         "maxAgeDays": 7,
         "cadence": "daily",
         "note": "Reuters reported Kpler counted seven commodity vessels on Oct 6, the lowest since Jul 23. LSEG counted eight; AIS-dark vessels may be excluded.",
-        "periodStart": "2026-10-11",
-        "periodEnd": "2026-10-11",
-        "coverageStatus": "direct-observation",
-        "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
-        "sourceAgeDays": 6,
-        "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:4d9feefe31352a50"
-        ],
-        "value": 2,
-        "source": "IMF PortWatch",
-        "sourceDate": "2026-10-11",
-        "observedAt": "2026-10-11T00:00:00.000Z"
+        "periodStart": null,
+        "periodEnd": null,
+        "coverageStatus": "unavailable",
+        "sourceAgeDays": null,
+        "source": "",
+        "sourceDate": "",
+        "missingReason": "Machine refresh failed: src-imf-portwatch-hormuz: response contains no selected route/entity rows. No approved observation is available."
       },
       "qatar-subchartered-carriers": {
         "value": 9,
@@ -601,8 +595,8 @@
         "sourceDate": "2026-07-23",
         "maxAgeDays": 14,
         "cadence": "event-driven",
-        "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and historical context.",
-        "sourceAgeDays": 86
+        "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label.",
+        "sourceAgeDays": 87
       },
       "oman-marker": {
         "value": 111.58,
@@ -612,8 +606,8 @@
         "sourceDate": "2026-09-25",
         "maxAgeDays": 3,
         "cadence": "daily",
-        "sourceAgeDays": 22,
-        "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and historical context."
+        "sourceAgeDays": 23,
+        "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
       },
       "hormuz-lng-september-exits": {
         "label": "September LNG cargo exits",
@@ -626,12 +620,12 @@
         "periodEnd": "2026-09-30",
         "coverageStatus": "partial-coverage",
         "coverageNote": "Kpler tracked count; AIS-dark transits may be omitted, so the tally may not capture every passage.",
-        "sourceAgeDays": 17,
+        "sourceAgeDays": 18,
         "value": 21,
         "source": "Kpler via Reuters",
         "sourceDate": "2026-09-30",
         "observedAt": "2026-09-30T00:00:00.000Z",
-        "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and historical context."
+        "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
       },
       "hormuz-qatar-vessels-oct03": {
         "label": "Qatari LNG vessels reappeared outside",
@@ -644,12 +638,12 @@
         "periodEnd": "2026-10-03",
         "coverageStatus": "partial-coverage",
         "coverageNote": "Four tracked Qatar-loaded vessels reappeared outside; this sighting set is not additive to the September monthly count, and dark AIS may hide other passages.",
-        "sourceAgeDays": 14,
+        "sourceAgeDays": 15,
         "value": 4,
         "source": "Kpler/LSEG via Reuters",
         "sourceDate": "2026-10-03",
         "observedAt": "2026-10-03T00:00:00.000Z",
-        "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and historical context."
+        "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
       }
     },
     "evidenceUpdates": {
@@ -703,61 +697,61 @@
         "title": "Yahoo Finance chart API - Brent Crude",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=1d&range=5d",
-        "publishedAt": "2026-10-16",
-        "lastChecked": "2026-10-17",
+        "publishedAt": "2026-10-18",
+        "lastChecked": "2026-10-18",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 3,
         "status": "confirmed",
-        "note": "Firecrawl review Oct 17 with cache-busting after the canonical response was stale: BZ=F Brent crude futures was 109.69 USD/bbl at 2026-10-16T20:59:31.000Z."
+        "note": "Firecrawl exact-page review Oct 18: BZ=F Brent crude futures was 108.44 USD/bbl at 2026-10-18T23:40:05.000Z; reported change -1.293%."
       },
       "e-wti": {
         "title": "Yahoo Finance chart API - WTI Crude",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=5d",
-        "publishedAt": "2026-10-16",
-        "lastChecked": "2026-10-17",
+        "publishedAt": "2026-10-18",
+        "lastChecked": "2026-10-18",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 3,
         "status": "confirmed",
-        "note": "Firecrawl review Oct 17 with cache-busting after the canonical response was stale: CL=F WTI crude futures was 99.04 USD/bbl at 2026-10-16T20:59:58.000Z."
+        "note": "Firecrawl exact-page review Oct 18: CL=F WTI crude futures was 97.91 USD/bbl at 2026-10-18T23:40:10.000Z; reported change -1.121%."
       },
       "e-eurusd": {
         "title": "Yahoo Finance chart API - EUR/USD",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?interval=1d&range=5d",
-        "publishedAt": "2026-10-16",
-        "lastChecked": "2026-10-17",
+        "publishedAt": "2026-10-18",
+        "lastChecked": "2026-10-18",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 3,
         "status": "confirmed",
-        "note": "Firecrawl review Oct 17 with cache-busting after the canonical response was stale: EURUSD=X EUR/USD spot exchange rate was 1.1244 USD/EUR at 2026-10-16T21:29:27.000Z."
+        "note": "Firecrawl exact-page review Oct 18: EURUSD=X EUR/USD spot exchange rate was 1.1226 USD/EUR at 2026-10-18T23:49:51.000Z; reported change -0.1572%."
       },
       "e-sofr": {
         "title": "Secured Overnight Financing Rate",
         "publisher": "Federal Reserve Bank of New York",
         "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
         "publishedAt": "2026-10-15",
-        "lastChecked": "2026-10-17",
+        "lastChecked": "2026-10-18",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 7,
         "status": "confirmed",
-        "note": "Firecrawl review Oct 17 with cache-busting after the canonical response was stale: SOFR was 3.89 % at 2026-10-15T00:00:00Z."
+        "note": "Firecrawl exact-page review Oct 18: SOFR was 3.89% effective 2026-10-15; the NY Fed endpoint returned this latest available effective date."
       },
       "e-jkm-cfd": {
         "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
         "publisher": "Trading Economics",
         "url": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
-        "publishedAt": "2026-10-14",
-        "lastChecked": "2026-10-15",
+        "publishedAt": "2026-10-16",
+        "lastChecked": "2026-10-18",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 3,
         "status": "confirmed",
-        "note": "Reviewed Oct 15: Trading Economics latest displayed LNG Japan-Korea CFD is $26.39/MMBtu dated Oct 14; this remains a CFD reference, not official JKM."
+        "note": "Firecrawl exact-page review Oct 18: Trading Economics LNG Japan-Korea CFD reference was 29.93 USD/MMBtu on Oct 16, up 12.79%; this is not an official JKM assessment."
       },
       "e-gme-oman": {
         "title": "GME Exchange Products Daily Information Bulletin - Sep 25, 2026",
@@ -859,61 +853,61 @@
         "title": "Yahoo Finance chart API - USD/SGD",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/SGD%3DX?interval=1d&range=5d",
-        "publishedAt": "2026-10-15",
-        "lastChecked": "2026-10-15",
+        "publishedAt": "2026-10-18",
+        "lastChecked": "2026-10-18",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 3,
         "status": "confirmed",
-        "note": "Live source review on Oct 15: USD/SGD was 1.2822 SGD per USD at 2026-10-15T02:51:04Z; Yahoo Finance reports a -0.2016% change."
+        "note": "Firecrawl exact-page review Oct 18: SGD=X USD/SGD spot exchange rate was 1.2795 SGD per USD at 2026-10-18T23:50:26.000Z; reported change -0.0055%."
       },
       "e-fx-idr": {
         "title": "Yahoo Finance chart API - USD/IDR",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/IDR%3DX?interval=1d&range=5d",
-        "publishedAt": "2026-10-15",
-        "lastChecked": "2026-10-15",
+        "publishedAt": "2026-10-18",
+        "lastChecked": "2026-10-18",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 3,
         "status": "confirmed",
-        "note": "Live source review on Oct 15: USD/IDR was 17893 IDR per USD at 2026-10-15T02:41:37Z; Yahoo Finance reports a 0.0% change."
+        "note": "Firecrawl exact-page review Oct 18: IDR=X USD/IDR spot exchange rate was 17943.0 IDR per USD at 2026-10-18T23:09:50.000Z; reported change +0%."
       },
       "e-fx-myr": {
         "title": "Yahoo Finance chart API - USD/MYR",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/MYR%3DX?interval=1d&range=5d",
-        "publishedAt": "2026-10-15",
-        "lastChecked": "2026-10-15",
+        "publishedAt": "2026-10-18",
+        "lastChecked": "2026-10-18",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 3,
         "status": "confirmed",
-        "note": "Live source review on Oct 15: USD/MYR was 4.079 MYR per USD at 2026-10-15T02:43:15Z; Yahoo Finance reports a -0.049% change."
+        "note": "Firecrawl exact-page review Oct 18: MYR=X USD/MYR spot exchange rate was 4.079 MYR per USD at 2026-10-18T23:09:50.000Z; reported change +0%."
       },
       "e-fx-thb": {
         "title": "Yahoo Finance chart API - USD/THB",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/THB%3DX?interval=1d&range=5d",
-        "publishedAt": "2026-10-15",
-        "lastChecked": "2026-10-15",
+        "publishedAt": "2026-10-18",
+        "lastChecked": "2026-10-18",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 3,
         "status": "confirmed",
-        "note": "Live source review on Oct 15: USD/THB was 33.53 THB per USD at 2026-10-15T02:51:06Z; Yahoo Finance reports a -0.1784% change."
+        "note": "Firecrawl exact-page review Oct 18: THB=X USD/THB spot exchange rate was 33.39 THB per USD at 2026-10-18T23:50:26.000Z; reported change -0.0898%."
       },
       "e-fx-php": {
         "title": "Yahoo Finance chart API - USD/PHP",
         "publisher": "Yahoo Finance",
         "url": "https://query2.finance.yahoo.com/v8/finance/chart/PHP%3DX?interval=1d&range=5d",
-        "publishedAt": "2026-10-15",
-        "lastChecked": "2026-10-15",
+        "publishedAt": "2026-10-18",
+        "lastChecked": "2026-10-18",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 3,
         "status": "confirmed",
-        "note": "Live source review on Oct 15: USD/PHP was 63.034 PHP per USD at 2026-10-15T02:51:06Z; Yahoo Finance reports a +0.4862% change."
+        "note": "Firecrawl exact-page review Oct 18: PHP=X USD/PHP spot exchange rate was 62.982 PHP per USD at 2026-10-18T23:09:50.000Z; reported change -0.0143%."
       },
       "e-jera-qatarenergy": {
         "title": "JERA Signs 27-Year LNG Supply Agreement with QatarEnergy",
@@ -1264,17 +1258,30 @@
         "maxAgeDays": 7,
         "status": "confirmed",
         "note": "Thailand 10-year government yield held steady at 2.25% on Oct 16, according to the dated summary and bond table. The page also shows 2.253 in a separate chart header; use the dated summary precision."
+      },
+      "e-ph10y": {
+        "id": "e-ph10y",
+        "title": "Philippines 10-Year Government Bond Yield",
+        "publisher": "Trading Economics",
+        "url": "https://tradingeconomics.com/philippines/government-bond-yield",
+        "publishedAt": "2026-10-16",
+        "lastChecked": "2026-10-18",
+        "kind": "market-observation",
+        "cadence": "daily",
+        "maxAgeDays": 7,
+        "status": "confirmed",
+        "note": "Philippines 10-year OTC interbank government yield was 7.98% on Oct 16; displayed day move 0.041 percentage points (4.1bp)."
       }
     }
   },
   "volatilityDay": {
-    "day": "D226",
-    "date": "2026-10-17",
-    "note": "Sat - latest published CBOE CSV closes Oct 16: OVX 50.74, VXEEM 27.09. Reviewed Oct 17; scenario probabilities unchanged at 15/45/40.",
+    "day": "D227",
+    "date": "2026-10-18",
+    "note": "Sun - scenario probabilities unchanged at 15/45/40; Oct 16 CBOE fallback closes retained, not rechecked today.",
     "ovx": 50.74,
-    "ovxConfirmed": true,
+    "ovxConfirmed": false,
     "vxeem": 27.09,
-    "vxeemConfirmed": true,
+    "vxeemConfirmed": false,
     "scenarios": [
       15,
       45,
@@ -1419,17 +1426,17 @@
     }
   },
   "priceNarratives": {
-    "Brent": "Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $109.69 (Yahoo Finance BZ=F, Oct 16 snapshot, +3.56%). Working range $75-85 base; $85-105 stress; $105-135+ tail.",
-    "JKM LNG": "Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD was $26.39/MMBtu (Trading Economics, Oct 14); not an official assessment.",
+    "Brent": "Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $108.44 (Yahoo Finance BZ=F, Oct 18 snapshot, -1.293%). Working range $75-85 base; $85-105 stress; $105-135+ tail.",
+    "JKM LNG": "Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried). Separate JKM-linked CFD was $29.93/MMBtu (Trading Economics, Oct 16); not an official assessment.",
     "TTF Gas": "Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 87.725 EUR/MWh (ICE Endex Nov26 delayed Last, Oct 16 11:23 GMT; not settlement). Selective LNG passages do not establish unrestricted Hormuz access.",
     "Credit": "iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both carried as estimates pending fresher EM credit data. No source-approved daily credit marks are available. Scenario split remains base 15%, stress 45%, tail 40%."
   },
   "runbookState": {
-    "brent": "$109.69 (2026-10-16, Yahoo Finance BZ=F; +3.56%)",
-    "jkm": "$22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $26.39/MMBtu (Trading Economics, Oct 14; not an official assessment)",
+    "brent": "$108.44 (2026-10-18, Yahoo Finance BZ=F; -1.293%)",
+    "jkm": "$22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $29.93/MMBtu (Trading Economics, Oct 16; not an official assessment)",
     "ttf": "87.725 EUR/MWh (ICE Endex Nov26 delayed Last, Oct 16 11:23 GMT; not settlement)"
   },
-  "timelineEntry": "- **D226**: Oct 17 - Brent BZ=F $109.69; TTF Nov26 Last 87.725 EUR/MWh; missile intercepted toward Yanbu; VLCC freight eases to Worldscale 776.",
+  "timelineEntry": "- **D227**: Oct 18 - Brent $108.44; LNG CFD $29.93 (Oct 16); security reporting unchanged; scenario probabilities remain 15/45/40.",
   "commercialInputs": {
     "lng-origin-value": {
       "label": "Qatar origin value",
@@ -1460,7 +1467,7 @@
       "sourceDate": "2026-07-24",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and historical context."
+      "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
     },
     "lng-ttf": {
       "label": "Dutch TTF",
@@ -1479,7 +1486,7 @@
       "periodEnd": "2026-10-16",
       "coverageStatus": "direct-observation",
       "coverageNote": "ICE Endex Nov26 Dutch TTF delayed Last was 87.725 EUR/MWh at Oct 16 11:23 GMT; page updated 11:33 GMT. This is not a settlement price.",
-      "sourceAgeDays": 1,
+      "sourceAgeDays": 2,
       "value": 87.725,
       "source": "ICE Endex Nov26 Dutch TTF delayed Last",
       "sourceDate": "2026-10-16",
@@ -1489,12 +1496,12 @@
       "label": "EUR/USD",
       "commodity": "lng",
       "role": "fx",
-      "value": 1.1244,
+      "value": 1.1226,
       "unit": "USD/EUR",
       "status": "confirmed",
       "source": "Yahoo Finance EURUSD=X",
-      "sourceDate": "2026-10-16",
-      "observedAt": "2026-10-16T21:29:27.000Z",
+      "sourceDate": "2026-10-18",
+      "observedAt": "2026-10-18T23:49:51.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
@@ -1534,35 +1541,35 @@
       "label": "Brent",
       "commodity": "crude-oil",
       "role": "destination-value",
-      "value": 109.69,
+      "value": 108.44,
       "unit": "USD/bbl",
       "status": "confirmed",
       "source": "Yahoo Finance BZ=F",
-      "sourceDate": "2026-10-16",
+      "sourceDate": "2026-10-18",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
         "e-brent"
       ],
       "requiredForCalculation": false,
-      "observedAt": "2026-10-16T20:59:31.000Z"
+      "observedAt": "2026-10-18T23:40:05.000Z"
     },
     "oil-wti": {
       "label": "WTI",
       "commodity": "crude-oil",
       "role": "origin-value",
-      "value": 99.04,
+      "value": 97.91,
       "unit": "USD/bbl",
       "status": "confirmed",
       "source": "Yahoo Finance CL=F",
-      "sourceDate": "2026-10-16",
+      "sourceDate": "2026-10-18",
       "maxAgeDays": 3,
       "cadence": "daily",
       "evidenceIds": [
         "e-wti"
       ],
       "requiredForCalculation": true,
-      "observedAt": "2026-10-16T20:59:58.000Z"
+      "observedAt": "2026-10-18T23:40:10.000Z"
     },
     "oil-dubai-oman": {
       "label": "Dubai/Oman destination reference",
@@ -1579,7 +1586,7 @@
       "sourceDate": "2026-09-25",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "carryReason": "Oct 17 replacement-source review found no newer directly comparable approved observation; retain the original date and historical context."
+      "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
     },
     "oil-vlcc-freight": {
       "label": "VLCC freight",
@@ -1596,12 +1603,12 @@
       "periodStart": "2026-09-11",
       "periodEnd": "2026-09-11",
       "coverageStatus": "direct-observation",
-      "sourceAgeDays": 36,
+      "sourceAgeDays": 37,
       "source": "Baltic Exchange via Reuters",
       "sourceDate": "2026-09-11",
       "maxAgeDays": 1,
       "cadence": "daily",
-      "carryReason": "Oct 17 review: Reuters Oct 16 supplies Worldscale 776 for Gulf of Oman-to-China VLCCs, without a USD/bbl assessment. Retain Sep 11 $11.50/bbl as dated historical context; do not convert Worldscale."
+      "carryReason": "Oct 18 targeted replacement-source search found no newer directly comparable approved observation; preserve the original date and historical/estimate label."
     },
     "oil-war-risk": {
       "label": "Crude war-risk insurance",

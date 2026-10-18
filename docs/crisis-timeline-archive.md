@@ -170,3 +170,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D223**: Oct 14 - Reuters reports at least five shipping incidents in 48 hours and the GFS Pride sinking near Hormuz; no comparable daily transit count was reported.
 - **D224**: Oct 15 - Brent $103.78, WTI $93.73, TTF 87.315 EUR/MWh; Reuters reports two vessel sinkings and five incidents in 48 hours; no current comparable transit count.
 - **D226**: Oct 17 - Brent BZ=F $109.69; TTF Nov26 Last 87.725 EUR/MWh; missile intercepted toward Yanbu; VLCC freight eases to Worldscale 776.
+- **D227**: Oct 18 - Brent $108.44; LNG CFD $29.93 (Oct 16); security reporting unchanged; scenario probabilities remain 15/45/40.

@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "Missile intercepted toward Yanbu; Brent BZ=F reaches $109.69 as Hormuz shipping and alternative export routes remain at risk.";
+const TOP_ALERT = "Brent $108.44; JKM-linked CFD $29.93. Hormuz shipping risks persist in the latest approved reporting; official JKM remains carried.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
