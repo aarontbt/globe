@@ -1,0 +1,60 @@
+.exposure-flow { border: 1px solid #273043; border-radius: 14px; background: radial-gradient(ellipse at 50% 0%, #20283b70, transparent 70%), #101622; overflow: hidden; }
+.exposure-flow-heading { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 12px; padding: 22px 24px 8px; }
+.exposure-flow-eyebrow { color: #9baac1; font-size: 10px; text-transform: uppercase; letter-spacing: .16em; }
+.exposure-flow-heading h2 { margin: 6px 0 0; font-size: 20px; font-weight: 650; color: #eef2fa; }
+.exposure-flow-heading p { margin: 0; font-size: 12px; color: #9baac1; line-height: 1.5; }
+.exposure-flow-scroll { overflow-x: auto; padding: 20px 24px 24px; scrollbar-width: thin; scrollbar-color: #485471 #101622; }
+.exposure-flow-stages { display: grid; gap: 32px; min-width: 1020px; padding: 0; margin: 0; list-style: none; }
+.exposure-flow-stage { min-width: 0; }
+.exposure-flow-step { display: flex; gap: 10px; align-items: center; min-height: 34px; box-sizing: border-box; padding: 8px 16px 8px 12px; margin-bottom: 25px; color: #e2e8f0; text-transform: uppercase; font-size: 10px; letter-spacing: .1em; background: linear-gradient(110deg, #343d52, #242d3e); clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%, 8px 50%); }
+.exposure-flow-step > span { font-size: 14px; font-weight: 750; color: var(--stage-color); }
+.exposure-flow-node-wrap { position: relative; }
+.exposure-flow-node { position: relative; display: flex; flex-direction: column; align-items: start; gap: 10px; width: 100%; height: 134px; padding: 14px; text-align: left; font: inherit; color: #e7edf7; border: 1px solid #465166; border-radius: 10px; background: radial-gradient(ellipse at 0% 100%, color-mix(in srgb, var(--stage-color) 20%, transparent), transparent 85%), #202838; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+.exposure-flow-node[aria-pressed="true"] { border-color: var(--stage-color); box-shadow: 0 0 22px color-mix(in srgb, var(--stage-color) 13%, transparent), inset 0 0 20px color-mix(in srgb, var(--stage-color) 5%, transparent); }
+.exposure-flow-node:hover { border-color: var(--stage-color); }
+.exposure-flow-node-top { display: flex; align-items: center; justify-content: space-between; width: 100%; color: var(--stage-color); }
+.exposure-flow-node-top > span { color: #b3bed0; font-size: 10px; }
+.exposure-flow-node > strong { font-size: 14px; font-weight: 650; line-height: 1.35; }
+.exposure-flow-entities { font-size: 11px; line-height: 1.4; color: #aebbd0; }
+.exposure-flow-wire { position: absolute; left: 100%; top: 50%; width: 32px; height: 2px; background: var(--stage-color); box-shadow: 0 0 9px color-mix(in srgb, var(--stage-color) 35%, transparent); }
+.exposure-flow-wire::before { content: ''; position: absolute; top: -2px; left: -3px; height: 6px; width: 6px; border-radius: 50%; background: #eff4ff; box-shadow: 0 0 7px var(--stage-color); }
+.exposure-flow-wire i { position: absolute; right: 1px; top: -4px; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 7px solid var(--stage-color); }
+.exposure-flow-metrics { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 22px 0 0 12px; }
+.exposure-flow-metrics::before { content: ''; position: absolute; top: 0; bottom: 25px; left: 0; width: 1px; background: linear-gradient(var(--stage-color), color-mix(in srgb, var(--stage-color) 15%, transparent)); opacity: .5; }
+.exposure-flow-metric { position: relative; padding: 11px 12px; border: 1px solid #ffffff12; border-radius: 7px; background: linear-gradient(105deg, color-mix(in srgb, var(--stage-color) 7%, transparent), #ffffff02); min-width: 0; }
+.exposure-flow-metric::before { content: ''; position: absolute; left: -13px; top: 25px; width: 12px; height: 1px; background: var(--stage-color); opacity: .45; }
+.exposure-flow-metric-label { display: block; color: #acb7c9; font-size: 10px; line-height: 1.5; margin-bottom: 5px; }
+.exposure-flow-metric-value { display: block; color: var(--stage-color); font-size: 14px; font-weight: 650; line-height: 1.45; overflow-wrap: anywhere; }
+.exposure-flow-metric-status { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin-top: 7px; font-size: 10px; color: #a8b5c9; line-height: 1.5; }
+.exposure-flow-metric-status i { width: 4px; height: 4px; border-radius: 50%; background: #6ee7b7; flex-shrink: 0; }
+.exposure-flow-metric-status.is-historical i { background: transparent; border: 1px solid #e4b65e; }
+.exposure-flow-metric-link { display: block; text-decoration: none; padding-right: 9px; }
+.exposure-flow-external { position: absolute; right: 8px; top: 8px; color: #aebbd0; font-size: 11px; }
+.exposure-flow-report summary { list-style: none; cursor: pointer; }
+.exposure-flow-report summary::-webkit-details-marker { display: none; }
+.exposure-flow-report:not([open]) .exposure-flow-metric-value { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.exposure-flow-expand { display: flex; justify-content: space-between; margin-top: 8px; color: #c1ccdd; font-size: 10px; }
+.exposure-flow-report[open] .exposure-flow-expand > span { transform: rotate(180deg); }
+.exposure-flow-source { display: block; margin-top: 10px; color: var(--stage-color); font-size: 11px; text-decoration: none; }
+.exposure-flow-empty, .exposure-flow-missing { color: #9baac1; font-size: 10px; line-height: 1.5; padding: 2px 5px; }
+.exposure-flow-footer { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; padding: 13px 24px; border-top: 1px solid #ffffff0c; font-size: 10px; color: #9baac1; }
+.exposure-flow-footer > span { display: flex; align-items: center; gap: 6px; }
+.exposure-flow-footer i { display: inline-block; width: 16px; height: 2px; background: #94a3b8; }
+.exposure-flow-footer > span:nth-child(2) i { width: 5px; height: 5px; border-radius: 50%; background: #6ee7b7; }
+.exposure-flow-footer > span:nth-child(3) i { width: 5px; height: 5px; border-radius: 50%; border: 1px solid #e4b65e; background: transparent; }
+.exposure-flow-footer p { margin: 0 0 0 auto; line-height: 1.5; }
+.exposure-stage-detail { display: grid; grid-template-columns: minmax(180px, 1fr) 3fr; gap: 24px; padding: 16px 20px; border: 1px solid #ffffff12; border-left: 2px solid var(--stage-color); border-radius: 8px; background: #ffffff03; }
+.exposure-stage-detail-title > span { color: var(--stage-color); text-transform: uppercase; letter-spacing: .1em; font-size: 10px; }
+.exposure-stage-detail h3 { font-size: 14px; font-weight: 600; margin: 6px 0 0; }
+.exposure-stage-detail p { margin: 0; color: #b3bfd1; font-size: 12px; line-height: 1.7; align-self: center; }
+.exposure-trace-support-grid { display: grid; grid-template-columns: 1.05fr 1.15fr 1.8fr; gap: 8px; }
+.exposure-flow button:focus-visible, .exposure-flow a:focus-visible, .exposure-flow summary:focus-visible, .exposure-flow-scroll:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 4px; }
+.exposure-flow a:hover { text-decoration: underline; }
+@media (max-width: 800px) {
+  .exposure-flow-heading { padding: 18px 16px 4px; }
+  .exposure-flow-scroll { padding: 18px 16px; }
+  .exposure-flow-footer { padding: 12px 16px; gap: 12px; }
+  .exposure-flow-footer p { width: 100%; margin: 0; }
+  .exposure-stage-detail { grid-template-columns: 1fr; gap: 10px; }
+  .exposure-trace-support-grid { grid-template-columns: 1fr; }
+}

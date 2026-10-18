@@ -12,6 +12,7 @@ import type {
 import type { EnergyAlternative, FlowPressureAssessment } from "../../types/energyLng";
 import { FONT_SANS } from "../../styles/fonts";
 import "./TraceSupportingPanels.css";
+import "./ExposureTracePanel.css";
 
 const STAGE_COLORS: Record<TraceStage, string> = {
   signal: "#f87171",
@@ -342,6 +343,17 @@ function TraceHeader({ data, trace }: { data: ExposureTraceData; trace: Exposure
   );
 }
 
+function StageIcon({ stage }: { stage: TraceStage }) {
+  const paths: Record<TraceStage, React.ReactNode> = {
+    signal: <><path d="M3 12h4l3-8 4 16 3-8h4" /></>,
+    supply: <><path d="M4 21V9l6 3V6l6 3V3h4v18Z" /><path d="M8 17h1m4 0h1m4 0h1" /></>,
+    transport: <><path d="m3 14 9 4 9-4-2 6H6Z" /><path d="M7 15V9h10v6M10 9V5h4v4M3 22h18" /></>,
+    demand: <><path d="M4 3v17h17M8 15l4-5 4 2 5-7" /></>,
+    counterparty: <><rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 4V2h6v2M9 12l2 2 4-4M9 18h6" /></>,
+  };
+  return <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[stage]}</svg>;
+}
+
 export default function ExposureTracePanel({ data, activeTraceId, onTraceChange }: TracePanelProps) {
   const trace = getActiveTrace(data, activeTraceId);
   const entities = useMemo(() => entityMap(data), [data]);
@@ -359,76 +371,68 @@ export default function ExposureTracePanel({ data, activeTraceId, onTraceChange 
     <div style={{ fontFamily: FONT_SANS, color: "rgba(255,255,255,0.9)", display: "flex", flexDirection: "column", gap: 12 }}>
       <TraceHeader data={data} trace={trace} />
       <TraceSelector data={data} activeTraceId={trace.id} onTraceChange={onTraceChange} />
+      <section className="exposure-flow" aria-label="Exposure flow diagram">
+        <header className="exposure-flow-heading">
+          <div><span className="exposure-flow-eyebrow">Transmission pathway</span><h2>From signal to exposure</h2></div>
+          <p>Follow left to right. Select a stage to inspect its evidence.</p>
+        </header>
+        <div className="exposure-flow-scroll" tabIndex={0} role="region" aria-label="Exposure stages, scroll horizontally on smaller screens">
+          <ol className="exposure-flow-stages" style={{ gridTemplateColumns: `repeat(${trace.hops.length}, minmax(0, 1fr))` }}>
+            {trace.hops.map((hop, index) => {
+              const color = STAGE_COLORS[hop.stage];
+              const selected = selectedHop.id === hop.id;
+              const namedEntities = hop.entityIds.map((id) => entities.get(id)?.shortName).filter(Boolean).join(" · ");
+              const evidence = data.evidence.find((item) => hop.evidenceIds.includes(item.id));
+              const visibleMetrics = hop.metrics.filter((metric) => metric.status !== "unavailable");
+              return (
+                <li key={`${trace.id}:${hop.id}`} className="exposure-flow-stage" style={{ "--stage-color": color } as React.CSSProperties}>
+                  <div className="exposure-flow-step"><span>{String(index + 1).padStart(2, "0")}</span>{hop.stage}</div>
+                  <div className="exposure-flow-node-wrap">
+                    <button type="button" className="exposure-flow-node" aria-pressed={selected} aria-controls="exposure-stage-detail" onClick={() => setSelectedHopId(hop.id)}>
+                      <span className="exposure-flow-node-top"><StageIcon stage={hop.stage} /><span>{hop.evidenceIds.length} source{hop.evidenceIds.length === 1 ? "" : "s"}</span></span>
+                      <strong>{hop.label}</strong>
+                      <span className="exposure-flow-entities">{namedEntities || hop.stage}</span>
+                    </button>
+                    {index < trace.hops.length - 1 && <span className="exposure-flow-wire" aria-hidden="true"><i /></span>}
+                  </div>
+                  <div className="exposure-flow-metrics">
+                    {visibleMetrics.map((metric) => {
+                      const value = metricValue(metric);
+                      const longValue = value.length > 100;
+                      const content = <>
+                        <span className="exposure-flow-metric-label">{metric.label}</span>
+                        <strong className="exposure-flow-metric-value">{value}</strong>
+                        <span className={`exposure-flow-metric-status ${metric.status === "carried" ? "is-historical" : ""}`}><i />{statusLabel(metric)}</span>
+                      </>;
+                      return longValue ? (
+                        <details key={metric.inputId} className="exposure-flow-metric exposure-flow-report">
+                          <summary>{content}<span className="exposure-flow-expand">Full report <span aria-hidden="true">⌄</span></span></summary>
+                          {evidence && <a className="exposure-flow-source" href={evidence.url} target="_blank" rel="noreferrer">Open stage source ↗</a>}
+                        </details>
+                      ) : (
+                        <div key={metric.inputId} className="exposure-flow-metric">
+                          {evidence ? <a className="exposure-flow-metric-link" href={evidence.url} target="_blank" rel="noreferrer">{content}<span className="exposure-flow-external" aria-hidden="true">↗</span></a> : content}
+                        </div>
+                      );
+                    })}
+                    {visibleMetrics.length === 0 && <div className="exposure-flow-empty">No verified metrics available</div>}
+                    {hop.metrics.some((metric) => metric.status === "unavailable") && <span className="exposure-flow-missing">{hop.metrics.filter((metric) => metric.status === "unavailable").length} metric(s) awaiting verification</span>}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+        <footer className="exposure-flow-footer"><span><i />Exposure pathway</span><span><i />Verified</span><span><i />Historical</span><p>Connections show the trace sequence; they do not establish physical cargo flows.</p></footer>
+      </section>
+      <section id="exposure-stage-detail" className="exposure-stage-detail" style={{ "--stage-color": STAGE_COLORS[selectedHop.stage] } as React.CSSProperties} aria-label="Selected stage details">
+        <div className="exposure-stage-detail-title"><span>{selectedHop.stage} / selected stage</span><h3>{selectedHop.label}</h3></div>
+        <p>{selectedHop.summary}</p>
+      </section>
       <FlowPressureCard assessment={trace.flowPressure} alternatives={trace.alternatives} evidence={data.evidence} />
       <PhysicalFlowTimeline trace={trace} />
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(5, minmax(0, 1fr))", gap: 7, alignItems: "stretch" }}>
-        {trace.hops.map((hop, index) => {
-          const color = STAGE_COLORS[hop.stage];
-          const selected = selectedHop.id === hop.id;
-          const namedEntities = hop.entityIds.map((id) => entities.get(id)?.shortName).filter(Boolean).join(" · ");
-          const evidence = data.evidence.find((item) => hop.evidenceIds.includes(item.id));
-          const visibleMetrics = hop.metrics.filter((metric) => metric.status !== "unavailable");
-          return (
-            <button
-              key={hop.id}
-              onClick={() => setSelectedHopId(hop.id)}
-              style={{
-                position: "relative",
-                minHeight: 184,
-                alignSelf: "stretch",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                justifyContent: "flex-start",
-                boxSizing: "border-box",
-                textAlign: "left",
-                padding: "12px 12px 10px",
-                borderRadius: 9,
-                background: selected ? `${color}12` : "rgba(255,255,255,0.025)",
-                border: selected ? `1px solid ${color}66` : "1px solid rgba(255,255,255,0.07)",
-                cursor: "pointer",
-                color: "rgba(255,255,255,0.9)",
-                fontFamily: FONT_SANS,
-              }}
-            >
-              {index < trace.hops.length - 1 && (
-                <span style={{ position: "absolute", right: -16, top: "50%", transform: "translateY(-50%)", color: "rgba(255,255,255,0.42)", fontSize: 25, fontWeight: 900, lineHeight: 1, zIndex: 2, pointerEvents: "none", WebkitTextStroke: "0.6px currentColor", filter: "drop-shadow(0 0 3px rgba(255,255,255,0.18))" }}>
-                  →
-                </span>
-              )}
-              <div style={{ color, fontSize: 12, fontWeight: 800, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 6 }}>
-                {hop.stage}
-              </div>
-              <div style={{ fontSize: 15, fontWeight: 750, lineHeight: 1.2, marginBottom: 5 }}>{hop.label}</div>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.38)", marginBottom: 9 }}>{namedEntities}</div>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.54)", lineHeight: 1.45 }}>{hop.summary}</div>
-              {visibleMetrics.length > 0 && (
-                <div style={{ marginTop: 10 }}>
-                  {visibleMetrics.map((metric) => (
-                    <div key={`${hop.id}-${metric.inputId}`} style={{ marginTop: 6 }}>
-                      <div style={{ fontSize: 12, color: "rgba(255,255,255,0.30)", textTransform: "uppercase" }}>{metric.label}</div>
-                      {evidence && metric.status !== "unavailable" ? (
-                        <a href={evidence.url} target="_blank" rel="noreferrer" style={{ display: "block", fontSize: 14, fontWeight: 750, color, textDecoration: "none" }}>
-                          {metricValue(metric)} ↗
-                        </a>
-                      ) : (
-                        <div style={{ fontSize: 14, fontWeight: 750, color: metric.status === "unavailable" ? "rgba(255,255,255,0.32)" : color }}>
-                          {metricValue(metric)}
-                        </div>
-                      )}
-                      <div style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", marginTop: 1 }}>{statusLabel(metric)}</div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </button>
-          );
-        })}
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "1.05fr 1.15fr 1.8fr", gap: 8 }}>
+      <div className="exposure-trace-support-grid">
         <div style={sectionCard}>
           <SectionLabel>Verified data coverage</SectionLabel>
           <div style={rowStyle}><span>Current verified</span><strong>{allMetrics.filter((metric) => metric.status === "confirmed").length}</strong></div>
@@ -437,7 +441,7 @@ export default function ExposureTracePanel({ data, activeTraceId, onTraceChange 
         </div>
 
         <div style={sectionCard}>
-          <SectionLabel>Selected-hop evidence</SectionLabel>
+          <SectionLabel>{selectedHop.stage} evidence</SectionLabel>
           <div style={rowStyle}><span>Evidence links</span><strong>{selectedEvidence.length}</strong></div>
           {selectedEvidence.map((evidence) => (
             <a key={evidence.id} href={evidence.url} target="_blank" rel="noreferrer" style={{ display: "block", color: "#7dd3fc", fontSize: 12, lineHeight: 1.35, textDecoration: "none", marginTop: 6 }}>
