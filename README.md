@@ -6,6 +6,7 @@ Interactive deck.gl globe for tracing Iran-Hormuz disruption through LNG supply,
 
 - Renders a 3D globe centered on Southeast Asia using deck.gl `_GlobeView`
 - Visualizes shipping lanes, trade corridors, ports, trade arcs, oil supply-chain routes, and optional crisis-vessel overlays
+- Offers a real NOAA infrared weather overlay with 48-hour time-lapse playback and NASA MODIS polar coverage, independent of cyclone/flood hazards; see the [weather imagery runbook](docs/weather-imagery-runbook.md) to generate frames and configure hosting
 - Merges three event streams into a single event layer:
   - curated ASEAN and Iran scenario events from static JSON
   - live Polymarket event signals
@@ -23,7 +24,7 @@ Interactive deck.gl globe for tracing Iran-Hormuz disruption through LNG supply,
 | App | React 18 + TypeScript + Vite 6 |
 | Styling | Tailwind CSS 4 + inline component styling |
 | Globe / rendering | deck.gl 9.1 |
-| Mapping primitives | GeoJsonLayer, ArcLayer, PathLayer, ScatterplotLayer, TextLayer |
+| Mapping primitives | GeoJsonLayer, BitmapLayer, ArcLayer, PathLayer, ScatterplotLayer, TextLayer |
 | Satellite propagation | `satellite.js` |
 | Deployment target | Vercel static app + API rewrites |
 

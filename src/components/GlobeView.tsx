@@ -14,6 +14,13 @@ import { createSatellitesLayer } from "../layers/satellites";
 import { createOilSupplyChainLayers } from "../layers/oilSupplyChain";
 import { createExposureTraceLayers } from "../layers/exposureTrace";
 import { createClimateHazardLayers } from "../layers/climateHazards";
+import { createCycloneForecastLayers, type CycloneMapPoint } from "../layers/cycloneForecasts";
+import { useCycloneForecasts } from "../hooks/useCycloneForecasts";
+import { cycloneFreshness, cycloneMarker, utcLabel } from "../domain/cyclone";
+import type { CycloneStorm } from "../types/cyclone";
+import { createWeatherImageryLayers } from "../layers/weatherImagery";
+import { useWeatherImagery } from "../hooks/useWeatherImagery";
+import { WeatherLayerControl } from "./WeatherImageryControls";
 import { toEnergyLngDomain, toExposureTraceReadModel } from "../domain/energyLngAdapter";
 import { getOilReservesFillColor, OIL_RESERVES_MAP } from "../layers/oilReserves";
 import { createCountryLabelsLayer } from "../layers/countryLabels";
@@ -165,6 +172,8 @@ export default function GlobeView() {
       showVessels: false,
       showEvents: true,
       showClimate: true,
+      showWeather: true,
+      showCyclones: true,
       showSatellites: false,
       showOilSupplyChain: true,
       showOilReserves: false,
@@ -175,6 +184,23 @@ export default function GlobeView() {
     } catch {}
     return defaults;
   });
+
+  const weather = useWeatherImagery(visibility.showWeather);
+  const [weatherOpacity, setWeatherOpacity] = useState(0.7);
+  const [enhancedWeather, setEnhancedWeather] = useState(false);
+  const [showCycloneUncertainty, setShowCycloneUncertainty] = useState(true);
+  const cyclones = useCycloneForecasts(visibility.showCyclones);
+  const [globeInitialView, setGlobeInitialView] = useState(INITIAL_VIEW_STATE);
+  const focusCyclone = useCallback((storm: CycloneStorm) => {
+    const anchor = storm.points[0].position[0];
+    const lons = storm.points.map(p => anchor + ((p.position[0] - anchor + 540) % 360) - 180);
+    const lats = storm.points.map(p => p.position[1]);
+    const west = Math.min(...lons), east = Math.max(...lons), south = Math.min(...lats), north = Math.max(...lats);
+    const span = Math.max(east - west, north - south, 1);
+    const longitude = ((west + east) / 2 + 540) % 360 - 180;
+    const latitude = (south + north) / 2;
+    setGlobeInitialView({ ...INITIAL_VIEW_STATE, longitude, latitude, zoom: Math.min(5, Math.max(3, 5.5 - Math.log2(span / 8))) });
+  }, []);
 
   const handleVisibilityChange = useCallback((key: keyof LayerVisibility, val: boolean) => {
     setVisibility(prev => {
@@ -211,15 +237,17 @@ export default function GlobeView() {
   const [labelCam, setLabelCam] = useState({
     lon: INITIAL_VIEW_STATE.longitude,
     lat: INITIAL_VIEW_STATE.latitude,
+    zoom: INITIAL_VIEW_STATE.zoom,
   });
   const labelCamRef = useRef(labelCam);
 
   const handleViewStateChange = useCallback(({ viewState: vs }: any) => {
     const lon = Math.round(vs.longitude / 3) * 3;
     const lat = Math.round(vs.latitude  / 3) * 3;
-    if (lon !== labelCamRef.current.lon || lat !== labelCamRef.current.lat) {
-      labelCamRef.current = { lon, lat };
-      setLabelCam({ lon, lat });
+    const zoom = Math.round(vs.zoom * 4) / 4;
+    if (lon !== labelCamRef.current.lon || lat !== labelCamRef.current.lat || zoom !== labelCamRef.current.zoom) {
+      labelCamRef.current = { lon, lat, zoom };
+      setLabelCam({ lon, lat, zoom });
     }
   }, []);
 
@@ -270,6 +298,15 @@ export default function GlobeView() {
         parameters: { depthTest: true, depthMask: true, cullMode: "back" },
       }),
     ];
+    if (visibility.showWeather && weather.frame) {
+      result.push(...createWeatherImageryLayers(weather.frame, weatherOpacity, weather.previousFrame, weather.fadeReady, enhancedWeather));
+      result.push(new GeoJsonLayer({
+        id: "weather-country-borders", data: COUNTRIES_URL, filled: false,
+        stroked: true, getLineColor: [80, 130, 200, 150], getLineWidth: 0.8,
+        lineWidthUnits: "pixels", pickable: false,
+        parameters: { depthCompare: "less-equal", depthWriteEnabled: false },
+      }));
+    }
     if (visibility.showLanes) result.push(createGlobalShippingLanesLayer());
     if (visibility.showCorridors) result.push(...createCorridorLayers(corridors));
     if (visibility.showArcs) result.push(createTradeArcsLayer(arcs));
@@ -278,7 +315,11 @@ export default function GlobeView() {
     if (visibility.showClimate) result.push(...createClimateHazardLayers(climateReadModel, activeClimateAlerts, selectedClimateId));
     result.push(...createExposureTraceLayers(energyLngReadModel, activeTraceId));
     return result;
-  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showOilReserves, visibility.showClimate, corridors, ports, arcs, oilNodes, oilRoutes, climateReadModel, activeClimateAlerts, selectedClimateId, energyLngReadModel, activeTraceId]);
+  }, [visibility.showLanes, visibility.showCorridors, visibility.showArcs, visibility.showPorts, visibility.showOilSupplyChain, visibility.showOilReserves, visibility.showClimate, visibility.showWeather, weather.frame, weather.previousFrame, weather.fadeReady, weatherOpacity, enhancedWeather, corridors, ports, arcs, oilNodes, oilRoutes, climateReadModel, activeClimateAlerts, selectedClimateId, energyLngReadModel, activeTraceId]);
+
+  const cycloneLayers = useMemo(() => visibility.showCyclones
+    ? createCycloneForecastLayers(cyclones.storms, cyclones.selected, showCycloneUncertainty, labelCam) : [],
+    [visibility.showCyclones, cyclones.storms, cyclones.selected, showCycloneUncertainty, labelCam]);
 
   // Label layer — separate memo so staticLayers doesn't rebuild on camera move
   const labelLayer = useMemo(
@@ -307,12 +348,16 @@ export default function GlobeView() {
   }, [visibility.showSatellites, satellites]);
 
   const layers = useMemo(
-    () => [...staticLayers, labelLayer, ...pulseLayers, ...liveTrackingLayers],
-    [staticLayers, labelLayer, pulseLayers, liveTrackingLayers]
+    () => [...staticLayers, labelLayer, ...pulseLayers, ...liveTrackingLayers, ...cycloneLayers],
+    [staticLayers, labelLayer, pulseLayers, liveTrackingLayers, cycloneLayers]
   );
 
   const getTooltip = useCallback(({ object, layer }: any) => {
     if (!object) return null;
+    if (layer?.id === "cyclone-forecast-points") {
+      const { storm, point, current } = object as CycloneMapPoint;
+      return { text: `${storm.name} · ${storm.agency} · ${current ? "Analysis" : "Forecast"}\n${utcLabel(point.validAt)} · ${cycloneMarker(point, storm.agency)}\n${point.windKnots === null ? "Wind intensity unavailable" : `${point.windKnots} kt (${storm.windAveragingMinutes}-min)`}\nIssued ${utcLabel(storm.issuedAt)} · ${cycloneFreshness(storm)}\nClick to select storm` };
+    }
 
     if (layer?.id === "climate-hazard-footprints" || layer?.id === "climate-hazard-centroids") {
       const hazard = (object.properties?.hazard ?? object) as ClimateHazard;
@@ -554,7 +599,10 @@ export default function GlobeView() {
   }, [climateReadModel.impacts]);
 
   const handleClick = useCallback(({ object, layer }: any) => {
-    if ((layer?.id === "climate-hazard-footprints" || layer?.id === "climate-hazard-centroids") && object) {
+    if (layer?.id === "cyclone-forecast-points" && object) {
+      const point = object as CycloneMapPoint;
+      cyclones.select(point.storm.id);
+    } else if ((layer?.id === "climate-hazard-footprints" || layer?.id === "climate-hazard-centroids") && object) {
       const hazard = (object.properties?.hazard ?? object) as ClimateHazard;
       setSelectedClimateId((previous) => previous === hazard.id ? null : hazard.id);
       setRightPanelTab("climate");
@@ -570,7 +618,7 @@ export default function GlobeView() {
       setSelectedId(null);
       setSelectedClimateId(null);
     }
-  }, []);
+  }, [cyclones.select]);
 
   return (
     <div
@@ -602,7 +650,7 @@ export default function GlobeView() {
 
       <DeckGL
         views={GLOBE_VIEW}
-        initialViewState={INITIAL_VIEW_STATE}
+        initialViewState={globeInitialView}
         layers={layers}
         getTooltip={getTooltip}
         onClick={handleClick}
@@ -660,6 +708,7 @@ export default function GlobeView() {
           activeClimateAlerts={activeClimateAlerts}
           onSelectClimate={setSelectedClimateId}
           onToggleClimateAlert={toggleClimateAlert}
+
         />
       )}
 
@@ -681,11 +730,17 @@ export default function GlobeView() {
           activeTraceId={activeTraceId}
           onTraceChange={setActiveTraceId}
         />
+        <WeatherLayerControl enabled={visibility.showWeather} onEnabledChange={value => handleVisibilityChange("showWeather", value)}
+          weather={weather} opacity={weatherOpacity} onOpacityChange={setWeatherOpacity}
+          enhanced={enhancedWeather} onEnhancedChange={setEnhancedWeather}
+          cyclones={cyclones} cyclonesEnabled={visibility.showCyclones} onCyclonesEnabledChange={value => handleVisibilityChange("showCyclones", value)}
+          showCycloneUncertainty={showCycloneUncertainty} onCycloneUncertaintyChange={setShowCycloneUncertainty} onFocusCyclone={focusCyclone} />
         <LayerTogglePanel
           visibility={visibility}
           onChange={handleVisibilityChange}
         />
-        <DataSources socialStatus={socialStatus} climateStatus={climateReadModel.sourceStatus} />
+        <DataSources socialStatus={socialStatus} climateStatus={climateReadModel.sourceStatus}
+          weatherStatus={!visibility.showWeather ? "off" : weather.loading ? "loading" : weather.error ? "refresh failed" : weather.freshness} />
         <PerformanceMonitor deckRenderMsRef={deckRenderMsRef} />
       </div>
 

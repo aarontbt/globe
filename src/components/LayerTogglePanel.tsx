@@ -9,6 +9,8 @@ export interface LayerVisibility {
   showVessels: boolean;
   showEvents: boolean;
   showClimate: boolean;
+  showWeather: boolean;
+  showCyclones: boolean;
   showSatellites: boolean;
   showOilSupplyChain: boolean;
   showOilReserves: boolean;
@@ -26,13 +28,19 @@ interface ToggleRowProps {
   onToggle: () => void;
 }
 
-function ToggleSwitch({ checked, onToggle }: { checked: boolean; onToggle: () => void }) {
+function ToggleSwitch({ checked, onToggle, label }: { checked: boolean; onToggle: () => void; label: string }) {
   return (
-    <div
+    <button
+      type="button"
+      role="switch"
+      aria-label={label}
+      aria-checked={checked}
       onClick={onToggle}
       className="cursor-pointer relative flex-shrink-0"
       style={{
         width: 28,
+        border: 0,
+        padding: 0,
         height: 16,
         borderRadius: 9999,
         backgroundColor: checked ? "#06b6d4" : "rgba(255,255,255,0.15)",
@@ -51,7 +59,7 @@ function ToggleSwitch({ checked, onToggle }: { checked: boolean; onToggle: () =>
           transition: "left 0.2s ease",
         }}
       />
-    </div>
+    </button>
   );
 }
 
@@ -62,7 +70,7 @@ function ToggleRow({ label, swatch, checked, onToggle }: ToggleRowProps) {
         <span className="text-[11px] text-white/70 text-right">{label}</span>
         {swatch}
       </div>
-      <ToggleSwitch checked={checked} onToggle={onToggle} />
+      <ToggleSwitch checked={checked} onToggle={onToggle} label={label} />
     </div>
   );
 }
@@ -188,7 +196,7 @@ export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePa
           onToggle={() => onChange("showEvents", !visibility.showEvents)}
         />
         <ToggleRow
-          label="Climate Disruption"
+          label="Disruption Hazards"
           swatch={
             <div className="flex items-center gap-0.5">
               <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
@@ -198,6 +206,18 @@ export default function LayerTogglePanel({ visibility, onChange }: LayerTogglePa
           }
           checked={visibility.showClimate}
           onToggle={() => onChange("showClimate", !visibility.showClimate)}
+        />
+        <ToggleRow
+          label="Satellite Imagery"
+          swatch={<div className="w-5 h-[3px] rounded-full bg-gradient-to-r from-gray-600 to-white" />}
+          checked={visibility.showWeather}
+          onToggle={() => onChange("showWeather", !visibility.showWeather)}
+        />
+        <ToggleRow
+          label="Cyclone Forecasts"
+          swatch={<div className="w-5 h-[3px] rounded-full bg-rose-400" />}
+          checked={visibility.showCyclones}
+          onToggle={() => onChange("showCyclones", !visibility.showCyclones)}
         />
         <ToggleRow
           label="Oil Supply Chain"

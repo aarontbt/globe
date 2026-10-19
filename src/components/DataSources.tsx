@@ -80,6 +80,13 @@ const DATA_SOURCES: DataSource[] = [
     color: "#fb923c",
   },
   {
+    name: "JMA + NOAA/NHC",
+    type: "static",
+    description: "Tropical Cyclone Forecasts",
+    detail: "Official forecast snapshots: JMA RSMC Tokyo for the western North Pacific/South China Sea, NOAA/NHC for Atlantic/eastern Pacific hurricanes. Tracks, dated forecast positions, NHC uncertainty cones and JMA 70% probability circles remain separate from satellite imagery and GDACS impacts. Local snapshots require cyclone:refresh; hosting and scheduling are not provisioned. PAGASA and HKO local advisories are linked in Weather.",
+    color: "#fb7185",
+  },
+  {
     name: "Natural Earth CDN",
     type: "live",
     description: "Globe Basemap",
@@ -443,7 +450,7 @@ function SectionLabel({ label }: { label: string }) {
   );
 }
 
-export default function DataSources({ socialStatus, climateStatus }: { socialStatus?: SocialStatus; climateStatus: ClimateSourceStatus }) {
+export default function DataSources({ socialStatus, climateStatus, weatherStatus }: { socialStatus?: SocialStatus; climateStatus: ClimateSourceStatus; weatherStatus: string }) {
   const [expanded, setExpanded] = useState(false);
 
   const panelBase: React.CSSProperties = {
@@ -575,6 +582,14 @@ export default function DataSources({ socialStatus, climateStatus }: { socialSta
         <div style={{ marginTop: 8 }}>
           <SectionLabel label="Staged Events" />
           <ClimateSourceRow status={climateStatus} />
+        </div>
+
+        <div style={{ marginTop: 8 }}>
+          <SectionLabel label="Satellite Weather" />
+          <a href="https://registry.opendata.aws/noaa-gmgsi/" target="_blank" rel="noreferrer"
+            style={{ display: "flex", justifyContent: "space-between", gap: 8, padding: "5px 7px", fontSize: 10, color: "rgba(255,255,255,0.6)" }}>
+            <span>NOAA GMGSI · hourly IR</span><span>{weatherStatus}</span>
+          </a>
         </div>
 
         {/* Static sources */}

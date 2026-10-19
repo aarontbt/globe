@@ -1,5 +1,7 @@
 # Climate Disruption Layer
 
+Follow-on proposal: [Satellite weather layer](satellite-weather-layer-plan.md) adds imagery alongside this hazard layer. Raster imagery remains outside the original v1 scope described below.
+
 ## Objective
 
 Add an exposure-linked climate overlay for tropical cyclones and floods across the energy corridor from the Middle East through ASEAN to Japan and Korea. The feature must distinguish source-reported hazards from Rainmarket-derived impact relationships and make every derived impact traceable to both a GDACS footprint and an existing Globe target.

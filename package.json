@@ -12,13 +12,17 @@
     "energy:refresh": "bun scripts/energy-lng-refresh.mjs",
     "climate:refresh": "bun scripts/climate-refresh.mjs",
     "climate:test": "bun scripts/climate-tests.mjs",
+    "weather:refresh": "python3 scripts/weather-refresh.py",
+    "weather:test": "python3 scripts/weather-tests.py && bun scripts/weather-contract-tests.ts",
     "daily:evidence": "bun scripts/daily-evidence.mjs",
     "typesafe:review": "bun scripts/typesafe-review.mjs",
     "daily:apply": "bun scripts/daily-apply.mjs",
     "daily:check": "bun scripts/daily-check.mjs",
     "daily:test": "bun scripts/daily-tests.mjs && bun scripts/climate-tests.mjs",
     "daily:status": "bun scripts/daily-status.mjs",
-    "daily:update": "bun run daily:apply && bun run daily:check && bun run build"
+    "daily:update": "bun run daily:apply && bun run daily:check && bun run build",
+    "cyclone:refresh": "python3 scripts/cyclone-refresh.py",
+    "cyclone:test": "python3 scripts/cyclone-tests.py && bun scripts/cyclone-contract-tests.ts"
   },
   "dependencies": {
     "@deck.gl/core": "^9.1.0",

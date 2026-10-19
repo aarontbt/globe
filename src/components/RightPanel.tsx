@@ -53,7 +53,7 @@ export default function RightPanel({
   onSelectClimate,
   onToggleClimateAlert,
 }: RightPanelProps) {
-  const visibleActiveTab = !SHOW_CLIMATE_TAB && activeTab === "climate" ? "events" : activeTab;
+  const visibleActiveTab = (!SHOW_CLIMATE_TAB && activeTab === "climate") || !TABS.some(tab => tab.id === activeTab) ? "events" : activeTab;
 
   return (
     <div

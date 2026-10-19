@@ -3,10 +3,12 @@
 > The daily update has three inputs you edit by hand: `src/data/daily-state.json` (schema version 3), `src/data/evidence-audit.json` (reviewed evidence) and `src/data/iran-intel-events.json` (Events panel). Every other panel file is generated from them by `bun run daily:apply`.
 > Use `docs/daily-update-runbook.md` only to look up field definitions, freshness and carry rules, or rare operations. Do not follow it as a checklist.
 > Energy/LNG ingestion contract: [`energy-lng-data-ingestion.md`](energy-lng-data-ingestion.md).
+> Satellite weather and animated-cloud operations: [`weather-imagery-runbook.md`](weather-imagery-runbook.md); daily health procedure in [`daily-update-runbook.md`](daily-update-runbook.md#satellite-weather-operations-daily-health-review).
 
 ## Daily Workflow (6 steps)
 
 1. **Refresh liquid markets**: run `bun run daily:refresh`. It fetches Brent, WTI, EUR/USD and SOFR into daily state and does not publish. `git diff src/data/daily-state.json` is the preview, so there is no separate dry run. A failed fetch carries the prior value with its original date.
+   - **Satellite weather health (every daily run)**: inspect the configured weather `status.json` and latest manifest. Until a scheduled worker exists, activate `.venv-weather` and run `bun run weather:refresh` for local imagery. Verify the latest observation's age (stale after two hours) and the real 48-hour playback catalog and separately dated NASA polar coverage. With a configured worker, verify its recent run instead of duplicating it. Report stale/unavailable imagery and retain the previous frame; never relabel its timestamp. Hosting/scheduling is currently unconfigured, so local refresh is not proof of a production update. See the linked daily weather procedure for recovery and publication.
 2. **Plan the run**: run `bun run daily:status`. It prints:
    - **Evidence to scrape**: items that are overdue, expire before the next run, have a changed URL, or whose `lastChecked` no longer matches the audit (for example, machine-refreshed by step 1). This list is the complete scrape scope.
    - **Stale / carried / estimated**: every held observation with its age. Items marked `!` are past their cadence. Make one targeted search for a replacement source; if none is found, keep the item carried with an updated reason.
@@ -35,6 +37,7 @@
 | Step | Trigger |
 |------|---------|
 | `bun run daily:test` | Anything under `scripts/` or `scripts/fixtures/` changed |
+| `bun run weather:test` in the activated Python environment | Weather worker, manifest contract, hook, layer or playback controls changed; this is not included in `daily:test` or `daily:update` |
 | Browser review of SIGNAL → EXPOSURE (Flow Pressure, five-hop chain, Evidence, alternatives) | `daily:status` lists a trace trigger, or the weekly review |
 | Commercial evaluation review | `daily:status` reports that a commercial input became usable. While Dubai/Oman, freight and war-risk inputs are unavailable or carried, all three traces stay `insufficient verified data`, and `daily:check` already proves the result is reproducible. |
 | Manual TTF review on the [ICE Endex page](https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data) | `ttf` is due or carried in `daily:status`. Record the contract and displayed time, and keep the delayed `Last` quote distinct from settlement. |
@@ -46,6 +49,7 @@
 
 - **Daily**: Brent, WTI, EUR/USD and SOFR (machine); TTF, JKM, Dubai/Oman, Hormuz transit status, route-normalised freight, war-risk cost and the trace headline (manual, only when due or newly reported).
 - **Daily**: IMF PortWatch Hormuz vessel counts come from the official chokepoint layer. The route-pressure score stays unavailable unless it is directly sourced.
+- **Daily operator review / 15-minute target worker cadence**: NOAA satellite weather status, latest observation age and animated history. Imagery refresh/publication is separate from GDACS and editorial promotion; do not infer asset disruption from imagery alone.
 - **Annual**: EIA Qatar production and export baselines, GEM terminal capacity and status, and UN/LOCODE identity snapshots.
 - **Event-driven**: Qatar production, force majeure, attacks, reopening and routing changes.
 - **Contract-driven**: named counterparties and public supply agreements.
@@ -59,3 +63,5 @@
 ## Generated Outputs (never hand-edit)
 
 `bun run daily:apply` writes `daily-state.json`, `exposure-traces.json`, the energy runtime and read model, the climate read model, `banker-cross-asset.json`, `banker-conflict.json`, `charts-volatility.json` (keeping the last 30 calendar days of scenario snapshots), `commodities-impact.json` and their `public/data/` mirrors, including `iran-intel-events.json`. It also writes `src/hooks/useMarkets.ts`, `src/components/MarketsWidget.tsx`, the Current State and Price Narratives in `docs/daily-update-runbook.md`, and `docs/crisis-timeline-archive.md`. `energy:refresh` writes the energy candidates, refresh report, snapshot manifest and snapshots.
+
+`weather:refresh` separately writes the latest satellite manifest, real historical frame manifests/PNGs and worker status under `public/weather/` (or the configured worker output directory). These assets are Git-ignored; `daily:update` neither refreshes nor deploys them. Publish referenced frame directories before the root manifest, following the weather runbook.
