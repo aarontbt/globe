@@ -68,7 +68,7 @@ const DATA_SOURCES: DataSource[] = [
     type: "live",
     description: "Live Broadcast",
     detail:
-      "China Global Television Network's official 24/7 English live broadcast embedded from its verified YouTube channel. Autoplays muted.",
+      "Official CGTN 24/7 English broadcast embedded from YouTube, with a link to its current live page as fallback. Autoplays muted.",
     color: "#c8102e",
   },
   {

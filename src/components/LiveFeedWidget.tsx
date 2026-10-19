@@ -629,6 +629,24 @@ export default function LiveFeedWidget() {
                 </svg>
               )}
             </button>}
+            {activeStream.id === "cgtn-default" && <a
+              href="https://www.youtube.com/@cgtn/live"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open the current CGTN live broadcast on YouTube"
+              title="Open current CGTN live broadcast on YouTube"
+              style={{
+                color: "rgba(255,255,255,0.55)",
+                display: "flex",
+                alignItems: "center",
+                lineHeight: 1,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 2h5v5M14 2 7.5 8.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12 9v3.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 2 12.5v-7A1.5 1.5 0 0 1 3.5 4H7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+              </svg>
+            </a>}
             <div
               onClick={handleLiveClick}
               style={{ display: "flex", alignItems: "center", gap: 4, cursor: "default", userSelect: "none" }}
