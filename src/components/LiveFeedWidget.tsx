@@ -21,8 +21,8 @@ const DEFAULT_STREAM: StreamConfig = {
   id: "cgtn-default",
   brand: "CGTN",
   title: "China Global TV Network",
-  platform: "dailymotion",
-  streamId: "x8p5u0u",
+  platform: "youtube",
+  streamId: "0i7n3r01L2U",
   badgeColor: "#c8102e",
 };
 
@@ -40,7 +40,9 @@ function loadSettings(): LiveFeedSettings {
       const hasDefault = streams.some(s => s.id === "cgtn-default");
       return {
         activeId: parsed.activeId ?? "cgtn-default",
-        streams: hasDefault ? streams : [DEFAULT_STREAM, ...streams],
+        streams: hasDefault
+          ? streams.map(s => s.id === "cgtn-default" ? DEFAULT_STREAM : s)
+          : [DEFAULT_STREAM, ...streams],
       };
     }
   } catch {}

@@ -68,7 +68,7 @@ const DATA_SOURCES: DataSource[] = [
     type: "live",
     description: "Live Broadcast",
     detail:
-      "China Global Television Network live stream embedded via Dailymotion. Provides real-time Asia-Pacific news coverage. Autoplays muted.",
+      "China Global Television Network's official 24/7 English live broadcast embedded from its verified YouTube channel. Autoplays muted.",
     color: "#c8102e",
   },
   {
