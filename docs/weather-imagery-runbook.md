@@ -1,8 +1,8 @@
 # Satellite weather imagery
 
-The globe supports real NOAA GMGSI longwave infrared imagery through the **Weather** toolbar button. Weather starts enabled unless a saved preference has it off. Clicking Weather opens the Weather details popup and enables imagery if needed; the **Weather clouds** checkbox turns it off. **Layers → Satellite Imagery** remains an additional visibility toggle. Playback controls appear only inside that popup; the toolbar button has a fixed label without changing On/Loading text. The Weather panel shows observation time in UTC, freshness, source attribution, opacity, **Play/Pause**, a timeline, and **Latest**. Imagery and GDACS disruption hazards remain independent.
+The globe loads its daily NOAA GMGSI infrared image and NASA polar composite from `/data/daily-snapshot/weather.json` and adjacent PNG assets. The same static package includes JMA/NHC cyclone forecasts. No weather API key or separate weather host is needed. The Weather button opens a compact panel with independent satellite and cyclone toggles; less-used display/source controls stay collapsed. Observation and advisory issue times remain the original source times.
 
-The animation is a time-lapse of up to 49 actual hourly observations over 48 hours (up to 72 hours when configured on the worker), not simulated wind-driven cloud motion. Playback offers 0.5×, 1×, 2× and 4× speeds, with a 1.2-second base hold and 320 ms cross-fades between actual frames; downloads/decoding can extend that interval. Scrubbing pauses playback, and Latest returns to the newest observation. Historical timestamps remain visible. Source freshness uses the newest observation, rather than treating an intentionally selected historical frame as a source outage. Failed frames pause playback and retain the last complete image; Retry retries the selection. Hidden tabs pause playback.
+The standard daily package contains one latest infrared frame to keep the build small. A separately hosted live manifest can still provide a time-lapse of up to 49 actual hourly observations over 48 hours (up to 72 hours when configured on the worker), not simulated cloud motion. Historical timestamps remain visible, and a failed frame retains the last complete image.
 
 The image is resampled from NOAA's supplied navigation coordinates. Infrared brightness controls both grayscale and an opacity enhancement that emphasizes brighter structures over the dark basemap. This is a display transform, not a classified cloud mask, calibrated temperature, rainfall estimate, or forecast. Original missing pixels and all nonzero/unknown quality flags are transparent. No polar imagery is fabricated.
 
@@ -14,13 +14,15 @@ Use a Linux/macOS worker with Python and Bun installed. Python's `fcntl` lock pr
 python3 -m venv .venv-weather
 . .venv-weather/bin/activate
 python3 -m pip install -r scripts/weather-requirements.txt
-bun run weather:refresh
+bun run weather:refresh --history-hours 0
+bun run cyclone:refresh
+bun run daily:snapshot
 bun run dev
 ```
 
-For an existing dev server, click **Weather** after the refresh. The worker writes `public/weather/manifest.json`, up to 49 frame directories containing eight infrared PNGs and a frame manifest each, plus shared daily polar manifests/images, and a `status.json` job report. All generated files are ignored by Git. Source netCDF files are downloaded to a temporary directory and removed automatically. Normal refresh lists the UTC dates needed for the configured history, handles listing pagination, and backfills 48 hours of actual hourly observations by default. Use `--history-hours 6`, `24`, `48` or up to `72` to set the worker window. Subsequent runs reuse hash-verified cached frames. Missing/corrupt observations are skipped, leaving visible gaps in observation times rather than synthetic frames; skipped counts are recorded in the job report. A run with no usable observations exits nonzero and preserves the last published manifest. Use `--history-hours 0` for latest-only processing.
+For an existing dev server, click **Weather** after packaging. The workers write local manifests and PNGs under Git-ignored `public/weather/` and `public/cyclones/`. `daily:snapshot` verifies and copies only the latest eight infrared patches, the polar composite and forecast JSON into tracked `public/data/daily-snapshot/`. `daily:update` runs this packaging step automatically before building. Source netCDF files are temporary; source timestamps and checksums are preserved. `--history-hours 6`, `24`, `48` or up to `72` remain available when generating an externally hosted time-lapse feed.
 
-The frontend polls every 15 minutes while enabled and visible. It checks manifest shape, all eight sectors, time ordering, bounds, image sizes, and SHA-256 hashes, then swaps complete frames together. A corrupt or partial new frame leaves the previous one visible with a refresh warning. Toggling off aborts in-flight downloads and closes decoded images, including retained cross-fade sources. Hidden tabs stop polling and abort ongoing requests. Staleness is based on observation age, with a two-hour warning threshold.
+The frontend checks the bundled daily JSON when a layer opens and once per day while it remains active. It validates the manifest, eight image sectors, bounds, sizes and SHA-256 hashes before displaying a complete frame. Optional external manifests retain 15-minute polling. Bundled imagery is delayed only when its source observation is more than 26 hours old; an override feed uses the source's two-hour threshold.
 
 For reproducible conversion of a downloaded original:
 
@@ -32,13 +34,9 @@ The source URL must identify the original NOAA object. This mode still reads obs
 
 ## Production delivery contract
 
-Hosting is not provisioned or scheduled by this change. Running Vite's build copies local public assets once; it does not create a continuing weather refresh service.
+The standard deployment is a static daily package. Refresh the local weather and cyclone workers before `bun run daily:update`; its `daily:snapshot` step generates `public/data/daily-snapshot/`, and the normal site deployment serves those files from the same origin. Commit the JSON and image assets with the daily update so the deployed build includes them.
 
-1. Run `python3 scripts/weather-refresh.py --output /persistent/weather` every 15 minutes on a worker with the pinned dependencies. Use persistent storage so failed runs retain the prior manifest. Watch nonzero exits and `status.json`; source-check time and observation time are different.
-2. Upload all referenced `polar/` directories, then every frame's complete `frames/<frame-id>/` directory, including its frame manifest, before replacing the root `manifest.json`. Use `Cache-Control: public, max-age=31536000, immutable` on frame assets. Use `Cache-Control: no-cache` on the root manifest and job status. Publish the root manifest last; do not use an unordered directory sync as the publication transaction.
-3. Set `VITE_WEATHER_MANIFEST_URL` to the full HTTPS manifest URL before building the frontend. Relative image paths resolve against that URL and must remain on the same origin as the manifest. Set CDN CORS to allow the globe origin for manifest and image GETs. Ensure these paths return JSON/PNG rather than an SPA HTML fallback.
-4. The worker removes noncurrent local frames older than 96 hours. Set a corresponding CDN/object retention lifecycle, allowing at least a 96-hour grace period for older open clients. Keep the current frame regardless of age. Local pruning does not remove remote objects automatically.
-5. Inspect the first scheduled run, a stale source, an intentionally failed download, and recovery before release. Set a budget for worker time, storage, requests and delivery; the public source data itself does not cover those costs.
+For a separately hosted feed with frequent updates, run the weather worker against persistent storage, publish referenced immutable image assets before its root manifest, set `VITE_WEATHER_MANIFEST_URL` to the HTTPS manifest URL, and allow same-origin/CORS GET access. Cyclone feed overrides use `VITE_CYCLONE_MANIFEST_URL`. Optional external feeds retain 15-minute browser polling and their own cache/retention rules.
 
 The initial client fetches all eight bounded patches for one atomic global frame rather than introducing experimental TileLayer selection. The measured total is below the 10 MB initial-view budget. Playback fetches historical frames on demand and releases superseded CPU images; it does not decode the full history at startup. Only the current frame, fading predecessor and in-progress replacement are retained; completed predecessors are released after 450 ms. A complete 48-hour first playback loop can transfer roughly 125 MB at the measured frame size (plus small polar assets); subsequent loads can use the browser's immutable HTTP cache. Higher-resolution regional feeds will need viewport-based loading and a separate memory budget.
 

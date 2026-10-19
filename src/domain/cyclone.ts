@@ -18,7 +18,8 @@ function sourceUrl(value: unknown, agency: string) {
 export function validateCycloneManifest(value: unknown, now = Date.now()): CycloneManifest {
   if (!value || typeof value !== "object") throw new Error("Missing cyclone forecast");
   const m = value as CycloneManifest;
-  if (m.schemaVersion !== "cyclone-forecast-v1" || !Array.isArray(m.storms) || m.storms.length > 60 || !Array.isArray(m.sources) || m.sources.length !== 2 || timestamp(m.generatedAt) > now + 600_000) throw new Error("Invalid cyclone manifest");
+  if (m.schemaVersion !== "cyclone-forecast-v1" || (m.deliveryMode !== undefined && m.deliveryMode !== "daily")
+    || !Array.isArray(m.storms) || m.storms.length > 60 || !Array.isArray(m.sources) || m.sources.length !== 2 || timestamp(m.generatedAt) > now + 600_000) throw new Error("Invalid cyclone manifest");
   const agencies = new Set<string>();
   for (const s of m.sources) {
     if (!AGENCIES.includes(s.agency) || agencies.has(s.agency) || !["ok", "error"].includes(s.status) || typeof s.coverage !== "string" || s.coverage.length > 200 || !Number.isInteger(s.stormCount) || s.stormCount < 0 || s.stormCount > 30 || timestamp(s.checkedAt) > now + 600_000 || timestamp(s.checkedAt) > timestamp(m.generatedAt)) throw new Error("Invalid cyclone source status");
@@ -71,9 +72,9 @@ export function validateCycloneManifest(value: unknown, now = Date.now()): Cyclo
   for (const source of m.sources) if (source.stormCount !== m.storms.filter(s => s.agency === source.agency).length) throw new Error("Cyclone source coverage mismatch");
   return m;
 }
-export function cycloneFreshness(storm: CycloneStorm, now = Date.now()): "fresh" | "stale" | "expired" {
+export function cycloneFreshness(storm: CycloneStorm, now = Date.now(), staleAfterHours = 12): "fresh" | "stale" | "expired" {
   if (Date.parse(storm.points[storm.points.length - 1].validAt) <= now) return "expired";
-  return now - Date.parse(storm.issuedAt) > 12 * HOUR ? "stale" : "fresh";
+  return now - Date.parse(storm.issuedAt) > staleAfterHours * HOUR ? "stale" : "fresh";
 }
 export function cycloneMarker(point: CyclonePoint, agency: string): string {
   // Saffir–Simpson categories use NHC 1-minute winds only; JMA's native TY is distinct.
@@ -88,7 +89,7 @@ export function cycloneColor(point: CyclonePoint, agency: string): [number, numb
   return ["3", "4", "5"].includes(label) ? [239, 68, 68, 255] : ["1", "2", "TY", "HU"].includes(label) ? [251, 146, 60, 255] : label === "F" ? [203, 213, 225, 255] : [34, 211, 238, 255];
 }
 export function utcLabel(value: string) {
-  return new Date(value).toISOString().slice(5, 16).replace("T", " ") + " UTC";
+  return new Date(value).toISOString().slice(0, 16).replace("T", " ") + " UTC";
 }
 // Great-circle sampling preserves the provider's centre and radius in kilometres.
 export function probabilityCircle(center: CyclonePosition, radiusKm: number): CyclonePosition[] {

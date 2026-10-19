@@ -16,6 +16,7 @@ export interface WeatherHistoryFrame {
 
 export interface WeatherManifest {
   schemaVersion: "weather-imagery-v1";
+  deliveryMode?: "daily";
   sourceId: "noaa-gmgsi-lw";
   sourceUrl: string;
   sourceSha256: string;

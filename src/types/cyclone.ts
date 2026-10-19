@@ -38,6 +38,7 @@ export interface CycloneSource {
 }
 export interface CycloneManifest {
   schemaVersion: "cyclone-forecast-v1";
+  deliveryMode?: "daily";
   generatedAt: string;
   sources: CycloneSource[];
   storms: CycloneStorm[];

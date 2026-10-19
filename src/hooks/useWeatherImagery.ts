@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { validatePolarManifest, validateWeatherManifest, weatherFreshness } from "../domain/weather";
 import type { WeatherFrame, WeatherHistoryFrame, WeatherManifest } from "../types/weather";
 
-const MANIFEST_URL = import.meta.env.VITE_WEATHER_MANIFEST_URL || "/weather/manifest.json";
-const POLL_MS = 15 * 60_000;
+const EXTERNAL_MANIFEST_URL = import.meta.env.VITE_WEATHER_MANIFEST_URL;
+const MANIFEST_URL = EXTERNAL_MANIFEST_URL || "/data/daily-snapshot/weather.json";
+const POLL_MS = EXTERNAL_MANIFEST_URL ? 15 * 60_000 : 24 * 60 * 60_000;
 type Actions = { select: (id: string | null) => void; toggle: () => void; retry: () => void; rate: (value: number) => void; window: (hours: number) => void };
 
 export function useWeatherImagery(enabled: boolean) {

@@ -1,22 +1,22 @@
 # Tropical cyclone forecast operations
 
-The Weather popup contains independent **Weather clouds** and **Tropical cyclone forecasts** toggles. The forecast selector lists JMA storms first, followed by NHC storms. **Focus on storm** fits its forecast positions; changing the selected storm also focuses the globe. **Forecast uncertainty** toggles the source cone/circles. Hover markers for valid times and intensity, or expand **Forecast positions**. The popup scrolls on smaller screens.
+The Weather popup contains independent satellite and **Tropical cyclone forecasts** toggles. Its daily JSON package contains JMA and NHC forecasts. Select a storm and press **Focus** to frame it; the uncertainty toggle shows its agency's cone or probability circles. Forecast positions and source links are kept in collapsed details.
 
-Forecasts always show the latest available advisory, even while satellite imagery is playing a historical observation. Issue time, analysis time, point-valid time and source-check time remain distinct, all shown in UTC. Forecast lines connect published points for orientation, without predicting intermediate positions. Forecast centre-position uncertainty does not describe a storm's size or establish port/asset disruption.
+Forecasts show the latest available advisory. Issue, analysis, valid and source-check times remain distinct and use the original UTC values. The daily package treats advisories as delayed after 30 hours; external feeds use the 12-hour threshold. Forecast lines connect published points for orientation, without predicting intermediate positions. Centre-position uncertainty does not describe storm size or establish port/asset disruption.
 
 ## Refresh locally
 
 ```sh
 bun run cyclone:refresh
-bun run cyclone:test
+bun run daily:snapshot
 bun run dev
 ```
 
-The worker uses Python's standard library; the satellite worker's scientific Python environment is not required. It fetches JMA and NHC independently, validates advisory/coordinate/time contracts, saves raw SHA-256-addressed snapshots, and atomically publishes `public/cyclones/manifest.json`. Generated forecasts/snapshots are Git-ignored. The first refresh is required on a fresh checkout; absent data is shown as unavailable.
+The worker uses Python's standard library; the satellite worker's scientific Python environment is not required. It fetches JMA and NHC independently, validates advisory/coordinate/time contracts, saves raw SHA-256-addressed source payloads, and atomically publishes `public/cyclones/manifest.json`. Its local output is Git-ignored. `daily:snapshot` copies the forecast manifest into `public/data/daily-snapshot/cyclones.json`, which is included in the static site build.
 
 Use `python3 scripts/cyclone-refresh.py --output /persistent/cyclones` for a different output directory. A per-directory lock prevents overlapping publishers. The worker returns nonzero if both providers fail; inspect each `sources[]` entry even when the process succeeds, because one provider can succeed while the other fails. Provider failure retains previous dated storms and their snapshot lineage. Only a successful, validated empty response clears that provider's storms. Older advisories, mismatched NHC storm/advisory geometry, and mismatched JMA list/forecast issues are rejected. A feed rollover race should be retried on the next refresh.
 
-Browser polling runs every 15 minutes while forecasts are enabled and the page is visible. Hiding the page or disabling forecasts aborts requests; disabling satellite imagery does not stop forecast requests. The browser rejects malformed manifests and advisory rollbacks. Failed HTTP/validation requests retain the prior valid manifest and show a warning. Source-check age over one hour is shown independently of advisory age. Advisories over 12 hours old are marked stale; forecasts whose final valid time has passed are hidden. A successful source check does not make an old advisory fresh.
+The bundled JSON is fetched when forecasts are enabled and once per day while the panel remains open. External feed overrides poll every 15 minutes. Hiding the page or disabling forecasts aborts requests. Malformed manifests and advisory rollbacks are rejected; failed requests retain the last valid forecasts. Daily-package advisories become delayed after 30 hours; external advisories use a 12-hour threshold. Forecasts whose final valid time has passed are hidden.
 
 ## Sources and interpretation
 
@@ -33,12 +33,9 @@ Keep agency products separate. Consult national meteorological services for loca
 
 ## Production delivery
 
-Forecast hosting/scheduling is not provisioned. Local refresh and Vite build only publish local snapshots; they do not keep a deployed site current.
+The normal static deployment includes `public/data/daily-snapshot/cyclones.json`. Run `cyclone:refresh` before `daily:update`; the update packages the latest manifest and includes it in the site build. Commit and deploy the daily package through the regular repository flow.
 
-1. Run the worker against persistent storage on the desired schedule (15-minute polling is a starting point; source advisories update on their own cadence).
-2. Publish referenced immutable snapshots first, then replace the root manifest last. Set immutable cache headers on snapshots and `Cache-Control: no-cache` on the manifest. Preserve snapshots referenced by retained provider advisories; do not prune them solely by the latest source-check time.
-3. Set `VITE_CYCLONE_MANIFEST_URL` to the HTTPS manifest URL at build time if using external hosting. Enable GET CORS for the application origin. Keep `/cyclones/manifest.json` as the local default.
-4. Monitor provider-level errors, advisory ages, source-check ages and expired data. Verify the deployed manifest and actual source attribution after publishing.
+For a separately hosted feed, retain the worker's source payload artifacts and publish its root manifest with `Cache-Control: no-cache`. Set `VITE_CYCLONE_MANIFEST_URL` to the HTTPS feed at build time and allow application-origin GET access. Monitor source errors, issue times and expired forecasts.
 
 ## Verification checkpoint
 

@@ -29,7 +29,9 @@ export function validateWeatherManifest(value: unknown, base: string, now = Date
     || Date.parse(m.generatedAt) > now + 300_000 || !validBounds(m.bounds)
     || !sha(m.sourceSha256) || !m.sourceUrl?.startsWith("https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_LW/")
     || !Number.isFinite(m.resolutionKm) || m.resolutionKm <= 0
-    || m.staleAfterMinutes !== 120 || typeof m.attribution !== "string" || !m.attribution
+    || ![120, ...(m.deliveryMode === "daily" ? [1560] : [])].includes(m.staleAfterMinutes)
+    || (m.deliveryMode !== undefined && m.deliveryMode !== "daily")
+    || typeof m.attribution !== "string" || !m.attribution
     || typeof m.valueDescription !== "string" || !Array.isArray(m.patches) || m.patches.length !== 8) {
     throw new Error("Invalid weather imagery manifest");
   }

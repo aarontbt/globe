@@ -2,8 +2,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { cycloneFreshness, validateCycloneManifest } from "../domain/cyclone";
 import type { CycloneManifest } from "../types/cyclone";
 
-const URL = import.meta.env.VITE_CYCLONE_MANIFEST_URL || "/cyclones/manifest.json";
-const POLL_MS = 15 * 60_000;
+const EXTERNAL_URL = import.meta.env.VITE_CYCLONE_MANIFEST_URL;
+const URL = EXTERNAL_URL || "/data/daily-snapshot/cyclones.json";
+const POLL_MS = EXTERNAL_URL ? 15 * 60_000 : 24 * 60 * 60_000;
 export function useCycloneForecasts(enabled: boolean) {
   const [manifest, setManifest] = useState<CycloneManifest | null>(null);
   const [loading, setLoading] = useState(false);

@@ -83,7 +83,7 @@ const DATA_SOURCES: DataSource[] = [
     name: "JMA + NOAA/NHC",
     type: "static",
     description: "Tropical Cyclone Forecasts",
-    detail: "Official forecast snapshots: JMA RSMC Tokyo for the western North Pacific/South China Sea, NOAA/NHC for Atlantic/eastern Pacific hurricanes. Tracks, dated forecast positions, NHC uncertainty cones and JMA 70% probability circles remain separate from satellite imagery and GDACS impacts. Local snapshots require cyclone:refresh; hosting and scheduling are not provisioned. PAGASA and HKO local advisories are linked in Weather.",
+    detail: "JMA RSMC Tokyo covers the western North Pacific/South China Sea; NOAA/NHC covers the Atlantic/eastern Pacific. Forecast tracks and agency uncertainty areas are included in the daily update. PAGASA, Hong Kong Observatory and IMD local advisories are linked in Weather.",
     color: "#fb7185",
   },
   {

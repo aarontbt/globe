@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "polar-clouds-v1",
+  "sourceId": "nasa-modis-infrared",
+  "processingVersion": "modis-infrared-v3",
+  "observedDate": "2026-10-18",
+  "generatedAt": "2026-10-19T01:08:14.588294Z",
+  "sourceUrls": [
+    "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&LAYERS=MODIS_Terra_Brightness_Temp_Band31_Day%2CMODIS_Terra_Brightness_Temp_Band31_Night%2CMODIS_Aqua_Brightness_Temp_Band31_Day%2CMODIS_Aqua_Brightness_Temp_Band31_Night&STYLES=&FORMAT=image%2Fpng&TRANSPARENT=TRUE&SRS=EPSG%3A4326&BBOX=-180%2C68%2C180%2C90&WIDTH=1024&HEIGHT=128&TIME=2026-10-18",
+    "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&LAYERS=MODIS_Terra_Brightness_Temp_Band31_Day%2CMODIS_Terra_Brightness_Temp_Band31_Night%2CMODIS_Aqua_Brightness_Temp_Band31_Day%2CMODIS_Aqua_Brightness_Temp_Band31_Night&STYLES=&FORMAT=image%2Fpng&TRANSPARENT=TRUE&SRS=EPSG%3A4326&BBOX=-180%2C-90%2C180%2C-68&WIDTH=1024&HEIGHT=128&TIME=2026-10-18"
+  ],
+  "sourceHashes": [
+    "d49f399ff2de1c967308a200c93de2a4cdba95d0e152aced99726cf3df533dda",
+    "608ededab3fa62407b2934a98b764e8ac8ba4975324205ffd7219e4aa9b60c85"
+  ],
+  "colormapUrl": "https://gibs.earthdata.nasa.gov/colormaps/v1.3/MODIS_Brightness_Temp_Band31.xml",
+  "colormapSha256": "df1f877e98bae0d9ca927cea850137e0ca07d17d9c3ea68e35689afff4a2c298",
+  "coverage": {
+    "north": 0.9999,
+    "south": 0.9999
+  },
+  "attribution": "NASA GIBS / MODIS Terra + Aqua · daily day/night thermal infrared",
+  "patches": [
+    {
+      "id": "north-0",
+      "url": "north-0.png",
+      "bounds": [
+        -180,
+        68,
+        -90,
+        90
+      ],
+      "width": 256,
+      "height": 128,
+      "bytes": 31409,
+      "sha256": "79f3728e9cae3253fab720d2adc8e3d677105d339586f8d4f0c77f223bfce9c5"
+    },
+    {
+      "id": "north-1",
+      "url": "north-1.png",
+      "bounds": [
+        -90,
+        68,
+        0,
+        90
+      ],
+      "width": 256,
+      "height": 128,
+      "bytes": 39407,
+      "sha256": "06f6306a32421be6292f4ac7bbdaa5c3fa32202882fef0d2f1f8f5a3584dd5e3"
+    },
+    {
+      "id": "north-2",
+      "url": "north-2.png",
+      "bounds": [
+        0,
+        68,
+        90,
+        90
+      ],
+      "width": 256,
+      "height": 128,
+      "bytes": 45126,
+      "sha256": "0cda74e4d056596b67ebef693ec848cbcfd49ed717163269fab9111ee4b8faee"
+    },
+    {
+      "id": "north-3",
+      "url": "north-3.png",
+      "bounds": [
+        90,
+        68,
+        180,
+        90
+      ],
+      "width": 256,
+      "height": 128,
+      "bytes": 36584,
+      "sha256": "3a4cedbb253173d0e99a5aef1e1e97f98fa2180757bf7940caca8c99f4a1f9dc"
+    },
+    {
+      "id": "south-0",
+      "url": "south-0.png",
+      "bounds": [
+        -180,
+        -90,
+        -90,
+        -68
+      ],
+      "width": 256,
+      "height": 128,
+      "bytes": 38466,
+      "sha256": "9f13815de17a29916788ffe49a7cbad313b10e64ddfb99e834e616b8b61e9c35"
+    },
+    {
+      "id": "south-1",
+      "url": "south-1.png",
+      "bounds": [
+        -90,
+        -90,
+        0,
+        -68
+      ],
+      "width": 256,
+      "height": 128,
+      "bytes": 37976,
+      "sha256": "1051923e84dcf46a793dc72c56e9cfac6218de439a45c3823b5da986e2ac43dd"
+    },
+    {
+      "id": "south-2",
+      "url": "south-2.png",
+      "bounds": [
+        0,
+        -90,
+        90,
+        -68
+      ],
+      "width": 256,
+      "height": 128,
+      "bytes": 31192,
+      "sha256": "5b549ae64f490490fb69bb490a563761303b56923409f4418f2203b8c584b875"
+    },
+    {
+      "id": "south-3",
+      "url": "south-3.png",
+      "bounds": [
+        90,
+        -90,
+        180,
+        -68
+      ],
+      "width": 256,
+      "height": 128,
+      "bytes": 30789,
+      "sha256": "3661b82bc5a584e46bf46ce3eb1f0d39c4b2dbe0146cd3bb9f9647318c51b86d"
+    }
+  ]
+}
