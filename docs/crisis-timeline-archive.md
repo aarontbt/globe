@@ -171,3 +171,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D224**: Oct 15 - Brent $103.78, WTI $93.73, TTF 87.315 EUR/MWh; Reuters reports two vessel sinkings and five incidents in 48 hours; no current comparable transit count.
 - **D226**: Oct 17 - Brent BZ=F $109.69; TTF Nov26 Last 87.725 EUR/MWh; missile intercepted toward Yanbu; VLCC freight eases to Worldscale 776.
 - **D227**: Oct 18 - Brent $108.44; LNG CFD $29.93 (Oct 16); security reporting unchanged; scenario probabilities remain 15/45/40.
+- **D230**: Oct 21 - Brent $110.36; JKM CFD $29.55 (Oct 20); Reuters reports an attributed mine-strike claim; probabilities remain 15/45/40.

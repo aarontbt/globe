@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "Brent $108.44; JKM-linked CFD $29.93. Hormuz shipping risks persist in the latest approved reporting; official JKM remains carried.";
+const TOP_ALERT = "Brent $110.36; Reuters reports an attributed tanker mine-strike claim south of Hormuz. Official JKM remains carried.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
