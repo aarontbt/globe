@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "Brent $110.36; Reuters reports an attributed tanker mine-strike claim south of Hormuz. Official JKM remains carried.";
+const TOP_ALERT = "Brent $110.36 (Oct 21, carried); latest reviewed Reuters report is an attributed tanker mine-strike claim south of Hormuz.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {
