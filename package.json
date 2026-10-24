@@ -3,9 +3,18 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=24.22.1 <25",
+    "bun": ">=1.4.4"
+  },
   "scripts": {
+    "check:runtime": "node scripts/check-runtime.mjs",
+    "test:runtime": "node --test scripts/runtime-tests.mjs",
+    "predev": "npm run check:runtime",
     "dev": "vite",
+    "prebuild": "npm run check:runtime",
     "build": "tsc -b && vite build",
+    "prepreview": "npm run check:runtime",
     "preview": "vite preview",
     "daily:fetch": "bun scripts/daily-fetch.mjs",
     "daily:refresh": "bun scripts/daily-fetch.mjs",
@@ -32,21 +41,18 @@
     "@turf/boolean-intersects": "^7.4.0",
     "@turf/boolean-point-in-polygon": "^7.4.0",
     "@turf/helpers": "^7.4.0",
-    "deck.gl": "^9.1.0",
-    "maplibre-gl": "^4.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-map-gl": "^7.1.7",
     "satellite.js": "^6.0.2"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",
+    "@types/node": "^24.19.2",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "@vercel/node": "^5.6.6",
     "@vitejs/plugin-react": "^4.3.4",
     "tailwindcss": "^4.0.0",
     "typescript": "~5.6.2",
-    "vite": "^6.0.0"
+    "vite": "^6.4.5"
   }
 }

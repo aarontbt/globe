@@ -1,11 +1,11 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
+import type { ApiRequest, ApiResponse } from "../../server/http";
 
 const FEED_URLS: Record<string, string> = {
   cna: "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml",
   bbc: "https://feeds.bbci.co.uk/news/world/rss.xml",
 };
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: ApiRequest, res: ApiResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   const feed = req.query.feed as string;

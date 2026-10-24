@@ -30,10 +30,24 @@ Interactive deck.gl globe for tracing Iran-Hormuz disruption through LNG supply,
 
 ## Local Development
 
+Use Node.js **24.22.1 or newer within 24.x** and Bun **1.4.4 or newer**.
+These minimums include the October 2026 Brotli security fixes. Installs and
+development/build commands reject unsupported Node.js versions.
+
 ```bash
-npm install
+nvm install
+nvm use
+npm ci
 npm run dev
 ```
+
+Vercel selects Node.js 24 through `engines.node` in `package.json` and manages
+the exact runtime patch. After deploying this update, verify that the deployed
+functions run Node.js 24.22.1 or newer; local checks cannot verify Vercel's runtime.
+
+The lockfiles contain matching dependency versions. After changing dependencies,
+update `package-lock.json`, then regenerate `bun.lock` from it using
+`bun install --lockfile-only --ignore-scripts` after removing the previous Bun lockfile.
 
 Default local URL: `http://localhost:5173`
 

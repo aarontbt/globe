@@ -1,4 +1,4 @@
-import { ScatterplotLayer, LineLayer } from "deck.gl";
+import { ScatterplotLayer, LineLayer } from "@deck.gl/layers";
 import type { CrisisVessel, VesselType } from "../types";
 
 const VESSEL_COLORS: Record<VesselType, [number, number, number, number]> = {

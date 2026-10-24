@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
       "/api/yahoo": {
         target: "https://query2.finance.yahoo.com",
         changeOrigin: true,
-        secure: false,
+        secure: true,
         rewrite: path => path.replace(/^\/api\/yahoo/, ""),
         headers: {
           "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",

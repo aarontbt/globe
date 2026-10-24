@@ -1,4 +1,4 @@
-import { TextLayer } from "deck.gl";
+import { TextLayer } from "@deck.gl/layers";
 import type { CountryLabel } from "../types";
 import { FONT_SANS } from "../styles/fonts";
 

@@ -1,4 +1,4 @@
-import { ScatterplotLayer } from "deck.gl";
+import { ScatterplotLayer } from "@deck.gl/layers";
 import type { Port } from "../types";
 
 export function createPortsLayer(data: Port[]) {

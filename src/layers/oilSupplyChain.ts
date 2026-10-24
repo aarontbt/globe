@@ -1,4 +1,4 @@
-import { ArcLayer, ScatterplotLayer } from "deck.gl";
+import { ArcLayer, ScatterplotLayer } from "@deck.gl/layers";
 import type { OilNode, OilRoute } from "../types";
 
 const COLORS = {

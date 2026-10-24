@@ -1,4 +1,4 @@
-import { IconLayer } from "deck.gl";
+import { IconLayer } from "@deck.gl/layers";
 import type { Satellite } from "../types";
 
 // Satellite icon: body + solar panels + antenna, in cyan

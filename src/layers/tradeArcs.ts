@@ -1,4 +1,4 @@
-import { ArcLayer } from "deck.gl";
+import { ArcLayer } from "@deck.gl/layers";
 import type { TradeArc } from "../types";
 
 export function createTradeArcsLayer(data: TradeArc[]) {
