@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "Brent $110.36 (Oct 21, carried); latest reviewed Reuters report is an attributed tanker mine-strike claim south of Hormuz.";
+const TOP_ALERT = "Brent $111.66 (+2.761%) on Oct 23; the latest reviewed Hormuz tanker-fire report remains a source-attributed claim.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

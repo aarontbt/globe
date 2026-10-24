@@ -173,3 +173,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D227**: Oct 18 - Brent $108.44; LNG CFD $29.93 (Oct 16); security reporting unchanged; scenario probabilities remain 15/45/40.
 - **D230**: Oct 21 - Brent $110.36; JKM CFD $29.55 (Oct 20); Reuters reports an attributed mine-strike claim; probabilities remain 15/45/40.
 - **D231**: Oct 22 - Brent $110.36 (Oct 21, carried); Reuters tanker claim remains attributed; probabilities remain 15/45/40.
+- **D233**: Oct 24 - Brent $111.66 (Oct 23, +2.761%); no newer Reuters Hormuz shipping report was found; probabilities remain 15/45/40.

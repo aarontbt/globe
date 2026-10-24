@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "readModelVersion": "energy-lng-read-model-v1",
   "canonicalModelVersion": "energy-lng-domain-v1",
-  "asOf": "2026-10-22T00:00:00Z",
-  "day": "D231",
-  "headline": "Latest reviewed report (Oct 21): Reuters says Iran's Guards Navy claimed a supertanker fire after a mine strike south of Hormuz and separately cites Kpler's report of 18 vessel attacks over two weeks; both remain attributed. No newer article was verified on Oct 22.",
+  "asOf": "2026-10-24T00:00:00Z",
+  "day": "D233",
+  "headline": "Latest verified Reuters incident report remains Oct 21: Iran's Guards Navy claimed a tanker fire after a mine strike south of Hormuz; Kpler separately reported 18 vessel attacks over two weeks. Both remain attributed. A targeted Reuters search found no matching Oct 22-23 shipping article.",
   "entities": [
     {
       "id": "qatarenergy",
@@ -189,7 +189,7 @@
       "cadence": "event-driven",
       "maxAgeDays": 14,
       "status": "carried",
-      "note": "QatarEnergy extended force majeure for LNG supplies to several Asian buyers into mid-September."
+      "note": "Oct 24 targeted search returned no newer directly comparable QatarEnergy sub-chartered carrier count; retain the July 23 Reuters observation as historical context."
     },
     {
       "id": "e-nakilat-charters",
@@ -215,20 +215,20 @@
       "cadence": "daily",
       "maxAgeDays": 7,
       "status": "carried",
-      "note": "Oct 21 targeted search found no newer comparable weekly LNG-only count. Retain Kpler's three LNG transits for Jul 27-Aug 2 as historical context; Reuters' Oct 6 total commodity-vessel count is a different scope."
+      "note": "Oct 24 targeted search found no newer comparable weekly LNG-only count. The July Kpler count remains historical context; October all-commodity counts have a different scope."
     },
     {
       "id": "e-jkm-cfd",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
       "url": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea",
-      "publishedAt": "2026-10-20",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-24",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Firecrawl exact-page review Oct 21: Trading Economics LNG Japan-Korea CFD reference was 29.55 USD/MMBtu on Oct 20, down 1.53%; it is not an official JKM assessment."
+      "note": "Trading Economics reported its LNG Japan Korea CFD reference at $31.42/MMBtu on Oct 23, up 2.60%; this is not an official JKM assessment."
     },
     {
       "id": "e-jera-qatarenergy",
@@ -267,7 +267,7 @@
       "cadence": "daily",
       "maxAgeDays": 1,
       "status": "carried",
-      "note": "Oct 21 targeted search found no newer comparable Gulf of Oman-to-China VLCC quote in USD/bbl. Retain the Sep 11 Baltic Exchange/Reuters assessment of about $11.50/bbl, dated and carried; the Oct 16 Worldscale quote is a different unit."
+      "note": "Oct 24 search revalidated Reuters' Oct 16 Gulf of Oman-to-China VLCC rate near Worldscale 776, but found no route-normalised USD/bbl assessment comparable to the carried Sep 11 input."
     },
     {
       "id": "e-reuters-oct8-transits",
@@ -306,20 +306,20 @@
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "carried",
-      "note": "Oct 21 targeted Platts/Reuters replacement-source search found no newer official JKM assessment. Reuters' Jul 24 September-delivery assessment at $22/MMBtu remains the latest approved official observation; the Trading Economics CFD is separate."
+      "note": "Oct 24 targeted Reuters/Platts search found no newer official JKM assessment. The separate Trading Economics CFD and CME futures are different instruments; Reuters' Jul 24 $22/MMBtu assessment remains the latest approved official observation."
     },
     {
       "id": "e-ttf",
       "title": "Dutch TTF Natural Gas Futures Pricing",
       "publisher": "ICE Endex",
       "url": "https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data",
-      "publishedAt": "2026-10-21",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-23",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "ICE Endex Nov26 Dutch TTF delayed Last was 86.825 EUR/MWh at Oct 21 02:44 GMT; page last updated 02:55 GMT. This is not a settlement price."
+      "note": "ICE Endex Nov26 Dutch TTF delayed Last was 93.445 EUR/MWh at Oct 23 20:59 EDT (Oct 24 00:59 UTC); it is not settlement."
     },
     {
       "id": "e-eia-saudi",
@@ -339,52 +339,52 @@
       "title": "Yahoo Finance chart API - Brent Crude",
       "publisher": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=1d&range=5d",
-      "publishedAt": "2026-10-21",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-23",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Firecrawl exact-page review Oct 21: BZ=F Brent crude futures was 110.36 USD/bbl at 2026-10-21T02:55:20Z; reported change +1.443%."
+      "note": "Yahoo Finance BZ=F returned $111.66/bbl on Oct 23; the source API reports regularMarketChangePercent +2.761%."
     },
     {
       "id": "e-wti",
       "title": "Yahoo Finance chart API - WTI Crude",
       "publisher": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=5d",
-      "publishedAt": "2026-10-21",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-23",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Firecrawl exact-page review Oct 21: CL=F WTI crude futures was 99.13 USD/bbl at 2026-10-21T02:55:46Z; reported change +1.339%."
+      "note": "Yahoo Finance CL=F returned $103.44/bbl on Oct 23; the source API reports regularMarketChangePercent +3.991%."
     },
     {
       "id": "e-eurusd",
       "title": "Yahoo Finance chart API - EUR/USD",
       "publisher": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?interval=1d&range=5d",
-      "publishedAt": "2026-10-21",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-23",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Firecrawl exact-page review Oct 21: EURUSD=X EUR/USD spot exchange rate was 1.1231 USD/EUR at 2026-10-21T03:05:28Z; reported change -0.0786%."
+      "note": "Yahoo Finance EURUSD=X returned 1.1204 USD/EUR on Oct 23; the source API reports regularMarketChangePercent -0.1569%."
     },
     {
       "id": "e-sofr",
       "title": "Secured Overnight Financing Rate",
       "publisher": "Federal Reserve Bank of New York",
       "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
-      "publishedAt": "2026-10-19",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-22",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 7,
       "status": "confirmed",
-      "note": "Firecrawl exact-page review Oct 21: NY Fed reports SOFR at 3.87% effective 2026-10-19, the latest available effective date."
+      "note": "New York Fed latest SOFR observation is 3.90%, effective Oct 22, 2026."
     },
     {
       "id": "e-hormuz-total-transits",
@@ -534,65 +534,65 @@
       "title": "Yahoo Finance chart API - USD/SGD",
       "publisher": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/SGD%3DX?interval=1d&range=5d",
-      "publishedAt": "2026-10-21",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-23",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Firecrawl exact-page review Oct 21: SGD=X USD/SGD spot exchange rate was 1.278 SGD per USD at 2026-10-21T03:05:50Z; reported change +0.0611%."
+      "note": "Yahoo Finance SGD=X returned 1.2779 SGD per USD on Oct 23; the source API reports regularMarketChangePercent +0.0352%."
     },
     {
       "id": "e-fx-idr",
       "title": "Yahoo Finance chart API - USD/IDR",
       "publisher": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/IDR%3DX?interval=1d&range=5d",
-      "publishedAt": "2026-10-21",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-23",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Firecrawl exact-page review Oct 21: IDR=X USD/IDR spot exchange rate was 17943 IDR per USD at 2026-10-21T02:39:19Z; reported change +0.00%."
+      "note": "Yahoo Finance IDR=X returned 17,956 IDR per USD on Oct 23; the source API reports regularMarketChangePercent +0.0725%."
     },
     {
       "id": "e-fx-myr",
       "title": "Yahoo Finance chart API - USD/MYR",
       "publisher": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/MYR%3DX?interval=1d&range=5d",
-      "publishedAt": "2026-10-21",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-23",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Firecrawl exact-page review Oct 21: MYR=X USD/MYR spot exchange rate was 4.08 MYR per USD at 2026-10-21T03:00:33Z; reported change -0.0368%."
+      "note": "Yahoo Finance MYR=X returned 4.083 MYR per USD on Oct 23; the source API reports regularMarketChangePercent +0.049%."
     },
     {
       "id": "e-fx-thb",
       "title": "Yahoo Finance chart API - USD/THB",
       "publisher": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/THB%3DX?interval=1d&range=5d",
-      "publishedAt": "2026-10-21",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-23",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Firecrawl exact-page review Oct 21: THB=X USD/THB spot exchange rate was 33.63 THB per USD at 2026-10-21T03:05:47Z; reported change +0.1191%."
+      "note": "Yahoo Finance THB=X returned 33.74 THB per USD on Oct 23; the source API reports regularMarketChangePercent +0.0593%."
     },
     {
       "id": "e-fx-php",
       "title": "Yahoo Finance chart API - USD/PHP",
       "publisher": "Yahoo Finance",
       "url": "https://query2.finance.yahoo.com/v8/finance/chart/PHP%3DX?interval=1d&range=5d",
-      "publishedAt": "2026-10-21",
-      "lastChecked": "2026-10-21",
+      "publishedAt": "2026-10-23",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 3,
       "status": "confirmed",
-      "note": "Firecrawl exact-page review Oct 21: PHP=X USD/PHP spot exchange rate was 63.151 PHP per USD at 2026-10-21T03:05:22Z; reported change +0.192%."
+      "note": "Yahoo Finance PHP=X returned 63.561 PHP per USD on Oct 23; the source API reports regularMarketChangePercent +0.2049%."
     },
     {
       "id": "e-reuters-policy-0929",
@@ -845,12 +845,12 @@
       "publisher": "Reuters",
       "url": "https://www.reuters.com/business/autos-transportation/oil-edges-down-investors-weigh-possible-us-sanctions-shadow-fleet-2026-10-16/",
       "publishedAt": "2026-10-16",
-      "lastChecked": "2026-10-17",
+      "lastChecked": "2026-10-24",
       "kind": "event",
       "cadence": "daily",
       "maxAgeDays": 7,
       "status": "confirmed",
-      "note": "Reuters reported a Saudi-led coalition intercepted a ballistic missile toward Yanbu; initial reports indicated no infrastructure damage. Kpler expected a slower and uneven Hormuz recovery without a comprehensive political deal."
+      "note": "Exact Reuters page review confirms Oct 16 Brent settlement at $109.86/bbl and WTI at $101.41/bbl; the article discusses Middle East and Russian supply concerns, not a new Hormuz incident."
     },
     {
       "id": "e-reuters-freight-1016",
@@ -858,12 +858,12 @@
       "publisher": "Reuters",
       "url": "https://www.reuters.com/business/energy/supertanker-rates-fall-record-highs-2026-10-16/",
       "publishedAt": "2026-10-16",
-      "lastChecked": "2026-10-17",
+      "lastChecked": "2026-10-24",
       "kind": "event",
       "cadence": "daily",
       "maxAgeDays": 7,
       "status": "confirmed",
-      "note": "Reuters cited Baltic Exchange Gulf of Oman-to-China VLCC freight near Worldscale 776, down from 841 last week. This is not a USD/bbl quote and is not converted into the commercial cost input."
+      "note": "Exact Reuters page review confirms the Oct 16 Gulf of Oman-to-China VLCC rate near Worldscale 776, down from 841 the prior week. This is not a USD/bbl cost."
     },
     {
       "id": "e-id10y",
@@ -871,25 +871,25 @@
       "publisher": "BRI Danareksa Sekuritas",
       "url": "https://www.brights.id/en/research-and-news/research-report/brids-daily-economic-fixed-income-update-friday-october-16-2026",
       "publishedAt": "2026-10-16",
-      "lastChecked": "2026-10-17",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 7,
       "status": "confirmed",
-      "note": "Indonesia 10-year government yield was 7.245% on Oct 15, versus 7.209% a day earlier."
+      "note": "Exact BRI Danareksa report review confirms Indonesia 10-year government yield at 7.245% on Oct 15, versus 7.209% the prior day."
     },
     {
       "id": "e-th10y",
-      "title": "Thailand 10-Year Government Bond Yield",
+      "title": "Thailand 10-Year Government Bond Yield - Quote - Chart - Historical Data - News",
       "publisher": "Trading Economics",
       "url": "https://tradingeconomics.com/thailand/government-bond-yield",
-      "publishedAt": "2026-10-16",
-      "lastChecked": "2026-10-17",
+      "publishedAt": "2026-10-24",
+      "lastChecked": "2026-10-24",
       "kind": "market-observation",
       "cadence": "daily",
       "maxAgeDays": 7,
       "status": "confirmed",
-      "note": "Thailand 10-year government yield held steady at 2.25% on Oct 16, according to the dated summary and bond table. The page also shows 2.253 in a separate chart header; use the dated summary precision."
+      "note": "Trading Economics reports Thailand 10-year government yield at 2.24% on Oct 23, unchanged from the prior session."
     },
     {
       "id": "e-ph10y",
@@ -920,12 +920,115 @@
   ],
   "machineEvidence": [
     {
+      "id": "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e",
+      "sourceId": "src-imf-portwatch-hormuz",
+      "provider": "IMF PortWatch",
+      "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=portid%3D%27chokepoint6%27+AND+date+%3E%3D+DATE+%272026-10-18%27+AND+date+%3C%3D+DATE+%272026-10-24%27&outFields=date%2Cportid%2Cportname%2Cn_total%2Cn_tanker%2Cn_cargo%2Ccapacity&returnGeometry=false&orderByFields=date+DESC&resultRecordCount=1000&f=json",
+      "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e",
+      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "observedAt": null,
+      "contentHash": "c3fb7e09d105033e499b42a74ca9c2cb3b36f11570c52bb23740b57929b23f9c",
+      "parserVersion": "portwatch-arcgis-route-v1",
+      "recordKeys": [
+        "ff0c02e1a3a6f006b1f2a2d0dd13c8e651168bbe69f24c177082314614875c54"
+      ],
+      "targetInputIds": [
+        "hormuz-total-transits"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "transit",
+      "coverage": {
+        "status": "direct-observation",
+        "sourcePeriod": {
+          "start": "2026-10-18",
+          "end": "2026-10-18"
+        },
+        "expectedCadence": "daily",
+        "observedPeriod": {
+          "start": "2026-10-18",
+          "end": "2026-10-18"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched",
+        "note": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed."
+      },
+      "status": "validated"
+    },
+    {
+      "id": "machine-evidence:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
+      "sourceId": "src-eia-qatar-production",
+      "provider": "U.S. EIA",
+      "url": "https://api.eia.gov/v2/seriesid/INTL.26-1-QAT-BCF.A?api_key=%REDACTED%",
+      "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
+      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "observedAt": null,
+      "contentHash": "a7a9454f67798ea75c768e7e6ed4fa745b13e29586232c899eb8d0c7c93fb520",
+      "parserVersion": "eia-series-v2",
+      "recordKeys": [
+        "19ef342ea69f576b9ec1613acc4aa21dc223a100acede4c9887705c689bd5a62"
+      ],
+      "targetInputIds": [
+        "qatar-production-baseline"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "flow",
+      "coverage": {
+        "status": "direct-observation",
+        "sourcePeriod": {
+          "start": "2024-01-01",
+          "end": "2024-12-31"
+        },
+        "expectedCadence": "annual",
+        "observedPeriod": {
+          "start": "2024-01-01",
+          "end": "2024-12-31"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched"
+      },
+      "status": "validated"
+    },
+    {
+      "id": "machine-evidence:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
+      "sourceId": "src-eia-qatar-exports",
+      "provider": "U.S. EIA",
+      "url": "https://api.eia.gov/v2/seriesid/INTL.26-4-QAT-BCF.A?api_key=%REDACTED%",
+      "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
+      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "observedAt": null,
+      "contentHash": "bb68bc4bb67d7fde8718930bc83a6b9f9ebb0bbe0de03364bd8a0598dfa7e362",
+      "parserVersion": "eia-series-v2",
+      "recordKeys": [
+        "11801a1d8e13297634cab5f786bf4a6c2eda2d3b7a54cf38a436d864d7c18a9c"
+      ],
+      "targetInputIds": [
+        "qatar-export-baseline"
+      ],
+      "targetCommercialInputIds": [],
+      "observationKind": "flow",
+      "coverage": {
+        "status": "direct-observation",
+        "sourcePeriod": {
+          "start": "2024-01-01",
+          "end": "2024-12-31"
+        },
+        "expectedCadence": "annual",
+        "observedPeriod": {
+          "start": "2024-01-01",
+          "end": "2024-12-31"
+        },
+        "missingPeriods": [],
+        "sourceStatus": "fetched"
+      },
+      "status": "validated"
+    },
+    {
       "id": "machine-evidence:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c",
       "sourceId": "src-qatarenergy-ras-laffan-capacity",
       "provider": "QatarEnergy LNG",
       "url": "https://www.qatarenergylng.qa/Operations/LNG-trains",
       "snapshotRef": "snapshot:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c",
-      "retrievedAt": "2026-10-22T02:35:34.394Z",
+      "retrievedAt": "2026-10-24T02:08:20.723Z",
       "observedAt": "2026-10-15T00:00:00.000Z",
       "contentHash": "d9683a5efa80136caa2282129050d394ec366d390ee5e774205fe8dab26011ca",
       "parserVersion": "qatarenergy-asset-v1",
@@ -959,7 +1062,7 @@
       "provider": "UN/LOCODE",
       "url": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
       "snapshotRef": "snapshot:energy-snapshot:src-unlocode-ras-laffan:09f64b83ca9baf00",
-      "retrievedAt": "2026-10-22T02:35:34.394Z",
+      "retrievedAt": "2026-10-24T02:08:20.723Z",
       "observedAt": "2026-05-09T00:00:00.000Z",
       "contentHash": "09f64b83ca9baf004b8703e142cfd3e0a9fa25ce79c50874c3539fd2fdcf612b",
       "parserVersion": "unlocode-asset-v1",
@@ -1014,7 +1117,7 @@
       "sourceDate": "2026-07-24",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "carryReason": "Oct 22 search found no newer official Platts JKM assessment; the separate JKM-linked CFD and indicative benchmarks are not an official assessment. Carry Reuters' Jul 24 $22/MMBtu observation with its original date.",
+      "carryReason": "Oct 24 targeted Reuters/Platts search found no newer official JKM assessment. The separate $31.42/MMBtu Trading Economics CFD and CME futures quotes are distinct instruments. Preserve Reuters' Jul 24 $22/MMBtu assessment and its original date.",
       "commodity": "lng",
       "role": "destination-value",
       "evidenceIds": [
@@ -1025,19 +1128,19 @@
     {
       "inputId": "lng-ttf",
       "label": "Dutch TTF",
-      "value": 86.825,
+      "value": 93.445,
       "unit": "EUR/MWh",
       "status": "confirmed",
       "source": "ICE Endex Nov26 Dutch TTF delayed Last",
-      "sourceDate": "2026-10-21",
-      "observedAt": "2026-10-21T02:44:00Z",
+      "sourceDate": "2026-10-23",
+      "observedAt": "2026-10-24T00:59:00Z",
       "maxAgeDays": 3,
       "cadence": "daily",
       "observationKind": "flow",
-      "periodStart": "2026-10-21",
-      "periodEnd": "2026-10-21",
+      "periodStart": "2026-10-23",
+      "periodEnd": "2026-10-23",
       "coverageStatus": "direct-observation",
-      "coverageNote": "ICE Endex Nov26 Dutch TTF delayed Last was 86.825 EUR/MWh at Oct 21 02:44 GMT; page last updated 02:55 GMT. This is not a settlement price.",
+      "coverageNote": "ICE Endex Nov26 Dutch TTF delayed Last was 93.445 EUR/MWh at Oct 23 20:59 EDT (Oct 24 00:59 UTC); delayed and not settlement.",
       "sourceAgeDays": 1,
       "commodity": "lng",
       "role": "destination-value",
@@ -1049,15 +1152,14 @@
     {
       "inputId": "fx-eurusd",
       "label": "EUR/USD",
-      "value": 1.1231,
+      "value": 1.1204,
       "unit": "USD/EUR",
-      "status": "carried",
+      "status": "confirmed",
       "source": "Yahoo Finance EURUSD=X",
-      "sourceDate": "2026-10-21",
-      "observedAt": "2026-10-21T03:05:28Z",
+      "sourceDate": "2026-10-23",
+      "observedAt": "2026-10-23T21:29:27.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Unable to connect. Is the computer able to access the url?",
       "commodity": "lng",
       "role": "fx",
       "evidenceIds": [
@@ -1098,15 +1200,14 @@
     {
       "inputId": "oil-brent",
       "label": "Brent",
-      "value": 110.36,
+      "value": 111.66,
       "unit": "USD/bbl",
-      "status": "carried",
+      "status": "confirmed",
       "source": "Yahoo Finance BZ=F",
-      "sourceDate": "2026-10-21",
-      "observedAt": "2026-10-21T02:55:20Z",
+      "sourceDate": "2026-10-23",
+      "observedAt": "2026-10-23T20:59:19.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?; Unable to connect. Is the computer able to access the url?",
       "commodity": "crude-oil",
       "role": "destination-value",
       "evidenceIds": [
@@ -1117,15 +1218,14 @@
     {
       "inputId": "oil-wti",
       "label": "WTI",
-      "value": 99.13,
+      "value": 103.44,
       "unit": "USD/bbl",
-      "status": "carried",
+      "status": "confirmed",
       "source": "Yahoo Finance CL=F",
-      "sourceDate": "2026-10-21",
-      "observedAt": "2026-10-21T02:55:46Z",
+      "sourceDate": "2026-10-23",
+      "observedAt": "2026-10-23T20:59:58.000Z",
       "maxAgeDays": 3,
       "cadence": "daily",
-      "carryReason": "Machine refresh failed: Was there a typo in the url or port?; Was there a typo in the url or port?",
       "commodity": "crude-oil",
       "role": "origin-value",
       "evidenceIds": [
@@ -1161,12 +1261,12 @@
       "sourceDate": "2026-09-11",
       "maxAgeDays": 1,
       "cadence": "daily",
-      "carryReason": "Oct 22 search found newer VLCC figures in Worldscale and USD/day, but no route-normalized USD/bbl assessment comparable with this input. Preserve the Sep 11 value, route context and original date.",
+      "carryReason": "Oct 24 search revalidated Reuters' Oct 16 Gulf of Oman-to-China VLCC rate of about Worldscale 776; no directly comparable route-normalised USD/bbl assessment was found. Preserve the Sep 11 value and original date.",
       "observationKind": "freight",
       "periodStart": "2026-09-11",
       "periodEnd": "2026-09-11",
       "coverageStatus": "direct-observation",
-      "sourceAgeDays": 41,
+      "sourceAgeDays": 43,
       "commodity": "crude-oil",
       "role": "freight",
       "evidenceIds": [
@@ -1192,15 +1292,14 @@
     {
       "inputId": "usd-sofr",
       "label": "SOFR",
-      "value": 3.87,
+      "value": 3.9,
       "unit": "%",
-      "status": "carried",
+      "status": "confirmed",
       "source": "Federal Reserve Bank of New York",
-      "sourceDate": "2026-10-19",
-      "observedAt": "2026-10-19T00:00:00Z",
+      "sourceDate": "2026-10-22",
+      "observedAt": "2026-10-22T00:00:00Z",
       "maxAgeDays": 7,
       "cadence": "daily",
-      "carryReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?",
       "commodity": "crude-oil",
       "role": "financing",
       "evidenceIds": [
@@ -1252,7 +1351,7 @@
               "periodEnd": "2026-09-28",
               "coverageStatus": "partial-coverage",
               "coverageNote": "Reports Edison and selected Asian buyer notices, not a measured total Qatar LNG output loss.",
-              "sourceAgeDays": 24
+              "sourceAgeDays": 26
             },
             {
               "inputId": "ras-laffan-asset-status",
@@ -1271,7 +1370,7 @@
               "periodEnd": "2026-09-28",
               "coverageStatus": "partial-coverage",
               "coverageNote": "Status inferred from QatarEnergy LNG force-majeure notices to buyers, not a train-by-train operating report.",
-              "sourceAgeDays": 24
+              "sourceAgeDays": 26
             },
             {
               "inputId": "ras-laffan-port-identity",
@@ -1329,34 +1428,42 @@
             {
               "inputId": "qatar-production-baseline",
               "label": "Qatar production baseline",
+              "value": 6001.884083,
               "unit": "billion cubic feet",
-              "status": "unavailable",
-              "source": "",
-              "sourceDate": "",
+              "status": "confirmed",
+              "source": "U.S. EIA",
+              "sourceDate": "2024-12-31",
+              "observedAt": "2024-12-31T00:00:00.000Z",
               "maxAgeDays": 730,
               "cadence": "annual",
-              "missingReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?. No approved observation is available.",
+              "machineEvidenceIds": [
+                "machine-evidence:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7"
+              ],
               "observationKind": "flow",
-              "periodStart": null,
-              "periodEnd": null,
-              "coverageStatus": "unavailable",
-              "sourceAgeDays": null
+              "periodStart": "2024-01-01",
+              "periodEnd": "2024-12-31",
+              "coverageStatus": "direct-observation",
+              "sourceAgeDays": 662
             },
             {
               "inputId": "qatar-export-baseline",
               "label": "Qatar export baseline",
+              "value": 4438.798832,
               "unit": "billion cubic feet",
-              "status": "unavailable",
-              "source": "",
-              "sourceDate": "",
+              "status": "confirmed",
+              "source": "U.S. EIA",
+              "sourceDate": "2024-12-31",
+              "observedAt": "2024-12-31T00:00:00.000Z",
               "maxAgeDays": 730,
               "cadence": "annual",
-              "missingReason": "Machine refresh failed: Was there a typo in the url or port?. No approved observation is available.",
+              "machineEvidenceIds": [
+                "machine-evidence:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde"
+              ],
               "observationKind": "flow",
-              "periodStart": null,
-              "periodEnd": null,
-              "coverageStatus": "unavailable",
-              "sourceAgeDays": null
+              "periodStart": "2024-01-01",
+              "periodEnd": "2024-12-31",
+              "coverageStatus": "direct-observation",
+              "sourceAgeDays": 662
             },
             {
               "inputId": "ras-laffan-capacity",
@@ -1404,13 +1511,13 @@
               "observedAt": "2026-08-02T00:00:00.000Z",
               "maxAgeDays": 7,
               "cadence": "daily",
-              "carryReason": "Oct 22 search found no newer comparable weekly LNG-only count. The Sep monthly total of 21 cargoes and the Oct 6 count of seven all-commodity vessels have different periods or scope; preserve the Jul 27-Aug 2 weekly count of three and its original date.",
+              "carryReason": "Oct 24 targeted search found no newer comparable LNG-only weekly count. Results included historical July Kpler context and October all-commodity counts with different scope; preserve the three LNG transits for Jul 27-Aug 2 and their original date.",
               "observationKind": "transit",
               "periodStart": "2026-08-02",
               "periodEnd": "2026-08-02",
               "coverageStatus": "partial-coverage",
               "coverageNote": "Kpler weekly reported count for Jul 27-Aug 2; AIS-dark transits may be unobserved. This is historical weekly context, not a September monthly total.",
-              "sourceAgeDays": 81
+              "sourceAgeDays": 83
             },
             {
               "inputId": "hormuz-route-pressure",
@@ -1445,7 +1552,7 @@
               "periodEnd": "2026-09-30",
               "coverageStatus": "partial-coverage",
               "coverageNote": "Kpler tracked count; AIS-dark transits may be omitted, so the tally may not capture every passage.",
-              "sourceAgeDays": 22
+              "sourceAgeDays": 24
             },
             {
               "inputId": "hormuz-qatar-vessels-oct03",
@@ -1464,7 +1571,7 @@
               "periodEnd": "2026-10-03",
               "coverageStatus": "partial-coverage",
               "coverageNote": "Four tracked Qatar-loaded vessels reappeared outside; this sighting set is not additive to the September monthly count, and dark AIS may hide other passages.",
-              "sourceAgeDays": 19
+              "sourceAgeDays": 21
             }
           ],
           "evidenceIds": [
@@ -1489,18 +1596,18 @@
             {
               "inputId": "jkm-cfd-reference",
               "label": "JKM-linked market reference",
-              "value": 29.55,
+              "value": 31.42,
               "unit": "USD/MMBtu",
               "status": "confirmed",
               "source": "Trading Economics JKM-linked CFD reference",
-              "sourceDate": "2026-10-20",
+              "sourceDate": "2026-10-23",
               "maxAgeDays": 3,
               "cadence": "daily",
               "observationKind": "flow",
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 2
+              "sourceAgeDays": 1
             },
             {
               "inputId": "japan-lng-demand",
@@ -1565,7 +1672,7 @@
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 261
+              "sourceAgeDays": 263
             }
           ],
           "evidenceIds": [
@@ -1630,7 +1737,7 @@
               "lng-origin-value"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-10-22T00:00:00Z",
+            "calculatedAt": "2026-10-24T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -1648,7 +1755,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-10-22T00:00:00Z",
+            "calculatedAt": "2026-10-24T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -1668,7 +1775,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-10-22T00:00:00Z",
+            "calculatedAt": "2026-10-24T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -1743,7 +1850,7 @@
         "score": 64,
         "status": "provisional",
         "confidence": "low",
-        "calculatedAt": "2026-10-22T02:35:34.394Z",
+        "calculatedAt": "2026-10-24T02:08:20.723Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -1924,7 +2031,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "U.S. EIA",
-            "sourceAgeDays": 65,
+            "sourceAgeDays": 67,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -1946,7 +2053,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 65,
+            "sourceAgeDays": 67,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -1968,7 +2075,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Reuters",
-            "sourceAgeDays": 91,
+            "sourceAgeDays": 93,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -1990,7 +2097,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "U.S. EIA",
-            "sourceAgeDays": 295,
+            "sourceAgeDays": 297,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2013,7 +2120,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "U.S. EIA",
-            "sourceAgeDays": 295,
+            "sourceAgeDays": 297,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2035,7 +2142,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Global Energy Monitor",
-            "sourceAgeDays": 295,
+            "sourceAgeDays": 297,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2057,7 +2164,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Global Energy Monitor",
-            "sourceAgeDays": 295,
+            "sourceAgeDays": 297,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2079,7 +2186,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "UN/LOCODE",
-            "sourceAgeDays": 295,
+            "sourceAgeDays": 297,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2101,7 +2208,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 67,
+            "sourceAgeDays": 69,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2123,7 +2230,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 66,
+            "sourceAgeDays": 68,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2145,7 +2252,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 65,
+            "sourceAgeDays": 67,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2186,10 +2293,8 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "U.S. EIA",
-            "sourceId": "src-eia-qatar-production",
-            "sourceUrl": "https://api.eia.gov/v2/seriesid/",
             "sourceAgeDays": null,
-            "cadence": "annual",
+            "cadence": "daily",
             "confidence": "unknown",
             "evidenceIds": []
           },
@@ -2207,10 +2312,8 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "U.S. EIA",
-            "sourceId": "src-eia-qatar-exports",
-            "sourceUrl": "https://api.eia.gov/v2/seriesid/",
             "sourceAgeDays": null,
-            "cadence": "annual",
+            "cadence": "daily",
             "confidence": "unknown",
             "evidenceIds": []
           },
@@ -2301,7 +2404,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "LNG Industry",
-            "sourceAgeDays": 51,
+            "sourceAgeDays": 53,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -2324,7 +2427,7 @@
             "coverageStatus": "partial-coverage",
             "coverageNote": "Kpler weekly reported count for Jul 27-Aug 2; AIS-dark transits may be unobserved. This is historical weekly context, not a September monthly total.",
             "source": "Kpler via Foreign Policy Journal",
-            "sourceAgeDays": 81,
+            "sourceAgeDays": 83,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -2346,7 +2449,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Reuters",
-            "sourceAgeDays": 41,
+            "sourceAgeDays": 43,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -2372,7 +2475,7 @@
             "source": "Reuters via The Business Standard",
             "sourceId": "src-reviewed-qatar-force-majeure",
             "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
-            "sourceAgeDays": 24,
+            "sourceAgeDays": 26,
             "cadence": "event-driven",
             "confidence": "medium",
             "evidenceIds": [
@@ -2396,7 +2499,7 @@
             "source": "Kpler via Reuters",
             "sourceId": "src-reviewed-hormuz-lng-september",
             "sourceUrl": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
-            "sourceAgeDays": 22,
+            "sourceAgeDays": 24,
             "cadence": "monthly",
             "confidence": "medium",
             "evidenceIds": [
@@ -2421,7 +2524,7 @@
             "source": "Kpler/LSEG via Reuters",
             "sourceId": "src-reviewed-hormuz-qatar-vessels-oct03",
             "sourceUrl": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
-            "sourceAgeDays": 19,
+            "sourceAgeDays": 21,
             "cadence": "event-driven",
             "confidence": "medium",
             "evidenceIds": [
@@ -2443,7 +2546,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 11,
+            "sourceAgeDays": 13,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2466,7 +2569,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 12,
+            "sourceAgeDays": 14,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2489,7 +2592,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 13,
+            "sourceAgeDays": 15,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2512,8 +2615,10 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "U.S. EIA",
-            "sourceAgeDays": 660,
-            "cadence": "daily",
+            "sourceId": "src-eia-qatar-production",
+            "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+            "sourceAgeDays": 662,
+            "cadence": "annual",
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
@@ -2535,8 +2640,10 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "U.S. EIA",
-            "sourceAgeDays": 660,
-            "cadence": "daily",
+            "sourceId": "src-eia-qatar-exports",
+            "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+            "sourceAgeDays": 662,
+            "cadence": "annual",
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
@@ -2580,8 +2687,6 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "IMF PortWatch",
-            "sourceId": "src-imf-portwatch-hormuz",
-            "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
             "sourceAgeDays": null,
             "cadence": "daily",
             "confidence": "unknown",
@@ -2628,7 +2733,7 @@
             "source": "Reuters via The Business Standard",
             "sourceId": "src-reviewed-ras-laffan-status",
             "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
-            "sourceAgeDays": 24,
+            "sourceAgeDays": 26,
             "cadence": "event-driven",
             "confidence": "medium",
             "evidenceIds": [
@@ -2650,12 +2755,14 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 4,
+            "sourceId": "src-imf-portwatch-hormuz",
+            "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
+            "sourceAgeDays": 6,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
-              "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:4bfce263b221c7e5"
+              "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e"
             ]
           },
           {
@@ -2673,7 +2780,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 5,
+            "sourceAgeDays": 7,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2696,7 +2803,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 6,
+            "sourceAgeDays": 8,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2719,7 +2826,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 7,
+            "sourceAgeDays": 9,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -2731,12 +2838,18 @@
         "coverage": [
           {
             "sourceId": "src-imf-portwatch-hormuz",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2026-10-18",
+              "end": "2026-10-18"
+            },
             "expectedCadence": "daily",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2026-10-18",
+              "end": "2026-10-18"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-reviewed-qatar-force-majeure",
@@ -2755,21 +2868,33 @@
           },
           {
             "sourceId": "src-eia-qatar-production",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "expectedCadence": "annual",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-eia-qatar-exports",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "expectedCadence": "annual",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-qatarenergy-ras-laffan-capacity",
@@ -2879,18 +3004,23 @@
             {
               "inputId": "hormuz-total-transits",
               "label": "Last reviewed total traffic",
+              "value": 4,
               "unit": "vessels/day",
-              "status": "unavailable",
-              "source": "",
-              "sourceDate": "",
+              "status": "confirmed",
+              "source": "IMF PortWatch",
+              "sourceDate": "2026-10-18",
+              "observedAt": "2026-10-18T00:00:00.000Z",
               "maxAgeDays": 7,
               "cadence": "daily",
-              "missingReason": "Machine refresh failed: Unable to connect. Is the computer able to access the url?. No approved observation is available.",
+              "machineEvidenceIds": [
+                "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e"
+              ],
               "observationKind": "transit",
-              "periodStart": null,
-              "periodEnd": null,
-              "coverageStatus": "unavailable",
-              "sourceAgeDays": null
+              "periodStart": "2026-10-18",
+              "periodEnd": "2026-10-18",
+              "coverageStatus": "direct-observation",
+              "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
+              "sourceAgeDays": 6
             }
           ],
           "evidenceIds": [
@@ -2942,7 +3072,7 @@
               "periodEnd": "2026-09-28",
               "coverageStatus": "partial-coverage",
               "coverageNote": "Reports Edison and selected Asian buyer notices, not a measured total Qatar LNG output loss.",
-              "sourceAgeDays": 24
+              "sourceAgeDays": 26
             }
           ],
           "evidenceIds": [
@@ -2976,7 +3106,7 @@
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 942
+              "sourceAgeDays": 944
             },
             {
               "inputId": "qatar-subchartered-carriers",
@@ -2988,12 +3118,12 @@
               "sourceDate": "2026-07-23",
               "maxAgeDays": 14,
               "cadence": "event-driven",
-              "carryReason": "Oct 22 search found no newer carrier count than Reuters' Jul 23 report of nine subchartered vessels; the Sep 11 Qatar LNG contract report does not update that fleet figure. Preserve the original value and date.",
+              "carryReason": "Oct 24 targeted search returned the July 23 Reuters report as the latest directly comparable source; no newer sub-chartered LNG carrier count was found. Preserve the minimum count of nine and its original date.",
               "observationKind": "flow",
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 91
+              "sourceAgeDays": 93
             },
             {
               "inputId": "lng-freight-delay",
@@ -3035,19 +3165,19 @@
             {
               "inputId": "ttf",
               "label": "Dutch TTF",
-              "value": 86.825,
+              "value": 93.445,
               "unit": "EUR/MWh",
               "status": "confirmed",
               "source": "ICE Endex Nov26 Dutch TTF delayed Last",
-              "sourceDate": "2026-10-21",
-              "observedAt": "2026-10-21T02:44:00Z",
+              "sourceDate": "2026-10-23",
+              "observedAt": "2026-10-24T00:59:00Z",
               "maxAgeDays": 3,
               "cadence": "daily",
               "observationKind": "flow",
-              "periodStart": "2026-10-21",
-              "periodEnd": "2026-10-21",
+              "periodStart": "2026-10-23",
+              "periodEnd": "2026-10-23",
               "coverageStatus": "direct-observation",
-              "coverageNote": "ICE Endex Nov26 Dutch TTF delayed Last was 86.825 EUR/MWh at Oct 21 02:44 GMT; page last updated 02:55 GMT. This is not a settlement price.",
+              "coverageNote": "ICE Endex Nov26 Dutch TTF delayed Last was 93.445 EUR/MWh at Oct 23 20:59 EDT (Oct 24 00:59 UTC); delayed and not settlement.",
               "sourceAgeDays": 1
             }
           ],
@@ -3081,7 +3211,7 @@
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 261
+              "sourceAgeDays": 263
             }
           ],
           "evidenceIds": [
@@ -3147,7 +3277,7 @@
               "lng-origin-value"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-10-22T00:00:00Z",
+            "calculatedAt": "2026-10-24T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -3165,7 +3295,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-10-22T00:00:00Z",
+            "calculatedAt": "2026-10-24T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -3185,7 +3315,7 @@
               "lng-war-risk"
             ],
             "unit": "USD/MMBtu",
-            "calculatedAt": "2026-10-22T00:00:00Z",
+            "calculatedAt": "2026-10-24T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "lng-origin-value",
@@ -3257,19 +3387,19 @@
       },
       "flowPressure": {
         "modelVersion": "flow-pressure-v1",
-        "score": 61,
+        "score": 64,
         "status": "provisional",
-        "confidence": "unknown",
-        "calculatedAt": "2026-10-22T02:35:34.394Z",
+        "confidence": "low",
+        "calculatedAt": "2026-10-24T02:08:20.723Z",
         "components": [
           {
             "id": "supply-interruption",
             "label": "Supply interruption",
             "weight": 0.25,
-            "score": 61,
-            "status": "unresolved",
-            "confidence": "unknown",
-            "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); unresolved because the required observation is unavailable.",
+            "score": 73,
+            "status": "partially-observed",
+            "confidence": "medium",
+            "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
             "observationIds": [
               "observation:hormuz-delivery:hormuz-total-transits",
               "observation:hormuz-delivery:qatar-output-status"
@@ -3470,7 +3600,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "U.S. EIA",
-            "sourceAgeDays": 65,
+            "sourceAgeDays": 67,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -3492,7 +3622,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 65,
+            "sourceAgeDays": 67,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -3513,7 +3643,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 65,
+            "sourceAgeDays": 67,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -3538,7 +3668,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Reuters",
-            "sourceAgeDays": 91,
+            "sourceAgeDays": 93,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -3560,7 +3690,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "U.S. EIA",
-            "sourceAgeDays": 295,
+            "sourceAgeDays": 297,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -3583,7 +3713,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "U.S. EIA",
-            "sourceAgeDays": 295,
+            "sourceAgeDays": 297,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -3605,7 +3735,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Global Energy Monitor",
-            "sourceAgeDays": 295,
+            "sourceAgeDays": 297,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -3627,7 +3757,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Global Energy Monitor",
-            "sourceAgeDays": 295,
+            "sourceAgeDays": 297,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -3649,7 +3779,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 67,
+            "sourceAgeDays": 69,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -3671,7 +3801,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 66,
+            "sourceAgeDays": 68,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -3693,7 +3823,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 65,
+            "sourceAgeDays": 67,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -3734,7 +3864,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 62,
+            "sourceAgeDays": 64,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -3755,10 +3885,8 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "U.S. EIA",
-            "sourceId": "src-eia-qatar-production",
-            "sourceUrl": "https://api.eia.gov/v2/seriesid/",
             "sourceAgeDays": null,
-            "cadence": "annual",
+            "cadence": "daily",
             "confidence": "unknown",
             "evidenceIds": []
           },
@@ -3776,10 +3904,8 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "U.S. EIA",
-            "sourceId": "src-eia-qatar-exports",
-            "sourceUrl": "https://api.eia.gov/v2/seriesid/",
             "sourceAgeDays": null,
-            "cadence": "annual",
+            "cadence": "daily",
             "confidence": "unknown",
             "evidenceIds": []
           },
@@ -3851,7 +3977,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 59,
+            "sourceAgeDays": 61,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -3875,7 +4001,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 58,
+            "sourceAgeDays": 60,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -3899,7 +4025,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 57,
+            "sourceAgeDays": 59,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -3920,7 +4046,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 55,
+            "sourceAgeDays": 57,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -3941,7 +4067,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 56,
+            "sourceAgeDays": 58,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -3966,7 +4092,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "LNG Industry",
-            "sourceAgeDays": 51,
+            "sourceAgeDays": 53,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -3988,7 +4114,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 50,
+            "sourceAgeDays": 52,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -4012,7 +4138,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 49,
+            "sourceAgeDays": 51,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -4036,7 +4162,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 45,
+            "sourceAgeDays": 47,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -4061,7 +4187,7 @@
             "coverageStatus": "partial-coverage",
             "coverageNote": "Kpler weekly reported count for Jul 27-Aug 2; AIS-dark transits may be unobserved. This is historical weekly context, not a September monthly total.",
             "source": "Kpler via Foreign Policy Journal",
-            "sourceAgeDays": 81,
+            "sourceAgeDays": 83,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -4082,7 +4208,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 42,
+            "sourceAgeDays": 44,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -4103,7 +4229,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 41,
+            "sourceAgeDays": 43,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -4127,7 +4253,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 37,
+            "sourceAgeDays": 39,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -4151,7 +4277,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 36,
+            "sourceAgeDays": 38,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -4176,7 +4302,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Reuters",
-            "sourceAgeDays": 41,
+            "sourceAgeDays": 43,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -4198,7 +4324,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 35,
+            "sourceAgeDays": 37,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -4222,7 +4348,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 34,
+            "sourceAgeDays": 36,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -4246,7 +4372,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 31,
+            "sourceAgeDays": 33,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -4267,7 +4393,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 28,
+            "sourceAgeDays": 30,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -4288,7 +4414,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 27,
+            "sourceAgeDays": 29,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -4309,7 +4435,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 23,
+            "sourceAgeDays": 25,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -4333,7 +4459,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 21,
+            "sourceAgeDays": 23,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [
@@ -4358,7 +4484,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "Yahoo Finance TTF=F daily quote last observed Oct 6; retained as a dated market reference after the latest fetch failed.",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 16,
+            "sourceAgeDays": 18,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -4383,7 +4509,7 @@
             "source": "Reuters via The Business Standard",
             "sourceId": "src-reviewed-qatar-force-majeure",
             "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
-            "sourceAgeDays": 24,
+            "sourceAgeDays": 26,
             "cadence": "event-driven",
             "confidence": "medium",
             "evidenceIds": [
@@ -4407,7 +4533,7 @@
             "source": "Kpler via Reuters",
             "sourceId": "src-reviewed-hormuz-lng-september",
             "sourceUrl": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
-            "sourceAgeDays": 22,
+            "sourceAgeDays": 24,
             "cadence": "monthly",
             "confidence": "medium",
             "evidenceIds": [
@@ -4432,7 +4558,7 @@
             "source": "Kpler/LSEG via Reuters",
             "sourceId": "src-reviewed-hormuz-qatar-vessels-oct03",
             "sourceUrl": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
-            "sourceAgeDays": 19,
+            "sourceAgeDays": 21,
             "cadence": "event-driven",
             "confidence": "medium",
             "evidenceIds": [
@@ -4454,7 +4580,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "Yahoo Finance TTF=F daily quote, latest observation Friday Oct 9.",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 13,
+            "sourceAgeDays": 15,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -4476,7 +4602,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "Yahoo Finance TTF=F dated snapshot at 2026-10-13T08:31:45.000Z.",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 9,
+            "sourceAgeDays": 11,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -4498,7 +4624,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "Yahoo Finance TTF=F dated snapshot at 2026-10-14T16:06:48Z.",
             "source": "Yahoo Finance TTF=F",
-            "sourceAgeDays": 8,
+            "sourceAgeDays": 10,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -4520,7 +4646,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 11,
+            "sourceAgeDays": 13,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -4543,7 +4669,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 12,
+            "sourceAgeDays": 14,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -4566,7 +4692,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 13,
+            "sourceAgeDays": 15,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -4589,8 +4715,10 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "U.S. EIA",
-            "sourceAgeDays": 660,
-            "cadence": "daily",
+            "sourceId": "src-eia-qatar-production",
+            "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+            "sourceAgeDays": 662,
+            "cadence": "annual",
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
@@ -4612,8 +4740,10 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "U.S. EIA",
-            "sourceAgeDays": 660,
-            "cadence": "daily",
+            "sourceId": "src-eia-qatar-exports",
+            "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+            "sourceAgeDays": 662,
+            "cadence": "annual",
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
@@ -4633,8 +4763,6 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "IMF PortWatch",
-            "sourceId": "src-imf-portwatch-hormuz",
-            "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
             "sourceAgeDays": null,
             "cadence": "daily",
             "confidence": "unknown",
@@ -4681,7 +4809,7 @@
             "source": "Reuters via The Business Standard",
             "sourceId": "src-reviewed-ras-laffan-status",
             "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
-            "sourceAgeDays": 24,
+            "sourceAgeDays": 26,
             "cadence": "event-driven",
             "confidence": "medium",
             "evidenceIds": [
@@ -4703,12 +4831,14 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 4,
+            "sourceId": "src-imf-portwatch-hormuz",
+            "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
+            "sourceAgeDays": 6,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
-              "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:4bfce263b221c7e5"
+              "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e"
             ]
           },
           {
@@ -4726,7 +4856,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 5,
+            "sourceAgeDays": 7,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -4749,7 +4879,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 6,
+            "sourceAgeDays": 8,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -4772,7 +4902,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 7,
+            "sourceAgeDays": 9,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -4784,12 +4914,18 @@
         "coverage": [
           {
             "sourceId": "src-imf-portwatch-hormuz",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2026-10-18",
+              "end": "2026-10-18"
+            },
             "expectedCadence": "daily",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2026-10-18",
+              "end": "2026-10-18"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-reviewed-qatar-force-majeure",
@@ -4808,21 +4944,33 @@
           },
           {
             "sourceId": "src-eia-qatar-production",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "expectedCadence": "annual",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-eia-qatar-exports",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "expectedCadence": "annual",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-qatarenergy-ras-laffan-capacity",
@@ -4942,7 +5090,7 @@
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 233
+              "sourceAgeDays": 235
             }
           ],
           "evidenceIds": [
@@ -4988,7 +5136,7 @@
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 233
+              "sourceAgeDays": 235
             },
             {
               "inputId": "saudi-hormuz-crude-2024",
@@ -5004,7 +5152,7 @@
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 493
+              "sourceAgeDays": 495
             }
           ],
           "evidenceIds": [
@@ -5041,12 +5189,12 @@
               "sourceDate": "2026-09-11",
               "maxAgeDays": 1,
               "cadence": "daily",
-              "carryReason": "Oct 22 search found newer VLCC figures in Worldscale and USD/day, but no route-normalized USD/bbl assessment comparable with this input. Preserve the Sep 11 value, route context and original date.",
+              "carryReason": "Oct 24 search revalidated Reuters' Oct 16 Gulf of Oman-to-China VLCC rate of about Worldscale 776; no directly comparable route-normalised USD/bbl assessment was found. Preserve the Sep 11 value and original date.",
               "observationKind": "freight",
               "periodStart": "2026-09-11",
               "periodEnd": "2026-09-11",
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 41
+              "sourceAgeDays": 43
             }
           ],
           "evidenceIds": [
@@ -5085,7 +5233,7 @@
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 233
+              "sourceAgeDays": 235
             },
             {
               "inputId": "asia-top-four-share",
@@ -5101,7 +5249,7 @@
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 233
+              "sourceAgeDays": 235
             },
             {
               "inputId": "oman-marker",
@@ -5118,7 +5266,7 @@
               "periodStart": null,
               "periodEnd": null,
               "coverageStatus": "direct-observation",
-              "sourceAgeDays": 27
+              "sourceAgeDays": 29
             }
           ],
           "evidenceIds": [
@@ -5191,11 +5339,10 @@
               "oil-dubai-oman"
             ],
             "unit": "USD/bbl",
-            "calculatedAt": "2026-10-22T00:00:00Z",
+            "calculatedAt": "2026-10-24T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "oil-dubai-oman",
-              "oil-brent",
               "oil-vlcc-freight",
               "oil-war-risk"
             ]
@@ -5209,11 +5356,10 @@
               "oil-war-risk"
             ],
             "unit": "USD/bbl",
-            "calculatedAt": "2026-10-22T00:00:00Z",
+            "calculatedAt": "2026-10-24T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "oil-dubai-oman",
-              "oil-brent",
               "oil-vlcc-freight",
               "oil-war-risk"
             ]
@@ -5229,21 +5375,19 @@
               "oil-war-risk"
             ],
             "unit": "USD/bbl",
-            "calculatedAt": "2026-10-22T00:00:00Z",
+            "calculatedAt": "2026-10-24T00:00:00Z",
             "status": "unavailable",
             "missingInputIds": [
               "oil-dubai-oman",
-              "oil-brent",
               "oil-vlcc-freight",
               "oil-war-risk"
             ]
           }
         ],
-        "dataStatus": "unavailable",
+        "dataStatus": "partial",
         "residualStatus": "insufficient-verified-data",
         "missingInputIds": [
           "oil-dubai-oman",
-          "oil-brent",
           "oil-vlcc-freight",
           "oil-war-risk"
         ],
@@ -5304,7 +5448,7 @@
         "score": 65,
         "status": "provisional",
         "confidence": "unknown",
-        "calculatedAt": "2026-10-22T02:35:34.394Z",
+        "calculatedAt": "2026-10-24T02:08:20.723Z",
         "components": [
           {
             "id": "supply-interruption",
@@ -5492,7 +5636,7 @@
             "status": "carried",
             "coverageStatus": "unavailable",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 65,
+            "sourceAgeDays": 67,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -5513,7 +5657,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 67,
+            "sourceAgeDays": 69,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -5535,7 +5679,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 66,
+            "sourceAgeDays": 68,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -5557,7 +5701,7 @@
             "status": "confirmed",
             "coverageStatus": "direct-observation",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 65,
+            "sourceAgeDays": 67,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -5598,7 +5742,7 @@
             "coverageStatus": "partial-coverage",
             "coverageNote": "Kpler weekly reported count for Jul 27-Aug 2; AIS-dark transits may be unobserved. This is historical weekly context, not a September monthly total.",
             "source": "Kpler via Foreign Policy Journal",
-            "sourceAgeDays": 81,
+            "sourceAgeDays": 83,
             "cadence": "daily",
             "confidence": "medium",
             "evidenceIds": [
@@ -5622,7 +5766,7 @@
             "source": "Kpler via Reuters",
             "sourceId": "src-reviewed-hormuz-lng-september",
             "sourceUrl": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
-            "sourceAgeDays": 22,
+            "sourceAgeDays": 24,
             "cadence": "monthly",
             "confidence": "medium",
             "evidenceIds": [
@@ -5647,7 +5791,7 @@
             "source": "Kpler/LSEG via Reuters",
             "sourceId": "src-reviewed-hormuz-qatar-vessels-oct03",
             "sourceUrl": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
-            "sourceAgeDays": 19,
+            "sourceAgeDays": 21,
             "cadence": "event-driven",
             "confidence": "medium",
             "evidenceIds": [
@@ -5669,7 +5813,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 11,
+            "sourceAgeDays": 13,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -5692,7 +5836,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 12,
+            "sourceAgeDays": 14,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -5715,7 +5859,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 13,
+            "sourceAgeDays": 15,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -5736,8 +5880,6 @@
             "status": "unavailable",
             "coverageStatus": "unavailable",
             "source": "IMF PortWatch",
-            "sourceId": "src-imf-portwatch-hormuz",
-            "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
             "sourceAgeDays": null,
             "cadence": "daily",
             "confidence": "unknown",
@@ -5758,12 +5900,14 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 4,
+            "sourceId": "src-imf-portwatch-hormuz",
+            "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
+            "sourceAgeDays": 6,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
             "machineEvidenceIds": [
-              "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:4bfce263b221c7e5"
+              "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e"
             ]
           },
           {
@@ -5781,7 +5925,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 5,
+            "sourceAgeDays": 7,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -5804,7 +5948,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 6,
+            "sourceAgeDays": 8,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -5827,7 +5971,7 @@
             "coverageStatus": "direct-observation",
             "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
             "source": "IMF PortWatch",
-            "sourceAgeDays": 7,
+            "sourceAgeDays": 9,
             "cadence": "daily",
             "confidence": "high",
             "evidenceIds": [],
@@ -5839,12 +5983,18 @@
         "coverage": [
           {
             "sourceId": "src-imf-portwatch-hormuz",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2026-10-18",
+              "end": "2026-10-18"
+            },
             "expectedCadence": "daily",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2026-10-18",
+              "end": "2026-10-18"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-reviewed-qatar-force-majeure",
@@ -5863,21 +6013,33 @@
           },
           {
             "sourceId": "src-eia-qatar-production",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "expectedCadence": "annual",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-eia-qatar-exports",
-            "sourcePeriod": null,
+            "sourcePeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "expectedCadence": "annual",
-            "observedPeriod": null,
+            "observedPeriod": {
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
             "missingPeriods": [],
-            "status": "unavailable",
-            "sourceStatus": "failed"
+            "status": "direct-observation",
+            "sourceStatus": "fetched"
           },
           {
             "sourceId": "src-qatarenergy-ras-laffan-capacity",
@@ -5979,7 +6141,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "U.S. EIA",
-        "sourceAgeDays": 65,
+        "sourceAgeDays": 67,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -6001,7 +6163,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 65,
+        "sourceAgeDays": 67,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6022,7 +6184,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 65,
+        "sourceAgeDays": 67,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6047,7 +6209,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "Reuters",
-        "sourceAgeDays": 91,
+        "sourceAgeDays": 93,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6069,7 +6231,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "U.S. EIA",
-        "sourceAgeDays": 295,
+        "sourceAgeDays": 297,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -6092,7 +6254,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "U.S. EIA",
-        "sourceAgeDays": 295,
+        "sourceAgeDays": 297,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -6114,7 +6276,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Global Energy Monitor",
-        "sourceAgeDays": 295,
+        "sourceAgeDays": 297,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -6136,7 +6298,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Global Energy Monitor",
-        "sourceAgeDays": 295,
+        "sourceAgeDays": 297,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -6158,7 +6320,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "UN/LOCODE",
-        "sourceAgeDays": 295,
+        "sourceAgeDays": 297,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -6180,7 +6342,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 67,
+        "sourceAgeDays": 69,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -6202,7 +6364,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 66,
+        "sourceAgeDays": 68,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -6224,7 +6386,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 65,
+        "sourceAgeDays": 67,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -6265,7 +6427,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 62,
+        "sourceAgeDays": 64,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6286,10 +6448,8 @@
         "status": "unavailable",
         "coverageStatus": "unavailable",
         "source": "U.S. EIA",
-        "sourceId": "src-eia-qatar-production",
-        "sourceUrl": "https://api.eia.gov/v2/seriesid/",
         "sourceAgeDays": null,
-        "cadence": "annual",
+        "cadence": "daily",
         "confidence": "unknown",
         "evidenceIds": []
       },
@@ -6307,10 +6467,8 @@
         "status": "unavailable",
         "coverageStatus": "unavailable",
         "source": "U.S. EIA",
-        "sourceId": "src-eia-qatar-exports",
-        "sourceUrl": "https://api.eia.gov/v2/seriesid/",
         "sourceAgeDays": null,
-        "cadence": "annual",
+        "cadence": "daily",
         "confidence": "unknown",
         "evidenceIds": []
       },
@@ -6400,7 +6558,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 59,
+        "sourceAgeDays": 61,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6424,7 +6582,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 58,
+        "sourceAgeDays": 60,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6448,7 +6606,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 57,
+        "sourceAgeDays": 59,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6469,7 +6627,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 55,
+        "sourceAgeDays": 57,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6490,7 +6648,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 56,
+        "sourceAgeDays": 58,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6515,7 +6673,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "LNG Industry",
-        "sourceAgeDays": 51,
+        "sourceAgeDays": 53,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6537,7 +6695,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 50,
+        "sourceAgeDays": 52,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6561,7 +6719,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 49,
+        "sourceAgeDays": 51,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6585,7 +6743,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 45,
+        "sourceAgeDays": 47,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6610,7 +6768,7 @@
         "coverageStatus": "partial-coverage",
         "coverageNote": "Kpler weekly reported count for Jul 27-Aug 2; AIS-dark transits may be unobserved. This is historical weekly context, not a September monthly total.",
         "source": "Kpler via Foreign Policy Journal",
-        "sourceAgeDays": 81,
+        "sourceAgeDays": 83,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6631,7 +6789,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 42,
+        "sourceAgeDays": 44,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6652,7 +6810,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 41,
+        "sourceAgeDays": 43,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6676,7 +6834,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 37,
+        "sourceAgeDays": 39,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6700,7 +6858,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 36,
+        "sourceAgeDays": 38,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6725,7 +6883,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "Reuters",
-        "sourceAgeDays": 41,
+        "sourceAgeDays": 43,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6747,7 +6905,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 35,
+        "sourceAgeDays": 37,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6771,7 +6929,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 34,
+        "sourceAgeDays": 36,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6795,7 +6953,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 31,
+        "sourceAgeDays": 33,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6816,7 +6974,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 28,
+        "sourceAgeDays": 30,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6837,7 +6995,7 @@
         "status": "carried",
         "coverageStatus": "unavailable",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 27,
+        "sourceAgeDays": 29,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6858,7 +7016,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 23,
+        "sourceAgeDays": 25,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6882,7 +7040,7 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 21,
+        "sourceAgeDays": 23,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [
@@ -6907,7 +7065,7 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "Yahoo Finance TTF=F daily quote last observed Oct 6; retained as a dated market reference after the latest fetch failed.",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 16,
+        "sourceAgeDays": 18,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -6932,7 +7090,7 @@
         "source": "Reuters via The Business Standard",
         "sourceId": "src-reviewed-qatar-force-majeure",
         "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
-        "sourceAgeDays": 24,
+        "sourceAgeDays": 26,
         "cadence": "event-driven",
         "confidence": "medium",
         "evidenceIds": [
@@ -6956,7 +7114,7 @@
         "source": "Kpler via Reuters",
         "sourceId": "src-reviewed-hormuz-lng-september",
         "sourceUrl": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
-        "sourceAgeDays": 22,
+        "sourceAgeDays": 24,
         "cadence": "monthly",
         "confidence": "medium",
         "evidenceIds": [
@@ -6981,7 +7139,7 @@
         "source": "Kpler/LSEG via Reuters",
         "sourceId": "src-reviewed-hormuz-qatar-vessels-oct03",
         "sourceUrl": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
-        "sourceAgeDays": 19,
+        "sourceAgeDays": 21,
         "cadence": "event-driven",
         "confidence": "medium",
         "evidenceIds": [
@@ -7003,7 +7161,7 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "Yahoo Finance TTF=F daily quote, latest observation Friday Oct 9.",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 13,
+        "sourceAgeDays": 15,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -7025,7 +7183,7 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "Yahoo Finance TTF=F dated snapshot at 2026-10-13T08:31:45.000Z.",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 9,
+        "sourceAgeDays": 11,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -7047,7 +7205,7 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "Yahoo Finance TTF=F dated snapshot at 2026-10-14T16:06:48Z.",
         "source": "Yahoo Finance TTF=F",
-        "sourceAgeDays": 8,
+        "sourceAgeDays": 10,
         "cadence": "daily",
         "confidence": "medium",
         "evidenceIds": [
@@ -7069,7 +7227,7 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 11,
+        "sourceAgeDays": 13,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -7092,7 +7250,7 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 12,
+        "sourceAgeDays": 14,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -7115,7 +7273,7 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 13,
+        "sourceAgeDays": 15,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -7138,8 +7296,10 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "U.S. EIA",
-        "sourceAgeDays": 660,
-        "cadence": "daily",
+        "sourceId": "src-eia-qatar-production",
+        "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+        "sourceAgeDays": 662,
+        "cadence": "annual",
         "confidence": "high",
         "evidenceIds": [],
         "machineEvidenceIds": [
@@ -7161,8 +7321,10 @@
         "status": "confirmed",
         "coverageStatus": "direct-observation",
         "source": "U.S. EIA",
-        "sourceAgeDays": 660,
-        "cadence": "daily",
+        "sourceId": "src-eia-qatar-exports",
+        "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+        "sourceAgeDays": 662,
+        "cadence": "annual",
         "confidence": "high",
         "evidenceIds": [],
         "machineEvidenceIds": [
@@ -7206,8 +7368,6 @@
         "status": "unavailable",
         "coverageStatus": "unavailable",
         "source": "IMF PortWatch",
-        "sourceId": "src-imf-portwatch-hormuz",
-        "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
         "sourceAgeDays": null,
         "cadence": "daily",
         "confidence": "unknown",
@@ -7254,7 +7414,7 @@
         "source": "Reuters via The Business Standard",
         "sourceId": "src-reviewed-ras-laffan-status",
         "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
-        "sourceAgeDays": 24,
+        "sourceAgeDays": 26,
         "cadence": "event-driven",
         "confidence": "medium",
         "evidenceIds": [
@@ -7276,12 +7436,14 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 4,
+        "sourceId": "src-imf-portwatch-hormuz",
+        "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
+        "sourceAgeDays": 6,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
         "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:4bfce263b221c7e5"
+          "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e"
         ]
       },
       {
@@ -7299,7 +7461,7 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 5,
+        "sourceAgeDays": 7,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -7322,7 +7484,7 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 6,
+        "sourceAgeDays": 8,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -7345,7 +7507,7 @@
         "coverageStatus": "direct-observation",
         "coverageNote": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed.",
         "source": "IMF PortWatch",
-        "sourceAgeDays": 7,
+        "sourceAgeDays": 9,
         "cadence": "daily",
         "confidence": "high",
         "evidenceIds": [],
@@ -7357,12 +7519,18 @@
     "coverage": [
       {
         "sourceId": "src-imf-portwatch-hormuz",
-        "sourcePeriod": null,
+        "sourcePeriod": {
+          "start": "2026-10-18",
+          "end": "2026-10-18"
+        },
         "expectedCadence": "daily",
-        "observedPeriod": null,
+        "observedPeriod": {
+          "start": "2026-10-18",
+          "end": "2026-10-18"
+        },
         "missingPeriods": [],
-        "status": "unavailable",
-        "sourceStatus": "failed"
+        "status": "direct-observation",
+        "sourceStatus": "fetched"
       },
       {
         "sourceId": "src-reviewed-qatar-force-majeure",
@@ -7381,21 +7549,33 @@
       },
       {
         "sourceId": "src-eia-qatar-production",
-        "sourcePeriod": null,
+        "sourcePeriod": {
+          "start": "2024-01-01",
+          "end": "2024-12-31"
+        },
         "expectedCadence": "annual",
-        "observedPeriod": null,
+        "observedPeriod": {
+          "start": "2024-01-01",
+          "end": "2024-12-31"
+        },
         "missingPeriods": [],
-        "status": "unavailable",
-        "sourceStatus": "failed"
+        "status": "direct-observation",
+        "sourceStatus": "fetched"
       },
       {
         "sourceId": "src-eia-qatar-exports",
-        "sourcePeriod": null,
+        "sourcePeriod": {
+          "start": "2024-01-01",
+          "end": "2024-12-31"
+        },
         "expectedCadence": "annual",
-        "observedPeriod": null,
+        "observedPeriod": {
+          "start": "2024-01-01",
+          "end": "2024-12-31"
+        },
         "missingPeriods": [],
-        "status": "unavailable",
-        "sourceStatus": "failed"
+        "status": "direct-observation",
+        "sourceStatus": "fetched"
       },
       {
         "sourceId": "src-qatarenergy-ras-laffan-capacity",

@@ -14,15 +14,15 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-10-22 (D231) |
-| **Crisis level** | 4 - High (Latest reviewed Reuters report (Oct 21) says Iran's Revolutionary Guards Navy claimed a supertanker caught fire after a mine strike south of Hormuz; this remains source-attributed. Brent $110.36 and WTI $99.13 are Oct 21 Yahoo snapshots carried after the Oct 22 refresh failure. Official JKM remains $22/MMBtu from Jul 24, carried; the separate JKM-linked CFD was $29.55 on Oct 20. Crisis level and scenario probabilities remain unchanged at 4 and 15/45/40.) |
-| **Brent** | $110.36 (2026-10-21, Yahoo Finance BZ=F; +1.443%; carried after Oct 22 refresh failure) |
-| **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $29.55/MMBtu (Trading Economics, Oct 20; not an official assessment) |
-| **TTF** | 86.825 EUR/MWh (ICE Endex Nov26 delayed Last, Oct 21 02:44 GMT; not settlement) |
-| **Exposure trace** | Latest reviewed report (Oct 21): Reuters says Iran's Guards Navy claimed a supertanker fire after a mine strike south of Hormuz and separately cites Kpler's report of 18 vessel attacks over two weeks; both remain attributed. No newer article was verified on Oct 22. |
+| **Last updated** | 2026-10-24 (D233) |
+| **Crisis level** | 4 - High (Latest reviewed Reuters shipping report (Oct 21) says Iran's Revolutionary Guards Navy claimed a supertanker fire after a mine strike south of Hormuz; the claim remains source-attributed. A targeted Reuters search found no matching Oct 22-23 update. Brent was $111.66 and WTI $103.44 on Oct 23. Official JKM remains $22/MMBtu from Jul 24, carried; the separate JKM-linked CFD was $31.42 on Oct 23. Scenario probabilities remain 15/45/40.) |
+| **Brent** | $111.66 (2026-10-23, Yahoo Finance BZ=F; +2.76%) |
+| **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $31.42/MMBtu (Trading Economics, Oct 23; not an official assessment) |
+| **TTF** | 93.445 EUR/MWh (ICE Endex Nov26 delayed Last, Oct 23 20:59 EDT / Oct 24 00:59 UTC; not settlement) |
+| **Exposure trace** | Latest verified Reuters incident report remains Oct 21: Iran's Guards Navy claimed a tanker fire after a mine strike south of Hormuz; Kpler separately reported 18 vessel attacks over two weeks. Both remain attributed. A targeted Reuters search found no matching Oct 22-23 shipping article. |
 | **Evidence audit** | 57 checked · 40 verified · 17 carried · 0 unsupported · PASS |
-| **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: unavailable (insufficient verified data) |
-| **Stale / carried** | 21 carried/estimated; 10 need a replacement source: trace qatar-subchartered-carriers (2026-07-23, 91d), commercial lng-jkm (2026-07-24, 90d), trace hormuz-transits (2026-08-02, 81d), cross-asset asean-ig (2026-08-05, 78d), cross-asset asean-hy (2026-08-05, 78d), cross-asset energy-eq (2026-08-05, 78d), cross-asset shipping-eq (2026-08-05, 78d), cross-asset banks-eq (2026-08-05, 78d), trace oil-vlcc-freight (2026-09-11, 41d), commercial oil-vlcc-freight (2026-09-11, 41d) |
+| **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
+| **Stale / carried** | 17 carried/estimated; 10 need a replacement source: trace qatar-subchartered-carriers (2026-07-23, 93d), commercial lng-jkm (2026-07-24, 92d), trace hormuz-transits (2026-08-02, 83d), cross-asset asean-ig (2026-08-05, 80d), cross-asset asean-hy (2026-08-05, 80d), cross-asset energy-eq (2026-08-05, 80d), cross-asset shipping-eq (2026-08-05, 80d), cross-asset banks-eq (2026-08-05, 80d), trace oil-vlcc-freight (2026-09-11, 43d), commercial oil-vlcc-freight (2026-09-11, 43d) |
 
 ---
 
@@ -506,10 +506,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > Edit `priceNarratives` in daily state, not this section. Replace the prior-day levels, and keep no more than the 3 most significant historical inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $110.36 (Yahoo Finance BZ=F, Oct 21 snapshot, +1.443%; carried on Oct 22 after refresh failure). Working range $75-85 base; $85-105 stress; $105-135+ tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried; Oct 22 search found no newer official Platts assessment). Separate JKM-linked CFD was $29.55/MMBtu on Oct 20 (-1.53%; Trading Economics); not an official assessment.
-- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 86.825 EUR/MWh (ICE Endex Nov26 delayed Last, Oct 21 02:44 GMT; not settlement). Selective LNG passages do not establish unrestricted Hormuz access.
-- **Credit**: iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both carried as estimates; Oct 22 targeted searches found no newer comparable public marks. No source-approved daily credit marks are available. Scenario split remains base 15%, stress 45%, tail 40%.
+- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $111.66 (Yahoo Finance BZ=F, Oct 23, +2.761%). Working range $75-85 base; $85-105 stress; $105-135+ tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried; Oct 24 targeted search found no newer official Platts assessment). The separate JKM-linked CFD was $31.42/MMBtu on Oct 23 (+2.60%; Trading Economics); it is not an official assessment.
+- **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 93.445 EUR/MWh (ICE Endex Nov26 delayed Last, Oct 23 20:59 EDT / Oct 24 00:59 UTC; not settlement). Selective LNG passages do not establish unrestricted Hormuz access.
+- **Credit**: iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both retained as estimates; Oct 24 searches found no dated, directly comparable daily marks. Official index pages and broad monthly factsheets did not supply the requested spreads. Scenario split remains base 15%, stress 45%, tail 40%.
 
 ### BottomChartsPanel (`src/data/charts-volatility.json`, generated from `volatilityDay`)
 
