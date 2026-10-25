@@ -1,45 +1,38 @@
 {
   "schemaVersion": "energy-lng-raw-snapshot-v1",
-  "generatedAt": "2026-10-24T02:08:20.723Z",
+  "generatedAt": "2026-10-25T09:46:06.841Z",
   "snapshots": [
     {
-      "id": "energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e",
+      "id": "energy-snapshot:src-imf-portwatch-hormuz:85b95ebd32e9e0eb",
       "sourceId": "src-imf-portwatch-hormuz",
       "provider": "IMF PortWatch",
-      "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=portid%3D%27chokepoint6%27+AND+date+%3E%3D+DATE+%272026-10-18%27+AND+date+%3C%3D+DATE+%272026-10-24%27&outFields=date%2Cportid%2Cportname%2Cn_total%2Cn_tanker%2Cn_cargo%2Ccapacity&returnGeometry=false&orderByFields=date+DESC&resultRecordCount=1000&f=json",
-      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
+      "retrievedAt": "2026-10-25T09:46:06.841Z",
       "observedAt": null,
-      "httpStatus": 200,
-      "contentType": "application/json; charset=utf-8",
-      "contentHash": "c3fb7e09d105033e499b42a74ca9c2cb3b36f11570c52bb23740b57929b23f9c",
+      "httpStatus": null,
+      "contentType": null,
+      "contentHash": null,
       "parserVersion": "portwatch-arcgis-route-v1",
-      "status": "fetched",
+      "status": "failed",
       "canonicalUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
-      "evidenceId": "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e",
+      "evidenceId": "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:85b95ebd32e9e0eb",
       "recordKeys": [
-        "ff0c02e1a3a6f006b1f2a2d0dd13c8e651168bbe69f24c177082314614875c54"
+        "1880ac740b9e80af87794436d5e750300132f7e12d44648e6969976dea3c797c"
       ],
-      "rawSnapshotRef": "raw-snapshot:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e",
-      "artifactPath": "src/data/energy-lng-snapshots/energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e.json",
-      "lineageRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e",
-      "sourcePeriod": {
-        "start": "2026-10-18",
-        "end": "2026-10-18"
-      },
+      "error": "getaddrinfo EAI_AGAIN services9.arcgis.com",
+      "lineageRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:85b95ebd32e9e0eb",
+      "sourcePeriod": null,
       "expectedCadence": "daily",
-      "observedPeriod": {
-        "start": "2026-10-18",
-        "end": "2026-10-18"
-      },
+      "observedPeriod": null,
       "missingPeriods": [],
-      "sourceStatus": "fetched"
+      "sourceStatus": "failed"
     },
     {
       "id": "energy-snapshot:src-reviewed-qatar-force-majeure:f4c3eb3ca5feeb61",
       "sourceId": "src-reviewed-qatar-force-majeure",
       "provider": "Reuters via The Business Standard",
       "url": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
-      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "retrievedAt": "2026-10-25T09:46:06.841Z",
       "observedAt": null,
       "httpStatus": null,
       "contentType": null,
@@ -66,75 +59,61 @@
       "sourceStatus": "skipped"
     },
     {
-      "id": "energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
+      "id": "energy-snapshot:src-eia-qatar-production:4a9233c06146874c",
       "sourceId": "src-eia-qatar-production",
       "provider": "U.S. EIA",
-      "url": "https://api.eia.gov/v2/seriesid/INTL.26-1-QAT-BCF.A?api_key=%REDACTED%",
-      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "url": "https://api.eia.gov/v2/seriesid/",
+      "retrievedAt": "2026-10-25T09:46:06.841Z",
       "observedAt": null,
-      "httpStatus": 200,
-      "contentType": "application/json",
-      "contentHash": "a7a9454f67798ea75c768e7e6ed4fa745b13e29586232c899eb8d0c7c93fb520",
+      "httpStatus": null,
+      "contentType": null,
+      "contentHash": null,
       "parserVersion": "eia-series-v2",
-      "status": "fetched",
+      "status": "failed",
       "canonicalUrl": "https://api.eia.gov/v2/seriesid/",
-      "evidenceId": "machine-evidence:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
+      "evidenceId": "machine-evidence:energy-snapshot:src-eia-qatar-production:4a9233c06146874c",
       "recordKeys": [
-        "19ef342ea69f576b9ec1613acc4aa21dc223a100acede4c9887705c689bd5a62"
+        "13d55f085a38008cb2cc08e98cb3e796632611daa2b57c64af74e1a9d3215bd4"
       ],
-      "rawSnapshotRef": "raw-snapshot:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
-      "artifactPath": "src/data/energy-lng-snapshots/energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7.json",
-      "lineageRef": "snapshot:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
-      "sourcePeriod": {
-        "start": "2024-01-01",
-        "end": "2024-12-31"
-      },
+      "error": "getaddrinfo EAI_AGAIN api.eia.gov",
+      "lineageRef": "snapshot:energy-snapshot:src-eia-qatar-production:4a9233c06146874c",
+      "sourcePeriod": null,
       "expectedCadence": "annual",
-      "observedPeriod": {
-        "start": "2024-01-01",
-        "end": "2024-12-31"
-      },
+      "observedPeriod": null,
       "missingPeriods": [],
-      "sourceStatus": "fetched"
+      "sourceStatus": "failed"
     },
     {
-      "id": "energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
+      "id": "energy-snapshot:src-eia-qatar-exports:a79ea36225c9f25e",
       "sourceId": "src-eia-qatar-exports",
       "provider": "U.S. EIA",
-      "url": "https://api.eia.gov/v2/seriesid/INTL.26-4-QAT-BCF.A?api_key=%REDACTED%",
-      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "url": "https://api.eia.gov/v2/seriesid/",
+      "retrievedAt": "2026-10-25T09:46:06.841Z",
       "observedAt": null,
-      "httpStatus": 200,
-      "contentType": "application/json",
-      "contentHash": "bb68bc4bb67d7fde8718930bc83a6b9f9ebb0bbe0de03364bd8a0598dfa7e362",
+      "httpStatus": null,
+      "contentType": null,
+      "contentHash": null,
       "parserVersion": "eia-series-v2",
-      "status": "fetched",
+      "status": "failed",
       "canonicalUrl": "https://api.eia.gov/v2/seriesid/",
-      "evidenceId": "machine-evidence:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
+      "evidenceId": "machine-evidence:energy-snapshot:src-eia-qatar-exports:a79ea36225c9f25e",
       "recordKeys": [
-        "11801a1d8e13297634cab5f786bf4a6c2eda2d3b7a54cf38a436d864d7c18a9c"
+        "30a7a9d5c769e473f6982817c912a6e175827b5d03a5c6c3647b5805b2c9abe1"
       ],
-      "rawSnapshotRef": "raw-snapshot:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
-      "artifactPath": "src/data/energy-lng-snapshots/energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde.json",
-      "lineageRef": "snapshot:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
-      "sourcePeriod": {
-        "start": "2024-01-01",
-        "end": "2024-12-31"
-      },
+      "error": "getaddrinfo EAI_AGAIN api.eia.gov",
+      "lineageRef": "snapshot:energy-snapshot:src-eia-qatar-exports:a79ea36225c9f25e",
+      "sourcePeriod": null,
       "expectedCadence": "annual",
-      "observedPeriod": {
-        "start": "2024-01-01",
-        "end": "2024-12-31"
-      },
+      "observedPeriod": null,
       "missingPeriods": [],
-      "sourceStatus": "fetched"
+      "sourceStatus": "failed"
     },
     {
       "id": "energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c",
       "sourceId": "src-qatarenergy-ras-laffan-capacity",
       "provider": "QatarEnergy LNG",
       "url": "https://www.qatarenergylng.qa/Operations/LNG-trains",
-      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "retrievedAt": "2026-10-25T09:46:06.841Z",
       "observedAt": "2026-10-15T00:00:00.000Z",
       "httpStatus": null,
       "contentType": "application/json",
@@ -166,7 +145,7 @@
       "sourceId": "src-reviewed-ras-laffan-status",
       "provider": "Reuters via The Business Standard",
       "url": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
-      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "retrievedAt": "2026-10-25T09:46:06.841Z",
       "observedAt": null,
       "httpStatus": null,
       "contentType": null,
@@ -197,7 +176,7 @@
       "sourceId": "src-unlocode-ras-laffan",
       "provider": "UN/LOCODE",
       "url": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
-      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "retrievedAt": "2026-10-25T09:46:06.841Z",
       "observedAt": "2026-05-09T00:00:00.000Z",
       "httpStatus": null,
       "contentType": "application/json",
@@ -229,7 +208,7 @@
       "sourceId": "src-reviewed-hormuz-lng-september",
       "provider": "Kpler via Reuters",
       "url": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
-      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "retrievedAt": "2026-10-25T09:46:06.841Z",
       "observedAt": null,
       "httpStatus": null,
       "contentType": null,
@@ -260,7 +239,7 @@
       "sourceId": "src-reviewed-hormuz-qatar-vessels-oct03",
       "provider": "Kpler/LSEG via Reuters",
       "url": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
-      "retrievedAt": "2026-10-24T02:08:20.723Z",
+      "retrievedAt": "2026-10-25T09:46:06.841Z",
       "observedAt": null,
       "httpStatus": null,
       "contentType": null,

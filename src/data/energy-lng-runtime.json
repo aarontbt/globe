@@ -1,15 +1,15 @@
 {
   "schemaVersion": "energy-lng-runtime-v1",
   "promotionStatus": "promoted",
-  "promotedAt": "2026-10-24T02:08:20.723Z",
-  "assessmentVersion": "energy-runtime:7fdd20ef0858dab1d55d2dcf",
-  "sourceRunId": "energy-refresh:58e6969e4b1f19f0b44b0723",
-  "baseFingerprint": "73a378f24fc205d4d092858aaa9daf0dff1ea9ac94ba45b6e9e718b1735cd85b",
+  "promotedAt": "2026-10-25T09:46:06.841Z",
+  "assessmentVersion": "energy-runtime:cc777f78aa57cf817956df99",
+  "sourceRunId": "energy-refresh:de923fc286384f14f9614ec0",
+  "baseFingerprint": "d0602af9e44ab82e03aa878a8f0d84db4edfe03307281dd7ba6d19980532cdb5",
   "promotedRecordIds": [
-    "energy-observation:src-imf-portwatch-hormuz:hormuz-total-transits:2026-10-18:2026-10-18",
+    "energy-observation:src-imf-portwatch-hormuz:hormuz-total-transits:unavailable:unavailable",
     "energy-observation:src-reviewed-qatar-force-majeure:qatar-output-status:2026-09-28:2026-09-28",
-    "energy-observation:src-eia-qatar-production:qatar-production-baseline:2024-01-01:2024-12-31",
-    "energy-observation:src-eia-qatar-exports:qatar-export-baseline:2024-01-01:2024-12-31",
+    "energy-observation:src-eia-qatar-production:qatar-production-baseline:unavailable:unavailable",
+    "energy-observation:src-eia-qatar-exports:qatar-export-baseline:unavailable:unavailable",
     "energy-observation:src-qatarenergy-ras-laffan-capacity:ras-laffan-capacity:2026-01-01:2026-12-31",
     "energy-observation:src-reviewed-ras-laffan-status:ras-laffan-asset-status:2026-09-28:2026-09-28",
     "energy-observation:src-unlocode-ras-laffan:ras-laffan-port-identity:2026-01-01:2026-12-31",
@@ -19,9 +19,9 @@
   "domain": {
     "schemaVersion": "energy-lng-domain-v1",
     "readModelVersion": "energy-lng-read-model-v1",
-    "asOf": "2026-10-24T00:00:00Z",
-    "day": "D233",
-    "headline": "Latest verified Reuters incident report remains Oct 21: Iran's Guards Navy claimed a tanker fire after a mine strike south of Hormuz; Kpler separately reported 18 vessel attacks over two weeks. Both remain attributed. A targeted Reuters search found no matching Oct 22-23 shipping article.",
+    "asOf": "2026-10-25T00:00:00Z",
+    "day": "D234",
+    "headline": "Reuters' Oct 23 report cites a Washington Institute map recording 28 confirmed and reported attacks in Hormuz-area waters during October, 113 since Feb 28; UKMTO warns voluntary ship reporting leaves gaps. The Oct 21 Guards Navy tanker-fire claim and Kpler's 18 attacks over two weeks remain attributed. No newer LNG-only weekly transit count was found.",
     "sources": [
       {
         "id": "e-qatar-force-majeure",
@@ -34,7 +34,7 @@
         "cadence": "event-driven",
         "maxAgeDays": 14,
         "status": "carried",
-        "note": "Oct 24 targeted search returned no newer directly comparable QatarEnergy sub-chartered carrier count; retain the July 23 Reuters observation as historical context.",
+        "note": "Oct 25 targeted search found no newer directly comparable sub-chartered LNG carrier count; retain the July 23 Reuters minimum as historical context.",
         "provider": "Reuters"
       },
       {
@@ -62,7 +62,7 @@
         "cadence": "daily",
         "maxAgeDays": 7,
         "status": "carried",
-        "note": "Oct 24 targeted search found no newer comparable weekly LNG-only count. The July Kpler count remains historical context; October all-commodity counts have a different scope.",
+        "note": "Oct 25 targeted search found no newer comparable LNG-only weekly count; the July Kpler count remains historical context and October all-vessel counts have different scope.",
         "provider": "Foreign Policy Journal (Kpler data)"
       },
       {
@@ -118,7 +118,7 @@
         "cadence": "daily",
         "maxAgeDays": 1,
         "status": "carried",
-        "note": "Oct 24 search revalidated Reuters' Oct 16 Gulf of Oman-to-China VLCC rate near Worldscale 776, but found no route-normalised USD/bbl assessment comparable to the carried Sep 11 input.",
+        "note": "Oct 25 targeted search found no directly comparable Gulf of Oman-to-China USD/bbl assessment; the Oct 16 Worldscale quote is a different unit.",
         "provider": "Reuters"
       },
       {
@@ -160,7 +160,7 @@
         "cadence": "daily",
         "maxAgeDays": 3,
         "status": "carried",
-        "note": "Oct 24 targeted Reuters/Platts search found no newer official JKM assessment. The separate Trading Economics CFD and CME futures are different instruments; Reuters' Jul 24 $22/MMBtu assessment remains the latest approved official observation.",
+        "note": "Oct 25 targeted Reuters/Platts search found no newer official JKM assessment; futures and CFD quotes are distinct instruments from the Jul 24 Reuters assessment.",
         "provider": "Reuters"
       },
       {
@@ -793,16 +793,16 @@
       },
       {
         "id": "e-ph10y",
-        "title": "Philippines 10-Year Government Bond Yield",
+        "title": "Philippines 10-Year Government Bond Yield - Quote - Chart - Historical Data - News",
         "publisher": "Trading Economics",
         "url": "https://tradingeconomics.com/philippines/government-bond-yield",
-        "publishedAt": "2026-10-16",
-        "retrievedAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-23",
+        "retrievedAt": "2026-10-25T00:00:00Z",
         "kind": "market-observation",
         "cadence": "daily",
         "maxAgeDays": 7,
         "status": "confirmed",
-        "note": "Philippines 10-year OTC interbank government yield was 7.98% on Oct 16; displayed day move 0.041 percentage points (4.1bp).",
+        "note": "Exact Trading Economics page review on Oct 25: the dated Oct 23 row reports 8.12%, up 0.06 percentage points from the previous session. The page also displayed an undated live Actual value; the audited observation is the dated Oct 23 row.",
         "provider": "Trading Economics"
       },
       {
@@ -818,119 +818,30 @@
         "status": "confirmed",
         "note": "Reuters reports that Iran's Revolutionary Guards Navy said a supertanker caught fire after striking a mine south of Hormuz, according to Iranian media; Kpler separately reported at least 18 vessel attacks over two weeks. These remain source-attributed claims.",
         "provider": "Reuters"
+      },
+      {
+        "id": "e-reuters-attacks-1023",
+        "title": "Ship attacks in Strait of Hormuz hit record high in October",
+        "publisher": "Reuters",
+        "url": "https://www.reuters.com/business/energy/ship-attacks-strait-hormuz-hit-record-high-october-2026-10-23/",
+        "publishedAt": "2026-10-23",
+        "retrievedAt": "2026-10-25T00:00:00Z",
+        "kind": "event",
+        "cadence": "event-driven",
+        "maxAgeDays": 7,
+        "status": "confirmed",
+        "note": "Reuters reported Oct 23 that the Washington Institute map recorded 28 confirmed and reported attacks in Hormuz-area waters during October and 113 since Feb 28. UKMTO reported voluntary ship reporting gaps. This is an incident tally, not a transit count.",
+        "provider": "Reuters"
       }
     ],
     "machineEvidence": [
-      {
-        "id": "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e",
-        "sourceId": "src-imf-portwatch-hormuz",
-        "provider": "IMF PortWatch",
-        "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=portid%3D%27chokepoint6%27+AND+date+%3E%3D+DATE+%272026-10-18%27+AND+date+%3C%3D+DATE+%272026-10-24%27&outFields=date%2Cportid%2Cportname%2Cn_total%2Cn_tanker%2Cn_cargo%2Ccapacity&returnGeometry=false&orderByFields=date+DESC&resultRecordCount=1000&f=json",
-        "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e",
-        "retrievedAt": "2026-10-24T02:08:20.723Z",
-        "observedAt": null,
-        "contentHash": "c3fb7e09d105033e499b42a74ca9c2cb3b36f11570c52bb23740b57929b23f9c",
-        "parserVersion": "portwatch-arcgis-route-v1",
-        "recordKeys": [
-          "ff0c02e1a3a6f006b1f2a2d0dd13c8e651168bbe69f24c177082314614875c54"
-        ],
-        "targetInputIds": [
-          "hormuz-total-transits"
-        ],
-        "targetCommercialInputIds": [],
-        "observationKind": "transit",
-        "coverage": {
-          "status": "direct-observation",
-          "sourcePeriod": {
-            "start": "2026-10-18",
-            "end": "2026-10-18"
-          },
-          "expectedCadence": "daily",
-          "observedPeriod": {
-            "start": "2026-10-18",
-            "end": "2026-10-18"
-          },
-          "missingPeriods": [],
-          "sourceStatus": "fetched",
-          "note": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed."
-        },
-        "status": "validated"
-      },
-      {
-        "id": "machine-evidence:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
-        "sourceId": "src-eia-qatar-production",
-        "provider": "U.S. EIA",
-        "url": "https://api.eia.gov/v2/seriesid/INTL.26-1-QAT-BCF.A?api_key=%REDACTED%",
-        "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
-        "retrievedAt": "2026-10-24T02:08:20.723Z",
-        "observedAt": null,
-        "contentHash": "a7a9454f67798ea75c768e7e6ed4fa745b13e29586232c899eb8d0c7c93fb520",
-        "parserVersion": "eia-series-v2",
-        "recordKeys": [
-          "19ef342ea69f576b9ec1613acc4aa21dc223a100acede4c9887705c689bd5a62"
-        ],
-        "targetInputIds": [
-          "qatar-production-baseline"
-        ],
-        "targetCommercialInputIds": [],
-        "observationKind": "flow",
-        "coverage": {
-          "status": "direct-observation",
-          "sourcePeriod": {
-            "start": "2024-01-01",
-            "end": "2024-12-31"
-          },
-          "expectedCadence": "annual",
-          "observedPeriod": {
-            "start": "2024-01-01",
-            "end": "2024-12-31"
-          },
-          "missingPeriods": [],
-          "sourceStatus": "fetched"
-        },
-        "status": "validated"
-      },
-      {
-        "id": "machine-evidence:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
-        "sourceId": "src-eia-qatar-exports",
-        "provider": "U.S. EIA",
-        "url": "https://api.eia.gov/v2/seriesid/INTL.26-4-QAT-BCF.A?api_key=%REDACTED%",
-        "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
-        "retrievedAt": "2026-10-24T02:08:20.723Z",
-        "observedAt": null,
-        "contentHash": "bb68bc4bb67d7fde8718930bc83a6b9f9ebb0bbe0de03364bd8a0598dfa7e362",
-        "parserVersion": "eia-series-v2",
-        "recordKeys": [
-          "11801a1d8e13297634cab5f786bf4a6c2eda2d3b7a54cf38a436d864d7c18a9c"
-        ],
-        "targetInputIds": [
-          "qatar-export-baseline"
-        ],
-        "targetCommercialInputIds": [],
-        "observationKind": "flow",
-        "coverage": {
-          "status": "direct-observation",
-          "sourcePeriod": {
-            "start": "2024-01-01",
-            "end": "2024-12-31"
-          },
-          "expectedCadence": "annual",
-          "observedPeriod": {
-            "start": "2024-01-01",
-            "end": "2024-12-31"
-          },
-          "missingPeriods": [],
-          "sourceStatus": "fetched"
-        },
-        "status": "validated"
-      },
       {
         "id": "machine-evidence:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c",
         "sourceId": "src-qatarenergy-ras-laffan-capacity",
         "provider": "QatarEnergy LNG",
         "url": "https://www.qatarenergylng.qa/Operations/LNG-trains",
         "snapshotRef": "snapshot:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c",
-        "retrievedAt": "2026-10-24T02:08:20.723Z",
+        "retrievedAt": "2026-10-25T09:46:06.841Z",
         "observedAt": "2026-10-15T00:00:00.000Z",
         "contentHash": "d9683a5efa80136caa2282129050d394ec366d390ee5e774205fe8dab26011ca",
         "parserVersion": "qatarenergy-asset-v1",
@@ -964,7 +875,7 @@
         "provider": "UN/LOCODE",
         "url": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
         "snapshotRef": "snapshot:energy-snapshot:src-unlocode-ras-laffan:09f64b83ca9baf00",
-        "retrievedAt": "2026-10-24T02:08:20.723Z",
+        "retrievedAt": "2026-10-25T09:46:06.841Z",
         "observedAt": "2026-05-09T00:00:00.000Z",
         "contentHash": "09f64b83ca9baf004b8703e142cfd3e0a9fa25ce79c50874c3539fd2fdcf612b",
         "parserVersion": "unlocode-asset-v1",
@@ -995,18 +906,12 @@
     ],
     "coverage": {
       "src-imf-portwatch-hormuz": {
-        "status": "direct-observation",
-        "sourcePeriod": {
-          "start": "2026-10-18",
-          "end": "2026-10-18"
-        },
+        "status": "unavailable",
+        "sourcePeriod": null,
         "expectedCadence": "daily",
-        "observedPeriod": {
-          "start": "2026-10-18",
-          "end": "2026-10-18"
-        },
+        "observedPeriod": null,
         "missingPeriods": [],
-        "sourceStatus": "fetched"
+        "sourceStatus": "failed"
       },
       "src-reviewed-qatar-force-majeure": {
         "status": "unavailable",
@@ -1023,32 +928,20 @@
         "sourceStatus": "skipped"
       },
       "src-eia-qatar-production": {
-        "status": "direct-observation",
-        "sourcePeriod": {
-          "start": "2024-01-01",
-          "end": "2024-12-31"
-        },
+        "status": "unavailable",
+        "sourcePeriod": null,
         "expectedCadence": "annual",
-        "observedPeriod": {
-          "start": "2024-01-01",
-          "end": "2024-12-31"
-        },
+        "observedPeriod": null,
         "missingPeriods": [],
-        "sourceStatus": "fetched"
+        "sourceStatus": "failed"
       },
       "src-eia-qatar-exports": {
-        "status": "direct-observation",
-        "sourcePeriod": {
-          "start": "2024-01-01",
-          "end": "2024-12-31"
-        },
+        "status": "unavailable",
+        "sourcePeriod": null,
         "expectedCadence": "annual",
-        "observedPeriod": {
-          "start": "2024-01-01",
-          "end": "2024-12-31"
-        },
+        "observedPeriod": null,
         "missingPeriods": [],
-        "sourceStatus": "fetched"
+        "sourceStatus": "failed"
       },
       "src-qatarenergy-ras-laffan-capacity": {
         "status": "direct-observation",
@@ -1137,8 +1030,8 @@
         ],
         "description": "Publicly documented LNG producer and contracting party.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1172,8 +1065,8 @@
           "src-gem-ras-laffan-status"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1206,8 +1099,8 @@
           "src-unlocode-ras-laffan"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [],
@@ -1227,8 +1120,8 @@
         ],
         "description": "Maritime chokepoint linking Gulf LNG production to global markets.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1254,6 +1147,7 @@
             "e-reuters-tactics-1014",
             "e-reuters-sink-1014",
             "e-reuters-oil-1021",
+            "e-reuters-attacks-1023",
             "e-nakilat-charters",
             "e-qatar-force-majeure",
             "e-eia-hormuz",
@@ -1279,8 +1173,8 @@
         ],
         "description": "Publicly documented owner and operator of LNG carriers chartered to QatarEnergy affiliates.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1308,8 +1202,8 @@
         ],
         "description": "Benchmark for spot LNG delivered into Northeast Asia.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1336,8 +1230,8 @@
           "Japan"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1363,8 +1257,8 @@
           "Korea"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1386,8 +1280,8 @@
         ],
         "description": "European gas benchmark competing with Asia for flexible LNG cargoes.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1409,8 +1303,8 @@
         ],
         "description": "Japanese power and LNG buyer with a publicly announced long-term QatarEnergy agreement.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1433,8 +1327,8 @@
         ],
         "description": "Country-level crude-export node supported by EIA flow statistics.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1466,8 +1360,8 @@
         ],
         "description": "Country-level destination market supported by EIA Hormuz-flow statistics.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1498,8 +1392,8 @@
         ],
         "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1535,8 +1429,8 @@
         ],
         "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1572,8 +1466,8 @@
         ],
         "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1609,8 +1503,8 @@
         ],
         "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1640,8 +1534,8 @@
         ],
         "note": "Operational relationship inferred from the source-backed trace hop.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1663,8 +1557,8 @@
         ],
         "note": "Relationship type is constrained to the approved public observation; it is not a customer exposure claim.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1698,6 +1592,7 @@
           "e-reuters-tactics-1014",
           "e-reuters-sink-1014",
           "e-reuters-oil-1021",
+          "e-reuters-attacks-1023",
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest",
           "e-reuters-qatar-force-majeure-0928",
@@ -1710,8 +1605,8 @@
         ],
         "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1733,6 +1628,7 @@
             "e-reuters-tactics-1014",
             "e-reuters-sink-1014",
             "e-reuters-oil-1021",
+            "e-reuters-attacks-1023",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
             "e-reuters-qatar-force-majeure-0928",
@@ -1771,6 +1667,7 @@
           "e-reuters-tactics-1014",
           "e-reuters-sink-1014",
           "e-reuters-oil-1021",
+          "e-reuters-attacks-1023",
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest",
           "e-reuters-qatar-force-majeure-0928",
@@ -1783,8 +1680,8 @@
         ],
         "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1806,6 +1703,7 @@
             "e-reuters-tactics-1014",
             "e-reuters-sink-1014",
             "e-reuters-oil-1021",
+            "e-reuters-attacks-1023",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
             "e-reuters-qatar-force-majeure-0928",
@@ -1844,6 +1742,7 @@
           "e-reuters-tactics-1014",
           "e-reuters-sink-1014",
           "e-reuters-oil-1021",
+          "e-reuters-attacks-1023",
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest",
           "e-reuters-qatar-force-majeure-0928",
@@ -1856,8 +1755,8 @@
         ],
         "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1879,6 +1778,7 @@
             "e-reuters-tactics-1014",
             "e-reuters-sink-1014",
             "e-reuters-oil-1021",
+            "e-reuters-attacks-1023",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
             "e-reuters-qatar-force-majeure-0928",
@@ -1904,8 +1804,8 @@
         ],
         "note": "Relationship type is constrained to the approved public observation; it is not a customer exposure claim.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1938,6 +1838,7 @@
           "e-reuters-sink-1014",
           "e-reuters-oil-1014",
           "e-reuters-oil-1021",
+          "e-reuters-attacks-1023",
           "e-eia-saudi",
           "e-saudi-pipeline",
           "e-hormuz-kpler-0925",
@@ -1950,8 +1851,8 @@
         ],
         "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -1971,6 +1872,7 @@
             "e-reuters-sink-1014",
             "e-reuters-oil-1014",
             "e-reuters-oil-1021",
+            "e-reuters-attacks-1023",
             "e-eia-saudi",
             "e-saudi-pipeline",
             "e-hormuz-kpler-0925",
@@ -2007,6 +1909,7 @@
           "e-reuters-sink-1014",
           "e-reuters-oil-1014",
           "e-reuters-oil-1021",
+          "e-reuters-attacks-1023",
           "e-eia-saudi",
           "e-saudi-pipeline",
           "e-hormuz-kpler-0925",
@@ -2019,8 +1922,8 @@
         ],
         "note": "Scenario route edge migrated from the reviewed trace fixture; replace with a normalised route record when available.",
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -2040,6 +1943,7 @@
             "e-reuters-sink-1014",
             "e-reuters-oil-1014",
             "e-reuters-oil-1021",
+            "e-reuters-attacks-1023",
             "e-eia-saudi",
             "e-saudi-pipeline",
             "e-hormuz-kpler-0925",
@@ -2094,7 +1998,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-28T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -2110,7 +2014,7 @@
           "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
           "provider": "Reuters via The Business Standard",
           "observationAt": "2026-09-28T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:f4c3eb3ca5feeb61",
           "parserVersion": "manual-reviewed-v1",
@@ -2158,7 +2062,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-28T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -2174,7 +2078,7 @@
           "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
           "provider": "Reuters via The Business Standard",
           "observationAt": "2026-09-28T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-ras-laffan-status:b22cc118705a8c18",
           "parserVersion": "manual-reviewed-v1",
@@ -2219,7 +2123,7 @@
           "machine-evidence:energy-snapshot:src-unlocode-ras-laffan:09f64b83ca9baf00"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-05-09T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -2239,7 +2143,7 @@
           "sourceUrl": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
           "provider": "UN/LOCODE",
           "observationAt": "2026-05-09T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": "09f64b83ca9baf004b8703e142cfd3e0a9fa25ce79c50874c3539fd2fdcf612b",
           "snapshotRef": "snapshot:energy-snapshot:src-unlocode-ras-laffan:09f64b83ca9baf00",
           "parserVersion": "unlocode-asset-v1",
@@ -2275,8 +2179,8 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
           "sourceIds": [
@@ -2294,55 +2198,44 @@
           "qatarenergy",
           "ras-laffan"
         ],
-        "value": 6001.884083,
         "unit": "billion cubic feet",
         "observationKind": "flow",
-        "periodStart": "2024-01-01",
-        "periodEnd": "2024-12-31",
+        "periodStart": null,
+        "periodEnd": null,
         "coverage": {
-          "status": "direct-observation",
-          "sourcePeriod": {
-            "start": "2024-01-01",
-            "end": "2024-12-31"
-          },
+          "status": "unavailable",
+          "sourcePeriod": null,
           "expectedCadence": "annual",
-          "observedPeriod": {
-            "start": "2024-01-01",
-            "end": "2024-12-31"
-          },
+          "observedPeriod": null,
           "missingPeriods": [],
-          "sourceStatus": "fetched"
+          "sourceStatus": "failed"
         },
-        "sourceName": "U.S. EIA",
-        "sourceDate": "2024-12-31",
-        "observedAt": "2024-12-31T00:00:00.000Z",
         "cadence": "annual",
         "freshnessWindowDays": 730,
+        "missingReason": "Machine refresh failed: getaddrinfo EAI_AGAIN api.eia.gov. No approved observation is available.",
         "evidenceIds": [],
-        "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7"
-        ],
+        "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2024-12-31T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": null,
           "validTo": null,
           "unit": "billion cubic feet",
           "sourceIds": [
             "src-eia-qatar-production"
           ],
-          "status": "confirmed",
-          "confidence": "high"
+          "status": "unavailable",
+          "confidence": "unknown"
         },
         "lineage": {
           "sourceId": "src-eia-qatar-production",
           "sourceUrl": "https://api.eia.gov/v2/seriesid/",
           "provider": "U.S. EIA",
-          "observationAt": "2024-12-31T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
-          "snapshotHash": "a7a9454f67798ea75c768e7e6ed4fa745b13e29586232c899eb8d0c7c93fb520",
-          "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
+          "observationAt": null,
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:4a9233c06146874c",
           "parserVersion": "eia-series-v2",
-          "recordKey": "19ef342ea69f576b9ec1613acc4aa21dc223a100acede4c9887705c689bd5a62",
+          "recordKey": "13d55f085a38008cb2cc08e98cb3e796632611daa2b57c64af74e1a9d3215bd4",
           "derivedFrom": []
         }
       },
@@ -2353,55 +2246,44 @@
           "qatarenergy",
           "ras-laffan"
         ],
-        "value": 4438.798832,
         "unit": "billion cubic feet",
         "observationKind": "flow",
-        "periodStart": "2024-01-01",
-        "periodEnd": "2024-12-31",
+        "periodStart": null,
+        "periodEnd": null,
         "coverage": {
-          "status": "direct-observation",
-          "sourcePeriod": {
-            "start": "2024-01-01",
-            "end": "2024-12-31"
-          },
+          "status": "unavailable",
+          "sourcePeriod": null,
           "expectedCadence": "annual",
-          "observedPeriod": {
-            "start": "2024-01-01",
-            "end": "2024-12-31"
-          },
+          "observedPeriod": null,
           "missingPeriods": [],
-          "sourceStatus": "fetched"
+          "sourceStatus": "failed"
         },
-        "sourceName": "U.S. EIA",
-        "sourceDate": "2024-12-31",
-        "observedAt": "2024-12-31T00:00:00.000Z",
         "cadence": "annual",
         "freshnessWindowDays": 730,
+        "missingReason": "Machine refresh failed: getaddrinfo EAI_AGAIN api.eia.gov. No approved observation is available.",
         "evidenceIds": [],
-        "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde"
-        ],
+        "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2024-12-31T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": null,
           "validTo": null,
           "unit": "billion cubic feet",
           "sourceIds": [
             "src-eia-qatar-exports"
           ],
-          "status": "confirmed",
-          "confidence": "high"
+          "status": "unavailable",
+          "confidence": "unknown"
         },
         "lineage": {
           "sourceId": "src-eia-qatar-exports",
           "sourceUrl": "https://api.eia.gov/v2/seriesid/",
           "provider": "U.S. EIA",
-          "observationAt": "2024-12-31T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
-          "snapshotHash": "bb68bc4bb67d7fde8718930bc83a6b9f9ebb0bbe0de03364bd8a0598dfa7e362",
-          "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
+          "observationAt": null,
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:a79ea36225c9f25e",
           "parserVersion": "eia-series-v2",
-          "recordKey": "11801a1d8e13297634cab5f786bf4a6c2eda2d3b7a54cf38a436d864d7c18a9c",
+          "recordKey": "30a7a9d5c769e473f6982817c912a6e175827b5d03a5c6c3647b5805b2c9abe1",
           "derivedFrom": []
         }
       },
@@ -2440,7 +2322,7 @@
           "machine-evidence:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-15T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
@@ -2459,7 +2341,7 @@
           "sourceUrl": "https://www.qatarenergylng.qa/Operations/LNG-trains",
           "provider": "QatarEnergy LNG",
           "observationAt": "2026-10-15T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": "d9683a5efa80136caa2282129050d394ec366d390ee5e774205fe8dab26011ca",
           "snapshotRef": "snapshot:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c",
           "parserVersion": "qatarenergy-asset-v1",
@@ -2498,7 +2380,7 @@
         "observedAt": "2026-08-02T00:00:00.000Z",
         "cadence": "daily",
         "freshnessWindowDays": 7,
-        "carryReason": "Oct 24 targeted search found no newer comparable LNG-only weekly count. Results included historical July Kpler context and October all-commodity counts with different scope; preserve the three LNG transits for Jul 27-Aug 2 and their original date.",
+        "carryReason": "Oct 25 targeted search found no newer comparable LNG-only weekly count. Results included historical July Kpler context and October all-vessel counts with different scope; retain the three LNG transits for Jul 27-Aug 2 and their original date.",
         "evidenceIds": [
           "e-hormuz-transit",
           "e-reuters-lng-0928",
@@ -2507,7 +2389,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-02T00:00:00Z",
           "validTo": null,
           "unit": "LNG transits",
@@ -2550,8 +2432,8 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "%",
           "sourceIds": [
@@ -2601,7 +2483,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-30T00:00:00Z",
           "validTo": null,
           "unit": "LNG cargoes",
@@ -2617,7 +2499,7 @@
           "sourceUrl": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
           "provider": "Kpler via Reuters",
           "observationAt": "2026-09-30T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-hormuz-lng-september:5ca0d4f9d556142f",
           "parserVersion": "manual-reviewed-v1",
@@ -2664,7 +2546,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-03T00:00:00Z",
           "validTo": null,
           "unit": "LNG vessels",
@@ -2680,7 +2562,7 @@
           "sourceUrl": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
           "provider": "Kpler/LSEG via Reuters",
           "observationAt": "2026-10-03T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-hormuz-qatar-vessels-oct03:ee9701bfde38e715",
           "parserVersion": "manual-reviewed-v1",
@@ -2726,7 +2608,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-23T00:00:00Z",
           "validTo": null,
           "unit": "USD/MMBtu",
@@ -2765,8 +2647,8 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "USD",
           "sourceIds": [
@@ -2804,8 +2686,8 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "USD",
           "sourceIds": [
@@ -2851,7 +2733,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-02-03T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
@@ -2868,56 +2750,44 @@
         "entityIds": [
           "hormuz"
         ],
-        "value": 4,
         "unit": "vessels/day",
         "observationKind": "transit",
-        "periodStart": "2026-10-18",
-        "periodEnd": "2026-10-18",
+        "periodStart": null,
+        "periodEnd": null,
         "coverage": {
-          "status": "direct-observation",
-          "sourcePeriod": {
-            "start": "2026-10-18",
-            "end": "2026-10-18"
-          },
+          "status": "unavailable",
+          "sourcePeriod": null,
           "expectedCadence": "daily",
-          "observedPeriod": {
-            "start": "2026-10-18",
-            "end": "2026-10-18"
-          },
+          "observedPeriod": null,
           "missingPeriods": [],
-          "sourceStatus": "fetched",
-          "note": "IMF PortWatch n_total is the AIS-based count across vessel classes, not an LNG-only or commodity-only transit count; AIS-dark traffic may be missed."
+          "sourceStatus": "failed"
         },
-        "sourceName": "IMF PortWatch",
-        "sourceDate": "2026-10-18",
-        "observedAt": "2026-10-18T00:00:00.000Z",
         "cadence": "daily",
         "freshnessWindowDays": 7,
+        "missingReason": "Machine refresh failed: getaddrinfo EAI_AGAIN services9.arcgis.com. No approved observation is available.",
         "evidenceIds": [],
-        "machineEvidenceIds": [
-          "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e"
-        ],
+        "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-18T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": null,
           "validTo": null,
           "unit": "vessels/day",
           "sourceIds": [
             "src-imf-portwatch-hormuz"
           ],
-          "status": "confirmed",
-          "confidence": "high"
+          "status": "unavailable",
+          "confidence": "unknown"
         },
         "lineage": {
           "sourceId": "src-imf-portwatch-hormuz",
           "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
           "provider": "IMF PortWatch",
-          "observationAt": "2026-10-18T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
-          "snapshotHash": "c3fb7e09d105033e499b42a74ca9c2cb3b36f11570c52bb23740b57929b23f9c",
-          "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e",
+          "observationAt": null,
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:85b95ebd32e9e0eb",
           "parserVersion": "portwatch-arcgis-route-v1",
-          "recordKey": "ff0c02e1a3a6f006b1f2a2d0dd13c8e651168bbe69f24c177082314614875c54",
+          "recordKey": "1880ac740b9e80af87794436d5e750300132f7e12d44648e6969976dea3c797c",
           "derivedFrom": []
         }
       },
@@ -2959,7 +2829,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-28T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -2975,7 +2845,7 @@
           "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
           "provider": "Reuters via The Business Standard",
           "observationAt": "2026-09-28T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:f4c3eb3ca5feeb61",
           "parserVersion": "manual-reviewed-v1",
@@ -3025,7 +2895,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2024-03-24T00:00:00Z",
           "validTo": null,
           "unit": "LNG vessels",
@@ -3071,7 +2941,7 @@
         "sourceDate": "2026-07-23",
         "cadence": "event-driven",
         "freshnessWindowDays": 14,
-        "carryReason": "Oct 24 targeted search returned the July 23 Reuters report as the latest directly comparable source; no newer sub-chartered LNG carrier count was found. Preserve the minimum count of nine and its original date.",
+        "carryReason": "Oct 25 targeted search found no newer directly comparable sub-chartered LNG carrier count. Retain Reuters' July 23 minimum of nine with its original date.",
         "evidenceIds": [
           "e-nakilat-charters",
           "e-qatar-force-majeure",
@@ -3082,7 +2952,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-07-23T00:00:00Z",
           "validTo": null,
           "unit": "LNG carriers minimum",
@@ -3130,8 +3000,8 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "days",
           "sourceIds": [
@@ -3183,7 +3053,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-23T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -3231,7 +3101,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-02-03T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
@@ -3288,11 +3158,12 @@
           "e-reuters-tactics-1014",
           "e-reuters-sink-1014",
           "e-reuters-oil-1014",
-          "e-reuters-oil-1021"
+          "e-reuters-oil-1021",
+          "e-reuters-attacks-1023"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-03-03T00:00:00Z",
           "validTo": null,
           "unit": "million b/d",
@@ -3312,7 +3183,8 @@
             "e-reuters-tactics-1014",
             "e-reuters-sink-1014",
             "e-reuters-oil-1014",
-            "e-reuters-oil-1021"
+            "e-reuters-oil-1021",
+            "e-reuters-attacks-1023"
           ],
           "status": "confirmed",
           "confidence": "high"
@@ -3362,7 +3234,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-03-03T00:00:00Z",
           "validTo": null,
           "unit": "million b/d",
@@ -3427,7 +3299,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2025-06-16T00:00:00Z",
           "validTo": null,
           "unit": "million b/d",
@@ -3477,7 +3349,7 @@
         "sourceDate": "2026-09-11",
         "cadence": "daily",
         "freshnessWindowDays": 1,
-        "carryReason": "Oct 24 search revalidated Reuters' Oct 16 Gulf of Oman-to-China VLCC rate of about Worldscale 776; no directly comparable route-normalised USD/bbl assessment was found. Preserve the Sep 11 value and original date.",
+        "carryReason": "Oct 25 search found no directly comparable Gulf of Oman-to-China USD/bbl assessment. Reuters' Oct 16 Worldscale 776 quote is a different unit; preserve the Sep 11 value and original date.",
         "evidenceIds": [
           "e-vlcc-freight",
           "e-hormuz-single-digit-crossings",
@@ -3491,7 +3363,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-11T00:00:00Z",
           "validTo": null,
           "unit": "USD/bbl",
@@ -3545,7 +3417,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-03-03T00:00:00Z",
           "validTo": null,
           "unit": "%",
@@ -3592,7 +3464,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-03-03T00:00:00Z",
           "validTo": null,
           "unit": "%",
@@ -3640,7 +3512,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-25T00:00:00Z",
           "validTo": null,
           "unit": "USD/bbl",
@@ -3678,8 +3550,8 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "",
           "sourceIds": [
@@ -3711,8 +3583,8 @@
         "evidenceIds": [],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "USD/MMBtu",
           "sourceIds": [],
@@ -3747,13 +3619,13 @@
         "sourceDate": "2026-07-24",
         "cadence": "daily",
         "freshnessWindowDays": 3,
-        "carryReason": "Oct 24 targeted Reuters/Platts search found no newer official JKM assessment. The separate $31.42/MMBtu Trading Economics CFD and CME futures quotes are distinct instruments. Preserve Reuters' Jul 24 $22/MMBtu assessment and its original date.",
+        "carryReason": "Oct 25 targeted Reuters/Platts search found no newer official JKM assessment. The separate Trading Economics CFD and CME futures/swap quotes are different instruments. Preserve Reuters' Jul 24 $22/MMBtu assessment and its original date.",
         "evidenceIds": [
           "e-jkm"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-07-24T00:00:00Z",
           "validTo": null,
           "unit": "USD/MMBtu",
@@ -3798,7 +3670,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-23T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -3830,27 +3702,28 @@
             "end": "2026-10-23"
           },
           "missingPeriods": [],
-          "sourceStatus": "fetched"
+          "sourceStatus": "skipped"
         },
         "sourceName": "Yahoo Finance EURUSD=X",
         "sourceDate": "2026-10-23",
         "observedAt": "2026-10-23T21:29:27.000Z",
         "cadence": "daily",
         "freshnessWindowDays": 3,
+        "carryReason": "Machine refresh failed: getaddrinfo EAI_AGAIN query2.finance.yahoo.com; getaddrinfo EAI_AGAIN stooq.com",
         "evidenceIds": [
           "e-eurusd"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-23T00:00:00Z",
           "validTo": null,
           "unit": "USD/EUR",
           "sourceIds": [
             "e-eurusd"
           ],
-          "status": "confirmed",
-          "confidence": "high"
+          "status": "carried",
+          "confidence": "medium"
         }
       },
       {
@@ -3875,8 +3748,8 @@
         "evidenceIds": [],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "USD/MMBtu",
           "sourceIds": [],
@@ -3906,8 +3779,8 @@
         "evidenceIds": [],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "USD/MMBtu",
           "sourceIds": [],
@@ -3936,27 +3809,28 @@
             "end": "2026-10-23"
           },
           "missingPeriods": [],
-          "sourceStatus": "fetched"
+          "sourceStatus": "skipped"
         },
         "sourceName": "Yahoo Finance BZ=F",
         "sourceDate": "2026-10-23",
         "observedAt": "2026-10-23T20:59:19.000Z",
         "cadence": "daily",
         "freshnessWindowDays": 3,
+        "carryReason": "Machine refresh failed: getaddrinfo EAI_AGAIN query2.finance.yahoo.com; getaddrinfo EAI_AGAIN stooq.com",
         "evidenceIds": [
           "e-brent"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-23T00:00:00Z",
           "validTo": null,
           "unit": "USD/bbl",
           "sourceIds": [
             "e-brent"
           ],
-          "status": "confirmed",
-          "confidence": "high"
+          "status": "carried",
+          "confidence": "medium"
         }
       },
       {
@@ -3980,27 +3854,28 @@
             "end": "2026-10-23"
           },
           "missingPeriods": [],
-          "sourceStatus": "fetched"
+          "sourceStatus": "skipped"
         },
         "sourceName": "Yahoo Finance CL=F",
         "sourceDate": "2026-10-23",
         "observedAt": "2026-10-23T20:59:58.000Z",
         "cadence": "daily",
         "freshnessWindowDays": 3,
+        "carryReason": "Machine refresh failed: getaddrinfo EAI_AGAIN query2.finance.yahoo.com; getaddrinfo EAI_AGAIN stooq.com",
         "evidenceIds": [
           "e-wti"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-23T00:00:00Z",
           "validTo": null,
           "unit": "USD/bbl",
           "sourceIds": [
             "e-wti"
           ],
-          "status": "confirmed",
-          "confidence": "high"
+          "status": "carried",
+          "confidence": "medium"
         }
       },
       {
@@ -4036,7 +3911,7 @@
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-25T00:00:00Z",
           "validTo": null,
           "unit": "USD/bbl",
@@ -4074,13 +3949,13 @@
         "sourceDate": "2026-09-11",
         "cadence": "daily",
         "freshnessWindowDays": 1,
-        "carryReason": "Oct 24 search revalidated Reuters' Oct 16 Gulf of Oman-to-China VLCC rate of about Worldscale 776; no directly comparable route-normalised USD/bbl assessment was found. Preserve the Sep 11 value and original date.",
+        "carryReason": "Oct 25 search found no directly comparable Gulf of Oman-to-China USD/bbl assessment. Reuters' Oct 16 Worldscale 776 quote is a different unit; preserve the Sep 11 value and original date.",
         "evidenceIds": [
           "e-vlcc-freight"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-11T00:00:00Z",
           "validTo": null,
           "unit": "USD/bbl",
@@ -4113,8 +3988,8 @@
         "evidenceIds": [],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "USD/bbl",
           "sourceIds": [],
@@ -4143,27 +4018,28 @@
             "end": "2026-10-22"
           },
           "missingPeriods": [],
-          "sourceStatus": "fetched"
+          "sourceStatus": "skipped"
         },
         "sourceName": "Federal Reserve Bank of New York",
         "sourceDate": "2026-10-22",
         "observedAt": "2026-10-22T00:00:00Z",
         "cadence": "daily",
         "freshnessWindowDays": 7,
+        "carryReason": "Machine refresh failed: getaddrinfo EAI_AGAIN markets.newyorkfed.org",
         "evidenceIds": [
           "e-sofr"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-22T00:00:00Z",
           "validTo": null,
           "unit": "%",
           "sourceIds": [
             "e-sofr"
           ],
-          "status": "confirmed",
-          "confidence": "high"
+          "status": "carried",
+          "confidence": "medium"
         }
       }
     ],
@@ -4197,13 +4073,13 @@
         "sourceName": "U.S. EIA",
         "sourceDate": "2026-08-18",
         "cadence": "daily",
-        "freshnessWindowDays": 65,
+        "freshnessWindowDays": 68,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-eia-lng-baseline:9eb7e7b567102eaa"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-18T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
@@ -4240,13 +4116,13 @@
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-08-18",
         "cadence": "daily",
-        "freshnessWindowDays": 65,
+        "freshnessWindowDays": 68,
         "evidenceIds": [
           "e-hormuz-transit"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-18T00:00:00Z",
           "validTo": null,
           "unit": "LNG transits",
@@ -4285,7 +4161,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-08-18",
         "cadence": "daily",
-        "freshnessWindowDays": 65,
+        "freshnessWindowDays": 68,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -4293,7 +4169,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:725f7e62ed4dd48c"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-18T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -4333,13 +4209,13 @@
         "sourceName": "Reuters",
         "sourceDate": "2026-07-23",
         "cadence": "daily",
-        "freshnessWindowDays": 91,
+        "freshnessWindowDays": 94,
         "evidenceIds": [
           "e-qatar-force-majeure"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-07-23T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -4379,13 +4255,13 @@
         "sourceName": "U.S. EIA",
         "sourceDate": "2025-12-31",
         "cadence": "daily",
-        "freshnessWindowDays": 295,
+        "freshnessWindowDays": 298,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-eia-qatar-production:aa2b523159ad1d7b"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2025-01-01T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
@@ -4423,13 +4299,13 @@
         "sourceName": "U.S. EIA",
         "sourceDate": "2025-12-31",
         "cadence": "daily",
-        "freshnessWindowDays": 295,
+        "freshnessWindowDays": 298,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-eia-qatar-exports:a9aad51a6a2473f6"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2025-01-01T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
@@ -4466,13 +4342,13 @@
         "sourceName": "Global Energy Monitor",
         "sourceDate": "2025-12-31",
         "cadence": "daily",
-        "freshnessWindowDays": 295,
+        "freshnessWindowDays": 298,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-gem-ras-laffan-capacity:c9c7593d319c14cc"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2025-01-01T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
@@ -4509,13 +4385,13 @@
         "sourceName": "Global Energy Monitor",
         "sourceDate": "2025-12-31",
         "cadence": "daily",
-        "freshnessWindowDays": 295,
+        "freshnessWindowDays": 298,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-gem-ras-laffan-status:c2227811cdc9cee4"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2025-01-01T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -4552,13 +4428,13 @@
         "sourceName": "UN/LOCODE",
         "sourceDate": "2025-12-31",
         "cadence": "daily",
-        "freshnessWindowDays": 295,
+        "freshnessWindowDays": 298,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-unlocode-ras-laffan:0d9bfbbe0b0801cc"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2025-01-01T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -4595,13 +4471,13 @@
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-08-16",
         "cadence": "daily",
-        "freshnessWindowDays": 67,
+        "freshnessWindowDays": 70,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz-pressure:f4b6e267d5ed23b5"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-16T00:00:00Z",
           "validTo": null,
           "unit": "index",
@@ -4638,13 +4514,13 @@
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-08-17",
         "cadence": "daily",
-        "freshnessWindowDays": 66,
+        "freshnessWindowDays": 69,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz-pressure:f4b6e267d5ed23b5"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-17T00:00:00Z",
           "validTo": null,
           "unit": "index",
@@ -4681,13 +4557,13 @@
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-08-18",
         "cadence": "daily",
-        "freshnessWindowDays": 65,
+        "freshnessWindowDays": 68,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz-pressure:f4b6e267d5ed23b5"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-18T00:00:00Z",
           "validTo": null,
           "unit": "index",
@@ -4721,8 +4597,8 @@
         "evidenceIds": [],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
           "sourceIds": [],
@@ -4758,13 +4634,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-08-21",
         "cadence": "daily",
-        "freshnessWindowDays": 62,
+        "freshnessWindowDays": 65,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-21T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -4789,19 +4665,31 @@
         "coverage": {
           "status": "unavailable",
           "sourcePeriod": null,
-          "expectedCadence": "daily",
+          "expectedCadence": "annual",
           "observedPeriod": null,
           "missingPeriods": [],
-          "sourceStatus": "skipped"
+          "sourceStatus": "failed"
         },
-        "sourceName": "U.S. EIA",
-        "cadence": "daily",
-        "freshnessWindowDays": 1,
+        "cadence": "annual",
+        "freshnessWindowDays": 730,
+        "missingReason": "Machine refresh failed: getaddrinfo EAI_AGAIN api.eia.gov. No approved observation is available.",
         "evidenceIds": [],
         "machineEvidenceIds": [],
+        "lineage": {
+          "sourceId": "src-eia-qatar-production",
+          "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+          "provider": "U.S. EIA",
+          "observationAt": null,
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:4a9233c06146874c",
+          "parserVersion": "eia-series-v2",
+          "recordKey": "13d55f085a38008cb2cc08e98cb3e796632611daa2b57c64af74e1a9d3215bd4",
+          "derivedFrom": []
+        },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": null,
           "validTo": null,
           "unit": "billion cubic feet",
           "sourceIds": [
@@ -4825,19 +4713,31 @@
         "coverage": {
           "status": "unavailable",
           "sourcePeriod": null,
-          "expectedCadence": "daily",
+          "expectedCadence": "annual",
           "observedPeriod": null,
           "missingPeriods": [],
-          "sourceStatus": "skipped"
+          "sourceStatus": "failed"
         },
-        "sourceName": "U.S. EIA",
-        "cadence": "daily",
-        "freshnessWindowDays": 1,
+        "cadence": "annual",
+        "freshnessWindowDays": 730,
+        "missingReason": "Machine refresh failed: getaddrinfo EAI_AGAIN api.eia.gov. No approved observation is available.",
         "evidenceIds": [],
         "machineEvidenceIds": [],
+        "lineage": {
+          "sourceId": "src-eia-qatar-exports",
+          "sourceUrl": "https://api.eia.gov/v2/seriesid/",
+          "provider": "U.S. EIA",
+          "observationAt": null,
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:a79ea36225c9f25e",
+          "parserVersion": "eia-series-v2",
+          "recordKey": "30a7a9d5c769e473f6982817c912a6e175827b5d03a5c6c3647b5805b2c9abe1",
+          "derivedFrom": []
+        },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": null,
           "validTo": null,
           "unit": "billion cubic feet",
           "sourceIds": [
@@ -4871,8 +4771,8 @@
         "evidenceIds": [],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
           "sourceIds": [],
@@ -4904,8 +4804,8 @@
         "evidenceIds": [],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "",
           "sourceIds": [],
@@ -4937,8 +4837,8 @@
         "evidenceIds": [],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "",
           "sourceIds": [],
@@ -4970,8 +4870,8 @@
         "evidenceIds": [],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": "2026-10-25T00:00:00Z",
           "validTo": null,
           "unit": "%",
           "sourceIds": [],
@@ -5007,7 +4907,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-08-24",
         "cadence": "daily",
-        "freshnessWindowDays": 59,
+        "freshnessWindowDays": 62,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5015,7 +4915,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:a0c25114bad9a0a2"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-24T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5054,7 +4954,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-08-25",
         "cadence": "daily",
-        "freshnessWindowDays": 58,
+        "freshnessWindowDays": 61,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5062,7 +4962,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:5dc2ac2f8f4f7168"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-25T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5101,13 +5001,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-08-26",
         "cadence": "daily",
-        "freshnessWindowDays": 57,
+        "freshnessWindowDays": 60,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-26T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5146,13 +5046,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-08-28",
         "cadence": "daily",
-        "freshnessWindowDays": 55,
+        "freshnessWindowDays": 58,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-28T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5191,7 +5091,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-08-27",
         "cadence": "daily",
-        "freshnessWindowDays": 56,
+        "freshnessWindowDays": 59,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5199,7 +5099,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:bb9aaad48861cc33"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-27T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5239,14 +5139,14 @@
         "sourceName": "LNG Industry",
         "sourceDate": "2026-09-01",
         "cadence": "daily",
-        "freshnessWindowDays": 51,
+        "freshnessWindowDays": 54,
         "evidenceIds": [
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-01T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -5286,7 +5186,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-02",
         "cadence": "daily",
-        "freshnessWindowDays": 50,
+        "freshnessWindowDays": 53,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5294,7 +5194,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:c7c951ad8e44a034"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-02T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5333,7 +5233,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-03",
         "cadence": "daily",
-        "freshnessWindowDays": 49,
+        "freshnessWindowDays": 52,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5341,7 +5241,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:c50f0c9cef00230f"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-03T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5380,7 +5280,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-07",
         "cadence": "daily",
-        "freshnessWindowDays": 45,
+        "freshnessWindowDays": 48,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5388,7 +5288,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:701ee0ef0b50f5e9"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-07T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5428,13 +5328,13 @@
         "sourceName": "Kpler via Foreign Policy Journal",
         "sourceDate": "2026-08-02",
         "cadence": "daily",
-        "freshnessWindowDays": 81,
+        "freshnessWindowDays": 84,
         "evidenceIds": [
           "e-hormuz-transit"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-08-02T00:00:00Z",
           "validTo": null,
           "unit": "LNG transits",
@@ -5473,13 +5373,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-10",
         "cadence": "daily",
-        "freshnessWindowDays": 42,
+        "freshnessWindowDays": 45,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-10T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5518,7 +5418,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-11",
         "cadence": "daily",
-        "freshnessWindowDays": 41,
+        "freshnessWindowDays": 44,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5526,7 +5426,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:ed56e549c1967cb8"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-11T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5565,7 +5465,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-15",
         "cadence": "daily",
-        "freshnessWindowDays": 37,
+        "freshnessWindowDays": 40,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5573,7 +5473,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:b7ddd0beb2194886"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-15T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5612,7 +5512,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-16",
         "cadence": "daily",
-        "freshnessWindowDays": 36,
+        "freshnessWindowDays": 39,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5620,7 +5520,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:e8b4adccd752b32d"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-16T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5660,14 +5560,14 @@
         "sourceName": "Reuters",
         "sourceDate": "2026-09-11",
         "cadence": "daily",
-        "freshnessWindowDays": 41,
+        "freshnessWindowDays": 44,
         "evidenceIds": [
           "e-qatar-force-majeure",
           "e-qatar-force-majeure-latest"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-11T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -5707,7 +5607,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-17",
         "cadence": "daily",
-        "freshnessWindowDays": 35,
+        "freshnessWindowDays": 38,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5715,7 +5615,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:8ce591ba93d43492"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-17T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5754,7 +5654,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-18",
         "cadence": "daily",
-        "freshnessWindowDays": 34,
+        "freshnessWindowDays": 37,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5762,7 +5662,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:505378f35a515a0d"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-18T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5801,13 +5701,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-21",
         "cadence": "daily",
-        "freshnessWindowDays": 31,
+        "freshnessWindowDays": 34,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-21T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5846,13 +5746,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-24",
         "cadence": "daily",
-        "freshnessWindowDays": 28,
+        "freshnessWindowDays": 31,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-24T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5891,13 +5791,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-25",
         "cadence": "daily",
-        "freshnessWindowDays": 27,
+        "freshnessWindowDays": 30,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-25T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5936,7 +5836,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-09-29",
         "cadence": "daily",
-        "freshnessWindowDays": 23,
+        "freshnessWindowDays": 26,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5944,7 +5844,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:3ee335b1a879dcce"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-29T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -5983,7 +5883,7 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-10-01",
         "cadence": "daily",
-        "freshnessWindowDays": 21,
+        "freshnessWindowDays": 24,
         "evidenceIds": [
           "e-ttf"
         ],
@@ -5991,7 +5891,7 @@
           "machine-evidence:energy-snapshot:src-yahoo-ttf:d9cd2cfc54f4feff"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-01T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -6031,13 +5931,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-10-06",
         "cadence": "daily",
-        "freshnessWindowDays": 16,
+        "freshnessWindowDays": 19,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-06T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -6090,7 +5990,7 @@
           "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
           "provider": "Reuters via The Business Standard",
           "observationAt": "2026-09-28T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-qatar-force-majeure:f4c3eb3ca5feeb61",
           "parserVersion": "manual-reviewed-v1",
@@ -6100,7 +6000,7 @@
           ]
         },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-28T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -6153,7 +6053,7 @@
           "sourceUrl": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/",
           "provider": "Kpler via Reuters",
           "observationAt": "2026-09-30T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-hormuz-lng-september:5ca0d4f9d556142f",
           "parserVersion": "manual-reviewed-v1",
@@ -6163,7 +6063,7 @@
           ]
         },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-01T00:00:00Z",
           "validTo": null,
           "unit": "LNG cargoes",
@@ -6217,7 +6117,7 @@
           "sourceUrl": "https://www.reuters.com/business/energy/more-qatari-lng-cargoes-transit-strait-hormuz-despite-ongoing-risks-2026-10-05/",
           "provider": "Kpler/LSEG via Reuters",
           "observationAt": "2026-10-03T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-hormuz-qatar-vessels-oct03:ee9701bfde38e715",
           "parserVersion": "manual-reviewed-v1",
@@ -6227,7 +6127,7 @@
           ]
         },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-02T00:00:00Z",
           "validTo": null,
           "unit": "LNG vessels",
@@ -6268,13 +6168,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-10-09",
         "cadence": "daily",
-        "freshnessWindowDays": 13,
+        "freshnessWindowDays": 16,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-09T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -6314,13 +6214,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-10-13",
         "cadence": "daily",
-        "freshnessWindowDays": 9,
+        "freshnessWindowDays": 12,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-13T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -6360,13 +6260,13 @@
         "sourceName": "Yahoo Finance TTF=F",
         "sourceDate": "2026-10-14",
         "cadence": "daily",
-        "freshnessWindowDays": 8,
+        "freshnessWindowDays": 11,
         "evidenceIds": [
           "e-ttf"
         ],
         "machineEvidenceIds": [],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-14T00:00:00Z",
           "validTo": null,
           "unit": "EUR/MWh",
@@ -6406,13 +6306,13 @@
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-10-11",
         "cadence": "daily",
-        "freshnessWindowDays": 11,
+        "freshnessWindowDays": 14,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:4d9feefe31352a50"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-11T00:00:00Z",
           "validTo": null,
           "unit": "vessels/day",
@@ -6450,13 +6350,13 @@
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-10-10",
         "cadence": "daily",
-        "freshnessWindowDays": 12,
+        "freshnessWindowDays": 15,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:5c822b4c2ef20fca"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-10T00:00:00Z",
           "validTo": null,
           "unit": "vessels/day",
@@ -6494,13 +6394,13 @@
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-10-09",
         "cadence": "daily",
-        "freshnessWindowDays": 13,
+        "freshnessWindowDays": 16,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:5c822b4c2ef20fca"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-09T00:00:00Z",
           "validTo": null,
           "unit": "vessels/day",
@@ -6527,7 +6427,7 @@
             "start": "2024-01-01",
             "end": "2024-12-31"
           },
-          "expectedCadence": "annual",
+          "expectedCadence": "daily",
           "observedPeriod": {
             "start": "2024-01-01",
             "end": "2024-12-31"
@@ -6537,33 +6437,18 @@
         },
         "sourceName": "U.S. EIA",
         "sourceDate": "2024-12-31",
-        "observedAt": "2024-12-31T00:00:00.000Z",
-        "cadence": "annual",
-        "freshnessWindowDays": 730,
+        "cadence": "daily",
+        "freshnessWindowDays": 663,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7"
         ],
-        "lineage": {
-          "sourceId": "src-eia-qatar-production",
-          "sourceUrl": "https://api.eia.gov/v2/seriesid/",
-          "provider": "U.S. EIA",
-          "observationAt": "2024-12-31T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
-          "snapshotHash": "a7a9454f67798ea75c768e7e6ed4fa745b13e29586232c899eb8d0c7c93fb520",
-          "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-production:a7a9454f67798ea7",
-          "parserVersion": "eia-series-v2",
-          "recordKey": "19ef342ea69f576b9ec1613acc4aa21dc223a100acede4c9887705c689bd5a62",
-          "derivedFrom": []
-        },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2024-01-01T00:00:00Z",
           "validTo": null,
           "unit": "billion cubic feet",
-          "sourceIds": [
-            "src-eia-qatar-production"
-          ],
+          "sourceIds": [],
           "status": "confirmed",
           "confidence": "high"
         }
@@ -6586,7 +6471,7 @@
             "start": "2024-01-01",
             "end": "2024-12-31"
           },
-          "expectedCadence": "annual",
+          "expectedCadence": "daily",
           "observedPeriod": {
             "start": "2024-01-01",
             "end": "2024-12-31"
@@ -6596,33 +6481,18 @@
         },
         "sourceName": "U.S. EIA",
         "sourceDate": "2024-12-31",
-        "observedAt": "2024-12-31T00:00:00.000Z",
-        "cadence": "annual",
-        "freshnessWindowDays": 730,
+        "cadence": "daily",
+        "freshnessWindowDays": 663,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde"
         ],
-        "lineage": {
-          "sourceId": "src-eia-qatar-exports",
-          "sourceUrl": "https://api.eia.gov/v2/seriesid/",
-          "provider": "U.S. EIA",
-          "observationAt": "2024-12-31T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
-          "snapshotHash": "bb68bc4bb67d7fde8718930bc83a6b9f9ebb0bbe0de03364bd8a0598dfa7e362",
-          "snapshotRef": "snapshot:energy-snapshot:src-eia-qatar-exports:bb68bc4bb67d7fde",
-          "parserVersion": "eia-series-v2",
-          "recordKey": "11801a1d8e13297634cab5f786bf4a6c2eda2d3b7a54cf38a436d864d7c18a9c",
-          "derivedFrom": []
-        },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2024-01-01T00:00:00Z",
           "validTo": null,
           "unit": "billion cubic feet",
-          "sourceIds": [
-            "src-eia-qatar-exports"
-          ],
+          "sourceIds": [],
           "status": "confirmed",
           "confidence": "high"
         }
@@ -6670,7 +6540,7 @@
           "sourceUrl": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
           "provider": "UN/LOCODE",
           "observationAt": "2026-05-09T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": "09f64b83ca9baf004b8703e142cfd3e0a9fa25ce79c50874c3539fd2fdcf612b",
           "snapshotRef": "snapshot:energy-snapshot:src-unlocode-ras-laffan:09f64b83ca9baf00",
           "parserVersion": "unlocode-asset-v1",
@@ -6678,7 +6548,7 @@
           "derivedFrom": []
         },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-01-01T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -6705,16 +6575,28 @@
           "expectedCadence": "daily",
           "observedPeriod": null,
           "missingPeriods": [],
-          "sourceStatus": "skipped"
+          "sourceStatus": "failed"
         },
-        "sourceName": "IMF PortWatch",
         "cadence": "daily",
-        "freshnessWindowDays": 1,
+        "freshnessWindowDays": 7,
+        "missingReason": "Machine refresh failed: getaddrinfo EAI_AGAIN services9.arcgis.com. No approved observation is available.",
         "evidenceIds": [],
         "machineEvidenceIds": [],
+        "lineage": {
+          "sourceId": "src-imf-portwatch-hormuz",
+          "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
+          "provider": "IMF PortWatch",
+          "observationAt": null,
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
+          "snapshotHash": null,
+          "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:85b95ebd32e9e0eb",
+          "parserVersion": "portwatch-arcgis-route-v1",
+          "recordKey": "1880ac740b9e80af87794436d5e750300132f7e12d44648e6969976dea3c797c",
+          "derivedFrom": []
+        },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
-          "validFrom": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
+          "validFrom": null,
           "validTo": null,
           "unit": "vessels/day",
           "sourceIds": [
@@ -6766,7 +6648,7 @@
           "sourceUrl": "https://www.qatarenergylng.qa/Operations/LNG-trains",
           "provider": "QatarEnergy LNG",
           "observationAt": "2026-10-15T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": "d9683a5efa80136caa2282129050d394ec366d390ee5e774205fe8dab26011ca",
           "snapshotRef": "snapshot:energy-snapshot:src-qatarenergy-ras-laffan-capacity:d9683a5efa80136c",
           "parserVersion": "qatarenergy-asset-v1",
@@ -6774,7 +6656,7 @@
           "derivedFrom": []
         },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-01-01T00:00:00Z",
           "validTo": null,
           "unit": "MTPA",
@@ -6826,7 +6708,7 @@
           "sourceUrl": "https://www.tbsnews.net/worldbiz/asia/qatar-extends-force-majeure-notices-lng-supply-edison-asian-clients-including",
           "provider": "Reuters via The Business Standard",
           "observationAt": "2026-09-28T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
+          "retrievedAt": "2026-10-25T09:46:06.841Z",
           "snapshotHash": null,
           "snapshotRef": "snapshot:energy-snapshot:src-reviewed-ras-laffan-status:b22cc118705a8c18",
           "parserVersion": "manual-reviewed-v1",
@@ -6836,7 +6718,7 @@
           ]
         },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-09-28T00:00:00Z",
           "validTo": null,
           "unit": "",
@@ -6876,33 +6758,18 @@
         },
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-10-18",
-        "observedAt": "2026-10-18T00:00:00.000Z",
         "cadence": "daily",
         "freshnessWindowDays": 7,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e"
         ],
-        "lineage": {
-          "sourceId": "src-imf-portwatch-hormuz",
-          "sourceUrl": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
-          "provider": "IMF PortWatch",
-          "observationAt": "2026-10-18T00:00:00.000Z",
-          "retrievedAt": "2026-10-24T02:08:20.723Z",
-          "snapshotHash": "c3fb7e09d105033e499b42a74ca9c2cb3b36f11570c52bb23740b57929b23f9c",
-          "snapshotRef": "snapshot:energy-snapshot:src-imf-portwatch-hormuz:c3fb7e09d105033e",
-          "parserVersion": "portwatch-arcgis-route-v1",
-          "recordKey": "ff0c02e1a3a6f006b1f2a2d0dd13c8e651168bbe69f24c177082314614875c54",
-          "derivedFrom": []
-        },
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-18T00:00:00Z",
           "validTo": null,
           "unit": "vessels/day",
-          "sourceIds": [
-            "src-imf-portwatch-hormuz"
-          ],
+          "sourceIds": [],
           "status": "confirmed",
           "confidence": "high"
         }
@@ -6936,13 +6803,13 @@
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-10-17",
         "cadence": "daily",
-        "freshnessWindowDays": 5,
+        "freshnessWindowDays": 8,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:4bfce263b221c7e5"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-17T00:00:00Z",
           "validTo": null,
           "unit": "vessels/day",
@@ -6980,13 +6847,13 @@
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-10-16",
         "cadence": "daily",
-        "freshnessWindowDays": 6,
+        "freshnessWindowDays": 9,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:4bfce263b221c7e5"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-16T00:00:00Z",
           "validTo": null,
           "unit": "vessels/day",
@@ -7024,13 +6891,13 @@
         "sourceName": "IMF PortWatch",
         "sourceDate": "2026-10-15",
         "cadence": "daily",
-        "freshnessWindowDays": 7,
+        "freshnessWindowDays": 10,
         "evidenceIds": [],
         "machineEvidenceIds": [
           "machine-evidence:energy-snapshot:src-imf-portwatch-hormuz:4bfce263b221c7e5"
         ],
         "record": {
-          "asOf": "2026-10-24T00:00:00Z",
+          "asOf": "2026-10-25T00:00:00Z",
           "validFrom": "2026-10-15T00:00:00Z",
           "validTo": null,
           "unit": "vessels/day",
@@ -7141,7 +7008,7 @@
     ],
     "assessments": [
       {
-        "id": "assessment:qatar-supply:2026-10-24T00:00:00Z",
+        "id": "assessment:qatar-supply:2026-10-25T00:00:00Z",
         "traceId": "qatar-supply",
         "commodity": "lng",
         "title": "Qatar supply disruption",
@@ -7176,8 +7043,8 @@
               "e-reuters-qatar-force-majeure-0928"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7210,8 +7077,8 @@
               "e-qatar-force-majeure-latest"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7244,8 +7111,8 @@
               "e-reuters-lng-oct05"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7278,8 +7145,8 @@
               "e-jkm-cfd"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7306,8 +7173,8 @@
               "e-jera-qatarenergy"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7330,8 +7197,8 @@
               "e-jera-qatarenergy"
             ],
             "record": {
-              "asOf": "2026-10-24T00:00:00Z",
-              "validFrom": "2026-10-24T00:00:00Z",
+              "asOf": "2026-10-25T00:00:00Z",
+              "validFrom": "2026-10-25T00:00:00Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7352,8 +7219,8 @@
               "e-jera-qatarenergy"
             ],
             "record": {
-              "asOf": "2026-10-24T00:00:00Z",
-              "validFrom": "2026-10-24T00:00:00Z",
+              "asOf": "2026-10-25T00:00:00Z",
+              "validFrom": "2026-10-25T00:00:00Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7397,7 +7264,7 @@
                 "commercial-observation:lng-origin-value"
               ],
               "unit": "USD/MMBtu",
-              "calculatedAt": "2026-10-24T00:00:00Z",
+              "calculatedAt": "2026-10-25T00:00:00Z",
               "status": "unavailable",
               "missingInputIds": [
                 "lng-origin-value",
@@ -7415,7 +7282,7 @@
                 "commercial-observation:lng-war-risk"
               ],
               "unit": "USD/MMBtu",
-              "calculatedAt": "2026-10-24T00:00:00Z",
+              "calculatedAt": "2026-10-25T00:00:00Z",
               "status": "unavailable",
               "missingInputIds": [
                 "lng-origin-value",
@@ -7435,7 +7302,7 @@
                 "commercial-observation:lng-war-risk"
               ],
               "unit": "USD/MMBtu",
-              "calculatedAt": "2026-10-24T00:00:00Z",
+              "calculatedAt": "2026-10-25T00:00:00Z",
               "status": "unavailable",
               "missingInputIds": [
                 "lng-origin-value",
@@ -7543,7 +7410,7 @@
           "score": 64,
           "status": "provisional",
           "confidence": "low",
-          "calculatedAt": "2026-10-24T02:08:20.723Z",
+          "calculatedAt": "2026-10-25T09:46:06.841Z",
           "components": [
             {
               "id": "supply-interruption",
@@ -7675,8 +7542,8 @@
           "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
         },
         "record": {
-          "asOf": "2026-10-24T02:08:20.723Z",
-          "validFrom": "2026-10-24T02:08:20.723Z",
+          "asOf": "2026-10-25T09:46:06.841Z",
+          "validFrom": "2026-10-25T09:46:06.841Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -7696,7 +7563,7 @@
         }
       },
       {
-        "id": "assessment:hormuz-delivery:2026-10-24T00:00:00Z",
+        "id": "assessment:hormuz-delivery:2026-10-25T00:00:00Z",
         "traceId": "hormuz-delivery",
         "commodity": "lng",
         "title": "Hormuz delivery constraint",
@@ -7739,11 +7606,12 @@
               "e-reuters-reopen-1011",
               "e-reuters-tactics-1014",
               "e-reuters-sink-1014",
-              "e-reuters-oil-1021"
+              "e-reuters-oil-1021",
+              "e-reuters-attacks-1023"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7764,10 +7632,11 @@
                 "e-reuters-reopen-1011",
                 "e-reuters-tactics-1014",
                 "e-reuters-sink-1014",
-                "e-reuters-oil-1021"
+                "e-reuters-oil-1021",
+                "e-reuters-attacks-1023"
               ],
-              "status": "confirmed",
-              "confidence": "high"
+              "status": "unavailable",
+              "confidence": "unknown"
             }
           },
           {
@@ -7789,8 +7658,8 @@
               "e-reuters-qatar-force-majeure-0928"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7826,8 +7695,8 @@
               "e-reuters-oct8-transits"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7859,8 +7728,8 @@
               "e-ttf"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7888,8 +7757,8 @@
               "e-jera-qatarenergy"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7913,8 +7782,8 @@
               "e-nakilat-charters"
             ],
             "record": {
-              "asOf": "2026-10-24T00:00:00Z",
-              "validFrom": "2026-10-24T00:00:00Z",
+              "asOf": "2026-10-25T00:00:00Z",
+              "validFrom": "2026-10-25T00:00:00Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7935,8 +7804,8 @@
               "e-jera-qatarenergy"
             ],
             "record": {
-              "asOf": "2026-10-24T00:00:00Z",
-              "validFrom": "2026-10-24T00:00:00Z",
+              "asOf": "2026-10-25T00:00:00Z",
+              "validFrom": "2026-10-25T00:00:00Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -7980,7 +7849,7 @@
                 "commercial-observation:lng-origin-value"
               ],
               "unit": "USD/MMBtu",
-              "calculatedAt": "2026-10-24T00:00:00Z",
+              "calculatedAt": "2026-10-25T00:00:00Z",
               "status": "unavailable",
               "missingInputIds": [
                 "lng-origin-value",
@@ -7998,7 +7867,7 @@
                 "commercial-observation:lng-war-risk"
               ],
               "unit": "USD/MMBtu",
-              "calculatedAt": "2026-10-24T00:00:00Z",
+              "calculatedAt": "2026-10-25T00:00:00Z",
               "status": "unavailable",
               "missingInputIds": [
                 "lng-origin-value",
@@ -8018,7 +7887,7 @@
                 "commercial-observation:lng-war-risk"
               ],
               "unit": "USD/MMBtu",
-              "calculatedAt": "2026-10-24T00:00:00Z",
+              "calculatedAt": "2026-10-25T00:00:00Z",
               "status": "unavailable",
               "missingInputIds": [
                 "lng-origin-value",
@@ -8123,19 +7992,19 @@
         ],
         "flowPressure": {
           "modelVersion": "flow-pressure-v1",
-          "score": 64,
+          "score": 61,
           "status": "provisional",
-          "confidence": "low",
-          "calculatedAt": "2026-10-24T02:08:20.723Z",
+          "confidence": "unknown",
+          "calculatedAt": "2026-10-25T09:46:06.841Z",
           "components": [
             {
               "id": "supply-interruption",
               "label": "Supply interruption",
               "weight": 0.25,
-              "score": 73,
-              "status": "partially-observed",
-              "confidence": "medium",
-              "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); partly supported; carried or missing observations reduce confidence.",
+              "score": 61,
+              "status": "unresolved",
+              "confidence": "unknown",
+              "rationale": "Supply interruption is scored from the direction of the relevant trace hop(s); unresolved because the required observation is unavailable.",
               "observationIds": [
                 "observation:hormuz-delivery:hormuz-total-transits",
                 "observation:hormuz-delivery:qatar-output-status"
@@ -8159,6 +8028,7 @@
                 "e-reuters-tactics-1014",
                 "e-reuters-sink-1014",
                 "e-reuters-oil-1021",
+                "e-reuters-attacks-1023",
                 "e-reuters-qatar-force-majeure-0928",
                 "e-qatar-force-majeure",
                 "e-qatar-force-majeure-latest"
@@ -8274,6 +8144,7 @@
             "e-reuters-tactics-1014",
             "e-reuters-sink-1014",
             "e-reuters-oil-1021",
+            "e-reuters-attacks-1023",
             "e-reuters-qatar-force-majeure-0928",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
@@ -8287,8 +8158,8 @@
           "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
         },
         "record": {
-          "asOf": "2026-10-24T02:08:20.723Z",
-          "validFrom": "2026-10-24T02:08:20.723Z",
+          "asOf": "2026-10-25T09:46:06.841Z",
+          "validFrom": "2026-10-25T09:46:06.841Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -8310,6 +8181,7 @@
             "e-reuters-tactics-1014",
             "e-reuters-sink-1014",
             "e-reuters-oil-1021",
+            "e-reuters-attacks-1023",
             "e-qatar-force-majeure",
             "e-qatar-force-majeure-latest",
             "e-reuters-qatar-force-majeure-0928",
@@ -8325,7 +8197,7 @@
         }
       },
       {
-        "id": "assessment:hormuz-crude-export:2026-10-24T00:00:00Z",
+        "id": "assessment:hormuz-crude-export:2026-10-25T00:00:00Z",
         "traceId": "hormuz-crude-export",
         "commodity": "crude-oil",
         "title": "Hormuz crude-export constraint",
@@ -8365,11 +8237,12 @@
               "e-reuters-tactics-1014",
               "e-reuters-sink-1014",
               "e-reuters-oil-1014",
-              "e-reuters-oil-1021"
+              "e-reuters-oil-1021",
+              "e-reuters-attacks-1023"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -8388,7 +8261,8 @@
                 "e-reuters-tactics-1014",
                 "e-reuters-sink-1014",
                 "e-reuters-oil-1014",
-                "e-reuters-oil-1021"
+                "e-reuters-oil-1021",
+                "e-reuters-attacks-1023"
               ],
               "status": "confirmed",
               "confidence": "high"
@@ -8421,8 +8295,8 @@
               "e-reuters-oil-1006"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -8466,8 +8340,8 @@
               "e-reuters-attacks-1007"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -8504,8 +8378,8 @@
               "e-gme-oman"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -8532,8 +8406,8 @@
               "e-eia-hormuz"
             ],
             "record": {
-              "asOf": "2026-10-24T02:08:20.723Z",
-              "validFrom": "2026-10-24T02:08:20.723Z",
+              "asOf": "2026-10-25T09:46:06.841Z",
+              "validFrom": "2026-10-25T09:46:06.841Z",
               "validTo": null,
               "unit": null,
               "sourceIds": [
@@ -8577,10 +8451,11 @@
                 "commercial-observation:oil-dubai-oman"
               ],
               "unit": "USD/bbl",
-              "calculatedAt": "2026-10-24T00:00:00Z",
+              "calculatedAt": "2026-10-25T00:00:00Z",
               "status": "unavailable",
               "missingInputIds": [
                 "oil-dubai-oman",
+                "oil-brent",
                 "oil-vlcc-freight",
                 "oil-war-risk"
               ]
@@ -8594,10 +8469,11 @@
                 "commercial-observation:oil-war-risk"
               ],
               "unit": "USD/bbl",
-              "calculatedAt": "2026-10-24T00:00:00Z",
+              "calculatedAt": "2026-10-25T00:00:00Z",
               "status": "unavailable",
               "missingInputIds": [
                 "oil-dubai-oman",
+                "oil-brent",
                 "oil-vlcc-freight",
                 "oil-war-risk"
               ]
@@ -8613,19 +8489,21 @@
                 "commercial-observation:oil-war-risk"
               ],
               "unit": "USD/bbl",
-              "calculatedAt": "2026-10-24T00:00:00Z",
+              "calculatedAt": "2026-10-25T00:00:00Z",
               "status": "unavailable",
               "missingInputIds": [
                 "oil-dubai-oman",
+                "oil-brent",
                 "oil-vlcc-freight",
                 "oil-war-risk"
               ]
             }
           ],
-          "dataStatus": "partial",
+          "dataStatus": "unavailable",
           "residualStatus": "insufficient-verified-data",
           "missingInputIds": [
             "oil-dubai-oman",
+            "oil-brent",
             "oil-vlcc-freight",
             "oil-war-risk"
           ],
@@ -8694,7 +8572,7 @@
           "score": 65,
           "status": "provisional",
           "confidence": "unknown",
-          "calculatedAt": "2026-10-24T02:08:20.723Z",
+          "calculatedAt": "2026-10-25T09:46:06.841Z",
           "components": [
             {
               "id": "supply-interruption",
@@ -8726,6 +8604,7 @@
                 "e-reuters-sink-1014",
                 "e-reuters-oil-1014",
                 "e-reuters-oil-1021",
+                "e-reuters-attacks-1023",
                 "e-eia-saudi",
                 "e-saudi-pipeline",
                 "e-hormuz-kpler-0925",
@@ -8846,6 +8725,7 @@
             "e-reuters-sink-1014",
             "e-reuters-oil-1014",
             "e-reuters-oil-1021",
+            "e-reuters-attacks-1023",
             "e-eia-saudi",
             "e-saudi-pipeline",
             "e-hormuz-kpler-0925",
@@ -8859,8 +8739,8 @@
           "note": "Higher scores indicate more pressure on the assessed physical flow. Missing or carried observations remain explicit and reduce confidence."
         },
         "record": {
-          "asOf": "2026-10-24T02:08:20.723Z",
-          "validFrom": "2026-10-24T02:08:20.723Z",
+          "asOf": "2026-10-25T09:46:06.841Z",
+          "validFrom": "2026-10-25T09:46:06.841Z",
           "validTo": null,
           "unit": null,
           "sourceIds": [
@@ -8880,6 +8760,7 @@
             "e-reuters-sink-1014",
             "e-reuters-oil-1014",
             "e-reuters-oil-1021",
+            "e-reuters-attacks-1023",
             "e-eia-saudi",
             "e-saudi-pipeline",
             "e-hormuz-kpler-0925",

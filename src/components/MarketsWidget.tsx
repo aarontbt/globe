@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "Brent $111.66 (+2.761%) on Oct 23; the latest reviewed Hormuz tanker-fire report remains a source-attributed claim.";
+const TOP_ALERT = "Reuters on Oct 23 reported 28 confirmed and reported attacks in Hormuz-area waters during October; Brent $111.66 and WTI $103.44 are carried Oct 23 observations.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

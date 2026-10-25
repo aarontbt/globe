@@ -14,15 +14,15 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-10-24 (D233) |
-| **Crisis level** | 4 - High (Latest reviewed Reuters shipping report (Oct 21) says Iran's Revolutionary Guards Navy claimed a supertanker fire after a mine strike south of Hormuz; the claim remains source-attributed. A targeted Reuters search found no matching Oct 22-23 update. Brent was $111.66 and WTI $103.44 on Oct 23. Official JKM remains $22/MMBtu from Jul 24, carried; the separate JKM-linked CFD was $31.42 on Oct 23. Scenario probabilities remain 15/45/40.) |
-| **Brent** | $111.66 (2026-10-23, Yahoo Finance BZ=F; +2.76%) |
+| **Last updated** | 2026-10-25 (D234) |
+| **Crisis level** | 4 - High (Reuters' Oct 23 report says a Washington Institute map recorded 28 confirmed and reported attacks in Hormuz-area waters during October, 113 since Feb 28; UKMTO warns voluntary ship reporting leaves gaps. Brent $111.66 and WTI $103.44 remain Oct 23 observations carried after the Oct 25 refresh failed. Official JKM remains $22/MMBtu from Jul 24, carried; the separate JKM-linked CFD was $31.42 on Oct 23. Scenarios remain 15/45/40.) |
+| **Brent** | $111.66 (2026-10-23, Yahoo Finance BZ=F; +2.76%; carried) |
 | **JKM** | $22.00/MMBtu (Reuters, Jul 24, carried); separate JKM-linked CFD $31.42/MMBtu (Trading Economics, Oct 23; not an official assessment) |
 | **TTF** | 93.445 EUR/MWh (ICE Endex Nov26 delayed Last, Oct 23 20:59 EDT / Oct 24 00:59 UTC; not settlement) |
-| **Exposure trace** | Latest verified Reuters incident report remains Oct 21: Iran's Guards Navy claimed a tanker fire after a mine strike south of Hormuz; Kpler separately reported 18 vessel attacks over two weeks. Both remain attributed. A targeted Reuters search found no matching Oct 22-23 shipping article. |
-| **Evidence audit** | 57 checked · 40 verified · 17 carried · 0 unsupported · PASS |
-| **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: partial (insufficient verified data) |
-| **Stale / carried** | 17 carried/estimated; 10 need a replacement source: trace qatar-subchartered-carriers (2026-07-23, 93d), commercial lng-jkm (2026-07-24, 92d), trace hormuz-transits (2026-08-02, 83d), cross-asset asean-ig (2026-08-05, 80d), cross-asset asean-hy (2026-08-05, 80d), cross-asset energy-eq (2026-08-05, 80d), cross-asset shipping-eq (2026-08-05, 80d), cross-asset banks-eq (2026-08-05, 80d), trace oil-vlcc-freight (2026-09-11, 43d), commercial oil-vlcc-freight (2026-09-11, 43d) |
+| **Exposure trace** | Reuters' Oct 23 report cites a Washington Institute map recording 28 confirmed and reported attacks in Hormuz-area waters during October, 113 since Feb 28; UKMTO warns voluntary ship reporting leaves gaps. The Oct 21 Guards Navy tanker-fire claim and Kpler's 18 attacks over two weeks remain attributed. No newer LNG-only weekly transit count was found. |
+| **Evidence audit** | 58 checked · 41 verified · 17 carried · 0 unsupported · PASS |
+| **Commercial evaluation** | Qatar supply disruption: partial (insufficient verified data); Hormuz delivery constraint: partial (insufficient verified data); Hormuz crude-export constraint: unavailable (insufficient verified data) |
+| **Stale / carried** | 21 carried/estimated; 10 need a replacement source: trace qatar-subchartered-carriers (2026-07-23, 94d), commercial lng-jkm (2026-07-24, 93d), trace hormuz-transits (2026-08-02, 84d), cross-asset asean-ig (2026-08-05, 81d), cross-asset asean-hy (2026-08-05, 81d), cross-asset energy-eq (2026-08-05, 81d), cross-asset shipping-eq (2026-08-05, 81d), cross-asset banks-eq (2026-08-05, 81d), trace oil-vlcc-freight (2026-09-11, 44d), commercial oil-vlcc-freight (2026-09-11, 44d) |
 
 ---
 
@@ -506,10 +506,10 @@ The permanent day-by-day crisis history lives in `docs/crisis-timeline-archive.m
 
 > Edit `priceNarratives` in daily state, not this section. Replace the prior-day levels, and keep no more than the 3 most significant historical inflection points.
 
-- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $111.66 (Yahoo Finance BZ=F, Oct 23, +2.761%). Working range $75-85 base; $85-105 stress; $105-135+ tail.
-- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried; Oct 24 targeted search found no newer official Platts assessment). The separate JKM-linked CFD was $31.42/MMBtu on Oct 23 (+2.60%; Trading Economics); it is not an official assessment.
+- **Brent**: Pre-shock ~$65 -> $126 wartime intraday high (Apr 30, CNBC/CNN) -> $111.66 (Yahoo Finance BZ=F, Oct 23, +2.761%; carried after the Oct 25 refresh failed). Working range $75-85 base; $85-105 stress; $105-135+ tail.
+- **JKM LNG**: Baseline $9.5 -> $23.40/MMBtu (Reuters/Platts) -> official $22.00/MMBtu (Jul 24 Reuters September-delivery assessment, carried; Oct 25 targeted search found no newer official Platts assessment). The separate JKM-linked CFD was $31.42/MMBtu on Oct 23 (+2.60%; Trading Economics); it is not an official assessment.
 - **TTF Gas**: Pre-shock ~$34/MWh -> 63.58/MWh (Jul 24, MacroMicro) -> 93.445 EUR/MWh (ICE Endex Nov26 delayed Last, Oct 23 20:59 EDT / Oct 24 00:59 UTC; not settlement). Selective LNG passages do not establish unrestricted Hormuz access.
-- **Credit**: iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both retained as estimates; Oct 24 searches found no dated, directly comparable daily marks. Official index pages and broad monthly factsheets did not supply the requested spreads. Scenario split remains base 15%, stress 45%, tail 40%.
+- **Credit**: iTraxx Asia IG est. ~138bp and ASEAN HY est. ~475bp (Aug 5), both retained as estimates; Oct 25 targeted searches found no dated, directly comparable daily marks. Official index pages and broad monthly factsheets did not supply the requested spreads. Scenario split remains base 15%, stress 45%, tail 40%.
 
 ### BottomChartsPanel (`src/data/charts-volatility.json`, generated from `volatilityDay`)
 

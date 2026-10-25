@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-24T00:00:00Z",
-  "reviewedAt": "2026-10-24T02:03:00Z",
-  "reviewer": "Codex; exact-page Firecrawl reviews and verified machine refreshes",
+  "asOf": "2026-10-25T00:00:00Z",
+  "reviewedAt": "2026-10-25T09:43:17Z",
+  "reviewer": "Codex; exact-page Firecrawl review and targeted source searches",
   "entries": [
     {
       "evidenceId": "e-qatar-force-majeure",
@@ -23,7 +23,7 @@
         "QatarEnergy continued leasing some LNG tankers through mid-October.",
         "At least nine QELM/QET-controlled LNG carriers were sub-chartered to named third parties."
       ],
-      "carryReason": "Oct 24 targeted search returned no newer directly comparable QatarEnergy sub-chartered carrier count; retain the July 23 Reuters observation as historical context.",
+      "carryReason": "Oct 25 targeted search found no newer directly comparable sub-chartered LNG carrier count; retain the July 23 Reuters minimum as historical context.",
       "supportedHopIds": [
         "qatar-supply:qatar-signal",
         "qatar-supply:qatar-supply-hop",
@@ -106,7 +106,7 @@
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Oct 24 targeted search found no newer comparable weekly LNG-only count. The July Kpler count remains historical context; October all-commodity counts have a different scope.",
+      "carryReason": "Oct 25 targeted search found no newer comparable LNG-only weekly count; the July Kpler count remains historical context and October all-vessel counts have different scope.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-hormuz-transit.json"
     },
     {
@@ -138,7 +138,7 @@
           "provider": "Reuters / industry sources"
         }
       ],
-      "carryReason": "Oct 24 targeted Reuters/Platts search found no newer official JKM assessment. The separate Trading Economics CFD and CME futures are different instruments; Reuters' Jul 24 $22/MMBtu assessment remains the latest approved official observation.",
+      "carryReason": "Oct 25 targeted Reuters/Platts search found no newer official JKM assessment; futures and CFD quotes are distinct instruments from the Jul 24 Reuters assessment.",
       "supportedCommercialInputIds": [
         "lng-jkm"
       ],
@@ -695,7 +695,7 @@
         "oil-vlcc-freight"
       ],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Oct 24 search revalidated Reuters' Oct 16 Gulf of Oman-to-China VLCC rate near Worldscale 776, but found no route-normalised USD/bbl assessment comparable to the carried Sep 11 input.",
+      "carryReason": "Oct 25 targeted search found no directly comparable Gulf of Oman-to-China USD/bbl assessment; the Oct 16 Worldscale quote is a different unit.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-vlcc-freight.json"
     },
     {
@@ -1800,25 +1800,28 @@
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Philippines 10-Year Government Bond Yield",
+      "title": "Philippines 10-Year Government Bond Yield - Quote - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-10-16",
-      "checkedAt": "2026-10-18T23:52:13Z",
-      "claimSummary": "Philippines 10-year OTC interbank government yield was 7.98% on Oct 16; displayed day move 0.041 percentage points (4.1bp).",
+      "publishedAt": "2026-10-23",
+      "checkedAt": "2026-10-25T09:43:17Z",
+      "claimSummary": "Trading Economics reports a dated Philippines 10-year government yield observation of 8.12% on Oct 23, up 0.06 percentage points from the prior session.",
       "extractedFacts": [
-        "Philippines 10-year OTC interbank government yield was 7.98% on Oct 16; displayed day move 0.041 percentage points (4.1bp)."
+        "The source table lists the Philippines 10-year government yield at 8.12 on Oct 23, 2026.",
+        "Trading Economics states the yield rose 0.06 percentage points from the previous session.",
+        "The page identifies the figure as an over-the-counter interbank quote for this government bond maturity.",
+        "The page was last updated Oct 25, 2026; its undated Actual reading is not used as a dated observation."
       ],
       "observations": [
         {
           "inputId": "crossAsset.ph10y",
-          "value": 7.98,
+          "value": 8.12,
           "unit": "%",
-          "sourceDate": "2026-10-16",
+          "sourceDate": "2026-10-23",
           "instrument": "Philippines 10-year government bond yield",
           "provider": "Trading Economics"
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261018/e-ph10y.md",
+      "retrievalArtifact": ".firecrawl/daily-20261025/e-ph10y.md",
       "supportedHopIds": [],
       "supportedMetricIds": [],
       "supportedRelationshipIds": [],
@@ -1853,6 +1856,35 @@
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
       "retrievalArtifact": ".firecrawl/daily-20261021/news-oil-1021.json"
+    },
+    {
+      "evidenceId": "e-reuters-attacks-1023",
+      "url": "https://www.reuters.com/business/energy/ship-attacks-strait-hormuz-hit-record-high-october-2026-10-23/",
+      "canonicalUrl": "https://www.reuters.com/business/energy/ship-attacks-strait-hormuz-hit-record-high-october-2026-10-23/",
+      "httpStatus": 200,
+      "pageType": "article",
+      "contentStatus": "verified",
+      "reviewStatus": "approved",
+      "title": "Ship attacks in Strait of Hormuz hit record high in October | Reuters",
+      "publisher": "Reuters",
+      "publishedAt": "2026-10-23",
+      "checkedAt": "2026-10-25T09:43:17Z",
+      "claimSummary": "Reuters reports the Washington Institute map's count of 28 confirmed and reported attacks in Hormuz-area waters during October and 113 since Feb 28; it distinguishes this attack tally from transit counts.",
+      "extractedFacts": [
+        "The Washington Institute map recorded 28 confirmed and reported attacks in the Strait of Hormuz and surrounding waterways during October.",
+        "The same map recorded 113 attacks since the conflict began on Feb 28.",
+        "UKMTO reported 135 conflict-related incidents through Oct 16 and said voluntary ship reporting left gaps in the count."
+      ],
+      "supportedHopIds": [
+        "hormuz-delivery:delivery-signal",
+        "hormuz-crude-export:oil-constraint-signal"
+      ],
+      "supportedMetricIds": [],
+      "supportedRelationshipIds": [],
+      "observations": [],
+      "supportedCommercialInputIds": [],
+      "supportedDerivedMetricIds": [],
+      "retrievalArtifact": ".firecrawl/daily-20261025/e-reuters-attacks-1023.md"
     }
   ]
 }
