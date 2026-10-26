@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "Reuters on Oct 23 reported 28 confirmed and reported attacks in Hormuz-area waters during October; Brent $111.66 and WTI $103.44 are carried Oct 23 observations.";
+const TOP_ALERT = "Oct 26 market feeds failed; Brent $111.66 and WTI $103.44 remain carried Oct 23 observations. The latest audited shipping incident tally is Reuters' Oct 23 report.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

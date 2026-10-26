@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-25T00:00:00Z",
-  "reviewedAt": "2026-10-25T09:43:17Z",
-  "reviewer": "Codex; exact-page Firecrawl review and targeted source searches",
+  "asOf": "2026-10-26T00:00:00Z",
+  "reviewedAt": "2026-10-26T01:44:00Z",
+  "reviewer": "Codex; daily status review and targeted replacement-source searches",
   "entries": [
     {
       "evidenceId": "e-qatar-force-majeure",
@@ -23,7 +23,7 @@
         "QatarEnergy continued leasing some LNG tankers through mid-October.",
         "At least nine QELM/QET-controlled LNG carriers were sub-chartered to named third parties."
       ],
-      "carryReason": "Oct 25 targeted search found no newer directly comparable sub-chartered LNG carrier count; retain the July 23 Reuters minimum as historical context.",
+      "carryReason": "Oct 26 targeted search found no newer directly comparable sub-chartered LNG carrier count. Reuters' Jul 23 minimum of nine remains the latest approved observation; retain its original date.",
       "supportedHopIds": [
         "qatar-supply:qatar-signal",
         "qatar-supply:qatar-supply-hop",
@@ -106,7 +106,7 @@
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Oct 25 targeted search found no newer comparable LNG-only weekly count; the July Kpler count remains historical context and October all-vessel counts have different scope.",
+      "carryReason": "Oct 26 targeted search found individual LNG vessel movements and older event reports, but no newer comparable LNG-only weekly transit count. Retain Kpler's three transits for Jul 27-Aug 2 with their original period and date.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-hormuz-transit.json"
     },
     {
@@ -138,7 +138,7 @@
           "provider": "Reuters / industry sources"
         }
       ],
-      "carryReason": "Oct 25 targeted Reuters/Platts search found no newer official JKM assessment; futures and CFD quotes are distinct instruments from the Jul 24 Reuters assessment.",
+      "carryReason": "Oct 26 targeted search returned a Reuters JKM swap-futures quote, not a newer official Platts assessment. Retain Reuters' Jul 24 $22/MMBtu assessment with its original date.",
       "supportedCommercialInputIds": [
         "lng-jkm"
       ],
@@ -620,7 +620,7 @@
         "oil-dubai-oman"
       ],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Reviewed Oct 15: the exact latest GME daily bulletin located is still dated Sep 25 and reports OQD NOV26 at $111.58/bbl; carry with the original date.",
+      "carryReason": "Oct 26 targeted search found a Dubai financial-futures quote and benchmark methodology, not a dated physical Dubai/Oman assessment. Retain the Sep 25 GME OQD NOV26 $111.58/bbl marker with its original date.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-gme-oman.json"
     },
     {
@@ -695,7 +695,7 @@
         "oil-vlcc-freight"
       ],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Oct 25 targeted search found no directly comparable Gulf of Oman-to-China USD/bbl assessment; the Oct 16 Worldscale quote is a different unit.",
+      "carryReason": "Oct 26 targeted search surfaced other routes and Worldscale references, but no exact Gulf of Oman-to-China USD/bbl assessment. Retain the Sep 11 $11.50/bbl observation; Reuters' Oct 16 Worldscale quote is a different unit.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-vlcc-freight.json"
     },
     {
