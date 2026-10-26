@@ -8,7 +8,7 @@ interface Props {
   lastUpdated: Date | null;
 }
 
-const TOP_ALERT = "Oct 26 market feeds failed; Brent $111.66 and WTI $103.44 remain carried Oct 23 observations. The latest audited shipping incident tally is Reuters' Oct 23 report.";
+const TOP_ALERT = "The direct liquid-market refresh failed, but reviewed Oct 26 pages show Brent $110.15 and WTI $101.38. Reuters Oct 23 remains the latest audited attack report.";
 
 const KEYFRAME_CSS = `
   @keyframes flashUp {

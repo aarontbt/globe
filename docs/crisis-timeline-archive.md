@@ -176,3 +176,4 @@ Permanent append-only crisis history for the ASEAN Globe market brief. Daily run
 - **D233**: Oct 24 - Brent $111.66 (Oct 23, +2.761%); no newer Reuters Hormuz shipping report was found; probabilities remain 15/45/40.
 - **D234**: Oct 25 - Brent $111.66 (Oct 23; carried); Reuters reports 28 confirmed and reported October attacks in Hormuz-area waters; scenarios remain 15/45/40.
 - **D235**: Oct 26 - Brent $111.66 (Oct 23; carried after feed failure); Reuters' Oct 23 attack tally remains latest audited; scenarios 15/45/40.
+- **D236**: Oct 27 - Brent $110.15 and WTI $101.38 (Oct 26 observations); no newer audited attack report; scenarios 15/45/40.

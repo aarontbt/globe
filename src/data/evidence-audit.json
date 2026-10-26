@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-26T00:00:00Z",
-  "reviewedAt": "2026-10-26T01:44:00Z",
-  "reviewer": "Codex; daily status review and targeted replacement-source searches",
+  "asOf": "2026-10-27T00:00:00Z",
+  "reviewedAt": "2026-10-26T23:26:00Z",
+  "reviewer": "Codex; Firecrawl exact-page market reviews and targeted replacement-source searches",
   "entries": [
     {
       "evidenceId": "e-qatar-force-majeure",
@@ -23,7 +23,7 @@
         "QatarEnergy continued leasing some LNG tankers through mid-October.",
         "At least nine QELM/QET-controlled LNG carriers were sub-chartered to named third parties."
       ],
-      "carryReason": "Oct 26 targeted search found no newer directly comparable sub-chartered LNG carrier count. Reuters' Jul 23 minimum of nine remains the latest approved observation; retain its original date.",
+      "carryReason": "Oct 27 targeted search found no newer directly comparable count of current QatarEnergy sub-chartered LNG carriers. Reuters' Jul 23 minimum of nine remains the latest approved observation; Oct 22 talks over future LNG offtake through 2031 do not establish present carrier or cargo counts.",
       "supportedHopIds": [
         "qatar-supply:qatar-signal",
         "qatar-supply:qatar-supply-hop",
@@ -106,7 +106,7 @@
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Oct 26 targeted search found individual LNG vessel movements and older event reports, but no newer comparable LNG-only weekly transit count. Retain Kpler's three transits for Jul 27-Aug 2 with their original period and date.",
+      "carryReason": "Oct 27 targeted search found no newer comparable LNG-only weekly transit count. Retain Kpler's three transits for Jul 27-Aug 2 with their original period; AIS-dark vessels may be missing.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-hormuz-transit.json"
     },
     {
@@ -138,7 +138,7 @@
           "provider": "Reuters / industry sources"
         }
       ],
-      "carryReason": "Oct 26 targeted search returned a Reuters JKM swap-futures quote, not a newer official Platts assessment. Retain Reuters' Jul 24 $22/MMBtu assessment with its original date.",
+      "carryReason": "Oct 27 targeted search found CME JKM futures, not a newer official Platts physical assessment. Retain Reuters' Jul 24 $22/MMBtu observation with its original date.",
       "supportedCommercialInputIds": [
         "lng-jkm"
       ],
@@ -155,12 +155,12 @@
       "reviewStatus": "approved",
       "title": "Dutch TTF Natural Gas Futures Pricing",
       "publisher": "ICE Endex",
-      "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-24T02:01:00Z",
-      "claimSummary": "ICE Endex Nov26 Dutch TTF delayed Last was 93.445 EUR/MWh at Oct 23 20:59 EDT (Oct 24 00:59 UTC); it is not settlement.",
+      "publishedAt": "2026-10-26",
+      "checkedAt": "2026-10-26T23:26:00Z",
+      "claimSummary": "ICE Endex displayed the Nov26 Dutch TTF delayed Last at 95.155 EUR/MWh on Oct 26 at 20:45 GMT; this is not settlement.",
       "extractedFacts": [
-        "ICE Endex displayed a Dutch TTF futures Last of 93.445 EUR/MWh at 20:59 EDT on Oct 23.",
-        "ICE market data is delayed by at least 15 minutes; the displayed Last is not settlement."
+        "ICE Endex Nov26 Dutch TTF futures Last was 95.155 EUR/MWh at 20:45 GMT on Oct 26, 2026.",
+        "The quote is delayed market data and is not settlement."
       ],
       "supportedHopIds": [
         "hormuz-delivery:delivery-demand"
@@ -172,28 +172,32 @@
       "observations": [
         {
           "inputId": "ttf",
-          "value": 93.445,
+          "value": 95.155,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-10-23",
-          "observedAt": "2026-10-24T00:59:00Z",
-          "instrument": "ICE Endex Nov26 Dutch TTF futures delayed Last",
-          "provider": "ICE Endex"
+          "sourceDate": "2026-10-26",
+          "observedAt": "2026-10-26T20:45:00Z",
+          "instrument": "ICE Endex Nov26 Dutch TTF Natural Gas Futures delayed Last",
+          "provider": "ICE Endex",
+          "change": 1.387,
+          "changePercent": 1.48
         },
         {
           "inputId": "lng-ttf",
-          "value": 93.445,
+          "value": 95.155,
           "unit": "EUR/MWh",
-          "sourceDate": "2026-10-23",
-          "observedAt": "2026-10-24T00:59:00Z",
-          "instrument": "ICE Endex Nov26 Dutch TTF futures delayed Last",
-          "provider": "ICE Endex"
+          "sourceDate": "2026-10-26",
+          "observedAt": "2026-10-26T20:45:00Z",
+          "instrument": "ICE Endex Nov26 Dutch TTF Natural Gas Futures delayed Last",
+          "provider": "ICE Endex",
+          "change": 1.387,
+          "changePercent": 1.48
         }
       ],
       "supportedCommercialInputIds": [
         "lng-ttf"
       ],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261024/reviewed-source-extracts.json"
+      "retrievalArtifact": ".firecrawl/daily-20261027/reviewed-source-extracts.json"
     },
     {
       "evidenceId": "e-jera-qatarenergy",
@@ -331,14 +335,14 @@
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - Brent Crude",
+      "title": "Brent Crude Oil Last Day Financial Futures",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-24T02:01:00Z",
-      "claimSummary": "Yahoo Finance BZ=F chart API: Brent futures price $111.66/bbl at 2026-10-23T20:59:19Z; Yahoo regularMarketChangePercent +2.761%.",
+      "publishedAt": "2026-10-26",
+      "checkedAt": "2026-10-26T23:26:00Z",
+      "claimSummary": "Yahoo Finance BZ=F showed $110.15/bbl at 23:12:22 UTC on Oct 26, down $0.59 (-0.533%).",
       "extractedFacts": [
-        "Yahoo Finance BZ=F returned 111.66 USD/bbl at 2026-10-23T20:59:19Z.",
-        "Yahoo Finance reports regularMarketChangePercent +2.761%."
+        "Yahoo Finance BZ=F regular market price was 110.15 USD/bbl at 2026-10-26T23:12:22Z.",
+        "The API reported a daily change of -0.59 USD (-0.533%); the Oct 26 daily chart candle timestamp is 1792987200."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -350,15 +354,17 @@
       "observations": [
         {
           "inputId": "oil-brent",
-          "value": 111.66,
+          "value": 110.15,
           "unit": "USD/bbl",
-          "sourceDate": "2026-10-23",
-          "observedAt": "2026-10-23T20:59:19.000Z",
-          "instrument": "BZ=F Brent crude futures",
-          "provider": "Yahoo Finance"
+          "sourceDate": "2026-10-26",
+          "observedAt": "2026-10-26T23:12:22Z",
+          "instrument": "BZ=F Brent Crude Oil Last Day Financial Futures",
+          "provider": "Yahoo Finance",
+          "change": -0.59,
+          "changePercent": -0.533
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261024/reviewed-source-extracts.json"
+      "retrievalArtifact": ".firecrawl/daily-20261027/reviewed-source-extracts.json"
     },
     {
       "evidenceId": "e-wti",
@@ -368,14 +374,14 @@
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - WTI Crude",
+      "title": "Crude Oil Dec 26",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-24T02:01:00Z",
-      "claimSummary": "Yahoo Finance CL=F chart API: WTI futures price $103.44/bbl at 2026-10-23T20:59:58Z; Yahoo regularMarketChangePercent +3.991%.",
+      "publishedAt": "2026-10-26",
+      "checkedAt": "2026-10-26T23:26:00Z",
+      "claimSummary": "Yahoo Finance CL=F showed $101.38/bbl at 23:15:26 UTC on Oct 26, down $0.38 (-0.373%).",
       "extractedFacts": [
-        "Yahoo Finance CL=F returned 103.44 USD/bbl at 2026-10-23T20:59:58Z.",
-        "Yahoo Finance reports regularMarketChangePercent +3.991%."
+        "Yahoo Finance CL=F regular market price was 101.38 USD/bbl at 2026-10-26T23:15:26Z.",
+        "The API reported a daily change of -0.38 USD (-0.373%); the Oct 26 daily chart candle timestamp is 1792987200."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -387,15 +393,17 @@
       "observations": [
         {
           "inputId": "oil-wti",
-          "value": 103.44,
+          "value": 101.38,
           "unit": "USD/bbl",
-          "sourceDate": "2026-10-23",
-          "observedAt": "2026-10-23T20:59:58.000Z",
-          "instrument": "CL=F WTI crude futures",
-          "provider": "Yahoo Finance"
+          "sourceDate": "2026-10-26",
+          "observedAt": "2026-10-26T23:15:26Z",
+          "instrument": "CL=F Crude Oil Dec 26 Futures",
+          "provider": "Yahoo Finance",
+          "change": -0.38,
+          "changePercent": -0.373
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261024/reviewed-source-extracts.json"
+      "retrievalArtifact": ".firecrawl/daily-20261027/reviewed-source-extracts.json"
     },
     {
       "evidenceId": "e-eurusd",
@@ -405,14 +413,14 @@
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - EUR/USD",
+      "title": "EUR/USD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-24T02:01:00Z",
-      "claimSummary": "Yahoo Finance EURUSD=X returned 1.1204 USD/EUR at 2026-10-23T21:29:27Z; reported regularMarketChangePercent -0.1569%.",
+      "publishedAt": "2026-10-26",
+      "checkedAt": "2026-10-26T23:26:00Z",
+      "claimSummary": "Yahoo Finance EURUSD=X showed 1.1176 USD/EUR at 23:25:44 UTC on Oct 26, down 0.257%.",
       "extractedFacts": [
-        "Yahoo Finance EURUSD=X returned 1.1204 USD/EUR at 2026-10-23T21:29:27Z.",
-        "Yahoo Finance reports regularMarketChangePercent -0.1569%."
+        "Yahoo Finance EURUSD=X regular market price was 1.1176 USD/EUR at 2026-10-26T23:25:44Z.",
+        "The API reported a daily change of -0.0029 (-0.257%); the Oct 26 daily chart candle timestamp is 1792972800."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -424,15 +432,17 @@
       "observations": [
         {
           "inputId": "fx-eurusd",
-          "value": 1.1204,
+          "value": 1.1176,
           "unit": "USD/EUR",
-          "sourceDate": "2026-10-23",
-          "observedAt": "2026-10-23T21:29:27.000Z",
+          "sourceDate": "2026-10-26",
+          "observedAt": "2026-10-26T23:25:44Z",
           "instrument": "EURUSD=X EUR/USD spot exchange rate",
-          "provider": "Yahoo Finance"
+          "provider": "Yahoo Finance",
+          "change": -0.0029,
+          "changePercent": -0.257
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261024/reviewed-source-extracts.json"
+      "retrievalArtifact": ".firecrawl/daily-20261027/reviewed-source-extracts.json"
     },
     {
       "evidenceId": "e-sofr",
@@ -481,12 +491,13 @@
       "reviewStatus": "approved",
       "title": "Liquefied Natural Gas Japan Korea - Price - Chart - Historical Data - News",
       "publisher": "Trading Economics",
-      "publishedAt": "2026-10-24",
-      "checkedAt": "2026-10-24T02:01:00Z",
-      "claimSummary": "Trading Economics reports the LNG Japan Korea CFD reference at $31.42/MMBtu on Oct 23, 2026, up 2.60%; it is not an official JKM assessment.",
+      "publishedAt": "2026-10-26",
+      "checkedAt": "2026-10-26T23:26:00Z",
+      "claimSummary": "The current dynamic quote is a $32.20/MMBtu JKM-linked CFD for Oct 26, not an official Platts assessment.",
       "extractedFacts": [
-        "Trading Economics page updated Oct 24 reports a price of 31.42 USD/MMBtu for Oct 23.",
-        "The JKM page describes a CFD that tracks the benchmark market; it is distinct from an official Platts JKM spot assessment."
+        "The page displayed a dynamic Actual quote of 32.20 USD/MMBtu for Oct 26, 2026, up 0.78 (+2.47%).",
+        "Trading Economics describes the series as a contract for difference that tracks the benchmark market; it is not an official Platts JKM assessment.",
+        "The page metadata description still displayed an older 31.42 USD/MMBtu Oct 23 value; the reviewed dynamic Actual quote is dated Oct 26."
       ],
       "supportedHopIds": [
         "qatar-supply:qatar-demand"
@@ -498,16 +509,18 @@
       "observations": [
         {
           "inputId": "jkm-cfd-reference",
-          "value": 31.42,
+          "value": 32.2,
           "unit": "USD/MMBtu",
-          "sourceDate": "2026-10-23",
-          "instrument": "LNG Japan Korea CFD market reference",
-          "provider": "Trading Economics"
+          "sourceDate": "2026-10-26",
+          "instrument": "Trading Economics JKM-linked CFD",
+          "provider": "Trading Economics",
+          "change": 0.78,
+          "changePercent": 2.47
         }
       ],
       "supportedCommercialInputIds": [],
       "supportedDerivedMetricIds": [],
-      "retrievalArtifact": ".firecrawl/daily-20261024/reviewed-source-extracts.json"
+      "retrievalArtifact": ".firecrawl/daily-20261027/reviewed-source-extracts.json"
     },
     {
       "evidenceId": "e-hormuz-total-transits",
@@ -620,7 +633,7 @@
         "oil-dubai-oman"
       ],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Oct 26 targeted search found a Dubai financial-futures quote and benchmark methodology, not a dated physical Dubai/Oman assessment. Retain the Sep 25 GME OQD NOV26 $111.58/bbl marker with its original date.",
+      "carryReason": "Oct 27 search found CME Dubai financial futures and benchmark methodology, but no dated physical Dubai/Oman assessment. Retain GME's Sep 25 OQD NOV26 $111.58/bbl marker with its original date.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-gme-oman.json"
     },
     {
@@ -695,7 +708,7 @@
         "oil-vlcc-freight"
       ],
       "supportedDerivedMetricIds": [],
-      "carryReason": "Oct 26 targeted search surfaced other routes and Worldscale references, but no exact Gulf of Oman-to-China USD/bbl assessment. Retain the Sep 11 $11.50/bbl observation; Reuters' Oct 16 Worldscale quote is a different unit.",
+      "carryReason": "Oct 27 targeted search found route quotes in Worldscale, but no Gulf of Oman-to-China rate in USD/bbl. Retain Reuters/Baltic's Sep 11 $11.50/bbl observation; Oct 16's Worldscale quote is a different unit.",
       "retrievalArtifact": ".firecrawl/daily-20261007/e-vlcc-freight.json"
     },
     {
@@ -938,14 +951,14 @@
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - USD/SGD",
+      "title": "USD/SGD",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-24T02:01:00Z",
-      "claimSummary": "Yahoo Finance SGD=X returned 1.2779 SGD per USD at 2026-10-23T21:01:20Z; provider-reported regularMarketChangePercent +0.0352%.",
+      "publishedAt": "2026-10-26",
+      "checkedAt": "2026-10-26T23:26:00Z",
+      "claimSummary": "Yahoo Finance SGD=X showed 1.281 SGD/USD at 23:25:49 UTC on Oct 26, up 0.2426%.",
       "extractedFacts": [
-        "Yahoo Finance returned 1.2779 SGD per USD at 2026-10-23T21:01:20Z.",
-        "Yahoo Finance reports regularMarketChangePercent +0.0352%."
+        "Yahoo Finance SGD=X regular market price was 1.281 SGD/USD at 2026-10-26T23:25:49Z.",
+        "The API reported a daily change of +0.0031 (+0.2426%); the Oct 26 daily chart candle timestamp is 1792972800."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -954,16 +967,18 @@
       "supportedRelationshipIds": [],
       "observations": [
         {
-          "inputId": "crossAsset.sgd",
-          "value": 1.2779,
-          "unit": "SGD per USD",
-          "sourceDate": "2026-10-23",
-          "observedAt": "2026-10-23T21:01:20Z",
+          "inputId": "cross-asset:sgd",
+          "value": 1.281,
+          "unit": "SGD/USD",
+          "sourceDate": "2026-10-26",
+          "observedAt": "2026-10-26T23:25:49Z",
           "instrument": "SGD=X USD/SGD spot exchange rate",
-          "provider": "Yahoo Finance"
+          "provider": "Yahoo Finance",
+          "change": 0.0031,
+          "changePercent": 0.2426
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261024/reviewed-source-extracts.json"
+      "retrievalArtifact": ".firecrawl/daily-20261027/reviewed-source-extracts.json"
     },
     {
       "evidenceId": "e-fx-idr",
@@ -973,14 +988,14 @@
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - USD/IDR",
+      "title": "USD/IDR",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-24T02:01:00Z",
-      "claimSummary": "Yahoo Finance IDR=X returned 17956 IDR per USD at 2026-10-23T21:28:52Z; provider-reported regularMarketChangePercent +0.0725%.",
+      "publishedAt": "2026-10-26",
+      "checkedAt": "2026-10-26T23:26:00Z",
+      "claimSummary": "Yahoo Finance IDR=X showed 17,978 IDR/USD at 22:28:55 UTC on Oct 26, up 0.1225%.",
       "extractedFacts": [
-        "Yahoo Finance returned 17956 IDR per USD at 2026-10-23T21:28:52Z.",
-        "Yahoo Finance reports regularMarketChangePercent +0.0725%."
+        "Yahoo Finance IDR=X regular market price was 17,978 IDR/USD at 2026-10-26T22:28:55Z.",
+        "The API reported a daily change of +22 IDR (+0.1225%); the Oct 26 daily chart candle timestamp is 1792972800."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -989,16 +1004,18 @@
       "supportedRelationshipIds": [],
       "observations": [
         {
-          "inputId": "crossAsset.idr",
-          "value": 17956,
-          "unit": "IDR per USD",
-          "sourceDate": "2026-10-23",
-          "observedAt": "2026-10-23T21:28:52Z",
+          "inputId": "cross-asset:idr",
+          "value": 17978,
+          "unit": "IDR/USD",
+          "sourceDate": "2026-10-26",
+          "observedAt": "2026-10-26T22:28:55Z",
           "instrument": "IDR=X USD/IDR spot exchange rate",
-          "provider": "Yahoo Finance"
+          "provider": "Yahoo Finance",
+          "change": 22,
+          "changePercent": 0.1225
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261024/reviewed-source-extracts.json"
+      "retrievalArtifact": ".firecrawl/daily-20261027/reviewed-source-extracts.json"
     },
     {
       "evidenceId": "e-fx-myr",
@@ -1008,14 +1025,14 @@
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - USD/MYR",
+      "title": "USD/MYR",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-24T02:01:00Z",
-      "claimSummary": "Yahoo Finance MYR=X returned 4.083 MYR per USD at 2026-10-23T21:29:05Z; provider-reported regularMarketChangePercent +0.049%.",
+      "publishedAt": "2026-10-26",
+      "checkedAt": "2026-10-26T23:26:00Z",
+      "claimSummary": "Yahoo Finance MYR=X showed 4.085 MYR/USD at 22:28:56 UTC on Oct 26, up 0.049%.",
       "extractedFacts": [
-        "Yahoo Finance returned 4.083 MYR per USD at 2026-10-23T21:29:05Z.",
-        "Yahoo Finance reports regularMarketChangePercent +0.049%."
+        "Yahoo Finance MYR=X regular market price was 4.085 MYR/USD at 2026-10-26T22:28:56Z.",
+        "The API reported a daily change of +0.002 MYR (+0.049%); the Oct 26 daily chart candle timestamp is 1792972800."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1024,16 +1041,18 @@
       "supportedRelationshipIds": [],
       "observations": [
         {
-          "inputId": "crossAsset.myr",
-          "value": 4.083,
-          "unit": "MYR per USD",
-          "sourceDate": "2026-10-23",
-          "observedAt": "2026-10-23T21:29:05Z",
+          "inputId": "cross-asset:myr",
+          "value": 4.085,
+          "unit": "MYR/USD",
+          "sourceDate": "2026-10-26",
+          "observedAt": "2026-10-26T22:28:56Z",
           "instrument": "MYR=X USD/MYR spot exchange rate",
-          "provider": "Yahoo Finance"
+          "provider": "Yahoo Finance",
+          "change": 0.002,
+          "changePercent": 0.049
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261024/reviewed-source-extracts.json"
+      "retrievalArtifact": ".firecrawl/daily-20261027/reviewed-source-extracts.json"
     },
     {
       "evidenceId": "e-fx-thb",
@@ -1043,14 +1062,14 @@
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - USD/THB",
+      "title": "USD/THB",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-24T02:01:00Z",
-      "claimSummary": "Yahoo Finance THB=X returned 33.74 THB per USD at 2026-10-23T21:30:21Z; provider-reported regularMarketChangePercent +0.0593%.",
+      "publishedAt": "2026-10-26",
+      "checkedAt": "2026-10-26T23:26:00Z",
+      "claimSummary": "Yahoo Finance THB=X showed 33.75 THB/USD at 23:25:40 UTC on Oct 26, up 0.0296%.",
       "extractedFacts": [
-        "Yahoo Finance returned 33.74 THB per USD at 2026-10-23T21:30:21Z.",
-        "Yahoo Finance reports regularMarketChangePercent +0.0593%."
+        "Yahoo Finance THB=X regular market price was 33.75 THB/USD at 2026-10-26T23:25:40Z.",
+        "The API reported a daily change of +0.01 THB (+0.0296%); the chart latest returned candle timestamp was 1792450800."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1059,16 +1078,18 @@
       "supportedRelationshipIds": [],
       "observations": [
         {
-          "inputId": "crossAsset.thb",
-          "value": 33.74,
-          "unit": "THB per USD",
-          "sourceDate": "2026-10-23",
-          "observedAt": "2026-10-23T21:30:21Z",
+          "inputId": "cross-asset:thb",
+          "value": 33.75,
+          "unit": "THB/USD",
+          "sourceDate": "2026-10-26",
+          "observedAt": "2026-10-26T23:25:40Z",
           "instrument": "THB=X USD/THB spot exchange rate",
-          "provider": "Yahoo Finance"
+          "provider": "Yahoo Finance",
+          "change": 0.01,
+          "changePercent": 0.0296
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261024/reviewed-source-extracts.json"
+      "retrievalArtifact": ".firecrawl/daily-20261027/reviewed-source-extracts.json"
     },
     {
       "evidenceId": "e-fx-php",
@@ -1078,14 +1099,14 @@
       "pageType": "market-data",
       "contentStatus": "verified",
       "reviewStatus": "approved",
-      "title": "Yahoo Finance chart API - USD/PHP",
+      "title": "USD/PHP",
       "publisher": "Yahoo Finance",
-      "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-24T02:01:00Z",
-      "claimSummary": "Yahoo Finance PHP=X returned 63.561 PHP per USD at 2026-10-23T17:18:56Z; provider-reported regularMarketChangePercent +0.2049%.",
+      "publishedAt": "2026-10-26",
+      "checkedAt": "2026-10-26T23:26:00Z",
+      "claimSummary": "Yahoo Finance PHP=X showed 63.87 PHP/USD at 22:28:56 UTC on Oct 26, up 0.4861%.",
       "extractedFacts": [
-        "Yahoo Finance returned 63.561 PHP per USD at 2026-10-23T17:18:56Z.",
-        "Yahoo Finance reports regularMarketChangePercent +0.2049%."
+        "Yahoo Finance PHP=X regular market price was 63.87 PHP/USD at 2026-10-26T22:28:56Z.",
+        "The API reported a daily change of +0.309 PHP (+0.4861%); the Oct 26 daily chart candle timestamp is 1792972800."
       ],
       "supportedHopIds": [],
       "supportedMetricIds": [],
@@ -1094,16 +1115,18 @@
       "supportedRelationshipIds": [],
       "observations": [
         {
-          "inputId": "crossAsset.php",
-          "value": 63.561,
-          "unit": "PHP per USD",
-          "sourceDate": "2026-10-23",
-          "observedAt": "2026-10-23T17:18:56Z",
+          "inputId": "cross-asset:php",
+          "value": 63.87,
+          "unit": "PHP/USD",
+          "sourceDate": "2026-10-26",
+          "observedAt": "2026-10-26T22:28:56Z",
           "instrument": "PHP=X USD/PHP spot exchange rate",
-          "provider": "Yahoo Finance"
+          "provider": "Yahoo Finance",
+          "change": 0.309,
+          "changePercent": 0.4861
         }
       ],
-      "retrievalArtifact": ".firecrawl/daily-20261024/reviewed-source-extracts.json"
+      "retrievalArtifact": ".firecrawl/daily-20261027/reviewed-source-extracts.json"
     },
     {
       "evidenceId": "e-reuters-policy-0929",
